@@ -1,0 +1,47 @@
+from PyQt6.QtCore import QSize
+from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout
+
+
+class ContactsToolbarWidget(QWidget):
+    def __init__(self, parent=None) -> None:
+        super().__init__(parent)
+        self.setObjectName("contactsToolbarWidget")
+        self.buttons_size = QSize(35, 35)
+        self.setLayout(self.create_gui())
+
+    def create_gui(self) -> QLayout:
+        main_layout = QHBoxLayout()
+        self.add_new_contact_pushbutton = QPushButton()
+        self.add_new_contact_pushbutton.setObjectName("addNewContactPushbutton")
+        self.add_new_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.update_contact_pushbutton = QPushButton()
+        self.update_contact_pushbutton.setObjectName("updateContactPushbutton")
+        self.update_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.delete_contact_pushbutton = QPushButton()
+        self.delete_contact_pushbutton.setObjectName("deleteContactPushbutton")
+        self.delete_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.delete_all_contacts_pushbutton = QPushButton()
+        self.delete_all_contacts_pushbutton.setObjectName("deleteAllContactsPushbutton")
+        self.delete_all_contacts_pushbutton.setFixedSize(self.buttons_size)
+        self.search_text_label = QLabel("Search:")
+        self.search_text_label.setFont(QFont("Arial", 12))
+        self.search_text_label.setObjectName("searchTextLabel")
+        self.search_line_edit = QLineEdit()
+        self.search_line_edit.setObjectName("searchLineEdit")
+        self.search_line_edit.setFixedSize(400, 35)
+        self.search_line_edit.setFont(QFont("Arial", 15))
+        self.search_line_edit.setPlaceholderText("write here..")
+        self.search_pushbutton = QPushButton()
+        self.search_pushbutton.setObjectName("searchPushbutton")
+        self.search_pushbutton.setFixedSize(self.buttons_size)
+        main_layout.addWidget(self.add_new_contact_pushbutton)
+        main_layout.addWidget(self.update_contact_pushbutton)
+        main_layout.addWidget(self.delete_contact_pushbutton)
+        main_layout.addWidget(self.delete_all_contacts_pushbutton)
+        main_layout.addStretch()
+        main_layout.addWidget(self.search_text_label)
+        main_layout.addWidget(self.search_line_edit)
+        main_layout.addWidget(self.search_pushbutton)
+        main_layout.addStretch()
+        return main_layout

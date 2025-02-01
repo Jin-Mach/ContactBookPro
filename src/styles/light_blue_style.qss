@@ -1,0 +1,237 @@
+QMainWindow#mainWindow {
+    background-color: #1a2b45;
+    border: none;
+}
+
+QDockWidget#dockWidget {
+    background-color: #1a2b45;
+    border: none;
+}
+
+QWidget#mainDockWidget {
+    background-color: #1a2b45;
+}
+
+QLabel#dockImageLabel {
+    background-color: #1a2b45;
+}
+
+QStackedWidget#mainWindowStackedWidget {
+    background-color: #c1d9e8;
+    border: none;
+}
+
+QWidget#contactsMainWidget {
+    background-color: #c1d9e8;
+}
+
+QWidget#contactsToolbarWidget {
+    background-color: #c1d9e8;
+}
+
+QWidget#contactsStatusbarWidget {
+    background-color: #c1d9e8;
+}
+
+QLabel {
+    color: #333333;
+    font-size: 16px;
+}
+
+QPushButton#addNewContactPushbutton,
+QPushButton#updateContactPushbutton,
+QPushButton#deleteContactPushbutton,
+QPushButton#deleteAllContactsPushbutton,
+QPushButton#searchPushbutton {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 2px solid #1a2b45;
+    padding: 5px;
+}
+
+QPushButton#addNewContactPushbutton:hover,
+QPushButton#updateContactPushbutton:hover,
+QPushButton#deleteContactPushbutton:hover,
+QPushButton#deleteAllContactsPushbutton:hover,
+QPushButton#searchPushbutton:hover {
+    background-color: #a8d0e6;
+}
+
+QPushButton#addNewContactPushbutton:pressed,
+QPushButton#updateContactPushbutton:pressed,
+QPushButton#deleteContactPushbutton:pressed,
+QPushButton#deleteAllContactsPushbutton:pressed,
+QPushButton#searchPushbutton:pressed {
+    background-color: #8ec0e6;
+}
+
+QLabel#searchTextLabel {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: none;
+}
+
+QLineEdit#searchLineEdit {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 2px solid #1a2b45;
+}
+
+QPushButton#mainWindowDatabaseButton {
+    background-color: #666666;
+    border: none;
+    padding: 5px;
+}
+
+QPushButton#mainWindowDatabaseButton:hover {
+    background-color: #888888;
+}
+
+QPushButton#mainWindowDatabaseButton:pressed {
+    background-color: #444444;
+}
+
+#contactPhotoLabel {
+    border: 2px solid #1a2b45;
+    border-radius: 8px;
+}
+
+QLabel#contactTitleTextLabel,
+QLabel#contactFirstNameTextLabel,
+QLabel#contactSecondNameTextLabel,
+QLabel#contactRelationshipTextLabel,
+QLabel#contactBirthdayTextLabel {
+    font-weight: bold;
+}
+
+QTabWidget#tabInfoWidget {
+    background-color: #c1d9e8;
+    border: 2px solid #1a2b45;
+}
+
+QTabWidget::pane {
+    background-color: #c1d9e8;
+    border: 2px solid #1a2b45;
+}
+
+QTabBar::tab {
+    background-color: #c1d9e8;
+    color: #333333;
+    border: 1px solid #1a2b45;
+    padding: 5px 10px;
+    min-width: 75px;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover {
+    background-color: #a8d0e6;
+}
+
+QTabBar::tab:selected {
+    background-color: #3a5b85;
+    color: #ffffff;
+    border: 1px solid #1a2b45;
+}
+
+QPushButton#facebookPushbutton,
+QPushButton#xPushbutton,
+QPushButton#instagramPushbutton,
+QPushButton#lindedlnPushbutton,
+QPushButton#githubPushbutton,
+QPushButton#workWebsitePushbutton {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 2px solid #1a2b45;
+    border-radius: 4px;
+}
+
+QPushButton#facebookPushbutton:hover,
+QPushButton#xPushbutton:hover,
+QPushButton#instagramPushbutton:hover,
+QPushButton#lindedlnPushbutton:hover,
+QPushButton#githubPushbutton:hover,
+QPushButton#workWebsitePushbutton:hover {
+    background-color: #a8d0e6;
+}
+
+QPushButton#facebookPushbutton:pressed,
+QPushButton#xPushbutton:pressed,
+QPushButton#instagramPushbutton:pressed,
+QPushButton#lindedlnPushbutton:pressed,
+QPushButton#githubPushbutton:pressed,
+QPushButton#workWebsitePushbutton:pressed {
+    background-color: #8ec0e6;
+}
+
+QLabel#personalEmailTextLabel,
+QLabel#personalPhoneNumberTextLabel,
+QLabel#personalAddressTextLabel,
+QLabel#personalCityTextLabel,
+QLabel#personalPostCodeTextLabel,
+QLabel#personalCountryTextLabel,
+QLabel#workEmailTextLabel,
+QLabel#workPhoneNumberTextLabel,
+QLabel#workAddressTextLabel,
+QLabel#workCityTextLabel,
+QLabel#workPostCodeTextLabel,
+QLabel#workCountryTextLabel {
+    color: #333333;
+    font-weight: bold;
+}
+
+QWidget#notesInfoWidget {
+    background-color: #c1d9e8;
+    color: #333333;
+}
+
+QTextEdit#notestextEdit {
+    background-color: #c1d9e8;
+    color: #333333;
+    border: 2px solid #1a2b45;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+QLabel#createDatetextLabel,
+QLabel#createdateLabel,
+QLabel#updateDatetextLabel,
+QLabel#updateDateLabel {
+    background: transparent;
+    color: #333333;
+}
+
+QTableView#contactsTableviewWidget {
+    background-color: #c1d9e8;
+    color: #000000;
+    selection-background-color: #f5b7b1;
+    selection-color: #000000;
+    border: 2px solid #3a4e6a;
+}
+
+QTableView#contactsTableviewWidget QTableCornerButton::section {
+    background-color: #3a5b85;
+}
+
+QTableView#contactsTableviewWidget QHeaderView::section {
+    background-color: #4a6d8c;
+    color: #e74c3c;
+    border: 1px solid #cccccc;
+}
+
+QTableView#contactsTableviewWidget QScrollBar:vertical,
+QTableView#contactsTableviewWidget QScrollBar:horizontal {
+    background: #c1d9e8;
+    width: 12px;
+    height: 12px;
+}
+
+QTableView#contactsTableviewWidget QScrollBar::handle:vertical,
+QTableView#contactsTableviewWidget QScrollBar::handle:horizontal {
+    background: #1a2b45;
+    border-radius: 5px;
+}
+
+QTableView#contactsTableviewWidget QScrollBar::add-line,
+QTableView#contactsTableviewWidget QScrollBar::sub-line {
+    background: none;
+}
