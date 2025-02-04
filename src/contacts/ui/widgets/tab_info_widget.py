@@ -56,12 +56,16 @@ class TabInfoWidget(QTabWidget):
         self.personal_country_text_label.setObjectName("personalCountryTextLabel")
         self.personal_country_label = QLabel("personal country")
         self.personal_country_label.setObjectName("personalCountryLabel")
-        personal_contact_layout.addRow(self.personal_email_text_label, self.personal_email_label)
-        personal_contact_layout.addRow(self.personal_phone_number_text_label, self.personal_phone_number_label)
-        personal_contact_layout.addRow(self.personal_address_text_label, self.personal_address_label)
-        personal_contact_layout.addRow(self.personal_city_text_label, self.personal_city_label)
-        personal_contact_layout.addRow(self.personal_post_code_text_label, self.personal_post_code_label)
-        personal_contact_layout.addRow(self.personal_country_text_label, self.personal_country_label)
+        personal_widgets = [
+            (self.personal_email_text_label, self.personal_email_label),
+            (self.personal_phone_number_text_label, self.personal_phone_number_label),
+            (self.personal_address_text_label, self.personal_address_label),
+            (self.personal_city_text_label, self.personal_city_label),
+            (self.personal_post_code_text_label, self.personal_post_code_label),
+            (self.personal_country_text_label, self.personal_country_label),
+        ]
+        for label, edit in personal_widgets:
+            personal_contact_layout.addRow(label, edit)
         personal_layout.addLayout(personal_social_network_layout)
         personal_layout.addLayout(personal_contact_layout)
         personal_layout.addStretch()
@@ -72,16 +76,16 @@ class TabInfoWidget(QTabWidget):
         work_widget = QWidget()
         work_layout = QVBoxLayout()
         work_social_network_layout = QHBoxLayout()
-        self.lindedln_pushbutton = QPushButton("ld")
-        self.lindedln_pushbutton.setObjectName("lindedlnPushbutton")
-        self.lindedln_pushbutton.setFixedSize(self.buttons_size)
+        self.linkedin_pushbutton = QPushButton("ld")
+        self.linkedin_pushbutton.setObjectName("linkedinPushbutton")
+        self.linkedin_pushbutton.setFixedSize(self.buttons_size)
         self.github_pushbutton = QPushButton("gh")
         self.github_pushbutton.setObjectName("githubPushbutton")
         self.github_pushbutton.setFixedSize(self.buttons_size)
         self.work_website_pushbutton = QPushButton("ws")
         self.work_website_pushbutton.setObjectName("workWebsitePushbutton")
         self.work_website_pushbutton.setFixedSize(self.buttons_size)
-        work_social_network_layout.addWidget(self.lindedln_pushbutton)
+        work_social_network_layout.addWidget(self.linkedin_pushbutton)
         work_social_network_layout.addWidget(self.github_pushbutton)
         work_social_network_layout.addWidget(self.work_website_pushbutton)
         work_social_network_layout.addStretch()
@@ -110,12 +114,16 @@ class TabInfoWidget(QTabWidget):
         self.work_country_text_label.setObjectName("workCountryTextLabel")
         self.work_country_label = QLabel("work country")
         self.work_country_label.setObjectName("workCountryLabel")
-        work_contact_layout.addRow(self.work_email_text_label, self.work_email_label)
-        work_contact_layout.addRow(self.work_phone_number_text_label, self.work_phone_number_label)
-        work_contact_layout.addRow(self.work_address_text_label, self.work_address_label)
-        work_contact_layout.addRow(self.work_city_text_label, self.work_city_label)
-        work_contact_layout.addRow(self.work_post_code_text_label, self.work_post_code_label)
-        work_contact_layout.addRow(self.work_country_text_label, self.work_country_label)
+        work_widgets = [
+            (self.work_email_text_label, self.work_email_label),
+            (self.work_phone_number_text_label, self.work_phone_number_label),
+            (self.work_address_text_label, self.work_address_label),
+            (self.work_city_text_label, self.work_city_label),
+            (self.work_post_code_text_label, self.work_post_code_label),
+            (self.work_country_text_label, self.work_country_label),
+        ]
+        for text_label, label in work_widgets:
+            work_contact_layout.addRow(text_label, label)
         work_layout.addLayout(work_social_network_layout)
         work_layout.addLayout(work_contact_layout)
         work_layout.addStretch()

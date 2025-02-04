@@ -1,8 +1,11 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout
+from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QDialog
+
+from src.contacts.ui.dialogs.contact_dialog import ContactDialog
 
 
+# noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -15,6 +18,7 @@ class ContactsToolbarWidget(QWidget):
         self.add_new_contact_pushbutton = QPushButton()
         self.add_new_contact_pushbutton.setObjectName("addNewContactPushbutton")
         self.add_new_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.add_new_contact_pushbutton.clicked.connect(self.add_new_contact)
         self.update_contact_pushbutton = QPushButton()
         self.update_contact_pushbutton.setObjectName("updateContactPushbutton")
         self.update_contact_pushbutton.setFixedSize(self.buttons_size)
@@ -45,3 +49,8 @@ class ContactsToolbarWidget(QWidget):
         main_layout.addWidget(self.search_pushbutton)
         main_layout.addStretch()
         return main_layout
+
+    def add_new_contact(self) -> None:
+        dialog = ContactDialog(self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            dialog.accept()

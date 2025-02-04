@@ -37,11 +37,13 @@ class PersonalInfoWidget(QWidget):
         self.contact_birthday_text_label.setObjectName("contactBirthdayTextLabel")
         self.contact_birthday_label = QLabel("1.1.2025")
         self.contact_birthday_label.setObjectName("contactBirthdayLabel")
-        main_info_layout.addRow(self.contact_title_text_label, self.contact_title_label)
-        main_info_layout.addRow(self.contact_first_name_text_label, self.contact_first_name_label)
-        main_info_layout.addRow(self.contact_second_name_text_label, self.contact_second_name_label)
-        main_info_layout.addRow(self.contact_relationship_text_label, self.contact_relationship_label)
-        main_info_layout.addRow(self.contact_birthday_text_label, self.contact_birthday_label)
+        widgets = [(self.contact_title_text_label, self.contact_title_label),
+            (self.contact_first_name_text_label, self.contact_first_name_label),
+            (self.contact_second_name_text_label, self.contact_second_name_label),
+            (self.contact_relationship_text_label, self.contact_relationship_label),
+            (self.contact_birthday_text_label, self.contact_birthday_label)]
+        for text_label, label in widgets:
+            main_info_layout.addRow(text_label, label)
         main_layout.addWidget(self.contact_photo_label)
         main_layout.addLayout(main_info_layout)
         main_layout.addStretch()

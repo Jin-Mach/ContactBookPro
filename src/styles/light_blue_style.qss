@@ -38,43 +38,39 @@ QLabel {
     font-size: 16px;
 }
 
-QPushButton#addNewContactPushbutton,
-QPushButton#updateContactPushbutton,
-QPushButton#deleteContactPushbutton,
-QPushButton#deleteAllContactsPushbutton,
-QPushButton#searchPushbutton {
+QPushButton {
     background-color: #c1d9e8;
     color: #000000;
     border: 2px solid #1a2b45;
     padding: 5px;
 }
 
-QPushButton#addNewContactPushbutton:hover,
-QPushButton#updateContactPushbutton:hover,
-QPushButton#deleteContactPushbutton:hover,
-QPushButton#deleteAllContactsPushbutton:hover,
-QPushButton#searchPushbutton:hover {
+QPushButton:hover {
     background-color: #a8d0e6;
 }
 
-QPushButton#addNewContactPushbutton:pressed,
-QPushButton#updateContactPushbutton:pressed,
-QPushButton#deleteContactPushbutton:pressed,
-QPushButton#deleteAllContactsPushbutton:pressed,
-QPushButton#searchPushbutton:pressed {
+QPushButton:pressed {
     background-color: #8ec0e6;
+}
+
+QLineEdit {
+    background-color: #f2f2f2;
+    color: #000000;
+    border: 2px solid #1a2b45;
+}
+
+QTextEdit {
+    background-color: #c1d9e8;
+    color: #333333;
+    border: 2px solid #1a2b45;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 QLabel#searchTextLabel {
     background-color: #c1d9e8;
     color: #000000;
     border: none;
-}
-
-QLineEdit#searchLineEdit {
-    background-color: #c1d9e8;
-    color: #000000;
-    border: 2px solid #1a2b45;
 }
 
 QPushButton#mainWindowDatabaseButton {
@@ -136,7 +132,7 @@ QTabBar::tab:selected {
 QPushButton#facebookPushbutton,
 QPushButton#xPushbutton,
 QPushButton#instagramPushbutton,
-QPushButton#lindedlnPushbutton,
+QPushButton#linkedinPushbutton,
 QPushButton#githubPushbutton,
 QPushButton#workWebsitePushbutton {
     background-color: #c1d9e8;
@@ -148,7 +144,7 @@ QPushButton#workWebsitePushbutton {
 QPushButton#facebookPushbutton:hover,
 QPushButton#xPushbutton:hover,
 QPushButton#instagramPushbutton:hover,
-QPushButton#lindedlnPushbutton:hover,
+QPushButton#linkedinPushbutton:hover,
 QPushButton#githubPushbutton:hover,
 QPushButton#workWebsitePushbutton:hover {
     background-color: #a8d0e6;
@@ -157,7 +153,7 @@ QPushButton#workWebsitePushbutton:hover {
 QPushButton#facebookPushbutton:pressed,
 QPushButton#xPushbutton:pressed,
 QPushButton#instagramPushbutton:pressed,
-QPushButton#lindedlnPushbutton:pressed,
+QPushButton#linkedinPushbutton:pressed,
 QPushButton#githubPushbutton:pressed,
 QPushButton#workWebsitePushbutton:pressed {
     background-color: #8ec0e6;
@@ -184,14 +180,6 @@ QWidget#notesInfoWidget {
     color: #333333;
 }
 
-QTextEdit#notestextEdit {
-    background-color: #c1d9e8;
-    color: #333333;
-    border: 2px solid #1a2b45;
-    padding: 5px;
-    border-radius: 5px;
-}
-
 QLabel#createDatetextLabel,
 QLabel#createdateLabel,
 QLabel#updateDatetextLabel,
@@ -209,29 +197,16 @@ QTableView#contactsTableviewWidget {
 }
 
 QTableView#contactsTableviewWidget QTableCornerButton::section {
-    background-color: #3a5b85;
+    background-color: #c1d9e8;
 }
 
-QTableView#contactsTableviewWidget QHeaderView::section {
-    background-color: #4a6d8c;
-    color: #e74c3c;
-    border: 1px solid #cccccc;
+QComboBox#dialogRelationshipCombobox {
+    background-color: #f2f2f2;
+    color: #000000;
+    border: 2px solid #1a2b45;
 }
 
-QTableView#contactsTableviewWidget QScrollBar:vertical,
-QTableView#contactsTableviewWidget QScrollBar:horizontal {
-    background: #c1d9e8;
-    width: 12px;
-    height: 12px;
-}
-
-QTableView#contactsTableviewWidget QScrollBar::handle:vertical,
-QTableView#contactsTableviewWidget QScrollBar::handle:horizontal {
-    background: #1a2b45;
-    border-radius: 5px;
-}
-
-QTableView#contactsTableviewWidget QScrollBar::add-line,
-QTableView#contactsTableviewWidget QScrollBar::sub-line {
-    background: none;
+QLabel#dialogPhotoLabel {
+    border: 2px solid #1a2b45;
+    border-radius: 4px;
 }
