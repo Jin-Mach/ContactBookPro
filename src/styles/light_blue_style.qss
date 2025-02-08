@@ -170,7 +170,9 @@ QLabel#workPhoneNumberTextLabel,
 QLabel#workAddressTextLabel,
 QLabel#workCityTextLabel,
 QLabel#workPostCodeTextLabel,
-QLabel#workCountryTextLabel {
+QLabel#workCountryTextLabel,
+QLabel#deleteContactTextLabel,
+QLabel#deleteAllContactsTextLabel {
     color: #333333;
     font-weight: bold;
 }
@@ -198,6 +200,11 @@ QTableView#contactsTableviewWidget {
 
 QTableView#contactsTableviewWidget QTableCornerButton::section {
     background-color: #c1d9e8;
+}
+
+QDialog {
+    background-color: #c1d9e8;
+    border: 2px solid #1a2b45;
 }
 
 QComboBox#dialogRelationshipCombobox {

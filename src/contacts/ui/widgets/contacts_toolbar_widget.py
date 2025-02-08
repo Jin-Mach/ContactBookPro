@@ -3,6 +3,7 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QDialog
 
 from src.contacts.ui.dialogs.contact_dialog import ContactDialog
+from src.contacts.ui.dialogs.delete_dialogs import DeleteDialogs
 
 
 # noinspection PyUnresolvedReferences
@@ -25,9 +26,11 @@ class ContactsToolbarWidget(QWidget):
         self.delete_contact_pushbutton = QPushButton()
         self.delete_contact_pushbutton.setObjectName("deleteContactPushbutton")
         self.delete_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.delete_contact_pushbutton.clicked.connect(self.delete_contact)
         self.delete_all_contacts_pushbutton = QPushButton()
         self.delete_all_contacts_pushbutton.setObjectName("deleteAllContactsPushbutton")
         self.delete_all_contacts_pushbutton.setFixedSize(self.buttons_size)
+        self.delete_all_contacts_pushbutton.clicked.connect(self.delete_all_contacts)
         self.search_text_label = QLabel("Search:")
         self.search_text_label.setFont(QFont("Arial", 12))
         self.search_text_label.setObjectName("searchTextLabel")
@@ -52,5 +55,15 @@ class ContactsToolbarWidget(QWidget):
 
     def add_new_contact(self) -> None:
         dialog = ContactDialog(self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            dialog.accept()
+
+    def delete_contact(self) -> None:
+        dialog = DeleteDialogs.show_delete_contact_dialog(self)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            dialog.accept()
+
+    def delete_all_contacts(self) -> None:
+        dialog = DeleteDialogs.show_delete_all_contacts_dialog(self)
         if dialog.exec() == QDialog.DialogCode.Accepted:
             dialog.accept()
