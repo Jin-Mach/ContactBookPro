@@ -1,0 +1,41 @@
+{
+  "mainWindow": {
+    "mainWindowTitle": "Databáze kontaktů",
+    "mainWindowDatabaseButton": "Databáze"
+  },
+  "contactsToolbarWidget": {
+    "searchTextLabel": "vyhledat:",
+    "searchLineEdit": "text pro vyhledání..."
+  },
+  "contactsStatusbarWidget": {
+    "countDisplayLabel": "filtr:"
+  },
+  "personalInfoWidget": {
+    "contactTitleTextLabel": "Titul:",
+    "contactFirstNameTextLabel": "Jméno:",
+    "contactSecondNameTextLabel": "Příjmení:",
+    "contactRelationshipTextLabel": "Vztah:",
+    "contactBirthdayTextLabel": "Narození:"
+  },
+  "tabInfoWidget": {
+    "personalTabText": "Osobní",
+    "workTabText": "Pracovní",
+    "personalEmailTextLabel": "Email:",
+    "personalPhoneNumberTextLabel": "Telefon:",
+    "personalAddressTextLabel": "Adresa:",
+    "personalCityTextLabel": "Město:",
+    "personalPostCodeTextLabel": "PSČ:",
+    "personalCountryTextLabel": "Stát:",
+    "workEmailTextLabel": "Email:",
+    "workPhoneNumberTextLabel": "Telefon:",
+    "workAddressTextLabel": "Adresa:",
+    "workCityTextLabel": "Město:",
+    "workPostCodeTextLabel": "PSČ:",
+    "workCountryTextLabel": "Stát:"
+  },
+  "notesInfoWidget": {
+    "notesTextEdit": "Poznámky ke kontaktu...",
+    "createDateTextLabel": "vytvořeno: ",
+    "updateDateTextLabel": "poslední aktualizace: "
+  }
+}

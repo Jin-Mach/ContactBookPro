@@ -5,13 +5,13 @@ from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
+from src.utilities.language_provider import LanguageProvider
 
 
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setObjectName("mainWindow")
-        self.setWindowTitle("Contact Book")
         self.setMinimumSize(1280, 720)
         self.setContentsMargins(0, 0, 0, 0)
         self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons")
@@ -19,6 +19,7 @@ class MainWindow(QMainWindow):
         self.icon_size = QSize(40, 40)
         self.contacts_main_widget = ContactsMainWidget()
         self.setCentralWidget(self.create_gui())
+        self.set_ui_text()
 
     def create_image(self) -> QLabel:
         pixmap = QPixmap(str(self.icons_path.joinpath("no_image.png")))
@@ -47,7 +48,6 @@ class MainWindow(QMainWindow):
         self.database_button.setFont(QFont("Arial", 12))
         self.database_button.setIcon(QIcon(str(self.icons_path.joinpath("database_icon.png"))))
         self.database_button.setIconSize(self.icon_size)
-        self.database_button.setText("Database")
         self.stacked_widget = QStackedWidget()
         self.stacked_widget.setObjectName("mainWindowStackedWidget")
         self.stacked_widget.setContentsMargins(0, 0, 0, 0)
@@ -61,3 +61,8 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(self.stacked_widget)
         central_widget.setLayout(main_layout)
         return central_widget
+
+    def set_ui_text(self) -> None:
+        ui_text = LanguageProvider.get_ui_text("mainWindow")
+        self.setWindowTitle(ui_text[f"{self.objectName()}Title"])
+        self.database_button.setText(ui_text[self.database_button.objectName()])

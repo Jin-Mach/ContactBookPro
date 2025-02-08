@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QH
 
 from src.contacts.ui.dialogs.contact_dialog import ContactDialog
 from src.contacts.ui.dialogs.delete_dialogs import DeleteDialogs
+from src.utilities.language_provider import LanguageProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -13,6 +14,7 @@ class ContactsToolbarWidget(QWidget):
         self.setObjectName("contactsToolbarWidget")
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
+        self.set_ui_text()
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()
@@ -31,14 +33,13 @@ class ContactsToolbarWidget(QWidget):
         self.delete_all_contacts_pushbutton.setObjectName("deleteAllContactsPushbutton")
         self.delete_all_contacts_pushbutton.setFixedSize(self.buttons_size)
         self.delete_all_contacts_pushbutton.clicked.connect(self.delete_all_contacts)
-        self.search_text_label = QLabel("Search:")
+        self.search_text_label = QLabel()
         self.search_text_label.setFont(QFont("Arial", 12))
         self.search_text_label.setObjectName("searchTextLabel")
         self.search_line_edit = QLineEdit()
         self.search_line_edit.setObjectName("searchLineEdit")
         self.search_line_edit.setFixedSize(400, 35)
         self.search_line_edit.setFont(QFont("Arial", 15))
-        self.search_line_edit.setPlaceholderText("write here..")
         self.search_pushbutton = QPushButton()
         self.search_pushbutton.setObjectName("searchPushbutton")
         self.search_pushbutton.setFixedSize(self.buttons_size)
@@ -52,6 +53,18 @@ class ContactsToolbarWidget(QWidget):
         main_layout.addWidget(self.search_pushbutton)
         main_layout.addStretch()
         return main_layout
+
+    def set_ui_text(self) -> None:
+        ui_text = LanguageProvider.get_ui_text(self.objectName())
+        widgets = [self.search_text_label, self.search_line_edit]
+        for widget in widgets:
+            if widget.objectName() in ui_text:
+                if isinstance(widget, QLabel):
+                    widget.setText(ui_text[widget.objectName()])
+                if isinstance(widget, QLineEdit):
+                    widget.setPlaceholderText(ui_text[widget.objectName()])
+            else:
+                print("error")
 
     def add_new_contact(self) -> None:
         dialog = ContactDialog(self)

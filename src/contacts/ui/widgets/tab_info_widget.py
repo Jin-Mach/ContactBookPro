@@ -1,6 +1,8 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
+from src.utilities.language_provider import LanguageProvider
+
 
 class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
@@ -9,10 +11,11 @@ class TabInfoWidget(QTabWidget):
         self.setFixedHeight(250)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
-        self.personal_tab_text = "Personal"
-        self.work_tab_text = "Work"
+        self.personal_tab_text = ""
+        self.work_tab_text = ""
         self.addTab(self.create_personal_tab(), self.personal_tab_text)
         self.addTab(self.create_work_tab(), self.work_tab_text)
+        self.set_ui_text()
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -32,27 +35,27 @@ class TabInfoWidget(QTabWidget):
         personal_social_network_layout.addWidget(self.instagram_pushbutton)
         personal_social_network_layout.addStretch()
         personal_contact_layout = QFormLayout()
-        self.personal_email_text_label = QLabel("email:")
+        self.personal_email_text_label = QLabel()
         self.personal_email_text_label.setObjectName("personalEmailTextLabel")
         self.personal_email_label = QLabel("personal@email.com")
         self.personal_email_label.setObjectName("personalEmailLabel")
-        self.personal_phone_number_text_label = QLabel("phone:")
+        self.personal_phone_number_text_label = QLabel()
         self.personal_phone_number_text_label.setObjectName("personalPhoneNumberTextLabel")
         self.personal_phone_number_label = QLabel("123456789")
         self.personal_phone_number_label.setObjectName("personalPhoneNumberLabel")
-        self.personal_address_text_label = QLabel("Address:")
+        self.personal_address_text_label = QLabel()
         self.personal_address_text_label.setObjectName("personalAddressTextLabel")
         self.personal_address_label = QLabel("personal home 123")
         self.personal_address_label.setObjectName("personalAddressLabel")
-        self.personal_city_text_label = QLabel("city:")
+        self.personal_city_text_label = QLabel()
         self.personal_city_text_label.setObjectName("personalCityTextLabel")
         self.personal_city_label = QLabel("personal city")
         self.personal_city_label.setObjectName("personalCityLabel")
-        self.personal_post_code_text_label = QLabel("post code:")
+        self.personal_post_code_text_label = QLabel()
         self.personal_post_code_text_label.setObjectName("personalPostCodeTextLabel")
         self.personal_post_code_label = QLabel("12345")
         self.personal_post_code_label.setObjectName("personalPostCodeLabel")
-        self.personal_country_text_label = QLabel("country:")
+        self.personal_country_text_label = QLabel()
         self.personal_country_text_label.setObjectName("personalCountryTextLabel")
         self.personal_country_label = QLabel("personal country")
         self.personal_country_label.setObjectName("personalCountryLabel")
@@ -90,27 +93,27 @@ class TabInfoWidget(QTabWidget):
         work_social_network_layout.addWidget(self.work_website_pushbutton)
         work_social_network_layout.addStretch()
         work_contact_layout = QFormLayout()
-        self.work_email_text_label = QLabel("email:")
+        self.work_email_text_label = QLabel()
         self.work_email_text_label.setObjectName("workEmailTextLabel")
         self.work_email_label = QLabel("work@email.com")
         self.work_email_label.setObjectName("workEmailLabel")
-        self.work_phone_number_text_label = QLabel("phone:")
+        self.work_phone_number_text_label = QLabel()
         self.work_phone_number_text_label.setObjectName("workPhoneNumberTextLabel")
         self.work_phone_number_label = QLabel("987654321")
         self.work_phone_number_label.setObjectName("workPhoneNumberLabel")
-        self.work_address_text_label = QLabel("Address:")
+        self.work_address_text_label = QLabel()
         self.work_address_text_label.setObjectName("workAddressTextLabel")
         self.work_address_label = QLabel("work home 123")
         self.work_address_label.setObjectName("workAddressLabel")
-        self.work_city_text_label = QLabel("city:")
+        self.work_city_text_label = QLabel()
         self.work_city_text_label.setObjectName("workCityTextLabel")
         self.work_city_label = QLabel("work city")
         self.work_city_label.setObjectName("workCityLabel")
-        self.work_post_code_text_label = QLabel("post code:")
+        self.work_post_code_text_label = QLabel()
         self.work_post_code_text_label.setObjectName("workPostCodeTextLabel")
         self.work_post_code_label = QLabel("54321")
         self.work_post_code_label.setObjectName("workPostCodeLabel")
-        self.work_country_text_label = QLabel("country:")
+        self.work_country_text_label = QLabel()
         self.work_country_text_label.setObjectName("workCountryTextLabel")
         self.work_country_label = QLabel("work country")
         self.work_country_label.setObjectName("workCountryLabel")
@@ -129,3 +132,21 @@ class TabInfoWidget(QTabWidget):
         work_layout.addStretch()
         work_widget.setLayout(work_layout)
         return work_widget
+
+    def set_ui_text(self) -> None:
+        ui_text = LanguageProvider.get_ui_text(self.objectName())
+        tab_text = ["personalTabText", "workTabText"]
+        for index, text in enumerate(tab_text):
+            if text in ui_text:
+                self.setTabText(index, ui_text[text])
+            else:
+                print("error")
+        widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_address_text_label,
+                   self.personal_city_text_label, self.personal_post_code_text_label, self.personal_country_text_label,
+                   self.work_email_text_label, self.work_phone_number_text_label, self.work_address_text_label,
+                   self.work_city_text_label, self.work_post_code_text_label, self.work_country_text_label]
+        for widget in widgets:
+            if widget.objectName() in ui_text:
+                widget.setText(ui_text[widget.objectName()])
+            else:
+                print("error")

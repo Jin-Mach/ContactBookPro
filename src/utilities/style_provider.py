@@ -2,7 +2,7 @@ import pathlib
 
 from PyQt6.QtWidgets import QApplication
 
-class Stylemanager:
+class StyleProvider:
 
     @staticmethod
     def set_style(application: QApplication) -> None:
