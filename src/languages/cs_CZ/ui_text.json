@@ -37,5 +37,62 @@
     "notesTextEdit": "Poznámky ke kontaktu...",
     "createDateTextLabel": "vytvořeno: ",
     "updateDateTextLabel": "poslední aktualizace: "
+  },
+  "deleteDialogWidgets": {
+    "deleteContactDialog": "Smazat kontakt",
+    "deleteContactTextLabel": "Smazat kontakt?",
+    "deleteContactButton": "Smazat",
+    "cancelContactButton": "Zrušit",
+    "deleteAllContactsDialog": "Smazat všechny kontakty",
+    "deleteAllContactsTextLabel": "Opravdu smazat všechny kontakty?\nPro potvrzení napiš:\nSMAZAT",
+    "deleteAllContactsButton": "Smazat vše",
+    "cancelAllContactsButton": "Zrušit"
+  },
+  "contactDialog": {
+    "mandatory": "Povinné údaje",
+    "nonMandatory": "Volitelné údaje"
+  },
+  "dialogMandatoryWidget": {
+    "dialogFirstNameTextLabel": "Křestní jméno:",
+    "dialogSecondNameTextLabel": "Příjmení:",
+    "dialogRelationshipTextLabel": "Vztah:",
+    "dialogEmailTextLabel": "Email:",
+    "dialogPhoneNumberTextLabel": "Telefonní číslo:",
+    "dialogAddressTextLabel": "Adresa:",
+    "dialogCityTextLabel": "Město:",
+    "dialogPostCodeTextLabel": "PSČ:",
+    "dialogCountryTextLabel": "Stát:",
+    "dialogAddContactPushbutton": "Přidat kontakt",
+    "dialogCancelPushbutton": "Zrušit"
+  },
+  "dialogNonMandatoryWidget": {
+    "work": "Pracovní",
+    "socialNetworks": "Sociální sítě",
+    "personalDetail": "Detailní"
+  },
+  "dialogWorkWidget": {
+    "dialogWorkEmailTextLabel": "Email:",
+    "dialogWorkPhoneNumberTextLabel": "Telefonní číslo:",
+    "dialogWorkAddressTextLabel": "Adresa:",
+    "dialogWorkCityTextLabel": "Město:",
+    "dialogPostCodeTextLabel": "PSČ:",
+    "dialogWorkCountryTextLabel": "Stát:"
+  },
+  "dialogSocialNetworkWidget": {
+    "dialogFacebookUrlTextLabel": "Facebook:",
+    "dialogXUrlTextLabel": "X:",
+    "dialogInstagramUrlTextLabel": "Instagram:",
+    "dialogLinkedinUrlTextLabel": "LinkedIn:",
+    "dialogGithubUrlTextLabel": "GitHub:",
+    "dialogWebsiteTextLabel": "Webová stránka:"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Přidat fotku",
+    "dialogResetPhotoButton": "Odstranit fotku",
+    "dialogTitleTextLabel": "Titul:",
+    "dialogBirthdayTextLabel": "Datum narození:",
+    "dialogCalendarPushbutton": "Otevřít kalendář",
+    "dialogResetCalendarPushbutton": "Odstranit datum",
+    "dialogNotesEdit": "Poznámky ke kontaktu..."
   }
 }

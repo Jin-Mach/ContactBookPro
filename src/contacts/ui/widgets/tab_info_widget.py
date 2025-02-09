@@ -11,10 +11,8 @@ class TabInfoWidget(QTabWidget):
         self.setFixedHeight(250)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
-        self.personal_tab_text = ""
-        self.work_tab_text = ""
-        self.addTab(self.create_personal_tab(), self.personal_tab_text)
-        self.addTab(self.create_work_tab(), self.work_tab_text)
+        self.addTab(self.create_personal_tab(), "")
+        self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
 
     def create_personal_tab(self) -> QWidget:
