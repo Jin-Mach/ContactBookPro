@@ -1,0 +1,11 @@
+{
+  "errorHandler": {
+    "IOError": "Došlo k chybě během vstupu/výstupu. Zkontrolujte prosím připojení disku.",
+    "ValueError": "Neplatný formát souboru. Ujistěte se, že používáte podporovaný formát.",
+    "TypeError": "Neplatný typ argumentu. Zkontrolujte prosím vstupní hodnoty.",
+    "TimeoutError": "Operace vypršela, zatímco se pokoušela otevřít nebo uložit soubor.",
+    "JSONDecodeError": "Soubor není platný JSON. Zkontrolujte prosím formát souboru.",
+    "DatabaseConnectionError": "Nepodařilo se připojit k databázi.",
+    "UnexpectedError": "Došlo k neočekávané chybě."
+  }
+}

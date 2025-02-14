@@ -172,7 +172,8 @@ QLabel#workCityTextLabel,
 QLabel#workPostCodeTextLabel,
 QLabel#workCountryTextLabel,
 QLabel#deleteContactTextLabel,
-QLabel#deleteAllContactsTextLabel {
+QLabel#deleteAllContactsTextLabel,
+QLabel#errorTextLabel {
     color: #333333;
     font-weight: bold;
 }

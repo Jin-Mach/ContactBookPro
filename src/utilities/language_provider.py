@@ -17,3 +17,15 @@ class LanguageProvider:
         with open(LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code(), "ui_text.json"), "r", encoding="utf-8") as file:
             language_data = json.load(file)
         return language_data[widget_name]
+
+    @staticmethod
+    def get_dialog_text(widget_name: str) -> dict[str, str]:
+        with open(LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code(), "dialog_text.json"), "r", encoding="utf-8") as file:
+            dialog_data = json.load(file)
+        return dialog_data[widget_name]
+
+    @staticmethod
+    def get_error_text(widget_name: str) -> dict[str, str]:
+        with open(LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code(), "errors_text.json"), "r", encoding="utf-8") as file:
+            error_data = json.load(file)
+        return error_data[widget_name]
