@@ -2,6 +2,9 @@ import pathlib
 
 from PyQt6.QtWidgets import QApplication
 
+from src.utilities.error_handler import ErrorHandler
+
+
 class StyleProvider:
 
     @staticmethod
@@ -12,4 +15,4 @@ class StyleProvider:
                 with open(styles_path, "r", encoding="utf-8") as file:
                     application.setStyleSheet(file.read())
         except Exception as e:
-            print(e)
+            ErrorHandler.exception_handler(e)

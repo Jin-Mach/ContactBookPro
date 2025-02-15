@@ -1,6 +1,7 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -8,6 +9,7 @@ class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("tabInfoWidget")
+        self.parent = parent
         self.setFixedHeight(250)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
@@ -134,17 +136,16 @@ class TabInfoWidget(QTabWidget):
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
         tab_text = ["personalTabText", "workTabText"]
-        for index, text in enumerate(tab_text):
-            if text in ui_text:
-                self.setTabText(index, ui_text[text])
-            else:
-                print("error")
-        widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_address_text_label,
-                   self.personal_city_text_label, self.personal_post_code_text_label, self.personal_country_text_label,
-                   self.work_email_text_label, self.work_phone_number_text_label, self.work_address_text_label,
-                   self.work_city_text_label, self.work_post_code_text_label, self.work_country_text_label]
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                widget.setText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for index, text in enumerate(tab_text):
+                if text in ui_text:
+                    self.setTabText(index, ui_text[text])
+            widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_address_text_label,
+                       self.personal_city_text_label, self.personal_post_code_text_label, self.personal_country_text_label,
+                       self.work_email_text_label, self.work_phone_number_text_label, self.work_address_text_label,
+                       self.work_city_text_label, self.work_post_code_text_label, self.work_country_text_label]
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)

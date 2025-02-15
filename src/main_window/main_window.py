@@ -21,13 +21,6 @@ class MainWindow(QMainWindow):
         self.contacts_main_widget = ContactsMainWidget()
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
-        self.test()
-
-    def test(self):
-        try:
-            1/0
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
 
     def create_image(self) -> QLabel:
         pixmap = QPixmap(str(self.icons_path.joinpath("no_image.png")))
@@ -72,5 +65,12 @@ class MainWindow(QMainWindow):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text("mainWindow")
-        self.setWindowTitle(ui_text[f"{self.objectName()}Title"])
-        self.database_button.setText(ui_text[self.database_button.objectName()])
+        widgets = [self.database_button]
+        try:
+            if "mainWindowTitle" in ui_text:
+                self.setWindowTitle(ui_text["mainWindowTitle"])
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    self.database_button.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

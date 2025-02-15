@@ -406,3 +406,63 @@ Traceback (most recent call last):
     1/0
     ~^~
 ZeroDivisionError: division by zero
+2025-02-14 19:56:07 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:25:01 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:27:24 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:27:43 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:27:57 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:28:05 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 08:28:21 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 09:44:09 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 09:44:18 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+2025-02-15 09:48:41 - ERROR - ContactBookLogger - division by zero - exception_handler - 12
+Traceback (most recent call last):
+  File "D:\Programovani\Projekty\ContactBookPro\src\main_window\main_window.py", line 28, in test
+    1/0
+    ~^~
+ZeroDivisionError: division by zero

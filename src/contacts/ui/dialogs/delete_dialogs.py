@@ -1,6 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QLineEdit, QPushButton
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -52,19 +53,20 @@ class DeleteDialogs:
         main_layout.addWidget(delete_all_contacts_edit)
         main_layout.addWidget(buttons_box)
         dialog.setLayout(main_layout)
-        DeleteDialogs.set_ui_text(dialog, delete_all_contacts_text_label, buttons_box)
+        DeleteDialogs.set_ui_text(dialog, delete_all_contacts_text_label, buttons_box, parent)
         return dialog
 
     @staticmethod
-    def set_ui_text(dialog_widget: QDialog, label: QLabel, button_box: QDialogButtonBox) -> None:
+    def set_ui_text(dialog_widget: QDialog, label: QLabel, button_box: QDialogButtonBox, parent=None) -> None:
         ui_text = LanguageProvider.get_ui_text(DeleteDialogs.class_name)
         widgets = [dialog_widget, label]
         widgets.extend(button_box.buttons())
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                if isinstance(widget, QDialog):
-                    widget.setWindowTitle(ui_text[widget.objectName()])
-                if isinstance(widget, (QLabel, QPushButton)):
-                    widget.setText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    if isinstance(widget, QDialog):
+                        widget.setWindowTitle(ui_text[widget.objectName()])
+                    if isinstance(widget, (QLabel, QPushButton)):
+                        widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, parent)

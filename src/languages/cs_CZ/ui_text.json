@@ -49,6 +49,7 @@
     "cancelAllContactsButton": "Zrušit"
   },
   "contactDialog": {
+    "dialogTitle": "Nový kontakt",
     "mandatory": "Povinné údaje",
     "nonMandatory": "Volitelné údaje"
   },

@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -7,6 +8,7 @@ class WorkWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogWorkWidget")
+        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -52,8 +54,9 @@ class WorkWidget(QWidget):
         ui_text = LanguageProvider.get_ui_text(self.objectName())
         widgets = [self.dialog_work_email_text_label, self.dialog_work_phone_number_text_label, self.dialog_work_address_text_label,
                    self.dialog_work_city_text_label, self.dialog_work_post_code_text_label, self.dialog_work_country_text_label]
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                widget.setText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)

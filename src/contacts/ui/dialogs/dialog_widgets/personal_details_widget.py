@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QTextEdit, \
     QFormLayout, QLineEdit
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -8,6 +9,7 @@ class PersonalDetailsWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogPersonalDetailWidget")
+        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -66,11 +68,12 @@ class PersonalDetailsWidget(QWidget):
         widgets = [self.dialog_get_photo_pushbutton, self.dialog_reset_photo_button, self.dialog_title_text_label,
                    self.dialog_birthday_text_label, self.dialog_calendar_pushbutton, self.dialog_reset_calendar_pushbutton,
                    self.dialog_notes_edit]
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                if isinstance(widget, (QLabel, QPushButton)):
-                    widget.setText(ui_text[widget.objectName()])
-                if isinstance(widget, QTextEdit):
-                    widget.setPlaceholderText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    if isinstance(widget, (QLabel, QPushButton)):
+                        widget.setText(ui_text[widget.objectName()])
+                    if isinstance(widget, QTextEdit):
+                        widget.setPlaceholderText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)

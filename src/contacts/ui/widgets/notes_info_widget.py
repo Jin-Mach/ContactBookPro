@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTextEdit, QHBoxLayout, QLabel
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -7,6 +8,7 @@ class NotesInfoWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("notesInfoWidget")
+        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -40,11 +42,12 @@ class NotesInfoWidget(QWidget):
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
         widgets = [self.notes_text_edit, self.create_date_text_label, self.update_date_text_label]
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                if isinstance(widget, QTextEdit):
-                    widget.setPlaceholderText(ui_text[widget.objectName()])
-                if isinstance(widget, QLabel):
-                    widget.setText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    if isinstance(widget, QTextEdit):
+                        widget.setPlaceholderText(ui_text[widget.objectName()])
+                    if isinstance(widget, QLabel):
+                        widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)

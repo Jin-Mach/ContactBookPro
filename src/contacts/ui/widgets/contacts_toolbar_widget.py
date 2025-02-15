@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QH
 
 from src.contacts.ui.dialogs.contact_dialog import ContactDialog
 from src.contacts.ui.dialogs.delete_dialogs import DeleteDialogs
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -12,6 +13,7 @@ class ContactsToolbarWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
+        self.parent = parent
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -57,26 +59,36 @@ class ContactsToolbarWidget(QWidget):
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
         widgets = [self.search_text_label, self.search_line_edit]
-        for widget in widgets:
-            if widget.objectName() in ui_text:
-                if isinstance(widget, QLabel):
-                    widget.setText(ui_text[widget.objectName()])
-                if isinstance(widget, QLineEdit):
-                    widget.setPlaceholderText(ui_text[widget.objectName()])
-            else:
-                print("error")
+        try:
+            for widget in widgets:
+                if widget.objectName() in ui_text:
+                    if isinstance(widget, QLabel):
+                        widget.setText(ui_text[widget.objectName()])
+                    if isinstance(widget, QLineEdit):
+                        widget.setPlaceholderText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def add_new_contact(self) -> None:
-        dialog = ContactDialog(self)
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            dialog.accept()
+        try:
+            dialog = ContactDialog(self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                dialog.accept()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def delete_contact(self) -> None:
-        dialog = DeleteDialogs.show_delete_contact_dialog(self)
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            dialog.accept()
+        try:
+            dialog = DeleteDialogs.show_delete_contact_dialog(self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                dialog.accept()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def delete_all_contacts(self) -> None:
-        dialog = DeleteDialogs.show_delete_all_contacts_dialog(self)
-        if dialog.exec() == QDialog.DialogCode.Accepted:
-            dialog.accept()
+        try:
+            dialog = DeleteDialogs.show_delete_all_contacts_dialog(self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                dialog.accept()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
