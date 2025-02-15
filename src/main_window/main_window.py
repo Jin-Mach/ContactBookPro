@@ -5,6 +5,7 @@ from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
+from src.database.db_connection import create_db_connection
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -22,6 +23,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
         self.set_icons()
+        create_db_connection("test.db")
 
     def create_image(self) -> QLabel:
         pixmap = QPixmap(str(self.icons_path.joinpath("no_image.png")))
