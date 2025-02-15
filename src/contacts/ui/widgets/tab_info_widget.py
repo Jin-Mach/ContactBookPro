@@ -1,4 +1,7 @@
+import pathlib
+
 from PyQt6.QtCore import QSize
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
 from src.utilities.error_handler import ErrorHandler
@@ -16,18 +19,19 @@ class TabInfoWidget(QTabWidget):
         self.addTab(self.create_personal_tab(), "")
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
+        self.set_icons()
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
         personal_layout = QVBoxLayout()
         personal_social_network_layout = QHBoxLayout()
-        self.facebook_pushbutton = QPushButton("fb")
+        self.facebook_pushbutton = QPushButton()
         self.facebook_pushbutton.setObjectName("facebookPushbutton")
         self.facebook_pushbutton.setFixedSize(self.buttons_size)
-        self.x_pushbutton = QPushButton("x")
+        self.x_pushbutton = QPushButton()
         self.x_pushbutton.setObjectName("xPushbutton")
         self.x_pushbutton.setFixedSize(self.buttons_size)
-        self.instagram_pushbutton = QPushButton("ig")
+        self.instagram_pushbutton = QPushButton()
         self.instagram_pushbutton.setObjectName("instagramPushbutton")
         self.instagram_pushbutton.setFixedSize(self.buttons_size)
         personal_social_network_layout.addWidget(self.facebook_pushbutton)
@@ -79,13 +83,13 @@ class TabInfoWidget(QTabWidget):
         work_widget = QWidget()
         work_layout = QVBoxLayout()
         work_social_network_layout = QHBoxLayout()
-        self.linkedin_pushbutton = QPushButton("ld")
+        self.linkedin_pushbutton = QPushButton()
         self.linkedin_pushbutton.setObjectName("linkedinPushbutton")
         self.linkedin_pushbutton.setFixedSize(self.buttons_size)
-        self.github_pushbutton = QPushButton("gh")
+        self.github_pushbutton = QPushButton()
         self.github_pushbutton.setObjectName("githubPushbutton")
         self.github_pushbutton.setFixedSize(self.buttons_size)
-        self.work_website_pushbutton = QPushButton("ws")
+        self.work_website_pushbutton = QPushButton()
         self.work_website_pushbutton.setObjectName("workWebsitePushbutton")
         self.work_website_pushbutton.setFixedSize(self.buttons_size)
         work_social_network_layout.addWidget(self.linkedin_pushbutton)
@@ -147,5 +151,23 @@ class TabInfoWidget(QTabWidget):
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
+
+    def set_icons(self) -> None:
+        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "social_networks_icons")
+        buttons = {
+            self.facebook_pushbutton: "facebook_icon.png",
+            self.x_pushbutton: "x_icon.png",
+            self.instagram_pushbutton: "instagram_icon.png",
+            self.linkedin_pushbutton: "linkedin_icon.png",
+            self.github_pushbutton: "github_icon.png",
+            self.work_website_pushbutton: "work_website_icon.png",
+        }
+        try:
+            for button, icon_file in buttons.items():
+                icon_path = icons_path.joinpath(icon_file)
+                button.setIcon(QIcon(str(icon_path)))
+                button.setIconSize(QSize(30, 30))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

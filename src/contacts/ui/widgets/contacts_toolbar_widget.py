@@ -1,5 +1,7 @@
+import pathlib
+
 from PyQt6.QtCore import QSize
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QIcon
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QDialog
 
 from src.contacts.ui.dialogs.contact_dialog import ContactDialog
@@ -17,6 +19,7 @@ class ContactsToolbarWidget(QWidget):
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_icons()
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()
@@ -68,6 +71,22 @@ class ContactsToolbarWidget(QWidget):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
+
+    def set_icons(self) -> None:
+        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "contacts_toolbar_icons")
+        buttons = {
+            self.add_new_contact_pushbutton: "new_contact_icon.png",
+            self.update_contact_pushbutton: "update_contact_icon.png",
+            self.delete_contact_pushbutton: "delete_contact_icon.png",
+            self.delete_all_contacts_pushbutton: "delete_all_contacts_icon.png",
+        }
+        try:
+            for button, icon_file in buttons.items():
+                icon_path = icons_path.joinpath(icon_file)
+                button.setIcon(QIcon(str(icon_path)))
+                button.setIconSize(QSize(30, 30))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def add_new_contact(self) -> None:
         try:

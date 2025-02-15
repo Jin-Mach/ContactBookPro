@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.contacts_main_widget = ContactsMainWidget()
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
+        self.set_icons()
 
     def create_image(self) -> QLabel:
         pixmap = QPixmap(str(self.icons_path.joinpath("no_image.png")))
@@ -47,7 +48,6 @@ class MainWindow(QMainWindow):
         self.database_button.setObjectName("mainWindowDatabaseButton")
         self.database_button.setFixedSize(self.buttons_size)
         self.database_button.setFont(QFont("Arial", 12))
-        self.database_button.setIcon(QIcon(str(self.icons_path.joinpath("database_icon.png"))))
         self.database_button.setIconSize(self.icon_size)
         self.stacked_widget = QStackedWidget()
         self.stacked_widget.setObjectName("mainWindowStackedWidget")
@@ -74,3 +74,6 @@ class MainWindow(QMainWindow):
                     self.database_button.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_icons(self) -> None:
+        self.database_button.setIcon(QIcon(str(self.icons_path.joinpath("database_icon.png"))))
