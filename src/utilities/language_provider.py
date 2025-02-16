@@ -19,8 +19,7 @@ class LanguageProvider:
                 language_data = json.load(file)
             return language_data[widget_name]
         except Exception as e:
-            from error_handler import ErrorHandler
-            ErrorHandler.exception_handler(e)
+            LanguageProvider.write_log_exception(e)
             return {}
 
     @staticmethod
@@ -30,9 +29,9 @@ class LanguageProvider:
                 dialog_data = json.load(file)
             return dialog_data[widget_name]
         except Exception as e:
-            from error_handler import ErrorHandler
-            ErrorHandler.exception_handler(e)
+            LanguageProvider.write_log_exception(e)
             return {}
+
 
     @staticmethod
     def get_error_text(widget_name: str) -> dict[str, str]:
@@ -41,6 +40,22 @@ class LanguageProvider:
                 error_data = json.load(file)
             return error_data[widget_name]
         except Exception as e:
-            from error_handler import ErrorHandler
-            ErrorHandler.exception_handler(e)
+            LanguageProvider.write_log_exception(e)
             return {}
+
+    @staticmethod
+    def write_log_exception(exception: Exception) -> None:
+        from src.utilities.logger_provider import get_logger
+        logger = get_logger()
+        logger.error(exception, exc_info=True)
+
+    @staticmethod
+    def check_text_files() -> list:
+        required_files = ["dialog_text.json", "errors_text.json", "ui_text.json"]
+        files_path = LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code())
+        missing_files = []
+        for file in required_files:
+            file_path = files_path.joinpath(file)
+            if not file_path.exists() or not file_path.is_file():
+                missing_files.append(file)
+        return missing_files
