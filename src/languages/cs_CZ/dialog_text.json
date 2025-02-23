@@ -1,6 +1,8 @@
 {
   "dialogsProvider": {
     "dialogTitle": "Chyba...",
-    "errorTextLabel": "Chyba:"
+    "errorTextLabel": "Chyba:",
+    "databaseErrorTextLabel": "Chyba databáze.",
+    "databaseCloseButton": "Zavřít"
   }
 }

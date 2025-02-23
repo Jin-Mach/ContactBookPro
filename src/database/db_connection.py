@@ -1,6 +1,11 @@
 import pathlib
+import sys
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
+
+from src.utilities.dialogs_provider import DialogsProvider
+from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 
 
 def create_db_connection(db_name: str) -> bool:
@@ -8,16 +13,17 @@ def create_db_connection(db_name: str) -> bool:
     connection = QSqlDatabase.addDatabase("QSQLITE")
     connection.setDatabaseName(str(db_path.joinpath(db_name)))
     if not connection.open():
-        print(f"connection error: {connection.lastError().text()}")
+        log_and_show_error(connection.lastError().text())
         return False
-    if not create_contacts_table():
-        print("error creating table")
+    result, query = create_contacts_table()
+    if not result:
+        log_and_show_error(query.lastError().text())
         return False
     return True
 
-def create_contacts_table() -> bool:
-    querry = QSqlQuery()
-    table_created = querry.exec("""CREATE TABLE IF NOT EXISTS contacts(
+def create_contacts_table() -> tuple[bool, QSqlQuery]:
+    query = QSqlQuery()
+    create_table = query.exec("""CREATE TABLE IF NOT EXISTS contacts(
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
         first_name TEXT NOT NULL,
         second_name TEXT NOT NULL,
@@ -48,6 +54,11 @@ def create_contacts_table() -> bool:
         longitude REAL
         )
     """)
-    if not table_created:
-        print(f"error: {querry.lastError().text()}")
-    return table_created
+    return create_table, query
+
+def log_and_show_error(error_message: str) -> None:
+    logger = get_logger()
+    logger.error(error_message)
+    error = LanguageProvider.get_error_text("errorHandler")
+    DialogsProvider.show_database_error_dialog(error["DatabaseConnectionError"])
+    sys.exit(1)
