@@ -15,7 +15,6 @@ class ContactsToolbarWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
-        self.parent = parent
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -70,7 +69,7 @@ class ContactsToolbarWidget(QWidget):
                     if isinstance(widget, QLineEdit):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)
 
     def set_icons(self) -> None:
         icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "contacts_toolbar_icons")
@@ -94,7 +93,7 @@ class ContactsToolbarWidget(QWidget):
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 dialog.accept()
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)
 
     def delete_contact(self) -> None:
         try:
@@ -102,7 +101,7 @@ class ContactsToolbarWidget(QWidget):
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 dialog.accept()
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)
 
     def delete_all_contacts(self) -> None:
         try:
@@ -110,4 +109,4 @@ class ContactsToolbarWidget(QWidget):
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 dialog.accept()
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

@@ -1,5 +1,6 @@
 import pathlib
 import sys
+from typing import Optional
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
@@ -8,26 +9,26 @@ from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
 
 
-def create_db_connection(db_name: str) -> bool:
+def create_db_connection(db_name: str) -> Optional[QSqlDatabase]:
     db_path = pathlib.Path(__file__).parent.parent.joinpath("db_file")
     connection = QSqlDatabase.addDatabase("QSQLITE")
     connection.setDatabaseName(str(db_path.joinpath(db_name)))
     if not connection.open():
         log_and_show_error(connection.lastError().text())
-        return False
+        return None
     result, query = create_contacts_table()
     if not result:
         log_and_show_error(query.lastError().text())
-        return False
-    return True
+        return None
+    return connection
 
 def create_contacts_table() -> tuple[bool, QSqlQuery]:
     query = QSqlQuery()
     create_table = query.exec("""CREATE TABLE IF NOT EXISTS contacts(
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+        relationship TEXT NOT NULL,
         first_name TEXT NOT NULL,
         second_name TEXT NOT NULL,
-        relationship TEXT NOT NULL,
         personal_email TEXT NOT NULL,
         personal_phone_number TEXT NOT NULL,
         personal_address TEXT NOT NULL,

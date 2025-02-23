@@ -8,7 +8,6 @@ class PersonalInfoWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("personalInfoWidget")
-        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -63,4 +62,4 @@ class PersonalInfoWidget(QWidget):
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

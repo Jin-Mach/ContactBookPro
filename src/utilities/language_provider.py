@@ -44,6 +44,16 @@ class LanguageProvider:
             return {}
 
     @staticmethod
+    def get_headers_text(widget_name: str) -> dict[str, str]:
+        try:
+            with open(LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code(), "headers_text.json"), "r", encoding="utf-8") as file:
+                headers_data = json.load(file)
+            return headers_data[widget_name]
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return {}
+
+    @staticmethod
     def write_log_exception(exception: Exception) -> None:
         from src.utilities.logger_provider import get_logger
         logger = get_logger()

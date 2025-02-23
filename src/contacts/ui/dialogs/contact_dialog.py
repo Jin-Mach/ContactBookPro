@@ -10,7 +10,6 @@ class ContactDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactDialog")
-        self.parent = parent
         self.setMinimumSize(650, 450)
         self.mandatory_widget = MandatoryWidget(self)
         self.non_mandatory_widget = NonMandatoryWidget(self)
@@ -36,4 +35,4 @@ class ContactDialog(QDialog):
                 if text in ui_text:
                     self.dialog_tab_widget.setTabText(index, ui_text[text])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

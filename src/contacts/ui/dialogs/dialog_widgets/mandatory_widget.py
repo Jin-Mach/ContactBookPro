@@ -9,13 +9,17 @@ class MandatoryWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogMandatoryWidget")
-        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         form_layout = QFormLayout()
+        self.dialog_relationship_text_label = QLabel()
+        self.dialog_relationship_text_label.setObjectName("dialogRelationshipTextLabel")
+        self.dialog_relationship_combobox = QComboBox()
+        self.dialog_relationship_combobox.setObjectName("dialogRelationshipCombobox")
+        self.dialog_relationship_combobox.setFixedWidth(200)
         self.dialog_first_name_text_label = QLabel()
         self.dialog_first_name_text_label.setObjectName("dialogFirstNameTextLabel")
         self.dialog_first_name_edit = QLineEdit()
@@ -24,11 +28,6 @@ class MandatoryWidget(QWidget):
         self.dialog_second_name_text_label.setObjectName("dialogSecondNameTextLabel")
         self.dialog_second_name_edit = QLineEdit()
         self.dialog_second_name_edit.setObjectName("dialogSecondNameEdit")
-        self.dialog_relationship_text_label = QLabel()
-        self.dialog_relationship_text_label.setObjectName("dialogRelationshipTextLabel")
-        self.dialog_relationship_combobox = QComboBox()
-        self.dialog_relationship_combobox.setObjectName("dialogRelationshipCombobox")
-        self.dialog_relationship_combobox.setFixedWidth(200)
         self.dialog_email_text_label = QLabel()
         self.dialog_email_text_label.setObjectName("dialogEmailTextLabel")
         self.dialog_email_edit = QLineEdit()
@@ -59,9 +58,9 @@ class MandatoryWidget(QWidget):
         self.dialog_cancel_pushbutton = QPushButton()
         self.dialog_cancel_pushbutton.setObjectName("dialogCancelPushbutton")
         fields = [
+            (self.dialog_relationship_text_label, self.dialog_relationship_combobox),
             (self.dialog_first_name_text_label, self.dialog_first_name_edit),
             (self.dialog_second_name_text_label, self.dialog_second_name_edit),
-            (self.dialog_relationship_text_label, self.dialog_relationship_combobox),
             (self.dialog_email_text_label, self.dialog_email_edit),
             (self.dialog_phone_number_text_label, self.dialog_phone_number_edit),
             (self.dialog_address_text_label, self.dialog_address_edit),
@@ -89,4 +88,4 @@ class MandatoryWidget(QWidget):
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

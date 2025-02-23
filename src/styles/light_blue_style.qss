@@ -203,6 +203,17 @@ QTableView#contactsTableviewWidget QTableCornerButton::section {
     background-color: #c1d9e8;
 }
 
+QTableView#contactsTableviewWidget QHeaderView::section {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 1px solid #3a4e6a;
+    padding: 4px;
+}
+
+QTableView#contactsTableviewWidget QHeaderView::section:pressed {
+    background-color: #f5b7b1;
+}
+
 QDialog {
     background-color: #c1d9e8;
     border: 2px solid #1a2b45;

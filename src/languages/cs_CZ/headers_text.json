@@ -1,0 +1,33 @@
+{
+  "databaseModel": {
+    "id": "ID",
+    "first_name": "Křestní jméno",
+    "second_name": "Příjmení",
+    "relationship": "Vztah",
+    "personal_email": "Email (osobní)",
+    "personal_phone_number": "Tel. číslo (osobní)",
+    "personal_address": "Adresa (osobní)",
+    "personal_city": "Město (osobní)",
+    "personal_post_code": "PSČ (osobní)",
+    "personal_country": "Stát (osobní)",
+    "work_email": "Email (pracovní)",
+    "work_phone_number": "Tel. číslo (pracovní)",
+    "work_address": "Adresa (pracovní)",
+    "work_city": "Město (pracovní)",
+    "work_post_code": "PSČ (pracovní)",
+    "work_country": "Stát (pracovní)",
+    "facebook_url": "Facebook",
+    "x_url": "X",
+    "instagram_url": "Instagram",
+    "linkedin_url": "Linkedin",
+    "github_url": "GitHub",
+    "website_url": "Webová stránka",
+    "title": "Titul",
+    "birthday": "Narozeniny",
+    "notes": "Poznámky",
+    "photo": "Foto",
+    "latitude": "Zeměpisná šířka",
+    "longitude": "Zeměpisná délka"
+  }
+}
+

@@ -8,7 +8,6 @@ class NotesInfoWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("notesInfoWidget")
-        self.parent = parent
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -50,4 +49,4 @@ class NotesInfoWidget(QWidget):
                     if isinstance(widget, QLabel):
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

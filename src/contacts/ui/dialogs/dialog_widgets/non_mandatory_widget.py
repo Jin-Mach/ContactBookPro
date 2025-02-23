@@ -11,7 +11,6 @@ class NonMandatoryWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogNonMandatoryWidget")
-        self.parent = parent
         self.work_widget = WorkWidget(self)
         self.social_networks_widget = SocialNetworkWidget(self)
         self.personal_details_widget = PersonalDetailsWidget(self)
@@ -37,4 +36,4 @@ class NonMandatoryWidget(QTabWidget):
                 if text in ui_text:
                     self.dialog_tab_widget.setTabText(index, ui_text[text])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)

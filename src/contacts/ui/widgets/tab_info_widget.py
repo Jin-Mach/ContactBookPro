@@ -12,7 +12,6 @@ class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("tabInfoWidget")
-        self.parent = parent
         self.setFixedHeight(250)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
@@ -152,7 +151,7 @@ class TabInfoWidget(QTabWidget):
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)
 
     def set_icons(self) -> None:
         icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "social_networks_icons")
@@ -170,4 +169,4 @@ class TabInfoWidget(QTabWidget):
                 button.setIcon(QIcon(str(icon_path)))
                 button.setIconSize(QSize(30, 30))
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self)
