@@ -1,5 +1,9 @@
+from typing import Optional
+
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit
 
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -51,11 +55,34 @@ class WorkWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.dialog_work_email_text_label, self.dialog_work_phone_number_text_label, self.dialog_work_address_text_label,
-                   self.dialog_work_city_text_label, self.dialog_work_post_code_text_label, self.dialog_work_country_text_label]
+        widgets = self.findChildren((QLabel, QLineEdit))
         try:
             for widget in widgets:
-                if widget.objectName() in ui_text:
-                    widget.setText(ui_text[widget.objectName()])
+                if isinstance(widget, QLabel):
+                    if widget.objectName() in ui_text:
+                        widget.setText(ui_text[widget.objectName()])
+                elif isinstance(widget, QLineEdit):
+                    if widget.objectName() in ui_text:
+                        widget.setPlaceholderText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def return_work_data(self) -> Optional[list]:
+        error_text = LanguageProvider.get_error_text(self.objectName())
+        inputs = self.findChildren(QLineEdit)
+        work_data = []
+        try:
+            for widget in inputs:
+                text = widget.text().strip()
+                if widget.objectName() == "dialogWorkEmailEdit" and text and not ContactValidator.validate_email(text):
+                    DialogsProvider.show_error_dialog(error_text["emailValidatorError"], self)
+                    widget.setFocus()
+                    return None
+                elif widget.objectName() == "dialogPhoneNumberEdit" and text and not ContactValidator.validate_phone_number(text):
+                    DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"], self)
+                    widget.setFocus()
+                    return None
+                work_data.append(text)
+            return work_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

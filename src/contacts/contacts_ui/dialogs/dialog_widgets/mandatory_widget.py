@@ -101,20 +101,21 @@ class MandatoryWidget(QWidget):
                         return None
                     mandatory_data.append(widget.currentIndex())
                 if isinstance(widget, QLineEdit):
-                    if not widget.text().strip():
+                    text = widget.text().strip()
+                    if not text:
                         label_text = self.return_label_text(labels, widget)
                         DialogsProvider.show_error_dialog(f"{error_text["emptyTextError"]}{label_text}")
                         widget.setFocus()
                         return None
-                    elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(widget.text().strip()):
+                    elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(text):
                         DialogsProvider.show_error_dialog(error_text["emailValidatorError"])
                         widget.setFocus()
                         return None
-                    elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(widget.text().strip()):
+                    elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
                         DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"])
                         widget.setFocus()
                         return None
-                    mandatory_data.append(widget.text())
+                    mandatory_data.append(text)
             return mandatory_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

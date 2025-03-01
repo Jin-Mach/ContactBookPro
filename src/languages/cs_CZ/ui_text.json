@@ -71,7 +71,7 @@
     "dialogSecondNameEdit": "Zadej příjmení...",
     "dialogEmailEdit": "Zadej email ve formátu: email@domena.cz",
     "dialogPhoneNumberEdit": "Zadej tel.číslo ve formátu: +420123456789",
-    "dialogAddressEdit": "Zadej adresu ve formátu: ulice 123/obec 123",
+    "dialogAddressEdit": "Zadej adresu ve formátu: Ulice 123/Obec 123",
     "dialogCityEdit": "Zadej město...",
     "dialogPostCodeEdit": "Zadej PSČ...",
     "dialogCountryEdit": "Zadej stát..."
@@ -87,7 +87,13 @@
     "dialogWorkAddressTextLabel": "Adresa:",
     "dialogWorkCityTextLabel": "Město:",
     "dialogPostCodeTextLabel": "PSČ:",
-    "dialogWorkCountryTextLabel": "Stát:"
+    "dialogWorkCountryTextLabel": "Stát:",
+    "dialogWorkEmailEdit": "Zadej email ve formátu: email@domena.cz",
+    "dialogPhoneNumberEdit": "Zadej tel. číslo ve formátu: +420123456789",
+    "dialogWorkAddressEdit": "Zadej adresu ve formátu: Ulice 123/Obec 123",
+    "dialogWorkCityEdit": "Zadej město...",
+    "dialogPostCodeEdit": "Zadej PSČ...",
+    "dialogWorkCountryEdit": "Zadej stát..."
   },
   "dialogSocialNetworkWidget": {
     "dialogFacebookUrlTextLabel": "Facebook:",

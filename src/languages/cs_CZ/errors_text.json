@@ -13,5 +13,9 @@
     "emptyTextError": "Toto pole nesmí být prázdné.\n",
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
     "phonenumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
+    "phonenumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789."
   }
 }

@@ -54,8 +54,10 @@ class ContactDialog(QDialog):
 
     def add_new_contact(self) -> Optional[list]:
         mandatory_data = self.mandatory_widget.return_manadatory_data()
-        data = mandatory_data
-        if data:
-            super().accept()
-            return data
-        return None
+        work_data = self.non_mandatory_widget.work_widget.return_work_data()
+        if not work_data:
+            return None
+        data = mandatory_data + work_data
+        super().accept()
+        print(data)
+        return data
