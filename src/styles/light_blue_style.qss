@@ -225,6 +225,24 @@ QComboBox#dialogRelationshipCombobox {
     border: 2px solid #1a2b45;
 }
 
+QComboBox#dialogRelationshipCombobox QAbstractItemView {
+    background-color: #f2f2f2;
+    color: #000000;
+    selection-background-color: #c1d9e8;
+    selection-color: #000000;
+    border: 1px solid #1a2b45;
+}
+
+QComboBox#dialogRelationshipCombobox QAbstractItemView::item {
+    background-color: transparent;
+    padding: 5px;
+}
+
+QComboBox#dialogRelationshipCombobox QAbstractItemView::item:selected {
+    background-color: #c1d9e8;
+    color: #000000;
+}
+
 QLabel#dialogPhotoLabel {
     border: 2px solid #1a2b45;
     border-radius: 4px;

@@ -1,10 +1,14 @@
-from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout, QHBoxLayout, \
-    QPushButton
+from typing import Optional
 
+from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout
+
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class MandatoryWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -52,11 +56,6 @@ class MandatoryWidget(QWidget):
         self.dialog_country_text_label.setObjectName("dialogCountryTextLabel")
         self.dialog_country_edit = QLineEdit()
         self.dialog_country_edit.setObjectName("dialogCountryEdit")
-        buttons_layout = QHBoxLayout()
-        self.dialog_add_contact_pushbutton = QPushButton()
-        self.dialog_add_contact_pushbutton.setObjectName("dialogAddContactPushbutton")
-        self.dialog_cancel_pushbutton = QPushButton()
-        self.dialog_cancel_pushbutton.setObjectName("dialogCancelPushbutton")
         fields = [
             (self.dialog_relationship_text_label, self.dialog_relationship_combobox),
             (self.dialog_first_name_text_label, self.dialog_first_name_edit),
@@ -70,22 +69,61 @@ class MandatoryWidget(QWidget):
         ]
         for label, edit in fields:
             form_layout.addRow(label, edit)
-        buttons_layout.addStretch()
-        buttons_layout.addWidget(self.dialog_add_contact_pushbutton)
-        buttons_layout.addWidget(self.dialog_cancel_pushbutton)
         main_layout.addLayout(form_layout)
-        main_layout.addLayout(buttons_layout)
         return main_layout
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.dialog_first_name_text_label, self.dialog_second_name_text_label, self.dialog_relationship_text_label,
-                   self.dialog_email_text_label, self.dialog_phone_number_text_label, self.dialog_address_text_label,
-                   self.dialog_city_text_label, self.dialog_post_code_text_label, self.dialog_country_text_label,
-                   self.dialog_add_contact_pushbutton, self.dialog_cancel_pushbutton]
+        widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:
-                    widget.setText(ui_text[widget.objectName()])
+                    if isinstance(widget, QLabel):
+                        widget.setText(ui_text[widget.objectName()])
+                    elif isinstance(widget, QComboBox):
+                        widget.addItems(ui_text[widget.objectName()])
+                    elif isinstance(widget, QLineEdit):
+                        widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def return_manadatory_data(self) -> Optional[list]:
+        error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
+        inputs = self.findChildren((QLineEdit, QComboBox))
+        labels = self.findChildren(QLabel)
+        mandatory_data = []
+        try:
+            for widget in inputs:
+                if isinstance(widget, QComboBox):
+                    if widget.currentIndex() == 0:
+                        DialogsProvider.show_error_dialog(error_text["relationshipError"])
+                        widget.setFocus()
+                        return None
+                    mandatory_data.append(widget.currentIndex())
+                if isinstance(widget, QLineEdit):
+                    if not widget.text().strip():
+                        label_text = self.return_label_text(labels, widget)
+                        DialogsProvider.show_error_dialog(f"{error_text["emptyTextError"]}{label_text}")
+                        widget.setFocus()
+                        return None
+                    elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(widget.text().strip()):
+                        DialogsProvider.show_error_dialog(error_text["emailValidatorError"])
+                        widget.setFocus()
+                        return None
+                    elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(widget.text().strip()):
+                        DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"])
+                        widget.setFocus()
+                        return None
+                    mandatory_data.append(widget.text())
+            return mandatory_data
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    @staticmethod
+    def return_label_text(label_list: [QLabel], widget: QWidget) -> str:
+        widget_name = widget.objectName()
+        for label in label_list:
+            label_name = label.objectName().removesuffix("TextLabel")
+            if widget_name.startswith(label_name):
+                return label.text().removesuffix(":")
+        return ""

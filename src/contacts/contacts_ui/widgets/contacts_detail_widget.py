@@ -1,14 +1,15 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout
 
-from src.contacts.ui.widgets.notes_info_widget import NotesInfoWidget
-from src.contacts.ui.widgets.personal_info_widget import PersonalInfoWidget
-from src.contacts.ui.widgets.tab_info_widget import TabInfoWidget
+from src.contacts.contacts_ui.widgets.notes_info_widget import NotesInfoWidget
+from src.contacts.contacts_ui.widgets.personal_info_widget import PersonalInfoWidget
+from src.contacts.contacts_ui.widgets.tab_info_widget import TabInfoWidget
 
 
 class ContactsDetailWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsDetailWidget")
+        self.setFixedWidth(500)
         self.personal_info_widget = PersonalInfoWidget(self)
         self.tab_info_widget = TabInfoWidget(self)
         self.notes_info_widget = NotesInfoWidget(self)

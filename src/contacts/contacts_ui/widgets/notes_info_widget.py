@@ -46,7 +46,7 @@ class NotesInfoWidget(QWidget):
                 if widget.objectName() in ui_text:
                     if isinstance(widget, QTextEdit):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
-                    if isinstance(widget, QLabel):
+                    elif isinstance(widget, QLabel):
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

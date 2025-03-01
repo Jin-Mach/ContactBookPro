@@ -8,6 +8,7 @@ class ContactsTableviewWidget(QTableView):
         super().__init__(parent)
         self.setObjectName("contactsTableviewWidget")
         self.setModel(model)
+        self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
         self.resizeColumnsToContents()
         self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)

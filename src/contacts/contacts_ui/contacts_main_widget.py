@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout
 
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidgte
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.contacts.ui.widgets.contacts_toolbar_widget import ContactsToolbarWidget
+from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidgte
+from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.contacts_ui.widgets.contacts_toolbar_widget import ContactsToolbarWidget
 from src.database.database_model import DatabaseModel
 from src.database.db_connection import create_db_connection
 
@@ -14,7 +14,7 @@ class ContactsMainWidget(QWidget):
         self.setObjectName("contactsMainWidget")
         db_connection = create_db_connection("contacts_db.sqlite")
         self.database_model = DatabaseModel(db_connection)
-        self.contacts_toolbar_widget = ContactsToolbarWidget(self)
+        self.contacts_toolbar_widget = ContactsToolbarWidget(db_connection, self)
         self.contacts_tableview_widget = ContactsTableviewWidget(self.database_model, self)
         self.contacts_detail_widget = ContactsDetailWidget(self)
         self.contacts_statusbar_widget = ContactsStatusbarWidgte(self)

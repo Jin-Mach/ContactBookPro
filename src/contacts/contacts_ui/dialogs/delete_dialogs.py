@@ -66,7 +66,7 @@ class DeleteDialogs:
                 if widget.objectName() in ui_text:
                     if isinstance(widget, QDialog):
                         widget.setWindowTitle(ui_text[widget.objectName()])
-                    if isinstance(widget, (QLabel, QPushButton)):
+                    elif isinstance(widget, (QLabel, QPushButton)):
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)

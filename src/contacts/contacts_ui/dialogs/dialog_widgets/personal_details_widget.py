@@ -72,7 +72,7 @@ class PersonalDetailsWidget(QWidget):
                 if widget.objectName() in ui_text:
                     if isinstance(widget, (QLabel, QPushButton)):
                         widget.setText(ui_text[widget.objectName()])
-                    if isinstance(widget, QTextEdit):
+                    elif isinstance(widget, QTextEdit):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

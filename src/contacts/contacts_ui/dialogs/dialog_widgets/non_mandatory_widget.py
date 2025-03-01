@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QTabWidget, QVBoxLayout, QLayout
 
-from src.contacts.ui.dialogs.dialog_widgets.personal_details_widget import PersonalDetailsWidget
-from src.contacts.ui.dialogs.dialog_widgets.social_networks_widget import SocialNetworkWidget
-from src.contacts.ui.dialogs.dialog_widgets.work_widget import WorkWidget
+from src.contacts.contacts_ui.dialogs.dialog_widgets.personal_details_widget import PersonalDetailsWidget
+from src.contacts.contacts_ui.dialogs.dialog_widgets.social_networks_widget import SocialNetworkWidget
+from src.contacts.contacts_ui.dialogs.dialog_widgets.work_widget import WorkWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 

@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon, QPixmap, QFont
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
-from src.contacts.ui.contacts_main_widget import ContactsMainWidget
+from src.contacts.contacts_ui.contacts_main_widget import ContactsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 

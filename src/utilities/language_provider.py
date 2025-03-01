@@ -61,7 +61,7 @@ class LanguageProvider:
 
     @staticmethod
     def check_text_files() -> list:
-        required_files = ["dialog_text.json", "errors_text.json", "ui_text.json"]
+        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "ui_text.json"]
         files_path = LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code())
         missing_files = []
         for file in required_files:

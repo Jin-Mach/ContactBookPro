@@ -51,20 +51,30 @@
   "contactDialog": {
     "dialogTitle": "Nový kontakt",
     "mandatory": "Povinné údaje",
-    "nonMandatory": "Volitelné údaje"
+    "nonMandatory": "Volitelné údaje",
+    "dialogAddContactButton": "Přidat kontakt",
+    "dialogCancelButton": "Zrušit"
+
   },
   "dialogMandatoryWidget": {
     "dialogFirstNameTextLabel": "Křestní jméno:",
     "dialogSecondNameTextLabel": "Příjmení:",
     "dialogRelationshipTextLabel": "Vztah:",
+      "dialogRelationshipCombobox": ["---Vyberte vztah---","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
     "dialogEmailTextLabel": "Email:",
     "dialogPhoneNumberTextLabel": "Telefonní číslo:",
     "dialogAddressTextLabel": "Adresa:",
     "dialogCityTextLabel": "Město:",
     "dialogPostCodeTextLabel": "PSČ:",
     "dialogCountryTextLabel": "Stát:",
-    "dialogAddContactPushbutton": "Přidat kontakt",
-    "dialogCancelPushbutton": "Zrušit"
+    "dialogFirstNameEdit": "Zadej křestní jméno...",
+    "dialogSecondNameEdit": "Zadej příjmení...",
+    "dialogEmailEdit": "Zadej email ve formátu: email@domena.cz",
+    "dialogPhoneNumberEdit": "Zadej tel.číslo ve formátu: +420123456789",
+    "dialogAddressEdit": "Zadej adresu ve formátu: ulice 123/obec 123",
+    "dialogCityEdit": "Zadej město...",
+    "dialogPostCodeEdit": "Zadej PSČ...",
+    "dialogCountryEdit": "Zadej stát..."
   },
   "dialogNonMandatoryWidget": {
     "work": "Pracovní",
