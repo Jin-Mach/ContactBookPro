@@ -29,7 +29,7 @@ class ContactValidator:
         if not parsed_url.scheme:
             url = "https://" + url
             parsed_url = urlparse(url)
-        if site == "website":
+        if site.lower() == "website":
             return validators.url(url)
         domain = tldextract.extract(parsed_url.netloc).domain
         if domain == "twitter":
