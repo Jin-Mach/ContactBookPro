@@ -1,6 +1,8 @@
 from typing import Optional
 
-from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit
+from PyQt6.QtCore import QRegularExpression
+from PyQt6.QtGui import QRegularExpressionValidator
+from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
@@ -9,9 +11,13 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class WorkWidget(QWidget):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, main_tab: QTabWidget, non_mandatory_tab: QTabWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogWorkWidget")
+        self.main_tab = main_tab
+        self.non_mandatory_tab = non_mandatory_tab
+        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        self.phone_validator = QRegularExpressionValidator(phone_regex)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -25,6 +31,7 @@ class WorkWidget(QWidget):
         self.dialog_work_phone_number_text_label.setObjectName("dialogWorkPhoneNumberTextLabel")
         self.dialog_work_phone_number_edit = QLineEdit()
         self.dialog_work_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
+        self.dialog_work_phone_number_edit.setValidator(self.phone_validator)
         self.dialog_work_address_text_label = QLabel()
         self.dialog_work_address_text_label.setObjectName("dialogWorkAddressTextLabel")
         self.dialog_work_address_edit = QLineEdit()
@@ -76,13 +83,19 @@ class WorkWidget(QWidget):
                 text = widget.text().strip()
                 if widget.objectName() == "dialogWorkEmailEdit" and text and not ContactValidator.validate_email(text):
                     DialogsProvider.show_error_dialog(error_text["emailValidatorError"], self)
+                    self.set_tab_index()
                     widget.setFocus()
                     return None
                 elif widget.objectName() == "dialogPhoneNumberEdit" and text and not ContactValidator.validate_phone_number(text):
                     DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"], self)
+                    self.set_tab_index()
                     widget.setFocus()
                     return None
                 work_data.append(text)
             return work_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_tab_index(self) -> None:
+        self.main_tab.setCurrentIndex(1)
+        self.non_mandatory_tab.setCurrentIndex(0)

@@ -14,8 +14,6 @@ class ContactDialog(QDialog):
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setMinimumSize(650, 450)
-        self.mandatory_widget = MandatoryWidget(self)
-        self.non_mandatory_widget = NonMandatoryWidget(self)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -23,6 +21,8 @@ class ContactDialog(QDialog):
         main_layout = QVBoxLayout()
         self.dialog_tab_widget = QTabWidget()
         self.dialog_tab_widget.setObjectName("dialogTabWidget")
+        self.mandatory_widget = MandatoryWidget(self.dialog_tab_widget, self)
+        self.non_mandatory_widget = NonMandatoryWidget(self.dialog_tab_widget, self)
         self.dialog_tab_widget.addTab(self.mandatory_widget, "")
         self.dialog_tab_widget.addTab(self.non_mandatory_widget, "")
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
@@ -55,9 +55,9 @@ class ContactDialog(QDialog):
     def add_new_contact(self) -> Optional[list]:
         mandatory_data = self.mandatory_widget.return_manadatory_data()
         work_data = self.non_mandatory_widget.work_widget.return_work_data()
-        if not work_data:
+        social_network_data = self.non_mandatory_widget.social_networks_widget.return_social_network_data()
+        if not work_data or not social_network_data:
             return None
-        data = mandatory_data + work_data
+        data = mandatory_data + work_data + social_network_data
         super().accept()
-        print(data)
         return data

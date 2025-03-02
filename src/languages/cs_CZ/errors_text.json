@@ -17,5 +17,9 @@
   "dialogWorkWidget": {
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
     "phonenumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Neplatný formát odkazu nebo nesprávná sociální síť.\nZadejte prosím platnou URL adresu pro {site} ve formátu: https://www.{site}.com/profil."
+
   }
 }

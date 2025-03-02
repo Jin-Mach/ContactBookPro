@@ -101,7 +101,13 @@
     "dialogInstagramUrlTextLabel": "Instagram:",
     "dialogLinkedinUrlTextLabel": "LinkedIn:",
     "dialogGithubUrlTextLabel": "GitHub:",
-    "dialogWebsiteTextLabel": "Webová stránka:"
+    "dialogWebsiteUrlTextLabel": "Webová stránka:",
+    "dialogFacebookUrlEdit": "Zadej odkaz na Facebook...",
+    "dialogXUrlEdit": "Zadej odkaz na X (Twitter)...",
+    "dialogInstagramUrlEdit": "Zadej odkaz na Instagram...",
+    "dialogLinkedinUrlEdit": "Zadej odkaz na LinkedIn...",
+    "dialogGithubUrlEdit": "Zadej odkaz na GitHub...",
+    "dialogWebsiteUrlEdit": "Zadej web ve formátu: https://www.example.cz"
   },
   "dialogPersonalDetailWidget": {
     "dialogGetPhotoPushbutton": "Přidat fotku",

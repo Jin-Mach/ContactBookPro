@@ -1,6 +1,8 @@
 from typing import Optional
 
-from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout
+from PyQt6.QtCore import QRegularExpression
+from PyQt6.QtGui import QRegularExpressionValidator
+from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout, QTabWidget
 
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
@@ -10,9 +12,12 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class MandatoryWidget(QWidget):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, main_tab_widget: QTabWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogMandatoryWidget")
+        self.main_tab_widget = main_tab_widget
+        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        self.phone_validator = QRegularExpressionValidator(phone_regex)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -40,6 +45,7 @@ class MandatoryWidget(QWidget):
         self.dialog_phone_number_text_label.setObjectName("dialogPhoneNumberTextLabel")
         self.dialog_phone_number_edit = QLineEdit()
         self.dialog_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
+        self.dialog_phone_number_edit.setValidator(self.phone_validator)
         self.dialog_address_text_label = QLabel()
         self.dialog_address_text_label.setObjectName("dialogAddressTextLabel")
         self.dialog_address_edit = QLineEdit()
@@ -97,6 +103,7 @@ class MandatoryWidget(QWidget):
                 if isinstance(widget, QComboBox):
                     if widget.currentIndex() == 0:
                         DialogsProvider.show_error_dialog(error_text["relationshipError"])
+                        self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     mandatory_data.append(widget.currentIndex())
@@ -105,14 +112,17 @@ class MandatoryWidget(QWidget):
                     if not text:
                         label_text = self.return_label_text(labels, widget)
                         DialogsProvider.show_error_dialog(f"{error_text["emptyTextError"]}{label_text}")
+                        self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(text):
                         DialogsProvider.show_error_dialog(error_text["emailValidatorError"])
+                        self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
                         DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"])
+                        self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     mandatory_data.append(text)
