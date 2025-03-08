@@ -53,11 +53,14 @@ class ContactDialog(QDialog):
             ErrorHandler.exception_handler(e, self)
 
     def add_new_contact(self) -> Optional[list]:
-        mandatory_data = self.mandatory_widget.return_manadatory_data()
-        work_data = self.non_mandatory_widget.work_widget.return_work_data()
-        social_network_data = self.non_mandatory_widget.social_networks_widget.return_social_network_data()
-        if not work_data or not social_network_data:
-            return None
-        data = mandatory_data + work_data + social_network_data
-        super().accept()
-        return data
+        try:
+            mandatory_data = self.mandatory_widget.return_manadatory_data()
+            work_data = self.non_mandatory_widget.work_widget.return_work_data()
+            social_network_data = self.non_mandatory_widget.social_networks_widget.return_social_network_data()
+            if not mandatory_data or not work_data or not social_network_data:
+                return None
+            data = mandatory_data + work_data  + social_network_data
+            super().accept()
+            return data
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

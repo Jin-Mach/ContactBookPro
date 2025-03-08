@@ -16,10 +16,9 @@ class MandatoryWidget(QWidget):
         super().__init__(parent)
         self.setObjectName("dialogMandatoryWidget")
         self.main_tab_widget = main_tab_widget
-        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
-        self.phone_validator = QRegularExpressionValidator(phone_regex)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_validators()
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -45,7 +44,6 @@ class MandatoryWidget(QWidget):
         self.dialog_phone_number_text_label.setObjectName("dialogPhoneNumberTextLabel")
         self.dialog_phone_number_edit = QLineEdit()
         self.dialog_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_phone_number_edit.setValidator(self.phone_validator)
         self.dialog_address_text_label = QLabel()
         self.dialog_address_text_label.setObjectName("dialogAddressTextLabel")
         self.dialog_address_edit = QLineEdit()
@@ -92,6 +90,11 @@ class MandatoryWidget(QWidget):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_validators(self) -> None:
+        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        phone_validator = QRegularExpressionValidator(phone_regex)
+        self.dialog_phone_number_edit.setValidator(phone_validator)
 
     def return_manadatory_data(self) -> Optional[list]:
         error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")

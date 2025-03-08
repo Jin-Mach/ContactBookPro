@@ -16,10 +16,9 @@ class WorkWidget(QWidget):
         self.setObjectName("dialogWorkWidget")
         self.main_tab = main_tab
         self.non_mandatory_tab = non_mandatory_tab
-        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
-        self.phone_validator = QRegularExpressionValidator(phone_regex)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_validators()
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
@@ -31,7 +30,6 @@ class WorkWidget(QWidget):
         self.dialog_work_phone_number_text_label.setObjectName("dialogWorkPhoneNumberTextLabel")
         self.dialog_work_phone_number_edit = QLineEdit()
         self.dialog_work_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_work_phone_number_edit.setValidator(self.phone_validator)
         self.dialog_work_address_text_label = QLabel()
         self.dialog_work_address_text_label.setObjectName("dialogWorkAddressTextLabel")
         self.dialog_work_address_edit = QLineEdit()
@@ -73,6 +71,11 @@ class WorkWidget(QWidget):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_validators(self) -> None:
+        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        phone_validator = QRegularExpressionValidator(phone_regex)
+        self.dialog_work_phone_number_edit.setValidator(phone_validator)
 
     def return_work_data(self) -> Optional[list]:
         error_text = LanguageProvider.get_error_text(self.objectName())

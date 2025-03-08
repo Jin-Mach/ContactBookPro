@@ -117,5 +117,11 @@
     "dialogCalendarPushbutton": "Otevřít kalendář",
     "dialogResetCalendarPushbutton": "Odstranit datum",
     "dialogNotesEdit": "Poznámky ke kontaktu..."
+  },
+  "calendarDialog": {
+    "calendarDialogTitle": "Vybrat datum narození",
+    "setTodayButton": "Přejít na dnes",
+    "addDateButton": "Nastavit datum",
+    "cancelDialogButton": "Zrušit"
   }
 }

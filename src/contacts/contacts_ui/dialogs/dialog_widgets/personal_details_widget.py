@@ -1,10 +1,14 @@
-from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QTextEdit, \
-    QFormLayout, QLineEdit
+from PyQt6.QtGui import QTextCursor
+from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QFormLayout,
+                             QLineEdit, QTextEdit)
 
+from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class PersonalDetailsWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -36,11 +40,14 @@ class PersonalDetailsWidget(QWidget):
         calendar_buttons_layout = QHBoxLayout()
         self.dialog_calendar_pushbutton = QPushButton()
         self.dialog_calendar_pushbutton.setObjectName("dialogCalendarPushbutton")
+        self.dialog_calendar_pushbutton.clicked.connect(self.get_birthday_date)
         self.dialog_reset_calendar_pushbutton = QPushButton()
         self.dialog_reset_calendar_pushbutton.setObjectName("dialogResetCalendarPushbutton")
+        self.dialog_reset_calendar_pushbutton.clicked.connect(self.delete_birthday_input)
         notes_layout = QVBoxLayout()
         self.dialog_notes_edit = QTextEdit()
         self.dialog_notes_edit.setObjectName("dialogNotesEdit")
+        self.dialog_notes_edit.textChanged.connect(self.check_text_length)
         letters_count_layout = QHBoxLayout()
         self.dialog_letters_count_label = QLabel("0/500")
         self.dialog_letters_count_label.setObjectName("dialogLettersCountLabel")
@@ -76,3 +83,33 @@ class PersonalDetailsWidget(QWidget):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def get_birthday_date(self) -> str:
+        try:
+            dialog = CalendarDialog(self.dialog_birthday_edit, self)
+            if dialog.exec() == dialog.DialogCode.Accepted:
+                result = dialog.return_date(self.dialog_birthday_edit)
+                if result:
+                    return result
+            return ""
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return ""
+
+    def check_text_length(self) -> None:
+        try:
+            text = self.dialog_notes_edit.toPlainText()
+            error_text = LanguageProvider.get_error_text(self.objectName())
+            if len(text) > 500:
+                cursor = self.dialog_notes_edit.textCursor()
+                cursor.movePosition(QTextCursor.MoveOperation.End)
+                self.dialog_notes_edit.setTextCursor(cursor)
+                cursor.deletePreviousChar()
+                DialogsProvider.show_error_dialog(error_text["textLengthError"])
+            else:
+                self.dialog_letters_count_label.setText(f"{len(text)}/500")
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def delete_birthday_input(self) -> None:
+        self.dialog_birthday_edit.clear()
