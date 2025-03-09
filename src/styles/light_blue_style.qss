@@ -59,12 +59,32 @@ QLineEdit {
     border: 2px solid #1a2b45;
 }
 
-QTextEdit {
+QTextEdit#notesTextEdit {
     background-color: #c1d9e8;
     color: #333333;
     border: 2px solid #1a2b45;
     padding: 5px;
     border-radius: 5px;
+    font-size: 17px;
+    font-family: "Arial", sans-serif;
+}
+
+QTextEdit#notesTextEdit QScrollBar {
+    background-color: #c1d9e8; /* Světle modré pozadí scrollbaru */
+    width: 10px;
+}
+
+QTextEdit#notesTextEdit QScrollBar::handle {
+    background-color: #1a2b45; /* Tmavá modrá barva pro posuvník */
+    border-radius: 5px;
+}
+
+QTextEdit#notesTextEdit QScrollBar::add-line, QTextEdit QScrollBar::sub-line {
+    background: none;
+}
+
+QTextEdit#notesTextEdit QScrollBar::add-page, QTextEdit QScrollBar::sub-page {
+    background: none;
 }
 
 QLabel#searchTextLabel {
@@ -247,4 +267,123 @@ QComboBox QAbstractItemView::item:selected {
 QLabel#dialogPhotoLabel {
     border: 2px solid #1a2b45;
     border-radius: 4px;
+}
+
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #1a2b45;
+}
+
+#qt_calendar_prevmonth, #qt_calendar_nextmonth {
+    qproperty-iconSize: 25px;
+}
+
+#qt_calendar_monthbutton::menu-indicator {
+    width: 0px;
+}
+
+QCalendarWidget QTableView {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 2px solid #1a2b45;
+    border-radius: 3px;
+}
+
+QCalendarWidget QTableView::item {
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #c1d9e8;
+}
+
+QCalendarWidget QTableView::item:selected {
+    background-color: #f5b7b1;
+    color: #ffffff;
+    border: 1px solid #f5b7b1;
+}
+
+QCalendarWidget QTableView::item:focus {
+    background-color: #f5b7b1;
+    color: #000000;
+}
+
+QCalendarWidget QTableView::item:hover {
+    background-color: #8ec0e6;
+    color: #ffffff;
+}
+
+QCalendarWidget QMenu {
+    background-color: #1a2b45;
+    color: #000000;
+    border: 1px solid #8ec0e6;
+}
+
+QCalendarWidget QMenu::item {
+    background-color: #c1d9e8;
+    color: #000000;
+    padding: 5px 10px;
+}
+
+QCalendarWidget QMenu::item:selected {
+    background-color: #8ec0e6;
+    color: #ffffff;
+}
+
+QCalendarWidget QSpinBox {
+    background-color: #c1d9e8;
+    color: #000000;
+    border: 1px solid #8ec0e6;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+QCalendarWidget QSpinBox::up-button,
+QCalendarWidget QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 20%;
+    height: 15px;
+}
+
+QCalendarWidget QSpinBox::down-button {
+    subcontrol-position: bottom right;
+}
+
+QTextEdit#dialogNotesEdit {
+    background-color: #f2f2f2;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Arial", sans-serif;
+    border: 2px solid #1a2b45;
+    border-radius: 5px;
+}
+
+QTextEdit#dialogNotesEdit {
+    background-color: #f2f2f2;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Arial", sans-serif;
+    border: 2px solid #1a2b45;
+    border-radius: 5px;
+}
+
+QTextEdit#dialogNotesEdit QScrollBar {
+    background-color: #f2f2f2;
+    width: 10px;
+}
+
+QTextEdit#dialogNotesEdit QScrollBar::handle {
+    background-color: #888888;
+    border-radius: 5px;
+}
+
+QTextEdit#dialogNotesEdit QScrollBar::handle:hover {
+    background-color: #555555;
+}
+
+QTextEdit#dialogNotesEdit QScrollBar::handle:focus {
+    background-color: #333333;
+}
+
+QTextEdit#dialogNotesEdit QScrollBar::add-line,
+QTextEdit#dialogNotesEdit QScrollBar::sub-line {
+    background-color: transparent;
 }
