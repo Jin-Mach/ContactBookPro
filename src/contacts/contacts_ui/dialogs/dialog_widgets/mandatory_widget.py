@@ -23,6 +23,11 @@ class MandatoryWidget(QWidget):
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         form_layout = QFormLayout()
+        self.dialog_gender_text_label = QLabel()
+        self.dialog_gender_text_label.setObjectName("dialogGenderTextLabel")
+        self.dialog_gender_combobox = QComboBox()
+        self.dialog_gender_combobox.setObjectName("dialogGenderCombobox")
+        self.dialog_gender_combobox.setFixedWidth(200)
         self.dialog_relationship_text_label = QLabel()
         self.dialog_relationship_text_label.setObjectName("dialogRelationshipTextLabel")
         self.dialog_relationship_combobox = QComboBox()
@@ -61,6 +66,7 @@ class MandatoryWidget(QWidget):
         self.dialog_country_edit = QLineEdit()
         self.dialog_country_edit.setObjectName("dialogCountryEdit")
         fields = [
+            (self.dialog_gender_text_label, self.dialog_gender_combobox),
             (self.dialog_relationship_text_label, self.dialog_relationship_combobox),
             (self.dialog_first_name_text_label, self.dialog_first_name_edit),
             (self.dialog_second_name_text_label, self.dialog_second_name_edit),
@@ -105,7 +111,8 @@ class MandatoryWidget(QWidget):
             for widget in inputs:
                 if isinstance(widget, QComboBox):
                     if widget.currentIndex() == 0:
-                        DialogsProvider.show_error_dialog(error_text["relationshipError"])
+                        object_name_text = widget.objectName().removeprefix("dialog").removesuffix("Combobox")
+                        DialogsProvider.show_error_dialog(error_text[f"{object_name_text.lower()}Error"])
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None

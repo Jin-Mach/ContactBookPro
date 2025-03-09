@@ -26,6 +26,7 @@ def create_contacts_table() -> tuple[bool, QSqlQuery]:
     query = QSqlQuery()
     create_table = query.exec("""CREATE TABLE IF NOT EXISTS contacts(
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+        gender TEXT NOT NULL,
         relationship INTEGER NOT NULL,
         first_name TEXT NOT NULL,
         second_name TEXT NOT NULL,

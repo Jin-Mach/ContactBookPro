@@ -12,6 +12,7 @@
   },
   "personalInfoWidget": {
     "contactTitleTextLabel": "Titul:",
+    "contactGenderTextLabel": "Pohlaví",
     "contactFirstNameTextLabel": "Jméno:",
     "contactSecondNameTextLabel": "Příjmení:",
     "contactRelationshipTextLabel": "Vztah:",
@@ -57,10 +58,12 @@
 
   },
   "dialogMandatoryWidget": {
+    "dialogGenderTextLabel": "Pohlaví",
+    "dialogGenderCombobox": ["---Vyberte pohlaví---","Muž", "Žena"],
+    "dialogRelationshipTextLabel": "Vztah:",
+    "dialogRelationshipCombobox": ["---Vyberte vztah---","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
     "dialogFirstNameTextLabel": "Křestní jméno:",
     "dialogSecondNameTextLabel": "Příjmení:",
-    "dialogRelationshipTextLabel": "Vztah:",
-      "dialogRelationshipCombobox": ["---Vyberte vztah---","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
     "dialogEmailTextLabel": "Email:",
     "dialogPhoneNumberTextLabel": "Telefonní číslo:",
     "dialogAddressTextLabel": "Adresa:",

@@ -1,9 +1,10 @@
 {
   "databaseModel": {
     "id": "ID",
+    "gender": "Pohlaví,",
+    "relationship": "Vztah",
     "first_name": "Křestní jméno",
     "second_name": "Příjmení",
-    "relationship": "Vztah",
     "personal_email": "Email (osobní)",
     "personal_phone_number": "Tel. číslo (osobní)",
     "personal_address": "Adresa (osobní)",

@@ -9,6 +9,7 @@
     "UnexpectedError": "Došlo k neočekávané chybě."
   },
   "dialogMandatoryWidget": {
+    "genderError": "Prosím vyberte pohlaví",
     "relationshipError": "Prosím, vyberte vztah.",
     "emptyTextError": "Toto pole nesmí být prázdné.\n",
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",

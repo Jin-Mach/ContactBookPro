@@ -25,6 +25,10 @@ class PersonalInfoWidget(QWidget):
         self.contact_title_text_label.setObjectName("contactTitleTextLabel")
         self.contact_title_label = QLabel("ing")
         self.contact_title_label.setObjectName("contactTitleLabel")
+        self.contact_gender_text_label = QLabel()
+        self.contact_gender_text_label.setObjectName("contactGenderTextLabel")
+        self.contact_gender_label = QLabel("gender")
+        self.contact_gender_label.setObjectName("contactGenderLabel")
         self.contact_first_name_text_label = QLabel()
         self.contact_first_name_text_label.setObjectName("contactFirstNameTextLabel")
         self.contact_first_name_label = QLabel("fisrt name")
@@ -42,6 +46,7 @@ class PersonalInfoWidget(QWidget):
         self.contact_birthday_label = QLabel("1.1.2025")
         self.contact_birthday_label.setObjectName("contactBirthdayLabel")
         widgets = [(self.contact_title_text_label, self.contact_title_label),
+                   (self.contact_gender_text_label, self.contact_gender_label),
             (self.contact_first_name_text_label, self.contact_first_name_label),
             (self.contact_second_name_text_label, self.contact_second_name_label),
             (self.contact_relationship_text_label, self.contact_relationship_label),
@@ -55,8 +60,8 @@ class PersonalInfoWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.contact_title_text_label, self.contact_first_name_text_label, self.contact_second_name_text_label,
-                   self.contact_relationship_text_label, self.contact_birthday_text_label]
+        widgets = [self.contact_title_text_label, self.contact_gender_text_label, self.contact_first_name_text_label,
+                   self.contact_second_name_text_label, self.contact_relationship_text_label, self.contact_birthday_text_label]
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:

@@ -16,7 +16,7 @@ class ContactsTableviewWidget(QTableView):
 
     def hide_colums(self) -> None:
         column_count = self.model().columnCount()
-        columns = [1, 2, 3, 4, 5, 6, 7, 8]
+        columns = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         for index in range(column_count):
             if index in columns:
                 self.setColumnHidden(index, False)

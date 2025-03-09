@@ -93,6 +93,7 @@ QPushButton#mainWindowDatabaseButton:pressed {
 }
 
 QLabel#contactTitleTextLabel,
+QLabel#contactGenderTextLabel,
 QLabel#contactFirstNameTextLabel,
 QLabel#contactSecondNameTextLabel,
 QLabel#contactRelationshipTextLabel,
@@ -219,13 +220,13 @@ QDialog {
     border: 2px solid #1a2b45;
 }
 
-QComboBox#dialogRelationshipCombobox {
+QComboBox {
     background-color: #f2f2f2;
     color: #000000;
     border: 2px solid #1a2b45;
 }
 
-QComboBox#dialogRelationshipCombobox QAbstractItemView {
+QComboBox QAbstractItemView {
     background-color: #f2f2f2;
     color: #000000;
     selection-background-color: #c1d9e8;
@@ -233,12 +234,12 @@ QComboBox#dialogRelationshipCombobox QAbstractItemView {
     border: 1px solid #1a2b45;
 }
 
-QComboBox#dialogRelationshipCombobox QAbstractItemView::item {
+QComboBox QAbstractItemView::item {
     background-color: transparent;
     padding: 5px;
 }
 
-QComboBox#dialogRelationshipCombobox QAbstractItemView::item:selected {
+QComboBox QAbstractItemView::item:selected {
     background-color: #c1d9e8;
     color: #000000;
 }
