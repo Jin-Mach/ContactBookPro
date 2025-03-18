@@ -58,7 +58,7 @@ class DeleteDialogs:
 
     @staticmethod
     def set_ui_text(dialog_widget: QDialog, label: QLabel, button_box: QDialogButtonBox, parent=None) -> None:
-        ui_text = LanguageProvider.get_ui_text(DeleteDialogs.class_name)
+        ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
         widgets = [dialog_widget, label]
         widgets.extend(button_box.buttons())
         try:

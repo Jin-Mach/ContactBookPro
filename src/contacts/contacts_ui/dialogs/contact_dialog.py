@@ -26,10 +26,10 @@ class ContactDialog(QDialog):
         self.dialog_tab_widget.addTab(self.mandatory_widget, "")
         self.dialog_tab_widget.addTab(self.non_mandatory_widget, "")
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        button_box.accepted.connect(self.accept)
         button_box.rejected.connect(self.reject)
         self.add_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
         self.add_button.setObjectName("dialogAddContactButton")
-        self.add_button.clicked.connect(self.add_new_contact)
         self.cancel_button = button_box.button(QDialogButtonBox.StandardButton.Cancel)
         self.cancel_button.setObjectName("dialogCancelButton")
         main_layout.addWidget(self.dialog_tab_widget)
@@ -37,7 +37,7 @@ class ContactDialog(QDialog):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
+        ui_text = LanguageProvider.get_dialog_text(self.objectName())
         tab_text = ["mandatory", "nonMandatory"]
         widgets = [self.add_button, self.cancel_button]
         try:
@@ -52,14 +52,15 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def add_new_contact(self) -> Optional[list]:
+    def new_contact(self) -> Optional[list]:
         try:
             mandatory_data = self.mandatory_widget.return_manadatory_data()
             work_data = self.non_mandatory_widget.work_widget.return_work_data()
             social_network_data = self.non_mandatory_widget.social_networks_widget.return_social_network_data()
-            if not mandatory_data or not work_data or not social_network_data:
+            personal_data = self.non_mandatory_widget.personal_details_widget.return_personal_data()
+            if not mandatory_data or not work_data or not social_network_data or not personal_data:
                 return None
-            data = mandatory_data + work_data  + social_network_data
+            data = mandatory_data + work_data + social_network_data + personal_data
             super().accept()
             return data
         except Exception as e:

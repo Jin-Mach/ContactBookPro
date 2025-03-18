@@ -56,7 +56,7 @@ class SocialNetworkWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
+        ui_text = LanguageProvider.get_dialog_text(self.objectName())
         widgets = self.findChildren((QLabel, QLineEdit))
         try:
             for widget in widgets:
@@ -93,6 +93,7 @@ class SocialNetworkWidget(QWidget):
             return social_network_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+            return None
 
     def set_tab_index(self) -> None:
         self.main_tab.setCurrentIndex(1)

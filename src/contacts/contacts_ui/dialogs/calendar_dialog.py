@@ -36,7 +36,7 @@ class CalendarDialog(QDialog):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
+        ui_text = LanguageProvider.get_dialog_text(self.objectName())
         buttons = self.findChildren(QPushButton)
         try:
             if "calendarDialogTitle" in ui_text:

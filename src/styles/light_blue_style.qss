@@ -275,6 +275,23 @@ QCalendarWidget QWidget#qt_calendar_navigationbar {
 
 #qt_calendar_prevmonth, #qt_calendar_nextmonth {
     qproperty-iconSize: 25px;
+    border: 2px solid #1a2b45;
+}
+
+QToolButton#qt_calendar_prevmonth,
+QToolButton#qt_calendar_nextmonth {
+    background-color: transparent;
+    border: none;
+}
+
+QToolButton#qt_calendar_prevmonth:hover,
+QToolButton#qt_calendar_nextmonth:hover {
+    background-color: #8ec0e6;
+}
+
+QToolButton#qt_calendar_prevmonth:pressed,
+QToolButton#qt_calendar_nextmonth:pressed {
+    background-color: #8ec0e6;
 }
 
 #qt_calendar_monthbutton::menu-indicator {

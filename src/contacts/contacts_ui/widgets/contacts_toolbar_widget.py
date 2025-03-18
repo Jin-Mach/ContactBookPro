@@ -93,7 +93,7 @@ class ContactsToolbarWidget(QWidget):
         try:
             dialog = ContactDialog(self)
             if dialog.exec() == QDialog.DialogCode.Accepted:
-                data = dialog.add_new_contact()
+                data = dialog.new_contact()
                 if data:
                     print(f"data:{data}")
         except Exception as e:
