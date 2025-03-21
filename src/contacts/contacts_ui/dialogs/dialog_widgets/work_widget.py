@@ -22,6 +22,10 @@ class WorkWidget(QWidget):
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
+        self.dialog_work_company_text_label = QLabel()
+        self.dialog_work_company_text_label.setObjectName("dialogWorkCompanyTextLabel")
+        self.dialog_work_company_edit = QLineEdit()
+        self.dialog_work_company_edit.setObjectName("dialogWorkCompanyEdit")
         self.dialog_work_email_text_label = QLabel()
         self.dialog_work_email_text_label.setObjectName("dialogWorkEmailTextLabel")
         self.dialog_work_email_edit = QLineEdit()
@@ -47,6 +51,7 @@ class WorkWidget(QWidget):
         self.dialog_work_country_edit = QLineEdit()
         self.dialog_work_country_edit.setObjectName("dialogWorkCountryEdit")
         widgets = [
+            (self.dialog_work_company_text_label, self.dialog_work_company_edit),
             (self.dialog_work_email_text_label, self.dialog_work_email_edit),
             (self.dialog_work_phone_number_text_label, self.dialog_work_phone_number_edit),
             (self.dialog_work_address_text_label, self.dialog_work_address_edit),
@@ -95,6 +100,11 @@ class WorkWidget(QWidget):
                     widget.setFocus()
                     return None
                 work_data.append(text)
+            if not ContactValidator.validate_work_address(self.dialog_work_address_edit, self.dialog_work_post_code_edit,
+                                                            self.dialog_work_city_edit, self.dialog_work_country_edit):
+                DialogsProvider.show_error_dialog(error_text["workAddressValidatorError"], self)
+                self.set_tab_index()
+                return None
             return work_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

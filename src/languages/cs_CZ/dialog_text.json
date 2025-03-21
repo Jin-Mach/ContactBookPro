@@ -51,12 +51,14 @@
     "personalDetail": "Detailní"
   },
   "dialogWorkWidget": {
+    "dialogWorkCompanyTextLabel": "Firma:",
     "dialogWorkEmailTextLabel": "Email:",
     "dialogWorkPhoneNumberTextLabel": "Telefonní číslo:",
     "dialogWorkAddressTextLabel": "Adresa:",
     "dialogWorkCityTextLabel": "Město:",
     "dialogPostCodeTextLabel": "PSČ:",
     "dialogWorkCountryTextLabel": "Stát:",
+    "dialogWorkCompanyEdit": "Zadej název firmy...",
     "dialogWorkEmailEdit": "Zadej email ve formátu: email@domena.cz",
     "dialogPhoneNumberEdit": "Zadej tel. číslo ve formátu: +420123456789",
     "dialogWorkAddressEdit": "Zadej adresu ve formátu: Ulice 123/Obec 123",

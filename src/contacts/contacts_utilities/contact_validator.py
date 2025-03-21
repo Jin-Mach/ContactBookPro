@@ -1,3 +1,4 @@
+from PyQt6.QtWidgets import QLineEdit
 from email_validator import validate_email, EmailNotValidError
 import phonenumbers
 from urllib.parse import urlparse
@@ -35,3 +36,11 @@ class ContactValidator:
         if domain == "twitter":
             domain = "x"
         return domain == site.lower() and validators.url(url)
+
+    @staticmethod
+    def validate_work_address(address: QLineEdit, post_code: QLineEdit, city: QLineEdit, country: QLineEdit) -> bool:
+        if (address.text().strip() and not post_code.text().strip()) or (not address.text().strip() and post_code.text().strip()):
+            return False
+        if (city.text().strip() and not country.text().strip()) or (not city.text().strip() and country.text().strip()):
+            return False
+        return True

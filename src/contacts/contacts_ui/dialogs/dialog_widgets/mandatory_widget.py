@@ -102,7 +102,7 @@ class MandatoryWidget(QWidget):
         phone_validator = QRegularExpressionValidator(phone_regex)
         self.dialog_phone_number_edit.setValidator(phone_validator)
 
-    def return_manadatory_data(self) -> Optional[list]:
+    def return_mandatory_data(self) -> Optional[list]:
         error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
         inputs = self.findChildren((QLineEdit, QComboBox))
         labels = self.findChildren(QLabel)
