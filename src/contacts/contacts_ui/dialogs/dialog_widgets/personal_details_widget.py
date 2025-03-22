@@ -1,14 +1,13 @@
-import pathlib
 from typing import Optional
 
-from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QTextCursor, QPixmap
+from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QFormLayout,
-                             QLineEdit, QTextEdit, QFileDialog)
+                             QLineEdit, QTextEdit)
 
 from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
 from src.contacts.contacts_utilities.image_blob_handler import image_to_blob
-from src.utilities.dialogs_provider import DialogsProvider
+from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
+from src.contacts.contacts_utilities.photo_utilities import set_contact_photo
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -31,10 +30,10 @@ class PersonalDetailsWidget(QWidget):
         photo_buttons_layout = QHBoxLayout()
         self.dialog_get_photo_pushbutton = QPushButton()
         self.dialog_get_photo_pushbutton.setObjectName("dialogGetPhotoPushbutton")
-        self.dialog_get_photo_pushbutton.clicked.connect(self.get_contact_photo)
+        self.dialog_get_photo_pushbutton.clicked.connect(lambda: set_contact_photo(self.dialog_photo_label, self.photo_label_size, self))
         self.dialog_reset_photo_button = QPushButton()
         self.dialog_reset_photo_button.setObjectName("dialogResetPhotoButton")
-        self.dialog_reset_photo_button.clicked.connect(self.clear_photo_label)
+        self.dialog_reset_photo_button.clicked.connect(self.dialog_photo_label.clear)
         title_date_layout = QFormLayout()
         self.dialog_title_text_label = QLabel()
         self.dialog_title_text_label.setObjectName("dialogTitleTextLabel")
@@ -51,11 +50,11 @@ class PersonalDetailsWidget(QWidget):
         self.dialog_calendar_pushbutton.clicked.connect(self.get_birthday_date)
         self.dialog_reset_calendar_pushbutton = QPushButton()
         self.dialog_reset_calendar_pushbutton.setObjectName("dialogResetCalendarPushbutton")
-        self.dialog_reset_calendar_pushbutton.clicked.connect(self.delete_birthday_input)
+        self.dialog_reset_calendar_pushbutton.clicked.connect(self.dialog_birthday_edit.clear)
         notes_layout = QVBoxLayout()
         self.dialog_notes_edit = QTextEdit()
         self.dialog_notes_edit.setObjectName("dialogNotesEdit")
-        self.dialog_notes_edit.textChanged.connect(self.check_text_length)
+        self.dialog_notes_edit.textChanged.connect(lambda: check_notes_length(self.dialog_notes_edit, self.dialog_letters_count_label, self))
         letters_count_layout = QHBoxLayout()
         self.dialog_letters_count_label = QLabel("0/500")
         self.dialog_letters_count_label.setObjectName("dialogLettersCountLabel")
@@ -92,38 +91,6 @@ class PersonalDetailsWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def get_contact_photo(self) -> None:
-        default_path = str(pathlib.Path(__file__).parts[0])
-        ui_text = self.set_dialog_ui_text()
-        file_filter = ";;".join(ui_text[1])
-        try:
-            photo_path, _ = QFileDialog.getOpenFileName(self, ui_text[0], default_path, file_filter)
-            if photo_path:
-                pixmap = QPixmap(photo_path)
-                pixmap = pixmap.scaled(self.photo_label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
-                self.dialog_photo_label.setPixmap(pixmap)
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
-            return None
-
-    def set_dialog_ui_text(self) -> list:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        dialog_title = ""
-        try:
-            if "fileDialogTitle" in ui_text:
-                dialog_title = ui_text["fileDialogTitle"]
-            if not dialog_title:
-                dialog_title = None
-            filters = ["basicFilesFilter", "advancedFilesFilter", "allFilesFilter"]
-            final_filter = []
-            for filter_type in filters:
-                if filter_type in ui_text:
-                    final_filter.append(ui_text[filter_type])
-            return [dialog_title, final_filter]
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
-            return [None, ["*.*"]]
-
     def get_birthday_date(self) -> str:
         try:
             dialog = CalendarDialog(self.dialog_birthday_edit, self)
@@ -135,27 +102,6 @@ class PersonalDetailsWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return ""
-
-    def check_text_length(self) -> None:
-        try:
-            text = self.dialog_notes_edit.toPlainText()
-            error_text = LanguageProvider.get_error_text(self.objectName())
-            if len(text) > 500:
-                cursor = self.dialog_notes_edit.textCursor()
-                cursor.movePosition(QTextCursor.MoveOperation.End)
-                self.dialog_notes_edit.setTextCursor(cursor)
-                cursor.deletePreviousChar()
-                DialogsProvider.show_error_dialog(error_text["textLengthError"])
-            else:
-                self.dialog_letters_count_label.setText(f"{len(text)}/500")
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
-
-    def delete_birthday_input(self) -> None:
-        self.dialog_birthday_edit.clear()
-
-    def clear_photo_label(self) -> None:
-        self.dialog_photo_label.clear()
 
     def return_personal_data(self) -> Optional[list]:
         inputs = self.findChildren((QLineEdit, QTextEdit))

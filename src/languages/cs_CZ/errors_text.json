@@ -24,7 +24,7 @@
     "urlValidatorError": "Neplatný formát odkazu nebo nesprávná sociální síť.\nZadejte prosím platnou URL adresu pro {site} ve formátu: https://www.{site}.com/profil.",
     "websiteValidatorError": "Neplatný formát.\nZadej platnou url adresu ve formátu: www.example.cz"
   },
-  "dialogPersonalDetailWidget": {
+    "notesUtilities": {
     "textLengthError": "Překročen maximální počet znaků pro poznámky."
   },
   "calendarDialog": {

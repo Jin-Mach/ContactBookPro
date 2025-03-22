@@ -87,16 +87,17 @@
     "dialogBirthdayTextLabel": "Datum narození:",
     "dialogCalendarPushbutton": "Otevřít kalendář",
     "dialogResetCalendarPushbutton": "Odstranit datum",
-    "dialogNotesEdit": "Poznámky ke kontaktu...",
-    "fileDialogTitle": "Vybrat soubor...",
-    "basicFilesFilter": "Základní formát: (*.jpg *.jpeg *.png)",
-    "advancedFilesFilter": "Pokročilé formáty: (*.tiff *.bmp *.gif *.heic *.webp)",
-    "allFilesFilter": "Všechny formáty: (*.*)"
+    "dialogNotesEdit": "Poznámky ke kontaktu..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Vybrat datum narození",
     "setTodayButton": "Přejít na dnes",
     "addDateButton": "Nastavit datum",
     "cancelDialogButton": "Zrušit"
+  },
+  "photoUtilities": {
+    "basicFilesFilter": "Základní formát: (*.jpg *.jpeg *.png)",
+    "advancedFilesFilter": "Pokročilé formáty: (*.tiff *.bmp *.gif *.heic *.webp)",
+    "allFilesFilter": "Všechny formáty: (*.*)"
   }
 }
