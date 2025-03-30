@@ -6,6 +6,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QCalendarWidget, QToolButton
 
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 
 
 class CalendarWidget(QCalendarWidget):
@@ -19,12 +20,7 @@ class CalendarWidget(QCalendarWidget):
         self.set_icons()
 
     def set_icons(self) -> None:
-        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath("icons", "calendar_icons")
-        try:
-            self.findChild(QToolButton, "qt_calendar_prevmonth").setIcon(QIcon(str(icons_path.joinpath("left_arrow.png"))))
-            self.findChild(QToolButton, "qt_calendar_nextmonth").setIcon(QIcon(str(icons_path.joinpath("right_arrow.png"))))
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
+        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QToolButton), None, self)
 
     def set_today(self) -> None:
         self.showToday()

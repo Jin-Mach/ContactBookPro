@@ -5,6 +5,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -12,13 +13,13 @@ class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("tabInfoWidget")
-        self.setFixedHeight(250)
+        self.setFixedHeight(300)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
         self.addTab(self.create_personal_tab(), "")
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
-        self.set_icons()
+        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -89,13 +90,17 @@ class TabInfoWidget(QTabWidget):
         self.github_pushbutton.setObjectName("githubPushbutton")
         self.github_pushbutton.setFixedSize(self.buttons_size)
         self.work_website_pushbutton = QPushButton()
-        self.work_website_pushbutton.setObjectName("workWebsitePushbutton")
+        self.work_website_pushbutton.setObjectName("websitePushbutton")
         self.work_website_pushbutton.setFixedSize(self.buttons_size)
         work_social_network_layout.addWidget(self.linkedin_pushbutton)
         work_social_network_layout.addWidget(self.github_pushbutton)
         work_social_network_layout.addWidget(self.work_website_pushbutton)
         work_social_network_layout.addStretch()
         work_contact_layout = QFormLayout()
+        self.work_company_name_text_label = QLabel()
+        self.work_company_name_text_label.setObjectName("workCompanyNameTextLabel")
+        self.work_company_name_label = QLabel("company name")
+        self.work_company_name_label.setObjectName("workCompanyLabel")
         self.work_email_text_label = QLabel()
         self.work_email_text_label.setObjectName("workEmailTextLabel")
         self.work_email_label = QLabel("work@email.com")
@@ -121,6 +126,7 @@ class TabInfoWidget(QTabWidget):
         self.work_country_label = QLabel("work country")
         self.work_country_label.setObjectName("workCountryLabel")
         work_widgets = [
+            (self.work_company_name_text_label, self.work_company_name_label),
             (self.work_email_text_label, self.work_email_label),
             (self.work_phone_number_text_label, self.work_phone_number_label),
             (self.work_address_text_label, self.work_address_label),
@@ -145,28 +151,11 @@ class TabInfoWidget(QTabWidget):
                     self.setTabText(index, ui_text[text])
             widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_address_text_label,
                        self.personal_city_text_label, self.personal_post_code_text_label, self.personal_country_text_label,
-                       self.work_email_text_label, self.work_phone_number_text_label, self.work_address_text_label,
-                       self.work_city_text_label, self.work_post_code_text_label, self.work_country_text_label]
+                       self.work_company_name_text_label, self.work_email_text_label, self.work_phone_number_text_label,
+                       self.work_address_text_label, self.work_city_text_label, self.work_post_code_text_label,
+                       self.work_country_text_label]
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
-        except Exception as e:
-            ErrorHandler.exception_handler(e, self)
-
-    def set_icons(self) -> None:
-        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "social_networks_icons")
-        buttons = {
-            self.facebook_pushbutton: "facebook_icon.png",
-            self.x_pushbutton: "x_icon.png",
-            self.instagram_pushbutton: "instagram_icon.png",
-            self.linkedin_pushbutton: "linkedin_icon.png",
-            self.github_pushbutton: "github_icon.png",
-            self.work_website_pushbutton: "work_website_icon.png",
-        }
-        try:
-            for button, icon_file in buttons.items():
-                icon_path = icons_path.joinpath(icon_file)
-                button.setIcon(QIcon(str(icon_path)))
-                button.setIconSize(QSize(30, 30))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

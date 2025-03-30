@@ -81,12 +81,12 @@
     "dialogWebsiteUrlEdit": "Zadej web ve formátu: https://www.example.cz"
   },
   "dialogPersonalDetailWidget": {
-    "dialogGetPhotoPushbutton": "Přidat fotku",
-    "dialogResetPhotoButton": "Odstranit fotku",
+    "dialogGetPhotoPushbutton": "Foto",
+    "dialogResetPhotoButton": "Odstranit",
     "dialogTitleTextLabel": "Titul:",
-    "dialogBirthdayTextLabel": "Datum narození:",
-    "dialogCalendarPushbutton": "Otevřít kalendář",
-    "dialogResetCalendarPushbutton": "Odstranit datum",
+    "dialogBirthdayTextLabel": "Narození:",
+    "dialogCalendarPushbutton": "Kalendář",
+    "dialogResetCalendarPushbutton": "Odstranit",
     "dialogNotesEdit": "Poznámky ke kontaktu..."
   },
   "calendarDialog": {

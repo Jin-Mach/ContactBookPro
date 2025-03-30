@@ -1,11 +1,12 @@
 import pathlib
 
 from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QIcon, QPixmap, QFont
+from PyQt6.QtGui import QPixmap, QFont
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
 
 from src.contacts.contacts_ui.contacts_main_widget import ContactsMainWidget
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -15,21 +16,22 @@ class MainWindow(QMainWindow):
         self.setObjectName("mainWindow")
         self.setMinimumSize(1280, 720)
         self.setContentsMargins(0, 0, 0, 0)
-        self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons")
+        self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
         self.buttons_size = QSize(150, 50)
         self.icon_size = QSize(40, 40)
         self.contacts_main_widget = ContactsMainWidget()
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
-        self.set_icons()
+        IconProvider.set_window_icon(self, self.objectName(), self)
+        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
 
     def create_image(self) -> QLabel:
-        pixmap = QPixmap(str(self.icons_path.joinpath("no_image.png")))
+        pixmap = QPixmap(str(self.icons_path.joinpath( "dog_image.png")))
         dock_image_label = QLabel()
+        dock_image_label.setFixedSize(150, 150)
         dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         dock_image_label.setObjectName("dockImageLabel")
-        dock_image_label.setPixmap(pixmap.scaled(QSize(150, 150), Qt.AspectRatioMode.KeepAspectRatio,
-                                                 Qt.TransformationMode.SmoothTransformation))
+        dock_image_label.setPixmap(pixmap.scaled(QSize(250, 250), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         return dock_image_label
 
     def create_gui(self) -> QWidget:
@@ -74,6 +76,3 @@ class MainWindow(QMainWindow):
                     self.database_button.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
-
-    def set_icons(self) -> None:
-        self.database_button.setIcon(QIcon(str(self.icons_path.joinpath("database_icon.png"))))

@@ -1,3 +1,5 @@
+import pathlib
+
 from PyQt6.QtCore import QStandardPaths, Qt, QSize
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QFileDialog, QLabel
@@ -15,6 +17,21 @@ def set_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=None)
             pixmap = QPixmap(photo_path)
             pixmap = pixmap.scaled(photo_label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             photo_label.setPixmap(pixmap)
+    except Exception as e:
+        ErrorHandler.exception_handler(e, parent)
+
+def reset_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=None) -> None:
+    icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "personalDetailWidget", "no_user_photo.png")
+    try:
+        if not icon_path.exists():
+            photo_label.clear()
+            return
+        pixmap = QPixmap(str(icon_path))
+        if pixmap.isNull():
+            photo_label.clear()
+            return
+        pixmap = pixmap.scaled(photo_label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+        photo_label.setPixmap(pixmap)
     except Exception as e:
         ErrorHandler.exception_handler(e, parent)
 
