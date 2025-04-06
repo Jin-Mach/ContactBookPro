@@ -58,14 +58,3 @@ class LanguageProvider:
         from src.utilities.logger_provider import get_logger
         logger = get_logger()
         logger.error(exception, exc_info=True)
-
-    @staticmethod
-    def check_text_files() -> list:
-        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "ui_text.json"]
-        files_path = LanguageProvider.language_path.joinpath(LanguageProvider.get_language_code())
-        missing_files = []
-        for file in required_files:
-            file_path = files_path.joinpath(file)
-            if not file_path.exists() or not file_path.is_file():
-                missing_files.append(file)
-        return missing_files

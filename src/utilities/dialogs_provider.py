@@ -27,19 +27,17 @@ class DialogsProvider:
         return dialog.exec()
 
     @staticmethod
-    def show_language_error_dialog(files: list) -> QDialog:
+    def show_files_error_dialog() -> QDialog:
         dialog = QDialog()
+        dialog.setWindowTitle("Loading error")
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
-        text_label = QLabel(f"Critical error: Failed to load files: {files}.\nContinue without UI text or close application?")
-        text_label.setObjectName("languageErrorTextLabel")
+        text_label = QLabel("Critical error: Failed to load files from the GitHub repository.\nThe application will close now.")
         font = QFont()
         font.setBold(True)
         text_label.setFont(font)
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Close)
-        continue_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
-        continue_button.setText("Continue")
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
         button_box.accepted.connect(dialog.accept)
         button_box.rejected.connect(dialog.reject)
         main_layout.addWidget(text_label)
