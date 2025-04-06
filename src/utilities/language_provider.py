@@ -18,7 +18,6 @@ class LanguageProvider:
     def get_language_code() -> Optional[str]:
         try:
             language = QLocale().name()
-            language = "en_GB"
             if not LanguageProvider.language_code or not language:
                 language_dict = LanguageProvider.get_language_dict()
                 if language not in language_dict:

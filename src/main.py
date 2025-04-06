@@ -5,7 +5,6 @@ from PyQt6.QtWidgets import QApplication, QDialog
 from src.application.main_window import MainWindow
 from src.utilities.app_init import application_init
 from src.utilities.dialogs_provider import DialogsProvider
-from src.utilities.style_provider import StyleProvider
 
 
 def create_application() -> None:
@@ -16,7 +15,6 @@ def create_application() -> None:
                                                          "\nThe application will close now.")
         if result == QDialog.DialogCode.Accepted or result == QDialog.DialogCode.Rejected:
             sys.exit(1)
-    StyleProvider.set_style(application)
     window = MainWindow()
     window.show()
     sys.exit(application.exec())

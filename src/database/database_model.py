@@ -10,7 +10,7 @@ class DatabaseModel(QSqlTableModel):
         super().__init__(parent, db_connection)
         self.setObjectName("databaseModel")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
-        self.setTable("contacts")
+        self.setTable("mandatory")
         self.set_headers_text()
 
     def set_headers_text(self) -> None:
