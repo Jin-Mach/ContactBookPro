@@ -5,13 +5,14 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class DatabaseModel(QSqlTableModel):
+class MandatoryModel(QSqlTableModel):
     def __init__(self, db_connection: QSqlDatabase, parent=None) -> None:
         super().__init__(parent, db_connection)
-        self.setObjectName("databaseModel")
+        self.setObjectName("mandatoryModel")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
         self.setTable("mandatory")
         self.set_headers_text()
+        self.select()
 
     def set_headers_text(self) -> None:
         headers_text = LanguageProvider.get_headers_text(self.objectName())
