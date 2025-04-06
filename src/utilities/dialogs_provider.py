@@ -1,6 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton
+from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton, QComboBox, QHBoxLayout
 
 from src.utilities.language_provider import LanguageProvider
 
@@ -27,12 +27,12 @@ class DialogsProvider:
         return dialog.exec()
 
     @staticmethod
-    def show_files_error_dialog() -> QDialog:
+    def show_init_error_dialog(title: str, error_text: str) -> QDialog:
         dialog = QDialog()
-        dialog.setWindowTitle("Loading error")
+        dialog.setWindowTitle(title)
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
-        text_label = QLabel("Critical error: Failed to load files from the GitHub repository.\nThe application will close now.")
+        text_label = QLabel(error_text)
         font = QFont()
         font.setBold(True)
         text_label.setFont(font)
@@ -65,6 +65,35 @@ class DialogsProvider:
         dialog.setLayout(main_layout)
         DialogsProvider.get_ui_text(dialog, [text_label, close_button], db_error)
         return dialog.exec()
+
+    @staticmethod
+    def language_selection_dialog(language_list: list) -> str:
+        dialog = QDialog()
+        dialog.setWindowTitle("Language error")
+        main_layout = QVBoxLayout()
+        text_label = QLabel("The selected language could not be loaded.\nPlease select a supported language from the list,\n"
+                            "or exit the application.")
+        font = QFont()
+        font.setBold(True)
+        text_label.setFont(font)
+        text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        combobox_layout = QHBoxLayout()
+        combobox_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        language_combobox = QComboBox()
+        language_combobox.setFixedWidth(250)
+        language_combobox.addItems(language_list)
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Close)
+        button_box.button(QDialogButtonBox.StandardButton.Ok).setText("Start application")
+        button_box.accepted.connect(dialog.accept)
+        button_box.rejected.connect(dialog.reject)
+        combobox_layout.addWidget(language_combobox)
+        main_layout.addWidget(text_label)
+        main_layout.addLayout(combobox_layout)
+        main_layout.addWidget(button_box)
+        dialog.setLayout(main_layout)
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            return language_combobox.currentText()
+        return ""
 
     @staticmethod
     def get_ui_text(dialog: QDialog, widgets: list[QWidget], error_message: str, parent=None) -> None:
