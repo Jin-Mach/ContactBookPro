@@ -9,6 +9,7 @@ class ContactsTableviewWidget(QTableView):
         self.setObjectName("contactsTableviewWidget")
         self.setModel(model)
         self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
+        self.setEditTriggers(QTableView.EditTrigger.NoEditTriggers)
         self.resizeColumnsToContents()
         self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)

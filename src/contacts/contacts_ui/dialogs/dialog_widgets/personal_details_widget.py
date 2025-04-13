@@ -9,6 +9,7 @@ from src.contacts.contacts_utilities.image_blob_handler import image_to_blob
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -17,10 +18,12 @@ class PersonalDetailsWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("dialogPersonalDetailWidget")
+        self.button_size = QSize(35, 35)
         self.photo_label_size = QSize(150, 150)
         self.photo_state = 0
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.button_size, self)
         self.reset_photo_label()
 
     def create_gui(self) -> QLayout:
@@ -92,9 +95,7 @@ class PersonalDetailsWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = [self.dialog_get_photo_pushbutton, self.dialog_reset_photo_button, self.dialog_title_text_label,
-                   self.dialog_birthday_text_label, self.dialog_calendar_pushbutton, self.dialog_reset_calendar_pushbutton,
-                   self.dialog_notes_edit]
+        widgets = [self.dialog_title_text_label, self.dialog_birthday_text_label, self.dialog_notes_edit]
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:

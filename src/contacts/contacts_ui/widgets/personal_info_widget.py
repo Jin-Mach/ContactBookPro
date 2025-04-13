@@ -1,18 +1,21 @@
-from PyQt6.QtWidgets import QWidget, QLayout, QHBoxLayout, QLabel, QFormLayout
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFormLayout, QTabWidget
 
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class PersonalInfoWidget(QWidget):
+class PersonalTabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("personalInfoWidget")
-        self.setLayout(self.create_gui())
+        self.setObjectName("personalTabInfoWidget")
+        self.addTab(self.create_gui(), "")
         self.set_ui_text()
 
-    def create_gui(self) -> QLayout:
+    def create_gui(self) -> QWidget:
+        main_widget = QWidget()
         main_layout = QHBoxLayout()
+        main_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(5)
         self.contact_photo_label = QLabel()
@@ -56,15 +59,19 @@ class PersonalInfoWidget(QWidget):
         main_layout.addWidget(self.contact_photo_label)
         main_layout.addLayout(main_info_layout)
         main_layout.addStretch()
-        return main_layout
+        main_widget.setLayout(main_layout)
+        return main_widget
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.contact_title_text_label, self.contact_gender_text_label, self.contact_first_name_text_label,
+        widgets = [self, self.contact_title_text_label, self.contact_gender_text_label, self.contact_first_name_text_label,
                    self.contact_second_name_text_label, self.contact_relationship_text_label, self.contact_birthday_text_label]
         try:
             for widget in widgets:
-                if widget.objectName() in ui_text:
-                    widget.setText(ui_text[widget.objectName()])
+                if widget.objectName() in ui_text or f"{widget.objectName()}_tabText" in ui_text:
+                    if isinstance(widget, QTabWidget):
+                        widget.setTabText(0, ui_text[f"{widget.objectName()}_tabText"])
+                    elif isinstance(widget, QLabel):
+                        widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

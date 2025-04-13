@@ -21,7 +21,7 @@ def set_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=None)
         ErrorHandler.exception_handler(e, parent)
 
 def reset_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=None) -> None:
-    icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "personalDetailWidget", "no_user_photo.png")
+    icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "dialogPersonalDetailWidget", "no_user_photo.png")
     try:
         if not icon_path.exists():
             photo_label.clear()

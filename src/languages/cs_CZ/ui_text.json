@@ -10,17 +10,18 @@
   "contactsStatusbarWidget": {
     "countDisplayLabel": "filtr:"
   },
-  "personalInfoWidget": {
-    "contactTitleTextLabel": "Titul:",
-    "contactGenderTextLabel": "Pohlaví",
-    "contactFirstNameTextLabel": "Jméno:",
-    "contactSecondNameTextLabel": "Příjmení:",
-    "contactRelationshipTextLabel": "Vztah:",
-    "contactBirthdayTextLabel": "Narození:"
-  },
+    "personalTabInfoWidget": {
+      "personalTabInfoWidget_tabText": "Informace o kontaktu",
+      "contactTitleTextLabel": "Titul:",
+      "contactGenderTextLabel": "Pohlaví",
+      "contactFirstNameTextLabel": "Jméno:",
+      "contactSecondNameTextLabel": "Příjmení:",
+      "contactRelationshipTextLabel": "Vztah:",
+      "contactBirthdayTextLabel": "Narození:"
+    },
   "tabInfoWidget": {
-    "personalTabText": "Osobní",
-    "workTabText": "Pracovní",
+    "personalTabText": "Kontakt – Osobní",
+    "workTabText": "Kontakt – Pracovní",
     "personalEmailTextLabel": "Email:",
     "personalPhoneNumberTextLabel": "Telefon:",
     "personalAddressTextLabel": "Adresa:",

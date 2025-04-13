@@ -36,7 +36,6 @@ class MandatoryModel(QSqlTableModel):
         return super().data(index, role)
 
     def add_contact(self, data: list) -> None:
-        print(self.rowCount())
         record = self.record()
         for index, value in enumerate(data):
             record.setValue(index + 1, value)
@@ -44,7 +43,6 @@ class MandatoryModel(QSqlTableModel):
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False)
         self.select()
-        print(self.rowCount())
 
     def delete_contact(self, row_index: int) -> None:
         if row_index > -1:

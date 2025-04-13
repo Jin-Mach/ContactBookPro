@@ -68,7 +68,7 @@
   },
   "dialogSocialNetworkWidget": {
     "dialogFacebookUrlTextLabel": "Facebook:",
-    "dialogXUrlTextLabel": "X:",
+    "dialogXUrlTextLabel": "X (Twitter):",
     "dialogInstagramUrlTextLabel": "Instagram:",
     "dialogLinkedinUrlTextLabel": "LinkedIn:",
     "dialogGithubUrlTextLabel": "GitHub:",

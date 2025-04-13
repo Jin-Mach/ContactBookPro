@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout
+from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidgte
@@ -21,11 +21,11 @@ class ContactsMainWidget(QWidget):
         self.setLayout(self.create_gui())
 
     def create_gui(self) -> QLayout:
-        main_layout = QGridLayout()
+        main_layout = QVBoxLayout()
         main_layout.setContentsMargins(5, 5, 5, 5)
         main_layout.setSpacing(5)
-        main_layout.addWidget(self.contacts_toolbar_widget, 0, 0, 1, 2)
-        main_layout.addWidget(self.contacts_tableview_widget, 1, 0)
-        main_layout.addWidget(self.contacts_detail_widget, 1, 1)
-        main_layout.addWidget(self.contacts_statusbar_widget, 2, 0, 1, 2)
+        main_layout.addWidget(self.contacts_toolbar_widget)
+        main_layout.addWidget(self.contacts_detail_widget)
+        main_layout.addWidget(self.contacts_tableview_widget)
+        main_layout.addWidget(self.contacts_statusbar_widget)
         return main_layout

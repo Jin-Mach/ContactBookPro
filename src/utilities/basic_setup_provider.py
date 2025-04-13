@@ -55,7 +55,7 @@ class BasicSetupProvider:
             "dog_image.png": "mainWindow",
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
-            "no_user_photo.png": "personalDetailWidget",
+            "no_user_photo.png": "dialogPersonalDetailWidget",
             "facebookPushbutton_icon.png": "tabInfoWidget",
             "githubPushbutton_icon.png": "tabInfoWidget",
             "instagramPushbutton_icon.png": "tabInfoWidget",

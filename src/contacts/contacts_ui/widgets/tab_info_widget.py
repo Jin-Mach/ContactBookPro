@@ -1,7 +1,4 @@
-import pathlib
-
 from PyQt6.QtCore import QSize
-from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
 from src.utilities.error_handler import ErrorHandler
@@ -13,7 +10,7 @@ class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("tabInfoWidget")
-        self.setFixedHeight(300)
+        self.setFixedWidth(350)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
         self.addTab(self.create_personal_tab(), "")
