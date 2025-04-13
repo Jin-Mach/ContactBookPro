@@ -80,19 +80,8 @@ class BasicSetupProvider:
             return {}
 
     @staticmethod
-    def check_qss_files() -> dict:
-        qss_file_path = BasicSetupProvider.default_path.joinpath("styles", "light_blue_style.qss")
-        try:
-            if not qss_file_path.exists():
-                return {"https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/src/styles/light_blue_style.qss": qss_file_path}
-            return {}
-        except Exception as e:
-            BasicSetupProvider.write_log_exception(e)
-            return {}
-
-    @staticmethod
     def download_files() -> bool:
-        missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files(), BasicSetupProvider.check_qss_files()]
+        missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files()]
         download_files = {}
         for files in missing_files:
             if files:

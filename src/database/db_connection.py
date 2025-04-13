@@ -1,12 +1,9 @@
 import pathlib
-import sys
 from typing import Optional
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
-from src.utilities.dialogs_provider import DialogsProvider
-from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
+from src.utilities.error_handler import ErrorHandler
 
 
 def create_db_connection(db_name: str) -> Optional[QSqlDatabase]:
@@ -14,13 +11,13 @@ def create_db_connection(db_name: str) -> Optional[QSqlDatabase]:
     connection = QSqlDatabase.addDatabase("QSQLITE")
     connection.setDatabaseName(str(db_path.joinpath(db_name)))
     if not connection.open():
-        log_and_show_error(connection.lastError().text())
+        ErrorHandler.database_error(connection.lastError().text(), True)
         return None
     query = QSqlQuery()
     query.exec("PRAGMA foreign_keys = ON")
     result, query = create_contacts_tables()
     if not result:
-        log_and_show_error(query.lastError().text())
+        ErrorHandler.database_error(query.lastError().text(), True)
         return None
     return connection
 
@@ -83,10 +80,3 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
     """)
     result = create_mandatory_table and create_work_table and create_social_table and create_detail_table and create_info_table
     return result, query
-
-def log_and_show_error(error_message: str) -> None:
-    logger = get_logger()
-    logger.error(error_message)
-    error = LanguageProvider.get_error_text("errorHandler")
-    DialogsProvider.show_database_error_dialog(error["DatabaseConnectionError"])
-    sys.exit(1)

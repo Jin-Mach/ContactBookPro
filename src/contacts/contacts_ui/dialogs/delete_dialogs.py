@@ -43,7 +43,8 @@ class DeleteDialogs:
         delete_all_contacts_edit = QLineEdit()
         delete_all_contacts_edit.setObjectName("deleteAllContactsEdit")
         buttons_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        buttons_box.accepted.connect(dialog.accept)
+        buttons_box.button(QDialogButtonBox.StandardButton.Ok).clicked.connect(lambda: DeleteDialogs.delete_accepted(dialog,
+                            delete_all_contacts_text_label,delete_all_contacts_edit))
         buttons_box.rejected.connect(dialog.reject)
         delete_all_contacts_button = buttons_box.button(QDialogButtonBox.StandardButton.Ok)
         delete_all_contacts_button.setObjectName("deleteAllContactsButton")
@@ -70,3 +71,13 @@ class DeleteDialogs:
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
+
+    @staticmethod
+    def delete_accepted(dialog: QDialog, label: QLabel, line_edit: QLineEdit):
+        ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
+        try:
+            delete_word = ui_text[label.objectName()]
+            if line_edit.text().strip().upper() == delete_word.split(":")[-1].strip().upper():
+                dialog.accept()
+        except Exception as e:
+            ErrorHandler.exception_handler(e)

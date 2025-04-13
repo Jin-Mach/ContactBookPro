@@ -9,7 +9,7 @@ class ContactsDetailWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsDetailWidget")
-        self.setFixedWidth(500)
+        self.setFixedWidth(350)
         self.personal_info_widget = PersonalInfoWidget(self)
         self.tab_info_widget = TabInfoWidget(self)
         self.notes_info_widget = NotesInfoWidget(self)

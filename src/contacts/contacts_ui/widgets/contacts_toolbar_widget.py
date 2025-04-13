@@ -1,10 +1,10 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
-from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QDialog
+from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout
 
-from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
-from src.contacts.contacts_ui.dialogs.delete_dialogs import DeleteDialogs
+from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.controlers.contacts_controler import ContactsControler
+from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -12,10 +12,10 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
-    def __init__(self, database: QSqlDatabase, parent=None) -> None:
+    def __init__(self, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
-        self.database = database
+        self.contacts_controler = ContactsControler(mandatory_model, table_view)
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -74,26 +74,18 @@ class ContactsToolbarWidget(QWidget):
 
     def add_new_contact(self) -> None:
         try:
-            dialog = ContactDialog(self)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
-                data = dialog.new_contact()
-                if data:
-                    print(f"data:{data}")
+            self.contacts_controler.add_new_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_contact(self) -> None:
         try:
-            dialog = DeleteDialogs.show_delete_contact_dialog(self)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
-                dialog.accept()
+            self.contacts_controler.delete_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_all_contacts(self) -> None:
         try:
-            dialog = DeleteDialogs.show_delete_all_contacts_dialog(self)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
-                dialog.accept()
+            self.contacts_controler.delete_all_contacts()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
