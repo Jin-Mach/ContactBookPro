@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import datetime
 
 from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox
 
@@ -8,7 +9,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyTypeChecker
 class ContactDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -57,11 +58,14 @@ class ContactDialog(QDialog):
             mandatory_data = self.mandatory_widget.return_mandatory_data()
             work_data = self.non_mandatory_widget.work_widget.return_work_data()
             social_network_data = self.non_mandatory_widget.social_networks_widget.return_social_network_data()
-            personal_data = self.non_mandatory_widget.personal_details_widget.return_personal_data()
-            if not all([mandatory_data, work_data, social_network_data, personal_data]):
+            detail_data = self.non_mandatory_widget.personal_details_widget.return_personal_data()
+            now = datetime.now().strftime("%d.%m.%Y")
+            info_data = [now, now, None, None]
+            if not all([mandatory_data, work_data, social_network_data, detail_data, info_data]):
                 return None
-            data = [mandatory_data, work_data, social_network_data, personal_data]
+            data = [mandatory_data, work_data, social_network_data, detail_data, info_data]
             super().accept()
             return data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+            return None

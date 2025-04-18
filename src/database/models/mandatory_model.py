@@ -1,5 +1,5 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
+from PyQt6.QtSql import QSqlTableModel, QSqlDatabase, QSqlQuery
 
 from src.database.database_utilities.set_manadatory_headers import set_manadatory_model_headers
 from src.utilities.error_handler import ErrorHandler
@@ -39,7 +39,7 @@ class MandatoryModel(QSqlTableModel):
         record = self.record()
         for index, value in enumerate(data):
             record.setValue(index + 1, value)
-        self.insertRecord(self.rowCount(), record)
+        self.insertRecord(-1, record)
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False)
         self.select()
@@ -52,6 +52,13 @@ class MandatoryModel(QSqlTableModel):
             if not self.submitAll():
                 ErrorHandler.database_error(self.lastError().text(), False)
         self.select()
+
+    def get_last_id(self) -> int:
+        query = QSqlQuery(self.database())
+        if query.exec("SELECT last_insert_rowid()"):
+            if query.next():
+                return query.value(0)
+        return -1
 
     def clear_database(self) -> None:
         row_count = self.rowCount()

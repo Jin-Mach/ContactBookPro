@@ -139,9 +139,10 @@ class MandatoryWidget(QWidget):
             return mandatory_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+            return None
 
     @staticmethod
-    def return_label_text(label_list: [QLabel], widget: QWidget) -> str:
+    def return_label_text(label_list: list, widget: QWidget) -> str:
         widget_name = widget.objectName()
         for label in label_list:
             label_name = label.objectName().removesuffix("TextLabel")

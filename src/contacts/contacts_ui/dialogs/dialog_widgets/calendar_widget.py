@@ -1,11 +1,8 @@
-import pathlib
 from typing import Optional
 
 from PyQt6.QtCore import QDate
-from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QCalendarWidget, QToolButton
 
-from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 
 
@@ -17,6 +14,11 @@ class CalendarWidget(QCalendarWidget):
         self.setSelectionMode(QCalendarWidget.SelectionMode.SingleSelection)
         self.setVerticalHeaderFormat(QCalendarWidget.VerticalHeaderFormat.NoVerticalHeader)
         self.setHorizontalHeaderFormat(QCalendarWidget.HorizontalHeaderFormat.NoHorizontalHeader)
+        self.setStyleSheet("""
+            QCalendarWidget QSpinBox {
+                width: 60px;
+            }
+        """)
         self.set_icons()
 
     def set_icons(self) -> None:

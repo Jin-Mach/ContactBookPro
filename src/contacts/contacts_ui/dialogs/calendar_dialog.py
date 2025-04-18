@@ -8,7 +8,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyTypeChecker
 class CalendarDialog(QDialog):
     def __init__(self, birthady_input: QLineEdit, parent=None) -> None:
         super().__init__(parent)
