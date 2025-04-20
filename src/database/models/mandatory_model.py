@@ -11,7 +11,7 @@ class MandatoryModel(QSqlTableModel):
         self.setObjectName("mandatoryModel")
         self.setTable("mandatory")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
-        self.setSort(0, Qt.SortOrder.AscendingOrder)
+        self.setSort(0, Qt.SortOrder.DescendingOrder)
         set_manadatory_model_headers(self)
         self.select()
 
@@ -42,6 +42,7 @@ class MandatoryModel(QSqlTableModel):
         self.insertRecord(-1, record)
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False)
+            return
         self.select()
 
     def delete_contact(self, row_index: int) -> None:
@@ -51,6 +52,7 @@ class MandatoryModel(QSqlTableModel):
                 return
             if not self.submitAll():
                 ErrorHandler.database_error(self.lastError().text(), False)
+                return
         self.select()
 
     def get_last_id(self) -> int:
@@ -61,9 +63,8 @@ class MandatoryModel(QSqlTableModel):
         return -1
 
     def clear_database(self) -> None:
-        row_count = self.rowCount()
-        if row_count > 0:
-            self.removeRows(0, row_count)
-            if not self.submitAll():
+        if self.rowCount() > 0:
+            if not self.removeRows(0, self.rowCount()):
                 ErrorHandler.database_error(self.lastError().text(), False)
+                return
         self.select()

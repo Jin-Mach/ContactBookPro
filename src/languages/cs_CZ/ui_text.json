@@ -17,7 +17,19 @@
       "contactFirstNameTextLabel": "Jméno:",
       "contactSecondNameTextLabel": "Příjmení:",
       "contactRelationshipTextLabel": "Vztah:",
-      "contactBirthdayTextLabel": "Narození:"
+      "contactBirthdayTextLabel": "Narození:",
+      "gender_key": {
+        "1": "Muž",
+        "2": "Žena"
+      },
+      "relationship_key": {
+        "1": "Rodinný příslušník",
+        "2": "Příbuzný",
+        "3": "Kolega",
+        "4": "Kamarád",
+        "5": "Známý",
+        "6": "Ostatní"
+      }
     },
   "tabInfoWidget": {
     "personalTabText": "Kontakt – Osobní",
@@ -39,6 +51,6 @@
   "notesInfoWidget": {
     "notesTextEdit": "Poznámky ke kontaktu...",
     "createDateTextLabel": "vytvořeno: ",
-    "updateDateTextLabel": "poslední aktualizace: "
+    "updateDateTextLabel": "aktualizováno: "
   }
 }

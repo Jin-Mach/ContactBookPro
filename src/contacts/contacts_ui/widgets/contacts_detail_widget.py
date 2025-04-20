@@ -26,3 +26,8 @@ class ContactsDetailWidget(QWidget):
         main_layout.setStretch(1, 0)
         main_layout.setStretch(2, 1)
         return main_layout
+
+    def reset_data(self) -> None:
+        self.personal_info_widget.reset_data()
+        self.tab_info_widget.reset_data()
+        self.notes_info_widget.reset_data()

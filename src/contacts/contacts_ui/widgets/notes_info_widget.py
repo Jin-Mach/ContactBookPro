@@ -23,11 +23,11 @@ class NotesInfoWidget(QWidget):
         notes_date_layout.setSpacing(0)
         self.create_date_text_label = QLabel()
         self.create_date_text_label.setObjectName("createDateTextLabel")
-        self.create_date_label = QLabel("1.1.2025")
+        self.create_date_label = QLabel()
         self.create_date_label.setObjectName("createdateLabel")
         self.update_date_text_label = QLabel()
         self.update_date_text_label.setObjectName("updateDateTextLabel")
-        self.update_date_label = QLabel("31.12.2025")
+        self.update_date_label = QLabel()
         self.update_date_label.setObjectName("updateDateLabel")
         notes_date_layout.addWidget(self.create_date_text_label)
         notes_date_layout.addWidget(self.create_date_label)
@@ -50,3 +50,16 @@ class NotesInfoWidget(QWidget):
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_data(self, data: dict) -> None:
+        try:
+            self.notes_text_edit.setPlainText(data["notes"])
+            self.create_date_label.setText(data["created"])
+            self.update_date_label.setText(data["updated"])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def reset_data(self) -> None:
+        widgets = [self.notes_text_edit, self.create_date_label, self.update_date_label]
+        for widget in widgets:
+            widget.clear()

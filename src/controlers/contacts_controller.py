@@ -2,8 +2,10 @@ from PyQt6.QtWidgets import QDialog
 
 from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.dialogs.delete_dialogs import DeleteDialogs
+from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.database.database_utilities.reset_database import reset_database
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
@@ -12,14 +14,16 @@ from src.database.models.work_model import WorkModel
 from src.utilities.error_handler import ErrorHandler
 
 
-class ContactsControler:
+class ContactsController:
     def __init__(self, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
-                 info_model: InfoModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget) -> None:
+                 info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
+                 status_bar: ContactsStatusbarWidget) -> None:
         self.mandatory_model = mandatory_model
         self.work_model = work_model
         self.social_model = social_model
         self.detail_model = detail_model
         self.info_model = info_model
+        self.detail_widget = detail_widget
         self.table_view = table_view
         self.status_bar = status_bar
 
@@ -37,6 +41,11 @@ class ContactsControler:
                         self.detail_model.add_contact([last_id] + data[3])
                         self.info_model.add_contact([last_id] + data[4])
                         self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                        row_count = self.mandatory_model.rowCount()
+                        index = self.mandatory_model.index(row_count - 1, 0)
+                        self.table_view.selectRow(index.row())
+                        self.table_view.scrollTo(index)
+                        self.table_view.contact_data_controler.get_models_data(last_id)
                     else:
                         ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
         except Exception as e:
@@ -57,7 +66,10 @@ class ContactsControler:
         try:
             dialog = DeleteDialogs.show_delete_all_contacts_dialog()
             if dialog.exec() == QDialog.DialogCode.Accepted:
-                self.mandatory_model.clear_database()
+                if not reset_database():
+                    self.mandatory_model.clear_database()
+                self.mandatory_model.select()
+                self.detail_widget.reset_data()
                 self.status_bar.set_count_text(self.mandatory_model.rowCount())
         except Exception as e:
             ErrorHandler.exception_handler(e)

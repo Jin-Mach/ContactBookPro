@@ -10,13 +10,14 @@ class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("tabInfoWidget")
-        self.setFixedWidth(350)
+        self.setFixedWidth(400)
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(35, 35)
         self.addTab(self.create_personal_tab(), "")
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.set_url_variables()
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -38,27 +39,27 @@ class TabInfoWidget(QTabWidget):
         personal_contact_layout = QFormLayout()
         self.personal_email_text_label = QLabel()
         self.personal_email_text_label.setObjectName("personalEmailTextLabel")
-        self.personal_email_label = QLabel("personal@email.com")
+        self.personal_email_label = QLabel()
         self.personal_email_label.setObjectName("personalEmailLabel")
         self.personal_phone_number_text_label = QLabel()
         self.personal_phone_number_text_label.setObjectName("personalPhoneNumberTextLabel")
-        self.personal_phone_number_label = QLabel("123456789")
+        self.personal_phone_number_label = QLabel()
         self.personal_phone_number_label.setObjectName("personalPhoneNumberLabel")
         self.personal_address_text_label = QLabel()
         self.personal_address_text_label.setObjectName("personalAddressTextLabel")
-        self.personal_address_label = QLabel("personal home 123")
+        self.personal_address_label = QLabel()
         self.personal_address_label.setObjectName("personalAddressLabel")
         self.personal_city_text_label = QLabel()
         self.personal_city_text_label.setObjectName("personalCityTextLabel")
-        self.personal_city_label = QLabel("personal city")
+        self.personal_city_label = QLabel()
         self.personal_city_label.setObjectName("personalCityLabel")
         self.personal_post_code_text_label = QLabel()
         self.personal_post_code_text_label.setObjectName("personalPostCodeTextLabel")
-        self.personal_post_code_label = QLabel("12345")
+        self.personal_post_code_label = QLabel()
         self.personal_post_code_label.setObjectName("personalPostCodeLabel")
         self.personal_country_text_label = QLabel()
         self.personal_country_text_label.setObjectName("personalCountryTextLabel")
-        self.personal_country_label = QLabel("personal country")
+        self.personal_country_label = QLabel()
         self.personal_country_label.setObjectName("personalCountryLabel")
         personal_widgets = [
             (self.personal_email_text_label, self.personal_email_label),
@@ -96,31 +97,31 @@ class TabInfoWidget(QTabWidget):
         work_contact_layout = QFormLayout()
         self.work_company_name_text_label = QLabel()
         self.work_company_name_text_label.setObjectName("workCompanyNameTextLabel")
-        self.work_company_name_label = QLabel("company name")
+        self.work_company_name_label = QLabel()
         self.work_company_name_label.setObjectName("workCompanyLabel")
         self.work_email_text_label = QLabel()
         self.work_email_text_label.setObjectName("workEmailTextLabel")
-        self.work_email_label = QLabel("work@email.com")
+        self.work_email_label = QLabel()
         self.work_email_label.setObjectName("workEmailLabel")
         self.work_phone_number_text_label = QLabel()
         self.work_phone_number_text_label.setObjectName("workPhoneNumberTextLabel")
-        self.work_phone_number_label = QLabel("987654321")
+        self.work_phone_number_label = QLabel()
         self.work_phone_number_label.setObjectName("workPhoneNumberLabel")
         self.work_address_text_label = QLabel()
         self.work_address_text_label.setObjectName("workAddressTextLabel")
-        self.work_address_label = QLabel("work home 123")
+        self.work_address_label = QLabel()
         self.work_address_label.setObjectName("workAddressLabel")
         self.work_city_text_label = QLabel()
         self.work_city_text_label.setObjectName("workCityTextLabel")
-        self.work_city_label = QLabel("work city")
+        self.work_city_label = QLabel()
         self.work_city_label.setObjectName("workCityLabel")
         self.work_post_code_text_label = QLabel()
         self.work_post_code_text_label.setObjectName("workPostCodeTextLabel")
-        self.work_post_code_label = QLabel("54321")
+        self.work_post_code_label = QLabel()
         self.work_post_code_label.setObjectName("workPostCodeLabel")
         self.work_country_text_label = QLabel()
         self.work_country_text_label.setObjectName("workCountryTextLabel")
-        self.work_country_label = QLabel("work country")
+        self.work_country_label = QLabel()
         self.work_country_label.setObjectName("workCountryLabel")
         work_widgets = [
             (self.work_company_name_text_label, self.work_company_name_label),
@@ -156,3 +157,47 @@ class TabInfoWidget(QTabWidget):
                     widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_url_variables(self) -> None:
+        self.facebook_url = None
+        self.x_url = None
+        self.instagram_url = None
+        self.linkedin_url = None
+        self.github_url = None
+        self.website_url = None
+
+    def set_data(self, data: dict) -> None:
+        try:
+            self.facebook_url = data["facebook_url"]
+            self.x_url = data["x_url"]
+            self.instagram_url = data["instagram_url"]
+            self.personal_email_label.setText(data["personal_email"])
+            self.personal_phone_number_label.setText(data["personal_phone_number"])
+            self.personal_address_label.setText(data["personal_address"])
+            self.personal_city_label.setText(data["personal_city"])
+            self.personal_post_code_label.setText(data["personal_post_code"])
+            self.personal_country_label.setText(data["personal_country"])
+            self.linkedin_url = data["linkedin_url"]
+            self.github_url = data["github_url"]
+            self.website_url = data["website_url"]
+            self.work_company_name_label.setText(data["company_name"])
+            self.work_email_label.setText(data["work_email"])
+            self.work_phone_number_label.setText(data["work_phone_number"])
+            self.work_address_label.setText(data["work_address"])
+            self.work_city_label.setText(data["work_city"])
+            self.work_post_code_label.setText(data["work_post_code"])
+            self.work_country_label.setText(data["work_country"])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def reset_data(self) -> None:
+        labels = self.findChildren(QLabel)
+        self.facebook_url = None
+        self.x_url = None
+        self.instagram_url = None
+        self.linkedin_url = None
+        self.github_url = None
+        self.website_url = None
+        for label in labels:
+            if not label.objectName().endswith("TextLabel"):
+                label.clear()
