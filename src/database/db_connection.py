@@ -31,8 +31,9 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         second_name TEXT NOT NULL,
         personal_email TEXT NOT NULL,
         personal_phone_number TEXT NOT NULL,
-        personal_address TEXT NOT NULL,
         personal_city TEXT NOT NULL,
+        personal_street TEXT NOT NULL,
+        personal_house_number TEXT,
         personal_post_code TEXT NOT NULL,
         personal_country TEXT NOT NULL
         )
@@ -42,8 +43,9 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         company_name TEXT,
         work_email TEXT,
         work_phone_number TEXT,
-        work_address TEXT,
         work_city TEXT,
+        work_street TEXT,
+        work_house_number TEXT,
         work_post_code TEXT,
         work_country TEXT,
         FOREIGN KEY (id) REFERENCES mandatory(id) ON DELETE CASCADE

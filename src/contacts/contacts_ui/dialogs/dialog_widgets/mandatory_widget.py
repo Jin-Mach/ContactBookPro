@@ -49,14 +49,18 @@ class MandatoryWidget(QWidget):
         self.dialog_phone_number_text_label.setObjectName("dialogPhoneNumberTextLabel")
         self.dialog_phone_number_edit = QLineEdit()
         self.dialog_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_address_text_label = QLabel()
-        self.dialog_address_text_label.setObjectName("dialogAddressTextLabel")
-        self.dialog_address_edit = QLineEdit()
-        self.dialog_address_edit.setObjectName("dialogAddressEdit")
         self.dialog_city_text_label = QLabel()
         self.dialog_city_text_label.setObjectName("dialogCityTextLabel")
         self.dialog_city_edit = QLineEdit()
         self.dialog_city_edit.setObjectName("dialogCityEdit")
+        self.dialog_street_text_label = QLabel()
+        self.dialog_street_text_label.setObjectName("dialogStreetTextLabel")
+        self.dialog_street_edit = QLineEdit()
+        self.dialog_street_edit.setObjectName("dialogStreetEdit")
+        self.dialog_house_number_text_label = QLabel()
+        self.dialog_house_number_text_label.setObjectName("dialogHouseNumberTextLabel")
+        self.dialog_house_number_edit = QLineEdit()
+        self.dialog_house_number_edit.setObjectName("dialogHouseNumberEdit")
         self.dialog_post_code_text_label = QLabel()
         self.dialog_post_code_text_label.setObjectName("dialogPostCodeTextLabel")
         self.dialog_post_code_edit = QLineEdit()
@@ -72,8 +76,9 @@ class MandatoryWidget(QWidget):
             (self.dialog_second_name_text_label, self.dialog_second_name_edit),
             (self.dialog_email_text_label, self.dialog_email_edit),
             (self.dialog_phone_number_text_label, self.dialog_phone_number_edit),
-            (self.dialog_address_text_label, self.dialog_address_edit),
             (self.dialog_city_text_label, self.dialog_city_edit),
+            (self.dialog_street_text_label, self.dialog_street_edit),
+            (self.dialog_house_number_text_label, self.dialog_house_number_edit),
             (self.dialog_post_code_text_label, self.dialog_post_code_edit),
             (self.dialog_country_text_label, self.dialog_country_edit),
         ]
@@ -119,7 +124,7 @@ class MandatoryWidget(QWidget):
                     mandatory_data.append(widget.currentIndex())
                 if isinstance(widget, QLineEdit):
                     text = widget.text().strip()
-                    if not text:
+                    if not text and widget.objectName() != "dialogStreetEdit":
                         label_text = self.return_label_text(labels, widget)
                         DialogsProvider.show_error_dialog(f"{error_text["emptyTextError"]}{label_text}")
                         self.main_tab_widget.setCurrentIndex(0)

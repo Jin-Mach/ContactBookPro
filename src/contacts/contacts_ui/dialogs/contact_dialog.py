@@ -14,7 +14,7 @@ class ContactDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactDialog")
-        self.setMinimumSize(600, 500)
+        self.setFixedSize(600, 600)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 

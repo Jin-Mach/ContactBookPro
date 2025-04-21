@@ -52,14 +52,18 @@ class TabInfoWidget(QTabWidget):
         self.personal_phone_number_text_label.setObjectName("personalPhoneNumberTextLabel")
         self.personal_phone_number_label = QLabel()
         self.personal_phone_number_label.setObjectName("personalPhoneNumberLabel")
-        self.personal_address_text_label = QLabel()
-        self.personal_address_text_label.setObjectName("personalAddressTextLabel")
-        self.personal_address_label = QLabel()
-        self.personal_address_label.setObjectName("personalAddressLabel")
         self.personal_city_text_label = QLabel()
         self.personal_city_text_label.setObjectName("personalCityTextLabel")
         self.personal_city_label = QLabel()
         self.personal_city_label.setObjectName("personalCityLabel")
+        self.personal_street_text_label = QLabel()
+        self.personal_street_text_label.setObjectName("personalStreetTextLabel")
+        self.personal_street_label = QLabel()
+        self.personal_street_label.setObjectName("personalStreetLabel")
+        self.personal_house_number_text_label = QLabel()
+        self.personal_house_number_text_label.setObjectName("personalHouseNumberTextLabel")
+        self.personal_house_number_label = QLabel()
+        self.personal_house_number_label.setObjectName("personalHouseNumberLabel")
         self.personal_post_code_text_label = QLabel()
         self.personal_post_code_text_label.setObjectName("personalPostCodeTextLabel")
         self.personal_post_code_label = QLabel()
@@ -71,8 +75,9 @@ class TabInfoWidget(QTabWidget):
         personal_widgets = [
             (self.personal_email_text_label, self.personal_email_label),
             (self.personal_phone_number_text_label, self.personal_phone_number_label),
-            (self.personal_address_text_label, self.personal_address_label),
             (self.personal_city_text_label, self.personal_city_label),
+            (self.personal_street_text_label, self.personal_street_label),
+            (self.personal_house_number_text_label, self.personal_house_number_label),
             (self.personal_post_code_text_label, self.personal_post_code_label),
             (self.personal_country_text_label, self.personal_country_label),
         ]
@@ -120,14 +125,18 @@ class TabInfoWidget(QTabWidget):
         self.work_phone_number_text_label.setObjectName("workPhoneNumberTextLabel")
         self.work_phone_number_label = QLabel()
         self.work_phone_number_label.setObjectName("workPhoneNumberLabel")
-        self.work_address_text_label = QLabel()
-        self.work_address_text_label.setObjectName("workAddressTextLabel")
-        self.work_address_label = QLabel()
-        self.work_address_label.setObjectName("workAddressLabel")
         self.work_city_text_label = QLabel()
         self.work_city_text_label.setObjectName("workCityTextLabel")
         self.work_city_label = QLabel()
         self.work_city_label.setObjectName("workCityLabel")
+        self.work_street_text_label = QLabel()
+        self.work_street_text_label.setObjectName("workStreetTextLabel")
+        self.work_street_label = QLabel()
+        self.work_street_label.setObjectName("workStreetLabel")
+        self.work_house_number_text_label = QLabel()
+        self.work_house_number_text_label.setObjectName("workHouseNumberTextLabel")
+        self.work_house_number_label = QLabel()
+        self.work_house_number_label.setObjectName("workHouseNumberLabel")
         self.work_post_code_text_label = QLabel()
         self.work_post_code_text_label.setObjectName("workPostCodeTextLabel")
         self.work_post_code_label = QLabel()
@@ -140,8 +149,9 @@ class TabInfoWidget(QTabWidget):
             (self.work_company_name_text_label, self.work_company_name_label),
             (self.work_email_text_label, self.work_email_label),
             (self.work_phone_number_text_label, self.work_phone_number_label),
-            (self.work_address_text_label, self.work_address_label),
             (self.work_city_text_label, self.work_city_label),
+            (self.work_street_text_label, self.work_street_label),
+            (self.work_house_number_text_label, self.work_house_number_label),
             (self.work_post_code_text_label, self.work_post_code_label),
             (self.work_country_text_label, self.work_country_label),
         ]
@@ -160,11 +170,11 @@ class TabInfoWidget(QTabWidget):
             for index, text in enumerate(tab_text):
                 if text in ui_text:
                     self.setTabText(index, ui_text[text])
-            widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_address_text_label,
-                       self.personal_city_text_label, self.personal_post_code_text_label, self.personal_country_text_label,
-                       self.work_company_name_text_label, self.work_email_text_label, self.work_phone_number_text_label,
-                       self.work_address_text_label, self.work_city_text_label, self.work_post_code_text_label,
-                       self.work_country_text_label]
+            widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_city_text_label,
+                       self.personal_house_number_text_label, self.personal_street_text_label, self.personal_post_code_text_label,
+                       self.personal_country_text_label, self.work_company_name_text_label, self.work_email_text_label,
+                       self.work_phone_number_text_label, self.work_city_text_label, self.work_street_text_label,
+                       self.work_house_number_text_label, self.work_post_code_text_label, self.work_country_text_label]
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
@@ -188,8 +198,9 @@ class TabInfoWidget(QTabWidget):
             self.instagram_url = data["instagram_url"]
             self.personal_email_label.setText(data["personal_email"])
             self.personal_phone_number_label.setText(data["personal_phone_number"])
-            self.personal_address_label.setText(data["personal_address"])
             self.personal_city_label.setText(data["personal_city"])
+            self.personal_street_label.setText(data["personal_street"])
+            self.personal_house_number_label.setText(data["personal_house_number"])
             self.personal_post_code_label.setText(data["personal_post_code"])
             self.personal_country_label.setText(data["personal_country"])
             self.linkedin_url = data["linkedin_url"]
@@ -198,8 +209,9 @@ class TabInfoWidget(QTabWidget):
             self.work_company_name_label.setText(data["company_name"])
             self.work_email_label.setText(data["work_email"])
             self.work_phone_number_label.setText(data["work_phone_number"])
-            self.work_address_label.setText(data["work_address"])
             self.work_city_label.setText(data["work_city"])
+            self.work_street_label.setText(data["work_street"])
+            self.work_house_number_label.setText(data["work_house_number"])
             self.work_post_code_label.setText(data["work_post_code"])
             self.work_country_label.setText(data["work_country"])
             urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url, self.website_url]

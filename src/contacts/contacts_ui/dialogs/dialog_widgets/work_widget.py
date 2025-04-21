@@ -34,14 +34,18 @@ class WorkWidget(QWidget):
         self.dialog_work_phone_number_text_label.setObjectName("dialogWorkPhoneNumberTextLabel")
         self.dialog_work_phone_number_edit = QLineEdit()
         self.dialog_work_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_work_address_text_label = QLabel()
-        self.dialog_work_address_text_label.setObjectName("dialogWorkAddressTextLabel")
-        self.dialog_work_address_edit = QLineEdit()
-        self.dialog_work_address_edit.setObjectName("dialogWorkAddressEdit")
         self.dialog_work_city_text_label = QLabel()
         self.dialog_work_city_text_label.setObjectName("dialogWorkCityTextLabel")
         self.dialog_work_city_edit = QLineEdit()
         self.dialog_work_city_edit.setObjectName("dialogWorkCityEdit")
+        self.dialog_work_street_text_label = QLabel()
+        self.dialog_work_street_text_label.setObjectName("dialogWorkStreetTextLabel")
+        self.dialog_work_street_edit = QLineEdit()
+        self.dialog_work_street_edit.setObjectName("dialogWorkStreetEdit")
+        self.dialog_work_house_number_text_label = QLabel()
+        self.dialog_work_house_number_text_label.setObjectName("dialogWorkHouseNumberTextLabel")
+        self.dialog_work_house_number_edit = QLineEdit()
+        self.dialog_work_house_number_edit.setObjectName("dialogWorkHouseNumberEdit")
         self.dialog_work_post_code_text_label = QLabel()
         self.dialog_work_post_code_text_label.setObjectName("dialogPostCodeTextLabel")
         self.dialog_work_post_code_edit = QLineEdit()
@@ -54,8 +58,9 @@ class WorkWidget(QWidget):
             (self.dialog_work_company_text_label, self.dialog_work_company_edit),
             (self.dialog_work_email_text_label, self.dialog_work_email_edit),
             (self.dialog_work_phone_number_text_label, self.dialog_work_phone_number_edit),
-            (self.dialog_work_address_text_label, self.dialog_work_address_edit),
             (self.dialog_work_city_text_label, self.dialog_work_city_edit),
+            (self.dialog_work_street_text_label, self.dialog_work_street_edit),
+            (self.dialog_work_house_number_text_label, self.dialog_work_house_number_edit),
             (self.dialog_work_post_code_text_label, self.dialog_work_post_code_edit),
             (self.dialog_work_country_text_label, self.dialog_work_country_edit),
         ]
@@ -100,8 +105,8 @@ class WorkWidget(QWidget):
                     widget.setFocus()
                     return None
                 work_data.append(text)
-            if not ContactValidator.validate_work_address(self.dialog_work_address_edit, self.dialog_work_post_code_edit,
-                                                            self.dialog_work_city_edit, self.dialog_work_country_edit):
+            if not ContactValidator.validate_work_address(self.dialog_work_city_edit, self.dialog_work_house_number_edit,
+                                                          self.dialog_work_post_code_edit, self.dialog_work_country_edit):
                 DialogsProvider.show_error_dialog(error_text["workAddressValidatorError"], self)
                 self.set_tab_index()
                 return None
