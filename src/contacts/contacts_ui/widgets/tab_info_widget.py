@@ -1,6 +1,7 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
+from src.contacts.contacts_utilities.url_utilities import open_url, update_buttons_state
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -26,12 +27,18 @@ class TabInfoWidget(QTabWidget):
         self.facebook_pushbutton = QPushButton()
         self.facebook_pushbutton.setObjectName("facebookPushbutton")
         self.facebook_pushbutton.setFixedSize(self.buttons_size)
+        self.facebook_pushbutton.clicked.connect(lambda: open_url(self.facebook_url))
+        self.facebook_pushbutton.setDisabled(True)
         self.x_pushbutton = QPushButton()
         self.x_pushbutton.setObjectName("xPushbutton")
         self.x_pushbutton.setFixedSize(self.buttons_size)
+        self.x_pushbutton.clicked.connect(lambda: open_url(self.x_url))
+        self.x_pushbutton.setDisabled(True)
         self.instagram_pushbutton = QPushButton()
         self.instagram_pushbutton.setObjectName("instagramPushbutton")
         self.instagram_pushbutton.setFixedSize(self.buttons_size)
+        self.instagram_pushbutton.clicked.connect(lambda: open_url(self.instagram_url))
+        self.instagram_pushbutton.setDisabled(True)
         personal_social_network_layout.addWidget(self.facebook_pushbutton)
         personal_social_network_layout.addWidget(self.x_pushbutton)
         personal_social_network_layout.addWidget(self.instagram_pushbutton)
@@ -84,12 +91,18 @@ class TabInfoWidget(QTabWidget):
         self.linkedin_pushbutton = QPushButton()
         self.linkedin_pushbutton.setObjectName("linkedinPushbutton")
         self.linkedin_pushbutton.setFixedSize(self.buttons_size)
+        self.linkedin_pushbutton.clicked.connect(lambda: open_url(self.linkedin_url))
+        self.linkedin_pushbutton.setDisabled(True)
         self.github_pushbutton = QPushButton()
         self.github_pushbutton.setObjectName("githubPushbutton")
         self.github_pushbutton.setFixedSize(self.buttons_size)
+        self.github_pushbutton.clicked.connect(lambda: open_url(self.github_url))
+        self.github_pushbutton.setDisabled(True)
         self.work_website_pushbutton = QPushButton()
         self.work_website_pushbutton.setObjectName("websitePushbutton")
         self.work_website_pushbutton.setFixedSize(self.buttons_size)
+        self.work_website_pushbutton.clicked.connect(lambda: open_url(self.website_url))
+        self.work_website_pushbutton.setDisabled(True)
         work_social_network_layout.addWidget(self.linkedin_pushbutton)
         work_social_network_layout.addWidget(self.github_pushbutton)
         work_social_network_layout.addWidget(self.work_website_pushbutton)
@@ -167,6 +180,8 @@ class TabInfoWidget(QTabWidget):
         self.website_url = None
 
     def set_data(self, data: dict) -> None:
+        buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton, self.linkedin_pushbutton,
+                   self.github_pushbutton, self.work_website_pushbutton]
         try:
             self.facebook_url = data["facebook_url"]
             self.x_url = data["x_url"]
@@ -187,17 +202,18 @@ class TabInfoWidget(QTabWidget):
             self.work_city_label.setText(data["work_city"])
             self.work_post_code_label.setText(data["work_post_code"])
             self.work_country_label.setText(data["work_country"])
+            urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url, self.website_url]
+            update_buttons_state(buttons, urls)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def reset_data(self) -> None:
         labels = self.findChildren(QLabel)
-        self.facebook_url = None
-        self.x_url = None
-        self.instagram_url = None
-        self.linkedin_url = None
-        self.github_url = None
-        self.website_url = None
+        buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton, self.linkedin_pushbutton,
+                   self.github_pushbutton, self.work_website_pushbutton]
+        self.set_url_variables()
         for label in labels:
             if not label.objectName().endswith("TextLabel"):
                 label.clear()
+        for button in buttons:
+            button.setDisabled(True)

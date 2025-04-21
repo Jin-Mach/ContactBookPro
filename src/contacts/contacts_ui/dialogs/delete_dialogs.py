@@ -5,7 +5,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyTypeChecker
 class DeleteDialogs:
     class_name = "deleteDialogWidgets"
 

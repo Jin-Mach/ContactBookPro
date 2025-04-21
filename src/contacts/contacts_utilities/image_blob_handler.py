@@ -16,5 +16,7 @@ def image_to_blob(label: QLabel, parent=None) -> Optional[bytes]:
             if not pixmap.save(buffer, "PNG"):
                 return None
             return bytes(byte_array.data())
+        return None
     except Exception as e:
         ErrorHandler.exception_handler(e, parent)
+        return None

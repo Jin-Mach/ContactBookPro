@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWid
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyTypeChecker
 class DialogsProvider:
     class_name = "dialogsProvider"
 
