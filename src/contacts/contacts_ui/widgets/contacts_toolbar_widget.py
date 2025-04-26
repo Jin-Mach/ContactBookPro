@@ -24,7 +24,7 @@ class ContactsToolbarWidget(QWidget):
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.contacts_controler = ContactsController(mandatory_model, work_model, social_model, detail_model, info_model,
-                                                     detail_widget, table_view, status_bar)
+                                                     detail_widget, table_view, status_bar, self)
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -39,6 +39,7 @@ class ContactsToolbarWidget(QWidget):
         self.update_contact_pushbutton = QPushButton()
         self.update_contact_pushbutton.setObjectName("updateContactPushbutton")
         self.update_contact_pushbutton.setFixedSize(self.buttons_size)
+        self.update_contact_pushbutton.clicked.connect(self.update_existing_contact)
         self.delete_contact_pushbutton = QPushButton()
         self.delete_contact_pushbutton.setObjectName("deleteContactPushbutton")
         self.delete_contact_pushbutton.setFixedSize(self.buttons_size)
@@ -84,6 +85,12 @@ class ContactsToolbarWidget(QWidget):
     def add_new_contact(self) -> None:
         try:
             self.contacts_controler.add_new_contact()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def update_existing_contact(self) -> None:
+        try:
+            self.contacts_controler.update_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

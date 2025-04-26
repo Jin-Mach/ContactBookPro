@@ -43,7 +43,15 @@ class MandatoryModel(QSqlTableModel):
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False)
             return
-        self.select()
+
+    def update_contact(self, row_index: int, data: list) -> None:
+        column_count = self.columnCount()
+        for column in range(1, column_count):
+            index = self.index(row_index, column)
+            self.setData(index, data[column - 1])
+        if not self.submitAll():
+            ErrorHandler.database_error(self.lastError().text(), False)
+            return
 
     def delete_contact(self, row_index: int) -> None:
         if row_index > -1:
@@ -53,18 +61,9 @@ class MandatoryModel(QSqlTableModel):
             if not self.submitAll():
                 ErrorHandler.database_error(self.lastError().text(), False)
                 return
-        self.select()
-
-    def get_last_id(self) -> int:
-        query = QSqlQuery(self.database())
-        if query.exec("SELECT last_insert_rowid()"):
-            if query.next():
-                return query.value(0)
-        return -1
 
     def clear_database(self) -> None:
         if self.rowCount() > 0:
             if not self.removeRows(0, self.rowCount()):
                 ErrorHandler.database_error(self.lastError().text(), False)
                 return
-        self.select()

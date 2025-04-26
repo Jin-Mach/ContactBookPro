@@ -33,20 +33,17 @@ class BasicSetupProvider:
     @staticmethod
     def check_icon_files() -> dict:
         required_files = [
-            "qt_calendar_nextmonth_icon.png", "qt_calendar_prevmonth_icon.png", "addNewContactPushbutton_icon.png",
-            "deleteAllContactsPushbutton_icon.png", "deleteContactPushbutton_icon.png", "searchPushbutton_icon.png",
-            "updateContactPushbutton_icon.png", "dog_image.png", "mainWindowDatabaseButton_icon.png", "window_icon.png",
-            "no_user_photo.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
-            "instagramPushbutton_icon.png",
-            "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png"
+            "addNewContactPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png", "deleteContactPushbutton_icon.png",
+            "searchPushbutton_icon.png", "updateContactPushbutton_icon.png", "dog_image.png", "mainWindowDatabaseButton_icon.png",
+            "window_icon.png","no_user_photo.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png",
+            "githubPushbutton_icon.png", "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
+            "xPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/src/icons"
         missing_icons_urls = {}
         found_icons = set()
         icon_folders = {
-            "qt_calendar_nextmonth_icon.png": "calendarWidget",
-            "qt_calendar_prevmonth_icon.png": "calendarWidget",
             "addNewContactPushbutton_icon.png": "contactsToolbarWidget",
             "deleteAllContactsPushbutton_icon.png": "contactsToolbarWidget",
             "deleteContactPushbutton_icon.png": "contactsToolbarWidget",
@@ -56,6 +53,8 @@ class BasicSetupProvider:
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
             "no_user_photo.png": "dialogPersonalDetailWidget",
+            "female_icon.png": "personalTabInfoWidget",
+            "male_icon-png": "personalTabInfoWidget",
             "facebookPushbutton_icon.png": "tabInfoWidget",
             "githubPushbutton_icon.png": "tabInfoWidget",
             "instagramPushbutton_icon.png": "tabInfoWidget",

@@ -11,12 +11,15 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class ContactDialog(QDialog):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, update_contact: bool, contact_data: Optional[dict], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setFixedSize(600, 600)
+        self.update_contact = update_contact
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        if self.update_contact:
+            self.set_contact_data(contact_data)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -49,7 +52,10 @@ class ContactDialog(QDialog):
                     self.dialog_tab_widget.setTabText(index, ui_text[text])
             for widget in widgets:
                 if widget.objectName() in ui_text:
-                    widget.setText(ui_text[widget.objectName()])
+                    if widget.objectName() == "dialogAddContactButton" and self.update_contact:
+                        widget.setText(ui_text[f"{widget.objectName()}Update"])
+                    else:
+                        widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -69,3 +75,9 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
+
+    def set_contact_data(self, data: dict) -> None:
+        self.mandatory_widget.set_contact_data(data)
+        self.non_mandatory_widget.work_widget.set_contact_data(data)
+        self.non_mandatory_widget.social_networks_widget.set_contact_data(data)
+        self.non_mandatory_widget.personal_details_widget.set_contact_data(data)

@@ -18,7 +18,6 @@ class TabInfoWidget(QTabWidget):
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
-        self.set_url_variables()
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -181,17 +180,10 @@ class TabInfoWidget(QTabWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_url_variables(self) -> None:
-        self.facebook_url = None
-        self.x_url = None
-        self.instagram_url = None
-        self.linkedin_url = None
-        self.github_url = None
-        self.website_url = None
-
     def set_data(self, data: dict) -> None:
-        buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton, self.linkedin_pushbutton,
-                   self.github_pushbutton, self.work_website_pushbutton]
+        self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
+                        self.linkedin_pushbutton,
+                        self.github_pushbutton, self.work_website_pushbutton]
         try:
             self.facebook_url = data["facebook_url"]
             self.x_url = data["x_url"]
@@ -214,18 +206,17 @@ class TabInfoWidget(QTabWidget):
             self.work_house_number_label.setText(data["work_house_number"])
             self.work_post_code_label.setText(data["work_post_code"])
             self.work_country_label.setText(data["work_country"])
-            urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url, self.website_url]
-            update_buttons_state(buttons, urls)
+            self.urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url,
+                         self.website_url]
+            update_buttons_state(self.buttons, self.urls)
+            self.setCurrentIndex(0)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def reset_data(self) -> None:
         labels = self.findChildren(QLabel)
-        buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton, self.linkedin_pushbutton,
-                   self.github_pushbutton, self.work_website_pushbutton]
-        self.set_url_variables()
         for label in labels:
             if not label.objectName().endswith("TextLabel"):
                 label.clear()
-        for button in buttons:
+        for button in self.buttons:
             button.setDisabled(True)

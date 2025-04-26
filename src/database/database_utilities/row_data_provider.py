@@ -1,6 +1,6 @@
 from typing import Optional
 
-from PyQt6.QtSql import QSqlQuery
+from PyQt6.QtSql import QSqlQuery, QSqlTableModel
 
 from src.utilities.error_handler import ErrorHandler
 
@@ -33,3 +33,19 @@ class RowDataProvider:
                 column_name = query.record().fieldName(column)
                 table_data[column_name] = query.value(column)
         return table_data
+
+    @staticmethod
+    def get_last_id(model: QSqlTableModel) -> int:
+        query = QSqlQuery(model.database())
+        if query.exec("SELECT last_insert_rowid()"):
+            if query.next():
+                return query.value(0)
+        return -1
+
+    @staticmethod
+    def get_row_by_id(model: QSqlTableModel, contact_id: int) -> int:
+        for row in range(model.rowCount()):
+            index = model.index(row, 0)
+            if model.data(index) == contact_id:
+                return row
+        return -1

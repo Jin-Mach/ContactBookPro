@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
                              QLineEdit, QTextEdit)
 
 from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
-from src.contacts.contacts_utilities.image_blob_handler import image_to_blob
+from src.contacts.contacts_utilities.image_blob_handler import BlobHandler
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
@@ -129,7 +129,7 @@ class PersonalDetailsWidget(QWidget):
     def return_personal_data(self) -> Optional[list]:
         inputs = self.findChildren((QLineEdit, QTextEdit))
         inputs_names = ["dialogTitleEdit", "dialogBirthdayEdit", "dialogNotesEdit"]
-        photo_blob = image_to_blob(self.dialog_photo_label, self)
+        photo_blob = BlobHandler.image_to_blob(self.dialog_photo_label, self)
         personal_data = []
         try:
             for widget in inputs:
@@ -146,3 +146,8 @@ class PersonalDetailsWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
+
+    def set_contact_data(self, data) -> None:
+        self.dialog_title_edit.setText(data["title"])
+        self.dialog_birthday_edit.setText(data["birthday"])
+        self.dialog_notes_edit.setPlainText(data["notes"])

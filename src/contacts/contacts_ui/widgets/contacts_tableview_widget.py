@@ -1,4 +1,6 @@
-from PyQt6.QtCore import Qt
+from typing import Optional
+
+from PyQt6.QtCore import Qt, QModelIndex
 from PyQt6.QtWidgets import QTableView, QHeaderView
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
@@ -22,7 +24,7 @@ class ContactsTableviewWidget(QTableView):
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.setSortingEnabled(True)
         self.hide_colums()
-        self.selectionModel().currentRowChanged.connect(self.set_detail_data)
+        self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
 
     def hide_colums(self) -> None:
         column_count = self.model().columnCount()
@@ -33,12 +35,14 @@ class ContactsTableviewWidget(QTableView):
             else:
                 self.setColumnHidden(index, True)
 
-    def set_detail_data(self):
+    def set_detail_data(self, last_index: Optional[QModelIndex]):
         try:
-            current_index = self.selectionModel().currentIndex()
-            if not current_index.isValid():
-                print("chyba indexu")
-                return
+            current_index = last_index
+            if not current_index:
+                current_index = self.selectionModel().currentIndex()
+                if not current_index.isValid():
+                    print("chyba indexu")
+                    return
             current_row = self.mandatory_model.data(self.mandatory_model.index(current_index.row(), 0))
             self.contact_data_controler.get_models_data(current_row)
         except Exception as e:

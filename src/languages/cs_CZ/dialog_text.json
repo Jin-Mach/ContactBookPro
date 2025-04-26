@@ -20,6 +20,7 @@
     "mandatory": "Povinné údaje",
     "nonMandatory": "Volitelné údaje",
     "dialogAddContactButton": "Přidat kontakt",
+    "dialogAddContactButtonUpdate": "Aktualizovat kontakt",
     "dialogCancelButton": "Zrušit"
 
   },

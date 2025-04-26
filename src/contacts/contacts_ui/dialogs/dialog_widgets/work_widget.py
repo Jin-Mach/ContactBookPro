@@ -115,6 +115,16 @@ class WorkWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
             return None
 
+    def set_contact_data(self, data: dict) -> None:
+        self.dialog_work_company_edit.setText(data["company_name"])
+        self.dialog_work_email_edit.setText(data["work_email"])
+        self.dialog_work_phone_number_edit.setText(data["work_phone_number"])
+        self.dialog_work_city_edit.setText(data["work_city"])
+        self.dialog_work_street_edit.setText(data["work_street"])
+        self.dialog_work_house_number_edit.setText(data["work_house_number"])
+        self.dialog_work_post_code_edit.setText(data["work_post_code"])
+        self.dialog_work_country_edit.setText(data["work_country"])
+
     def set_tab_index(self) -> None:
         self.main_tab.setCurrentIndex(1)
         self.non_mandatory_tab.setCurrentIndex(0)

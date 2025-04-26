@@ -95,6 +95,14 @@ class SocialNetworkWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
             return None
 
+    def set_contact_data(self, data: dict) -> None:
+        self.dialog_facebook_url_edit.setText(data["facebook_url"])
+        self.dialog_x_url_edit.setText(data["x_url"])
+        self.dialog_instagram_url_edit.setText(data["instagram_url"])
+        self.dialog_linkedin_url_edit.setText(data["linkedin_url"])
+        self.dialog_github_url_edit.setText(data["github_url"])
+        self.dialog_website_edit.setText(data["website_url"])
+
     def set_tab_index(self) -> None:
         self.main_tab.setCurrentIndex(1)
         self.non_mandatory_tab.setCurrentIndex(1)
