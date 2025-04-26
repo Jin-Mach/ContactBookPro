@@ -30,7 +30,7 @@ class ContactDialog(QDialog):
         self.dialog_tab_widget.addTab(self.mandatory_widget, "")
         self.dialog_tab_widget.addTab(self.non_mandatory_widget, "")
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        button_box.accepted.connect(self.new_data)
+        button_box.accepted.connect(self.get_data)
         button_box.rejected.connect(self.reject)
         self.add_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
         self.add_button.setObjectName("dialogAddContactButton")
@@ -59,7 +59,7 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def new_data(self) -> Optional[list]:
+    def colect_data(self) -> Optional[list]:
         try:
             mandatory_data = self.mandatory_widget.return_mandatory_data()
             work_data = self.non_mandatory_widget.work_widget.return_work_data()
@@ -75,6 +75,10 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
+
+    def get_data(self) -> None:
+        self.colected_data = self.colect_data()
+        self.accept()
 
     def set_contact_data(self, data: dict) -> None:
         self.mandatory_widget.set_contact_data(data)

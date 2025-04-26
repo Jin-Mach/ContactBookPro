@@ -138,7 +138,7 @@ class PersonalDetailsWidget(QWidget):
                         personal_data.append(str(widget.text().strip()))
                     elif isinstance(widget, QTextEdit):
                         personal_data.append(widget.toPlainText().strip())
-            if self.photo_state == 1:
+            if self.photo_state == 1 and isinstance(photo_blob, bytes):
                 personal_data.append(photo_blob)
             else:
                 personal_data.append(None)

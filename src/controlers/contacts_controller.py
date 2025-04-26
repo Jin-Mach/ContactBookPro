@@ -36,7 +36,7 @@ class ContactsController:
         try:
             dialog = ContactDialog(False, self.parent)
             if dialog.exec() == QDialog.DialogCode.Accepted:
-                data = dialog.new_data()
+                data = dialog.colected_data
                 if data:
                     self.mandatory_model.add_contact(data[0])
                     last_id = RowDataProvider.get_last_id(self.mandatory_model)
@@ -65,7 +65,7 @@ class ContactsController:
                 contact_data = RowDataProvider.return_row_data(contact_id)
                 dialog = ContactDialog(True, contact_data, self.parent)
                 if dialog.exec() == dialog.DialogCode.Accepted:
-                    update_data = dialog.new_data()
+                    update_data = dialog.colected_data
                     now = datetime.now().strftime("%d.%m.%Y")
                     self.mandatory_model.update_contact(index.row(), update_data[0])
                     self.work_model.update_contact(contact_id, update_data[1])
@@ -74,6 +74,7 @@ class ContactsController:
                     self.info_model.update_contact(contact_id, now)
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                     self.table_view.set_detail_data(index)
+                    self.data_added = True
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -86,6 +87,7 @@ class ContactsController:
                     self.mandatory_model.delete_contact(index.row())
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                     self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                    self.detail_widget.reset_data()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -97,5 +99,6 @@ class ContactsController:
                     self.mandatory_model.clear_database()
                 refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                 self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                self.detail_widget.reset_data()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
