@@ -24,6 +24,7 @@ class MainWindow(QMainWindow):
         self.contacts_main_widget = ContactsMainWidget(self)
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
+        self.set_tooltips_text()
         IconProvider.set_window_icon(self, self.objectName(), self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         if QSystemTrayIcon.isSystemTrayAvailable():
@@ -79,5 +80,16 @@ class MainWindow(QMainWindow):
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     self.database_button.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        buttons = [self.database_button]
+        try:
+            for button in buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

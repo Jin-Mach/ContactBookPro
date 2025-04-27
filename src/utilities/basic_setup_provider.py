@@ -8,7 +8,7 @@ class BasicSetupProvider:
 
     @staticmethod
     def check_json_files() -> dict:
-        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "language_info.json", "ui_text.json"]
+        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "language_info.json", "tooltips_text.json", "ui_text.json"]
         json_files_path = BasicSetupProvider.default_path.joinpath("languages")
         json_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/src/languages"
         missing_json_urls = {}

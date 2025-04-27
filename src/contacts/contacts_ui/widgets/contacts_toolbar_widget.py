@@ -29,6 +29,7 @@ class ContactsToolbarWidget(QWidget):
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
 
     def create_gui(self) -> QLayout:
@@ -72,7 +73,7 @@ class ContactsToolbarWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.search_text_label, self.search_line_edit]
+        widgets = self.findChildren((QLabel, QLineEdit))
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:
@@ -80,6 +81,17 @@ class ContactsToolbarWidget(QWidget):
                         widget.setText(ui_text[widget.objectName()])
                     elif isinstance(widget, QLineEdit):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        buttons = self.findChildren(QPushButton)
+        try:
+            for button in buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

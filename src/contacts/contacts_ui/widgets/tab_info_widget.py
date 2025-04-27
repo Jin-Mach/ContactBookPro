@@ -17,10 +17,8 @@ class TabInfoWidget(QTabWidget):
         self.addTab(self.create_personal_tab(), "")
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
+        self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
-        self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
-                        self.linkedin_pushbutton,
-                        self.github_pushbutton, self.work_website_pushbutton]
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -172,14 +170,21 @@ class TabInfoWidget(QTabWidget):
             for index, text in enumerate(tab_text):
                 if text in ui_text:
                     self.setTabText(index, ui_text[text])
-            widgets = [self.personal_email_text_label, self.personal_phone_number_text_label, self.personal_city_text_label,
-                       self.personal_house_number_text_label, self.personal_street_text_label, self.personal_post_code_text_label,
-                       self.personal_country_text_label, self.work_company_name_text_label, self.work_email_text_label,
-                       self.work_phone_number_text_label, self.work_city_text_label, self.work_street_text_label,
-                       self.work_house_number_text_label, self.work_post_code_text_label, self.work_country_text_label]
+            widgets = self.findChildren(QLabel)
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        buttons = self.findChildren(QPushButton)
+        try:
+            for button in buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -208,6 +213,8 @@ class TabInfoWidget(QTabWidget):
             self.work_country_label.setText(data["work_country"])
             self.urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url,
                          self.website_url]
+            self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
+                            self.linkedin_pushbutton, self.github_pushbutton, self.work_website_pushbutton]
             update_buttons_state(self.buttons, self.urls)
             self.setCurrentIndex(0)
         except Exception as e:

@@ -23,6 +23,7 @@ class PersonalDetailsWidget(QWidget):
         self.photo_state = 0
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.button_size, self)
         self.reset_photo_label()
 
@@ -95,14 +96,25 @@ class PersonalDetailsWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = [self.dialog_title_text_label, self.dialog_birthday_text_label, self.dialog_notes_edit]
+        widgets = self.findChildren((QLabel, QTextEdit))
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:
-                    if isinstance(widget, (QLabel, QPushButton)):
+                    if isinstance(widget, QLabel):
                         widget.setText(ui_text[widget.objectName()])
                     elif isinstance(widget, QTextEdit):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        try:
+            buttons = self.findChildren(QPushButton)
+            for button in buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

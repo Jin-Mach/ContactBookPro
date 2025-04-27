@@ -19,7 +19,9 @@ class CalendarDialog(QDialog):
         self.setWindowIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
         self.birthday_input = birthday_input
         self.setLayout(self.create_gui())
+        self.buttons = self.findChildren(QPushButton)
         self.set_ui_text()
+        self.set_tooltips_text()
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -40,14 +42,23 @@ class CalendarDialog(QDialog):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        buttons = self.findChildren(QPushButton)
         try:
             if "calendarDialogTitle" in ui_text:
                 self.setWindowTitle(ui_text["calendarDialogTitle"])
-            for button in buttons:
+            for button in self.buttons:
                 if button.objectName() in ui_text:
                     if isinstance(button, QPushButton):
                         button.setText(ui_text[button.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        try:
+            for button in self.buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

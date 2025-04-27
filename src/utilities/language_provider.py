@@ -47,6 +47,16 @@ class LanguageProvider:
             return None
 
     @staticmethod
+    def get_tooltips_text(widget_name: str) -> Optional[dict[str, str]]:
+        try:
+            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "tooltips_text.json"), encoding="utf-8") as file:
+                tooltips_data = json.load(file)
+            return tooltips_data[widget_name]
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return None
+
+    @staticmethod
     def get_dialog_text(widget_name: str) -> Optional[dict[str, str]]:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "dialog_text.json"), "r", encoding="utf-8") as file:

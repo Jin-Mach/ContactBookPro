@@ -3,7 +3,7 @@ from datetime import datetime
 import pathlib
 
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox
+from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton
 
 from src.contacts.contacts_ui.dialogs.dialog_widgets.mandatory_widget import MandatoryWidget
 from src.contacts.contacts_ui.dialogs.dialog_widgets.non_mandatory_widget import NonMandatoryWidget
@@ -20,7 +20,11 @@ class ContactDialog(QDialog):
         self.setWindowIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
         self.update_contact = update_contact
         self.setLayout(self.create_gui())
+        button_box = self.findChild(QDialogButtonBox)
+        if button_box:
+            self.buttons = button_box.findChildren(QPushButton)
         self.set_ui_text()
+        self.set_tooltips_text()
         if self.update_contact:
             self.set_contact_data(contact_data)
 
@@ -46,19 +50,32 @@ class ContactDialog(QDialog):
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
         tab_text = ["mandatory", "nonMandatory"]
-        widgets = [self.add_button, self.cancel_button]
         try:
             if "dialogTitle" in ui_text:
                 self.setWindowTitle(ui_text["dialogTitle"])
             for index, text in enumerate(tab_text):
                 if text in ui_text:
                     self.dialog_tab_widget.setTabText(index, ui_text[text])
-            for widget in widgets:
+            for widget in self.buttons:
                 if widget.objectName() in ui_text:
                     if widget.objectName() == "dialogAddContactButton" and self.update_contact:
                         widget.setText(ui_text[f"{widget.objectName()}Update"])
                     else:
                         widget.setText(ui_text[widget.objectName()])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_tooltips_text(self) -> None:
+        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        try:
+            for button in self.buttons:
+                if button.objectName() in tooltips_text:
+                    if button.objectName() == "dialogAddContactButton" and self.update_contact:
+                        button.setToolTip(tooltips_text[f"{button.objectName()}Update"])
+                        button.setToolTipDuration(5000)
+                    else:
+                        button.setToolTip(tooltips_text[button.objectName()])
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

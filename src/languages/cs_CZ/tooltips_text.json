@@ -1,0 +1,36 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Zobrazí databázi kontaktů"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Přidat kontakt",
+    "updateContactPushbutton": "Upravit kontakt",
+    "deleteContactPushbutton": "Smazat vybraný kontakt",
+    "deleteAllContactsPushbutton": "Smazat celou databázi",
+    "searchPushbutton": "Vyhledat"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Otevře odkaz na Facebook",
+    "xPushbutton": "Otevře odkaz na X (Twitter)",
+    "instagramPushbutton": "Otevře odkaz na Instagram",
+    "linkedinPushbutton": "Otevře odkaz na Linkedin",
+    "githubPushbutton": "Otevře odkaz na GitHub",
+    "websitePushbutton": "Otevře webovou stránku"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Přidat kontakt",
+    "dialogCancelButton": "Zavřít dialog",
+    "dialogAddContactButtonUpdate": "Uložit změny"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Vybrat fotku kontaku",
+    "dialogResetPhotoButton": "Odstranit fotku",
+    "dialogCalendarPushbutton": "Vybrat datum narození",
+    "dialogResetCalendarPushbutton": "Odstranit datum narození"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Nastavit datum na dnes",
+    "addDateButton": "Nastavit zvolené datum",
+    "cancelDialogButton": "Zavřít kalendář"
+  }
+}
