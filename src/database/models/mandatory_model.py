@@ -11,7 +11,7 @@ class MandatoryModel(QSqlTableModel):
         self.setObjectName("mandatoryModel")
         self.setTable("mandatory")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
-        self.setSort(0, Qt.SortOrder.DescendingOrder)
+        self.setSort(0, Qt.SortOrder.AscendingOrder)
         set_manadatory_model_headers(self)
         self.select()
 

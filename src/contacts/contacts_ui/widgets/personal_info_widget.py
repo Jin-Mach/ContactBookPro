@@ -1,6 +1,10 @@
-from PyQt6.QtCore import Qt
+import pathlib
+
+from PyQt6.QtCore import Qt, QByteArray
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFormLayout, QTabWidget
 
+from src.contacts.contacts_utilities.blob_handler import BlobHandler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -82,6 +86,7 @@ class PersonalTabInfoWidget(QTabWidget):
         try:
             gender_dict = self.ui_text["gender_key"]
             relationship_dict = self.ui_text["relationship_key"]
+            self.set_photo_pixmap(data["photo"], int(data["gender"]))
             self.contact_title_label.setText(data["title"])
             self.contact_gender_label.setText(gender_dict[str(data["gender"])])
             self.contact_first_name_label.setText(data["first_name"])
@@ -96,3 +101,19 @@ class PersonalTabInfoWidget(QTabWidget):
         for label in labels:
             if not label.objectName().endswith("TextLabel"):
                 label.clear()
+
+    def set_photo_pixmap(self, blob: QByteArray, gender: int) -> None:
+        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "personalTabInfoWidget")
+        try:
+            pixmap = BlobHandler.blob_to_pixmap(blob, self)
+            if not pixmap:
+                if gender == 1:
+                    pixmap = QPixmap(str(icons_path.joinpath("male_icon.png")))
+                    self.contact_photo_label.setPixmap(pixmap)
+                else:
+                    pixmap = QPixmap(str(icons_path.joinpath("female_icon.png")))
+                    self.contact_photo_label.setPixmap(pixmap)
+            else:
+                self.contact_photo_label.setPixmap(pixmap)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

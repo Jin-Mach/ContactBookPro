@@ -23,6 +23,7 @@ class ContactsToolbarWidget(QWidget):
                  status_bar: ContactsStatusbarWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
+        self.table_view = table_view
         self.contacts_controler = ContactsController(mandatory_model, work_model, social_model, detail_model, info_model,
                                                      detail_widget, table_view, status_bar, self)
         self.buttons_size = QSize(35, 35)
@@ -90,13 +91,15 @@ class ContactsToolbarWidget(QWidget):
 
     def update_existing_contact(self) -> None:
         try:
-            self.contacts_controler.update_contact()
+            if self.table_view.selectionModel().hasSelection():
+                self.contacts_controler.update_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_contact(self) -> None:
         try:
-            self.contacts_controler.delete_contact()
+            if self.table_view.selectionModel().hasSelection():
+                self.contacts_controler.delete_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

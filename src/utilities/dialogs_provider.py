@@ -11,7 +11,8 @@ class DialogsProvider:
 
     @staticmethod
     def show_error_dialog(error_message: str, parent=None) -> QDialog:
-        dialog = QDialog(parent)
+        dialog = QDialog()
+        dialog.setParent(parent)
         dialog.setObjectName("errorDialog")
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()

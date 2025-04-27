@@ -18,6 +18,9 @@ class TabInfoWidget(QTabWidget):
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
+                        self.linkedin_pushbutton,
+                        self.github_pushbutton, self.work_website_pushbutton]
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -181,9 +184,6 @@ class TabInfoWidget(QTabWidget):
             ErrorHandler.exception_handler(e, self)
 
     def set_data(self, data: dict) -> None:
-        self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
-                        self.linkedin_pushbutton,
-                        self.github_pushbutton, self.work_website_pushbutton]
         try:
             self.facebook_url = data["facebook_url"]
             self.x_url = data["x_url"]

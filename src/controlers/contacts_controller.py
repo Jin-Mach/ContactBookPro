@@ -74,7 +74,8 @@ class ContactsController:
                     self.info_model.update_contact(contact_id, now)
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                     self.table_view.set_detail_data(index)
-                    self.data_added = True
+            else:
+                ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -1,11 +1,11 @@
 from typing import Optional
 
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QSize, Qt, QByteArray
 from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QFormLayout,
                              QLineEdit, QTextEdit)
 
 from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
-from src.contacts.contacts_utilities.image_blob_handler import BlobHandler
+from src.contacts.contacts_utilities.blob_handler import BlobHandler
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
@@ -129,7 +129,7 @@ class PersonalDetailsWidget(QWidget):
     def return_personal_data(self) -> Optional[list]:
         inputs = self.findChildren((QLineEdit, QTextEdit))
         inputs_names = ["dialogTitleEdit", "dialogBirthdayEdit", "dialogNotesEdit"]
-        photo_blob = BlobHandler.image_to_blob(self.dialog_photo_label, self)
+        photo_blob = BlobHandler.pixmap_to_blob(self.dialog_photo_label, self)
         personal_data = []
         try:
             for widget in inputs:
@@ -148,6 +148,19 @@ class PersonalDetailsWidget(QWidget):
             return None
 
     def set_contact_data(self, data) -> None:
+        blob = data["photo"]
+        self.set_photo_pixmap(blob, self.dialog_photo_label)
         self.dialog_title_edit.setText(data["title"])
         self.dialog_birthday_edit.setText(data["birthday"])
         self.dialog_notes_edit.setPlainText(data["notes"])
+
+    def set_photo_pixmap(self, blob: QByteArray, label: QLabel) -> None:
+        try:
+            pixmap = BlobHandler.blob_to_pixmap(blob, self)
+            if pixmap:
+                label.setPixmap(pixmap)
+                self.photo_state = 1
+            else:
+                self.photo_state = 0
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
