@@ -55,5 +55,14 @@
     "notesTextEdit": "Poznámky ke kontaktu...",
     "createDateTextLabel": "vytvořeno: ",
     "updateDateTextLabel": "aktualizováno: "
+  },
+  "trayIcon": {
+    "addContact": "Přidat kontakt",
+    "closeApplication": "Zavřít aplikaci",
+    "trayIconMessageTitle": "Databáze kontaktů",
+    "contactAdded": "Kontakt přidán",
+    "contactUpdated": "Kontakt upraven",
+    "contactDeleted": "Kontakt smazán",
+    "databaseDeleted": "Databáze odstraněna"
   }
 }

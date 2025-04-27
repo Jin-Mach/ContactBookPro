@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout
+from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
@@ -18,13 +18,13 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
-    def __init__(self, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
+    def __init__(self, main_window: QMainWindow, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
                  info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
                  status_bar: ContactsStatusbarWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.table_view = table_view
-        self.contacts_controler = ContactsController(mandatory_model, work_model, social_model, detail_model, info_model,
+        self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model, detail_model, info_model,
                                                      detail_widget, table_view, status_bar, self)
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())

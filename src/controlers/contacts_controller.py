@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from PyQt6.QtWidgets import QDialog
+from PyQt6.QtWidgets import QDialog, QMainWindow
 
 from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.dialogs.delete_dialogs import DeleteDialogs
@@ -19,9 +19,10 @@ from src.utilities.error_handler import ErrorHandler
 
 
 class ContactsController:
-    def __init__(self, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
+    def __init__(self, main_window: QMainWindow, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
                  info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
                  status_bar: ContactsStatusbarWidget, parent=None) -> None:
+        self.main_window = main_window
         self.mandatory_model = mandatory_model
         self.work_model = work_model
         self.social_model = social_model
@@ -51,6 +52,7 @@ class ContactsController:
                         self.table_view.selectRow(index.row())
                         self.table_view.scrollTo(index)
                         self.table_view.contact_data_controler.get_models_data(last_id)
+                        self.main_window.tray_icon.show_notification(f"{data[0][2]} {data[0][3]}", "contactAdded")
                     else:
                         ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
         except Exception as e:
@@ -74,6 +76,7 @@ class ContactsController:
                     self.info_model.update_contact(contact_id, now)
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                     self.table_view.set_detail_data(index)
+                    self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
             else:
                 ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
         except Exception as e:
@@ -89,6 +92,7 @@ class ContactsController:
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                     self.status_bar.set_count_text(self.mandatory_model.rowCount())
                     self.detail_widget.reset_data()
+                    self.main_window.tray_icon.show_notification("", "contactDeleted")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -101,5 +105,6 @@ class ContactsController:
                 refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
                 self.status_bar.set_count_text(self.mandatory_model.rowCount())
                 self.detail_widget.reset_data()
+                self.main_window.tray_icon.show_notification("", "databaseDeleted")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

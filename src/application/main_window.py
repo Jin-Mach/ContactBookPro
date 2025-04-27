@@ -2,9 +2,11 @@ import pathlib
 
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QFont
-from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel
+from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, \
+    QSystemTrayIcon
 
 from src.contacts.contacts_ui.contacts_main_widget import ContactsMainWidget
+from src.contacts.contacts_utilities.tray_icon import TrayIcon
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -19,11 +21,14 @@ class MainWindow(QMainWindow):
         self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
         self.buttons_size = QSize(150, 50)
         self.icon_size = QSize(40, 40)
-        self.contacts_main_widget = ContactsMainWidget()
+        self.contacts_main_widget = ContactsMainWidget(self)
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
         IconProvider.set_window_icon(self, self.objectName(), self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        if QSystemTrayIcon.isSystemTrayAvailable():
+            self.tray_icon = TrayIcon(self)
+            self.tray_icon.show()
 
     def create_image(self) -> QLabel:
         pixmap = QPixmap(str(self.icons_path.joinpath( "dog_image.png")))

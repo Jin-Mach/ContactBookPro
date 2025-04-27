@@ -1,4 +1,7 @@
+import pathlib
+
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QLineEdit, QPushButton
 
 from src.utilities.error_handler import ErrorHandler
@@ -8,11 +11,13 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class DeleteDialogs:
     class_name = "deleteDialogWidgets"
+    icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     @staticmethod
     def show_delete_contact_dialog(parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("deleteContactDialog")
+        dialog.setWindowIcon(QIcon(str(DeleteDialogs.icon_path)))
         dialog.setFixedSize(200, 100)
         main_layout = QVBoxLayout()
         delete_contact_text_label = QLabel()
@@ -35,6 +40,7 @@ class DeleteDialogs:
     def show_delete_all_contacts_dialog(parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("deleteAllContactsDialog")
+        dialog.setWindowIcon(QIcon(str(DeleteDialogs.icon_path)))
         dialog.setFixedSize(300, 150)
         main_layout = QVBoxLayout()
         delete_all_contacts_text_label = QLabel()

@@ -1,6 +1,8 @@
 from typing import Optional
 from datetime import datetime
+import pathlib
 
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox
 
 from src.contacts.contacts_ui.dialogs.dialog_widgets.mandatory_widget import MandatoryWidget
@@ -15,6 +17,7 @@ class ContactDialog(QDialog):
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setFixedSize(600, 600)
+        self.setWindowIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
         self.update_contact = update_contact
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -77,8 +80,9 @@ class ContactDialog(QDialog):
             return None
 
     def get_data(self) -> None:
-        self.colected_data = self.colect_data()
-        self.accept()
+        if self.colect_data():
+            self.colected_data = self.colect_data()
+            self.accept()
 
     def set_contact_data(self, data: dict) -> None:
         self.mandatory_widget.set_contact_data(data)

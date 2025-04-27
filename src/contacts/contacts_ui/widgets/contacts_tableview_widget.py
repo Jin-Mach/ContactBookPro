@@ -44,6 +44,6 @@ class ContactsTableviewWidget(QTableView):
                     print("chyba indexu")
                     return
             current_row = self.mandatory_model.data(self.mandatory_model.index(current_index.row(), 0))
-            self.contact_data_controler.get_models_data(current_row)
+            self.contact_data_controler.get_models_data(current_row, self)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

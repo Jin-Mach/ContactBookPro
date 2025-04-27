@@ -1,5 +1,7 @@
+import pathlib
 from typing import Optional
 
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton, QLineEdit
 
 from src.contacts.contacts_ui.dialogs.dialog_widgets.calendar_widget import CalendarWidget
@@ -10,11 +12,12 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class CalendarDialog(QDialog):
-    def __init__(self, birthady_input: QLineEdit, parent=None) -> None:
+    def __init__(self, birthday_input: QLineEdit, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("calendarDialog")
         self.setMinimumSize(450, 350)
-        self.birthday_input = birthady_input
+        self.setWindowIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
+        self.birthday_input = birthday_input
         self.setLayout(self.create_gui())
         self.set_ui_text()
 

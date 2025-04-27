@@ -1,5 +1,7 @@
+import pathlib
+
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QIcon
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton, QComboBox, QHBoxLayout
 
 from src.utilities.language_provider import LanguageProvider
@@ -8,12 +10,13 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class DialogsProvider:
     class_name = "dialogsProvider"
+    icon_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     @staticmethod
     def show_error_dialog(error_message: str, parent=None) -> QDialog:
-        dialog = QDialog()
-        dialog.setParent(parent)
+        dialog = QDialog(parent)
         dialog.setObjectName("errorDialog")
+        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel()
@@ -30,6 +33,7 @@ class DialogsProvider:
     @staticmethod
     def show_init_error_dialog(title: str, error_text: str) -> QDialog:
         dialog = QDialog()
+        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
         dialog.setWindowTitle(title)
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
@@ -49,6 +53,7 @@ class DialogsProvider:
     @staticmethod
     def show_database_error_dialog(db_error: str) -> QDialog:
         dialog = QDialog()
+        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel()
@@ -70,6 +75,7 @@ class DialogsProvider:
     @staticmethod
     def language_selection_dialog(language_list: list) -> str:
         dialog = QDialog()
+        dialog.setWindowIcon(str(DialogsProvider.icon_path))
         dialog.setWindowTitle("Language error")
         main_layout = QVBoxLayout()
         text_label = QLabel("The selected language could not be loaded.\nPlease select a supported language from the list,\n"
