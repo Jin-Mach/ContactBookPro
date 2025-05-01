@@ -47,7 +47,7 @@ class ContactsController:
                         self.detail_model.add_contact([last_id] + data[3])
                         self.info_model.add_contact([last_id] + data[4])
                         refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                        self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count + 1)
                         index = self.mandatory_model.index(self.mandatory_model.rowCount() - 1, 0)
                         self.table_view.selectRow(index.row())
                         self.table_view.scrollTo(index)
@@ -90,7 +90,7 @@ class ContactsController:
                 if dialog.exec() == QDialog.DialogCode.Accepted:
                     self.mandatory_model.delete_contact(index.row())
                     refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                    self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                    self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count - 1)
                     self.detail_widget.reset_data()
                     self.main_window.tray_icon.show_notification("", "contactDeleted")
         except Exception as e:
@@ -103,7 +103,7 @@ class ContactsController:
                 if not reset_database():
                     self.mandatory_model.clear_database()
                 refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                self.status_bar.set_count_text(self.mandatory_model.rowCount())
+                self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.rowCount())
                 self.detail_widget.reset_data()
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")
         except Exception as e:

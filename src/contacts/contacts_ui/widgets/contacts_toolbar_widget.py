@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QH
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.controlers.contact_search_controler import ContactSearchControler
 from src.controlers.contacts_controller import ContactsController
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
@@ -26,6 +27,7 @@ class ContactsToolbarWidget(QWidget):
         self.table_view = table_view
         self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model, detail_model, info_model,
                                                      detail_widget, table_view, status_bar, self)
+        self.contact_search_controler = ContactSearchControler(mandatory_model, table_view, status_bar, self)
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -60,6 +62,11 @@ class ContactsToolbarWidget(QWidget):
         self.search_pushbutton = QPushButton()
         self.search_pushbutton.setObjectName("searchPushbutton")
         self.search_pushbutton.setFixedSize(self.buttons_size)
+        self.search_pushbutton.clicked.connect(self.search_contact)
+        self.reset_filter_pushbutton = QPushButton()
+        self.reset_filter_pushbutton.setObjectName("resetFilterPushbutton")
+        self.reset_filter_pushbutton.setFixedSize(self.buttons_size)
+        self.reset_filter_pushbutton.clicked.connect(self.reset_filter)
         main_layout.addWidget(self.add_new_contact_pushbutton)
         main_layout.addWidget(self.update_contact_pushbutton)
         main_layout.addWidget(self.delete_contact_pushbutton)
@@ -68,6 +75,7 @@ class ContactsToolbarWidget(QWidget):
         main_layout.addWidget(self.search_text_label)
         main_layout.addWidget(self.search_line_edit)
         main_layout.addWidget(self.search_pushbutton)
+        main_layout.addWidget(self.reset_filter_pushbutton)
         main_layout.addStretch()
         return main_layout
 
@@ -118,5 +126,17 @@ class ContactsToolbarWidget(QWidget):
     def delete_all_contacts(self) -> None:
         try:
             self.contacts_controler.delete_all_contacts()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def search_contact(self) -> None:
+        try:
+            self.contact_search_controler.basic_search(self.search_line_edit)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def reset_filter(self) -> None:
+        try:
+            self.contact_search_controler.reset_filter(self.search_line_edit)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

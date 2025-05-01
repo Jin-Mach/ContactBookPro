@@ -1,14 +1,16 @@
 from typing import Optional
 
 from PyQt6.QtCore import Qt, QModelIndex
-from PyQt6.QtWidgets import QTableView, QHeaderView
+from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.controlers.contact_data_controller import ContactDataController
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyTypeChecker
 class ContactsTableviewWidget(QTableView):
     def __init__(self, mandatory_model: MandatoryModel, detail_widget: ContactsDetailWidget, parent=None) -> None:
         super().__init__(parent)
@@ -25,6 +27,8 @@ class ContactsTableviewWidget(QTableView):
         self.setSortingEnabled(True)
         self.hide_colums()
         self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
+        self.selectionModel().currentChanged.connect(self.set_search_text_label)
+        self.ui_text = LanguageProvider.get_ui_text(self.objectName())
 
     def hide_colums(self) -> None:
         column_count = self.model().columnCount()
@@ -47,3 +51,14 @@ class ContactsTableviewWidget(QTableView):
             self.contact_data_controler.get_models_data(current_row, self)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_search_text_label(self) -> None:
+        try:
+            tool_bar = self.parent().findChild(QWidget, "contactsToolbarWidget")
+            current_column = self.currentIndex().column()
+            search_filter = self.ui_text["searchFilter"]
+            current_filter = search_filter[str(current_column)]
+            if tool_bar:
+                tool_bar.search_text_label.setText(f"{self.ui_text["searchText"]} {current_filter}")
+        except Exception as e:
+            ErrorHandler.exception_handler(e)

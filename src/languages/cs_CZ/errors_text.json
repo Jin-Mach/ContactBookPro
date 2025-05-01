@@ -31,5 +31,10 @@
   },
   "calendarDialog": {
     "selectedDateError": "Zvolené datum nemůže být vyšší než aktuální datum."
+  },
+  "contactSearchControler": {
+    "emptySearchText": "Nelze vyhledat bez zadaného textu",
+    "noTableviewSelection": "Pro rychlé vyhledávání je nutné označit sloupec",
+    "noFilteredData": "Zadanému výrazu neodpovídají žádná data.\nFiltr bude resetován."
   }
 }

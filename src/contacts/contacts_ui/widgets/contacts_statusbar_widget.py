@@ -9,7 +9,7 @@ class ContactsStatusbarWidget(QWidget):
     def __init__(self, contacts_count: int, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsStatusbarWidget")
-        self.contacts_count = contacts_count
+        self.contacts_total_count = contacts_count
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -29,10 +29,10 @@ class ContactsStatusbarWidget(QWidget):
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:
-                    widget.setText(f"{ui_text[widget.objectName()]} {self.contacts_count}/{self.contacts_count}")
+                    widget.setText(f"{ui_text[widget.objectName()]} {self.contacts_total_count}/{self.contacts_total_count}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_count_text(self, new_contacts_count: int) -> None:
+    def set_count_text(self, filter_count: int, total_count: int) -> None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        self.count_display_label.setText(f"{ui_text[self.count_display_label.objectName()]} {new_contacts_count}/{new_contacts_count}")
+        self.count_display_label.setText(f"{ui_text[self.count_display_label.objectName()]} {filter_count}/{total_count}")

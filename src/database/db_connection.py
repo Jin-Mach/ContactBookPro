@@ -32,8 +32,8 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         personal_email TEXT NOT NULL,
         personal_phone_number TEXT NOT NULL,
         personal_city TEXT NOT NULL,
-        personal_street TEXT NOT NULL,
-        personal_house_number TEXT,
+        personal_street TEXT,
+        personal_house_number TEXT NOT NULL,
         personal_post_code TEXT NOT NULL,
         personal_country TEXT NOT NULL
         )

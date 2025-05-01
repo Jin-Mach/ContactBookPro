@@ -7,6 +7,15 @@
     "searchTextLabel": "vyhledat:",
     "searchLineEdit": "text pro vyhledání..."
   },
+  "contactsTableviewWidget": {
+    "searchText": "hledat dle:",
+    "searchFilter": {
+      "3": "jméno",
+      "4": "email",
+      "5": "telefon",
+      "6": "adresa"
+    }
+  },
   "contactsStatusbarWidget": {
     "countDisplayLabel": "filtr:"
   },
