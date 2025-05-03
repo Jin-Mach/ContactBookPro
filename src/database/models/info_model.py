@@ -1,4 +1,4 @@
-from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
+from PyQt6.QtSql import QSqlTableModel, QSqlDatabase, QSqlQuery
 
 from src.database.database_utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
@@ -8,12 +8,14 @@ class InfoModel(QSqlTableModel):
     def __init__(self, db_connection: QSqlDatabase, parent=None) -> None:
         super().__init__(parent, db_connection)
         self.setObjectName("infoModel")
+        self.db_connection = db_connection
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
         self.setTable("info")
         self.select()
 
     def add_contact(self, data: list) -> None:
         record = self.record()
+        data = data + [0]
         for index, value in enumerate(data):
             record.setValue(index, value)
         self.insertRecord(-1, record)
@@ -28,3 +30,12 @@ class InfoModel(QSqlTableModel):
         self.setData(index, current_date)
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False)
+
+    def update_location_data(self, contact_id: int, coordinates: tuple) -> None:
+        location_query = QSqlQuery(self.db_connection)
+        location_query.prepare("UPDATE info SET latitude = ?, longitude = ? WHERE id = ?")
+        location_query.addBindValue(coordinates[0])
+        location_query.addBindValue(coordinates[1])
+        location_query.addBindValue(contact_id)
+        if not location_query.exec():
+            ErrorHandler.database_error(location_query.lastError().text(), False)

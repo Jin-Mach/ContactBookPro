@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from PyQt6.QtCore import QThreadPool
 from PyQt6.QtWidgets import QDialog, QMainWindow
 
 from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
@@ -15,6 +16,8 @@ from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
 from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
+from src.threads.location_thread import LocationThread
+from src.threads.signal_provider import SignalProvider
 from src.utilities.error_handler import ErrorHandler
 
 
@@ -32,6 +35,7 @@ class ContactsController:
         self.table_view = table_view
         self.status_bar = status_bar
         self.parent = parent
+        self.signal_provider = SignalProvider()
 
     def add_new_contact(self) -> None:
         try:
@@ -53,6 +57,9 @@ class ContactsController:
                         self.table_view.scrollTo(index)
                         self.table_view.contact_data_controler.get_models_data(last_id)
                         self.main_window.tray_icon.show_notification(f"{data[0][2]} {data[0][3]}", "contactAdded")
+                        location_thread = LocationThread(last_id, data[0], self.signal_provider)
+                        QThreadPool.globalInstance().start(location_thread)
+                        self.signal_provider.contact_coordinates.connect(lambda contact_id, coords: self.info_model.update_location_data(contact_id, coords))
                     else:
                         ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
         except Exception as e:

@@ -7,6 +7,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class TabInfoWidget(QTabWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -19,6 +20,8 @@ class TabInfoWidget(QTabWidget):
         self.set_ui_text()
         self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
+                        self.linkedin_pushbutton, self.github_pushbutton, self.work_website_pushbutton]
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -213,8 +216,6 @@ class TabInfoWidget(QTabWidget):
             self.work_country_label.setText(data["work_country"])
             self.urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url,
                          self.website_url]
-            self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
-                            self.linkedin_pushbutton, self.github_pushbutton, self.work_website_pushbutton]
             update_buttons_state(self.buttons, self.urls)
             self.setCurrentIndex(0)
         except Exception as e:

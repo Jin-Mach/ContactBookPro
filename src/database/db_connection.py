@@ -77,6 +77,7 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         updated TEXT,
         latitude REAL,
         longitude REAL,
+        location_tries INTEGER NOT NULL,
         FOREIGN KEY (id) REFERENCES mandatory(id) ON DELETE CASCADE
         )
     """)
