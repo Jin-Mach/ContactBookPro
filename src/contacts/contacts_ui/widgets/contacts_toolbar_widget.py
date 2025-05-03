@@ -5,8 +5,10 @@ from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QH
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.controlers.completer_controler import CompleterControler
 from src.controlers.contact_search_controler import ContactSearchControler
 from src.controlers.contacts_controller import ContactsController
+from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
@@ -21,10 +23,11 @@ from src.utilities.language_provider import LanguageProvider
 class ContactsToolbarWidget(QWidget):
     def __init__(self, main_window: QMainWindow, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
                  info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
-                 status_bar: ContactsStatusbarWidget, parent=None) -> None:
+                 status_bar: ContactsStatusbarWidget, completer_model: CompleterModel, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.table_view = table_view
+        self.completer_model = completer_model
         self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model, detail_model, info_model,
                                                      detail_widget, table_view, status_bar, self)
         self.contact_search_controler = ContactSearchControler(mandatory_model, table_view, status_bar, self)
@@ -33,6 +36,8 @@ class ContactsToolbarWidget(QWidget):
         self.set_ui_text()
         self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
+        self.completer_controler.setup()
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()

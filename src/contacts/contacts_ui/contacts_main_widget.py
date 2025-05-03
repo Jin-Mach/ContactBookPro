@@ -4,6 +4,7 @@ from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDeta
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.contacts_ui.widgets.contacts_toolbar_widget import ContactsToolbarWidget
+from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
@@ -22,12 +23,14 @@ class ContactsMainWidget(QWidget):
         self.social_model = SocialModel(db_connection)
         self.detail_model = DetailModel(db_connection)
         self.info_model = InfoModel(db_connection)
+        self.completer_model = CompleterModel(db_connection)
         self.contacts_detail_widget = ContactsDetailWidget(self)
         self.contacts_tableview_widget = ContactsTableviewWidget(self.mandatory_model, self.contacts_detail_widget, self)
         self.contacts_statusbar_widget = ContactsStatusbarWidget(self.mandatory_model.rowCount(), self)
         self.contacts_toolbar_widget = ContactsToolbarWidget(main_window, self.mandatory_model, self.work_model, self.social_model,
                                                              self.detail_model, self.info_model, self.contacts_detail_widget,
-                                                             self.contacts_tableview_widget, self.contacts_statusbar_widget, self)
+                                                             self.contacts_tableview_widget, self.contacts_statusbar_widget,
+                                                             self.completer_model, self)
         self.setLayout(self.create_gui())
 
     def create_gui(self) -> QLayout:

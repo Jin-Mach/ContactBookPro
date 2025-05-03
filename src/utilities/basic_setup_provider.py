@@ -34,10 +34,11 @@ class BasicSetupProvider:
     def check_icon_files() -> dict:
         required_files = [
             "addNewContactPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png", "deleteContactPushbutton_icon.png",
-            "searchPushbutton_icon.png", "updateContactPushbutton_icon.png", "dog_image.png", "mainWindowDatabaseButton_icon.png",
-            "window_icon.png","no_user_photo.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png",
-            "githubPushbutton_icon.png", "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
-            "xPushbutton_icon.png"
+            "resetFilterPushbutton_icon.png", "searchPushbutton_icon.png", "updateContactPushbutton_icon.png",
+            "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png", "dialogResetCalendarPushbutton_icon.png",
+            "dialogResetPhotoButton_icon.png", "no_user_photo.png", "dog_image.png", "mainWindowDatabaseButton_icon.png",
+            "window_icon.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
+            "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/src/icons"

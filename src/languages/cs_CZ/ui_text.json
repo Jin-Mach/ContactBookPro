@@ -1,7 +1,7 @@
 {
   "mainWindow": {
     "mainWindowTitle": "Databáze kontaktů",
-    "mainWindowDatabaseButton": "Databáze"
+    "mainWindowDatabaseButton": "Kontakty"
   },
   "contactsToolbarWidget": {
     "searchTextLabel": "vyhledat:",
