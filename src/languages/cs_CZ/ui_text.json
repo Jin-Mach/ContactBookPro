@@ -10,11 +10,15 @@
   "contactsTableviewWidget": {
     "searchText": "hledat dle:",
     "searchFilter": {
+      "1": "pohlaví",
+      "2": "vztah",
       "3": "jméno",
       "4": "email",
       "5": "telefon",
       "6": "adresa"
-    }
+    },
+    "gender_items": ["Vše", "Muž", "Žena"],
+    "relationship_items": ["Vše", "Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"]
   },
   "contactsStatusbarWidget": {
     "countDisplayLabel": "filtr:"
@@ -73,5 +77,8 @@
     "contactUpdated": "Kontakt upraven",
     "contactDeleted": "Kontakt smazán",
     "databaseDeleted": "Databáze odstraněna"
+  },
+  "mandatoryModel": {
+    "gengerHeaderText": "Pohlaví uživatele"
   }
 }

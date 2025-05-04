@@ -10,10 +10,12 @@ class CompleterControler:
         self.query_model = query_model
         self.table_view = table_view
         self.search_input = search_input
+        self.completer_state = False
+        self.search_input.textChanged.connect(lambda: self.change_state(False))
 
     def setup(self) -> None:
-        completer = self.get_completer()
-        self.search_input.setCompleter(completer)
+        self.completer = self.get_completer()
+        self.search_input.setCompleter(self.completer)
         self.search_input.textChanged.connect(self.update_completer)
 
     def get_completer(self) -> QCompleter:
@@ -22,8 +24,13 @@ class CompleterControler:
         completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
         completer.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
         completer.setFilterMode(Qt.MatchFlag.MatchContains)
+        completer.activated.connect(lambda: self.change_state(True))
         return completer
 
     def update_completer(self) -> None:
+        self.state = False
         column = self.table_view.selectionModel().currentIndex().column()
         self.query_model.get_data(column, self.search_input)
+
+    def change_state(self, state: bool) -> None:
+        self.completer_state = state

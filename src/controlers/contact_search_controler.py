@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QLineEdit
+from PyQt6.QtWidgets import QLineEdit, QComboBox
 
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.controlers.completer_controler import CompleterControler
 from src.database.database_utilities.search_provider import SearchProvider
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.dialogs_provider import DialogsProvider
@@ -10,18 +11,23 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class ContactSearchControler:
-    def __init__(self, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
-                 parent=None) -> None:
+    def __init__(self, controler: CompleterControler, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
+                 search_combobox: QComboBox, parent=None) -> None:
         self.class_name = "contactSearchControler"
+        self.controler = controler
         self.mandatory_model = mandatory_model
         self.table_view = table_view
         self.status_bar = status_bar
+        self.search_combobox = search_combobox
         self.parent = parent
         self.error_text = LanguageProvider.get_error_text(self.class_name)
 
     def basic_search(self, search_input: QLineEdit) -> None:
         search_text = search_input.text().strip()
+        self.new_filter = None
         filters = {
+            "1": "gender VALUE",
+            "2": "relationship VALUE",
             "3": "first_name LIKE '%VALUE%' OR second_name LIKE '%VALUE%'",
             "4": "personal_email LIKE '%VALUE%'",
             "5": "personal_phone_number LIKE '%VALUE%'",
@@ -31,30 +37,47 @@ class ContactSearchControler:
             )
         }
         try:
-            if search_text:
-                if self.table_view.selectionModel().hasSelection():
-                    column_index = self.table_view.currentIndex().column()
-                    new_filter = filters[str(column_index)].replace("VALUE", search_text)
-                    SearchProvider.basic_search(self.mandatory_model, new_filter)
-                    if self.mandatory_model.rowCount() < 1:
-                        DialogsProvider.show_error_dialog(self.error_text["noFilteredData"])
-                        SearchProvider.reset_filter(self.mandatory_model)
-                        search_input.setFocus()
-                    self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
+            if self.table_view.selectionModel().hasSelection():
+                column_index = self.table_view.currentIndex().column()
+                combobox_index = self.search_combobox.currentIndex()
+                if column_index in (1, 2):
+                    if combobox_index == 0:
+                        self.new_filter = filters[str(column_index)].replace("VALUE", "LIKE '%'")
+                    else:
+                        self.new_filter = filters[str(column_index)].replace("VALUE", f"= {str(combobox_index)}")
                 else:
-                    DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"], self.parent)
+                    if search_text:
+                        if column_index == 3:
+                            self.new_filter = self.return_multicolumn_filter(search_text, ["first_name", "second_name"])
+                        elif column_index == 6:
+                            self.new_filter = self.return_multicolumn_filter(search_text, ["personal_city", "personal_street",
+                                                                                           "personal_house_number", "personal_post_code",
+                                                                                           "personal_country"])
+                        else:
+                            self.new_filter = filters[str(column_index)].replace("VALUE", search_text)
+                if self.new_filter:
+                    if column_index in (1, 2) or search_text:
+                        SearchProvider.basic_search(self.mandatory_model, self.new_filter)
+                        if self.mandatory_model.rowCount() < 1:
+                            DialogsProvider.show_error_dialog(self.error_text["noFilteredData"])
+                            SearchProvider.reset_filter(self.mandatory_model)
+                            search_input.setFocus()
+                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
+                    else:
+                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"], self.parent)
+                        if self.parent:
+                            self.parent.search_line_edit.setFocus()
             else:
-                DialogsProvider.show_error_dialog(self.error_text["emptySearchText"], self.parent)
-                if self.parent:
-                    self.parent.search_line_edit.setFocus()
+                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"], self.parent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
     def reset_filter(self, search_input: QLineEdit) -> None:
         ui_text = LanguageProvider.get_ui_text(self.parent.objectName())
         try:
+            self.search_combobox.setDisabled(True)
             search_input.clear()
-            search_input.setFocus()
+            search_input.setDisabled(True)
             SearchProvider.reset_filter(self.mandatory_model)
             self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.rowCount())
             self.status_bar.contacts_total_count = self.mandatory_model.rowCount()
@@ -62,3 +85,32 @@ class ContactSearchControler:
                 self.parent.search_text_label.setText(ui_text[self.parent.search_text_label.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def return_multicolumn_filter(self, search_text: str, columns: list[str]) -> str:
+        prepared_text = search_text.split()
+        filter_operator = " OR "
+        filter_list = []
+        column_index = self.table_view.currentIndex().column()
+        if not self.controler.completer_state:
+            for word in prepared_text:
+                for column_name in columns:
+                    filter_list.append(f"{column_name} LIKE '%{word}%'")
+            return filter_operator.join(filter_list)
+        if column_index == 3:
+            return self.set_name_filter(prepared_text)
+        elif column_index == 6:
+            return self.set_address_filter(search_text)
+        return ""
+
+    def set_name_filter(self, splitted_text: list) -> str:
+        return f"first_name = '{splitted_text[0]}' AND second_name = '{splitted_text[1]}'"
+
+    def set_address_filter(self, search_text: str) -> str:
+        splitted_text = search_text.split(",")
+        prepared_text = []
+        for part in splitted_text:
+            prepared_text.append(part.strip())
+        return (f"personal_city = '{prepared_text[0]}' AND "
+                f"personal_house_number = '{prepared_text[-3]}' AND "
+                f"personal_post_code = '{prepared_text[-2]}' AND "
+                f"personal_country = '{prepared_text[-1]}'")

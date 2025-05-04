@@ -1,10 +1,14 @@
 from PyQt6.QtCore import Qt
-from PyQt6.QtSql import QSqlTableModel, QSqlDatabase, QSqlQuery
+from PyQt6.QtGui import QIcon
+from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
 
 from src.database.database_utilities.set_manadatory_headers import set_manadatory_model_headers
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
+from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyTypeChecker
 class MandatoryModel(QSqlTableModel):
     def __init__(self, db_connection: QSqlDatabase, parent=None) -> None:
         super().__init__(parent, db_connection)
@@ -13,24 +17,51 @@ class MandatoryModel(QSqlTableModel):
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
         self.setSort(0, Qt.SortOrder.AscendingOrder)
         set_manadatory_model_headers(self)
+        self.icons_path = IconProvider.icons_path.joinpath("personalTabInfoWidget")
+        self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
+        self.female_icon = str(self.icons_path.joinpath("female_icon.png"))
+        self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
+        self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["gengerHeaderText"]
         self.select()
+
+    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
+        if role == Qt.ItemDataRole.ToolTipRole:
+            if orientation == Qt.Orientation.Horizontal:
+                if section == 1:
+                    return self.gender_header_text
+        return super().headerData(section, orientation, role)
 
     def data(self, index, role=Qt.ItemDataRole.DisplayRole):
         if role == Qt.ItemDataRole.DisplayRole:
-            if index.column() == 3:
+            if index.column() == 1:
+                return ""
+            elif index.column() == 2:
+                value = super().data(self.index(index.row(), 2), role)
+                return self.relationship["relationship_key"][str(value)]
+            elif index.column() == 3:
                 first_name = super().data(self.index(index.row(), 3), role)
                 second_name = super().data(self.index(index.row(), 4), role)
                 return f"{first_name} {second_name}"
-            elif index.column() == 6:
-                adress = super().data(self.index(index.row(), 7), role)
-                city = super().data(self.index(index.row(), 8), role)
-                post_code = super().data(self.index(index.row(), 9), role)
-                country = super().data(self.index(index.row(), 10), role)
-                return f"{adress}, {city}, {post_code}, {country}"
             elif index.column() == 4:
                 return super().data(self.index(index.row(), 5), role)
             elif index.column() == 5:
                 return super().data(self.index(index.row(), 6), role)
+            elif index.column() == 6:
+                city = super().data(self.index(index.row(), 7), role)
+                street = super().data(self.index(index.row(), 8), role)
+                house_number = super().data(self.index(index.row(), 9), role)
+                post_code = super().data(self.index(index.row(), 10), role)
+                country = super().data(self.index(index.row(), 11), role)
+                if not street:
+                    return f"{city}, {house_number}, {post_code}, {country}"
+                return f"{city}, {street}, {house_number}, {post_code}, {country}"
+        if role == Qt.ItemDataRole.DecorationRole:
+            if index.column() == 1:
+                value = super().data(self.index(index.row(), 1), Qt.ItemDataRole.DisplayRole)
+                if value == str(1):
+                    return QIcon(self.male_icon)
+                else:
+                    return QIcon(self.female_icon)
         if role == Qt.ItemDataRole.TextAlignmentRole:
             return Qt.AlignmentFlag.AlignCenter
         return super().data(index, role)

@@ -17,15 +17,15 @@ class CompleterModel(QSqlQueryModel):
             "4": f"SELECT personal_email FROM mandatory WHERE personal_email LIKE '%{text}%' ORDER BY personal_email ASC",
             "5": f"SELECT personal_phone_number FROM mandatory WHERE personal_phone_number LIKE '%{text}%' ORDER BY personal_phone_number ASC",
             "6": """
-                                SELECT 
-                                    personal_city || ' ' || 
-                                    COALESCE(personal_street || ' ', '') || 
-                                    personal_house_number || ' ' || 
-                                    personal_post_code || ' ' || 
-                                    personal_country AS full_address 
-                                FROM mandatory
-                                ORDER BY full_address ASC
-                            """
+                    SELECT 
+                        personal_city || ', ' || 
+                        COALESCE(personal_street || ', ', '') || 
+                        personal_house_number || ', ' || 
+                        personal_post_code || ', ' || 
+                        personal_country AS full_address 
+                        FROM mandatory
+                        ORDER BY full_address ASC
+                    """
         }
         if column_index is not None and str(column_index) in query_sql:
             sql = query_sql[str(column_index)]

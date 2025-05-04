@@ -21,18 +21,26 @@ class ContactsTableviewWidget(QTableView):
         self.setModel(self.mandatory_model)
         self.setSelectionMode(QTableView.SelectionMode.SingleSelection)
         self.setEditTriggers(QTableView.EditTrigger.NoEditTriggers)
-        self.resizeColumnsToContents()
-        self.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.setSortingEnabled(True)
-        self.hide_colums()
+        self.set_headers()
         self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
         self.selectionModel().currentChanged.connect(self.set_search_text_label)
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+        self.gender_items = self.ui_text["gender_items"]
+        self.relationship_items = self.ui_text["relationship_items"]
 
-    def hide_colums(self) -> None:
+    def set_headers(self) -> None:
+        self.setColumnWidth(1, 30)
+        self.setColumnWidth(4, 250)
+        self.setColumnWidth(5, 150)
+        self.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
+        self.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
+        self.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
+        self.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.Fixed)
+        self.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.Stretch)
         column_count = self.model().columnCount()
-        columns = [3, 4, 5, 6]
+        columns = [1, 2, 3, 4, 5, 6]
         for index in range(column_count):
             if index in columns:
                 self.setColumnHidden(index, False)
@@ -56,6 +64,20 @@ class ContactsTableviewWidget(QTableView):
         try:
             tool_bar = self.parent().findChild(QWidget, "contactsToolbarWidget")
             current_column = self.currentIndex().column()
+            if tool_bar:
+                if current_column == 1 or current_column == 2:
+                    tool_bar.search_line_edit.clear()
+                    tool_bar.search_combobox.clear()
+                    if current_column == 1:
+                        tool_bar.search_combobox.addItems(self.gender_items)
+                    else:
+                        tool_bar.search_combobox.addItems(self.relationship_items)
+                    tool_bar.search_combobox.setDisabled(False)
+                    tool_bar.search_line_edit.setDisabled(True)
+                else:
+                    tool_bar.search_combobox.clear()
+                    tool_bar.search_combobox.setDisabled(True)
+                    tool_bar.search_line_edit.setDisabled(False)
             search_filter = self.ui_text["searchFilter"]
             current_filter = search_filter[str(current_column)]
             if tool_bar:

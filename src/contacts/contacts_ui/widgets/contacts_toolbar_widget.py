@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow
+from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
@@ -28,16 +28,17 @@ class ContactsToolbarWidget(QWidget):
         self.setObjectName("contactsToolbarWidget")
         self.table_view = table_view
         self.completer_model = completer_model
-        self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model, detail_model, info_model,
-                                                     detail_widget, table_view, status_bar, self)
-        self.contact_search_controler = ContactSearchControler(mandatory_model, table_view, status_bar, self)
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_tooltips_text()
-        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model,
+                                                     detail_model, info_model,
+                                                     detail_widget, table_view, status_bar, self)
         self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
+        self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
+        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()
@@ -60,10 +61,15 @@ class ContactsToolbarWidget(QWidget):
         self.search_text_label = QLabel()
         self.search_text_label.setFont(QFont("Arial", 12))
         self.search_text_label.setObjectName("searchTextLabel")
+        self.search_combobox = QComboBox()
+        self.search_combobox.setObjectName("searchCombobox")
+        self.search_combobox.setDisabled(True)
+        self.search_combobox.setFixedWidth(200)
         self.search_line_edit = QLineEdit()
         self.search_line_edit.setObjectName("searchLineEdit")
         self.search_line_edit.setFixedSize(400, 35)
         self.search_line_edit.setFont(QFont("Arial", 15))
+        self.search_line_edit.setDisabled(True)
         self.search_pushbutton = QPushButton()
         self.search_pushbutton.setObjectName("searchPushbutton")
         self.search_pushbutton.setFixedSize(self.buttons_size)
@@ -78,6 +84,7 @@ class ContactsToolbarWidget(QWidget):
         main_layout.addWidget(self.delete_all_contacts_pushbutton)
         main_layout.addStretch()
         main_layout.addWidget(self.search_text_label)
+        main_layout.addWidget(self.search_combobox)
         main_layout.addWidget(self.search_line_edit)
         main_layout.addWidget(self.search_pushbutton)
         main_layout.addWidget(self.reset_filter_pushbutton)
