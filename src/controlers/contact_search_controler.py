@@ -21,6 +21,7 @@ class ContactSearchControler:
         self.search_combobox = search_combobox
         self.parent = parent
         self.error_text = LanguageProvider.get_error_text(self.class_name)
+        self.index_error_text = LanguageProvider.get_error_text("widgetErrors")
 
     def basic_search(self, search_input: QLineEdit) -> None:
         search_text = search_input.text().strip()
@@ -91,16 +92,20 @@ class ContactSearchControler:
         filter_operator = " OR "
         filter_list = []
         column_index = self.table_view.currentIndex().column()
-        if not self.controler.completer_state:
-            for word in prepared_text:
-                for column_name in columns:
-                    filter_list.append(f"{column_name} LIKE '%{word}%'")
-            return filter_operator.join(filter_list)
-        if column_index == 3:
-            return self.set_name_filter(prepared_text)
-        elif column_index == 6:
-            return self.set_address_filter(search_text)
-        return ""
+        if column_index > -1:
+            if not self.controler.completer_state:
+                for word in prepared_text:
+                    for column_name in columns:
+                        filter_list.append(f"{column_name} LIKE '%{word}%'")
+                return filter_operator.join(filter_list)
+            if column_index == 3:
+                return self.set_name_filter(prepared_text)
+            elif column_index == 6:
+                return self.set_address_filter(search_text)
+            return ""
+        else:
+            DialogsProvider.show_error_dialog(self.index_error_text["indexError"], self.parent)
+            return ""
 
     def set_name_filter(self, splitted_text: list) -> str:
         return f"first_name = '{splitted_text[0]}' AND second_name = '{splitted_text[1]}'"

@@ -18,7 +18,9 @@ from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
 from src.threads.location_thread import LocationThread
 from src.threads.signal_provider import SignalProvider
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
 class ContactsController:
@@ -36,6 +38,7 @@ class ContactsController:
         self.status_bar = status_bar
         self.parent = parent
         self.signal_provider = SignalProvider()
+        self.error_text = LanguageProvider.get_error_text("widgetErrors")
 
     def add_new_contact(self) -> None:
         try:
@@ -85,7 +88,7 @@ class ContactsController:
                     self.table_view.set_detail_data(index)
                     self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
             else:
-                ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
+                DialogsProvider.show_error_dialog(self.error_text["indexError"], self.parent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -100,6 +103,8 @@ class ContactsController:
                     self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count - 1)
                     self.detail_widget.reset_data()
                     self.main_window.tray_icon.show_notification("", "contactDeleted")
+            else:
+                DialogsProvider.show_error_dialog(self.error_text["indexError"], self.parent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 

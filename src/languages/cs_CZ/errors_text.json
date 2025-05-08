@@ -36,5 +36,8 @@
     "emptySearchText": "Nelze vyhledat bez zadaného textu",
     "noTableviewSelection": "Pro rychlé vyhledávání je nutné označit sloupec",
     "noFilteredData": "Zadanému výrazu neodpovídají žádná data.\nFiltr bude resetován."
+  },
+  "widgetErrors": {
+    "indexError": "Není zvolen platný index. Opakuj výběr znovu."
   }
 }

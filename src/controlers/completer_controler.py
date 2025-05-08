@@ -29,8 +29,9 @@ class CompleterControler:
 
     def update_completer(self) -> None:
         self.state = False
-        column = self.table_view.selectionModel().currentIndex().column()
-        self.query_model.get_data(column, self.search_input)
+        index = self.table_view.selectionModel().currentIndex()
+        if index.isValid():
+            self.query_model.get_data(index.column(), self.search_input)
 
     def change_state(self, state: bool) -> None:
         self.completer_state = state
