@@ -66,3 +66,4 @@ class AdvancedSearchDialog(QDialog):
     def reset_all_filters(self) -> None:
         self.search_tab_widget.setCurrentIndex(0)
         self.search_mandatory_widget.reset_all_filters()
+        self.search_non_mandatory_widget.search_work_widget.reset_all_filters()

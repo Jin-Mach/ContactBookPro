@@ -23,8 +23,7 @@ class MandatoryWidget(QWidget):
         self.default_data = None
 
     def create_gui(self) -> QLayout:
-        main_layout = QVBoxLayout()
-        form_layout = QFormLayout()
+        main_layout = QFormLayout()
         self.dialog_gender_text_label = QLabel()
         self.dialog_gender_text_label.setObjectName("dialogGenderTextLabel")
         self.dialog_gender_combobox = QComboBox()
@@ -85,8 +84,7 @@ class MandatoryWidget(QWidget):
             (self.dialog_country_text_label, self.dialog_country_edit),
         ]
         for label, edit in fields:
-            form_layout.addRow(label, edit)
-        main_layout.addLayout(form_layout)
+            main_layout.addRow(label, edit)
         return main_layout
 
     def set_ui_text(self) -> None:

@@ -20,8 +20,7 @@ class SearchMandatoryWidget(QWidget):
         self.set_validators()
 
     def create_gui(self) -> QLayout:
-        main_layout = QVBoxLayout()
-        form_layout = QFormLayout()
+        main_layout = QFormLayout()
         self.search_gender_text_label = QLabel()
         self.search_gender_text_label.setObjectName("searchGenderTextLabel")
         self.search_gender_combobox = QComboBox()
@@ -95,7 +94,7 @@ class SearchMandatoryWidget(QWidget):
         self.search_country_operator = QComboBox()
         self.search_country_operator.setObjectName("searchCountryOperator")
         self.search_country_operator.setFixedWidth(self.operator_width)
-        fileds = [
+        fields = [
             (self.search_gender_text_label, self.search_gender_combobox, None),
             (self.search_relationship_text_label, self.search_relationship_combobox, None),
             (self.search_first_name_text_label, self.search_first_name_edit, self.search_first_name_operator),
@@ -109,7 +108,7 @@ class SearchMandatoryWidget(QWidget):
             (self.search_country_text_label, self.search_country_edit, self.search_country_operator)
         ]
         tooltip_text = LanguageProvider.get_tooltips_text("advancedSearchDialog")
-        for label, edit, operator in fileds:
+        for label, edit, operator in fields:
             layout = QHBoxLayout()
             clear_filter_pushbutton = QPushButton()
             clear_filter_pushbutton.setObjectName("clearFilterPushbutton")
@@ -124,8 +123,7 @@ class SearchMandatoryWidget(QWidget):
             if isinstance(edit, QComboBox):
                 layout.addStretch()
             layout.addWidget(clear_filter_pushbutton)
-            form_layout.addRow(label, layout)
-        main_layout.addLayout(form_layout)
+            main_layout.addRow(label, layout)
         return main_layout
 
     def set_ui_text(self) -> None:
@@ -139,7 +137,7 @@ class SearchMandatoryWidget(QWidget):
                 elif isinstance(widget, QComboBox):
                     if widget.objectName().endswith("Combobox") and widget.objectName() in ui_text:
                         widget.addItems(ui_text[widget.objectName()])
-                    else:
+                    elif "operators" in ui_text:
                         widget.addItems(ui_text["operators"])
                 elif isinstance(widget, QLineEdit):
                     if widget.objectName() in ui_text:

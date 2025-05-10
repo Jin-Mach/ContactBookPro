@@ -31,5 +31,29 @@
     "searchHouseNumberEdit": "Zadej číslo popisné...",
     "searchPostCodeEdit": "Zadej PSČ...",
     "searchCountryEdit": "Zadej stát..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Pracovní",
+    "social": "Sociální sítě",
+    "detail": "Detailní"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Firma",
+    "searchWorkEmailTextLabel": "Email",
+    "searchWorkPhoneNumberTextLabel": "Tel. číslo",
+    "searchWorkCityTextLabel": "Město",
+    "searchWorkStreetTextLabel": "Ulice",
+    "searchWorkHouseNumberTextLabel": "Číslo popisné",
+    "searchWorkPostCodeTextLabel": "PSČ",
+    "searchWorkCountryTextLabel": "Stát",
+    "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
+    "searchWorkCompanyEdit": "Zadej název firmy...",
+    "searchWorkEmailEdit": "Zadej email...",
+    "searchWorkPhoneNumberEdit": "Zadej tel. číslo...",
+    "searchWorkCityEdit": "Zadej město...",
+    "searchWorkStreetEdit": "Zadej ulici...",
+    "searchWorkHouseNumberEdit": "Zadej číslo popisné...",
+    "searcWorkPostCodeEdit": "Zadej PSČ...",
+    "searchWorkCountryEdit": "Zadej stát..."
   }
 }
