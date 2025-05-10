@@ -7,7 +7,8 @@
     "updateContactPushbutton": "Upravit kontakt",
     "deleteContactPushbutton": "Smazat vybraný kontakt",
     "deleteAllContactsPushbutton": "Smazat celou databázi",
-    "searchPushbutton": "Vyhledat",
+    "searchPushbutton": "Vyhledat dle sloupce",
+    "advancedSearchButton": "Otevře dialog pro pokročilé vyhledávání",
     "resetFilterPushbutton": "Odstranit všechny filtry"
   },
   "tabInfoWidget": {
@@ -33,5 +34,11 @@
     "setTodayButton": "Nastavit datum na dnes",
     "addDateButton": "Nastavit zvolené datum",
     "cancelDialogButton": "Zavřít kalendář"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Hledat",
+    "cancelButton": "Zavřít dialog",
+    "resetButton": "Zrušit filtry",
+    "clearFilterPushbutton": "Zruší filtr pro daný řádek"
   }
 }

@@ -3,8 +3,8 @@ from datetime import datetime
 from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtWidgets import QDialog, QMainWindow
 
-from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
-from src.contacts.contacts_ui.dialogs.delete_dialogs import DeleteDialogs
+from src.contacts.contacts_ui.contacts_dialog.contact_dialog import ContactDialog
+from src.contacts.contacts_ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget

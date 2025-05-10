@@ -1,0 +1,35 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Pokročilé vyhledávání",
+    "mandatory": "Povinné údaje",
+    "nonMandatory": "Nepovinné údaje",
+    "searchButton": "Hledat",
+    "cancelButton": "Zrušit",
+    "resetButton": "Zrušit filtry"
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Pohlaví",
+    "searchGenderCombobox": ["Vše", "Muž", "Žena"],
+    "searchRelationshipTextLabel": "Vztah",
+    "searchRelationshipCombobox": ["Vše","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
+    "searchFirstNameTextLabel": "Křestní jméno",
+    "searchSecondNameTextLabel": "Příjmení",
+    "searchEmailTextLabel": "Email",
+    "searchPhoneNumberTextLabel": "Tel. číslo",
+    "searchCityTextLabel": "Město",
+    "searchStreetTextLabel": "Ulice",
+    "searchHouseNumberTextLabel": "Číslo popisné",
+    "searchPostCodeTextLabel": "PSČ",
+    "searchCountryTextLabel": "Stát",
+    "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
+    "searchFirstNameEdit": "Zadej křestní jméno...",
+    "searchSecondNameEdit": "Zadej příjmení...",
+    "searchEmailEdit": "Zadej email...",
+    "searchPhoneNumberEdit": "Zadej tel.číslo...",
+    "searchCityEdit": "Zadej město...",
+    "searchStreetEdit": "Zadej ulici...",
+    "searchHouseNumberEdit": "Zadej číslo popisné...",
+    "searchPostCodeEdit": "Zadej PSČ...",
+    "searchCountryEdit": "Zadej stát..."
+  }
+}

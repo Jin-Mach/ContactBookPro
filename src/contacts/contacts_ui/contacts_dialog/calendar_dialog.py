@@ -4,7 +4,7 @@ from typing import Optional
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton, QLineEdit
 
-from src.contacts.contacts_ui.dialogs.dialog_widgets.calendar_widget import CalendarWidget
+from src.contacts.contacts_ui.contacts_dialog.dialog_widgets.calendar_widget import CalendarWidget
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

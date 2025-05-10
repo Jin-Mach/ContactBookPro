@@ -105,8 +105,11 @@ class MandatoryWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
 
     def set_validators(self) -> None:
+        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
         phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        email_validator = QRegularExpressionValidator(email_regex)
         phone_validator = QRegularExpressionValidator(phone_regex)
+        self.dialog_email_edit.setValidator(email_validator)
         self.dialog_phone_number_edit.setValidator(phone_validator)
 
     def return_mandatory_data(self) -> Optional[list]:

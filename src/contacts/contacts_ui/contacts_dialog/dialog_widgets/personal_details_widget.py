@@ -4,7 +4,7 @@ from PyQt6.QtCore import QSize, Qt, QByteArray
 from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QFormLayout,
                              QLineEdit, QTextEdit)
 
-from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
+from src.contacts.contacts_ui.contacts_dialog.calendar_dialog import CalendarDialog
 from src.contacts.contacts_utilities.blob_handler import BlobHandler
 from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length

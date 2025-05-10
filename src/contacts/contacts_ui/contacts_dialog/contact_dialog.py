@@ -5,8 +5,8 @@ import pathlib
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton
 
-from src.contacts.contacts_ui.dialogs.dialog_widgets.mandatory_widget import MandatoryWidget
-from src.contacts.contacts_ui.dialogs.dialog_widgets.non_mandatory_widget import NonMandatoryWidget
+from src.contacts.contacts_ui.contacts_dialog.dialog_widgets.mandatory_widget import MandatoryWidget
+from src.contacts.contacts_ui.contacts_dialog.dialog_widgets.non_mandatory_widget import NonMandatoryWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
