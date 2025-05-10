@@ -56,6 +56,10 @@ class ContactSearchControler:
                                                                                            "personal_country"])
                         else:
                             self.new_filter = filters[str(column_index)].replace("VALUE", search_text)
+                    else:
+                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"])
+                        if self.parent:
+                            self.parent.search_line_edit.setFocus()
                 if self.new_filter:
                     if column_index in (1, 2) or search_text:
                         SearchProvider.basic_search(self.mandatory_model, self.new_filter)
@@ -65,11 +69,11 @@ class ContactSearchControler:
                             search_input.setFocus()
                         self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"], self.parent)
+                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"])
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
             else:
-                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"], self.parent)
+                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -104,7 +108,7 @@ class ContactSearchControler:
                 return self.set_address_filter(search_text)
             return ""
         else:
-            DialogsProvider.show_error_dialog(self.index_error_text["indexError"], self.parent)
+            DialogsProvider.show_error_dialog(self.index_error_text["indexError"])
             return ""
 
     def set_name_filter(self, splitted_text: list) -> str:

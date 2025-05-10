@@ -31,7 +31,10 @@ class RowDataProvider:
             column_count = query.record().count()
             for column in range(column_count):
                 column_name = query.record().fieldName(column)
-                table_data[column_name] = query.value(column)
+                if query.isNull(column):
+                    table_data[column_name] = None
+                else:
+                    table_data[column_name] = query.value(column)
         return table_data
 
     @staticmethod

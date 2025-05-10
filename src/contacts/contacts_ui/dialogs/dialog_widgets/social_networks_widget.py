@@ -2,6 +2,7 @@ from typing import Optional
 
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
+from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -16,6 +17,7 @@ class SocialNetworkWidget(QWidget):
         self.non_mandatory_tab = non_mandatory_tab
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.default_data = None
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
@@ -79,29 +81,37 @@ class SocialNetworkWidget(QWidget):
                 site = widget.objectName().replace("dialog", "").replace("UrlEdit", "")
                 if text:
                     if site.lower() == "website" and not ContactValidator.validate_url(text, site):
-                        DialogsProvider.show_error_dialog(error_text["websiteValidatorError"], self)
+                        DialogsProvider.show_error_dialog(error_text["websiteValidatorError"])
                         self.set_tab_index()
                         widget.setFocus()
                         return None
                     if not ContactValidator.validate_url(text, site):
                         message = error_text["urlValidatorError"].replace("{site}", site)
-                        DialogsProvider.show_error_dialog(message, self)
+                        DialogsProvider.show_error_dialog(message)
                         self.set_tab_index()
                         widget.setFocus()
                         return None
                 social_network_data.append(text)
+            if self.default_data:
+                return [social_network_data, check_update(self.objectName(), self.default_data, social_network_data)]
             return social_network_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
 
     def set_contact_data(self, data: dict) -> None:
-        self.dialog_facebook_url_edit.setText(data["facebook_url"])
-        self.dialog_x_url_edit.setText(data["x_url"])
-        self.dialog_instagram_url_edit.setText(data["instagram_url"])
-        self.dialog_linkedin_url_edit.setText(data["linkedin_url"])
-        self.dialog_github_url_edit.setText(data["github_url"])
-        self.dialog_website_edit.setText(data["website_url"])
+        try:
+            widget_data = [data["facebook_url"], data["x_url"], data["instagram_url"], data["linkedin_url"], data["github_url"],
+                           data["website_url"]]
+            self.default_data = widget_data
+            self.dialog_facebook_url_edit.setText(widget_data[0])
+            self.dialog_x_url_edit.setText(widget_data[1])
+            self.dialog_instagram_url_edit.setText(widget_data[2])
+            self.dialog_linkedin_url_edit.setText(widget_data[3])
+            self.dialog_github_url_edit.setText(widget_data[4])
+            self.dialog_website_edit.setText(widget_data[5])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def set_tab_index(self) -> None:
         self.main_tab.setCurrentIndex(1)

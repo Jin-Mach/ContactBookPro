@@ -4,6 +4,7 @@ from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout, QTabWidget
 
+from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -19,6 +20,7 @@ class MandatoryWidget(QWidget):
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_validators()
+        self.default_data = None
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -141,23 +143,32 @@ class MandatoryWidget(QWidget):
                         widget.setFocus()
                         return None
                     mandatory_data.append(text)
+            if self.default_data:
+                return [mandatory_data, check_update(self.objectName(), self.default_data, mandatory_data)]
             return mandatory_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
 
     def set_contact_data(self, data: dict) -> None:
-        self.dialog_gender_combobox.setCurrentIndex(int(data["gender"]))
-        self.dialog_relationship_combobox.setCurrentIndex(int(data["relationship"]))
-        self.dialog_first_name_edit.setText(data["first_name"])
-        self.dialog_second_name_edit.setText(data["second_name"])
-        self.dialog_email_edit.setText(data["personal_email"])
-        self.dialog_phone_number_edit.setText(data["personal_phone_number"])
-        self.dialog_city_edit.setText(data["personal_city"])
-        self.dialog_street_edit.setText(data["personal_street"])
-        self.dialog_house_number_edit.setText(data["personal_house_number"])
-        self.dialog_post_code_edit.setText(data["personal_post_code"])
-        self.dialog_country_edit.setText(data["personal_country"])
+        try:
+            widget_data = [int(data["gender"]), int(data["relationship"]), data["first_name"], data["second_name"],
+                           data["personal_email"], data["personal_phone_number"], data["personal_city"], data["personal_street"],
+                           data["personal_house_number"], data["personal_post_code"], data["personal_country"]]
+            self.default_data = widget_data
+            self.dialog_gender_combobox.setCurrentIndex(widget_data[0])
+            self.dialog_relationship_combobox.setCurrentIndex(widget_data[1])
+            self.dialog_first_name_edit.setText(widget_data[2])
+            self.dialog_second_name_edit.setText(widget_data[3])
+            self.dialog_email_edit.setText(widget_data[4])
+            self.dialog_phone_number_edit.setText(widget_data[5])
+            self.dialog_city_edit.setText(widget_data[6])
+            self.dialog_street_edit.setText(widget_data[7])
+            self.dialog_house_number_edit.setText(widget_data[8])
+            self.dialog_post_code_edit.setText(widget_data[9])
+            self.dialog_country_edit.setText(widget_data[10])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     @staticmethod
     def return_label_text(label_list: list, widget: QWidget) -> str:

@@ -12,7 +12,7 @@ class ErrorHandler:
     @staticmethod
     def exception_handler(exception: Exception, parent=None) -> None:
         ErrorHandler.logger.error(exception, exc_info=True)
-        DialogsProvider.show_error_dialog(ErrorHandler.get_error_text(exception), parent)
+        DialogsProvider.show_error_dialog(ErrorHandler.get_error_text(exception))
 
     @staticmethod
     def get_error_text(exception: Exception) -> str:

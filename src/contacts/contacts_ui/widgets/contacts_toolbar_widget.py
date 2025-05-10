@@ -124,14 +124,16 @@ class ContactsToolbarWidget(QWidget):
     def update_existing_contact(self) -> None:
         try:
             if self.table_view.selectionModel().hasSelection():
-                self.contacts_controler.update_contact()
+                index = self.table_view.selectionModel().currentIndex()
+                self.contacts_controler.update_contact(index)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_contact(self) -> None:
         try:
             if self.table_view.selectionModel().hasSelection():
-                self.contacts_controler.delete_contact()
+                index = self.table_view.selectionModel().currentIndex()
+                self.contacts_controler.delete_contact(index)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

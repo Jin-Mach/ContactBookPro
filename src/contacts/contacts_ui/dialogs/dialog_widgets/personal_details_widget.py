@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
 
 from src.contacts.contacts_ui.dialogs.calendar_dialog import CalendarDialog
 from src.contacts.contacts_utilities.blob_handler import BlobHandler
+from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
@@ -26,6 +27,7 @@ class PersonalDetailsWidget(QWidget):
         self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.button_size, self)
         self.reset_photo_label()
+        self.default_data = None
 
     def create_gui(self) -> QLayout:
         main_layout = QGridLayout()
@@ -154,17 +156,23 @@ class PersonalDetailsWidget(QWidget):
                 personal_data.append(photo_blob)
             else:
                 personal_data.append(None)
+            if self.default_data:
+                return [personal_data, check_update(self.objectName(), self.default_data, personal_data)]
             return personal_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
 
     def set_contact_data(self, data) -> None:
-        blob = data["photo"]
-        self.set_photo_pixmap(blob, self.dialog_photo_label)
-        self.dialog_title_edit.setText(data["title"])
-        self.dialog_birthday_edit.setText(data["birthday"])
-        self.dialog_notes_edit.setPlainText(data["notes"])
+        try:
+            widget_data = [data["title"], data["birthday"], data["notes"], data["photo"]]
+            self.default_data = widget_data
+            self.dialog_title_edit.setText(widget_data[0])
+            self.dialog_birthday_edit.setText(widget_data[1])
+            self.dialog_notes_edit.setPlainText(widget_data[2])
+            self.set_photo_pixmap(widget_data[3], self.dialog_photo_label)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def set_photo_pixmap(self, blob: QByteArray, label: QLabel) -> None:
         try:

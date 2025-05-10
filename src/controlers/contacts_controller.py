@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from PyQt6.QtCore import QThreadPool
+from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtWidgets import QDialog, QMainWindow
 
 from src.contacts.contacts_ui.dialogs.contact_dialog import ContactDialog
@@ -11,6 +11,7 @@ from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsT
 from src.database.database_utilities.models_refresher import refresh_models
 from src.database.database_utilities.reset_database import reset_database
 from src.database.database_utilities.row_data_provider import RowDataProvider
+from src.database.database_utilities.update_models import update_models_data
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
@@ -39,6 +40,7 @@ class ContactsController:
         self.parent = parent
         self.signal_provider = SignalProvider()
         self.error_text = LanguageProvider.get_error_text("widgetErrors")
+        self.table_view.doubleClicked.connect(self.update_contact)
 
     def add_new_contact(self) -> None:
         try:
@@ -68,33 +70,27 @@ class ContactsController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
-    def update_contact(self) -> None:
+    def update_contact(self, index: QModelIndex) -> None:
         try:
-            index = self.table_view.selectionModel().currentIndex()
             if index.isValid():
                 id_data = self.mandatory_model.index(index.row(), 0)
                 contact_id = self.mandatory_model.data(id_data)
                 contact_data = RowDataProvider.return_row_data(contact_id)
                 dialog = ContactDialog(True, contact_data, self.parent)
                 if dialog.exec() == dialog.DialogCode.Accepted:
-                    update_data = dialog.colected_data
+                    new_data = dialog.colected_data
                     now = datetime.now().strftime("%d.%m.%Y")
-                    self.mandatory_model.update_contact(index.row(), update_data[0])
-                    self.work_model.update_contact(contact_id, update_data[1])
-                    self.social_model.update_contact(contact_id, update_data[2])
-                    self.detail_model.update_contact(contact_id, update_data[3])
-                    self.info_model.update_contact(contact_id, now)
-                    refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                    self.table_view.set_detail_data(index)
-                    self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
+                    models = [self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model]
+                    if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
+                        self.table_view.set_detail_data(index)
+                        self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
             else:
-                DialogsProvider.show_error_dialog(self.error_text["indexError"], self.parent)
+                DialogsProvider.show_error_dialog(self.error_text["indexError"])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def delete_contact(self) -> None:
+    def delete_contact(self, index: QModelIndex) -> None:
         try:
-            index = self.table_view.selectionModel().currentIndex()
             if index.isValid():
                 dialog = DeleteDialogs.show_delete_contact_dialog()
                 if dialog.exec() == QDialog.DialogCode.Accepted:
@@ -104,7 +100,7 @@ class ContactsController:
                     self.detail_widget.reset_data()
                     self.main_window.tray_icon.show_notification("", "contactDeleted")
             else:
-                DialogsProvider.show_error_dialog(self.error_text["indexError"], self.parent)
+                DialogsProvider.show_error_dialog(self.error_text["indexError"])
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 

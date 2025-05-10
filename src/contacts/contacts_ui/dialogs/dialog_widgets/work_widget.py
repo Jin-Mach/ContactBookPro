@@ -4,6 +4,7 @@ from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
+from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -19,6 +20,7 @@ class WorkWidget(QWidget):
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_validators()
+        self.default_data = None
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
@@ -95,35 +97,43 @@ class WorkWidget(QWidget):
             for widget in inputs:
                 text = widget.text().strip()
                 if widget.objectName() == "dialogWorkEmailEdit" and text and not ContactValidator.validate_email(text):
-                    DialogsProvider.show_error_dialog(error_text["emailValidatorError"], self)
+                    DialogsProvider.show_error_dialog(error_text["emailValidatorError"])
                     self.set_tab_index()
                     widget.setFocus()
                     return None
                 elif widget.objectName() == "dialogPhoneNumberEdit" and text and not ContactValidator.validate_phone_number(text):
-                    DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"], self)
+                    DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"])
                     self.set_tab_index()
                     widget.setFocus()
                     return None
                 work_data.append(text)
             if not ContactValidator.validate_work_address(self.dialog_work_city_edit, self.dialog_work_house_number_edit,
                                                           self.dialog_work_post_code_edit, self.dialog_work_country_edit):
-                DialogsProvider.show_error_dialog(error_text["workAddressValidatorError"], self)
+                DialogsProvider.show_error_dialog(error_text["workAddressValidatorError"])
                 self.set_tab_index()
                 return None
+            if self.default_data:
+                return [work_data, check_update(self.objectName(), self.default_data, work_data)]
             return work_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
 
     def set_contact_data(self, data: dict) -> None:
-        self.dialog_work_company_edit.setText(data["company_name"])
-        self.dialog_work_email_edit.setText(data["work_email"])
-        self.dialog_work_phone_number_edit.setText(data["work_phone_number"])
-        self.dialog_work_city_edit.setText(data["work_city"])
-        self.dialog_work_street_edit.setText(data["work_street"])
-        self.dialog_work_house_number_edit.setText(data["work_house_number"])
-        self.dialog_work_post_code_edit.setText(data["work_post_code"])
-        self.dialog_work_country_edit.setText(data["work_country"])
+        try:
+            widget_data = [data["company_name"], data["work_email"],  data["work_phone_number"], data["work_city"],
+                           data["work_street"], data["work_house_number"], data["work_post_code"], data["work_country"]]
+            self.default_data = widget_data
+            self.dialog_work_company_edit.setText(widget_data[0])
+            self.dialog_work_email_edit.setText(widget_data[1])
+            self.dialog_work_phone_number_edit.setText(widget_data[2])
+            self.dialog_work_city_edit.setText(widget_data[3])
+            self.dialog_work_street_edit.setText(widget_data[4])
+            self.dialog_work_house_number_edit.setText(widget_data[5])
+            self.dialog_work_post_code_edit.setText(widget_data[6])
+            self.dialog_work_country_edit.setText(widget_data[7])
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def set_tab_index(self) -> None:
         self.main_tab.setCurrentIndex(1)
