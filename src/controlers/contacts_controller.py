@@ -70,37 +70,45 @@ class ContactsController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
-    def update_contact(self, index: QModelIndex) -> None:
+    def update_contact(self) -> None:
         try:
-            if index.isValid():
-                id_data = self.mandatory_model.index(index.row(), 0)
-                contact_id = self.mandatory_model.data(id_data)
-                contact_data = RowDataProvider.return_row_data(contact_id)
-                dialog = ContactDialog(True, contact_data, self.parent)
-                if dialog.exec() == dialog.DialogCode.Accepted:
-                    new_data = dialog.colected_data
-                    now = datetime.now().strftime("%d.%m.%Y")
-                    models = [self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model]
-                    if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
-                        self.table_view.set_detail_data(index)
-                        self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
+            if self.table_view.selectionModel().hasSelection():
+                index = self.table_view.selectionModel().currentIndex()
+                if index.isValid():
+                    id_data = self.mandatory_model.index(index.row(), 0)
+                    contact_id = self.mandatory_model.data(id_data)
+                    contact_data = RowDataProvider.return_row_data(contact_id)
+                    dialog = ContactDialog(True, contact_data, self.parent)
+                    if dialog.exec() == dialog.DialogCode.Accepted:
+                        new_data = dialog.colected_data
+                        now = datetime.now().strftime("%d.%m.%Y")
+                        models = [self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model]
+                        if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
+                            self.table_view.set_detail_data(index)
+                            self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
+                else:
+                    DialogsProvider.show_error_dialog(self.error_text["indexError"])
             else:
-                DialogsProvider.show_error_dialog(self.error_text["indexError"])
+                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def delete_contact(self, index: QModelIndex) -> None:
+    def delete_contact(self) -> None:
         try:
-            if index.isValid():
-                dialog = DeleteDialogs.show_delete_contact_dialog()
-                if dialog.exec() == QDialog.DialogCode.Accepted:
-                    self.mandatory_model.delete_contact(index.row())
-                    refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                    self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count - 1)
-                    self.detail_widget.reset_data()
-                    self.main_window.tray_icon.show_notification("", "contactDeleted")
+            if self.table_view.selectionModel().hasSelection():
+                index = self.table_view.currentIndex()
+                if index.isValid():
+                    dialog = DeleteDialogs.show_delete_contact_dialog()
+                    if dialog.exec() == QDialog.DialogCode.Accepted:
+                        self.mandatory_model.delete_contact(index.row())
+                        refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
+                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count - 1)
+                        self.detail_widget.reset_data()
+                        self.main_window.tray_icon.show_notification("", "contactDeleted")
+                else:
+                    DialogsProvider.show_error_dialog(self.error_text["indexError"])
             else:
-                DialogsProvider.show_error_dialog(self.error_text["indexError"])
+                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 

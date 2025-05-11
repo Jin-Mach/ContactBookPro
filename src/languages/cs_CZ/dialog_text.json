@@ -92,6 +92,8 @@
     "dialogBirthdayTextLabel": "Narození:",
     "dialogCalendarPushbutton": "Kalendář",
     "dialogResetCalendarPushbutton": "Odstranit",
+    "dialogTitleEdit": "Zadej titul...",
+    "dialogBirthdayEdit": "Vyber datum narození...",
     "dialogNotesEdit": "Poznámky ke kontaktu..."
   },
   "calendarDialog": {

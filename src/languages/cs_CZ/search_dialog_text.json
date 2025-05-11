@@ -1,8 +1,8 @@
 {
   "advancedSearchDialog": {
     "dialogTitle": "Pokročilé vyhledávání",
-    "mandatory": "Povinné údaje",
-    "nonMandatory": "Nepovinné údaje",
+    "mandatory": "Hledat v povinných",
+    "nonMandatory": "Hledat v nepovinných",
     "searchButton": "Hledat",
     "cancelButton": "Zrušit",
     "resetButton": "Zrušit filtry"
@@ -70,5 +70,16 @@
     "searchLinkedinUrlEdit": "Zadej odkaz na Linkedin...",
     "searchGithubUrlEdit": "Zadej odkaz na Github...",
     "searchWebsiteUrlEdit": "Zadej web..."
+  },
+  "searchDetaisWidget": {
+    "searchPhotoTextLabel": "Foto kontaktu:",
+    "searchPhotoCombobox": ["Nezáleží","s fotkou", "bez fotky"],
+    "searchTitleTextLabel": "Titul:",
+    "searchBirthdayTextLabel": "Datum narození:",
+    "searchNotesTextLabel": "Poznámky:",
+    "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
+    "searchTitleEdit": "Zadej titul...",
+    "searchBirthdayEdit": "Zadej datum narození...",
+    "searcNotesEdit": "Zadej poznámky..."
   }
 }

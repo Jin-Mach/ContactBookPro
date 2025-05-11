@@ -38,6 +38,7 @@
     "noFilteredData": "Zadanému výrazu neodpovídají žádná data.\nFiltr bude resetován."
   },
   "widgetErrors": {
-    "indexError": "Není zvolen platný index. Opakuj výběr znovu."
+    "indexError": "Není zvolen platný index. Opakuj výběr znovu.",
+    "noTableviewSelection": "Nejprve vyberte kontakt v seznamu."
   }
 }

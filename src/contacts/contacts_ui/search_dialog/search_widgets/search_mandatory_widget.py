@@ -118,10 +118,10 @@ class SearchMandatoryWidget(QWidget):
                 clear_filter_pushbutton.setToolTipDuration(5000)
             clear_filter_pushbutton.clicked.connect(partial(SearchMandatoryWidget.reset_row_filter, edit, operator))
             layout.addWidget(edit)
-            if isinstance(edit, QLineEdit):
-                layout.addWidget(operator)
             if isinstance(edit, QComboBox):
                 layout.addStretch()
+            elif isinstance(edit, QLineEdit):
+                layout.addWidget(operator)
             layout.addWidget(clear_filter_pushbutton)
             main_layout.addRow(label, layout)
         return main_layout
@@ -146,7 +146,7 @@ class SearchMandatoryWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
 
     @staticmethod
-    def reset_row_filter(widget: QLineEdit, operator: QComboBox) -> None:
+    def reset_row_filter(widget: QWidget, operator: QComboBox) -> None:
         if isinstance(widget, QComboBox):
             widget.setCurrentIndex(0)
         else:

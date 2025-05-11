@@ -69,3 +69,4 @@ class AdvancedSearchDialog(QDialog):
         self.search_mandatory_widget.reset_all_filters()
         self.search_non_mandatory_widget.search_work_widget.reset_all_filters()
         self.search_non_mandatory_widget.search_social_networks_widget.reset_all_filters()
+        self.search_non_mandatory_widget.search_details_widget.reset_all_filters()

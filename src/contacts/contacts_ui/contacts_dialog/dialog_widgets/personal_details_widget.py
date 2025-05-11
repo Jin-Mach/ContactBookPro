@@ -98,13 +98,13 @@ class PersonalDetailsWidget(QWidget):
 
     def set_ui_text(self) -> None:
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = self.findChildren((QLabel, QTextEdit))
+        widgets = self.findChildren((QLabel, QLineEdit, QTextEdit))
         try:
             for widget in widgets:
                 if widget.objectName() in ui_text:
                     if isinstance(widget, QLabel):
                         widget.setText(ui_text[widget.objectName()])
-                    elif isinstance(widget, QTextEdit):
+                    elif isinstance(widget, (QLineEdit, QTextEdit)):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
