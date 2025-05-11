@@ -1,3 +1,8 @@
+import re
+from typing import Optional
+
+from PyQt6.QtCore import QRegularExpression
+from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QLineEdit
 from email_validator import validate_email, EmailNotValidError
 import phonenumbers
@@ -44,3 +49,50 @@ class ContactValidator:
         if (city.text().strip() and not country.text().strip()) or (not city.text().strip() and country.text().strip()):
             return False
         return True
+
+    @staticmethod
+    def contact_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None) -> None:
+        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
+        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        url_regex = QRegularExpression(r"^[A-Za-z0-9:/?&=._%#\-]*$")
+        email_validator = QRegularExpressionValidator(email_regex)
+        phone_validator = QRegularExpressionValidator(phone_regex)
+        url_validator = QRegularExpressionValidator(url_regex)
+        if email_edit:
+            email_edit.setValidator(email_validator)
+        if phone_edit:
+            phone_edit.setValidator(phone_validator)
+        if url_edit:
+            for edit in url_edit:
+                edit.setValidator(url_validator)
+
+    @staticmethod
+    def search_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None) -> None:
+        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
+        phone_regex = QRegularExpression("^[+]?[0-9]{1,14}$")
+        url_regex = QRegularExpression(r"^[A-Za-z0-9:/?&=._%#\-]*$")
+        email_validator = QRegularExpressionValidator(email_regex)
+        phone_validator = QRegularExpressionValidator(phone_regex)
+        url_validator = QRegularExpressionValidator(url_regex)
+        if email_edit:
+            email_edit.setValidator(email_validator)
+        if phone_edit:
+            phone_edit.setValidator(phone_validator)
+        if url_edit:
+            for edit in url_edit:
+                edit.setValidator(url_validator)
+
+    @staticmethod
+    def filter_invalid_characters(search_input: QLineEdit) -> Optional[str]:
+        regex_pattern = None
+        filtered_text = ""
+        validator = search_input.validator()
+        if validator:
+            regex_exp_validator = validator.regularExpression()
+            regex_pattern = regex_exp_validator.pattern()
+        if regex_pattern:
+            regex = re.compile(regex_pattern)
+            for char in search_input.text().strip():
+                if regex.match(char):
+                    filtered_text += char
+        return filtered_text

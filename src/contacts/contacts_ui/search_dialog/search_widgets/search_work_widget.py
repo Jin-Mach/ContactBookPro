@@ -4,6 +4,7 @@ from PyQt6.QtCore import QSize, QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QComboBox, QHBoxLayout, QPushButton
 
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -16,7 +17,7 @@ class SearchWorkWidget(QWidget):
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        self.set_validators()
+        ContactValidator.search_input_validator(email_edit=self.search_work_email_edit, phone_edit=self.search_work_phone_number_edit)
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
@@ -119,17 +120,9 @@ class SearchWorkWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_validators(self) -> None:
-        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
-        phone_regex = QRegularExpression("^[+]?[0-9]{1,14}$")
-        email_validator = QRegularExpressionValidator(email_regex)
-        phone_validator = QRegularExpressionValidator(phone_regex)
-        self.search_work_email_edit.setValidator(email_validator)
-        self.search_work_phone_number_edit.setValidator(phone_validator)
-
     @staticmethod
-    def reset_row_filter(widget: QWidget, operator: QComboBox) -> None:
-        widget.clear()
+    def reset_row_filter(edit: QLineEdit, operator: QComboBox) -> None:
+        edit.clear()
         operator.setCurrentIndex(0)
 
     def reset_all_filters(self) -> None:

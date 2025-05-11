@@ -2,9 +2,9 @@ from functools import partial
 
 from PyQt6.QtCore import QSize, QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
-from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QComboBox, QPushButton, QLabel, QFormLayout, QHBoxLayout, \
-    QLineEdit
+from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QComboBox, QPushButton, QLabel, QFormLayout, QHBoxLayout, QLineEdit
 
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -17,7 +17,7 @@ class SearchMandatoryWidget(QWidget):
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        self.set_validators()
+        ContactValidator.search_input_validator(email_edit=self.search_email_edit, phone_edit=self.search_phone_number_edit)
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
@@ -145,16 +145,8 @@ class SearchMandatoryWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_validators(self) -> None:
-        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
-        phone_regex = QRegularExpression("^[+]?[0-9]{1,14}$")
-        email_validator = QRegularExpressionValidator(email_regex)
-        phone_validator = QRegularExpressionValidator(phone_regex)
-        self.search_email_edit.setValidator(email_validator)
-        self.search_phone_number_edit.setValidator(phone_validator)
-
     @staticmethod
-    def reset_row_filter(widget: QWidget, operator: QComboBox) -> None:
+    def reset_row_filter(widget: QLineEdit, operator: QComboBox) -> None:
         if isinstance(widget, QComboBox):
             widget.setCurrentIndex(0)
         else:

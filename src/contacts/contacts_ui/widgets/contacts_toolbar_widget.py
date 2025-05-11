@@ -1,10 +1,11 @@
-from PyQt6.QtCore import QSize
+from PyQt6.QtCore import QSize, QModelIndex
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.controlers.advanced_search_controler import AdvancedSearchControler
 from src.controlers.completer_controler import CompleterControler
 from src.controlers.contact_search_controler import ContactSearchControler
@@ -41,6 +42,7 @@ class ContactsToolbarWidget(QWidget):
         self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
         self.advanced_search_controler = AdvancedSearchControler(self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
+        self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()
@@ -168,3 +170,20 @@ class ContactsToolbarWidget(QWidget):
             self.contact_search_controler.reset_filter(self.search_line_edit)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_validator(self, current: QModelIndex) -> None:
+        column = current.column()
+        text = self.search_line_edit.text().strip()
+        if column in (4, 5):
+            validator_function = ContactValidator.search_input_validator
+            filter_function = ContactValidator.filter_invalid_characters
+            if column == 4:
+                validator_function(email_edit=self.search_line_edit)
+                text = filter_function(self.search_line_edit)
+            elif column == 5:
+                validator_function(phone_edit=self.search_line_edit)
+                text = filter_function(self.search_line_edit)
+        else:
+            self.search_line_edit.setValidator(None)
+        self.search_line_edit.setText(text)
+        self.search_line_edit.setFocus()

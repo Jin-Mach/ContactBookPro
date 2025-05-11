@@ -17,6 +17,7 @@ class SocialNetworkWidget(QWidget):
         self.non_mandatory_tab = non_mandatory_tab
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        ContactValidator.contact_input_validator(url_edit=self.findChildren(QLineEdit))
         self.default_data = None
 
     def create_gui(self) -> QLayout:
@@ -41,17 +42,17 @@ class SocialNetworkWidget(QWidget):
         self.dialog_github_url_text_label.setObjectName("dialogGithubUrlTextLabel")
         self.dialog_github_url_edit = QLineEdit()
         self.dialog_github_url_edit.setObjectName("dialogGithubUrlEdit")
-        self.dialog_website_text_label = QLabel()
-        self.dialog_website_text_label.setObjectName("dialogWebsiteUrlTextLabel")
-        self.dialog_website_edit = QLineEdit()
-        self.dialog_website_edit.setObjectName("dialogWebsiteUrlEdit")
+        self.dialog_website_url_text_label = QLabel()
+        self.dialog_website_url_text_label.setObjectName("dialogWebsiteUrlTextLabel")
+        self.dialog_website_url_edit = QLineEdit()
+        self.dialog_website_url_edit.setObjectName("dialogWebsiteUrlEdit")
         widgets = [
             (self.dialog_facebook_url_text_label, self.dialog_facebook_url_edit),
             (self.dialog_x_url_text_label, self.dialog_x_url_edit),
             (self.dialog_instagram_url_text_label, self.dialog_instagram_url_edit),
             (self.dialog_linkedin_url_text_label, self.dialog_linkedin_url_edit),
             (self.dialog_github_url_text_label, self.dialog_github_url_edit),
-            (self.dialog_website_text_label, self.dialog_website_edit),
+            (self.dialog_website_url_text_label, self.dialog_website_url_edit),
         ]
         for label, edit in widgets:
             main_layout.addRow(label, edit)
@@ -109,7 +110,7 @@ class SocialNetworkWidget(QWidget):
             self.dialog_instagram_url_edit.setText(widget_data[2])
             self.dialog_linkedin_url_edit.setText(widget_data[3])
             self.dialog_github_url_edit.setText(widget_data[4])
-            self.dialog_website_edit.setText(widget_data[5])
+            self.dialog_website_url_edit.setText(widget_data[5])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -19,7 +19,7 @@ class WorkWidget(QWidget):
         self.non_mandatory_tab = non_mandatory_tab
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        self.set_validators()
+        ContactValidator.contact_input_validator(email_edit=self.dialog_work_email_edit, phone_edit=self.dialog_work_phone_number_edit)
         self.default_data = None
 
     def create_gui(self) -> QLayout:
@@ -83,14 +83,6 @@ class WorkWidget(QWidget):
                         widget.setPlaceholderText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
-
-    def set_validators(self) -> None:
-        email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
-        phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
-        email_validator = QRegularExpressionValidator(email_regex)
-        phone_validator = QRegularExpressionValidator(phone_regex)
-        self.dialog_work_email_edit.setValidator(email_validator)
-        self.dialog_work_phone_number_edit.setValidator(phone_validator)
 
     def return_work_data(self) -> Optional[list]:
         error_text = LanguageProvider.get_error_text(self.objectName())
