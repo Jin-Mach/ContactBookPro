@@ -70,3 +70,19 @@ class AdvancedSearchDialog(QDialog):
         self.search_non_mandatory_widget.search_work_widget.reset_all_filters()
         self.search_non_mandatory_widget.search_social_networks_widget.reset_all_filters()
         self.search_non_mandatory_widget.search_details_widget.reset_all_filters()
+
+    def get_finall_filter(self) -> list:
+        try:
+            filters = [self.search_mandatory_widget.return_mandatory_filter(),
+                self.search_non_mandatory_widget.search_work_widget.return_work_filter(),
+                self.search_non_mandatory_widget.search_social_networks_widget.return_social_filter(),
+                self.search_non_mandatory_widget.search_details_widget.return_detail_filter()
+            ]
+            finall_filter = []
+            for new_filter, values in filters:
+                if new_filter and values:
+                    finall_filter.append((new_filter, values))
+            return finall_filter
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return []

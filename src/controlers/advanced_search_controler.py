@@ -1,3 +1,5 @@
+from PyQt6.QtWidgets import QDialog
+
 from src.contacts.contacts_ui.search_dialog.advanced_search_dialog import AdvancedSearchDialog
 
 
@@ -7,4 +9,5 @@ class AdvancedSearchControler:
         
     def advanced_search(self) -> None:
         dialog = AdvancedSearchDialog(self.parent)
-        dialog.exec()
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            dialog.get_finall_filter()

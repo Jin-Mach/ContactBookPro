@@ -132,3 +132,37 @@ class SearchWorkWidget(QWidget):
                 widget.setCurrentIndex(0)
             else:
                 widget.clear()
+
+    def return_work_filter(self) -> tuple[str, list]:
+        fields = [
+            (self.search_work_company_edit, self.search_work_company_operator, "company_name"),
+            (self.search_work_email_edit, self.search_work_email_operator, "work_email"),
+            (self.search_work_phone_number_edit, self.search_work_phone_number_operator, "work_phone_number"),
+            (self.search_work_city_edit, self.search_work_city_operator, "work_city"),
+            (self.search_work_street_edit, self.search_work_street_operator, "work_street"),
+            (self.search_work_house_number_edit, self.search_work_house_number_operator, "work_house_number"),
+            (self.search_work_post_code_edit, self.search_work_post_code_operator, "work_post_code"),
+            (self.search_work_country_edit, self.search_work_country_operator, "work_country")
+        ]
+        filters = []
+        values = []
+        for edit, operator, column in fields:
+            if isinstance(edit, QLineEdit):
+                value = edit.text().strip()
+                operation = operator.currentIndex()
+                if value and operation > 0:
+                    if operation == 1:
+                        filters.append(f"{column} = ?")
+                        values.append(value)
+                    elif operation == 2:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}%")
+                    elif operation == 3:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"{value}%")
+                    elif operation == 4:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}")
+        if filters:
+            return " AND ".join(filters), values
+        return "", []

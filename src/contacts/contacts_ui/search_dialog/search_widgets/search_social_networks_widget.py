@@ -114,3 +114,35 @@ class SearchSocialNetworksWidget(QWidget):
                 widget.setCurrentIndex(0)
             else:
                 widget.clear()
+
+    def return_social_filter(self) -> tuple[str, list]:
+        fields = [
+            (self.search_facebook_url_edit, self.search_facebook_operator, "facebook_url"),
+            (self.search_x_url_edit, self.search_x_url_operator, "x_url"),
+            (self.search_instagram_url_edit, self.search_instagram_url_operator, "instagram_url"),
+            (self.search_linkedin_url_edit, self.search_linkedin_url_operator, "linkedin_url"),
+            (self.search_github_url_edit, self.search_github_url_operator, "github_url"),
+            (self.search_website_url_edit, self.search_website_url_operator, "website_url")
+        ]
+        filters = []
+        values = []
+        for edit, operator, column in fields:
+            if isinstance(edit, QLineEdit):
+                value = edit.text().strip()
+                operation = operator.currentIndex()
+                if value and operation > 0:
+                    if operation == 1:
+                        filters.append(f"{column} = ?")
+                        values.append(value)
+                    elif operation == 2:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}%")
+                    elif operation == 3:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"{value}%")
+                    elif operation == 4:
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}")
+        if filters:
+            return " AND ".join(filters), values
+        return "", []

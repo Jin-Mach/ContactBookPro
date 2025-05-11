@@ -103,3 +103,36 @@ class SearchDeatilsWidget(QWidget):
                 widget.setCurrentIndex(0)
             else:
                 widget.clear()
+
+    def return_detail_filter(self) -> tuple[str, list]:
+        fields = [(self.search_photo_combobox, "=", "photo"),
+                  (self.search_title_edit, self.search_title_operator, "title"),
+                  (self.search_birthday_edit, self.search_birthday_operator, "birthday"),
+                  (self.search_notes_edit, self.search_notes_operator, "notes")
+                  ]
+        filters = []
+        values = []
+        for edit, operator, column in fields:
+            if isinstance(edit, QLineEdit):
+                value = edit.text().strip()
+                operation = operator.currentIndex()
+                if value and operation > 0:
+                    if operation == 1:
+                        filters.append(f"{column} = '{value}'")
+                    elif operation == 2:
+                        filters.append(f"{column} LIKE '%{value}%'")
+                    elif operation == 3:
+                        filters.append(f"{column} LIKE '{value}%'")
+                    elif operation == 4:
+                        filters.append(f"{column} LIKE '%{value}'")
+            elif isinstance(edit, QComboBox):
+                index = edit.currentIndex()
+                if index == 1:
+                    filters.append(f"({column} IS NULL OR {column} = ?)")
+                    values.append('')
+                elif index == 2:
+                    filters.append(f"({column} IS NOT NULL AND {column} != ?)")
+                    values.append('')
+        if filters:
+            return " AND ".join(filters), values
+        return "", []
