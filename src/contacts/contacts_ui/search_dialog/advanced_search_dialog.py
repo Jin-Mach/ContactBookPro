@@ -75,8 +75,8 @@ class AdvancedSearchDialog(QDialog):
         try:
             filters = {"mandatory": self.search_mandatory_widget.return_mandatory_filter(),
                        "work": self.search_non_mandatory_widget.search_work_widget.return_work_filter(),
-                       "social_networks": self.search_non_mandatory_widget.search_social_networks_widget.return_social_filter(),
-                       "details": self.search_non_mandatory_widget.search_details_widget.return_detail_filter()
+                       "social": self.search_non_mandatory_widget.search_social_networks_widget.return_social_filter(),
+                       "detail": self.search_non_mandatory_widget.search_details_widget.return_detail_filter()
                        }
             empty_filters = set()
             for key in filters:

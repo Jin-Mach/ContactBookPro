@@ -23,7 +23,7 @@ class DetailModel(QSqlTableModel):
                 value = QByteArray(value)
             query.addBindValue(value)
         if not query.exec():
-            ErrorHandler.database_error(query.lastError().text(), False)
+            ErrorHandler.database_error(query.lastError().text(), False, custom_message="queryError")
 
     def update_contact(self, contact_id: int, data: list) -> None:
         query = QSqlQuery(self.db_connection)
@@ -35,4 +35,4 @@ class DetailModel(QSqlTableModel):
                 query.addBindValue(value)
         query.addBindValue(contact_id)
         if not query.exec():
-            ErrorHandler.database_error(query.lastError().text(), False)
+            ErrorHandler.database_error(query.lastError().text(), False, custom_message="queryError")

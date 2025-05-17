@@ -20,7 +20,7 @@ class InfoModel(QSqlTableModel):
             record.setValue(index, value)
         self.insertRecord(-1, record)
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
 
     def update_contact(self, contact_id: int, current_date: str) -> None:
         row_index = RowDataProvider.get_row_by_id(self, contact_id)
@@ -29,7 +29,7 @@ class InfoModel(QSqlTableModel):
         index = self.index(row_index, 2)
         self.setData(index, current_date)
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
 
     def update_location_data(self, contact_id: int, coordinates: tuple) -> None:
         location_query = QSqlQuery(self.db_connection)
@@ -38,4 +38,4 @@ class InfoModel(QSqlTableModel):
         location_query.addBindValue(coordinates[1])
         location_query.addBindValue(contact_id)
         if not location_query.exec():
-            ErrorHandler.database_error(location_query.lastError().text(), False)
+            ErrorHandler.database_error(location_query.lastError().text(), False, custom_message="queryError")

@@ -25,7 +25,7 @@ class RowDataProvider:
         query.prepare(f"SELECT * FROM {table_name} WHERE id = ?")
         query.bindValue(0, index)
         if not query.exec():
-            ErrorHandler.database_error(query.lastError().text(), False)
+            ErrorHandler.database_error(query.lastError().text(), False, custom_message="queryError")
             return None
         if query.next():
             column_count = query.record().count()

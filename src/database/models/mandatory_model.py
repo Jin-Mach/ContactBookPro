@@ -72,7 +72,7 @@ class MandatoryModel(QSqlTableModel):
             record.setValue(index + 1, value)
         self.insertRecord(-1, record)
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
             return
 
     def update_contact(self, row_index: int, data: list) -> None:
@@ -81,20 +81,25 @@ class MandatoryModel(QSqlTableModel):
             index = self.index(row_index, column)
             self.setData(index, data[column - 1])
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
             return
 
     def delete_contact(self, row_index: int) -> None:
         if row_index > -1:
             if not self.removeRow(row_index):
-                ErrorHandler.database_error(self.lastError().text(), False)
+                ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
             if not self.submitAll():
-                ErrorHandler.database_error(self.lastError().text(), False)
+                ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
 
     def clear_database(self) -> None:
         if self.rowCount() > 0:
             if not self.removeRows(0, self.rowCount()):
-                ErrorHandler.database_error(self.lastError().text(), False)
+                ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
+
+    def set_advanced_search_filter(self, id_list: list) -> None:
+        map_list = ",".join(map(str, id_list))
+        self.setFilter(f"id IN ({map_list})")
+        self.select()

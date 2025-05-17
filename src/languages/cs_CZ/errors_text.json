@@ -5,7 +5,8 @@
     "TypeError": "Neplatný typ argumentu. Zkontrolujte prosím vstupní hodnoty.",
     "TimeoutError": "Operace vypršela, zatímco se pokoušela otevřít nebo uložit soubor.",
     "JSONDecodeError": "Soubor není platný JSON. Zkontrolujte prosím formát souboru.",
-    "DatabaseConnectionError": "Nepodařilo se připojit k databázi. Zkontrolujte připojení.",
+    "DatabaseConnectionError": "Nepodařilo se připojit k databázi.",
+    "queryError": "Chyba při provádění databázového dotazu.",
     "RuntimeError": "Odkaz se nepodařilo otevřít. Zkontrolujte, zda je platný a zda máte připojený internet.",
     "URLError": "Odkaz je neplatný nebo se nepodařilo navázat spojení.",
     "UnexpectedError": "Došlo k neočekávané chybě."

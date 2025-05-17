@@ -16,7 +16,7 @@ class LocationThread(QRunnable):
         self.contact_country = contact_address[10]
         self.signal = signal
 
-    def run(self):
+    def run(self) -> None:
         full_address = f"{self.contact_house_number}, {self.contact_city}, {self.contact_post_code}, {self.contact_country}"
         if self.contact_street:
             full_address = f"{self.contact_street}, {self.contact_house_number}, {self.contact_city}, {self.contact_post_code}, {self.contact_country}"

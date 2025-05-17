@@ -1,4 +1,5 @@
 import sys
+from typing import Optional
 
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.language_provider import LanguageProvider
@@ -22,10 +23,14 @@ class ErrorHandler:
         return errors_data[exception.__class__.__name__]
 
     @staticmethod
-    def database_error(error_message: str, close_app: bool) -> None:
+    def database_error(error_message: str, close_app: bool, custom_message: Optional[str] = None) -> None:
         ErrorHandler.logger.error(error_message)
-        error = LanguageProvider.get_error_text(ErrorHandler.class_name)
-        DialogsProvider.show_database_error_dialog(error["DatabaseConnectionError"])
+        if custom_message is not None and custom_message in LanguageProvider.get_error_text(ErrorHandler.class_name):
+            message = custom_message
+        else:
+            message = "DatabaseConnectionError"
+        error = LanguageProvider.get_error_text(ErrorHandler.class_name)[message]
+        DialogsProvider.show_database_error_dialog(error)
         if close_app:
             sys.exit(1)
         else:

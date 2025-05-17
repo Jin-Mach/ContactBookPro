@@ -43,7 +43,7 @@ class ContactsToolbarWidget(QWidget):
         self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
         self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
-        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, self)
+        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, mandatory_model, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 

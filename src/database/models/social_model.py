@@ -18,7 +18,7 @@ class SocialModel(QSqlTableModel):
             record.setValue(index, value)
         self.insertRecord(-1, record)
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
 
     def update_contact(self, contact_id: int, data: list) -> None:
         row_index = RowDataProvider.get_row_by_id(self, contact_id)
@@ -29,4 +29,4 @@ class SocialModel(QSqlTableModel):
             index = self.index(row_index, column)
             self.setData(index, data[column -1])
         if not self.submitAll():
-            ErrorHandler.database_error(self.lastError().text(), False)
+            ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")

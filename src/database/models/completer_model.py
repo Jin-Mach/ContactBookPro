@@ -32,5 +32,5 @@ class CompleterModel(QSqlQueryModel):
             completer_query = QSqlQuery(self.db_connection)
             completer_query.prepare(sql)
             if not completer_query.exec():
-                ErrorHandler.database_error(completer_query.lastError().text(), False)
+                ErrorHandler.database_error(completer_query.lastError().text(), False, custom_message="queryError")
             self.setQuery(completer_query)

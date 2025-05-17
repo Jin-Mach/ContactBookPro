@@ -66,7 +66,7 @@ class ContactsController:
                         QThreadPool.globalInstance().start(location_thread)
                         self.signal_provider.contact_coordinates.connect(lambda contact_id, coords: self.info_model.update_location_data(contact_id, coords))
                     else:
-                        ErrorHandler.database_error(self.mandatory_model.lastError().text(), False)
+                        ErrorHandler.database_error(self.mandatory_model.lastError().text(), False, custom_message="queryError")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
