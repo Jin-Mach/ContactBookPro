@@ -17,20 +17,20 @@ class ContactsMainWidget(QWidget):
     def __init__(self, main_window: QMainWindow, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsMainWidget")
-        db_connection = create_db_connection("contacts_db.sqlite")
-        self.mandatory_model = MandatoryModel(db_connection)
-        self.work_model = WorkModel(db_connection)
-        self.social_model = SocialModel(db_connection)
-        self.detail_model = DetailModel(db_connection)
-        self.info_model = InfoModel(db_connection)
-        self.completer_model = CompleterModel(db_connection)
+        self.db_connection = create_db_connection("contacts_db.sqlite")
+        self.mandatory_model = MandatoryModel(self.db_connection)
+        self.work_model = WorkModel(self.db_connection)
+        self.social_model = SocialModel(self.db_connection)
+        self.detail_model = DetailModel(self.db_connection)
+        self.info_model = InfoModel(self.db_connection)
+        self.completer_model = CompleterModel(self.db_connection)
         self.contacts_detail_widget = ContactsDetailWidget(self)
         self.contacts_tableview_widget = ContactsTableviewWidget(self.mandatory_model, self.contacts_detail_widget, self)
         self.contacts_statusbar_widget = ContactsStatusbarWidget(self.mandatory_model.rowCount(), self)
-        self.contacts_toolbar_widget = ContactsToolbarWidget(main_window, self.mandatory_model, self.work_model, self.social_model,
-                                                             self.detail_model, self.info_model, self.contacts_detail_widget,
-                                                             self.contacts_tableview_widget, self.contacts_statusbar_widget,
-                                                             self.completer_model, self)
+        self.contacts_toolbar_widget = ContactsToolbarWidget(main_window, self.db_connection, self.mandatory_model, self.work_model,
+                                                             self.social_model,self.detail_model, self.info_model,
+                                                             self.contacts_detail_widget,self.contacts_tableview_widget,
+                                                             self.contacts_statusbar_widget,self.completer_model, self)
         self.setLayout(self.create_gui())
 
     def create_gui(self) -> QLayout:

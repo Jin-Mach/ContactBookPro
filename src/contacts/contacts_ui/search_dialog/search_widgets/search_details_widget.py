@@ -118,21 +118,23 @@ class SearchDeatilsWidget(QWidget):
                 operation = operator.currentIndex()
                 if value and operation > 0:
                     if operation == 1:
-                        filters.append(f"{column} = '{value}'")
+                        filters.append(f"{column} = ?")
+                        values.append(value)
                     elif operation == 2:
-                        filters.append(f"{column} LIKE '%{value}%'")
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}%")
                     elif operation == 3:
-                        filters.append(f"{column} LIKE '{value}%'")
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"{value}%")
                     elif operation == 4:
-                        filters.append(f"{column} LIKE '%{value}'")
+                        filters.append(f"{column} LIKE ?")
+                        values.append(f"%{value}")
             elif isinstance(edit, QComboBox):
                 index = edit.currentIndex()
                 if index == 1:
-                    filters.append(f"({column} IS NULL OR {column} = ?)")
-                    values.append('')
+                    filters.append(f"({column} IS NOT NULL AND {column} != '')")
                 elif index == 2:
-                    filters.append(f"({column} IS NOT NULL AND {column} != ?)")
-                    values.append('')
+                    filters.append(f"({column} IS NULL OR {column} = '')")
         if filters:
             return " AND ".join(filters), values
         return "", []

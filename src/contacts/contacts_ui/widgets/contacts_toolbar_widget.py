@@ -1,5 +1,6 @@
 from PyQt6.QtCore import QSize, QModelIndex
 from PyQt6.QtGui import QFont
+from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
@@ -23,11 +24,13 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
-    def __init__(self, main_window: QMainWindow, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
-                 info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
-                 status_bar: ContactsStatusbarWidget, completer_model: CompleterModel, parent=None) -> None:
+    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
+                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,info_model: InfoModel,
+                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,status_bar: ContactsStatusbarWidget,
+                 completer_model: CompleterModel, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
+        self.db_connection = db_connection
         self.table_view = table_view
         self.completer_model = completer_model
         self.buttons_size = QSize(35, 35)
@@ -40,7 +43,7 @@ class ContactsToolbarWidget(QWidget):
         self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
         self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
-        self.advanced_search_controler = AdvancedSearchControler(self)
+        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 
