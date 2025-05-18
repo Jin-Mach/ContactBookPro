@@ -17,6 +17,7 @@
   },
   "contactDialog": {
     "dialogTitle": "Nový kontakt",
+    "dialogTitleUpdate": "Upravit kontakt",
     "mandatory": "Povinné údaje",
     "nonMandatory": "Volitelné údaje",
     "dialogAddContactButton": "Přidat kontakt",

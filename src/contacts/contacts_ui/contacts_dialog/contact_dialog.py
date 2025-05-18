@@ -51,8 +51,11 @@ class ContactDialog(QDialog):
         ui_text = LanguageProvider.get_dialog_text(self.objectName())
         tab_text = ["mandatory", "nonMandatory"]
         try:
-            if "dialogTitle" in ui_text:
-                self.setWindowTitle(ui_text["dialogTitle"])
+            if "dialogTitle" in ui_text and "dialogTitleUpdate" in ui_text:
+                if self.update_contact:
+                    self.setWindowTitle(ui_text["dialogTitleUpdate"])
+                else:
+                    self.setWindowTitle(ui_text["dialogTitle"])
             for index, text in enumerate(tab_text):
                 if text in ui_text:
                     self.dialog_tab_widget.setTabText(index, ui_text[text])
