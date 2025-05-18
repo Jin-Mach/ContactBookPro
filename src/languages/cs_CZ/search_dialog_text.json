@@ -5,7 +5,8 @@
     "nonMandatory": "Hledat v nepovinných",
     "searchButton": "Hledat",
     "cancelButton": "Zrušit",
-    "resetButton": "Zrušit filtry"
+    "currentFilterButton": "",
+    "resetButton": ""
   },
   "searchMandatoryWidget": {
     "searchGenderTextLabel": "Pohlaví:",
@@ -81,5 +82,10 @@
     "searchTitleEdit": "Zadej titul...",
     "searchBirthdayEdit": "Zadej datum narození...",
     "searcNotesEdit": "Zadej poznámky..."
+  },
+  "currentFilterDialog": {
+    "currentFilterTitle": "Aktuální filtr",
+    "currentFilterTextLabel": "Aktuálně nastavený filtr",
+    "closeButton": "Zavřít"
   }
 }

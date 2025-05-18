@@ -39,6 +39,10 @@
     "searchButton": "Hledat",
     "cancelButton": "Zavřít dialog",
     "resetButton": "Zrušit filtry",
+    "currentFilterButton": "Zobrazí aktuálně nastavený filtr vyhledávání",
     "clearFilterPushbutton": "Zruší filtr pro daný řádek"
+  },
+  "currentFilterDialog": {
+    "closeButton": "Zavřít okno"
   }
 }

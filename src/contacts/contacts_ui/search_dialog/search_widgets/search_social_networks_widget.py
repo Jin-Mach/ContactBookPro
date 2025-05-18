@@ -25,9 +25,9 @@ class SearchSocialNetworksWidget(QWidget):
         self.search_facebook_url_text_label.setObjectName("searchFacebookUrlTextLabel")
         self.search_facebook_url_edit = QLineEdit()
         self.search_facebook_url_edit.setObjectName("searchFacebookUrlEdit")
-        self.search_facebook_operator = QComboBox()
-        self.search_facebook_operator.setObjectName("searchFacebookUrlOperator")
-        self.search_facebook_operator.setFixedWidth(self.operator_width)
+        self.search_facebook_url_operator = QComboBox()
+        self.search_facebook_url_operator.setObjectName("searchFacebookUrlOperator")
+        self.search_facebook_url_operator.setFixedWidth(self.operator_width)
         self.search_x_url_text_label = QLabel()
         self.search_x_url_text_label.setObjectName("searchXUrlTextLabel")
         self.search_x_url_edit = QLineEdit()
@@ -63,7 +63,7 @@ class SearchSocialNetworksWidget(QWidget):
         self.search_website_url_operator = QComboBox()
         self.search_website_url_operator.setObjectName("searchWebsiteUrlOperator")
         self.search_website_url_operator.setFixedWidth(self.operator_width)
-        fields = [(self.search_facebook_url_text_label, self.search_facebook_url_edit, self.search_facebook_operator),
+        fields = [(self.search_facebook_url_text_label, self.search_facebook_url_edit, self.search_facebook_url_operator),
                   (self.search_x_url_text_label, self.search_x_url_edit, self.search_x_url_operator),
                   (self.search_instagram_url_text_label, self.search_instagram_url_edit, self.search_instagram_url_operator),
                   (self.search_linkedin_url_text_label, self.search_linkedin_url_edit, self.search_linkedin_url_operator),
@@ -116,33 +116,62 @@ class SearchSocialNetworksWidget(QWidget):
                 widget.clear()
 
     def return_social_filter(self) -> tuple[str, list]:
-        fields = [
-            (self.search_facebook_url_edit, self.search_facebook_operator, "facebook_url"),
-            (self.search_x_url_edit, self.search_x_url_operator, "x_url"),
-            (self.search_instagram_url_edit, self.search_instagram_url_operator, "instagram_url"),
-            (self.search_linkedin_url_edit, self.search_linkedin_url_operator, "linkedin_url"),
-            (self.search_github_url_edit, self.search_github_url_operator, "github_url"),
-            (self.search_website_url_edit, self.search_website_url_operator, "website_url")
-        ]
-        filters = []
-        values = []
-        for edit, operator, column in fields:
-            if isinstance(edit, QLineEdit):
-                value = edit.text().strip()
-                operation = operator.currentIndex()
-                if value and operation > 0:
-                    if operation == 1:
-                        filters.append(f"{column} = ?")
-                        values.append(value)
-                    elif operation == 2:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}%")
-                    elif operation == 3:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"{value}%")
-                    elif operation == 4:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}")
-        if filters:
-            return " AND ".join(filters), values
-        return "", []
+        try:
+            fields = [
+                (self.search_facebook_url_edit, self.search_facebook_url_operator, "facebook_url"),
+                (self.search_x_url_edit, self.search_x_url_operator, "x_url"),
+                (self.search_instagram_url_edit, self.search_instagram_url_operator, "instagram_url"),
+                (self.search_linkedin_url_edit, self.search_linkedin_url_operator, "linkedin_url"),
+                (self.search_github_url_edit, self.search_github_url_operator, "github_url"),
+                (self.search_website_url_edit, self.search_website_url_operator, "website_url")
+            ]
+            filters = []
+            values = []
+            for edit, operator, column in fields:
+                if isinstance(edit, QLineEdit):
+                    value = edit.text().strip()
+                    operation = operator.currentIndex()
+                    if value and operation > 0:
+                        if operation == 1:
+                            filters.append(f"{column} = ?")
+                            values.append(value)
+                        elif operation == 2:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}%")
+                        elif operation == 3:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"{value}%")
+                        elif operation == 4:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}")
+            if filters:
+                return " AND ".join(filters), values
+            return "", []
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return "", []
+
+    def return_social_networks_current_filter(self) -> list:
+        try:
+            fields = [
+                (self.search_facebook_url_text_label, self.search_facebook_url_operator, self.search_facebook_url_edit),
+                (self.search_x_url_text_label, self.search_x_url_operator, self.search_x_url_edit),
+                (self.search_instagram_url_text_label, self.search_instagram_url_operator, self.search_instagram_url_edit),
+                (self.search_linkedin_url_text_label, self.search_linkedin_url_operator, self.search_linkedin_url_edit),
+                (self.search_github_url_text_label, self.search_github_url_operator, self.search_github_url_edit),
+                (self.search_website_url_text_label, self.search_website_url_operator, self.search_website_url_edit)
+            ]
+            active_filters = []
+            for label, combobox, edit in fields:
+                if edit.text().strip():
+                    active_filters.append({
+                        "label_text": label.text(),
+                        "combobox": combobox,
+                        "combobox_text": combobox.currentText(),
+                        "edit": edit,
+                        "edit_text": edit.text().strip()
+                    })
+            return active_filters
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return []

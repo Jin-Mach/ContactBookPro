@@ -105,36 +105,72 @@ class SearchDeatilsWidget(QWidget):
                 widget.clear()
 
     def return_detail_filter(self) -> tuple[str, list]:
-        fields = [(self.search_photo_combobox, "=", "photo"),
-                  (self.search_title_edit, self.search_title_operator, "title"),
-                  (self.search_birthday_edit, self.search_birthday_operator, "birthday"),
-                  (self.search_notes_edit, self.search_notes_operator, "notes")
-                  ]
-        filters = []
-        values = []
-        for edit, operator, column in fields:
-            if isinstance(edit, QLineEdit):
-                value = edit.text().strip()
-                operation = operator.currentIndex()
-                if value and operation > 0:
-                    if operation == 1:
-                        filters.append(f"{column} = ?")
-                        values.append(value)
-                    elif operation == 2:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}%")
-                    elif operation == 3:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"{value}%")
-                    elif operation == 4:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}")
-            elif isinstance(edit, QComboBox):
-                index = edit.currentIndex()
-                if index == 1:
-                    filters.append(f"({column} IS NOT NULL AND {column} != '')")
-                elif index == 2:
-                    filters.append(f"({column} IS NULL OR {column} = '')")
-        if filters:
-            return " AND ".join(filters), values
-        return "", []
+        try:
+            fields = [(self.search_photo_combobox, "=", "photo"),
+                      (self.search_title_edit, self.search_title_operator, "title"),
+                      (self.search_birthday_edit, self.search_birthday_operator, "birthday"),
+                      (self.search_notes_edit, self.search_notes_operator, "notes")
+                      ]
+            filters = []
+            values = []
+            for edit, operator, column in fields:
+                if isinstance(edit, QLineEdit):
+                    value = edit.text().strip()
+                    operation = operator.currentIndex()
+                    if value and operation > 0:
+                        if operation == 1:
+                            filters.append(f"{column} = ?")
+                            values.append(value)
+                        elif operation == 2:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}%")
+                        elif operation == 3:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"{value}%")
+                        elif operation == 4:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}")
+                elif isinstance(edit, QComboBox):
+                    index = edit.currentIndex()
+                    if index == 1:
+                        filters.append(f"({column} IS NOT NULL AND {column} != '')")
+                    elif index == 2:
+                        filters.append(f"({column} IS NULL OR {column} = '')")
+            if filters:
+                return " AND ".join(filters), values
+            return "", []
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return "", []
+
+    def return_details_current_filter(self) -> list:
+        try:
+            fields = [
+                (self.search_photo_text_label, self.search_photo_combobox, None),
+                (self.search_title_text_label, self.search_title_operator, self.search_title_edit),
+                (self.search_birthday_text_label, self.search_birthday_operator, self.search_birthday_edit),
+                (self.search_notes_text_label, self.search_notes_operator, self.search_notes_edit)
+            ]
+            active_filters = []
+            for label, combobox, edit in fields:
+                if not edit and combobox.currentIndex() > 0:
+                    active_filters.append({
+                        "label_text": label.text(),
+                        "combobox": combobox,
+                        "combobox_text": combobox.currentText(),
+                        "edit": None,
+                        "edit_text": None
+                    })
+                else:
+                    if edit and edit.text().strip():
+                        active_filters.append({
+                            "label_text": label.text(),
+                            "combobox": combobox,
+                            "combobox_text": combobox.currentText(),
+                            "edit": edit,
+                            "edit_text": edit.text().strip()
+                        })
+            return active_filters
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return []

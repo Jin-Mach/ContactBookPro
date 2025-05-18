@@ -162,43 +162,86 @@ class SearchMandatoryWidget(QWidget):
                 widget.clear()
 
     def return_mandatory_filter(self) -> tuple[str, list]:
-        fields = [
-            (self.search_gender_combobox, "=", "gender"),
-            (self.search_relationship_combobox, "=", "relationship"),
-            (self.search_first_name_edit, self.search_first_name_operator, "first_name"),
-            (self.search_second_name_edit, self.search_second_name_operator, "second_name"),
-            (self.search_email_edit, self.search_email_operator, "personal_email"),
-            (self.search_phone_number_edit, self.search_phone_number_operator, "personal_phone_number"),
-            (self.search_city_edit, self.search_city_operator, "personal_city"),
-            (self.search_street_edit, self.search_street_operator, "personal_street"),
-            (self.search_house_number_edit, self.search_house_number_operator, "personal_house_number"),
-            (self.search_post_code_edit, self.search_post_code_operator, "personal_post_code"),
-            (self.search_country_edit, self.search_country_operator, "personal_country")
-        ]
-        filters = []
-        values = []
-        for edit, operator, column in fields:
-            if isinstance(edit, QLineEdit):
-                value = edit.text().strip()
-                operation = operator.currentIndex()
-                if value and operation > 0:
-                    if operation == 1:
-                        filters.append(f"{column} = ?")
-                        values.append(value)
-                    elif operation == 2:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}%")
-                    elif operation == 3:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"{value}%")
-                    elif operation == 4:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}")
-            elif isinstance(edit, QComboBox):
-                index = edit.currentIndex()
-                if index > 0:
-                    filters.append(f"{column} {operator} ?")
-                    values.append(index)
-        if filters:
-            return " AND ".join(filters), values
-        return "", []
+        try:
+            fields = [
+                (self.search_gender_combobox, "=", "gender"),
+                (self.search_relationship_combobox, "=", "relationship"),
+                (self.search_first_name_edit, self.search_first_name_operator, "first_name"),
+                (self.search_second_name_edit, self.search_second_name_operator, "second_name"),
+                (self.search_email_edit, self.search_email_operator, "personal_email"),
+                (self.search_phone_number_edit, self.search_phone_number_operator, "personal_phone_number"),
+                (self.search_city_edit, self.search_city_operator, "personal_city"),
+                (self.search_street_edit, self.search_street_operator, "personal_street"),
+                (self.search_house_number_edit, self.search_house_number_operator, "personal_house_number"),
+                (self.search_post_code_edit, self.search_post_code_operator, "personal_post_code"),
+                (self.search_country_edit, self.search_country_operator, "personal_country")
+            ]
+            filters = []
+            values = []
+            for edit, operator, column in fields:
+                if isinstance(edit, QLineEdit):
+                    value = edit.text().strip()
+                    operation = operator.currentIndex()
+                    if value and operation > 0:
+                        if operation == 1:
+                            filters.append(f"{column} = ?")
+                            values.append(value)
+                        elif operation == 2:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}%")
+                        elif operation == 3:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"{value}%")
+                        elif operation == 4:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}")
+                elif isinstance(edit, QComboBox):
+                    index = edit.currentIndex()
+                    if index > 0:
+                        filters.append(f"{column} {operator} ?")
+                        values.append(index)
+            if filters:
+                return " AND ".join(filters), values
+            return "", []
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return "", []
+
+    def return_mandatory_current_filter(self) -> list:
+        try:
+            fields = [
+                (self.search_gender_text_label, self.search_gender_combobox, None),
+                (self.search_relationship_text_label, self.search_relationship_combobox, None),
+                (self.search_first_name_text_label, self.search_first_name_operator, self.search_first_name_edit),
+                (self.search_second_name_text_label, self.search_second_name_operator, self.search_second_name_edit),
+                (self.search_email_text_label, self.search_email_operator, self.search_email_edit),
+                (self.search_phone_number_text_label, self.search_phone_number_operator, self.search_phone_number_edit),
+                (self.search_city_text_label, self.search_city_operator, self.search_city_edit),
+                (self.search_street_text_label, self.search_street_operator, self.search_street_edit),
+                (self.search_house_number_text_label, self.search_house_number_operator, self.search_house_number_edit),
+                (self.search_post_code_text_label, self.search_post_code_operator, self.search_post_code_edit),
+                (self.search_country_text_label, self.search_country_operator, self.search_country_edit)
+            ]
+            active_filters = []
+            for label, combobox, edit in fields:
+                if not edit and combobox.currentIndex() > 0:
+                    active_filters.append({
+                        "label_text": label.text(),
+                        "combobox": combobox,
+                        "combobox_text": combobox.currentText(),
+                        "edit": None,
+                        "edit_text": None
+                    })
+                else:
+                    if edit and edit.text().strip():
+                        active_filters.append({
+                            "label_text": label.text(),
+                            "combobox": combobox,
+                            "combobox_text": combobox.currentText(),
+                            "edit": edit,
+                            "edit_text": edit.text().strip()
+                        })
+            return active_filters
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return []

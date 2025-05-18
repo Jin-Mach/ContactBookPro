@@ -134,35 +134,66 @@ class SearchWorkWidget(QWidget):
                 widget.clear()
 
     def return_work_filter(self) -> tuple[str, list]:
-        fields = [
-            (self.search_work_company_edit, self.search_work_company_operator, "company_name"),
-            (self.search_work_email_edit, self.search_work_email_operator, "work_email"),
-            (self.search_work_phone_number_edit, self.search_work_phone_number_operator, "work_phone_number"),
-            (self.search_work_city_edit, self.search_work_city_operator, "work_city"),
-            (self.search_work_street_edit, self.search_work_street_operator, "work_street"),
-            (self.search_work_house_number_edit, self.search_work_house_number_operator, "work_house_number"),
-            (self.search_work_post_code_edit, self.search_work_post_code_operator, "work_post_code"),
-            (self.search_work_country_edit, self.search_work_country_operator, "work_country")
-        ]
-        filters = []
-        values = []
-        for edit, operator, column in fields:
-            if isinstance(edit, QLineEdit):
-                value = edit.text().strip()
-                operation = operator.currentIndex()
-                if value and operation > 0:
-                    if operation == 1:
-                        filters.append(f"{column} = ?")
-                        values.append(value)
-                    elif operation == 2:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}%")
-                    elif operation == 3:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"{value}%")
-                    elif operation == 4:
-                        filters.append(f"{column} LIKE ?")
-                        values.append(f"%{value}")
-        if filters:
-            return " AND ".join(filters), values
-        return "", []
+        try:
+            fields = [
+                (self.search_work_company_edit, self.search_work_company_operator, "company_name"),
+                (self.search_work_email_edit, self.search_work_email_operator, "work_email"),
+                (self.search_work_phone_number_edit, self.search_work_phone_number_operator, "work_phone_number"),
+                (self.search_work_city_edit, self.search_work_city_operator, "work_city"),
+                (self.search_work_street_edit, self.search_work_street_operator, "work_street"),
+                (self.search_work_house_number_edit, self.search_work_house_number_operator, "work_house_number"),
+                (self.search_work_post_code_edit, self.search_work_post_code_operator, "work_post_code"),
+                (self.search_work_country_edit, self.search_work_country_operator, "work_country")
+            ]
+            filters = []
+            values = []
+            for edit, operator, column in fields:
+                if isinstance(edit, QLineEdit):
+                    value = edit.text().strip()
+                    operation = operator.currentIndex()
+                    if value and operation > 0:
+                        if operation == 1:
+                            filters.append(f"{column} = ?")
+                            values.append(value)
+                        elif operation == 2:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}%")
+                        elif operation == 3:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"{value}%")
+                        elif operation == 4:
+                            filters.append(f"{column} LIKE ?")
+                            values.append(f"%{value}")
+            if filters:
+                return " AND ".join(filters), values
+            return "", []
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return "", []
+
+    def return_work_current_filter(self) -> list:
+        try:
+            fields = [
+                (self.search_work_company_text_label, self.search_work_company_operator, self.search_work_company_edit),
+                (self.search_work_email_text_label, self.search_work_email_operator, self.search_work_email_edit),
+                (self.search_work_phone_number_text_label, self.search_work_phone_number_operator, self.search_work_phone_number_edit),
+                (self.search_work_city_text_label, self.search_work_city_operator, self.search_work_city_edit),
+                (self.search_work_street_text_label, self.search_work_street_operator, self.search_work_street_edit),
+                (self.search_work_house_number_text_label, self.search_work_house_number_operator, self.search_work_house_number_edit),
+                (self.search_work_post_code_text_label, self.search_work_post_code_operator, self.search_work_post_code_edit),
+                (self.search_work_country_text_label, self.search_work_country_operator, self.search_work_country_edit)
+            ]
+            active_filters = []
+            for label, combobox, edit in fields:
+                if edit.text().strip():
+                    active_filters.append({
+                        "label_text": label.text(),
+                        "combobox": combobox,
+                        "combobox_text": combobox.currentText(),
+                        "edit": edit,
+                        "edit_text": edit.text().strip()
+                    })
+            return active_filters
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return []

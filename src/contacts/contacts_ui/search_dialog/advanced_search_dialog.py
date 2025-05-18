@@ -1,8 +1,11 @@
+from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QTabWidget, QDialogButtonBox, QPushButton
 
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+from src.controlers.filters_controler import FiltersControler
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -18,6 +21,7 @@ class AdvancedSearchDialog(QDialog):
             self.buttons = button_box.findChildren(QPushButton)
         self.set_ui_text()
         self.set_toolpips_text()
+        IconProvider.set_buttons_icon(self.objectName(), self.buttons, QSize(35, 35))
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -27,7 +31,8 @@ class AdvancedSearchDialog(QDialog):
         self.search_non_mandatory_widget = SearchNonMandatoryWidget(self)
         self.search_tab_widget.addTab(self.search_mandatory_widget, "")
         self.search_tab_widget.addTab(self.search_non_mandatory_widget, "")
-        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel | QDialogButtonBox.StandardButton.Reset)
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel |
+                                      QDialogButtonBox.StandardButton.Reset | QDialogButtonBox.StandardButton.RestoreDefaults)
         button_box.accepted.connect(self.accept)
         button_box.rejected.connect(self.reject)
         self.search_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
@@ -37,6 +42,9 @@ class AdvancedSearchDialog(QDialog):
         self.reset_button = button_box.button(QDialogButtonBox.StandardButton.Reset)
         self.reset_button.setObjectName("resetButton")
         self.reset_button.clicked.connect(self.reset_all_filters)
+        self.current_filter_button = button_box.button(QDialogButtonBox.StandardButton.RestoreDefaults)
+        self.current_filter_button.setObjectName("currentFilterButton")
+        self.current_filter_button.clicked.connect(self.show_current_filter_dialog)
         main_layout.addWidget(self.search_tab_widget)
         main_layout.addWidget(button_box)
         return main_layout
@@ -90,3 +98,7 @@ class AdvancedSearchDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return {}
+
+    def show_current_filter_dialog(self) -> None:
+        filters_controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
+        filters_controler.show_active_filters()
