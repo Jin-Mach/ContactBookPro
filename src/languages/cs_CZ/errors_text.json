@@ -46,6 +46,7 @@
     "noActiveFilter": "Žádný aktivní filtr."
   },
   "filterNameDialog": {
-    "emptyFilterName": "Není zadán název filtru."
+    "emptyFilterName": "Není zadán název filtru.",
+    "existingFilterName": "Jméno filtru již existuje."
   }
 }

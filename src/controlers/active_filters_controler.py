@@ -1,10 +1,11 @@
 from PyQt6.QtCore import QAbstractTableModel
-from PyQt6.QtWidgets import QDialog
+from PyQt6.QtWidgets import QDialog, QApplication, QWidget
 
 from src.contacts.contacts_ui.search_dialog.active_filters_dialog import ActiveFiltersDialog
 from src.contacts.contacts_ui.search_dialog.filter_name_dialog import FilterNameDialog
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+from src.contacts.contacts_utilities.filters_provider import FiltersProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -41,9 +42,14 @@ class ActiveFiltersControler:
             filter_dialog = FilterNameDialog(self.parent)
             if filter_dialog.exec() == QDialog.DialogCode.Accepted:
                 filter_name = filter_dialog.get_filter_name()
-            # advanced_dialog = self.parent.parent()
-            # if advanced_dialog and advanced_dialog.objectName() == "advancedSearchDialog":
-            #     print(advanced_dialog.get_finall_filter())
+                advanced_dialog = self.parent.parent()
+                if advanced_dialog and advanced_dialog.objectName() == "advancedSearchDialog":
+                    status, result = FiltersProvider.add_new_filter(filter_name, advanced_dialog.get_finall_filter())
+                    if not status and result == "exists":
+                        error_text = LanguageProvider.get_error_text(self.class_name)
+                        DialogsProvider.show_error_dialog(error_text["existingFilterName"], self.parent)
+                        return
+                    print("filter save")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
