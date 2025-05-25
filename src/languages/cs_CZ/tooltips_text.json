@@ -8,8 +8,9 @@
     "deleteContactPushbutton": "Smazat vybraný kontakt",
     "deleteAllContactsPushbutton": "Smazat celou databázi",
     "searchPushbutton": "Vyhledat dle sloupce",
-    "advancedSearchButton": "Otevře dialog pro pokročilé vyhledávání",
-    "resetFilterPushbutton": "Odstranit všechny filtry"
+    "advancedSearchPushbutton": "Otevře dialog pro pokročilé vyhledávání",
+    "resetFilterPushbutton": "Odstranit všechny filtry",
+    "userFiltersPushbutton": "Zobrazí uložené filtry"
   },
   "tabInfoWidget": {
     "facebookPushbutton": "Otevře odkaz na Facebook",
@@ -47,5 +48,9 @@
   },
   "filtersTableviewWidget": {
     "deleteFilterButton": "Zruší filtr pro daný řádek"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Spustí vyhladávání dle vybraného filtru",
+    "cancelButton": "Zavře dialog"
   }
 }

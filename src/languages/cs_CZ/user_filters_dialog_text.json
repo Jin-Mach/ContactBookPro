@@ -1,0 +1,8 @@
+{
+  "userFiltersDialog": {
+    "dialogTitle": "Uložené filtry",
+    "userFiltersTextLabel": "Seznam uložených filtrů",
+    "filterButton": "Použít filtr",
+    "cancelButton": "Zrušit"
+  }
+}

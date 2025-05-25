@@ -85,7 +85,7 @@
   },
   "activeFiltersDialog": {
     "currentFilterTitle": "Aktuální filtr",
-    "currentFilterTextLabel": "Aktuálně nastavený filtr",
+    "currentFilterTextLabel": "Aktuálně nastavené filtry",
     "closeButton": "Zavřít"
   }
 }

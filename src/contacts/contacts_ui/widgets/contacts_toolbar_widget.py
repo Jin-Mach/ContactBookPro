@@ -11,6 +11,7 @@ from src.controlers.advanced_search_controler import AdvancedSearchControler
 from src.controlers.completer_controler import CompleterControler
 from src.controlers.contact_search_controler import ContactSearchControler
 from src.controlers.contacts_controller import ContactsController
+from src.controlers.user_filters_controler import UserFiltersControler
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
@@ -44,6 +45,7 @@ class ContactsToolbarWidget(QWidget):
         self.completer_controler.setup()
         self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
         self.advanced_search_controler = AdvancedSearchControler(self.db_connection, mandatory_model, status_bar, self)
+        self.user_filters_controler = UserFiltersControler(self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 
@@ -81,29 +83,30 @@ class ContactsToolbarWidget(QWidget):
         self.search_pushbutton.setObjectName("searchPushbutton")
         self.search_pushbutton.setFixedSize(self.buttons_size)
         self.search_pushbutton.clicked.connect(self.search_contact)
-        self.advanced_search_button = QPushButton()
-        self.advanced_search_button.setObjectName("advancedSearchButton")
-        self.advanced_search_button.setFixedSize(self.buttons_size)
-        self.advanced_search_button.clicked.connect(self.advanced_search)
+        self.advanced_search_pushbutton = QPushButton()
+        self.advanced_search_pushbutton.setObjectName("advancedSearchPushbutton")
+        self.advanced_search_pushbutton.setFixedSize(self.buttons_size)
+        self.advanced_search_pushbutton.clicked.connect(self.advanced_search)
         self.reset_filter_pushbutton = QPushButton()
         self.reset_filter_pushbutton.setObjectName("resetFilterPushbutton")
         self.reset_filter_pushbutton.setFixedSize(self.buttons_size)
         self.reset_filter_pushbutton.clicked.connect(self.reset_filter)
-        left_spacer_widget = QWidget()
-        left_spacer_widget.setFixedWidth(30)
-        right_spacer_widget = QWidget()
+        self.user_filters_pushbutton = QPushButton()
+        self.user_filters_pushbutton.setObjectName("userFiltersPushbutton")
+        self.user_filters_pushbutton.setFixedSize(self.buttons_size)
+        self.user_filters_pushbutton.clicked.connect(self.show_user_filters)
         main_layout.addWidget(self.add_new_contact_pushbutton)
         main_layout.addWidget(self.update_contact_pushbutton)
         main_layout.addWidget(self.delete_contact_pushbutton)
         main_layout.addWidget(self.delete_all_contacts_pushbutton)
-        main_layout.addWidget(left_spacer_widget)
+        main_layout.addStretch()
         main_layout.addWidget(self.search_text_label)
         main_layout.addWidget(self.search_combobox)
         main_layout.addWidget(self.search_line_edit)
         main_layout.addWidget(self.search_pushbutton)
-        main_layout.addWidget(self.advanced_search_button)
-        main_layout.addWidget(right_spacer_widget)
+        main_layout.addWidget(self.advanced_search_pushbutton)
         main_layout.addWidget(self.reset_filter_pushbutton)
+        main_layout.addWidget(self.user_filters_pushbutton)
         main_layout.addStretch()
         return main_layout
 
@@ -167,6 +170,12 @@ class ContactsToolbarWidget(QWidget):
     def reset_filter(self) -> None:
         try:
             self.contact_search_controler.reset_filter(self.search_line_edit)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def show_user_filters(self) -> None:
+        try:
+            self.user_filters_controler.show_user_filters_dialog()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
