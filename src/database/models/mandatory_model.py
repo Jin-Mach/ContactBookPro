@@ -1,8 +1,10 @@
-from PyQt6.QtCore import Qt
+from typing import Any
+
+from PyQt6.QtCore import Qt, QModelIndex
 from PyQt6.QtGui import QIcon
 from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
 
-from src.database.database_utilities.set_manadatory_headers import set_manadatory_model_headers
+from src.database.database_utilities.model_header_provider import ModelHeaderProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -16,7 +18,7 @@ class MandatoryModel(QSqlTableModel):
         self.setTable("mandatory")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
         self.setSort(0, Qt.SortOrder.AscendingOrder)
-        set_manadatory_model_headers(self)
+        ModelHeaderProvider.set_mandatory_model_headers(self)
         self.icons_path = IconProvider.icons_path.joinpath("personalTabInfoWidget")
         self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
         self.female_icon = str(self.icons_path.joinpath("female_icon.png"))
@@ -24,14 +26,14 @@ class MandatoryModel(QSqlTableModel):
         self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["gengerHeaderText"]
         self.select()
 
-    def headerData(self, section, orientation, role=Qt.ItemDataRole.DisplayRole):
+    def headerData(self, section: int, orientation: Qt.Orientation, role=Qt.ItemDataRole.DisplayRole) -> bool:
         if role == Qt.ItemDataRole.ToolTipRole:
             if orientation == Qt.Orientation.Horizontal:
                 if section == 1:
                     return self.gender_header_text
         return super().headerData(section, orientation, role)
 
-    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
+    def data(self, index: QModelIndex, role=Qt.ItemDataRole.DisplayRole) -> Any:
         if role == Qt.ItemDataRole.DisplayRole:
             if index.column() == 1:
                 return ""

@@ -13,8 +13,8 @@ class DialogsProvider:
     icon_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     @staticmethod
-    def show_error_dialog(error_message: str) -> QDialog:
-        dialog = QDialog()
+    def show_error_dialog(error_message: str, parent=None) -> QDialog:
+        dialog = QDialog(parent)
         dialog.setObjectName("errorDialog")
         dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
         dialog.setMinimumSize(250, 100)

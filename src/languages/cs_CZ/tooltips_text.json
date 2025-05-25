@@ -42,7 +42,10 @@
     "currentFilterButton": "Zobrazí aktuálně nastavený filtr vyhledávání",
     "clearFilterPushbutton": "Zruší filtr pro daný řádek"
   },
-  "currentFilterDialog": {
+  "activeFiltersDialog": {
     "closeButton": "Zavřít okno"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Zruší filtr pro daný řádek"
   }
 }

@@ -1,17 +1,22 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
-from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
+from typing import Callable
 
-from src.contacts.contacts_ui.search_dialog.search_widgets.filters_listview_widget import FiltersListviewWidget
+from PyQt6.QtCore import Qt, QAbstractTableModel
+from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton, QComboBox, QLineEdit
+
+from src.contacts.contacts_ui.search_dialog.search_widgets.filters_tableview_widget import FiltersTableviewWidget
+from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class CurrentFilterDialog(QDialog):
-    def __init__(self, parent=None) -> None:
+class ActiveFiltersDialog(QDialog):
+    def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, QAbstractTableModel], None], parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("currentFilterDialog")
-        self.setMinimumSize(300, 200)
+        self.setObjectName("activeFiltersDialog")
+        self.setMinimumSize(700, 400)
+        self.advanced_filter_model = advanced_filter_model
+        self.remove_filter = remove_filter
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)
         if button_box:
@@ -26,13 +31,13 @@ class CurrentFilterDialog(QDialog):
         self.current_filter_text_label.setObjectName("currentFilterTextLabel")
         self.current_filter_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.current_filter_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
-        self.filters_listview = FiltersListviewWidget(self)
+        self.filters_tableview_widget = FiltersTableviewWidget(self.advanced_filter_model, self.remove_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         close_button = button_box.button(QDialogButtonBox.StandardButton.Close)
         close_button.setObjectName("closeButton")
         close_button.clicked.connect(self.reject)
         main_layout.addWidget(self.current_filter_text_label)
-        main_layout.addWidget(self.filters_listview)
+        main_layout.addWidget(self.filters_tableview_widget)
         main_layout.addWidget(button_box)
         return main_layout
 
@@ -58,5 +63,17 @@ class CurrentFilterDialog(QDialog):
                 if button.objectName() in tooltips_text:
                     button.setToolTip(tooltips_text[button.objectName()])
                     button.setToolTipDuration(5000)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def reset_active_filters_widgets(self, row: int, model: QAbstractTableModel) -> None:
+        try:
+            filter_item = model.filter_data[row]
+            combobox_widget = filter_item["combobox"]
+            edit_widget = filter_item["edit"]
+            if combobox_widget:
+                combobox_widget.setCurrentIndex(0)
+            if edit_widget:
+                edit_widget.clear()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

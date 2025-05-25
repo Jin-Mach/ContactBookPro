@@ -1,11 +1,19 @@
+from PyQt6.QtCore import QAbstractTableModel
+from PyQt6.QtWidgets import QDialog
+
+from src.contacts.contacts_ui.search_dialog.active_filters_dialog import ActiveFiltersDialog
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+from src.database.models.advanced_filter_model import AdvancedFilterModel
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
-class FiltersControler:
+class ActiveFiltersControler:
     def __init__(self, search_mandatory_widget: SearchMandatoryWidget, search_non_mandatory_widget: SearchNonMandatoryWidget,
                  parent=None) -> None:
+        self.class_name = "activeFiltersControler"
         self.search_mandatory_widget = search_mandatory_widget
         self.search_work_widget = search_non_mandatory_widget.search_work_widget
         self.search_social_networks_widget = search_non_mandatory_widget.search_social_networks_widget
@@ -14,7 +22,13 @@ class FiltersControler:
 
     def show_active_filters(self) -> None:
         try:
-            print(self.get_all_active_filters())
+            if not self.get_all_active_filters():
+                error_text = LanguageProvider.get_error_text(self.class_name)
+                DialogsProvider.show_error_dialog(error_text["noActiveFilter"], self.parent)
+                return
+            advanced_filter_model = AdvancedFilterModel(self.get_all_active_filters(), self.parent)
+            self.active_filters_dialog = ActiveFiltersDialog(advanced_filter_model, self.remove_active_filter, self.parent)
+            self.active_filters_dialog.exec()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -29,3 +43,10 @@ class FiltersControler:
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return []
+
+    def remove_active_filter(self, row: int, model: QAbstractTableModel) -> None:
+        try:
+            self.active_filters_dialog.reset_active_filters_widgets(row, model)
+            model.remove_row(row)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

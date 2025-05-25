@@ -4,9 +4,16 @@
     "gender": "Pohlaví",
     "relationship": "Vztah",
     "first_name": "Jméno kontaktu",
-    "personal_email": "Email",
-    "personal_phone_number": "Tel. číslo",
-    "personal_address": "Adresa"
+    "personal_email": "Email (osobní)",
+    "personal_phone_number": "Tel. číslo (osobní)",
+    "personal_address": "Adresa (osobní)"
+  },
+  "advancedFilterModel": {
+    "labelText": "Kritérium",
+    "operatorText": "Podmínka",
+    "editText": "Text",
+    "widgets": "Widgety",
+    "deleteButton": ""
   }
 }
 
