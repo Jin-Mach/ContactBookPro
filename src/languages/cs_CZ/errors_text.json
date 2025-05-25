@@ -12,7 +12,7 @@
     "UnexpectedError": "Došlo k neočekávané chybě."
   },
   "dialogMandatoryWidget": {
-    "genderError": "Prosím vyberte pohlaví",
+    "genderError": "Prosím vyberte pohlaví.",
     "relationshipError": "Prosím, vyberte vztah.",
     "emptyTextError": "Toto pole nesmí být prázdné.\n",
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
@@ -34,8 +34,8 @@
     "selectedDateError": "Zvolené datum nemůže být vyšší než aktuální datum."
   },
   "contactSearchControler": {
-    "emptySearchText": "Nelze vyhledat bez zadaného textu",
-    "noTableviewSelection": "Pro rychlé vyhledávání je nutné označit sloupec",
+    "emptySearchText": "Nelze vyhledat bez zadaného textu.",
+    "noTableviewSelection": "Pro rychlé vyhledávání je nutné označit sloupec.",
     "noFilteredData": "Zadanému výrazu neodpovídají žádná data.\nFiltr bude resetován."
   },
   "widgetErrors": {
@@ -43,6 +43,9 @@
     "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
   "activeFiltersControler": {
-    "noActiveFilter": "Žádný aktivní filtr"
+    "noActiveFilter": "Žádný aktivní filtr."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Není zadán název filtru."
   }
 }

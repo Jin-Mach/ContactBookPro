@@ -86,6 +86,14 @@
   "activeFiltersDialog": {
     "currentFilterTitle": "Aktuální filtr",
     "currentFilterTextLabel": "Aktuálně nastavené filtry",
+    "saveFilter": "Uložit filtr",
     "closeButton": "Zavřít"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Uložení filtru",
+    "filterNameTextLabel": "Zadej jméno nového filtru",
+    "filterNameInput": "Pouze písmena, čísla, mezery a základní znaky (-, _)",
+    "saveFilterButton": "Uložit",
+    "cancelButton": "Zavřít"
   }
 }

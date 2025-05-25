@@ -52,5 +52,9 @@
   "userFiltersDialog": {
     "filterButton": "Spustí vyhladávání dle vybraného filtru",
     "cancelButton": "Zavře dialog"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Uloží nastavený filtr",
+    "cancelButton": "Zavře dialog"
   }
 }

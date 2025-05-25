@@ -83,6 +83,12 @@ class ContactValidator:
                 edit.setValidator(url_validator)
 
     @staticmethod
+    def filter_name_input_validator(filter_name_edit: QLineEdit) -> None:
+        filter_name_regex = QRegularExpression(r'^[\p{L}\d _-]+$')
+        filter_name_validator = QRegularExpressionValidator(filter_name_regex)
+        filter_name_edit.setValidator(filter_name_validator)
+
+    @staticmethod
     def filter_invalid_characters(search_input: QLineEdit) -> Optional[str]:
         regex_pattern = None
         filtered_text = ""
