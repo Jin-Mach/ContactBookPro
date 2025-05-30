@@ -56,5 +56,8 @@
   "filterNameDialog": {
     "saveFilterButton": "Uloží nastavený filtr",
     "cancelButton": "Zavře dialog"
+  },
+  "userFiltersListwidget": {
+    "deleteFilterPushbutton": "Odstraní uložený filtr"
   }
 }

@@ -16,5 +16,6 @@ def create_application() -> None:
         if result == QDialog.DialogCode.Accepted or result == QDialog.DialogCode.Rejected:
             sys.exit(1)
     window = MainWindow()
+    application.main_window = window
     window.show()
     sys.exit(application.exec())

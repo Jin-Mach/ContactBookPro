@@ -77,7 +77,8 @@
     "contactUpdated": "Kontakt upraven",
     "contactDeleted": "Kontakt smazán",
     "databaseDeleted": "Databáze odstraněna",
-    "filterAdded": "Filtr uložen"
+    "filterAdded": "Filtr uložen",
+    "filterDeleted": "Filtr byl odstraněn"
   },
   "mandatoryModel": {
     "gengerHeaderText": "Pohlaví uživatele"

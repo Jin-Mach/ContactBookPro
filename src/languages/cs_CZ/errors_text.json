@@ -43,11 +43,11 @@
     "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
   "filtersControler": {
-    "noActiveFilter": "Žádný aktivní filtr."
+    "noActiveFilter": "Žádný aktivní filtr.",
+    "existingFilterName": "Jméno filtru již existuje."
   },
   "filterNameDialog": {
-    "emptyFilterName": "Není zadán název filtru.",
-    "existingFilterName": "Jméno filtru již existuje."
+    "emptyFilterName": "Není zadán název filtru."
   },
   "activeFiltersDialog": {
     "noActiveFilter": "Žádný aktivní filtr."

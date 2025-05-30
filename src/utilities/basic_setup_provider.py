@@ -41,7 +41,8 @@ class BasicSetupProvider:
             "dialogResetCalendarPushbutton_icon.png","dialogResetPhotoButton_icon.png","no_user_photo.png",
             "deleteFilterButton_icon.png","dog_image.png", "mainWindowDatabaseButton_icon.png","window_icon.png",
             "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
-            "instagramPushbutton_icon.png","linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png"
+            "instagramPushbutton_icon.png","linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png",
+            "deleteFilterPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/src/icons"
@@ -73,7 +74,8 @@ class BasicSetupProvider:
             "instagramPushbutton_icon.png": "tabInfoWidget",
             "linkedinPushbutton_icon.png": "tabInfoWidget",
             "websitePushbutton_icon.png": "tabInfoWidget",
-            "xPushbutton_icon.png": "tabInfoWidget"
+            "xPushbutton_icon.png": "tabInfoWidget",
+            "deleteFilterPushbutton_icon.png": "userFiltersListwidget"
         }
         try:
             if icon_files_path.exists() and icon_files_path.is_dir():

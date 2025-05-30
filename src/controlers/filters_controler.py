@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QAbstractTableModel
-from PyQt6.QtWidgets import QDialog, QApplication, QWidget
+from PyQt6.QtWidgets import QDialog, QApplication, QWidget, QMainWindow
 
 from src.contacts.contacts_ui.search_dialog.active_filters_dialog import ActiveFiltersDialog
 from src.contacts.contacts_ui.search_dialog.filter_name_dialog import FilterNameDialog
@@ -7,6 +7,7 @@ from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widg
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.user_filters_dialog import UserFiltersDialog
 from src.contacts.contacts_utilities.filters_provider import FiltersProvider
+from src.contacts.contacts_utilities.get_main_window import get_main_window_instance
 from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -23,6 +24,8 @@ class FiltersControler:
         self.search_social_networks_widget = self.search_non_mandatory_widget.search_social_networks_widget
         self.search_details_widget = self.search_non_mandatory_widget.search_details_widget
         self.parent = parent
+        self.user_filters_dialog = UserFiltersDialog(delete_filter=self.delete_saved_filter, parent=self.parent)
+        self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
 
     def show_active_filters(self) -> None:
         try:
@@ -50,14 +53,26 @@ class FiltersControler:
                         error_text = LanguageProvider.get_error_text(self.class_name)
                         DialogsProvider.show_error_dialog(error_text["existingFilterName"], self.parent)
                         return
-                    print("filter save")
+                    main_window = get_main_window_instance()
+                    if main_window:
+                        main_window.tray_icon.show_notification(filter_name, "filterAdded")
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
+
+    def delete_saved_filter(self, filter_name: str) -> None:
+        try:
+            FiltersProvider.remove_filter(filter_name)
+            self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
+            main_window = get_main_window_instance()
+            if main_window:
+                main_window.tray_icon.show_notification(filter_name, "filterDeleted")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
     def show_user_filters(self) -> None:
         try:
-            user_filters_dialog = UserFiltersDialog(self.parent)
-            user_filters_dialog.exec()
+            self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
+            self.user_filters_dialog.exec()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

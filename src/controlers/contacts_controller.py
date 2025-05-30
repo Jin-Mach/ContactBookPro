@@ -1,13 +1,14 @@
 from datetime import datetime
 
 from PyQt6.QtCore import QThreadPool, QModelIndex
-from PyQt6.QtWidgets import QDialog, QMainWindow
+from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication
 
 from src.contacts.contacts_ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.contacts_utilities.get_main_window import get_main_window_instance
 from src.database.database_utilities.models_refresher import refresh_models
 from src.database.database_utilities.reset_database import reset_database
 from src.database.database_utilities.row_data_provider import RowDataProvider
@@ -91,7 +92,7 @@ class ContactsController:
             else:
                 DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
         except Exception as e:
-            ErrorHandler.exception_handler(e, self)
+            ErrorHandler.exception_handler(e, self.parent)
 
     def delete_contact(self) -> None:
         try:

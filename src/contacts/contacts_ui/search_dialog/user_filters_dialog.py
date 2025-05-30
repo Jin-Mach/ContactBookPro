@@ -1,3 +1,5 @@
+from typing import Callable
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
@@ -8,9 +10,10 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyTypeChecker
 class UserFiltersDialog(QDialog):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, delete_filter: Callable[[str], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("userFiltersDialog")
+        self.delete_filter = delete_filter
         self.setFixedSize(400, 300)
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)
@@ -25,7 +28,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label.setObjectName("userFiltersTextLabel")
         self.user_filters_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.user_filters_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
-        user_filters_listwidget = UserFiltersListwidget()
+        self.user_filters_listwidget = UserFiltersListwidget(self.delete_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(self.accept)
         button_box.rejected.connect(self.reject)
@@ -34,7 +37,7 @@ class UserFiltersDialog(QDialog):
         self.cancel_button = button_box.button(QDialogButtonBox.StandardButton.Cancel)
         self.cancel_button.setObjectName("cancelButton")
         main_layout.addWidget(self.user_filters_text_label)
-        main_layout.addWidget(user_filters_listwidget)
+        main_layout.addWidget(self.user_filters_listwidget)
         main_layout.addWidget(button_box)
         return main_layout
 
