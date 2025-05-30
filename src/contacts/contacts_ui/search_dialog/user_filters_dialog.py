@@ -3,7 +3,7 @@ from typing import Callable
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
-from src.contacts.contacts_ui.search_dialog.search_widgets.user_filters_listwidget_widget import UserFiltersListwidget
+from src.contacts.contacts_ui.search_dialog.search_widgets.user_filters_listwidget import UserFiltersListwidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
