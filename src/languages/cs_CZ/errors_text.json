@@ -42,11 +42,14 @@
     "indexError": "Není zvolen platný index. Opakuj výběr znovu.",
     "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
-  "activeFiltersControler": {
+  "filtersControler": {
     "noActiveFilter": "Žádný aktivní filtr."
   },
   "filterNameDialog": {
     "emptyFilterName": "Není zadán název filtru.",
     "existingFilterName": "Jméno filtru již existuje."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Žádný aktivní filtr."
   }
 }

@@ -8,6 +8,7 @@ from src.contacts.contacts_ui.search_dialog.search_widgets.filters_tableview_wid
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 from src.database.models.advanced_filter_model import AdvancedFilterModel
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -76,9 +77,16 @@ class ActiveFiltersDialog(QDialog):
             ErrorHandler.exception_handler(e, self)
 
     def save_current_filter(self) -> None:
-        from src.controlers.active_filters_controler import ActiveFiltersControler
-        controler = ActiveFiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
-        controler.save_filter()
+        try:
+            if not self.filters_tableview_widget.advanced_filter_model.rowCount() > 0:
+                error_text = LanguageProvider.get_error_text(self.objectName())
+                DialogsProvider.show_error_dialog(error_text["noActiveFilter"], self)
+                return
+            from src.controlers.filters_controler import FiltersControler
+            controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
+            controler.save_filter()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def reset_active_filters_widgets(self, row: int, model: QAbstractTableModel) -> None:
         try:

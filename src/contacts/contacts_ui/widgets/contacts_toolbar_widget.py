@@ -11,7 +11,7 @@ from src.controlers.advanced_search_controler import AdvancedSearchControler
 from src.controlers.completer_controler import CompleterControler
 from src.controlers.contact_search_controler import ContactSearchControler
 from src.controlers.contacts_controller import ContactsController
-from src.controlers.user_filters_controler import UserFiltersControler
+from src.controlers.filters_controler import FiltersControler
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
@@ -45,7 +45,8 @@ class ContactsToolbarWidget(QWidget):
         self.completer_controler.setup()
         self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
         self.advanced_search_controler = AdvancedSearchControler(self.db_connection, mandatory_model, status_bar, self)
-        self.user_filters_controler = UserFiltersControler(self)
+        self.filters_controler = FiltersControler(self.advanced_search_controler.dialog.search_mandatory_widget,
+                                                  self.advanced_search_controler.dialog.search_non_mandatory_widget, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 
@@ -175,7 +176,7 @@ class ContactsToolbarWidget(QWidget):
 
     def show_user_filters(self) -> None:
         try:
-            self.user_filters_controler.show_user_filters_dialog()
+            self.filters_controler.show_user_filters()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

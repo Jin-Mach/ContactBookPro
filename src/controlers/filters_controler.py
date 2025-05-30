@@ -5,6 +5,7 @@ from src.contacts.contacts_ui.search_dialog.active_filters_dialog import ActiveF
 from src.contacts.contacts_ui.search_dialog.filter_name_dialog import FilterNameDialog
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+from src.contacts.contacts_ui.search_dialog.user_filters_dialog import UserFiltersDialog
 from src.contacts.contacts_utilities.filters_provider import FiltersProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.utilities.dialogs_provider import DialogsProvider
@@ -12,10 +13,10 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class ActiveFiltersControler:
+class FiltersControler:
     def __init__(self, search_mandatory_widget: SearchMandatoryWidget, search_non_mandatory_widget: SearchNonMandatoryWidget,
                  parent=None) -> None:
-        self.class_name = "activeFiltersControler"
+        self.class_name = "filtersControler"
         self.search_mandatory_widget = search_mandatory_widget
         self.search_non_mandatory_widget = search_non_mandatory_widget
         self.search_work_widget = self.search_non_mandatory_widget.search_work_widget
@@ -52,6 +53,13 @@ class ActiveFiltersControler:
                     print("filter save")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
+
+    def show_user_filters(self) -> None:
+        try:
+            user_filters_dialog = UserFiltersDialog(self.parent)
+            user_filters_dialog.exec()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def get_all_active_filters(self) -> list:
         try:

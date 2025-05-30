@@ -20,12 +20,13 @@ class AdvancedSearchControler:
         self.status_bar = status_bar
         self.error_text = LanguageProvider.get_error_text("contactSearchControler")
         self.parent = parent
+        self.dialog = AdvancedSearchDialog(self.parent)
         
     def advanced_search(self) -> None:
         try:
-            dialog = AdvancedSearchDialog(self.parent)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
-                filters = dialog.get_finall_filter()
+            self.dialog.reset_all_filters()
+            if self.dialog.exec() == QDialog.DialogCode.Accepted:
+                filters = self.dialog.get_finall_filter()
                 query = create_sql_query(filters, self.parent)
                 if query:
                     self.search_thread = AdvancedSearchThread(self.db_connection, query)

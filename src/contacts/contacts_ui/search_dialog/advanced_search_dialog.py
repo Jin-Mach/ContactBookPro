@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QTabWidget, QDialogBu
 
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
-from src.controlers.active_filters_controler import ActiveFiltersControler
+from src.controlers.filters_controler import FiltersControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -22,6 +22,7 @@ class AdvancedSearchDialog(QDialog):
         self.set_ui_text()
         self.set_toolpips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.buttons, QSize(35, 35))
+        self.active_filters_controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -100,5 +101,4 @@ class AdvancedSearchDialog(QDialog):
             return {}
 
     def show_current_filter_dialog(self) -> None:
-        active_filters_controler = ActiveFiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
-        active_filters_controler.show_active_filters()
+        self.active_filters_controler.show_active_filters()

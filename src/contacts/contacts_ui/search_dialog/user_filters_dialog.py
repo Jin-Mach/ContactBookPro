@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
-from src.contacts.contacts_ui.search_dialog.search_widgets.user_filters_listwidget_widget import UserFiltersListwidgetWidget
+from src.contacts.contacts_ui.search_dialog.search_widgets.user_filters_listwidget_widget import UserFiltersListwidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -25,7 +25,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label.setObjectName("userFiltersTextLabel")
         self.user_filters_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.user_filters_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
-        user_filters_listwidget = UserFiltersListwidgetWidget()
+        user_filters_listwidget = UserFiltersListwidget()
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(self.accept)
         button_box.rejected.connect(self.reject)
