@@ -8,6 +8,7 @@ from src.contacts.contacts_ui.contacts_dialog.calendar_dialog import CalendarDia
 from src.contacts.contacts_utilities.blob_handler import BlobHandler
 from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
+from src.contacts.contacts_utilities.optimalize_data import normalize_texts
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
@@ -156,6 +157,7 @@ class PersonalDetailsWidget(QWidget):
                 personal_data.append(photo_blob)
             else:
                 personal_data.append(None)
+            personal_data += normalize_texts([self.dialog_title_edit, self.dialog_notes_edit])
             if self.default_data:
                 return [personal_data, check_update(self.objectName(), self.default_data, personal_data)]
             return personal_data

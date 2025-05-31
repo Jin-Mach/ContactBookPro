@@ -35,7 +35,12 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         personal_street TEXT,
         personal_house_number TEXT NOT NULL,
         personal_post_code TEXT NOT NULL,
-        personal_country TEXT NOT NULL
+        personal_country TEXT NOT NULL,
+        first_name_normalized TEXT,
+        second_name_normalized TEXT,
+        personal_city_normalized TEXT,
+        personal_street_normalized TEXT,
+        personal_country_normalized TEXT
         )
     """)
     create_work_table = query.exec("""CREATE TABLE IF NOT EXISTS work(
@@ -48,6 +53,10 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         work_house_number TEXT,
         work_post_code TEXT,
         work_country TEXT,
+        company_name_normalized TEXT,
+        work_city_normalized TEXT,
+        work_street_normalized TEXT,
+        work_country_normalized TEXT,
         FOREIGN KEY (id) REFERENCES mandatory(id) ON DELETE CASCADE
         )
     """)
@@ -68,6 +77,8 @@ def create_contacts_tables() -> tuple[bool, QSqlQuery]:
         birthday TEXT,
         notes TEXT,
         photo BLOB,
+        title_normalized TEXT,
+        notes_normalized TEXT,
         FOREIGN KEY (id) REFERENCES mandatory(id) ON DELETE CASCADE
         )
     """)

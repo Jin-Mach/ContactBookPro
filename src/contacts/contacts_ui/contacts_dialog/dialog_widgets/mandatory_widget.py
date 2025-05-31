@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QC
 
 from src.contacts.contacts_utilities.check_update_data import check_update
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.contacts.contacts_utilities.optimalize_data import normalize_texts
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -136,6 +137,8 @@ class MandatoryWidget(QWidget):
                         widget.setFocus()
                         return None
                     mandatory_data.append(text)
+            mandatory_data += normalize_texts([self.dialog_first_name_edit, self.dialog_second_name_edit,
+                                               self.dialog_city_edit, self.dialog_street_edit, self.dialog_country_edit])
             if self.default_data:
                 return [mandatory_data, check_update(self.objectName(), self.default_data, mandatory_data)]
             return mandatory_data

@@ -15,8 +15,8 @@ class DetailModel(QSqlTableModel):
 
     def add_contact(self, data: list) -> None:
         query = QSqlQuery(self.db_connection)
-        query.prepare("""INSERT INTO detail (id, title, birthday, notes, photo)
-                        VALUES (?, ?, ?, ?, ?)
+        query.prepare("""INSERT INTO detail (id, title, birthday, notes, photo, title_normalized, notes_normalized)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
         """)
         for value in data:
             if isinstance(value, bytes):
@@ -27,7 +27,8 @@ class DetailModel(QSqlTableModel):
 
     def update_contact(self, contact_id: int, data: list) -> None:
         query = QSqlQuery(self.db_connection)
-        query.prepare("UPDATE detail SET title=?, birthday=?, notes=?, photo=? WHERE id=?")
+        query.prepare(
+            "UPDATE detail SET title=?, birthday=?, notes=?, photo=?, title_normalized=?, notes_normalized=? WHERE id=?")
         for value in data:
             if isinstance(value, bytes):
                 query.addBindValue(QByteArray(value))
