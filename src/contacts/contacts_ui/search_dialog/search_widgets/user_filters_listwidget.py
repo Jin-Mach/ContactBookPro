@@ -1,7 +1,7 @@
 from functools import partial
 from typing import Optional, Callable
 
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt, QSize, QItemSelectionModel
 from PyQt6.QtWidgets import QListWidget, QAbstractItemView, QWidget, QHBoxLayout, QListWidgetItem, QLabel, QPushButton, \
     QVBoxLayout
 
@@ -10,6 +10,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyTypeChecker
 class UserFiltersListwidget(QListWidget):
     def __init__(self, delete_filter: Callable[[str], None], parent=None) -> None:
         super().__init__(parent)
@@ -30,12 +31,14 @@ class UserFiltersListwidget(QListWidget):
                     list_widget_item.setSizeHint(QSize(0, 50))
                     self.addItem(list_widget_item)
                     self.setItemWidget(list_widget_item, widget)
+            self.selectionModel().setCurrentIndex(self.model().index(0, 0), QItemSelectionModel.SelectionFlag.SelectCurrent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def create_list_widget(self, filter_name: str) -> Optional[QWidget]:
         try:
             widget = QWidget()
+            widget.filter_name = filter_name
             layout = QHBoxLayout()
             layout.setContentsMargins(5, 0, 5, 0)
             text_label = QLabel(filter_name)
@@ -64,3 +67,14 @@ class UserFiltersListwidget(QListWidget):
             self.delete_filter(filter_name)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def return_selected_filter(self) -> Optional[str]:
+        try:
+            item = self.currentItem()
+            if item is None:
+                return None
+            selected_widget = self.itemWidget(item)
+            return selected_widget.filter_name
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return None

@@ -1,3 +1,4 @@
+from typing import Any
 import pathlib
 import json
 from json import JSONDecodeError
@@ -36,6 +37,17 @@ class FiltersProvider:
         try:
             with open(str(FiltersProvider.filters_path), "r", encoding="utf-8") as file:
                 return json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {}
+
+    @staticmethod
+    def return_selected_filter(filter_name: str) -> dict[str, list[Any]]:
+        try:
+            with open(str(FiltersProvider.filters_path), "r", encoding="utf-8") as file:
+                filters = json.load(file)
+                if filter_name in filters:
+                    return filters[filter_name]
+                return {}
         except (FileNotFoundError, json.JSONDecodeError):
             return {}
 

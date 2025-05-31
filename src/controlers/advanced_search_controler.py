@@ -7,6 +7,7 @@ from src.database.database_utilities.search_provider import SearchProvider
 from src.database.database_utilities.sql_query_creator import create_sql_query
 from src.database.models.mandatory_model import MandatoryModel
 from src.threads.advanced_search_thread import AdvancedSearchThread
+from src.threads.user_filter_thread import UserFilterThread
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -29,10 +30,23 @@ class AdvancedSearchControler:
                 filters = self.dialog.get_finall_filter()
                 query = create_sql_query(filters, self.parent)
                 if query:
-                    self.search_thread = AdvancedSearchThread(self.db_connection, query)
-                    self.search_thread.search_completed.connect(self.check_search_result)
-                    self.search_thread.error_message.connect(self.show_thread_error)
-                    self.search_thread.start()
+                    advanced_search_thread = AdvancedSearchThread(self.db_connection.databaseName(), query)
+                    advanced_search_thread.search_completed.connect(self.check_search_result)
+                    advanced_search_thread.error_message.connect(self.show_thread_error)
+                    advanced_search_thread.finished.connect(lambda: self.remove_connection(advanced_search_thread.connection_name))
+                    advanced_search_thread.start()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
+
+    def apply_saved_filter(self, selected_filter: dict) -> None:
+        try:
+            query = create_sql_query(selected_filter, self.parent)
+            if query:
+                user_filter_thread = UserFilterThread(self.db_connection.databaseName(), query)
+                user_filter_thread.search_completed.connect(self.check_search_result)
+                user_filter_thread.error_message.connect(self.show_thread_error)
+                user_filter_thread.finished.connect(lambda: self.remove_connection(user_filter_thread.connection_name))
+                user_filter_thread.start()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -44,6 +58,10 @@ class AdvancedSearchControler:
             return
         self.mandatory_model.set_advanced_search_filter(id_list)
         self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
+
+    @staticmethod
+    def remove_connection(connection_name: str)-> None:
+        QSqlDatabase.removeDatabase(connection_name)
 
     @staticmethod
     def show_thread_error(error: str) -> None:

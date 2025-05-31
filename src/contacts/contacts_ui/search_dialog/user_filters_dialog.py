@@ -1,9 +1,10 @@
-from typing import Callable
+from typing import Callable, Optional
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
 from src.contacts.contacts_ui.search_dialog.search_widgets.user_filters_listwidget import UserFiltersListwidget
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -30,7 +31,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
         self.user_filters_listwidget = UserFiltersListwidget(self.delete_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        button_box.accepted.connect(self.accept)
+        button_box.accepted.connect(self.check_selected_filter)
         button_box.rejected.connect(self.reject)
         self.filter_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
         self.filter_button.setObjectName("filterButton")
@@ -66,3 +67,19 @@ class UserFiltersDialog(QDialog):
                     button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def check_selected_filter(self) -> Optional[str]:
+        try:
+            error_text = LanguageProvider.get_error_text(self.objectName())
+            if self.user_filters_listwidget.model().rowCount() < 1:
+                DialogsProvider.show_error_dialog(error_text["noFilters"], self)
+                return None
+            selected_filter = self.user_filters_listwidget.return_selected_filter()
+            if not selected_filter:
+                DialogsProvider.show_error_dialog(error_text["noSelection"], self)
+                return None
+            self.accept()
+            return selected_filter
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+            return None

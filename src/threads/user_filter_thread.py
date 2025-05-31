@@ -2,7 +2,7 @@ from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
 
-class AdvancedSearchThread(QThread):
+class UserFilterThread(QThread):
     search_completed = pyqtSignal(list)
     error_message = pyqtSignal(str)
     def __init__(self, db_path: str, query_values: tuple) -> None:
@@ -10,7 +10,7 @@ class AdvancedSearchThread(QThread):
         self.db_path = db_path
         self.query = query_values[0]
         self.values = query_values[1]
-        self.connection_name = f"advancedSearchThread{id(self)}"
+        self.connection_name = f"userFilterThread{id(self)}"
 
     def run(self) -> None:
         id_list = []

@@ -32,19 +32,21 @@ class ContactsToolbarWidget(QWidget):
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.db_connection = db_connection
+        self.mandatory_model = mandatory_model
         self.table_view = table_view
         self.completer_model = completer_model
+        self.status_bar = status_bar
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_tooltips_text()
-        self.contacts_controler = ContactsController(main_window, mandatory_model, work_model, social_model,
+        self.contacts_controler = ContactsController(main_window, self.mandatory_model, work_model, social_model,
                                                      detail_model, info_model,
-                                                     detail_widget, table_view, status_bar, self)
+                                                     detail_widget, table_view, self.status_bar, self)
         self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
-        self.contact_search_controler = ContactSearchControler(self.completer_controler, mandatory_model, table_view, status_bar, self.search_combobox, self)
-        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, mandatory_model, status_bar, self)
+        self.contact_search_controler = ContactSearchControler(self.completer_controler, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
+        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, self.mandatory_model, self.status_bar, self)
         self.filters_controler = FiltersControler(self.advanced_search_controler.dialog.search_mandatory_widget,
                                                   self.advanced_search_controler.dialog.search_non_mandatory_widget, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
@@ -176,7 +178,7 @@ class ContactsToolbarWidget(QWidget):
 
     def show_user_filters(self) -> None:
         try:
-            self.filters_controler.show_user_filters()
+            self.filters_controler.show_user_filters(self.db_connection, self.mandatory_model, self.status_bar)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -1,4 +1,7 @@
+from typing import Optional
+
 from PyQt6.QtCore import QAbstractTableModel
+from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QApplication, QWidget, QMainWindow
 
 from src.contacts.contacts_ui.search_dialog.active_filters_dialog import ActiveFiltersDialog
@@ -6,9 +9,11 @@ from src.contacts.contacts_ui.search_dialog.filter_name_dialog import FilterName
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 from src.contacts.contacts_ui.search_dialog.user_filters_dialog import UserFiltersDialog
+from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_utilities.filters_provider import FiltersProvider
 from src.contacts.contacts_utilities.get_main_window import get_main_window_instance
 from src.database.models.advanced_filter_model import AdvancedFilterModel
+from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -69,12 +74,17 @@ class FiltersControler:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
-    def show_user_filters(self) -> None:
+    def show_user_filters(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, status_bar: ContactsStatusbarWidget) -> None:
         try:
+            from src.controlers.advanced_search_controler import AdvancedSearchControler
+            advanced_search_controler = AdvancedSearchControler(db_connection, mandatory_model, status_bar)
             self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
-            self.user_filters_dialog.exec()
+            if self.user_filters_dialog.exec() == QDialog.DialogCode.Accepted:
+                selected_filter = self.user_filters_dialog.check_selected_filter()
+                new_filter = FiltersProvider.return_selected_filter(selected_filter)
+                advanced_search_controler.apply_saved_filter(new_filter)
         except Exception as e:
-            ErrorHandler.exception_handler(e, self)
+            ErrorHandler.exception_handler(e, self.parent)
 
     def get_all_active_filters(self) -> list:
         try:
