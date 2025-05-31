@@ -3,6 +3,7 @@ from functools import partial
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QComboBox, QLineEdit, QHBoxLayout, QPushButton
 
+from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -15,6 +16,7 @@ class SearchDeatilsWidget(QWidget):
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        ContactValidator.search_input_validator(birthday_edit=self.search_birthday_edit)
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()

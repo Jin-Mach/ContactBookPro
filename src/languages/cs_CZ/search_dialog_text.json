@@ -80,7 +80,7 @@
     "searchNotesTextLabel": "Poznámky:",
     "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
     "searchTitleEdit": "Zadej titul...",
-    "searchBirthdayEdit": "Zadej datum narození...",
+    "searchBirthdayEdit": "Zadej datum...např: 01.01.2000",
     "searcNotesEdit": "Zadej poznámky..."
   },
   "activeFiltersDialog": {

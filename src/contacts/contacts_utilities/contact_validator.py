@@ -67,13 +67,16 @@ class ContactValidator:
                 edit.setValidator(url_validator)
 
     @staticmethod
-    def search_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None) -> None:
+    def search_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None,
+                               birthday_edit: QLineEdit = None) -> None:
         email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
         phone_regex = QRegularExpression("^[+]?[0-9]{1,14}$")
         url_regex = QRegularExpression(r"^[A-Za-z0-9:/?&=._%#\-]*$")
+        birthday_regex = QRegularExpression(r"^(?!\.)(\d+(\.\d+)*)?(?<!\.)$")
         email_validator = QRegularExpressionValidator(email_regex)
         phone_validator = QRegularExpressionValidator(phone_regex)
         url_validator = QRegularExpressionValidator(url_regex)
+        birthday_validator = QRegularExpressionValidator(birthday_regex)
         if email_edit:
             email_edit.setValidator(email_validator)
         if phone_edit:
@@ -81,6 +84,8 @@ class ContactValidator:
         if url_edit:
             for edit in url_edit:
                 edit.setValidator(url_validator)
+        if birthday_edit:
+            birthday_edit.setValidator(birthday_validator)
 
     @staticmethod
     def filter_name_input_validator(filter_name_edit: QLineEdit) -> None:
