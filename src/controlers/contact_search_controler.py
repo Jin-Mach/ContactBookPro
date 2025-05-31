@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QLineEdit, QComboBox
 
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.contacts_utilities.optimalize_data import normalize_input
 from src.controlers.completer_controler import CompleterControler
 from src.database.database_utilities.search_provider import SearchProvider
 from src.database.models.mandatory_model import MandatoryModel
@@ -24,17 +25,17 @@ class ContactSearchControler:
         self.index_error_text = LanguageProvider.get_error_text("widgetErrors")
 
     def basic_search(self, search_input: QLineEdit) -> None:
-        search_text = search_input.text().strip()
+        search_text = normalize_input(search_input)
         self.new_filter = None
         filters = {
             "1": "gender VALUE",
             "2": "relationship VALUE",
-            "3": "first_name LIKE '%VALUE%' OR second_name LIKE '%VALUE%'",
+            "3": "first_name_normalized LIKE '%VALUE%' OR second_name_normalized LIKE '%VALUE%'",
             "4": "personal_email LIKE '%VALUE%'",
             "5": "personal_phone_number LIKE '%VALUE%'",
             "6": (
-                "personal_city LIKE '%VALUE%' OR personal_street LIKE '%VALUE%' OR personal_house_number LIKE '%VALUE%' OR "
-                "personal_post_code LIKE '%VALUE%' OR personal_country LIKE '%VALUE%'"
+                "personal_city_normalized LIKE '%VALUE%' OR personal_street_normalized LIKE '%VALUE%' OR personal_house_number LIKE '%VALUE%' OR "
+                "personal_post_code LIKE '%VALUE%' OR personal_country_normalized LIKE '%VALUE%'"
             )
         }
         try:
@@ -49,11 +50,13 @@ class ContactSearchControler:
                 else:
                     if search_text:
                         if column_index == 3:
-                            self.new_filter = self.return_multicolumn_filter(search_text, ["first_name", "second_name"])
+                            self.new_filter = self.return_multicolumn_filter(search_text, ["first_name_normalized",
+                                                                                           "second_name_normalized"])
                         elif column_index == 6:
-                            self.new_filter = self.return_multicolumn_filter(search_text, ["personal_city", "personal_street",
+                            self.new_filter = self.return_multicolumn_filter(search_text, ["personal_city_normalized",
+                                                                                           "personal_street_normalized",
                                                                                            "personal_house_number", "personal_post_code",
-                                                                                           "personal_country"])
+                                                                                           "personal_country_normalized"])
                         else:
                             self.new_filter = filters[str(column_index)].replace("VALUE", search_text)
                     else:
@@ -100,7 +103,8 @@ class ContactSearchControler:
             if not self.controler.completer_state:
                 for word in prepared_text:
                     for column_name in columns:
-                        filter_list.append(f"{column_name} LIKE '%{word}%'")
+                        save_word = word.replace("'", "''")
+                        filter_list.append(f"{column_name} LIKE '%{save_word}%'")
                 return filter_operator.join(filter_list)
             if column_index == 3:
                 return self.set_name_filter(prepared_text)
@@ -111,15 +115,17 @@ class ContactSearchControler:
             DialogsProvider.show_error_dialog(self.index_error_text["indexError"])
             return ""
 
-    def set_name_filter(self, splitted_text: list) -> str:
-        return f"first_name = '{splitted_text[0]}' AND second_name = '{splitted_text[1]}'"
+    @staticmethod
+    def set_name_filter(splitted_text: list) -> str:
+        return f"first_name_normalized = '{splitted_text[0]}' AND second_name_normalized = '{splitted_text[1]}'"
 
-    def set_address_filter(self, search_text: str) -> str:
+    @staticmethod
+    def set_address_filter(search_text: str) -> str:
         splitted_text = search_text.split(",")
         prepared_text = []
         for part in splitted_text:
             prepared_text.append(part.strip())
-        return (f"personal_city = '{prepared_text[0]}' AND "
+        return (f"personal_city_normalized = '{prepared_text[0]}' AND "
                 f"personal_house_number = '{prepared_text[-3]}' AND "
                 f"personal_post_code = '{prepared_text[-2]}' AND "
-                f"personal_country = '{prepared_text[-1]}'")
+                f"personal_country_normalized = '{prepared_text[-1]}'")
