@@ -32,6 +32,8 @@ class ContactsTableviewWidget(QTableView):
         self.relationship_items = self.ui_text["relationship_items"]
 
     def set_headers(self) -> None:
+        self.setColumnWidth(1, 30)
+        self.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
         self.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
         self.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
         self.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
