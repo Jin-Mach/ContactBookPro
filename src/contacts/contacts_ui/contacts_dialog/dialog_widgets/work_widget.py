@@ -4,7 +4,7 @@ from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
-from src.contacts.contacts_utilities.check_update_data import check_update
+from src.contacts.contacts_utilities.check_update_data import CheckUpdateProvider
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.contacts.contacts_utilities.optimalize_data import normalize_texts
 from src.utilities.dialogs_provider import DialogsProvider
@@ -112,7 +112,7 @@ class WorkWidget(QWidget):
                 [self.dialog_work_company_edit, self.dialog_work_city_edit, self.dialog_work_street_edit,
                  self.dialog_work_country_edit])
             if self.default_data:
-                return [work_data, check_update(self.objectName(), self.default_data, work_data)]
+                return [work_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, work_data)]
             return work_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

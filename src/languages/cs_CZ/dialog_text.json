@@ -107,5 +107,11 @@
     "basicFilesFilter": "Základní formát: (*.jpg *.jpeg *.png)",
     "advancedFilesFilter": "Pokročilé formáty: (*.tiff *.bmp *.gif *.heic *.webp)",
     "allFilesFilter": "Všechny formáty: (*.*)"
+  },
+  "duplicateDialog": {
+    "duplicateTextLabel": "Počet nalezených duplicitních kontaků",
+    "showContactButton": "Přejít na kontakt",
+    "continueButton": "Pokračovat",
+    "cancelButton": "Zrušit"
   }
 }

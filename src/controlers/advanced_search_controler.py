@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QDialog
 from src.contacts.contacts_ui.search_dialog.advanced_search_dialog import AdvancedSearchDialog
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.database.database_utilities.search_provider import SearchProvider
-from src.database.database_utilities.sql_query_creator import create_sql_query
+from src.database.database_utilities.sql_query_creator import create_search_query
 from src.database.models.mandatory_model import MandatoryModel
 from src.threads.advanced_search_thread import AdvancedSearchThread
 from src.threads.user_filter_thread import UserFilterThread
@@ -28,7 +28,7 @@ class AdvancedSearchControler:
             self.dialog.reset_all_filters()
             if self.dialog.exec() == QDialog.DialogCode.Accepted:
                 filters = self.dialog.get_finall_filter()
-                query = create_sql_query(filters, self.parent)
+                query = create_search_query(filters, self.parent)
                 if query:
                     advanced_search_thread = AdvancedSearchThread(self.db_connection.databaseName(), query)
                     advanced_search_thread.search_completed.connect(self.check_search_result)
@@ -40,7 +40,7 @@ class AdvancedSearchControler:
 
     def apply_saved_filter(self, selected_filter: dict) -> None:
         try:
-            query = create_sql_query(selected_filter, self.parent)
+            query = create_search_query(selected_filter, self.parent)
             if query:
                 user_filter_thread = UserFilterThread(self.db_connection.databaseName(), query)
                 user_filter_thread.search_completed.connect(self.check_search_result)
@@ -54,10 +54,10 @@ class AdvancedSearchControler:
         if not id_list:
             DialogsProvider.show_error_dialog(self.error_text["noFilteredData"])
             SearchProvider.reset_filter(self.mandatory_model)
-            self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
+            self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
             return
-        self.mandatory_model.set_advanced_search_filter(id_list)
-        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count)
+        self.mandatory_model.set_filter_by_id(id_list)
+        self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
 
     @staticmethod
     def remove_connection(connection_name: str)-> None:

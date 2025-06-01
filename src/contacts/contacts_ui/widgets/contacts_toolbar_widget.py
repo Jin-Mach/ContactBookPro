@@ -40,9 +40,9 @@ class ContactsToolbarWidget(QWidget):
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_tooltips_text()
-        self.contacts_controler = ContactsController(main_window, self.mandatory_model, work_model, social_model,
-                                                     detail_model, info_model,
-                                                     detail_widget, table_view, self.status_bar, self)
+        self.contacts_controler = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
+                                                     social_model, detail_model, info_model, detail_widget, table_view,
+                                                     self.status_bar, self)
         self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
         self.contact_search_controler = ContactSearchControler(self.completer_controler, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)

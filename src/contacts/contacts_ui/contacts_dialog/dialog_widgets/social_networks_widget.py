@@ -2,7 +2,7 @@ from typing import Optional
 
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
-from src.contacts.contacts_utilities.check_update_data import check_update
+from src.contacts.contacts_utilities.check_update_data import CheckUpdateProvider
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -94,7 +94,7 @@ class SocialNetworkWidget(QWidget):
                         return None
                 social_network_data.append(text)
             if self.default_data:
-                return [social_network_data, check_update(self.objectName(), self.default_data, social_network_data)]
+                return [social_network_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, social_network_data)]
             return social_network_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

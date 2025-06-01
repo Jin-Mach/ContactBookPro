@@ -1,6 +1,6 @@
 from typing import Optional
 
-from PyQt6.QtCore import Qt, QModelIndex
+from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
@@ -82,3 +82,10 @@ class ContactsTableviewWidget(QTableView):
                 tool_bar.search_text_label.setText(f"{self.ui_text["searchText"]} {current_filter}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_selected_contact(self) -> None:
+        index = self.model().index(0, 1)
+        if index.isValid():
+            self.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectionFlag.Select)
+            self.scrollTo(index)
+            self.setFocus()

@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from PyQt6.QtCore import QThreadPool, QModelIndex
+from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication
 
 from src.contacts.contacts_ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.contacts_dialog.delete_dialogs import DeleteDialogs
+from src.contacts.contacts_ui.contacts_dialog.duplicate_dialog import DuplicateDialog
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
@@ -12,6 +14,8 @@ from src.contacts.contacts_utilities.get_main_window import get_main_window_inst
 from src.database.database_utilities.models_refresher import refresh_models
 from src.database.database_utilities.reset_database import reset_database
 from src.database.database_utilities.row_data_provider import RowDataProvider
+from src.database.database_utilities.sql_query_creator import create_check_duplicate_query
+from src.contacts.contacts_utilities.check_update_data import CheckUpdateProvider
 from src.database.database_utilities.update_models import update_models_data
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
@@ -26,10 +30,12 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class ContactsController:
-    def __init__(self, main_window: QMainWindow, mandatory_model: MandatoryModel, work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,
-                 info_model: InfoModel, detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,
-                 status_bar: ContactsStatusbarWidget, parent=None) -> None:
+    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
+                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,info_model: InfoModel,
+                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
+                 parent=None) -> None:
         self.main_window = main_window
+        self.db_connection = db_connection
         self.mandatory_model = mandatory_model
         self.work_model = work_model
         self.social_model = social_model
@@ -49,7 +55,20 @@ class ContactsController:
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 data = dialog.colected_data
                 if data:
-                    self.mandatory_model.add_contact(data[0])
+                    mandatory_data = data[0]
+                    duplicity = create_check_duplicate_query(self.db_connection, mandatory_data[4], mandatory_data[5])
+                    if duplicity:
+                        dialog = DuplicateDialog(duplicity, self.parent)
+                        if dialog.exec() == QDialog.DialogCode.Rejected:
+                            if dialog.result_code == "rejected":
+                                return
+                            elif dialog.result_code == "jump_to_contact":
+                                if dialog.selected_id:
+                                    self.mandatory_model.set_filter_by_id([dialog.selected_id])
+                                    self.table_view.set_selected_contact()
+                                    self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+                            return
+                    self.mandatory_model.add_contact(mandatory_data)
                     last_id = RowDataProvider.get_last_id(self.mandatory_model)
                     if last_id != -1:
                         self.work_model.add_contact([last_id] + data[1])
@@ -57,7 +76,7 @@ class ContactsController:
                         self.detail_model.add_contact([last_id] + data[3])
                         self.info_model.add_contact([last_id] + data[4])
                         refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count + 1)
+                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), 1)
                         index = self.mandatory_model.index(self.mandatory_model.rowCount() - 1, 0)
                         self.table_view.selectRow(index.row())
                         self.table_view.scrollTo(index)
@@ -82,11 +101,27 @@ class ContactsController:
                     dialog = ContactDialog(True, contact_data, self.parent)
                     if dialog.exec() == dialog.DialogCode.Accepted:
                         new_data = dialog.colected_data
-                        now = datetime.now().strftime("%d.%m.%Y")
-                        models = [self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model]
-                        if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
-                            self.table_view.set_detail_data(index)
-                            self.main_window.tray_icon.show_notification(f"{contact_data["first_name"]} {contact_data["second_name"]}", "contactUpdated")
+                        if new_data:
+                            if CheckUpdateProvider.check_data_changed(new_data):
+                                return
+                            mandatory_data = new_data[0][0]
+                            duplicity = create_check_duplicate_query(self.db_connection, mandatory_data[4], mandatory_data[5])
+                            if duplicity:
+                                dialog = DuplicateDialog(duplicity, self.parent)
+                                if dialog.exec() == QDialog.DialogCode.Rejected:
+                                    if dialog.result_code == "rejected":
+                                        return
+                                    elif dialog.result_code == "jump_to_contact":
+                                        if dialog.selected_id:
+                                            self.mandatory_model.set_filter_by_id([dialog.selected_id])
+                                            self.table_view.set_selected_contact()
+                                            self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+                                    return
+                            now = datetime.now().strftime("%d.%m.%Y")
+                            models = [self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model]
+                            if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
+                                self.table_view.set_detail_data(index)
+                                self.main_window.tray_icon.show_notification(f'{contact_data["first_name"]} {contact_data["second_name"]}', "contactUpdated")
                 else:
                     DialogsProvider.show_error_dialog(self.error_text["indexError"])
             else:
@@ -103,7 +138,7 @@ class ContactsController:
                     if dialog.exec() == QDialog.DialogCode.Accepted:
                         self.mandatory_model.delete_contact(index.row())
                         refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])
-                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), self.status_bar.contacts_total_count - 1)
+                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), -1)
                         self.detail_widget.reset_data()
                         self.main_window.tray_icon.show_notification("", "contactDeleted")
                 else:

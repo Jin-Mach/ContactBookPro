@@ -33,6 +33,7 @@ class ContactsStatusbarWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_count_text(self, filter_count: int, total_count: int) -> None:
+    def set_count_text(self, filter_count: int, added: int) -> None:
+        self.contacts_total_count += added
         ui_text = LanguageProvider.get_ui_text(self.objectName())
-        self.count_display_label.setText(f"{ui_text[self.count_display_label.objectName()]} {filter_count}/{total_count}")
+        self.count_display_label.setText(f"{ui_text[self.count_display_label.objectName()]} {filter_count}/{self.contacts_total_count}")

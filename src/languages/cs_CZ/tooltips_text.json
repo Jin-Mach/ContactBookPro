@@ -59,5 +59,10 @@
   },
   "userFiltersListwidget": {
     "deleteFilterPushbutton": "Odstraní uložený filtr"
+  },
+  "duplicateDialog": {
+    "showContactButton": "Zavře dialog a vybere duplicitní kontakt v tabulce",
+    "continueButton": "Uloží duplicitní kontakt",
+    "cancelButton": "Zavře okno bez uložení"
   }
 }

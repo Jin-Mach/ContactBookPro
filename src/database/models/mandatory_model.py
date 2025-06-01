@@ -101,7 +101,7 @@ class MandatoryModel(QSqlTableModel):
                 ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
 
-    def set_advanced_search_filter(self, id_list: list) -> None:
+    def set_filter_by_id(self, id_list: list) -> None:
         map_list = ",".join(map(str, id_list))
         self.setFilter(f"id IN ({map_list})")
         self.select()
