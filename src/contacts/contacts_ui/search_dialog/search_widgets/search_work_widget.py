@@ -5,6 +5,7 @@ from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QComboBox, QHBoxLayout, QPushButton
 
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.contacts.contacts_utilities.optimalize_data import normalize_input
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -136,20 +137,24 @@ class SearchWorkWidget(QWidget):
     def return_work_filter(self) -> tuple[str, list]:
         try:
             fields = [
-                (self.search_work_company_edit, self.search_work_company_operator, "company_name"),
+                (self.search_work_company_edit, self.search_work_company_operator, "company_name_normalized"),
                 (self.search_work_email_edit, self.search_work_email_operator, "work_email"),
                 (self.search_work_phone_number_edit, self.search_work_phone_number_operator, "work_phone_number"),
-                (self.search_work_city_edit, self.search_work_city_operator, "work_city"),
-                (self.search_work_street_edit, self.search_work_street_operator, "work_street"),
+                (self.search_work_city_edit, self.search_work_city_operator, "work_city_normalized"),
+                (self.search_work_street_edit, self.search_work_street_operator, "work_street_normalized"),
                 (self.search_work_house_number_edit, self.search_work_house_number_operator, "work_house_number"),
                 (self.search_work_post_code_edit, self.search_work_post_code_operator, "work_post_code"),
-                (self.search_work_country_edit, self.search_work_country_operator, "work_country")
+                (self.search_work_country_edit, self.search_work_country_operator, "work_country_normalized")
             ]
             filters = []
             values = []
+            normalized_columns = {"company_name_normalized", "work_city_normalized", "work_street_normalized",
+                                  "work_country_normalized"}
             for edit, operator, column in fields:
                 if isinstance(edit, QLineEdit):
                     value = edit.text().strip()
+                    if column in normalized_columns:
+                        value = normalize_input(edit)
                     operation = operator.currentIndex()
                     if value and operation > 0:
                         if operation == 1:
@@ -185,13 +190,18 @@ class SearchWorkWidget(QWidget):
             ]
             active_filters = []
             for label, combobox, edit in fields:
-                if edit.text().strip():
+                text = edit.text().strip()
+                if text:
+                    edit_text = text
+                    if edit in (self.search_work_company_edit, self.search_work_city_edit, self.search_work_street_edit,
+                                self.search_work_country_edit):
+                        edit_text = normalize_input(edit)
                     active_filters.append({
                         "label_text": label.text(),
                         "combobox": combobox,
                         "combobox_text": combobox.currentText(),
                         "edit": edit,
-                        "edit_text": edit.text().strip()
+                        "edit_text": edit_text
                     })
             return active_filters
         except Exception as e:

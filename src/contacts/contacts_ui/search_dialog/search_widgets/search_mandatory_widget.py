@@ -5,6 +5,7 @@ from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QComboBox, QPushButton, QLabel, QFormLayout, QHBoxLayout, QLineEdit
 
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.contacts.contacts_utilities.optimalize_data import normalize_input
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -166,21 +167,25 @@ class SearchMandatoryWidget(QWidget):
             fields = [
                 (self.search_gender_combobox, "=", "gender"),
                 (self.search_relationship_combobox, "=", "relationship"),
-                (self.search_first_name_edit, self.search_first_name_operator, "first_name"),
-                (self.search_second_name_edit, self.search_second_name_operator, "second_name"),
+                (self.search_first_name_edit, self.search_first_name_operator, "first_name_normalized"),
+                (self.search_second_name_edit, self.search_second_name_operator, "second_name_normalized"),
                 (self.search_email_edit, self.search_email_operator, "personal_email"),
                 (self.search_phone_number_edit, self.search_phone_number_operator, "personal_phone_number"),
-                (self.search_city_edit, self.search_city_operator, "personal_city"),
-                (self.search_street_edit, self.search_street_operator, "personal_street"),
+                (self.search_city_edit, self.search_city_operator, "personal_city_normalized"),
+                (self.search_street_edit, self.search_street_operator, "personal_street_normalized"),
                 (self.search_house_number_edit, self.search_house_number_operator, "personal_house_number"),
                 (self.search_post_code_edit, self.search_post_code_operator, "personal_post_code"),
-                (self.search_country_edit, self.search_country_operator, "personal_country")
+                (self.search_country_edit, self.search_country_operator, "personal_country_normalized")
             ]
             filters = []
             values = []
+            normalized_columns = {"first_name_normalized", "second_name_normalized", "personal_city_normalized",
+                                "personal_street_normalized", "personal_country_normalized"}
             for edit, operator, column in fields:
                 if isinstance(edit, QLineEdit):
                     value = edit.text().strip()
+                    if column in normalized_columns:
+                        value = normalize_input(edit)
                     operation = operator.currentIndex()
                     if value and operation > 0:
                         if operation == 1:
@@ -233,14 +238,20 @@ class SearchMandatoryWidget(QWidget):
                         "edit_text": None
                     })
                 else:
-                    if edit and edit.text().strip():
-                        active_filters.append({
-                            "label_text": label.text(),
-                            "combobox": combobox,
-                            "combobox_text": combobox.currentText(),
-                            "edit": edit,
-                            "edit_text": edit.text().strip()
-                        })
+                    if edit:
+                        text = edit.text().strip()
+                        if text:
+                            edit_text = text
+                            if edit in (self.search_first_name_edit, self.search_second_name_edit, self.search_city_edit,
+                                        self.search_street_edit, self.search_country_edit):
+                                edit_text = normalize_input(edit)
+                            active_filters.append({
+                                "label_text": label.text(),
+                                "combobox": combobox,
+                                "combobox_text": combobox.currentText(),
+                                "edit": edit,
+                                "edit_text": edit_text
+                            })
             return active_filters
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

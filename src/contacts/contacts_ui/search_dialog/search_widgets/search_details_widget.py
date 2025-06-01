@@ -1,9 +1,11 @@
 from functools import partial
 
 from PyQt6.QtCore import QSize
-from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QComboBox, QLineEdit, QHBoxLayout, QPushButton
+from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QComboBox, QLineEdit, QHBoxLayout, QPushButton, \
+    QTextEdit
 
 from src.contacts.contacts_utilities.contact_validator import ContactValidator
+from src.contacts.contacts_utilities.optimalize_data import normalize_input
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -108,16 +110,18 @@ class SearchDeatilsWidget(QWidget):
 
     def return_detail_filter(self) -> tuple[str, list]:
         try:
-            fields = [(self.search_photo_combobox, "=", "photo"),
-                      (self.search_title_edit, self.search_title_operator, "title"),
+            fields = [(self.search_photo_combobox, None, "photo"),
+                      (self.search_title_edit, self.search_title_operator, "title_normalized"),
                       (self.search_birthday_edit, self.search_birthday_operator, "birthday"),
-                      (self.search_notes_edit, self.search_notes_operator, "notes")
+                      (self.search_notes_edit, self.search_notes_operator, "notes_normalized")
                       ]
             filters = []
             values = []
             for edit, operator, column in fields:
                 if isinstance(edit, QLineEdit):
                     value = edit.text().strip()
+                    if column in ("title_normalized", "notes_normalized"):
+                        value = normalize_input(edit)
                     operation = operator.currentIndex()
                     if value and operation > 0:
                         if operation == 1:
@@ -164,14 +168,22 @@ class SearchDeatilsWidget(QWidget):
                         "edit_text": None
                     })
                 else:
-                    if edit and edit.text().strip():
-                        active_filters.append({
-                            "label_text": label.text(),
-                            "combobox": combobox,
-                            "combobox_text": combobox.currentText(),
-                            "edit": edit,
-                            "edit_text": edit.text().strip()
-                        })
+                    if edit:
+                        text = ""
+                        if isinstance(edit, QLineEdit):
+                            text = edit.text().strip()
+                        elif isinstance(edit, QTextEdit):
+                            text = edit.toPlainText().strip()
+                        if text:
+                            edit_text = normalize_input(edit)
+                            if edit_text:
+                                active_filters.append({
+                                    "label_text": label.text(),
+                                    "combobox": combobox,
+                                    "combobox_text": combobox.currentText(),
+                                    "edit": edit,
+                                    "edit_text": edit_text
+                                })
             return active_filters
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
