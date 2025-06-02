@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.contacts_ui.widgets.context_menu import ContextMenu
 from src.controlers.contact_data_controller import ContactDataController
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
@@ -30,6 +31,7 @@ class ContactsTableviewWidget(QTableView):
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.gender_items = self.ui_text["gender_items"]
         self.relationship_items = self.ui_text["relationship_items"]
+        self.context_menu = ContextMenu(self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)
@@ -84,6 +86,9 @@ class ContactsTableviewWidget(QTableView):
                 tool_bar.search_text_label.setText(f"{self.ui_text["searchText"]} {current_filter}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def contextMenuEvent(self, event) -> None:
+        self.context_menu.exec(event.globalPos())
 
     def set_selected_contact(self) -> None:
         index = self.model().index(0, 1)

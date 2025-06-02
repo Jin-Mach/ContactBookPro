@@ -87,6 +87,16 @@ class LanguageProvider:
             return None
 
     @staticmethod
+    def get_context_menu_text(widget_name: str) -> Optional[dict[str, str]]:
+        try:
+            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "menu_text.json"), "r", encoding="utf-8") as file:
+                context_menu_data = json.load(file)
+            return context_menu_data[widget_name]
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return None
+
+    @staticmethod
     def get_error_text(widget_name: str) -> Optional[dict[str, str]]:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "errors_text.json"), "r", encoding="utf-8") as file:

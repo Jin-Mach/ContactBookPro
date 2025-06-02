@@ -1,0 +1,25 @@
+{
+  "contextMenu": {
+    "addContactAction": "Přidat",
+    "updateContactAction": "Upravit",
+    "deleteContactAction": "Smazat",
+    "copyMenu": "Kopírovat",
+    "copyNameAction": "Jméno",
+    "copyEmailAction": "Email",
+    "copyPhoneNumberAction": "Telefon",
+    "exportMenu": "Export",
+    "exportCsvAction": "CSV",
+    "exportVcardAction": "vCard",
+    "exportPdfAction": "PDF",
+    "printMenu": "Tisk",
+    "printContactAction": "Tisk kontaktu",
+    "printContactListAction": "Tisk seznamu",
+    "previewMenu": "Náhled",
+    "previewContactAction": "Náhled kontaktu",
+    "previewContactListAction": "Náhled kontaktů",
+    "previewQrCodeAction": "QR kód kontaktu",
+    "contactCheckMenu": "Kontrola kontaktů",
+    "contactCheckBirthdayAction": "Kontrola narození",
+    "contactCheckDuplicityAction": "Hledat duplicity"
+  }
+}

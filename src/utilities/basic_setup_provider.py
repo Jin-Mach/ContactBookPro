@@ -8,8 +8,8 @@ class BasicSetupProvider:
 
     @staticmethod
     def check_json_files() -> dict:
-        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "language_info.json", "search_dialog_text.json",
-                          "tooltips_text.json", "ui_text.json", "user_filters_dialog_text.json"]
+        required_files = ["dialog_text.json", "errors_text.json", "headers_text.json", "language_info.json", "menu_text.json",
+                          "search_dialog_text.json", "tooltips_text.json", "ui_text.json", "user_filters_dialog_text.json"]
         json_files_path = BasicSetupProvider.default_path.joinpath("languages")
         json_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/src/languages"
         missing_json_urls = {}
@@ -37,11 +37,14 @@ class BasicSetupProvider:
             "clearFilterPushbutton_icon.png","currentFilterButton_icon.png", "addNewContactPushbutton_icon.png",
             "advancedSearchPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png", "deleteContactPushbutton_icon.png",
             "resetFilterPushbutton_icon.png", "searchPushbutton_icon.png", "updateContactPushbutton_icon.png",
-            "userFiltersPushbutton_icon.png", "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png",
-            "dialogResetCalendarPushbutton_icon.png","dialogResetPhotoButton_icon.png","no_user_photo.png",
-            "deleteFilterButton_icon.png","dog_image.png", "mainWindowDatabaseButton_icon.png","window_icon.png",
-            "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
-            "instagramPushbutton_icon.png","linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png",
+            "userFiltersPushbutton_icon.png", "addContactAction", "contactCheckBirthdayAction", "contactCheckDuplicityAction",
+            "copyEmailAction", "copyNameAction", "copyPhoneNumberAction", "deleteContactAction", "exportCsvAction",
+            "exportPdfAction", "exportVcardAction", "printContactAction", "printContactListAction", "previewContactAction",
+            "previewContactListAction", "previewQrCodeAction", "updateContactAction", "dialogCalendarPushbutton_icon.png",
+            "dialogGetPhotoPushbutton_icon.png", "dialogResetCalendarPushbutton_icon.png", "dialogResetPhotoButton_icon.png",
+            "no_user_photo.png", "deleteFilterButton_icon.png","dog_image.png", "mainWindowDatabaseButton_icon.png",
+            "window_icon.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
+            "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png",
             "deleteFilterPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
@@ -59,11 +62,28 @@ class BasicSetupProvider:
             "searchPushbutton_icon.png": "contactsToolbarWidget",
             "updateContactPushbutton_icon.png": "contactsToolbarWidget",
             "userFiltersPushbutton_icon.png": "contactsToolbarWidget",
+            "addContactAction": "contextMenu",
+            "contactCheckBirthdayAction": "contextMenu",
+            "contactCheckDuplicityAction": "contextMenu",
+            "copyEmailAction": "contextMenu",
+            "copyNameAction": "contextMenu",
+            "copyPhoneNumberAction": "contextMenu",
+            "deleteContactAction": "contextMenu",
+            "exportCsvAction": "contextMenu",
+            "exportPdfAction": "contextMenu",
+            "exportVcardAction": "contextMenu",
+            "printContactAction": "contextMenu",
+            "printContactListAction": "contextMenu",
+            "previewContactAction": "contextMenu",
+            "previewContactListAction": "contextMenu",
+            "previewQrCodeAction": "contextMenu",
+            "updateContactAction": "contextMenu",
             "dialogCalendarPushbutton_icon.png": "dialogPersonalDetailWidget",
             "dialogGetPhotoPushbutton_icon.png": "dialogPersonalDetailWidget",
             "dialogResetCalendarPushbutton_icon.png": "dialogPersonalDetailWidget",
             "dialogResetPhotoButton_icon.png": "dialogPersonalDetailWidget",
             "no_user_photo.png": "dialogPersonalDetailWidget",
+            "deleteFilterButton_icon.png":"filtersTableviewWidget",
             "dog_image.png": "mainWindow",
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
