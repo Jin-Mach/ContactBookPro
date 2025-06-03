@@ -2,13 +2,20 @@ from PyQt6.QtWidgets import QApplication
 
 from src.utilities.basic_setup_provider import BasicSetupProvider
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 from src.utilities.style_provider import set_application_style
 
 
 def application_init(application: QApplication) -> bool:
-    if not BasicSetupProvider.download_files():
+    try:
+        BasicSetupProvider.download_files()
+        application.setStyle("Fusion")
+        set_application_style(application)
+        LanguageProvider.initialize_language()
+        return True
+    except Exception as e:
+        if isinstance(e, (SystemExit, KeyboardInterrupt)):
+            raise
+        logger = get_logger()
+        logger.exception("Exception during application initialization")
         return False
-    application.setStyle("Fusion")
-    set_application_style(application)
-    LanguageProvider.initialize_language()
-    return True
