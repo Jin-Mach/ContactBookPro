@@ -151,7 +151,7 @@ class ContactsToolbarWidget(QWidget):
 
     def delete_contact(self) -> None:
         try:
-            self.contacts_controler.delete_contact()
+            self.contacts_controler.delete_contact(self.table_view)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

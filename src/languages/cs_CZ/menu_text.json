@@ -1,8 +1,8 @@
 {
   "contextMenu": {
-    "addContactAction": "Přidat",
-    "updateContactAction": "Upravit",
-    "deleteContactAction": "Smazat",
+    "addContactAction": "Přidat kontakt",
+    "updateContactAction": "Upravit kontakt",
+    "deleteContactAction": "Smazat kontakt",
     "copyMenu": "Kopírovat",
     "copyNameAction": "Jméno",
     "copyEmailAction": "Email",

@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING, Optional
+
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu
@@ -6,75 +8,80 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.controlers.contacts_controller import ContactsController
+
 
 class ContextMenu(QMenu):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, contacts_controler: "Optional[ContactsController]", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
+        self.parent = parent
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
         IconProvider.set_buttons_icon(self.objectName(), self.widgets, QSize(15, 15), self)
+        self.contacts_controler = contacts_controler
 
     def create_gui(self) -> None:
-        add_contact_action = QAction("přidat", self)
-        add_contact_action.setObjectName("addContactAction")
-        update_contact_action = QAction("upravit", self)
-        update_contact_action.setObjectName("updateContactAction")
-        delete_contact_action = QAction("smazat", self)
-        delete_contact_action.setObjectName("deleteContactAction")
-        copy_menu = QMenu("kopírovat", self)
+        self.add_contact_action = QAction(self)
+        self.add_contact_action.setObjectName("addContactAction")
+        self.update_contact_action = QAction(self)
+        self.update_contact_action.setObjectName("updateContactAction")
+        self.delete_contact_action = QAction(self)
+        self.delete_contact_action.setObjectName("deleteContactAction")
+        copy_menu = QMenu(self)
         copy_menu.setObjectName("copyMenu")
-        copy_name_action = QAction("jméno", self)
-        copy_name_action.setObjectName("copyNameAction")
-        copy_email_action = QAction("email", self)
-        copy_email_action.setObjectName("copyEmailAction")
-        copy_phone_number_action = QAction("telefon", self)
-        copy_phone_number_action.setObjectName("copyPhoneNumberAction")
-        export_menu = QMenu("export", self)
+        self.copy_name_action = QAction(self)
+        self.copy_name_action.setObjectName("copyNameAction")
+        self.copy_email_action = QAction(self)
+        self.copy_email_action.setObjectName("copyEmailAction")
+        self.copy_phone_number_action = QAction(self)
+        self.copy_phone_number_action.setObjectName("copyPhoneNumberAction")
+        export_menu = QMenu(self)
         export_menu.setObjectName("exportMenu")
-        export_csv_action = QAction("csv", self)
-        export_csv_action.setObjectName("exportCsvAction")
-        export_vcard_action = QAction("vcard", self)
-        export_vcard_action.setObjectName("exportVcardAction")
-        export_pdf_action = QAction("pdf", self)
-        export_pdf_action.setObjectName("exportPdfAction")
-        print_menu = QMenu("tisk", self)
+        self.export_csv_action = QAction(self)
+        self.export_csv_action.setObjectName("exportCsvAction")
+        self.export_vcard_action = QAction(self)
+        self.export_vcard_action.setObjectName("exportVcardAction")
+        self.export_pdf_action = QAction(self)
+        self.export_pdf_action.setObjectName("exportPdfAction")
+        print_menu = QMenu(self)
         print_menu.setObjectName("printMenu")
-        print_contact_action = QAction("tisk kontaktu", self)
-        print_contact_action.setObjectName("printContactAction")
-        print_contact_list_action = QAction("tisk seznamu", self)
-        print_contact_list_action.setObjectName("printContactListAction")
-        preview_menu = QMenu("náhled", self)
+        self.print_contact_action = QAction(self)
+        self.print_contact_action.setObjectName("printContactAction")
+        self.print_contact_list_action = QAction(self)
+        self.print_contact_list_action.setObjectName("printContactListAction")
+        preview_menu = QMenu(self)
         preview_menu.setObjectName("previewMenu")
-        preview_contact_action = QAction("náhled kontaktu", self)
-        preview_contact_action.setObjectName("previewContactAction")
-        preview_contact_list_action = QAction("náhled kontaktů", self)
-        preview_contact_list_action.setObjectName("previewContactListAction")
-        preview_qr_code_action = QAction("qr kód", self)
-        preview_qr_code_action.setObjectName("previewQrCodeAction")
-        contact_check_menu = QMenu("kontrola kontaktů", self)
+        self.preview_contact_action = QAction(self)
+        self.preview_contact_action.setObjectName("previewContactAction")
+        self.preview_contact_list_action = QAction(self)
+        self.preview_contact_list_action.setObjectName("previewContactListAction")
+        self.preview_qr_code_action = QAction(self)
+        self.preview_qr_code_action.setObjectName("previewQrCodeAction")
+        contact_check_menu = QMenu(self)
         contact_check_menu.setObjectName("contactCheckMenu")
-        contact_check_birthday_action = QAction("kontrola narození", self)
-        contact_check_birthday_action.setObjectName("contactCheckBirthdayAction")
-        contact_check_duplicity_action = QAction("hledat duplicity", self)
-        contact_check_duplicity_action.setObjectName("contactCheckDuplicityAction")
-        self.addActions([add_contact_action, update_contact_action, delete_contact_action])
+        self.contact_check_birthday_action = QAction(self)
+        self.contact_check_birthday_action.setObjectName("contactCheckBirthdayAction")
+        self.contact_check_duplicity_action = QAction(self)
+        self.contact_check_duplicity_action.setObjectName("contactCheckDuplicityAction")
+        self.addActions([self.add_contact_action, self.update_contact_action, self.delete_contact_action])
         self.addSeparator()
         self.addMenu(copy_menu)
-        copy_menu.addActions([copy_name_action, copy_email_action, copy_phone_number_action])
+        copy_menu.addActions([self.copy_name_action, self.copy_email_action, self.copy_phone_number_action])
         self.addSeparator()
         self.addMenu(export_menu)
-        export_menu.addActions([export_csv_action, export_vcard_action, export_pdf_action])
+        export_menu.addActions([self.export_csv_action, self.export_vcard_action, self.export_pdf_action])
         self.addSeparator()
         self.addMenu(print_menu)
-        print_menu.addActions([print_contact_action, print_contact_list_action])
+        print_menu.addActions([self.print_contact_action, self.print_contact_list_action])
         self.addSeparator()
         self.addMenu(preview_menu)
-        preview_menu.addActions([preview_contact_action, preview_contact_list_action, preview_qr_code_action])
+        preview_menu.addActions([self.preview_contact_action, self.preview_contact_list_action, self.preview_qr_code_action])
         self.addSeparator()
         self.addMenu(contact_check_menu)
-        contact_check_menu.addActions([contact_check_birthday_action, contact_check_duplicity_action])
+        contact_check_menu.addActions([self.contact_check_birthday_action, self.contact_check_duplicity_action])
 
     def set_ui_text(self) -> None:
         try:
@@ -87,3 +94,15 @@ class ContextMenu(QMenu):
                         widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def create_connection(self) -> None:
+        connections = [(self.add_contact_action, self.contacts_controler.add_new_contact),
+                        (self.update_contact_action, self.contacts_controler.update_contact),
+                        (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.parent))]
+        try:
+            for action, method in connections:
+                if isinstance(action, QAction):
+                    action.triggered.disconnect()
+                    action.triggered.connect(method)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)

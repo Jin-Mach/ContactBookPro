@@ -11,7 +11,7 @@ from src.contacts.contacts_ui.search_dialog.search_widgets.search_non_mandatory_
 from src.contacts.contacts_ui.search_dialog.user_filters_dialog import UserFiltersDialog
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_utilities.filters_provider import FiltersProvider
-from src.contacts.contacts_utilities.get_main_window import get_main_window_instance
+from src.contacts.contacts_utilities.instance_provider import InstanceProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.dialogs_provider import DialogsProvider
@@ -58,7 +58,7 @@ class FiltersControler:
                         error_text = LanguageProvider.get_error_text(self.class_name)
                         DialogsProvider.show_error_dialog(error_text["existingFilterName"], self.parent)
                         return
-                    main_window = get_main_window_instance()
+                    main_window = InstanceProvider.get_main_window_instance()
                     if main_window:
                         main_window.tray_icon.show_notification(filter_name, "filterAdded")
         except Exception as e:
@@ -68,7 +68,7 @@ class FiltersControler:
         try:
             FiltersProvider.remove_filter(filter_name)
             self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
-            main_window = get_main_window_instance()
+            main_window = InstanceProvider.get_main_window_instance()
             if main_window:
                 main_window.tray_icon.show_notification(filter_name, "filterDeleted")
         except Exception as e:

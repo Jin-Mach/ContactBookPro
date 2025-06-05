@@ -2,7 +2,7 @@ from datetime import datetime
 
 from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication
+from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication, QTableView
 
 from src.contacts.contacts_ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.contacts_dialog.delete_dialogs import DeleteDialogs
@@ -10,7 +10,6 @@ from src.contacts.contacts_ui.contacts_dialog.duplicate_dialog import DuplicateD
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.contacts.contacts_utilities.get_main_window import get_main_window_instance
 from src.database.database_utilities.models_refresher import refresh_models
 from src.database.database_utilities.reset_database import reset_database
 from src.database.database_utilities.row_data_provider import RowDataProvider
@@ -129,10 +128,10 @@ class ContactsController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
-    def delete_contact(self) -> None:
+    def delete_contact(self, table_view: QTableView) -> None:
         try:
-            if self.table_view.selectionModel().hasSelection():
-                index = self.table_view.currentIndex()
+            if table_view.selectionModel().hasSelection():
+                index = table_view.currentIndex()
                 if index.isValid():
                     dialog = DeleteDialogs.show_delete_contact_dialog()
                     if dialog.exec() == QDialog.DialogCode.Accepted:

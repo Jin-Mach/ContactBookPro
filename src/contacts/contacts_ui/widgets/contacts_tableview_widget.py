@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.context_menu import ContextMenu
+from src.contacts.contacts_utilities.instance_provider import InstanceProvider
 from src.controlers.contact_data_controller import ContactDataController
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
@@ -31,7 +32,7 @@ class ContactsTableviewWidget(QTableView):
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.gender_items = self.ui_text["gender_items"]
         self.relationship_items = self.ui_text["relationship_items"]
-        self.context_menu = ContextMenu(self)
+        self.context_menu = ContextMenu(None, self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)
@@ -88,11 +89,20 @@ class ContactsTableviewWidget(QTableView):
             ErrorHandler.exception_handler(e, self)
 
     def contextMenuEvent(self, event) -> None:
-        self.context_menu.exec(event.globalPos())
+        try:
+            if self.context_menu.contacts_controler is None:
+                self.context_menu.contacts_controler = InstanceProvider.get_contacts_controler_instance(self.context_menu.contacts_controler)
+            self.context_menu.create_connection()
+            self.context_menu.exec(event.globalPos())
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def set_selected_contact(self) -> None:
-        index = self.model().index(0, 1)
-        if index.isValid():
-            self.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectionFlag.Select)
-            self.scrollTo(index)
-            self.setFocus()
+        try:
+            index = self.model().index(0, 1)
+            if index.isValid():
+                self.selectionModel().setCurrentIndex(index, QItemSelectionModel.SelectionFlag.Select)
+                self.scrollTo(index)
+                self.setFocus()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
