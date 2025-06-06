@@ -78,7 +78,10 @@
     "contactDeleted": "Kontakt smazán",
     "databaseDeleted": "Databáze odstraněna",
     "filterAdded": "Filtr uložen",
-    "filterDeleted": "Filtr byl odstraněn"
+    "filterDeleted": "Filtr byl odstraněn",
+    "nameCopied": "Jméno zkopírováno",
+    "emailCopied": "Email zkopírován",
+    "phoneCopied": "Telefon zkopírován"
   },
   "mandatoryModel": {
     "gengerHeaderText": "Pohlaví uživatele"

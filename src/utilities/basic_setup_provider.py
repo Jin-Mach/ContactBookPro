@@ -126,7 +126,7 @@ class BasicSetupProvider:
             return True
         try:
             for key, value in download_files.items():
-                directory = value.parent
+                directory = value.parent_widget
                 directory.mkdir(parents=True, exist_ok=True)
                 response = requests.get(key)
                 if 200 <= response.status_code < 300 and response.content:

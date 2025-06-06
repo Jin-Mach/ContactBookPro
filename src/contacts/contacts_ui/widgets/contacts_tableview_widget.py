@@ -92,8 +92,15 @@ class ContactsTableviewWidget(QTableView):
         try:
             if self.context_menu.contacts_controler is None:
                 self.context_menu.contacts_controler = InstanceProvider.get_contacts_controler_instance(self.context_menu.contacts_controler)
-            self.context_menu.create_connection()
-            self.context_menu.exec(event.globalPos())
+            main_window = InstanceProvider.get_main_window_instance()
+            model = self.model()
+            index = self.selectionModel().currentIndex()
+            if index.isValid() and main_window is not None:
+                id_index = model.index(index.row(), 0)
+                data_index = model.data(id_index)
+                self.context_menu.set_context(main_window, self, data_index)
+                self.context_menu.create_connection()
+                self.context_menu.exec(event.globalPos())
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -1,9 +1,11 @@
 from typing import TYPE_CHECKING, Optional
 
-from PyQt6.QtCore import QSize
+from PyQt6.QtCore import QSize, QModelIndex
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import QMenu
+from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
+from src.contacts.contacts_utilities.instance_provider import InstanceProvider
+from src.controlers.context_menu_controler import ContextMenuControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -16,12 +18,13 @@ class ContextMenu(QMenu):
     def __init__(self, contacts_controler: "Optional[ContactsController]", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
-        self.parent = parent
+        self.parent_widget = parent
+        self.contacts_controler = contacts_controler
+        self.context_menu_controler = ContextMenuControler()
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
         IconProvider.set_buttons_icon(self.objectName(), self.widgets, QSize(15, 15), self)
-        self.contacts_controler = contacts_controler
 
     def create_gui(self) -> None:
         self.add_contact_action = QAction(self)
@@ -97,12 +100,20 @@ class ContextMenu(QMenu):
 
     def create_connection(self) -> None:
         connections = [(self.add_contact_action, self.contacts_controler.add_new_contact),
-                        (self.update_contact_action, self.contacts_controler.update_contact),
-                        (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.parent))]
+                       (self.update_contact_action, self.contacts_controler.update_contact),
+                       (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.tableview)),
+                       (self.copy_name_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "name", self.main_window)),
+                       (self.copy_email_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "email", self.main_window)),
+                       (self.copy_phone_number_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "phone", self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):
                     action.triggered.disconnect()
                     action.triggered.connect(method)
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent)
+            ErrorHandler.exception_handler(e, self.parent_widget)
+
+    def set_context(self, main_window: QMainWindow, tableview: QTableView, index: int) -> None:
+        self.main_window = main_window
+        self.tableview = tableview
+        self.index = index

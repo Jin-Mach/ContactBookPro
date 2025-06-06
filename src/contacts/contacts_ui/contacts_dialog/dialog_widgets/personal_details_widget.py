@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
 from src.contacts.contacts_ui.contacts_dialog.calendar_dialog import CalendarDialog
 from src.contacts.contacts_utilities.blob_handler import BlobHandler
 from src.contacts.contacts_utilities.check_update_data import CheckUpdateProvider
-from src.contacts.contacts_utilities.notes_ulitities import check_notes_length
+from src.contacts.contacts_utilities.notes_utilities import check_notes_length
 from src.contacts.contacts_utilities.optimalize_data import normalize_texts
 from src.contacts.contacts_utilities.photo_utilities import set_contact_photo, reset_contact_photo
 from src.utilities.error_handler import ErrorHandler
