@@ -18,7 +18,7 @@ class ContextMenu(QMenu):
     def __init__(self, contacts_controler: "Optional[ContactsController]", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
-        self.parent_widget = parent
+        self.parent = parent
         self.contacts_controler = contacts_controler
         self.context_menu_controler = ContextMenuControler()
         self.create_gui()
@@ -111,7 +111,7 @@ class ContextMenu(QMenu):
                     action.triggered.disconnect()
                     action.triggered.connect(method)
         except Exception as e:
-            ErrorHandler.exception_handler(e, self.parent_widget)
+            ErrorHandler.exception_handler(e, self.parent)
 
     def set_context(self, main_window: QMainWindow, tableview: QTableView, index: int) -> None:
         self.main_window = main_window

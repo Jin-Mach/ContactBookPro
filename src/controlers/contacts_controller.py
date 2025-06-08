@@ -55,7 +55,7 @@ class ContactsController:
                 data = dialog.colected_data
                 if data:
                     mandatory_data = data[0]
-                    duplicity = create_check_duplicate_query(self.db_connection, mandatory_data[4], mandatory_data[5])
+                    duplicity = create_check_duplicate_query(self.db_connection, None, mandatory_data[4], mandatory_data[5])
                     if duplicity:
                         dialog = DuplicateDialog(duplicity, self.parent)
                         if dialog.exec() == QDialog.DialogCode.Rejected:
@@ -104,8 +104,8 @@ class ContactsController:
                             if CheckUpdateProvider.check_data_changed(new_data):
                                 return
                             mandatory_data = new_data[0][0]
-                            duplicity = create_check_duplicate_query(self.db_connection, mandatory_data[4], mandatory_data[5])
-                            if duplicity:
+                            duplicity = create_check_duplicate_query(self.db_connection, contact_id, mandatory_data[4], mandatory_data[5])
+                            if len(duplicity) > 1:
                                 dialog = DuplicateDialog(duplicity, self.parent)
                                 if dialog.exec() == QDialog.DialogCode.Rejected:
                                     if dialog.result_code == "rejected":

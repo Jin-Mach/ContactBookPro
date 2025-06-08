@@ -51,7 +51,7 @@ class FiltersControler:
             filter_dialog = FilterNameDialog(self.parent)
             if filter_dialog.exec() == QDialog.DialogCode.Accepted:
                 filter_name = filter_dialog.get_filter_name()
-                advanced_dialog = self.parent.parent_widget()
+                advanced_dialog = self.parent.parent()
                 if advanced_dialog and advanced_dialog.objectName() == "advancedSearchDialog":
                     status, result = FiltersProvider.add_new_filter(filter_name, advanced_dialog.get_finall_filter())
                     if not status and result == "exists":

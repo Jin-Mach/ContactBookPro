@@ -43,13 +43,6 @@ class SearchWorkWidget(QWidget):
         self.search_work_phone_number_operator = QComboBox()
         self.search_work_phone_number_operator.setObjectName("searchPhoneNumberOperator")
         self.search_work_phone_number_operator.setFixedWidth(self.operator_width)
-        self.search_work_city_text_label = QLabel()
-        self.search_work_city_text_label.setObjectName("searchWorkCityTextLabel")
-        self.search_work_city_edit = QLineEdit()
-        self.search_work_city_edit.setObjectName("searchWorkCityEdit")
-        self.search_work_city_operator = QComboBox()
-        self.search_work_city_operator.setObjectName("searchWorkCityOperator")
-        self.search_work_city_operator.setFixedWidth(self.operator_width)
         self.search_work_street_text_label = QLabel()
         self.search_work_street_text_label.setObjectName("searchWorkStreetTextLabel")
         self.search_work_street_edit = QLineEdit()
@@ -64,6 +57,13 @@ class SearchWorkWidget(QWidget):
         self.search_work_house_number_operator = QComboBox()
         self.search_work_house_number_operator.setObjectName("searchWorkHouseNumberOperator")
         self.search_work_house_number_operator.setFixedWidth(self.operator_width)
+        self.search_work_city_text_label = QLabel()
+        self.search_work_city_text_label.setObjectName("searchWorkCityTextLabel")
+        self.search_work_city_edit = QLineEdit()
+        self.search_work_city_edit.setObjectName("searchWorkCityEdit")
+        self.search_work_city_operator = QComboBox()
+        self.search_work_city_operator.setObjectName("searchWorkCityOperator")
+        self.search_work_city_operator.setFixedWidth(self.operator_width)
         self.search_work_post_code_text_label = QLabel()
         self.search_work_post_code_text_label.setObjectName("searchWorkPostCodeTextLabel")
         self.search_work_post_code_edit = QLineEdit()
@@ -82,9 +82,9 @@ class SearchWorkWidget(QWidget):
             (self.search_work_company_text_label, self.search_work_company_edit, self.search_work_company_operator),
             (self.search_work_email_text_label, self.search_work_email_edit, self.search_work_email_operator),
             (self.search_work_phone_number_text_label, self.search_work_phone_number_edit, self.search_work_phone_number_operator),
-            (self.search_work_city_text_label, self.search_work_city_edit, self.search_work_city_operator),
             (self.search_work_street_text_label, self.search_work_street_edit, self.search_work_street_operator),
             (self.search_work_house_number_text_label, self.search_work_house_number_edit, self.search_work_house_number_operator),
+            (self.search_work_city_text_label, self.search_work_city_edit, self.search_work_city_operator),
             (self.search_work_post_code_text_label, self.search_work_post_code_edit, self.search_work_post_code_operator),
             (self.search_work_country_text_label, self.search_work_country_edit, self.search_work_country_operator)
         ]
@@ -140,9 +140,9 @@ class SearchWorkWidget(QWidget):
                 (self.search_work_company_edit, self.search_work_company_operator, "company_name_normalized"),
                 (self.search_work_email_edit, self.search_work_email_operator, "work_email"),
                 (self.search_work_phone_number_edit, self.search_work_phone_number_operator, "work_phone_number"),
-                (self.search_work_city_edit, self.search_work_city_operator, "work_city_normalized"),
                 (self.search_work_street_edit, self.search_work_street_operator, "work_street_normalized"),
                 (self.search_work_house_number_edit, self.search_work_house_number_operator, "work_house_number"),
+                (self.search_work_city_edit, self.search_work_city_operator, "work_city_normalized"),
                 (self.search_work_post_code_edit, self.search_work_post_code_operator, "work_post_code"),
                 (self.search_work_country_edit, self.search_work_country_operator, "work_country_normalized")
             ]

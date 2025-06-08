@@ -51,10 +51,6 @@ class MandatoryWidget(QWidget):
         self.dialog_phone_number_text_label.setObjectName("dialogPhoneNumberTextLabel")
         self.dialog_phone_number_edit = QLineEdit()
         self.dialog_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_city_text_label = QLabel()
-        self.dialog_city_text_label.setObjectName("dialogCityTextLabel")
-        self.dialog_city_edit = QLineEdit()
-        self.dialog_city_edit.setObjectName("dialogCityEdit")
         self.dialog_street_text_label = QLabel()
         self.dialog_street_text_label.setObjectName("dialogStreetTextLabel")
         self.dialog_street_edit = QLineEdit()
@@ -63,6 +59,10 @@ class MandatoryWidget(QWidget):
         self.dialog_house_number_text_label.setObjectName("dialogHouseNumberTextLabel")
         self.dialog_house_number_edit = QLineEdit()
         self.dialog_house_number_edit.setObjectName("dialogHouseNumberEdit")
+        self.dialog_city_text_label = QLabel()
+        self.dialog_city_text_label.setObjectName("dialogCityTextLabel")
+        self.dialog_city_edit = QLineEdit()
+        self.dialog_city_edit.setObjectName("dialogCityEdit")
         self.dialog_post_code_text_label = QLabel()
         self.dialog_post_code_text_label.setObjectName("dialogPostCodeTextLabel")
         self.dialog_post_code_edit = QLineEdit()
@@ -78,9 +78,9 @@ class MandatoryWidget(QWidget):
             (self.dialog_second_name_text_label, self.dialog_second_name_edit),
             (self.dialog_email_text_label, self.dialog_email_edit),
             (self.dialog_phone_number_text_label, self.dialog_phone_number_edit),
-            (self.dialog_city_text_label, self.dialog_city_edit),
             (self.dialog_street_text_label, self.dialog_street_edit),
             (self.dialog_house_number_text_label, self.dialog_house_number_edit),
+            (self.dialog_city_text_label, self.dialog_city_edit),
             (self.dialog_post_code_text_label, self.dialog_post_code_edit),
             (self.dialog_country_text_label, self.dialog_country_edit),
         ]
@@ -138,7 +138,7 @@ class MandatoryWidget(QWidget):
                         return None
                     mandatory_data.append(text)
             mandatory_data += normalize_texts([self.dialog_first_name_edit, self.dialog_second_name_edit,
-                                               self.dialog_city_edit, self.dialog_street_edit, self.dialog_country_edit])
+                                               self.dialog_street_edit, self.dialog_city_edit, self.dialog_country_edit])
             if self.default_data:
                 return [mandatory_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, mandatory_data)]
             return mandatory_data
@@ -149,8 +149,8 @@ class MandatoryWidget(QWidget):
     def set_contact_data(self, data: dict) -> None:
         try:
             widget_data = [int(data["gender"]), int(data["relationship"]), data["first_name"], data["second_name"],
-                           data["personal_email"], data["personal_phone_number"], data["personal_city"], data["personal_street"],
-                           data["personal_house_number"], data["personal_post_code"], data["personal_country"]]
+                           data["personal_email"], data["personal_phone_number"], data["personal_street"],
+                           data["personal_house_number"], data["personal_city"], data["personal_post_code"], data["personal_country"]]
             self.default_data = widget_data
             self.dialog_gender_combobox.setCurrentIndex(widget_data[0])
             self.dialog_relationship_combobox.setCurrentIndex(widget_data[1])
@@ -158,9 +158,9 @@ class MandatoryWidget(QWidget):
             self.dialog_second_name_edit.setText(widget_data[3])
             self.dialog_email_edit.setText(widget_data[4])
             self.dialog_phone_number_edit.setText(widget_data[5])
-            self.dialog_city_edit.setText(widget_data[6])
-            self.dialog_street_edit.setText(widget_data[7])
-            self.dialog_house_number_edit.setText(widget_data[8])
+            self.dialog_street_edit.setText(widget_data[6])
+            self.dialog_house_number_edit.setText(widget_data[7])
+            self.dialog_city_edit.setText(widget_data[8])
             self.dialog_post_code_edit.setText(widget_data[9])
             self.dialog_country_edit.setText(widget_data[10])
         except Exception as e:

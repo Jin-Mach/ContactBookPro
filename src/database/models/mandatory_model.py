@@ -49,14 +49,14 @@ class MandatoryModel(QSqlTableModel):
             elif index.column() == 5:
                 return super().data(self.index(index.row(), 6), role)
             elif index.column() == 6:
-                city = super().data(self.index(index.row(), 7), role)
-                street = super().data(self.index(index.row(), 8), role)
-                house_number = super().data(self.index(index.row(), 9), role)
+                street = super().data(self.index(index.row(), 7), role)
+                house_number = super().data(self.index(index.row(), 8), role)
+                city = super().data(self.index(index.row(), 9), role)
                 post_code = super().data(self.index(index.row(), 10), role)
                 country = super().data(self.index(index.row(), 11), role)
                 if not street:
-                    return f"{city}, {house_number}, {post_code}, {country}"
-                return f"{city}, {street}, {house_number}, {post_code}, {country}"
+                    return f"{city}, {house_number}, {city}, {post_code}, {country}"
+                return f"{street}, {house_number}, {city}, {post_code}, {country}"
         if role == Qt.ItemDataRole.DecorationRole:
             if index.column() == 1:
                 value = super().data(self.index(index.row(), 1), Qt.ItemDataRole.DisplayRole)

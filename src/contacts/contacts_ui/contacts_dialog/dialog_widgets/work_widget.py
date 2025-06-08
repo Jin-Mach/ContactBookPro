@@ -37,10 +37,6 @@ class WorkWidget(QWidget):
         self.dialog_work_phone_number_text_label.setObjectName("dialogWorkPhoneNumberTextLabel")
         self.dialog_work_phone_number_edit = QLineEdit()
         self.dialog_work_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
-        self.dialog_work_city_text_label = QLabel()
-        self.dialog_work_city_text_label.setObjectName("dialogWorkCityTextLabel")
-        self.dialog_work_city_edit = QLineEdit()
-        self.dialog_work_city_edit.setObjectName("dialogWorkCityEdit")
         self.dialog_work_street_text_label = QLabel()
         self.dialog_work_street_text_label.setObjectName("dialogWorkStreetTextLabel")
         self.dialog_work_street_edit = QLineEdit()
@@ -49,6 +45,10 @@ class WorkWidget(QWidget):
         self.dialog_work_house_number_text_label.setObjectName("dialogWorkHouseNumberTextLabel")
         self.dialog_work_house_number_edit = QLineEdit()
         self.dialog_work_house_number_edit.setObjectName("dialogWorkHouseNumberEdit")
+        self.dialog_work_city_text_label = QLabel()
+        self.dialog_work_city_text_label.setObjectName("dialogWorkCityTextLabel")
+        self.dialog_work_city_edit = QLineEdit()
+        self.dialog_work_city_edit.setObjectName("dialogWorkCityEdit")
         self.dialog_work_post_code_text_label = QLabel()
         self.dialog_work_post_code_text_label.setObjectName("dialogPostCodeTextLabel")
         self.dialog_work_post_code_edit = QLineEdit()
@@ -61,9 +61,9 @@ class WorkWidget(QWidget):
             (self.dialog_work_company_text_label, self.dialog_work_company_edit),
             (self.dialog_work_email_text_label, self.dialog_work_email_edit),
             (self.dialog_work_phone_number_text_label, self.dialog_work_phone_number_edit),
-            (self.dialog_work_city_text_label, self.dialog_work_city_edit),
             (self.dialog_work_street_text_label, self.dialog_work_street_edit),
             (self.dialog_work_house_number_text_label, self.dialog_work_house_number_edit),
+            (self.dialog_work_city_text_label, self.dialog_work_city_edit),
             (self.dialog_work_post_code_text_label, self.dialog_work_post_code_edit),
             (self.dialog_work_country_text_label, self.dialog_work_country_edit),
         ]
@@ -109,7 +109,7 @@ class WorkWidget(QWidget):
                 self.set_tab_index()
                 return None
             work_data += normalize_texts(
-                [self.dialog_work_company_edit, self.dialog_work_city_edit, self.dialog_work_street_edit,
+                [self.dialog_work_company_edit, self.dialog_work_street_edit, self.dialog_work_city_edit,
                  self.dialog_work_country_edit])
             if self.default_data:
                 return [work_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, work_data)]
@@ -120,15 +120,15 @@ class WorkWidget(QWidget):
 
     def set_contact_data(self, data: dict) -> None:
         try:
-            widget_data = [data["company_name"], data["work_email"],  data["work_phone_number"], data["work_city"],
-                           data["work_street"], data["work_house_number"], data["work_post_code"], data["work_country"]]
+            widget_data = [data["company_name"], data["work_email"],  data["work_phone_number"], data["work_street"],
+                           data["work_house_number"], data["work_city"], data["work_post_code"], data["work_country"]]
             self.default_data = widget_data
             self.dialog_work_company_edit.setText(widget_data[0])
             self.dialog_work_email_edit.setText(widget_data[1])
             self.dialog_work_phone_number_edit.setText(widget_data[2])
-            self.dialog_work_city_edit.setText(widget_data[3])
-            self.dialog_work_street_edit.setText(widget_data[4])
-            self.dialog_work_house_number_edit.setText(widget_data[5])
+            self.dialog_work_street_edit.setText(widget_data[3])
+            self.dialog_work_house_number_edit.setText(widget_data[4])
+            self.dialog_work_city_edit.setText(widget_data[5])
             self.dialog_work_post_code_edit.setText(widget_data[6])
             self.dialog_work_country_edit.setText(widget_data[7])
         except Exception as e:

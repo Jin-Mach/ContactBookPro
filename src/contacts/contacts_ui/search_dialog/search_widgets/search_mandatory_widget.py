@@ -60,13 +60,6 @@ class SearchMandatoryWidget(QWidget):
         self.search_phone_number_operator = QComboBox()
         self.search_phone_number_operator.setObjectName("searchPhoneNumberOperator")
         self.search_phone_number_operator.setFixedWidth(self.operator_width)
-        self.search_city_text_label = QLabel()
-        self.search_city_text_label.setObjectName("searchCityTextLabel")
-        self.search_city_edit = QLineEdit()
-        self.search_city_edit.setObjectName("searchCityEdit")
-        self.search_city_operator = QComboBox()
-        self.search_city_operator.setObjectName("searchCityOperator")
-        self.search_city_operator.setFixedWidth(self.operator_width)
         self.search_street_text_label = QLabel()
         self.search_street_text_label.setObjectName("searchStreetTextLabel")
         self.search_street_edit = QLineEdit()
@@ -81,6 +74,13 @@ class SearchMandatoryWidget(QWidget):
         self.search_house_number_operator = QComboBox()
         self.search_house_number_operator.setObjectName("searchHouseNumberOperator")
         self.search_house_number_operator.setFixedWidth(self.operator_width)
+        self.search_city_text_label = QLabel()
+        self.search_city_text_label.setObjectName("searchCityTextLabel")
+        self.search_city_edit = QLineEdit()
+        self.search_city_edit.setObjectName("searchCityEdit")
+        self.search_city_operator = QComboBox()
+        self.search_city_operator.setObjectName("searchCityOperator")
+        self.search_city_operator.setFixedWidth(self.operator_width)
         self.search_post_code_text_label = QLabel()
         self.search_post_code_text_label.setObjectName("searchPostCodeTextLabel")
         self.search_post_code_edit = QLineEdit()
@@ -102,9 +102,9 @@ class SearchMandatoryWidget(QWidget):
             (self.search_second_name_text_label, self.search_second_name_edit, self.search_second_name_operator),
             (self.search_email_text_label, self.search_email_edit, self.search_email_operator),
             (self.search_phone_number_text_label, self.search_phone_number_edit, self.search_phone_number_operator),
-            (self.search_city_text_label, self.search_city_edit, self.search_city_operator),
             (self.search_street_text_label, self.search_street_edit, self.search_street_operator),
             (self.search_house_number_text_label, self.search_house_number_edit, self.search_house_number_operator),
+            (self.search_city_text_label, self.search_city_edit, self.search_city_operator),
             (self.search_post_code_text_label, self.search_post_code_edit, self.search_post_code_operator),
             (self.search_country_text_label, self.search_country_edit, self.search_country_operator)
         ]
@@ -171,9 +171,9 @@ class SearchMandatoryWidget(QWidget):
                 (self.search_second_name_edit, self.search_second_name_operator, "second_name_normalized"),
                 (self.search_email_edit, self.search_email_operator, "personal_email"),
                 (self.search_phone_number_edit, self.search_phone_number_operator, "personal_phone_number"),
-                (self.search_city_edit, self.search_city_operator, "personal_city_normalized"),
                 (self.search_street_edit, self.search_street_operator, "personal_street_normalized"),
                 (self.search_house_number_edit, self.search_house_number_operator, "personal_house_number"),
+                (self.search_city_edit, self.search_city_operator, "personal_city_normalized"),
                 (self.search_post_code_edit, self.search_post_code_operator, "personal_post_code"),
                 (self.search_country_edit, self.search_country_operator, "personal_country_normalized")
             ]
@@ -221,9 +221,9 @@ class SearchMandatoryWidget(QWidget):
                 (self.search_second_name_text_label, self.search_second_name_operator, self.search_second_name_edit),
                 (self.search_email_text_label, self.search_email_operator, self.search_email_edit),
                 (self.search_phone_number_text_label, self.search_phone_number_operator, self.search_phone_number_edit),
-                (self.search_city_text_label, self.search_city_operator, self.search_city_edit),
                 (self.search_street_text_label, self.search_street_operator, self.search_street_edit),
                 (self.search_house_number_text_label, self.search_house_number_operator, self.search_house_number_edit),
+                (self.search_city_text_label, self.search_city_operator, self.search_city_edit),
                 (self.search_post_code_text_label, self.search_post_code_operator, self.search_post_code_edit),
                 (self.search_country_text_label, self.search_country_operator, self.search_country_edit)
             ]

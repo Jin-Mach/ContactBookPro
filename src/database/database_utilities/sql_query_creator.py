@@ -24,13 +24,20 @@ def create_search_query(filters: dict, parent=None) -> Optional[tuple]:
         ErrorHandler.exception_handler(e, parent)
         return None
 
-def create_check_duplicate_query(db_connection: QSqlDatabase, new_email: str, new_phone_number: str, parent=None) -> list | None:
+def create_check_duplicate_query(db_connection: QSqlDatabase, contact_id: int | None, new_email: str, new_phone_number: str, parent=None) -> list | None:
     try:
         query = QSqlQuery(db_connection)
-        query.prepare("SELECT id, first_name, second_name, personal_email, personal_phone_number from mandatory "
-                      "WHERE personal_email = ? OR personal_phone_number = ?")
-        query.addBindValue(new_email)
-        query.addBindValue(new_phone_number)
+        if contact_id is None:
+            query.prepare("SELECT id, first_name, second_name, personal_email, personal_phone_number from mandatory "
+                          "WHERE personal_email = ? OR personal_phone_number = ?")
+            query.addBindValue(new_email)
+            query.addBindValue(new_phone_number)
+        else:
+            query.prepare("SELECT id, first_name, second_name, personal_email, personal_phone_number from mandatory "
+                          "WHERE id != ? AND (personal_email = ? OR personal_phone_number = ?)")
+            query.addBindValue(contact_id)
+            query.addBindValue(new_email)
+            query.addBindValue(new_phone_number)
         if not query.exec():
             ErrorHandler.database_error(query.lastError().text(), False)
             return None
