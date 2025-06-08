@@ -76,9 +76,14 @@ class FiltersControler:
 
     def show_user_filters(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, status_bar: ContactsStatusbarWidget) -> None:
         try:
+            filters = FiltersProvider.get_filters_data()
+            if not filters:
+                error_text = LanguageProvider.get_error_text(self.class_name)
+                DialogsProvider.show_error_dialog(error_text["noUserFilters"], self.parent)
+                return
             from src.controlers.advanced_search_controler import AdvancedSearchControler
             advanced_search_controler = AdvancedSearchControler(db_connection, mandatory_model, status_bar)
-            self.user_filters_dialog.user_filters_listwidget.set_filters_data(FiltersProvider.get_filters_data())
+            self.user_filters_dialog.user_filters_listwidget.set_filters_data(filters)
             if self.user_filters_dialog.exec() == QDialog.DialogCode.Accepted:
                 selected_filter = self.user_filters_dialog.check_selected_filter()
                 new_filter = FiltersProvider.return_selected_filter(selected_filter)

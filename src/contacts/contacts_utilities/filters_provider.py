@@ -52,6 +52,14 @@ class FiltersProvider:
             return {}
 
     @staticmethod
+    def delete_filters_file() -> None:
+        try:
+            if FiltersProvider.filters_path.exists() and FiltersProvider.filters_path.is_file():
+                FiltersProvider.filters_path.unlink()
+        except Exception as e:
+            FiltersProvider.write_log_exception(e)
+
+    @staticmethod
     def write_log_exception(exception: Exception) -> None:
         from src.utilities.logger_provider import get_logger
         logger = get_logger()

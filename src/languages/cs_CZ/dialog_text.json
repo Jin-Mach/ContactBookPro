@@ -12,6 +12,7 @@
     "cancelContactButton": "Zrušit",
     "deleteAllContactsDialog": "Smazat všechny kontakty",
     "deleteAllContactsTextLabel": "Opravdu smazat všechny kontakty?\nPro potvrzení napiš:\nSMAZAT",
+    "deleteFiltersCheckboxTextLabel": "Smazat uložené filty?",
     "deleteAllContactsButton": "Smazat vše",
     "cancelAllContactsButton": "Zrušit"
   },

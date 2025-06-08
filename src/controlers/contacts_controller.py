@@ -2,7 +2,7 @@ from datetime import datetime
 
 from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication, QTableView
+from PyQt6.QtWidgets import QDialog, QMainWindow, QApplication, QTableView, QCheckBox
 
 from src.contacts.contacts_ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.contacts_ui.contacts_dialog.delete_dialogs import DeleteDialogs
@@ -10,6 +10,7 @@ from src.contacts.contacts_ui.contacts_dialog.duplicate_dialog import DuplicateD
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.contacts_ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.contacts_utilities.filters_provider import FiltersProvider
 from src.database.database_utilities.models_refresher import refresh_models
 from src.database.database_utilities.reset_database import reset_database
 from src.database.database_utilities.row_data_provider import RowDataProvider
@@ -150,7 +151,11 @@ class ContactsController:
     def delete_all_contacts(self) -> None:
         try:
             dialog = DeleteDialogs.show_delete_all_contacts_dialog()
+            check_box = dialog.findChild(QCheckBox, "deleteFiltersCheckbox")
             if dialog.exec() == QDialog.DialogCode.Accepted:
+                if isinstance(check_box, QCheckBox):
+                    if check_box.isChecked():
+                        FiltersProvider.delete_filters_file()
                 if not reset_database():
                     self.mandatory_model.clear_database()
                 refresh_models([self.mandatory_model, self.work_model, self.social_model, self.detail_model, self.info_model])

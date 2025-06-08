@@ -44,7 +44,8 @@
   },
   "filtersControler": {
     "noActiveFilter": "Žádný aktivní filtr.",
-    "existingFilterName": "Jméno filtru již existuje."
+    "existingFilterName": "Jméno filtru již existuje.",
+    "noUserFilters": "Žádné uložené filtry."
   },
   "filterNameDialog": {
     "emptyFilterName": "Není zadán název filtru."
