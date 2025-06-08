@@ -1,10 +1,12 @@
 from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
+from PyQt6.QtSql import QSqlTableModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.contacts_ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.contacts_ui.widgets.context_menu import ContextMenu
 from src.contacts.contacts_utilities.instance_provider import InstanceProvider
 from src.controlers.contact_data_controller import ContactDataController
+from src.controlers.context_menu_controler import ContextMenuControler
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -30,7 +32,12 @@ class ContactsTableviewWidget(QTableView):
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.gender_items = self.ui_text["gender_items"]
         self.relationship_items = self.ui_text["relationship_items"]
-        self.context_menu = ContextMenu(None, self)
+        model = self.model()
+        connection = None
+        if isinstance(model, QSqlTableModel):
+            connection = model.database()
+        context_menu_controler = ContextMenuControler(connection, self)
+        self.context_menu = ContextMenu(None, context_menu_controler, self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)
@@ -111,3 +118,12 @@ class ContactsTableviewWidget(QTableView):
                 self.setFocus()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def get_displayed_contacts_id(self) -> list:
+        model = self.model()
+        row_count = model.rowCount()
+        id_list = []
+        for row in range(row_count):
+            index = model.index(row, 0)
+            id_list.append(model.data(index))
+        return id_list

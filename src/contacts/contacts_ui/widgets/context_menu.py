@@ -15,12 +15,12 @@ if TYPE_CHECKING:
 
 
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "ContactsController | None", parent=None) -> None:
+    def __init__(self, contacts_controler: "ContactsController | None", context_menu_controler: ContextMenuControler, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
         self.contacts_controler = contacts_controler
-        self.context_menu_controler = ContextMenuControler()
+        self.context_menu_controler = context_menu_controler
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -43,12 +43,20 @@ class ContextMenu(QMenu):
         self.copy_phone_number_action.setObjectName("copyPhoneNumberAction")
         export_menu = QMenu(self)
         export_menu.setObjectName("exportMenu")
-        self.export_csv_action = QAction(self)
-        self.export_csv_action.setObjectName("exportCsvAction")
+        export_csv_menu = QMenu(self)
+        export_csv_menu.setObjectName("exportCsvMenu")
+        self.export_filtered_data_csv_action = QAction(self)
+        self.export_filtered_data_csv_action.setObjectName("exportFilteredDataCsvAction")
+        self.export_all_data_csv_action = QAction(self)
+        self.export_all_data_csv_action.setObjectName("exportAllDataCsvAction")
+        export_excel_menu = QMenu(self)
+        export_excel_menu.setObjectName("exportExcelMenu")
+        self.export_filtered_data_excel_action = QAction(self)
+        self.export_filtered_data_excel_action.setObjectName("exportFilteredDataExcelAction")
+        self.export_all_data_excel_action = QAction(self)
+        self.export_all_data_excel_action.setObjectName("exportAllDataExcelAction")
         self.export_vcard_action = QAction(self)
         self.export_vcard_action.setObjectName("exportVcardAction")
-        self.export_pdf_action = QAction(self)
-        self.export_pdf_action.setObjectName("exportPdfAction")
         print_menu = QMenu(self)
         print_menu.setObjectName("printMenu")
         self.print_contact_action = QAction(self)
@@ -75,7 +83,11 @@ class ContextMenu(QMenu):
         copy_menu.addActions([self.copy_name_action, self.copy_email_action, self.copy_phone_number_action])
         self.addSeparator()
         self.addMenu(export_menu)
-        export_menu.addActions([self.export_csv_action, self.export_vcard_action, self.export_pdf_action])
+        export_menu.addMenu(export_csv_menu)
+        export_csv_menu.addActions([self.export_filtered_data_csv_action, self.export_all_data_csv_action])
+        export_menu.addMenu(export_excel_menu)
+        export_excel_menu.addActions([self.export_filtered_data_excel_action, self.export_all_data_excel_action])
+        export_menu.addAction(self.export_vcard_action)
         self.addSeparator()
         self.addMenu(print_menu)
         print_menu.addActions([self.print_contact_action, self.print_contact_list_action])
@@ -104,7 +116,8 @@ class ContextMenu(QMenu):
                        (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.tableview)),
                        (self.copy_name_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "name", self.main_window)),
                        (self.copy_email_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "email", self.main_window)),
-                       (self.copy_phone_number_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "phone", self.main_window))]
+                       (self.copy_phone_number_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "phone", self.main_window)),
+                       (self.export_filtered_data_csv_action, self.context_menu_controler.export_to_csv)]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):
