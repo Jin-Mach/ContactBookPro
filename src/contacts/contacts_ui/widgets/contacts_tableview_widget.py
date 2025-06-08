@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
@@ -50,7 +48,7 @@ class ContactsTableviewWidget(QTableView):
             else:
                 self.setColumnHidden(index, True)
 
-    def set_detail_data(self, last_index: Optional[QModelIndex]) -> None:
+    def set_detail_data(self, last_index: QModelIndex | None) -> None:
         try:
             current_index = last_index
             if not current_index:

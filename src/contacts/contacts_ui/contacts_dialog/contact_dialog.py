@@ -1,4 +1,3 @@
-from typing import Optional
 from datetime import datetime
 import pathlib
 
@@ -13,7 +12,7 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class ContactDialog(QDialog):
-    def __init__(self, update_contact: bool, contact_data: Optional[dict], parent=None) -> None:
+    def __init__(self, update_contact: bool, contact_data: dict | None, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setFixedSize(600, 600)
@@ -82,7 +81,7 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def colect_data(self) -> Optional[list]:
+    def colect_data(self) -> list | None:
         try:
             mandatory_data = self.mandatory_widget.return_mandatory_data()
             work_data = self.non_mandatory_widget.work_widget.return_work_data()

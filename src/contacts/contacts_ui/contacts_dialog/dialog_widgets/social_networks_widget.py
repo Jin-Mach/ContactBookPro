@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
 from src.contacts.contacts_utilities.check_update_data import CheckUpdateProvider
@@ -72,7 +70,7 @@ class SocialNetworkWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def return_social_network_data(self) -> Optional[list]:
+    def return_social_network_data(self) -> list | None:
         error_text = LanguageProvider.get_error_text(self.objectName())
         inputs = self.findChildren(QLineEdit)
         social_network_data = []
@@ -81,12 +79,13 @@ class SocialNetworkWidget(QWidget):
                 text = widget.text().strip()
                 site = widget.objectName().replace("dialog", "").replace("UrlEdit", "")
                 if text:
-                    if site.lower() == "website" and not ContactValidator.validate_url(text, site):
+                    is_valid = ContactValidator.validate_url(text, site)
+                    if site.lower() == "website" and not is_valid:
                         DialogsProvider.show_error_dialog(error_text["websiteValidatorError"])
                         self.set_tab_index()
                         widget.setFocus()
                         return None
-                    if not ContactValidator.validate_url(text, site):
+                    if not is_valid:
                         message = error_text["urlValidatorError"].replace("{site}", site)
                         DialogsProvider.show_error_dialog(message)
                         self.set_tab_index()

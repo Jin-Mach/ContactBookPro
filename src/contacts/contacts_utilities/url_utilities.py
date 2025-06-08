@@ -1,5 +1,4 @@
 import webbrowser
-from typing import Optional
 
 from PyQt6.QtWidgets import QPushButton
 
@@ -15,6 +14,6 @@ def open_url(url: str, parent=None) -> None:
     except Exception as e:
         ErrorHandler.exception_handler(e, parent)
 
-def update_buttons_state(buttons: list[QPushButton], urls: list[Optional[str]]) -> None:
+def update_buttons_state(buttons: list[QPushButton], urls: list[str | None]) -> None:
     for button, url in zip(buttons, urls):
         button.setDisabled(not url)

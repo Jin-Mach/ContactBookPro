@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QDate
 from PyQt6.QtWidgets import QCalendarWidget, QToolButton
 
@@ -28,7 +26,7 @@ class CalendarWidget(QCalendarWidget):
         self.showToday()
         self.setSelectedDate(QDate.currentDate())
 
-    def return_selected_date(self) -> Optional[str]:
+    def return_selected_date(self) -> str | None:
         current_date = QDate.currentDate()
         selected_date = self.selectedDate()
         if selected_date < current_date:

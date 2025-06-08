@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtSql import QSqlQuery, QSqlTableModel
 
 from src.utilities.error_handler import ErrorHandler
@@ -8,7 +6,7 @@ from src.utilities.error_handler import ErrorHandler
 class RowDataProvider:
 
     @staticmethod
-    def return_row_data(index: int) -> Optional[dict]:
+    def return_row_data(index: int) -> dict | None:
         tables = ["mandatory", "work", "social", "detail", "info"]
         all_data = {}
         for table in tables:
@@ -19,7 +17,7 @@ class RowDataProvider:
         return all_data
 
     @staticmethod
-    def return_table_data(table_name: str, index: int) -> Optional[dict]:
+    def return_table_data(table_name: str, index: int) -> dict | None:
         table_data = {}
         query = QSqlQuery()
         query.prepare(f"SELECT * FROM {table_name} WHERE id = ?")

@@ -1,4 +1,4 @@
-from typing import Callable, Optional
+from typing import Callable
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
@@ -68,7 +68,7 @@ class UserFiltersDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def check_selected_filter(self) -> Optional[str]:
+    def check_selected_filter(self) -> str | None:
         try:
             error_text = LanguageProvider.get_error_text(self.objectName())
             if self.user_filters_listwidget.model().rowCount() < 1:

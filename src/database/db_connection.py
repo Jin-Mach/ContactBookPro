@@ -1,12 +1,11 @@
 import pathlib
-from typing import Optional
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
 from src.utilities.error_handler import ErrorHandler
 
 
-def create_db_connection(db_name: str) -> Optional[QSqlDatabase]:
+def create_db_connection(db_name: str) -> QSqlDatabase | None:
     db_path = pathlib.Path(__file__).parent.parent.joinpath("db_file")
     connection = QSqlDatabase.addDatabase("QSQLITE")
     connection.setDatabaseName(str(db_path.joinpath(db_name)))

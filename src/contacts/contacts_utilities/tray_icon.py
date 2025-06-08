@@ -19,7 +19,7 @@ class TrayIcon(QSystemTrayIcon):
             self.setContextMenu(menu)
             self.create_connection()
 
-    def create_context_menu(self) -> Optional[QMenu]:
+    def create_context_menu(self) -> QMenu | None:
         ui_text = LanguageProvider.get_ui_text(self.objectName())
         try:
             menu = QMenu()

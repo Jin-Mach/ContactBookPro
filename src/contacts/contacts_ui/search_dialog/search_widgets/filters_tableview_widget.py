@@ -1,4 +1,4 @@
-from typing import Callable, Optional
+from typing import Callable
 
 from PyQt6.QtCore import QAbstractTableModel, QPoint, QSize
 from PyQt6.QtWidgets import QTableView, QAbstractItemView, QHeaderView, QPushButton
@@ -32,7 +32,7 @@ class FiltersTableviewWidget(QTableView):
         self.horizontalHeader().resizeSection(4, 50)
         self.hideColumn(3)
 
-    def create_reset_button(self, row: int) -> Optional[QPushButton]:
+    def create_reset_button(self, row: int) -> QPushButton | None:
         try:
             button = QPushButton()
             button.setObjectName("deleteFilterButton")

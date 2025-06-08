@@ -1,5 +1,3 @@
-from typing import Union
-
 from PyQt6.QtCore import Qt, QAbstractTableModel
 from PyQt6.QtSql import QSqlTableModel
 

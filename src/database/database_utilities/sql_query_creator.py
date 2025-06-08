@@ -1,10 +1,8 @@
-from typing import Optional
-
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
 from src.utilities.error_handler import ErrorHandler
 
-def create_search_query(filters: dict, parent=None) -> Optional[tuple]:
+def create_search_query(filters: dict, parent=None) -> tuple | None:
     try:
         if not filters:
             return None

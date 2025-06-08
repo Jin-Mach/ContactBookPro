@@ -1,4 +1,3 @@
-
 from PyQt6.QtWidgets import QMainWindow, QApplication
 
 from src.database.database_utilities.row_data_provider import RowDataProvider

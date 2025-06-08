@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QLineEdit, QDialogButtonBox, QPushButton
 
@@ -68,7 +66,7 @@ class FilterNameDialog(QDialog):
                 button.setToolTip(tooltip_text[button.objectName()])
                 button.setToolTipDuration(5000)
 
-    def get_filter_name(self) -> Optional[str]:
+    def get_filter_name(self) -> str | None:
         error_text = LanguageProvider.get_error_text(self.objectName())
         input_text = self.filter_name_input.text().strip()
         if not input_text:

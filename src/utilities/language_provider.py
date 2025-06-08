@@ -1,7 +1,6 @@
 import pathlib
 import json
 import sys
-from typing import Optional
 
 from PyQt6.QtCore import QLocale
 
@@ -15,7 +14,7 @@ class LanguageProvider:
         return LanguageProvider.get_language_code()
 
     @staticmethod
-    def get_language_code() -> Optional[str]:
+    def get_language_code() -> str | None:
         try:
             language = QLocale().name()
             if not LanguageProvider.language_code or not language:
@@ -37,7 +36,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_ui_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_ui_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "ui_text.json"), "r", encoding="utf-8") as file:
                 language_data = json.load(file)
@@ -47,7 +46,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_tooltips_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_tooltips_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "tooltips_text.json"), encoding="utf-8") as file:
                 tooltips_data = json.load(file)
@@ -57,7 +56,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_dialog_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_dialog_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "dialog_text.json"), "r", encoding="utf-8") as file:
                 dialog_data = json.load(file)
@@ -67,7 +66,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_search_dialog_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_search_dialog_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "search_dialog_text.json"), "r", encoding="utf-8") as file:
                 search_dialog_data = json.load(file)
@@ -77,7 +76,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_user_filters_dialog_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_user_filters_dialog_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "user_filters_dialog_text.json"), "r", encoding="utf-8") as file:
                 search_dialog_data = json.load(file)
@@ -87,7 +86,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_context_menu_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_context_menu_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "menu_text.json"), "r", encoding="utf-8") as file:
                 context_menu_data = json.load(file)
@@ -97,7 +96,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_error_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_error_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "errors_text.json"), "r", encoding="utf-8") as file:
                 error_data = json.load(file)
@@ -107,7 +106,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_headers_text(widget_name: str) -> Optional[dict[str, str]]:
+    def get_headers_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "headers_text.json"), "r", encoding="utf-8") as file:
                 headers_data = json.load(file)
@@ -117,7 +116,7 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_language_dict() -> Optional[dict]:
+    def get_language_dict() -> dict | None:
         language_dict = {}
         try:
             for language in LanguageProvider.language_path.iterdir():

@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import QSize, QModelIndex
 from PyQt6.QtGui import QAction
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "Optional[ContactsController]", parent=None) -> None:
+    def __init__(self, contacts_controler: "ContactsController | None", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent

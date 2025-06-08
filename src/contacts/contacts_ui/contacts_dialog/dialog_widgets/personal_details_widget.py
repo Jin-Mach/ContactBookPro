@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QSize, Qt, QByteArray
 from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QFormLayout,
                              QLineEdit, QTextEdit)
@@ -141,7 +139,7 @@ class PersonalDetailsWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
             return ""
 
-    def return_personal_data(self) -> Optional[list]:
+    def return_personal_data(self) -> list | None:
         inputs = self.findChildren((QLineEdit, QTextEdit))
         inputs_names = ["dialogTitleEdit", "dialogBirthdayEdit", "dialogNotesEdit"]
         photo_blob = BlobHandler.pixmap_to_blob(self.dialog_photo_label, self)

@@ -1,5 +1,4 @@
 import re
-from typing import Optional
 
 from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
@@ -35,12 +34,15 @@ class ContactValidator:
         if not parsed_url.scheme:
             url = "https://" + url
             parsed_url = urlparse(url)
+        domain = tldextract.extract(parsed_url.netloc).domain
+        ext = tldextract.extract(parsed_url.netloc)
+        if not ext.suffix:
+            return False
         if site.lower() == "website":
             return validators.url(url)
-        domain = tldextract.extract(parsed_url.netloc).domain
         if domain == "twitter":
             domain = "x"
-        return domain == site.lower() and validators.url(url)
+        return domain == site.lower() and bool(ext.suffix) and validators.url(url)
 
     @staticmethod
     def validate_work_address(address: QLineEdit, post_code: QLineEdit, city: QLineEdit, country: QLineEdit) -> bool:
@@ -94,7 +96,7 @@ class ContactValidator:
         filter_name_edit.setValidator(filter_name_validator)
 
     @staticmethod
-    def filter_invalid_characters(search_input: QLineEdit) -> Optional[str]:
+    def filter_invalid_characters(search_input: QLineEdit) -> str | None:
         regex_pattern = None
         filtered_text = ""
         validator = search_input.validator()

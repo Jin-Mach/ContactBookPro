@@ -1,4 +1,4 @@
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QApplication, QWidget
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 class InstanceProvider:
 
     @staticmethod
-    def get_main_window_instance() -> Optional[QMainWindow]:
+    def get_main_window_instance() -> QMainWindow | None:
         try:
             application = QApplication.instance()
             if application is None:
@@ -26,7 +26,7 @@ class InstanceProvider:
             return None
 
     @staticmethod
-    def get_contacts_controler_instance(controler: "Optional[ContactsController]") -> "Optional[ContactsController]":
+    def get_contacts_controler_instance(controler: "ContactsController | None") -> "ContactsController | None":
         try:
             if controler is not None:
                 return controler

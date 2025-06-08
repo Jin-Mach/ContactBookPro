@@ -1,5 +1,5 @@
 from functools import partial
-from typing import Optional, Callable
+from typing import Callable
 
 from PyQt6.QtCore import Qt, QSize, QItemSelectionModel
 from PyQt6.QtWidgets import QListWidget, QAbstractItemView, QWidget, QHBoxLayout, QListWidgetItem, QLabel, QPushButton, \
@@ -35,7 +35,7 @@ class UserFiltersListwidget(QListWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def create_list_widget(self, filter_name: str) -> Optional[QWidget]:
+    def create_list_widget(self, filter_name: str) -> QWidget | None:
         try:
             widget = QWidget()
             widget.filter_name = filter_name
@@ -68,7 +68,7 @@ class UserFiltersListwidget(QListWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def return_selected_filter(self) -> Optional[str]:
+    def return_selected_filter(self) -> str | None:
         try:
             item = self.currentItem()
             if item is None:

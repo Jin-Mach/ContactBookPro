@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QLabel, QFormLayout, QLineEdit, QComboBox, QVBoxLayout, QTabWidget
@@ -103,7 +101,7 @@ class MandatoryWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def return_mandatory_data(self) -> Optional[list]:
+    def return_mandatory_data(self) -> list | None:
         error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
         inputs = self.findChildren((QLineEdit, QComboBox))
         labels = self.findChildren(QLabel)

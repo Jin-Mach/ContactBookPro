@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QByteArray, QBuffer
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLabel
@@ -10,7 +8,7 @@ from src.utilities.error_handler import ErrorHandler
 class BlobHandler:
 
     @staticmethod
-    def pixmap_to_blob(label: QLabel, parent=None) -> Optional[bytes]:
+    def pixmap_to_blob(label: QLabel, parent=None) -> bytes | None:
         try:
             pixmap = label.pixmap()
             if pixmap and not pixmap.isNull():
@@ -26,7 +24,7 @@ class BlobHandler:
             return None
 
     @staticmethod
-    def blob_to_pixmap(blob: QByteArray, parent=None) -> Optional[QPixmap]:
+    def blob_to_pixmap(blob: QByteArray, parent=None) -> QPixmap | None:
         try:
             if blob:
                 pixmap = QPixmap()

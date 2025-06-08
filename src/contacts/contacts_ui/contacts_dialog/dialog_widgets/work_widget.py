@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
@@ -85,7 +83,7 @@ class WorkWidget(QWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def return_work_data(self) -> Optional[list]:
+    def return_work_data(self) -> list | None:
         error_text = LanguageProvider.get_error_text(self.objectName())
         inputs = self.findChildren(QLineEdit)
         work_data = []

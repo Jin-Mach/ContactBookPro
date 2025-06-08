@@ -1,5 +1,4 @@
 import pathlib
-from typing import Optional
 
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton, QLineEdit
@@ -62,7 +61,7 @@ class CalendarDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def return_date(self, birthday_input: QLineEdit) -> Optional[str]:
+    def return_date(self, birthday_input: QLineEdit) -> str | None:
         error_text = LanguageProvider.get_error_text(self.objectName())
         selected_date = self.calendar_widget.return_selected_date()
         if selected_date:

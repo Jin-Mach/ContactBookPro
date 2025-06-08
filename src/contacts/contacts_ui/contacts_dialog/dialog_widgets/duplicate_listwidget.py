@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QListWidget, QAbstractItemView, QWidget, QHBoxLayout, QLabel, QListWidgetItem
 
@@ -29,7 +27,7 @@ class DuplicateListwidget(QListWidget):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def create_list_widget(self, contact_id: int, first_name: str, second_name: str) -> Optional[QWidget]:
+    def create_list_widget(self, contact_id: int, first_name: str, second_name: str) -> QWidget | None:
         try:
             widget = QWidget()
             widget.setProperty("id", contact_id)
@@ -44,7 +42,7 @@ class DuplicateListwidget(QListWidget):
             ErrorHandler.exception_handler(e, self)
             return None
 
-    def return_selected_contact_id(self) -> Optional[int]:
+    def return_selected_contact_id(self) -> int | None:
         try:
             item = self.currentItem()
             if item is not None:

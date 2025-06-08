@@ -1,5 +1,3 @@
-from typing import Optional
-
 from PyQt6.QtCore import QAbstractTableModel
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QApplication, QWidget, QMainWindow
