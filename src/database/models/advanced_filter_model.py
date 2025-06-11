@@ -2,7 +2,7 @@ from typing import Any
 
 from PyQt6.QtCore import QAbstractTableModel, QModelIndex, Qt
 
-from src.database.database_utilities.model_header_provider import ModelHeaderProvider
+from src.database.utilities.model_header_provider import ModelHeaderProvider
 
 
 class AdvancedFilterModel(QAbstractTableModel):

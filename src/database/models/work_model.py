@@ -1,6 +1,6 @@
 from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
 
-from src.database.database_utilities.row_data_provider import RowDataProvider
+from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
 
