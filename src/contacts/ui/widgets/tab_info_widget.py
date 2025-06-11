@@ -22,6 +22,7 @@ class TabInfoWidget(QTabWidget):
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
                         self.linkedin_pushbutton, self.github_pushbutton, self.work_website_pushbutton]
+        self.create_connection()
 
     def create_personal_tab(self) -> QWidget:
         personal_widget = QWidget()
@@ -30,17 +31,14 @@ class TabInfoWidget(QTabWidget):
         self.facebook_pushbutton = QPushButton()
         self.facebook_pushbutton.setObjectName("facebookPushbutton")
         self.facebook_pushbutton.setFixedSize(self.buttons_size)
-        self.facebook_pushbutton.clicked.connect(lambda: open_url(self.facebook_url))
         self.facebook_pushbutton.setDisabled(True)
         self.x_pushbutton = QPushButton()
         self.x_pushbutton.setObjectName("xPushbutton")
         self.x_pushbutton.setFixedSize(self.buttons_size)
-        self.x_pushbutton.clicked.connect(lambda: open_url(self.x_url))
         self.x_pushbutton.setDisabled(True)
         self.instagram_pushbutton = QPushButton()
         self.instagram_pushbutton.setObjectName("instagramPushbutton")
         self.instagram_pushbutton.setFixedSize(self.buttons_size)
-        self.instagram_pushbutton.clicked.connect(lambda: open_url(self.instagram_url))
         self.instagram_pushbutton.setDisabled(True)
         personal_social_network_layout.addWidget(self.facebook_pushbutton)
         personal_social_network_layout.addWidget(self.x_pushbutton)
@@ -94,17 +92,14 @@ class TabInfoWidget(QTabWidget):
         self.linkedin_pushbutton = QPushButton()
         self.linkedin_pushbutton.setObjectName("linkedinPushbutton")
         self.linkedin_pushbutton.setFixedSize(self.buttons_size)
-        self.linkedin_pushbutton.clicked.connect(lambda: open_url(self.linkedin_url))
         self.linkedin_pushbutton.setDisabled(True)
         self.github_pushbutton = QPushButton()
         self.github_pushbutton.setObjectName("githubPushbutton")
         self.github_pushbutton.setFixedSize(self.buttons_size)
-        self.github_pushbutton.clicked.connect(lambda: open_url(self.github_url))
         self.github_pushbutton.setDisabled(True)
         self.work_website_pushbutton = QPushButton()
         self.work_website_pushbutton.setObjectName("websitePushbutton")
         self.work_website_pushbutton.setFixedSize(self.buttons_size)
-        self.work_website_pushbutton.clicked.connect(lambda: open_url(self.website_url))
         self.work_website_pushbutton.setDisabled(True)
         work_social_network_layout.addWidget(self.linkedin_pushbutton)
         work_social_network_layout.addWidget(self.github_pushbutton)
@@ -184,6 +179,14 @@ class TabInfoWidget(QTabWidget):
                     button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def create_connection(self) -> None:
+        self.facebook_pushbutton.clicked.connect(lambda: open_url(self.facebook_url))
+        self.x_pushbutton.clicked.connect(lambda: open_url(self.x_url))
+        self.instagram_pushbutton.clicked.connect(lambda: open_url(self.instagram_url))
+        self.linkedin_pushbutton.clicked.connect(lambda: open_url(self.linkedin_url))
+        self.github_pushbutton.clicked.connect(lambda: open_url(self.github_url))
+        self.work_website_pushbutton.clicked.connect(lambda: open_url(self.website_url))
 
     def set_data(self, data: dict) -> None:
         try:

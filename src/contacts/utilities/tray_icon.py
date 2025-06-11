@@ -1,5 +1,4 @@
 import pathlib
-from typing import Optional
 
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu, QApplication, QWidget

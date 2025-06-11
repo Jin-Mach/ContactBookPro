@@ -1,10 +1,10 @@
 from typing import Callable
 
-from PyQt6.QtCore import QAbstractTableModel, QPoint, QSize
+from PyQt6.QtCore import QAbstractTableModel, QSize
 from PyQt6.QtWidgets import QTableView, QAbstractItemView, QHeaderView, QPushButton
 
-from src.database.utilities.model_header_provider import ModelHeaderProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel
+from src.database.utilities.model_header_provider import ModelHeaderProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider

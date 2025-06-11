@@ -2,11 +2,11 @@ from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
 from PyQt6.QtSql import QSqlTableModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
+from src.contacts.controlers.contact_data_controller import ContactDataController
+from src.contacts.controlers.context_menu_controler import ContextMenuControler
 from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
-from src.contacts.controlers.contact_data_controller import ContactDataController
-from src.contacts.controlers.context_menu_controler import ContextMenuControler
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

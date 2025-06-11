@@ -1,13 +1,13 @@
 import re
+from urllib.parse import urlparse
 
+import phonenumbers
+import tldextract
+import validators
 from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QLineEdit
 from email_validator import validate_email, EmailNotValidError
-import phonenumbers
-from urllib.parse import urlparse
-import tldextract
-import validators
 
 
 class ContactValidator:

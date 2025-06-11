@@ -1,7 +1,7 @@
 from typing import Any
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
-from PyQt6.QtWidgets import QMainWindow, QTableView
+from PyQt6.QtWidgets import QTableView
 
 from src.utilities.error_handler import ErrorHandler
 

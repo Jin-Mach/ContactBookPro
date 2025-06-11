@@ -4,10 +4,10 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
+from src.contacts.controlers.context_menu_controler import ContextMenuControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
-from src.contacts.controlers.context_menu_controler import ContextMenuControler
 
 if TYPE_CHECKING:
     from src.controlers.contacts_controller import ContactsController

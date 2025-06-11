@@ -1,5 +1,3 @@
-from PyQt6.QtCore import QRegularExpression
-from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
 from src.contacts.utilities.check_update_data import CheckUpdateProvider

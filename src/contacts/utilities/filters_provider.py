@@ -1,7 +1,6 @@
-from typing import Any
-import pathlib
 import json
-from json import JSONDecodeError
+import pathlib
+from typing import Any
 
 
 class FiltersProvider:

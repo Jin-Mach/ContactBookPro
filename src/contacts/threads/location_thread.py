@@ -1,6 +1,5 @@
-from geopy.geocoders import Nominatim
-
 from PyQt6.QtCore import QRunnable
+from geopy.geocoders import Nominatim
 
 from src.contacts.threads.signal_provider import SignalProvider
 

@@ -1,8 +1,7 @@
 from functools import partial
 
-from PyQt6.QtCore import QSize, QRegularExpression
-from PyQt6.QtGui import QRegularExpressionValidator
-from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QComboBox, QPushButton, QLabel, QFormLayout, QHBoxLayout, QLineEdit
+from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QWidget, QLayout, QComboBox, QPushButton, QLabel, QFormLayout, QHBoxLayout, QLineEdit
 
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.contacts.utilities.optimalize_data import normalize_input

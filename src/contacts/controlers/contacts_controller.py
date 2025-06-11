@@ -4,26 +4,26 @@ from PyQt6.QtCore import QThreadPool
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QMainWindow, QTableView, QCheckBox
 
+from src.contacts.threads.location_thread import LocationThread
+from src.contacts.threads.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.ui.contacts_dialog.duplicate_dialog import DuplicateDialog
 from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.contacts.utilities.filters_provider import FiltersProvider
-from src.database.utilities.models_refresher import refresh_models
-from src.database.utilities.reset_database import reset_database
-from src.database.utilities.row_data_provider import RowDataProvider
-from src.database.utilities.sql_query_creator import create_check_duplicate_query
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
-from src.database.utilities.update_models import update_models_data
+from src.contacts.utilities.filters_provider import FiltersProvider
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
 from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
-from src.contacts.threads.location_thread import LocationThread
-from src.contacts.threads.signal_provider import SignalProvider
+from src.database.utilities.models_refresher import refresh_models
+from src.database.utilities.reset_database import reset_database
+from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.sql_query_creator import create_check_duplicate_query
+from src.database.utilities.update_models import update_models_data
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

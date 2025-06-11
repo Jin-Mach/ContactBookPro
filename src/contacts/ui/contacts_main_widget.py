@@ -4,11 +4,11 @@ from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.ui.widgets.contacts_toolbar_widget import ContactsToolbarWidget
+from src.database.db_connection import create_db_connection
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
-from src.database.db_connection import create_db_connection
 from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
 

@@ -1,7 +1,7 @@
 from functools import partial
 from typing import Callable
 
-from PyQt6.QtCore import Qt, QSize, QItemSelectionModel
+from PyQt6.QtCore import QSize, QItemSelectionModel
 from PyQt6.QtWidgets import QListWidget, QAbstractItemView, QWidget, QHBoxLayout, QListWidgetItem, QLabel, QPushButton, \
     QVBoxLayout
 

@@ -3,15 +3,15 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.contacts.utilities.contact_validator import ContactValidator
 from src.contacts.controlers.advanced_search_controler import AdvancedSearchControler
 from src.contacts.controlers.completer_controler import CompleterControler
 from src.contacts.controlers.contact_search_controler import ContactSearchControler
 from src.contacts.controlers.contacts_controller import ContactsController
 from src.contacts.controlers.filters_controler import FiltersControler
+from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.utilities.contact_validator import ContactValidator
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel

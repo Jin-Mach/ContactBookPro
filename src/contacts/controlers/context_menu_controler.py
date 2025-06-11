@@ -1,6 +1,6 @@
 from PyQt6.QtCore import QStandardPaths
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QTableView
+from PyQt6.QtWidgets import QMainWindow, QApplication, QTableView
 
 from src.database.utilities.export_data_provider import ExportDataProvider
 from src.database.utilities.row_data_provider import RowDataProvider
