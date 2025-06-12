@@ -19,7 +19,6 @@ class ContactsTableviewWidget(QTableView):
         super().__init__(parent)
         self.setObjectName("contactsTableviewWidget")
         self.mandatory_model = mandatory_model
-        self.contact_data_controler = ContactDataController(detail_widget)
         self.detail_widget = detail_widget
         self.setModel(self.mandatory_model)
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
@@ -36,6 +35,7 @@ class ContactsTableviewWidget(QTableView):
         connection = None
         if isinstance(model, QSqlTableModel):
             connection = model.database()
+        self.contact_data_controler = ContactDataController(connection, detail_widget)
         context_menu_controler = ContextMenuControler(connection, self)
         self.context_menu = ContextMenu(None, context_menu_controler, self)
 

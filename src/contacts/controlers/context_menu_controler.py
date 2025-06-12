@@ -19,7 +19,7 @@ class ContextMenuControler:
     def copy_to_clipboard(index: int, field: str, main_window: QMainWindow) -> None:
         try:
             clipboard = QApplication.clipboard()
-            row_data = RowDataProvider.return_row_data(index)
+            row_data = RowDataProvider.return_row_data(self.db_connection, index)
             title_text = f"{row_data['first_name']} {row_data['second_name']}"
             if field == "name":
                 clipboard.setText(f"{row_data['first_name']} {row_data['second_name']}")

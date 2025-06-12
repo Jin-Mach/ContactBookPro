@@ -97,7 +97,7 @@ class ContactsController:
                 if index.isValid():
                     id_data = self.mandatory_model.index(index.row(), 0)
                     contact_id = self.mandatory_model.data(id_data)
-                    contact_data = RowDataProvider.return_row_data(contact_id)
+                    contact_data = RowDataProvider.return_row_data(self.db_connection, contact_id)
                     dialog = ContactDialog(True, contact_data, self.parent)
                     if dialog.exec() == dialog.DialogCode.Accepted:
                         new_data = dialog.colected_data

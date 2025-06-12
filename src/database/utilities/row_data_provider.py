@@ -1,4 +1,4 @@
-from PyQt6.QtSql import QSqlQuery, QSqlTableModel
+from PyQt6.QtSql import QSqlQuery, QSqlTableModel, QSqlDatabase
 
 from src.utilities.error_handler import ErrorHandler
 
@@ -6,20 +6,20 @@ from src.utilities.error_handler import ErrorHandler
 class RowDataProvider:
 
     @staticmethod
-    def return_row_data(index: int) -> dict | None:
+    def return_row_data(db_connection: QSqlDatabase, index: int) -> dict | None:
         tables = ["mandatory", "work", "social", "detail", "info"]
         all_data = {}
         for table in tables:
-            row_data = RowDataProvider.return_table_data(table, index)
+            row_data = RowDataProvider.return_table_data(db_connection, table, index)
             if not row_data:
                 return None
             all_data.update(row_data)
         return all_data
 
     @staticmethod
-    def return_table_data(table_name: str, index: int) -> dict | None:
+    def return_table_data(db_connection: QSqlDatabase, table_name: str, index: int) -> dict | None:
         table_data = {}
-        query = QSqlQuery()
+        query = QSqlQuery(db_connection)
         query.prepare(f"SELECT * FROM {table_name} WHERE id = ?")
         query.bindValue(0, index)
         if not query.exec():
