@@ -2,8 +2,8 @@ from PyQt6.QtCore import QThread
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog
 
-from src.contacts.threads.advanced_search_object import AdvancedSearchObject
-from src.contacts.threads.user_filter_object import UserFilterObject
+from src.contacts.threading.advanced_search_object import AdvancedSearchObject
+from src.contacts.threading.user_filter_object import UserFilterObject
 from src.contacts.ui.search_dialogs.advanced_search_dialog import AdvancedSearchDialog
 from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.database.models.mandatory_model import MandatoryModel

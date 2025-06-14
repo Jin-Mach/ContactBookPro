@@ -5,8 +5,8 @@ from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox
 
-from src.contacts.threads.location_thread import LocationThread
-from src.contacts.threads.signal_provider import SignalProvider
+from src.contacts.threading.location_thread import LocationThread
+from src.contacts.threading.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.ui.contacts_dialog.duplicate_dialog import DuplicateDialog

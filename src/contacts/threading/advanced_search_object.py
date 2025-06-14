@@ -14,7 +14,6 @@ class AdvancedSearchObject(QObject):
         self.connection_name = f"advancedSearchThread{id(self)}"
 
     def run_advanced_search(self) -> None:
-        print("pokročilé hledání")
         id_list = []
         db = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
         db.setDatabaseName(self.db_path)

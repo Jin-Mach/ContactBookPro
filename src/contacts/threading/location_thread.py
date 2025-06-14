@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QRunnable
 from geopy.geocoders import Nominatim
 
-from src.contacts.threads.signal_provider import SignalProvider
+from src.contacts.threading.signal_provider import SignalProvider
 
 
 class LocationThread(QRunnable):

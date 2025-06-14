@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QSize, QModelIndex
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
@@ -41,6 +41,7 @@ class ContactsToolbarWidget(QWidget):
         self.set_ui_text()
         self.set_tooltips_text()
         self.create_connection()
+        self.create_shortcuts()
         self.contacts_controler = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
                                                      social_model, detail_model, info_model, detail_widget, table_view,
                                                      self.status_bar, self)
@@ -139,6 +140,24 @@ class ContactsToolbarWidget(QWidget):
         self.advanced_search_pushbutton.clicked.connect(self.advanced_search)
         self.reset_filter_pushbutton.clicked.connect(self.reset_filter)
         self.user_filters_pushbutton.clicked.connect(self.show_user_filters)
+
+    def create_shortcuts(self) -> None:
+        self.add_new_contact_shortcut = QShortcut(QKeySequence("Ctrl+N"), self)
+        self.add_new_contact_shortcut.activated.connect(self.add_new_contact)
+        self.update_contact_shortcut = QShortcut(QKeySequence("Ctrl+U"), self)
+        self.update_contact_shortcut.activated.connect(self.update_existing_contact)
+        self.delete_contact_shortcut = QShortcut(QKeySequence("Ctrl+D"), self)
+        self.delete_contact_shortcut.activated.connect(self.delete_contact)
+        self.delete_all_contacts_shortcut = QShortcut(QKeySequence("Ctrl+Shift+D"), self)
+        self.delete_all_contacts_shortcut.activated.connect(self.delete_all_contacts)
+        self.search_shortcut = QShortcut(QKeySequence("Ctrl+F"), self)
+        self.search_shortcut.activated.connect(self.search_contact)
+        self.advanced_search_shortcut = QShortcut(QKeySequence("Ctrl+Shift+F"), self)
+        self.advanced_search_shortcut.activated.connect(self.advanced_search)
+        self.reset_filter_shortcut = QShortcut(QKeySequence("Ctrl+R"), self)
+        self.reset_filter_shortcut.activated.connect(self.reset_filter)
+        self.user_filters_shortcut = QShortcut(QKeySequence("Ctrl+L"), self)
+        self.user_filters_shortcut.activated.connect(self.show_user_filters)
 
     def add_new_contact(self) -> None:
         try:

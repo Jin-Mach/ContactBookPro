@@ -1,7 +1,7 @@
 from PyQt6.QtCore import QThreadPool
 
-from src.contacts.threads.location_thread import LocationThread
-from src.contacts.threads.signal_provider import SignalProvider
+from src.contacts.threading.location_thread import LocationThread
+from src.contacts.threading.signal_provider import SignalProvider
 
 
 def update_models_data(index: int, contact_id: int, models: list, data: list, now: str, signal_provider: SignalProvider) -> bool:

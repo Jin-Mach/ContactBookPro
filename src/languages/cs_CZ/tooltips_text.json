@@ -3,14 +3,14 @@
     "mainWindowDatabaseButton": "Zobrazí databázi kontaktů"
   },
   "contactsToolbarWidget": {
-    "addNewContactPushbutton": "Přidat kontakt",
-    "updateContactPushbutton": "Upravit kontakt",
-    "deleteContactPushbutton": "Smazat vybraný kontakt",
-    "deleteAllContactsPushbutton": "Smazat celou databázi",
-    "searchPushbutton": "Vyhledat dle sloupce",
-    "advancedSearchPushbutton": "Otevře dialog pro pokročilé vyhledávání",
-    "resetFilterPushbutton": "Odstranit všechny filtry",
-    "userFiltersPushbutton": "Zobrazí uložené filtry"
+    "addNewContactPushbutton": "Přidat kontakt (Ctrl+N)",
+    "updateContactPushbutton": "Upravit kontakt (Ctrl+U)",
+    "deleteContactPushbutton": "Smazat vybraný kontakt (Ctrl+D)",
+    "deleteAllContactsPushbutton": "Smazat celou databázi (Ctrl+Shift+D)",
+    "searchPushbutton": "Vyhledat dle sloupce (Ctrl+F)",
+    "advancedSearchPushbutton": "Otevře dialog pro pokročilé vyhledávání (Ctrl+Shift+F)",
+    "resetFilterPushbutton": "Odstranit všechny filtry (Ctrl+R)",
+    "userFiltersPushbutton": "Zobrazí uložené filtry (Ctrl+L)"
   },
   "tabInfoWidget": {
     "facebookPushbutton": "Otevře odkaz na Facebook",
