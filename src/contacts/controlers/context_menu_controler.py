@@ -15,8 +15,7 @@ class ContextMenuControler:
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
 
-    @staticmethod
-    def copy_to_clipboard(index: int, field: str, main_window: QMainWindow) -> None:
+    def copy_to_clipboard(self, index: int, field: str, main_window: QMainWindow) -> None:
         try:
             clipboard = QApplication.clipboard()
             row_data = RowDataProvider.return_row_data(self.db_connection, index)
