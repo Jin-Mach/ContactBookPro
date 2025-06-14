@@ -4,7 +4,7 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.context_menu_controler import ContextMenuControler
+from src.contacts.controlers.export_controler import ExportControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -14,12 +14,12 @@ if TYPE_CHECKING:
 
 
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "ContactsController | None", context_menu_controler: ContextMenuControler, parent=None) -> None:
+    def __init__(self, contacts_controler: "ContactsController | None", export_controler: ExportControler, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
         self.contacts_controler = contacts_controler
-        self.context_menu_controler = context_menu_controler
+        self.export_controler = export_controler
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -113,10 +113,10 @@ class ContextMenu(QMenu):
         connections = [(self.add_contact_action, self.contacts_controler.add_new_contact),
                        (self.update_contact_action, self.contacts_controler.update_contact),
                        (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.tableview)),
-                       (self.copy_name_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "name", self.main_window)),
-                       (self.copy_email_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "email", self.main_window)),
-                       (self.copy_phone_number_action, lambda: self.context_menu_controler.copy_to_clipboard(self.index, "phone", self.main_window)),
-                       (self.export_filtered_data_csv_action, self.context_menu_controler.export_to_csv)]
+                       (self.copy_name_action, lambda: self.export_controler.copy_to_clipboard(self.index, "name", self.main_window)),
+                       (self.copy_email_action, lambda: self.export_controler.copy_to_clipboard(self.index, "email", self.main_window)),
+                       (self.copy_phone_number_action, lambda: self.export_controler.copy_to_clipboard(self.index, "phone", self.main_window)),
+                       (self.export_filtered_data_csv_action, lambda: self.export_controler.export_to_csv(self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):

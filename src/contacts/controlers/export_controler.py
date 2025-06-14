@@ -1,19 +1,25 @@
+import csv
+
 from PyQt6.QtCore import QStandardPaths
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableView
+from PyQt6.QtWidgets import QMainWindow, QApplication, QTableView, QFileDialog
 
 from src.database.utilities.export_data_provider import ExportDataProvider
 from src.database.utilities.row_data_provider import RowDataProvider
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
-class ContextMenuControler:
+class ExportControler:
     def __init__(self, db_connection: QSqlDatabase, table_view: QTableView) -> None:
-        self.class_name = "contextMenuControler"
+        self.class_name = "exportControler"
         self.export_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DocumentsLocation)
         self.db_connection = db_connection
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
+        self.menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+        self.error_text = LanguageProvider.get_error_text(self.class_name)
 
     def copy_to_clipboard(self, index: int, field: str, main_window: QMainWindow) -> None:
         try:
@@ -30,16 +36,22 @@ class ContextMenuControler:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    def export_to_csv(self) -> None:
+    def export_to_csv(self, main_window: QMainWindow) -> None:
         try:
             id_list = self.table_view.get_displayed_contacts_id()
-            print(id_list)
             if not id_list:
+                DialogsProvider.show_error_dialog(self.error_text["emptyIdList"], main_window)
                 return
-            data = self.export_data_provider.get_all_data(self.db_connection, True, id_list, self.table_view)
-            print(data)
-            # file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path)
-            # if file_name:
-            #     print(file_name)
+            semicolon, headers, csv_data = self.export_data_provider.get_filtered_data_csv(self.db_connection, id_list, self.table_view)
+            delimiter = ","
+            if semicolon:
+                delimiter = ";"
+            file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text["csvFilter"])
+            if file_name:
+                with open(str(file_name), "w", newline="", encoding="utf-8") as file:
+                    writer = csv.DictWriter(file, fieldnames=headers, delimiter=delimiter)
+                    writer.writeheader()
+                    writer.writerows(csv_data)
+                main_window.tray_icon.show_notification("Export CSV", "csvSaved")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.table_view)

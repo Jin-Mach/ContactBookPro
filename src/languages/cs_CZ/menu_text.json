@@ -25,5 +25,8 @@
     "contactCheckMenu": "Kontrola kontaktů",
     "contactCheckBirthdayAction": "Kontrola narození",
     "contactCheckDuplicityAction": "Hledat duplicity"
+  },
+  "exportControler": {
+    "csvFilter": "Soubory CSV (*.csv);;Všechny soubory (*)"
   }
 }

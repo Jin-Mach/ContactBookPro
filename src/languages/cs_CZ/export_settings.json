@@ -1,0 +1,17 @@
+{
+  "semicolon_locales": ["cs"],
+  "exportDataProvider": {
+    "genderMap": {
+      "1": "Muž",
+      "2": "Žena"
+    },
+    "relationshipMap": {
+      "1": "Rodinný příslušník",
+      "2": "Příbuzný",
+      "3": "Kolega",
+      "4": "Kamarád",
+      "5": "Známý",
+      "6": "Ostatní"
+    }
+  }
+}

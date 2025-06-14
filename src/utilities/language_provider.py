@@ -116,6 +116,17 @@ class LanguageProvider:
             return None
 
     @staticmethod
+    def get_export_settings(widget_name: str) -> tuple[bool, dict[str, dict[str, str]]] | None:
+        try:
+            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "export_settings.json"), "r", encoding="utf-8") as file:
+                index_map = json.load(file)
+            semicolon = LanguageProvider.language_code[:2] in index_map["semicolon_locales"]
+            return semicolon, index_map[widget_name]
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return None
+
+    @staticmethod
     def get_language_dict() -> dict | None:
         language_dict = {}
         try:

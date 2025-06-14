@@ -56,5 +56,8 @@
   "userFiltersDialog": {
     "noFilters": "Žádné uložené filtry.",
     "noSelection": "Nejprve vyberte filtr."
+  },
+  "exportControler": {
+    "emptyIdList": "Žádné kontakty pro export"
   }
 }

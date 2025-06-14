@@ -78,7 +78,8 @@
     "filterDeleted": "Filtr byl odstraněn",
     "nameCopied": "Jméno zkopírováno",
     "emailCopied": "Email zkopírován",
-    "phoneCopied": "Telefon zkopírován"
+    "phoneCopied": "Telefon zkopírován",
+    "csvSaved": "Soubor CSV uložen"
   },
   "mandatoryModel": {
     "gengerHeaderText": "Pohlaví uživatele"

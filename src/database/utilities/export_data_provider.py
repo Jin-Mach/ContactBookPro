@@ -4,10 +4,13 @@ from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from PyQt6.QtWidgets import QTableView
 
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
 class ExportDataProvider:
+    class_name = "exportDataProvider"
     tables = ["mandatory", "work", "social", "detail"]
+    language_provider = LanguageProvider()
 
     @staticmethod
     def get_export_headers(db_connection: QSqlDatabase, table_view: QTableView) -> dict[str, list[str]] | None:
@@ -32,7 +35,7 @@ class ExportDataProvider:
             return None
 
     @staticmethod
-    def get_filtered_data_csv(db_connection: QSqlDatabase, id_list: list, table_view: QTableView) -> list[dict[str, Any]] | None:
+    def get_filtered_data_csv(db_connection: QSqlDatabase, id_list: list, table_view: QTableView) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
         try:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, table_view)
             if not headers_dict:
@@ -48,13 +51,23 @@ class ExportDataProvider:
                 ErrorHandler.database_error(data_query.lastError().text(), False)
                 return None
             final_data = []
+            semicolon, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
             while data_query.next():
                 row = {}
                 for index in range(data_query.record().count()):
                     column_name = data_query.record().fieldName(index)
-                    row[column_name] = data_query.value(index)
+                    if column_name == "gender":
+                        key = index_map["genderMap"]
+                        index_value = data_query.value(index)
+                        row[column_name] = key[str(index_value)]
+                    elif column_name == "relationship":
+                        key = index_map["relationshipMap"]
+                        index_value = data_query.value(index)
+                        row[column_name] = key[str(index_value)]
+                    else:
+                        row[column_name] = data_query.value(index)
                 final_data.append(row)
-            return final_data
+            return semicolon, mandatory_headers, final_data
         except Exception as e:
             ErrorHandler.exception_handler(e, table_view)
             return None
