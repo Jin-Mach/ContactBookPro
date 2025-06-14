@@ -15,11 +15,11 @@ class DeleteDialogs:
     icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     @staticmethod
-    def show_delete_contact_dialog(parent=None) -> QDialog:
+    def show_delete_contact_dialog(first_name: str, second_name: str, parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("deleteContactDialog")
         dialog.setWindowIcon(QIcon(str(DeleteDialogs.icon_path)))
-        dialog.setFixedSize(200, 100)
+        dialog.setFixedSize(300, 150)
         main_layout = QVBoxLayout()
         delete_contact_text_label = QLabel()
         delete_contact_text_label.setObjectName("deleteContactTextLabel")
@@ -34,7 +34,7 @@ class DeleteDialogs:
         main_layout.addWidget(delete_contact_text_label)
         main_layout.addWidget(buttons_box)
         dialog.setLayout(main_layout)
-        DeleteDialogs.set_ui_text(dialog, [delete_contact_text_label], buttons_box)
+        DeleteDialogs.set_ui_text(dialog, [delete_contact_text_label], buttons_box, parent=parent, first_name=first_name, second_name=second_name)
         return dialog
 
     @staticmethod
@@ -70,11 +70,12 @@ class DeleteDialogs:
         main_layout.addLayout(delete_filters_layout)
         main_layout.addWidget(buttons_box)
         dialog.setLayout(main_layout)
-        DeleteDialogs.set_ui_text(dialog, [delete_all_contacts_text_label, delete_filters_checkbox_text_label], buttons_box, parent)
+        DeleteDialogs.set_ui_text(dialog, [delete_all_contacts_text_label, delete_filters_checkbox_text_label], buttons_box, parent=parent)
         return dialog
 
     @staticmethod
-    def set_ui_text(dialog_widget: QDialog, labels: list[QLabel], button_box: QDialogButtonBox, parent=None) -> None:
+    def set_ui_text(dialog_widget: QDialog, labels: list[QLabel], button_box: QDialogButtonBox, parent=None,
+                    first_name: str = None, second_name: str = None) -> None:
         ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
         widgets = [dialog_widget]
         widgets.extend(labels)
@@ -85,7 +86,11 @@ class DeleteDialogs:
                     if isinstance(widget, QDialog):
                         widget.setWindowTitle(ui_text[widget.objectName()])
                     elif isinstance(widget, (QLabel, QPushButton)):
-                        widget.setText(ui_text[widget.objectName()])
+                        if isinstance(widget, QLabel) and widget.objectName() == "deleteContactTextLabel" and first_name and second_name:
+                            widget.setText(f"{ui_text[widget.objectName()]}<br><br><b>{first_name} {second_name}</b>")
+                            widget.setTextFormat(Qt.TextFormat.RichText)
+                        else:
+                            widget.setText(ui_text[widget.objectName()])
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
 
