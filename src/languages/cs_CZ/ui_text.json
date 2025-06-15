@@ -80,7 +80,7 @@
     "emailCopied": "Email zkopírován",
     "phoneCopied": "Telefon zkopírován",
     "saveError": "Nepodařilo se uložit soubor",
-    "csvSaved": "Soubor CSV uložen"
+    "exportSaved": "Soubor uložen"
   },
   "mandatoryModel": {
     "gengerHeaderText": "Pohlaví uživatele"

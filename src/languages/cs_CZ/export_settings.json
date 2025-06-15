@@ -13,5 +13,51 @@
       "5": "Známý",
       "6": "Ostatní"
     }
+  },
+  "exportExcelObject": {
+    "tables": {
+      "mandatory": "Osobní údaje",
+      "work": "Pracovní údaje",
+      "social": "Sociální sítě",
+      "detail": "Detaily"
+    },
+    "headers": {
+      "mandatory": {
+        "gender": "Pohlaví",
+        "relationship": "Vztah",
+        "first_name": "Jméno",
+        "second_name": "Příjmení",
+        "personal_email": "Osobní email",
+        "personal_phone_number": "Osobní telefon",
+        "personal_street": "Ulice",
+        "personal_house_number": "Číslo domu",
+        "personal_city": "Město",
+        "personal_post_code": "PSČ",
+        "personal_country": "Země"
+      },
+      "work": {
+        "company_name": "Název firmy",
+        "work_email": "Pracovní email",
+        "work_phone_number": "Pracovní telefon",
+        "work_street": "Ulice (práce)",
+        "work_house_number": "Číslo domu (práce)",
+        "work_city": "Město (práce)",
+        "work_post_code": "PSČ (práce)",
+        "work_country": "Země (práce)"
+      },
+      "social": {
+        "facebook_url": "Facebook URL",
+        "x_url": "X (Twitter) URL",
+        "instagram_url": "Instagram URL",
+        "linkedin_url": "LinkedIn URL",
+        "github_url": "GitHub URL",
+        "website_url": "Webová stránka"
+      },
+      "detail": {
+        "title": "Titul",
+        "birthday": "Narozeniny",
+        "notes": "Poznámky"
+      }
+    }
   }
 }

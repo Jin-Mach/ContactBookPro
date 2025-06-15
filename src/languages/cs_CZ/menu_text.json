@@ -28,5 +28,8 @@
   },
   "csvExportControler": {
     "csvFilter": "Soubory CSV (*.csv);;Všechny soubory (*)"
+  },
+  "excelExportControler": {
+    "excelFilter": "Soubory Excel (*.xlsx);;Všechny soubory (*)"
   }
 }

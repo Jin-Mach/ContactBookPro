@@ -1,7 +1,7 @@
 from typing import Any
 
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
-from PyQt6.QtWidgets import QTableView
+from PyQt6.QtWidgets import QMainWindow
 
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -13,7 +13,7 @@ class ExportDataProvider:
     language_provider = LanguageProvider()
 
     @staticmethod
-    def get_export_headers(db_connection: QSqlDatabase, table_view: QTableView) -> dict[str, list[str]] | None:
+    def get_export_headers(db_connection: QSqlDatabase, main_window: QMainWindow) -> dict[str, list[str]] | None:
         try:
             not_needed = ["id", "photo"]
             headers_by_table = {}
@@ -31,13 +31,13 @@ class ExportDataProvider:
                 headers_by_table[table] = headers
             return headers_by_table
         except Exception as e:
-            ErrorHandler.exception_handler(e, table_view)
+            ErrorHandler.exception_handler(e, main_window)
             return None
 
     @staticmethod
-    def get_csv_data(db_connection: QSqlDatabase, id_list: list | None, table_view: QTableView) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
+    def get_csv_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
         try:
-            headers_dict = ExportDataProvider.get_export_headers(db_connection, table_view)
+            headers_dict = ExportDataProvider.get_export_headers(db_connection, main_window)
             if not headers_dict:
                 return None
             mandatory_headers = headers_dict["mandatory"]
@@ -73,59 +73,63 @@ class ExportDataProvider:
                 final_data.append(row)
             return semicolon, mandatory_headers, final_data
         except Exception as e:
-            ErrorHandler.exception_handler(e, table_view)
+            ErrorHandler.exception_handler(e, main_window)
             return None
 
     @staticmethod
-    def get_excel_data(db_connection: QSqlDatabase, id_list: list | None, table_view: QTableView) -> list[dict[str, Any]] | None:
+    def get_excel_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> tuple[dict[str, list[str]], dict[str, list[dict[str, Any]]]] | None:
         try:
-            headers_dict = ExportDataProvider.get_export_headers(db_connection, table_view)
+            headers_dict = ExportDataProvider.get_export_headers(db_connection, main_window)
             if not headers_dict:
                 return None
-            sql = ExportDataProvider.create_sql_query(headers_dict, table_view)
-            if not sql:
+            sql_dict = ExportDataProvider.create_sql_queries(headers_dict, id_list, main_window)
+            if not sql_dict:
                 return None
-            data_query = QSqlQuery(db_connection)
-            if id_list:
-                placeholders = ", ".join(["?"] * len(id_list))
-                sql += f" WHERE m.id IN ({placeholders})"
-                data_query.prepare(sql)
-                for displayed_id in id_list:
-                    data_query.addBindValue(displayed_id)
-                if not data_query.exec():
-                    ErrorHandler.database_error(data_query.lastError().text(), False)
+            final_data = {}
+            for table, sql in sql_dict.items():
+                query = QSqlQuery(db_connection)
+                query.prepare(sql)
+                if id_list:
+                    for displayed_id in id_list:
+                        query.addBindValue(displayed_id)
+                if not query.exec():
+                    ErrorHandler.database_error(query.lastError().text(), False)
                     return None
-            else:
-                if not data_query.exec(sql):
-                    ErrorHandler.database_error(data_query.lastError().text(), False)
-                    return None
-            final_data = []
-            while data_query.next():
-                row = {}
-                for index in range(data_query.record().count()):
-                    column_name = data_query.record().fieldName(index)
-                    row[column_name] = data_query.value(index)
-                final_data.append(row)
-            return final_data
+                _, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
+                rows = []
+                while query.next():
+                    row = {}
+                    for index in range(query.record().count()):
+                        column_name = query.record().fieldName(index)
+                        if column_name == "gender":
+                            key = index_map["genderMap"]
+                            index_value = query.value(index)
+                            row[column_name] = key[str(index_value)]
+                        elif column_name == "relationship":
+                            key = index_map["relationshipMap"]
+                            index_value = query.value(index)
+                            row[column_name] = key[str(index_value)]
+                        else:
+                            row[column_name] = query.value(index)
+                    rows.append(row)
+                final_data[table] = rows
+            return headers_dict, final_data
         except Exception as e:
-            ErrorHandler.exception_handler(e, table_view)
+            ErrorHandler.exception_handler(e, main_window)
             return None
 
     @staticmethod
-    def create_sql_query(headers_dict: dict[str, list[str]], table_view: QTableView) -> str | None:
+    def create_sql_queries(headers_dict: dict[str, list[str]], id_list: list | None, main_window: QMainWindow) -> dict[str, str] | None:
         try:
-            columns_list = []
-            tables = list(headers_dict)
-            sql = f"""SELECT columns FROM mandatory AS m\n"""
-            for table in tables:
-                alias = table[:1].lower()
-                if table != "mandatory":
-                    sql += f"LEFT JOIN {table} AS {alias} ON m.id = {alias}.id\n"
-                for column in headers_dict[table]:
-                    columns_list.append(f"{alias}.{column}")
-            columns = ", ".join(columns_list)
-            final_sql = sql.replace("columns", columns)
-            return final_sql
+            sql_dict = {}
+            for table, columns in headers_dict.items():
+                columns_str = ", ".join(columns)
+                sql = f"SELECT {columns_str} FROM {table}"
+                if id_list:
+                    placeholders = ", ".join(["?"] * len(id_list))
+                    sql += f" WHERE id IN ({placeholders})"
+                sql_dict[table] = sql
+            return sql_dict
         except Exception as e:
-            ErrorHandler.exception_handler(e, table_view)
+            ErrorHandler.exception_handler(e, main_window)
             return None

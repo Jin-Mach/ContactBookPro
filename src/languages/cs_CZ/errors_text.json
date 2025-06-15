@@ -59,5 +59,8 @@
   },
   "csvExportControler": {
     "emptyIdList": "Žádné kontakty pro export"
+  },
+  "excelExportControler": {
+    "emptyIdList": "Žádné kontakty pro export"
   }
 }
