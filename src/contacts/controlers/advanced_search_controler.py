@@ -12,6 +12,7 @@ from src.database.utilities.sql_query_creator import create_search_query
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 
 
 class AdvancedSearchControler:
@@ -36,9 +37,9 @@ class AdvancedSearchControler:
                     self.advanced_search_object.moveToThread(self.advanced_search_thread)
                     self.advanced_search_thread.started.connect(self.advanced_search_object.run_advanced_search)
                     self.advanced_search_object.search_completed.connect(self.check_search_result)
-                    self.advanced_search_object.error_message.connect(self.show_thread_error)
+                    self.advanced_search_object.error_message.connect(self.log_and_show_error)
                     self.advanced_search_object.finished.connect(self.advanced_search_thread.quit)
-                    self.advanced_search_object.finished.connect(self.advanced_search_object.deleteLater)
+                    self.advanced_search_thread.finished.connect(self.advanced_search_object.deleteLater)
                     self.advanced_search_thread.finished.connect(self.advanced_search_thread.deleteLater)
                     self.advanced_search_object.finished.connect(lambda: AdvancedSearchControler.remove_connection(self.advanced_search_object.connection_name))
                     self.advanced_search_thread.start()
@@ -54,9 +55,9 @@ class AdvancedSearchControler:
                 self.user_filter_object.moveToThread(self.user_filter_thread)
                 self.user_filter_thread.started.connect(self.user_filter_object.run_user_filter)
                 self.user_filter_object.search_completed.connect(self.check_search_result)
-                self.user_filter_object.error_message.connect(self.show_thread_error)
+                self.user_filter_object.error_message.connect(self.log_and_show_error)
                 self.user_filter_object.finished.connect(self.user_filter_thread.quit)
-                self.user_filter_object.finished.connect(self.user_filter_object.deleteLater)
+                self.user_filter_thread.finished.connect(self.user_filter_object.deleteLater)
                 self.user_filter_thread.finished.connect(self.user_filter_thread.deleteLater)
                 self.user_filter_object.finished.connect(lambda: AdvancedSearchControler.remove_connection(self.user_filter_object.connection_name))
                 self.user_filter_thread.start()
@@ -77,5 +78,7 @@ class AdvancedSearchControler:
         QSqlDatabase.removeDatabase(connection_name)
 
     @staticmethod
-    def show_thread_error(error: str) -> None:
+    def log_and_show_error(error: str) -> None:
+        logger = get_logger()
+        logger.error(error, exc_info=True)
         ErrorHandler.database_error(error, False, custom_message="queryError")

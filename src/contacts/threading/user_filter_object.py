@@ -15,22 +15,26 @@ class UserFilterObject(QObject):
         self.connection_name = f"userFilterThread{id(self)}"
 
     def run_user_filter(self) -> None:
-        id_list = []
-        db = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
-        db.setDatabaseName(self.db_path)
-        if not db.open():
-            self.error_message.emit(db.lastError().text())
+        try:
+            id_list = []
+            db = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
+            db.setDatabaseName(self.db_path)
+            if not db.open():
+                self.error_message.emit(db.lastError().text())
+                self.finished.emit()
+                return
+            query = QSqlQuery(db)
+            query.prepare(self.query)
+            for value in self.values:
+                query.addBindValue(value)
+            if not query.exec():
+                self.error_message.emit(query.lastError().text())
+                self.finished.emit()
+                return
+            while query.next():
+                id_list.append(query.value(0))
+            self.search_completed.emit(id_list)
             self.finished.emit()
-            return
-        query = QSqlQuery(db)
-        query.prepare(self.query)
-        for value in self.values:
-            query.addBindValue(value)
-        if not query.exec():
-            self.error_message.emit(query.lastError().text())
+        except Exception as e:
+            self.error_message.emit(str(e))
             self.finished.emit()
-            return
-        while query.next():
-            id_list.append(query.value(0))
-        self.search_completed.emit(id_list)
-        self.finished.emit()

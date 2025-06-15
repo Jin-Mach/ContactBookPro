@@ -79,6 +79,7 @@
     "nameCopied": "Jméno zkopírováno",
     "emailCopied": "Email zkopírován",
     "phoneCopied": "Telefon zkopírován",
+    "saveError": "Nepodařilo se uložit soubor",
     "csvSaved": "Soubor CSV uložen"
   },
   "mandatoryModel": {
