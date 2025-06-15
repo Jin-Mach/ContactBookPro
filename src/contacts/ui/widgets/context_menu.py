@@ -4,7 +4,8 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.csv_export_controler import CsvExportControler
+from src.contacts.controlers.export_controlers.clipboard_controler import copy_to_clipboard
+from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -113,9 +114,12 @@ class ContextMenu(QMenu):
         connections = [(self.add_contact_action, self.contacts_controler.add_new_contact),
                        (self.update_contact_action, self.contacts_controler.update_contact),
                        (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.tableview)),
-                       (self.copy_name_action, lambda: self.export_controler.copy_to_clipboard(self.index, "name", self.main_window)),
-                       (self.copy_email_action, lambda: self.export_controler.copy_to_clipboard(self.index, "email", self.main_window)),
-                       (self.copy_phone_number_action, lambda: self.export_controler.copy_to_clipboard(self.index, "phone", self.main_window)),
+                       (self.copy_name_action, lambda: copy_to_clipboard(self.export_controler.db_connection,
+                                                                         self.index, "name", self.main_window)),
+                       (self.copy_email_action, lambda: copy_to_clipboard(self.export_controler.db_connection,
+                                                                          self.index, "email", self.main_window)),
+                       (self.copy_phone_number_action, lambda: copy_to_clipboard(self.export_controler.db_connection,
+                                                                                 self.index, "phone", self.main_window)),
                        (self.export_filtered_data_csv_action, lambda: self.export_controler.export_filtered_to_csv(self.main_window)),
                        (self.export_all_data_csv_action, lambda: self.export_controler.export_all_to_csv(self.main_window))]
         try:

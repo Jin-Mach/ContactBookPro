@@ -1,10 +1,9 @@
 from PyQt6.QtCore import QStandardPaths, QThread, QObject
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QMainWindow, QApplication, QTableView, QFileDialog
+from PyQt6.QtWidgets import QMainWindow, QTableView, QFileDialog
 
 from src.contacts.threading.export_cvs_object import ExportCsvObject
 from src.database.utilities.export_data_provider import ExportDataProvider
-from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -20,21 +19,6 @@ class CsvExportControler:
         self.export_data_provider = ExportDataProvider()
         self.menu_text = LanguageProvider.get_context_menu_text(self.class_name)
         self.error_text = LanguageProvider.get_error_text(self.class_name)
-
-    def copy_to_clipboard(self, index: int, field: str, main_window: QMainWindow) -> None:
-        try:
-            clipboard = QApplication.clipboard()
-            row_data = RowDataProvider.return_row_data(self.db_connection, index)
-            title_text = f"{row_data['first_name']} {row_data['second_name']}"
-            if field == "name":
-                clipboard.setText(f"{row_data['first_name']} {row_data['second_name']}")
-            elif field == "email":
-                clipboard.setText(row_data["personal_email"])
-            elif field == "phone":
-                clipboard.setText(row_data["personal_phone_number"])
-            main_window.tray_icon.show_notification(title_text, f"{field}Copied")
-        except Exception as e:
-            ErrorHandler.exception_handler(e, main_window)
 
     def export_filtered_to_csv(self, main_window: QMainWindow) -> None:
         try:
