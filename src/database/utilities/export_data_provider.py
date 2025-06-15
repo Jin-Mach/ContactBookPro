@@ -35,18 +35,22 @@ class ExportDataProvider:
             return None
 
     @staticmethod
-    def get_filtered_data_csv(db_connection: QSqlDatabase, id_list: list, table_view: QTableView) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
+    def get_csv_data(db_connection: QSqlDatabase, id_list: list | None, table_view: QTableView) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
         try:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, table_view)
             if not headers_dict:
                 return None
             mandatory_headers = headers_dict["mandatory"]
-            placeholders = ", ".join(["?"]*len(id_list))
-            sql = f"SELECT {', '.join(mandatory_headers)} FROM mandatory WHERE id IN ({placeholders})"
             data_query = QSqlQuery(db_connection)
-            data_query.prepare(sql)
-            for displayed_id in id_list:
-                data_query.addBindValue(displayed_id)
+            if id_list:
+                placeholders = ", ".join(["?"]*len(id_list))
+                sql = f"SELECT {', '.join(mandatory_headers)} FROM mandatory WHERE id IN ({placeholders})"
+                data_query.prepare(sql)
+                for displayed_id in id_list:
+                    data_query.addBindValue(displayed_id)
+            else:
+                sql = f"SELECT {', '.join(mandatory_headers)} FROM mandatory"
+                data_query.prepare(sql)
             if not data_query.exec():
                 ErrorHandler.database_error(data_query.lastError().text(), False)
                 return None
@@ -73,7 +77,7 @@ class ExportDataProvider:
             return None
 
     @staticmethod
-    def get_all_data(db_connection: QSqlDatabase, active_filter: bool, id_list: list, table_view: QTableView) -> list[dict[str, Any]] | None:
+    def get_excel_data(db_connection: QSqlDatabase, id_list: list | None, table_view: QTableView) -> list[dict[str, Any]] | None:
         try:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, table_view)
             if not headers_dict:
@@ -82,7 +86,7 @@ class ExportDataProvider:
             if not sql:
                 return None
             data_query = QSqlQuery(db_connection)
-            if active_filter and id_list:
+            if id_list:
                 placeholders = ", ".join(["?"] * len(id_list))
                 sql += f" WHERE m.id IN ({placeholders})"
                 data_query.prepare(sql)

@@ -4,7 +4,7 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.export_controler import ExportControler
+from src.contacts.controlers.csv_export_controler import CsvExportControler
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "ContactsController | None", export_controler: ExportControler, parent=None) -> None:
+    def __init__(self, contacts_controler: "ContactsController | None", export_controler: CsvExportControler, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
@@ -116,7 +116,8 @@ class ContextMenu(QMenu):
                        (self.copy_name_action, lambda: self.export_controler.copy_to_clipboard(self.index, "name", self.main_window)),
                        (self.copy_email_action, lambda: self.export_controler.copy_to_clipboard(self.index, "email", self.main_window)),
                        (self.copy_phone_number_action, lambda: self.export_controler.copy_to_clipboard(self.index, "phone", self.main_window)),
-                       (self.export_filtered_data_csv_action, lambda: self.export_controler.export_to_csv(self.main_window))]
+                       (self.export_filtered_data_csv_action, lambda: self.export_controler.export_filtered_to_csv(self.main_window)),
+                       (self.export_all_data_csv_action, lambda: self.export_controler.export_all_to_csv(self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):

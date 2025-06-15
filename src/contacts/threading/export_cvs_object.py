@@ -5,8 +5,8 @@ from PyQt6.QtCore import QObject, pyqtSignal
 
 
 class ExportCsvObject(QObject):
-    filtered_error_message = pyqtSignal(Exception)
-    filtered_finished = pyqtSignal(bool)
+    error_message = pyqtSignal(Exception)
+    finished = pyqtSignal(bool)
     def __init__(self, file_path: str, headers: list, delimiter: str, csv_data: list[dict[str, Any]]) -> None:
         super().__init__()
         self.file_path = file_path
@@ -14,13 +14,13 @@ class ExportCsvObject(QObject):
         self.delimiter = delimiter
         self.csv_data = csv_data
 
-    def run_filtered_export(self) -> None:
+    def run_csv_export(self) -> None:
         try:
             with open(self.file_path, "w", newline="", encoding="utf-8") as file:
                 writer = csv.DictWriter(file, fieldnames=self.headers, delimiter=self.delimiter)
                 writer.writeheader()
                 writer.writerows(self.csv_data)
-                self.filtered_finished.emit(True)
+                self.finished.emit(True)
         except Exception as e:
-            self.filtered_error_message.emit(e)
-            self.filtered_finished.emit(False)
+            self.error_message.emit(e)
+            self.finished.emit(False)

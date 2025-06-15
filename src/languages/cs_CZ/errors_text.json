@@ -57,7 +57,7 @@
     "noFilters": "Žádné uložené filtry.",
     "noSelection": "Nejprve vyberte filtr."
   },
-  "exportControler": {
+  "csvExportControler": {
     "emptyIdList": "Žádné kontakty pro export"
   }
 }
