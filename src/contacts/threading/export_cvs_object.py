@@ -3,6 +3,8 @@ from typing import Any
 
 from PyQt6.QtCore import QObject, pyqtSignal
 
+from src.utilities.encoding_provider import get_encoding
+
 
 class ExportCsvObject(QObject):
     error_message = pyqtSignal(Exception)
@@ -16,7 +18,7 @@ class ExportCsvObject(QObject):
 
     def run_csv_export(self) -> None:
         try:
-            with open(self.file_path, "w", newline="", encoding="utf-8") as file:
+            with open(self.file_path, "w", newline="", encoding=get_encoding()) as file:
                 writer = csv.DictWriter(file, fieldnames=self.headers, delimiter=self.delimiter)
                 writer.writeheader()
                 writer.writerows(self.csv_data)

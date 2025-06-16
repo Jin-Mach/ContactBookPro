@@ -53,20 +53,44 @@ class ContactValidator:
         return True
 
     @staticmethod
-    def contact_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None) -> None:
+    def contact_input_validator(name_city_edits: list[QLineEdit] = None, house_number_edit: QLineEdit = None,
+                                post_code_edit: QLineEdit = None, email_edit: QLineEdit = None,
+                                phone_edit: QLineEdit = None,company_edit: QLineEdit = None, url_edit: list[QLineEdit] = None,
+                                title_edit: QLineEdit = None) -> None:
+        name_city_regex = QRegularExpression(r"^[A-Za-zÀ-žÁ-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß -']*$")
+        house_number_regex = QRegularExpression(r"^[0-9A-Za-z/\-]*$")
+        post_code_regex = QRegularExpression(r"^[0-9 \-]*$")
         email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
         phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
+        company_regex = QRegularExpression(r"^[A-Za-zÀ-ž0-9Á-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß &.,()'\"-]*$")
         url_regex = QRegularExpression(r"^[A-Za-z0-9:/?&=._%#\-]*$")
+        title_regex = QRegularExpression(r"^[A-Za-zÀ-ž .,'\-]{1,100}$")
+        name_city_validator = QRegularExpressionValidator(name_city_regex)
+        house_number_validator = QRegularExpressionValidator(house_number_regex)
+        post_code_validator = QRegularExpressionValidator(post_code_regex)
         email_validator = QRegularExpressionValidator(email_regex)
         phone_validator = QRegularExpressionValidator(phone_regex)
+        company_validator = QRegularExpressionValidator(company_regex)
         url_validator = QRegularExpressionValidator(url_regex)
+        title_validator = QRegularExpressionValidator(title_regex)
+        if name_city_edits:
+            for line_edit in name_city_edits:
+                line_edit.setValidator(name_city_validator)
+        if house_number_edit:
+            house_number_edit.setValidator(house_number_validator)
+        if post_code_edit:
+            post_code_edit.setValidator(post_code_validator)
         if email_edit:
             email_edit.setValidator(email_validator)
         if phone_edit:
             phone_edit.setValidator(phone_validator)
+        if company_edit:
+            company_edit.setValidator(company_validator)
         if url_edit:
             for edit in url_edit:
                 edit.setValidator(url_validator)
+        if title_edit:
+            title_edit.setValidator(title_validator)
 
     @staticmethod
     def search_input_validator(email_edit: QLineEdit = None, phone_edit: QLineEdit = None, url_edit: list[QLineEdit] = None,

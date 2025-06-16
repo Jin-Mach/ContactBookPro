@@ -4,9 +4,10 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.export_controlers.clipboard_controler import copy_to_clipboard
+from src.contacts.controlers.export_controlers.clipboard_export_controler import copy_to_clipboard
 from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportControler
 from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportControler
+from src.contacts.controlers.export_controlers.vcard_export_controler import export_to_vcard
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -126,7 +127,8 @@ class ContextMenu(QMenu):
                        (self.export_filtered_data_csv_action, lambda: self.csv_export_controler.export_filtered_to_csv(self.main_window)),
                        (self.export_all_data_csv_action, lambda: self.csv_export_controler.export_all_to_csv(self.main_window)),
                        (self.export_filtered_data_excel_action, lambda: self.excel_export_controler.export_filtered_to_excel(self.main_window)),
-                       (self.export_all_data_excel_action, lambda: self.excel_export_controler.export_all_to_excel(self.main_window))]
+                       (self.export_all_data_excel_action, lambda: self.excel_export_controler.export_all_to_excel(self.main_window)),
+                       (self.export_vcard_action, lambda: export_to_vcard(self.csv_export_controler.db_connection, self.index, self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):

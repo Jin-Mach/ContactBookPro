@@ -31,5 +31,8 @@
   },
   "excelExportControler": {
     "excelFilter": "Soubory Excel (*.xlsx);;Všechny soubory (*)"
+  },
+  "vcardExportControler": {
+    "vcardFilter": "Soubory vCard (*.vcf);;Všechny soubory (*)"
   }
 }

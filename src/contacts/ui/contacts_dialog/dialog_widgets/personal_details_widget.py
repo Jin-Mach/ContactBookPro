@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
 from src.contacts.ui.contacts_dialog.calendar_dialog import CalendarDialog
 from src.contacts.utilities.blob_handler import BlobHandler
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
+from src.contacts.utilities.contact_validator import ContactValidator
 from src.contacts.utilities.notes_utilities import check_notes_length
 from src.contacts.utilities.optimalize_data import normalize_texts
 from src.contacts.utilities.photo_utilities import set_contact_photo, reset_contact_photo
@@ -26,6 +27,7 @@ class PersonalDetailsWidget(QWidget):
         self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.button_size, self)
         self.reset_photo_label()
+        ContactValidator.contact_input_validator(title_edit=self.dialog_title_edit)
         self.default_data = None
 
     def create_gui(self) -> QLayout:

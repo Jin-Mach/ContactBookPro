@@ -16,7 +16,11 @@ class MandatoryWidget(QWidget):
         self.main_tab_widget = main_tab_widget
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        ContactValidator.contact_input_validator(email_edit=self.dialog_email_edit, phone_edit=self.dialog_phone_number_edit)
+        ContactValidator.contact_input_validator(name_city_edits=[self.dialog_first_name_edit, self.dialog_second_name_edit,
+                                                                  self.dialog_street_edit, self.dialog_city_edit,
+                                                                  self.dialog_country_edit], house_number_edit=self.dialog_house_number_edit,
+                                                 post_code_edit=self.dialog_post_code_edit, email_edit=self.dialog_email_edit,
+                                                 phone_edit=self.dialog_phone_number_edit)
         self.default_data = None
 
     def create_gui(self) -> QLayout:
