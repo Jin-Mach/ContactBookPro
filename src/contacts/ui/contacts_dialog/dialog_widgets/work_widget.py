@@ -18,8 +18,10 @@ class WorkWidget(QWidget):
         self.set_ui_text()
         ContactValidator.contact_input_validator(name_city_edits=[self.dialog_work_street_edit, self.dialog_work_city_edit,
                                                                   self.dialog_work_country_edit],
-                                                 house_number_edit=self.dialog_work_house_number_edit, post_code_edit=self.dialog_work_post_code_edit,
-                                                 email_edit=self.dialog_work_email_edit, phone_edit=self.dialog_work_phone_number_edit,
+                                                 house_number_edit=self.dialog_work_house_number_edit,
+                                                 post_code_edit=self.dialog_work_post_code_edit,
+                                                 email_edit=self.dialog_work_email_edit,
+                                                 phone_edit=self.dialog_work_phone_number_edit,
                                                  company_edit=self.dialog_work_company_edit)
         self.default_data = None
 

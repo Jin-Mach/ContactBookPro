@@ -18,7 +18,7 @@ class SearchDeatilsWidget(QWidget):
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        ContactValidator.search_input_validator(birthday_edit=self.search_birthday_edit)
+        ContactValidator.search_input_validator(title_edit=self.search_title_edit, birthday_edit=self.search_birthday_edit)
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()

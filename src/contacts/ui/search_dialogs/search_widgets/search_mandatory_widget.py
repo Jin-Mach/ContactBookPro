@@ -17,7 +17,12 @@ class SearchMandatoryWidget(QWidget):
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        ContactValidator.search_input_validator(email_edit=self.search_email_edit, phone_edit=self.search_phone_number_edit)
+        ContactValidator.search_input_validator(name_city_edits=[self.search_first_name_edit, self.search_second_name_edit,
+                                                                 self.search_street_edit, self.search_city_edit, self.search_country_edit],
+                                                house_number_edit=self.search_house_number_edit,
+                                                post_code_edit=self.search_post_code_edit,
+                                                email_edit=self.search_email_edit,
+                                                phone_edit=self.search_phone_number_edit)
 
     def create_gui(self) -> QLayout:
         main_layout = QFormLayout()
