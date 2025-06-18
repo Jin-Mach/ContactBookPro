@@ -7,8 +7,8 @@ from src.contacts.threading.user_filter_object import UserFilterObject
 from src.contacts.ui.search_dialogs.advanced_search_dialog import AdvancedSearchDialog
 from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.database.models.mandatory_model import MandatoryModel
+from src.database.utilities.query_provider import QueryProvider
 from src.database.utilities.search_provider import SearchProvider
-from src.database.utilities.sql_query_creator import create_search_query
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -30,7 +30,7 @@ class AdvancedSearchControler:
             self.dialog.reset_all_filters()
             if self.dialog.exec() == QDialog.DialogCode.Accepted:
                 filters = self.dialog.get_finall_filter()
-                query = create_search_query(filters, self.parent)
+                query = QueryProvider.create_search_query(filters, self.parent)
                 if query:
                     self.advanced_search_object = AdvancedSearchObject(self.db_connection.databaseName(), query)
                     self.advanced_search_thread = QThread()
@@ -48,7 +48,7 @@ class AdvancedSearchControler:
 
     def apply_saved_filter(self, selected_filter: dict) -> None:
         try:
-            query = create_search_query(selected_filter, self.parent)
+            query = QueryProvider.create_search_query(selected_filter, self.parent)
             if query:
                 self.user_filter_object = UserFilterObject(self.db_connection.databaseName(), query)
                 self.user_filter_thread = QThread()

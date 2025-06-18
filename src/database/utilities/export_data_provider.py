@@ -3,6 +3,7 @@ from typing import Any
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from PyQt6.QtWidgets import QMainWindow
 
+from src.database.utilities.query_provider import QueryProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -82,7 +83,7 @@ class ExportDataProvider:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, main_window)
             if not headers_dict:
                 return None
-            sql_dict = ExportDataProvider.create_sql_queries(headers_dict, id_list, main_window)
+            sql_dict = QueryProvider.create_excel_query(headers_dict, id_list, main_window)
             if not sql_dict:
                 return None
             final_data = {}
@@ -114,22 +115,6 @@ class ExportDataProvider:
                     rows.append(row)
                 final_data[table] = rows
             return headers_dict, final_data
-        except Exception as e:
-            ErrorHandler.exception_handler(e, main_window)
-            return None
-
-    @staticmethod
-    def create_sql_queries(headers_dict: dict[str, list[str]], id_list: list | None, main_window: QMainWindow) -> dict[str, str] | None:
-        try:
-            sql_dict = {}
-            for table, columns in headers_dict.items():
-                columns_str = ", ".join(columns)
-                sql = f"SELECT {columns_str} FROM {table}"
-                if id_list:
-                    placeholders = ", ".join(["?"] * len(id_list))
-                    sql += f" WHERE id IN ({placeholders})"
-                sql_dict[table] = sql
-            return sql_dict
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None

@@ -21,9 +21,9 @@ from src.database.models.mandatory_model import MandatoryModel
 from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
 from src.database.utilities.models_refresher import refresh_models
+from src.database.utilities.query_provider import QueryProvider
 from src.database.utilities.reset_database import reset_database
 from src.database.utilities.row_data_provider import RowDataProvider
-from src.database.utilities.sql_query_creator import create_check_duplicate_query
 from src.database.utilities.update_models import update_models_data
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -72,7 +72,7 @@ class ContactsController:
         self.detail_widget.reset_data()
 
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
-        duplicity = create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
+        duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
         if duplicity:
             dialog = DuplicateDialog(duplicity, self.parent)
             if dialog.exec() == QDialog.DialogCode.Rejected:
