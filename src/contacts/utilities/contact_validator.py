@@ -57,12 +57,12 @@ class ContactValidator:
                                 post_code_edit: QLineEdit = None, email_edit: QLineEdit = None,
                                 phone_edit: QLineEdit = None,company_edit: QLineEdit = None, url_edit: list[QLineEdit] = None,
                                 title_edit: QLineEdit = None) -> None:
-        name_city_regex = QRegularExpression(r"^[A-Za-zÀ-žÁ-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß -']*$")
+        name_city_regex = QRegularExpression(r"^[\p{L} \-']*$")
         house_number_regex = QRegularExpression(r"^[0-9A-Za-z/\-]*$")
-        post_code_regex = QRegularExpression(r"^[0-9 \-]*$")
+        post_code_regex = QRegularExpression(r"[A-Za-z0-9 \-]*")
         email_regex = QRegularExpression(r"^[A-Za-z0-9@._+-]*$")
         phone_regex = QRegularExpression("^\\+[0-9]{1,14}$")
-        company_regex = QRegularExpression(r"^[A-Za-zÀ-ž0-9Á-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß &.,()'\"-]*$")
+        company_regex = QRegularExpression(r"^[\p{L}0-9 &.,()'\"-]*$")
         url_regex = QRegularExpression(r"^[A-Za-z0-9:/?&=._%#\-]*$")
         title_regex = QRegularExpression(r"^[A-Za-zÀ-ž .,'\-]{1,100}$")
         name_city_validator = QRegularExpressionValidator(name_city_regex)
@@ -98,12 +98,12 @@ class ContactValidator:
                                phone_edit: QLineEdit = None, company_edit: QLineEdit = None,
                                url_edit: list[QLineEdit] = None, title_edit: QLineEdit = None,
                                birthday_edit: QLineEdit = None) -> None:
-        name_city_regex = QRegularExpression(r"[A-Za-zÀ-žÁ-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß \-']*")
+        name_city_regex = QRegularExpression(r"[\p{L} \-']*")
         house_number_regex = QRegularExpression(r"[0-9A-Za-z/\-]*")
-        post_code_regex = QRegularExpression(r"[0-9 \-]*")
+        post_code_regex = QRegularExpression(r"[A-Za-z0-9 \-]*")
         email_regex = QRegularExpression(r"[A-Za-z0-9@._+-]*")
         phone_regex = QRegularExpression(r"[+]?[0-9]*")
-        company_regex = QRegularExpression(r"[A-Za-zÀ-ž0-9Á-žŮůČčŘřŠšŽžáéíóúýěščřžťňďľĺőűüäöß &.,()'\"-]*")
+        company_regex = QRegularExpression(r"[\p{L}0-9 &.,()'\"-]*")
         url_regex = QRegularExpression(r"[A-Za-z0-9:/?&=._%#\-]*")
         title_regex = QRegularExpression(r"[A-Za-zÀ-ž .,'\-]*")
         birthday_regex = QRegularExpression(r"\d{0,2}(\.\d{0,2}(\.\d{0,4})?)?")

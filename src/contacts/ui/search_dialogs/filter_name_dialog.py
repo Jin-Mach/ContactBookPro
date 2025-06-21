@@ -1,6 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QLineEdit, QDialogButtonBox, QPushButton
 
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -27,7 +28,7 @@ class FilterNameDialog(QDialog):
         filter_name_text_label.setObjectName("filterNameTextLabel")
         filter_name_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         filter_name_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
-        self.filter_name_input = QLineEdit()
+        self.filter_name_input = ValidatedLineedit(self)
         self.filter_name_input.setObjectName("filterNameInput")
         self.filter_name_input.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
