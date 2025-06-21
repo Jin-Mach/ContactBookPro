@@ -10,9 +10,9 @@ from src.contacts.threading.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.ui.contacts_dialog.duplicate_dialog import DuplicateDialog
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.filters_provider import FiltersProvider
 from src.database.models.detail_model import DetailModel

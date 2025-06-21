@@ -2,12 +2,12 @@ from PyQt6.QtCore import QAbstractTableModel
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog
 
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.search_dialogs.active_filters_dialog import ActiveFiltersDialog
 from src.contacts.ui.search_dialogs.filter_name_dialog import FilterNameDialog
 from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 from src.contacts.ui.search_dialogs.user_filters_dialog import UserFiltersDialog
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.utilities.filters_provider import FiltersProvider
 from src.contacts.utilities.instance_provider import InstanceProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel

@@ -1,9 +1,9 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QMainWindow
 
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.contacts.ui.widgets.contacts_toolbar_widget import ContactsToolbarWidget
+from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.ui.main_widgets.contacts_toolbar_widget import ContactsToolbarWidget
 from src.database.db_connection import create_db_connection
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel

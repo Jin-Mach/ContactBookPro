@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QSize, QModelIndex
+from PyQt6.QtCore import QSize, QModelIndex, Qt
 from PyQt6.QtGui import QFont, QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
@@ -8,9 +8,9 @@ from src.contacts.controlers.completer_controler import CompleterControler
 from src.contacts.controlers.contact_search_controler import ContactSearchControler
 from src.contacts.controlers.contacts_controller import ContactsController
 from src.contacts.controlers.filters_controler import FiltersControler
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
@@ -77,6 +77,7 @@ class ContactsToolbarWidget(QWidget):
         self.search_combobox.setFixedWidth(200)
         self.search_line_edit = QLineEdit()
         self.search_line_edit.setObjectName("searchLineEdit")
+        self.search_line_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         self.search_line_edit.setFixedSize(400, 35)
         self.search_line_edit.setFont(QFont("Arial", 15))
         self.search_line_edit.setDisabled(True)

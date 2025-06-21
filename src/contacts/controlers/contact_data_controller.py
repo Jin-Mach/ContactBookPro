@@ -1,6 +1,6 @@
 from PyQt6.QtSql import QSqlDatabase
 
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 

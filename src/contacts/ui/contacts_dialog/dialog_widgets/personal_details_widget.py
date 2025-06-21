@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
                              QLineEdit, QTextEdit)
 
 from src.contacts.ui.contacts_dialog.calendar_dialog import CalendarDialog
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
 from src.contacts.utilities.blob_handler import BlobHandler
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.contact_validator import ContactValidator
@@ -49,12 +50,12 @@ class PersonalDetailsWidget(QWidget):
         title_date_layout = QFormLayout()
         self.dialog_title_text_label = QLabel()
         self.dialog_title_text_label.setObjectName("dialogTitleTextLabel")
-        self.dialog_title_edit = QLineEdit()
+        self.dialog_title_edit = ValidatedLineedit(self)
         self.dialog_title_edit.setObjectName("dialogTitleEdit")
         self.dialog_title_edit.setFixedWidth(200)
         self.dialog_birthday_text_label = QLabel()
         self.dialog_birthday_text_label.setObjectName("dialogBirthdayTextLabel")
-        self.dialog_birthday_edit = QLineEdit()
+        self.dialog_birthday_edit = ValidatedLineedit(self)
         self.dialog_birthday_edit.setObjectName("dialogBirthdayEdit")
         self.dialog_birthday_edit.setFixedWidth(200)
         self.dialog_birthday_edit.setReadOnly(True)
@@ -71,6 +72,7 @@ class PersonalDetailsWidget(QWidget):
         notes_layout = QVBoxLayout()
         self.dialog_notes_edit = QTextEdit()
         self.dialog_notes_edit.setObjectName("dialogNotesEdit")
+        self.dialog_notes_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         self.dialog_notes_edit.textChanged.connect(lambda: check_notes_length(self.dialog_notes_edit, self.dialog_letters_count_label, self))
         letters_count_layout = QHBoxLayout()
         self.dialog_letters_count_label = QLabel("0/500")

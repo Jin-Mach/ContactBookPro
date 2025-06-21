@@ -1,3 +1,4 @@
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTextEdit, QHBoxLayout, QLabel
 
 from src.utilities.error_handler import ErrorHandler
@@ -18,6 +19,7 @@ class NotesInfoWidget(QWidget):
         self.notes_text_edit = QTextEdit()
         self.notes_text_edit.setObjectName("notesTextEdit")
         self.notes_text_edit.setReadOnly(True)
+        self.notes_text_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         notes_date_layout = QHBoxLayout()
         notes_date_layout.setContentsMargins(0, 0, 0, 0)
         notes_date_layout.setSpacing(0)

@@ -93,7 +93,6 @@ class ContactValidator:
             title_edit.setValidator(title_validator)
 
     @staticmethod
-    @staticmethod
     def search_input_validator(name_city_edits: list[QLineEdit] = None, house_number_edit: QLineEdit = None,
                                post_code_edit: QLineEdit = None, email_edit: QLineEdit = None,
                                phone_edit: QLineEdit = None, company_edit: QLineEdit = None,

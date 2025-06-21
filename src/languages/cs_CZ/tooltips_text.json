@@ -64,5 +64,8 @@
     "showContactButton": "Zavře dialog a vybere duplicitní kontakt v tabulce",
     "continueButton": "Uloží duplicitní kontakt",
     "cancelButton": "Zavře okno bez uložení"
+  },
+  "validatedLineedit": {
+    "invalidChar": "Nepovolený znak:"
   }
 }

@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QLineEdit, QComboBox
 
 from src.contacts.controlers.completer_controler import CompleterControler
-from src.contacts.ui.widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.optimalize_data import normalize_input
 from src.database.models.mandatory_model import MandatoryModel
 from src.database.utilities.search_provider import SearchProvider

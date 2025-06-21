@@ -29,6 +29,7 @@ class FilterNameDialog(QDialog):
         filter_name_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
         self.filter_name_input = QLineEdit()
         self.filter_name_input.setObjectName("filterNameInput")
+        self.filter_name_input.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         save_filter_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
         save_filter_button.setObjectName("saveFilterButton")

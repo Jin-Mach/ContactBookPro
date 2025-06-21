@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QCompleter, QLineEdit
 
-from src.contacts.ui.widgets.contacts_tableview_widget import ContactsTableviewWidget
+from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.database.models.completer_model import CompleterModel
 
 

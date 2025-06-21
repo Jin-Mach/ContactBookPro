@@ -5,8 +5,8 @@ from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 from src.contacts.controlers.contact_data_controller import ContactDataController
 from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportControler
 from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportControler
-from src.contacts.ui.widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.widgets.context_menu import ContextMenu
+from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler

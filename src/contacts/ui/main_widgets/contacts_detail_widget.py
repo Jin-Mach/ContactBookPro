@@ -1,8 +1,8 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QHBoxLayout
 
-from src.contacts.ui.widgets.notes_info_widget import NotesInfoWidget
-from src.contacts.ui.widgets.personal_info_widget import PersonalTabInfoWidget
-from src.contacts.ui.widgets.tab_info_widget import TabInfoWidget
+from src.contacts.ui.main_widgets.notes_info_widget import NotesInfoWidget
+from src.contacts.ui.main_widgets.personal_info_widget import PersonalTabInfoWidget
+from src.contacts.ui.main_widgets.tab_info_widget import TabInfoWidget
 
 
 class ContactsDetailWidget(QWidget):
