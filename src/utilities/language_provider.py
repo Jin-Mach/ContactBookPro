@@ -96,6 +96,16 @@ class LanguageProvider:
             return None
 
     @staticmethod
+    def get_preview_dialog_text(widget_name: str) -> dict[str, str] | None:
+        try:
+            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "preview_dialog_text.json"), "r", encoding="utf-8") as file:
+                preview_dialog_data = json.load(file)
+            return preview_dialog_data.get(widget_name)
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return None
+
+    @staticmethod
     def get_error_text(widget_name: str) -> dict[str, str] | None:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "errors_text.json"), "r", encoding="utf-8") as file:
