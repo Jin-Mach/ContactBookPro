@@ -15,9 +15,9 @@ class DuplicateListwidget(QListWidget):
     def set_data(self, duplicate_data: list) -> None:
         try:
             for contact in duplicate_data:
-                contact_id = contact["id"]
-                first_name = contact["first_name"]
-                second_name = contact["second_name"]
+                contact_id = contact.get("id", "")
+                first_name = contact.get("first_name", "")
+                second_name = contact.get("second_name", "")
                 widget = self.create_list_widget(contact_id, first_name, second_name)
                 if widget:
                     list_widget_item = QListWidgetItem()

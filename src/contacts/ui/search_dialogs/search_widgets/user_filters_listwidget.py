@@ -17,7 +17,6 @@ class UserFiltersListwidget(QListWidget):
         self.setObjectName("userFiltersListwidget")
         self.delete_filter = delete_filter
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
-        self.tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
 
     def set_filters_data(self, filters: dict[str, dict]) -> None:
         try:
@@ -47,8 +46,9 @@ class UserFiltersListwidget(QListWidget):
             delete_filter_button.setFixedSize(30, 30)
             delete_filter_button.setObjectName("deleteFilterPushbutton")
             IconProvider.set_buttons_icon(self.objectName(), [delete_filter_button], QSize(30, 30), self)
-            if delete_filter_button.objectName() in self.tooltips_text:
-                delete_filter_button.setToolTip(self.tooltips_text[delete_filter_button.objectName()])
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            if tooltips_text and delete_filter_button.objectName() in tooltips_text:
+                delete_filter_button.setToolTip(tooltips_text.get(delete_filter_button.objectName(), ""))
                 delete_filter_button.setToolTipDuration(5000)
             delete_filter_button.clicked.connect(partial(self.delete_selected_filter, filter_name))
             button_layout.addStretch()

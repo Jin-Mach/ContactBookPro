@@ -46,33 +46,42 @@ class FilterNameDialog(QDialog):
     def set_ui_text(self) -> None:
         try:
             ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
-            if "dialogTitle" in ui_text:
-                self.setWindowTitle(ui_text["dialogTitle"])
-            widgets = self.findChildren((QLabel, QLineEdit))
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-                    elif isinstance(widget, QLineEdit):
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    button.setText(ui_text[button.objectName()])
+            if ui_text:
+                if "dialogTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("dialogTitle", ""))
+                widgets = self.findChildren((QLabel, QLineEdit))
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QLineEdit):
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
-        for button in self.buttons:
-            if button.objectName() in tooltip_text:
-                button.setToolTip(tooltip_text[button.objectName()])
-                button.setToolTipDuration(5000)
+        try:
+            tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
+            if tooltip_text:
+                for button in self.buttons:
+                    if button.objectName() in tooltip_text:
+                        button.setToolTip(tooltip_text.get(button.objectName(), ""))
+                        button.setToolTipDuration(5000)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
 
     def get_filter_name(self) -> str | None:
-        error_text = LanguageProvider.get_error_text(self.objectName())
-        input_text = self.filter_name_input.text().strip()
-        if not input_text:
-            DialogsProvider.show_error_dialog(error_text["emptyFilterName"], self)
-            return None
-        self.accept()
-        return input_text
+        try:
+            error_text = LanguageProvider.get_error_text(self.objectName())
+            input_text = self.filter_name_input.text().strip()
+            if not input_text:
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("emptyFilterName", ""), self)
+                return None
+            self.accept()
+            return input_text
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

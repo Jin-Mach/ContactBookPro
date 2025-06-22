@@ -72,24 +72,26 @@ class MainWindow(QMainWindow):
         return central_widget
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.database_button]
         try:
-            if "mainWindowTitle" in ui_text:
-                self.setWindowTitle(ui_text["mainWindowTitle"])
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    self.database_button.setText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            widgets = [self.database_button]
+            if ui_text:
+                if "mainWindowTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("mainWindowTitle", ""))
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-        buttons = [self.database_button]
         try:
-            for button in buttons:
-                if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
-                    button.setToolTipDuration(5000)
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            buttons = [self.database_button]
+            if tooltips_text:
+                for button in buttons:
+                    if button.objectName() in tooltips_text:
+                        button.setToolTip(tooltips_text[button.objectName()])
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

@@ -53,25 +53,27 @@ class ActiveFiltersDialog(QDialog):
     def set_ui_text(self) -> None:
         try:
             ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
-            if "currentFilterTitle" in ui_text:
-                self.setWindowTitle(ui_text["currentFilterTitle"])
-            for widget in self.findChildren(QLabel):
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    button.setText(ui_text[button.objectName()])
+            if ui_text:
+                if "currentFilterTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("currentFilterTitle", ""))
+                for widget in self.findChildren(QLabel):
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-            for button in self.buttons:
-                if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
-                    button.setToolTipDuration(5000)
+            if tooltips_text:
+                for button in self.buttons:
+                    if button.objectName() in tooltips_text:
+                        button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -79,7 +81,8 @@ class ActiveFiltersDialog(QDialog):
         try:
             if not self.filters_tableview_widget.advanced_filter_model.rowCount() > 0:
                 error_text = LanguageProvider.get_error_text(self.objectName())
-                DialogsProvider.show_error_dialog(error_text["noActiveFilter"], self)
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("noActiveFilter", ""), self)
                 return
             from src.contacts.controlers.filters_controler import FiltersControler
             controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
@@ -90,8 +93,8 @@ class ActiveFiltersDialog(QDialog):
     def reset_active_filters_widgets(self, row: int, model: QAbstractTableModel) -> None:
         try:
             filter_item = model.filter_data[row]
-            combobox_widget = filter_item["combobox"]
-            edit_widget = filter_item["edit"]
+            combobox_widget = filter_item.get("combobox", None)
+            edit_widget = filter_item.get("edit", None)
             if combobox_widget:
                 combobox_widget.setCurrentIndex(0)
             if edit_widget:

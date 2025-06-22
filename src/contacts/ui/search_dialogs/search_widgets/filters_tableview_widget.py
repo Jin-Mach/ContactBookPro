@@ -39,8 +39,9 @@ class FiltersTableviewWidget(QTableView):
             button.setProperty("row", row)
             IconProvider.set_buttons_icon(self.objectName(), [button], QSize(20, 20), self)
             tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
-            button.setToolTip(tooltip_text[button.objectName()])
-            button.setToolTipDuration(5000)
+            if tooltip_text:
+                button.setToolTip(tooltip_text.get(button.objectName(), ""))
+                button.setToolTipDuration(5000)
             button.clicked.connect(self.get_current_row)
             return button
         except Exception as e:

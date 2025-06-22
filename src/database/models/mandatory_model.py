@@ -39,7 +39,9 @@ class MandatoryModel(QSqlTableModel):
                 return ""
             elif index.column() == 2:
                 value = super().data(self.index(index.row(), 2), role)
-                return self.relationship["relationship_key"][str(value)]
+                if self.relationship:
+                    relationship_dict = self.relationship.get("relationship_key", {})
+                    return relationship_dict.get(str(value), "")
             elif index.column() == 3:
                 first_name = super().data(self.index(index.row(), 3), role)
                 second_name = super().data(self.index(index.row(), 4), role)

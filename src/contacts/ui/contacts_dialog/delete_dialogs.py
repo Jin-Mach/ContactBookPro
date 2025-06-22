@@ -76,31 +76,33 @@ class DeleteDialogs:
     @staticmethod
     def set_ui_text(dialog_widget: QDialog, labels: list[QLabel], button_box: QDialogButtonBox, parent=None,
                     first_name: str = None, second_name: str = None) -> None:
-        ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
-        widgets = [dialog_widget]
-        widgets.extend(labels)
-        widgets.extend(button_box.buttons())
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QDialog):
-                        widget.setWindowTitle(ui_text[widget.objectName()])
-                    elif isinstance(widget, (QLabel, QPushButton)):
-                        if isinstance(widget, QLabel) and widget.objectName() == "deleteContactTextLabel" and first_name and second_name:
-                            widget.setText(f"{ui_text[widget.objectName()]}<br><br><b>{first_name} {second_name}</b>")
-                            widget.setTextFormat(Qt.TextFormat.RichText)
-                        else:
-                            widget.setText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
+            widgets = [dialog_widget]
+            widgets.extend(labels)
+            widgets.extend(button_box.buttons())
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QDialog):
+                            widget.setWindowTitle(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, (QLabel, QPushButton)):
+                            if isinstance(widget, QLabel) and widget.objectName() == "deleteContactTextLabel" and first_name and second_name:
+                                widget.setText(f"{ui_text.get(widget.objectName(), "")}<br><br><b>{first_name} {second_name}</b>")
+                                widget.setTextFormat(Qt.TextFormat.RichText)
+                            else:
+                                widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
 
     @staticmethod
     def delete_accepted(dialog: QDialog, label: QLabel, line_edit: QLineEdit):
-        ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
         try:
-            if label.objectName() in ui_text:
-                delete_word = ui_text[label.objectName()]
-                if line_edit.text().strip().upper() == delete_word.split(":")[-1].strip().upper():
-                    dialog.accept()
+            ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
+            if ui_text:
+                if label.objectName() in ui_text:
+                    delete_word = ui_text.get(label.objectName(), "")
+                    if line_edit.text().strip().upper() == delete_word.split(":")[-1].strip().upper():
+                        dialog.accept()
         except Exception as e:
             ErrorHandler.exception_handler(e)

@@ -30,11 +30,12 @@ class NonMandatoryWidget(QTabWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        tab_text = ["work", "socialNetworks", "personalDetail"]
         try:
-            for index, text in enumerate(tab_text):
-                if text in ui_text:
-                    self.dialog_tab_widget.setTabText(index, ui_text[text])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            tab_text = ["work", "socialNetworks", "personalDetail"]
+            if ui_text:
+                for index, text in enumerate(tab_text):
+                    if text in ui_text:
+                        self.dialog_tab_widget.setTabText(index, ui_text.get(text, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

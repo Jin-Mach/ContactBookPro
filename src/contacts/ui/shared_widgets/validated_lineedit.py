@@ -3,6 +3,7 @@ from PyQt6.QtGui import QKeyEvent, QValidator
 from PyQt6.QtWidgets import QLineEdit, QToolTip, QApplication
 
 from src.utilities.dialogs_provider import DialogsProvider
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 control_keys = [Qt.Key.Key_Backspace, Qt.Key.Key_Delete, Qt.Key.Key_Left, Qt.Key.Key_Right, Qt.Key.Key_Up, Qt.Key.Key_Down,
@@ -19,25 +20,31 @@ class ValidatedLineedit(QLineEdit):
         self.error_text = LanguageProvider.get_error_text(self.objectName())
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
-        if event.key() in control_keys or ((event.modifiers() & Qt.KeyboardModifier.ControlModifier) and event.key() in (Qt.Key.Key_C, Qt.Key.Key_X)):
-            return super().keyPressEvent(event)
-        else:
-            validator = self.validator()
-            if validator:
-                if event.key() == Qt.Key.Key_V and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
-                    text = QApplication.clipboard().text()
-                    if not text:
-                        DialogsProvider.show_error_dialog(self.error_text.get("emptyClipboard", ""), self.parent)
-                        return None
-                    new_text = self.text()[:self.cursorPosition()] + text + self.text()[self.cursorPosition():]
-                    status, _, _ = validator.validate(new_text, 0)
-                    if status == QValidator.State.Invalid:
-                        QToolTip.showText(self.mapToGlobal(self.cursorRect().bottomRight()), f'{self.tooltips_text.get("invalidChar", "")} "{text}"', self, msecShowTime=2000)
-                        return None
-                else:
-                    prepared_text = self.text()[:self.cursorPosition()] + event.text() + self.text()[self.cursorPosition():]
-                    status, _, _ = validator.validate(prepared_text, 0)
-                    if status == QValidator.State.Invalid:
-                        QToolTip.showText(self.mapToGlobal(self.cursorRect().bottomRight()), f'{self.tooltips_text.get("invalidChar", "")} "{event.text()}"', self, msecShowTime=2000)
-                        return None
-            return super().keyPressEvent(event)
+        try:
+            if event.key() in control_keys or ((event.modifiers() & Qt.KeyboardModifier.ControlModifier) and event.key() in (Qt.Key.Key_C, Qt.Key.Key_X)):
+                return super().keyPressEvent(event)
+            else:
+                validator = self.validator()
+                if validator:
+                    if event.key() == Qt.Key.Key_V and (event.modifiers() & Qt.KeyboardModifier.ControlModifier):
+                        text = QApplication.clipboard().text()
+                        if not text:
+                            if self.error_text:
+                                DialogsProvider.show_error_dialog(self.error_text.get("emptyClipboard", ""), self.parent)
+                            return None
+                        new_text = self.text()[:self.cursorPosition()] + text + self.text()[self.cursorPosition():]
+                        status, _, _ = validator.validate(new_text, 0)
+                        if status == QValidator.State.Invalid:
+                            if self.tooltips_text:
+                                QToolTip.showText(self.mapToGlobal(self.cursorRect().bottomRight()), f'{self.tooltips_text.get("invalidChar", "")} "{text}"', self, msecShowTime=2000)
+                            return None
+                    else:
+                        prepared_text = self.text()[:self.cursorPosition()] + event.text() + self.text()[self.cursorPosition():]
+                        status, _, _ = validator.validate(prepared_text, 0)
+                        if status == QValidator.State.Invalid:
+                            if self.tooltips_text:
+                                QToolTip.showText(self.mapToGlobal(self.cursorRect().bottomRight()), f'{self.tooltips_text.get("invalidChar", "")} "{event.text()}"', self, msecShowTime=2000)
+                            return None
+                return super().keyPressEvent(event)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

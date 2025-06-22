@@ -58,52 +58,54 @@ class SocialNetworkWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = self.findChildren((QLabel, QLineEdit))
         try:
-            for widget in widgets:
-                if isinstance(widget, QLabel):
-                    if widget.objectName() in ui_text:
-                        widget.setText(ui_text[widget.objectName()])
-                elif isinstance(widget, QLineEdit):
-                    if widget.objectName() in ui_text:
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            widgets = self.findChildren((QLabel, QLineEdit))
+            if ui_text:
+                for widget in widgets:
+                    if isinstance(widget, QLabel):
+                        if widget.objectName() in ui_text:
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                    elif isinstance(widget, QLineEdit):
+                        if widget.objectName() in ui_text:
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def return_social_network_data(self) -> list | None:
-        error_text = LanguageProvider.get_error_text(self.objectName())
-        inputs = self.findChildren(QLineEdit)
-        social_network_data = []
         try:
-            for widget in inputs:
-                text = widget.text().strip()
-                site = widget.objectName().replace("dialog", "").replace("UrlEdit", "")
-                if text:
-                    is_valid = ContactValidator.validate_url(text, site)
-                    if site.lower() == "website" and not is_valid:
-                        DialogsProvider.show_error_dialog(error_text["websiteValidatorError"])
-                        self.set_tab_index()
-                        widget.setFocus()
-                        return None
-                    if not is_valid:
-                        message = error_text["urlValidatorError"].replace("{site}", site)
-                        DialogsProvider.show_error_dialog(message)
-                        self.set_tab_index()
-                        widget.setFocus()
-                        return None
-                social_network_data.append(text)
-            if self.default_data:
-                return [social_network_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, social_network_data)]
-            return social_network_data
+            error_text = LanguageProvider.get_error_text(self.objectName())
+            inputs = self.findChildren(QLineEdit)
+            social_network_data = []
+            if error_text:
+                for widget in inputs:
+                    text = widget.text().strip()
+                    site = widget.objectName().replace("dialog", "").replace("UrlEdit", "")
+                    if text:
+                        is_valid = ContactValidator.validate_url(text, site)
+                        if site.lower() == "website" and not is_valid:
+                            DialogsProvider.show_error_dialog(error_text.get("websiteValidatorError"), "")
+                            self.set_tab_index()
+                            widget.setFocus()
+                            return None
+                        if not is_valid:
+                            message = error_text.get("urlValidatorError", "").replace("{site}", site)
+                            DialogsProvider.show_error_dialog(message)
+                            self.set_tab_index()
+                            widget.setFocus()
+                            return None
+                    social_network_data.append(text)
+                if self.default_data:
+                    return [social_network_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, social_network_data)]
+                return social_network_data
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
             return None
 
     def set_contact_data(self, data: dict) -> None:
         try:
-            widget_data = [data["facebook_url"], data["x_url"], data["instagram_url"], data["linkedin_url"], data["github_url"],
-                           data["website_url"]]
+            widget_data = [data.get("facebook_url", ""), data.get("x_url", ""), data.get("instagram_url", ""),
+                           data.get("linkedin_url", ""), data.get("github_url", ""), data.get("website_url", "")]
             self.default_data = widget_data
             self.dialog_facebook_url_edit.setText(widget_data[0])
             self.dialog_x_url_edit.setText(widget_data[1])

@@ -40,7 +40,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "ui_text.json"), "r", encoding="utf-8") as file:
                 language_data = json.load(file)
-            return language_data[widget_name]
+            return language_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -50,7 +50,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "tooltips_text.json"), encoding="utf-8") as file:
                 tooltips_data = json.load(file)
-            return tooltips_data[widget_name]
+            return tooltips_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -60,7 +60,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "dialog_text.json"), "r", encoding="utf-8") as file:
                 dialog_data = json.load(file)
-            return dialog_data[widget_name]
+            return dialog_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -70,7 +70,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "search_dialog_text.json"), "r", encoding="utf-8") as file:
                 search_dialog_data = json.load(file)
-            return search_dialog_data[widget_name]
+            return search_dialog_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -80,7 +80,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "user_filters_dialog_text.json"), "r", encoding="utf-8") as file:
                 search_dialog_data = json.load(file)
-            return search_dialog_data[widget_name]
+            return search_dialog_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -90,7 +90,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "menu_text.json"), "r", encoding="utf-8") as file:
                 context_menu_data = json.load(file)
-            return context_menu_data[widget_name]
+            return context_menu_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -100,7 +100,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "errors_text.json"), "r", encoding="utf-8") as file:
                 error_data = json.load(file)
-            return error_data[widget_name]
+            return error_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -110,7 +110,7 @@ class LanguageProvider:
         try:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "headers_text.json"), "r", encoding="utf-8") as file:
                 headers_data = json.load(file)
-            return headers_data[widget_name]
+            return headers_data.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
@@ -121,7 +121,7 @@ class LanguageProvider:
             with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "export_settings.json"), "r", encoding="utf-8") as file:
                 index_map = json.load(file)
             semicolon = LanguageProvider.language_code[:2] in index_map["semicolon_locales"]
-            return semicolon, index_map[widget_name]
+            return semicolon, index_map.get(widget_name)
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None

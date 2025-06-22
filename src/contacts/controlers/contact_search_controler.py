@@ -23,6 +23,7 @@ class ContactSearchControler:
         self.parent = parent
         self.error_text = LanguageProvider.get_error_text(self.class_name)
         self.index_error_text = LanguageProvider.get_error_text("widgetErrors")
+        self.new_filter = None
 
     def basic_search(self, search_input: QLineEdit) -> None:
         search_text = normalize_input(search_input)
@@ -44,9 +45,9 @@ class ContactSearchControler:
                 combobox_index = self.search_combobox.currentIndex()
                 if column_index in (1, 2):
                     if combobox_index == 0:
-                        self.new_filter = filters[str(column_index)].replace("VALUE", "LIKE '%'")
+                        self.new_filter = filters.get(str(column_index), "").replace("VALUE", "LIKE '%'")
                     else:
-                        self.new_filter = filters[str(column_index)].replace("VALUE", f"= {str(combobox_index)}")
+                        self.new_filter = filters.get(str(column_index), "").replace("VALUE", f"= {str(combobox_index)}")
                 else:
                     if search_text:
                         if column_index == 3:
@@ -58,25 +59,25 @@ class ContactSearchControler:
                                                                                            "personal_house_number", "personal_post_code",
                                                                                            "personal_country_normalized"])
                         else:
-                            self.new_filter = filters[str(column_index)].replace("VALUE", search_text)
+                            self.new_filter = filters.get(str(column_index), "").replace("VALUE", search_text)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"])
+                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""))
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
                 if self.new_filter:
                     if column_index in (1, 2) or search_text:
                         SearchProvider.basic_search(self.mandatory_model, self.new_filter)
                         if self.mandatory_model.rowCount() < 1:
-                            DialogsProvider.show_error_dialog(self.error_text["noFilteredData"])
+                            DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""))
                             SearchProvider.reset_filter(self.mandatory_model)
                             search_input.setFocus()
                         self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text["emptySearchText"])
+                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""))
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
             else:
-                DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
+                DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -90,7 +91,7 @@ class ContactSearchControler:
             self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
             self.status_bar.contacts_total_count = self.mandatory_model.rowCount()
             if ui_text:
-                self.parent.search_text_label.setText(ui_text[self.parent.search_text_label.objectName()])
+                self.parent.search_text_label.setText(ui_text.get(self.parent.search_text_label.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -112,7 +113,7 @@ class ContactSearchControler:
                 return self.set_address_filter(search_text)
             return ""
         else:
-            DialogsProvider.show_error_dialog(self.index_error_text["indexError"])
+            DialogsProvider.show_error_dialog(self.index_error_text.get("indexError", ""))
             return ""
 
     @staticmethod
@@ -122,9 +123,7 @@ class ContactSearchControler:
     @staticmethod
     def set_address_filter(search_text: str) -> str:
         splitted_text = search_text.split(",")
-        prepared_text = []
-        for part in splitted_text:
-            prepared_text.append(part.strip())
+        prepared_text = [part.strip() for part in splitted_text]
         return (f"personal_city_normalized = '{prepared_text[0]}' AND "
                 f"personal_house_number = '{prepared_text[-3]}' AND "
                 f"personal_post_code = '{prepared_text[-2]}' AND "

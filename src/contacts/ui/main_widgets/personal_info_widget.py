@@ -70,29 +70,33 @@ class PersonalTabInfoWidget(QTabWidget):
         return main_widget
 
     def set_ui_text(self) -> None:
-        widgets = [self, self.contact_title_text_label, self.contact_gender_text_label, self.contact_first_name_text_label,
-                   self.contact_second_name_text_label, self.contact_relationship_text_label, self.contact_birthday_text_label]
         try:
-            for widget in widgets:
-                if widget.objectName() in self.ui_text or f"{widget.objectName()}_tabText" in self.ui_text:
-                    if isinstance(widget, QTabWidget):
-                        widget.setTabText(0, self.ui_text[f"{widget.objectName()}_tabText"])
-                    elif isinstance(widget, QLabel):
-                        widget.setText(self.ui_text[widget.objectName()])
+            widgets = [self, self.contact_title_text_label, self.contact_gender_text_label,
+                       self.contact_first_name_text_label,
+                       self.contact_second_name_text_label, self.contact_relationship_text_label,
+                       self.contact_birthday_text_label]
+            if self.ui_text:
+                for widget in widgets:
+                    if widget.objectName() in self.ui_text or f"{widget.objectName()}_tabText" in self.ui_text:
+                        if isinstance(widget, QTabWidget):
+                            widget.setTabText(0, self.ui_text.get(f"{widget.objectName()}_tabText", ""))
+                        elif isinstance(widget, QLabel):
+                            widget.setText(self.ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_data(self, data: dict) -> None:
         try:
-            gender_dict = self.ui_text["gender_key"]
-            relationship_dict = self.ui_text["relationship_key"]
-            self.set_photo_pixmap(data["photo"], int(data["gender"]))
-            self.contact_title_label.setText(data["title"])
-            self.contact_gender_label.setText(gender_dict[str(data["gender"])])
-            self.contact_first_name_label.setText(data["first_name"])
-            self.contact_second_name_label.setText(data["second_name"])
-            self.contact_relationship_label.setText(relationship_dict[str(data["relationship"])])
-            self.contact_birthday_label.setText(data["birthday"])
+            if self.ui_text:
+                gender_dict = self.ui_text.get("gender_key", {})
+                relationship_dict = self.ui_text.get("relationship_key", {})
+                self.set_photo_pixmap(data.get("photo"), int(data.get("gender", 0)))
+                self.contact_title_label.setText(data.get("title", ""))
+                self.contact_gender_label.setText(gender_dict.get(str(data.get("gender", "")), ""))
+                self.contact_first_name_label.setText(data.get("first_name", ""))
+                self.contact_second_name_label.setText(data.get("second_name", ""))
+                self.contact_relationship_label.setText(relationship_dict.get(str(data.get("relationship", "")), ""))
+                self.contact_birthday_label.setText(data.get("birthday", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

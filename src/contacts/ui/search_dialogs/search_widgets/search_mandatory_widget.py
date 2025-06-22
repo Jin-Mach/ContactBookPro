@@ -119,8 +119,8 @@ class SearchMandatoryWidget(QWidget):
             clear_filter_pushbutton = QPushButton()
             clear_filter_pushbutton.setObjectName("clearFilterPushbutton")
             IconProvider.set_buttons_icon("advancedSearchDialog", [clear_filter_pushbutton], QSize(25, 25))
-            if clear_filter_pushbutton.objectName() in tooltip_text:
-                clear_filter_pushbutton.setToolTip(tooltip_text[clear_filter_pushbutton.objectName()])
+            if tooltip_text and clear_filter_pushbutton.objectName() in tooltip_text:
+                clear_filter_pushbutton.setToolTip(tooltip_text.get(clear_filter_pushbutton.objectName(), ""))
                 clear_filter_pushbutton.setToolTipDuration(5000)
             clear_filter_pushbutton.clicked.connect(partial(SearchMandatoryWidget.reset_row_filter, edit, operator))
             layout.addWidget(edit)
@@ -136,18 +136,19 @@ class SearchMandatoryWidget(QWidget):
         try:
             ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
             widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
-            for widget in widgets:
-                if isinstance(widget, QLabel):
-                    if widget.objectName() in ui_text:
-                        widget.setText(ui_text[widget.objectName()])
-                elif isinstance(widget, QComboBox):
-                    if widget.objectName().endswith("Combobox") and widget.objectName() in ui_text:
-                        widget.addItems(ui_text[widget.objectName()])
-                    elif "operators" in ui_text:
-                        widget.addItems(ui_text["operators"])
-                elif isinstance(widget, QLineEdit):
-                    if widget.objectName() in ui_text:
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
+            if ui_text:
+                for widget in widgets:
+                    if isinstance(widget, QLabel):
+                        if widget.objectName() in ui_text:
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                    elif isinstance(widget, QComboBox):
+                        if widget.objectName().endswith("Combobox") and widget.objectName() in ui_text:
+                            widget.addItems(ui_text.get(widget.objectName(), ""))
+                        elif "operators" in ui_text:
+                            widget.addItems(ui_text.get("operators", []))
+                    elif isinstance(widget, QLineEdit):
+                        if widget.objectName() in ui_text:
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

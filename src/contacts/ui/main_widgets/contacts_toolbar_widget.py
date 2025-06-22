@@ -109,25 +109,26 @@ class ContactsToolbarWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = self.findChildren((QLabel, QLineEdit))
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-                    elif isinstance(widget, QLineEdit):
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            widgets = self.findChildren((QLabel, QLineEdit))
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QLineEdit):
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-        buttons = self.findChildren(QPushButton)
         try:
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            buttons = self.findChildren(QPushButton)
             for button in buttons:
                 if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
                     button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
@@ -206,18 +207,21 @@ class ContactsToolbarWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
 
     def set_validator(self, current: QModelIndex) -> None:
-        column = current.column()
-        text = self.search_line_edit.text().strip()
-        if column in (4, 5):
-            validator_function = ContactValidator.search_input_validator
-            filter_function = ContactValidator.filter_invalid_characters
-            if column == 4:
-                validator_function(email_edit=self.search_line_edit)
-                text = filter_function(self.search_line_edit)
-            elif column == 5:
-                validator_function(phone_edit=self.search_line_edit)
-                text = filter_function(self.search_line_edit)
-        else:
-            self.search_line_edit.setValidator(None)
-        self.search_line_edit.setText(text)
-        self.search_line_edit.setFocus()
+        try:
+            column = current.column()
+            text = self.search_line_edit.text().strip()
+            if column in (4, 5):
+                validator_function = ContactValidator.search_input_validator
+                filter_function = ContactValidator.filter_invalid_characters
+                if column == 4:
+                    validator_function(email_edit=self.search_line_edit)
+                    text = filter_function(self.search_line_edit)
+                elif column == 5:
+                    validator_function(phone_edit=self.search_line_edit)
+                    text = filter_function(self.search_line_edit)
+            else:
+                self.search_line_edit.setValidator(None)
+            self.search_line_edit.setText(text)
+            self.search_line_edit.setFocus()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

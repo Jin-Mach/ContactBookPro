@@ -100,26 +100,28 @@ class PersonalDetailsWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = self.findChildren((QLabel, QLineEdit, QTextEdit))
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-                    elif isinstance(widget, (QLineEdit, QTextEdit)):
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            widgets = self.findChildren((QLabel, QLineEdit, QTextEdit))
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, (QLineEdit, QTextEdit)):
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
         try:
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
             buttons = self.findChildren(QPushButton)
-            for button in buttons:
-                if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
-                    button.setToolTipDuration(5000)
+            if tooltips_text:
+                for button in buttons:
+                    if button.objectName() in tooltips_text:
+                        button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -144,11 +146,11 @@ class PersonalDetailsWidget(QWidget):
             return ""
 
     def return_personal_data(self) -> list | None:
-        inputs = self.findChildren((QLineEdit, QTextEdit))
-        inputs_names = ["dialogTitleEdit", "dialogBirthdayEdit", "dialogNotesEdit"]
-        photo_blob = BlobHandler.pixmap_to_blob(self.dialog_photo_label, self)
-        personal_data = []
         try:
+            inputs = self.findChildren((QLineEdit, QTextEdit))
+            inputs_names = ["dialogTitleEdit", "dialogBirthdayEdit", "dialogNotesEdit"]
+            photo_blob = BlobHandler.pixmap_to_blob(self.dialog_photo_label, self)
+            personal_data = []
             for widget in inputs:
                 if widget.objectName() in inputs_names:
                     if isinstance(widget, QLineEdit):
@@ -167,18 +169,20 @@ class PersonalDetailsWidget(QWidget):
             ErrorHandler.exception_handler(e, self)
             return None
 
-    def set_contact_data(self, data) -> None:
+    def set_contact_data(self, data: dict) -> None:
         try:
-            widget_data = [data["title"], data["birthday"], data["notes"], data["photo"]]
+            widget_data = [data.get("title", ""), data.get("birthday", ""), data.get("notes", ""), data.get("photo", None)]
+            print(widget_data)
             self.default_data = widget_data
             self.dialog_title_edit.setText(widget_data[0])
             self.dialog_birthday_edit.setText(widget_data[1])
             self.dialog_notes_edit.setPlainText(widget_data[2])
-            self.set_photo_pixmap(widget_data[3], self.dialog_photo_label)
+            if widget_data[3] is not None:
+                self.set_photo_pixmap(widget_data[3], self.dialog_photo_label)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_photo_pixmap(self, blob: QByteArray, label: QLabel) -> None:
+    def set_photo_pixmap(self, blob: QByteArray | None, label: QLabel) -> None:
         try:
             pixmap = BlobHandler.blob_to_pixmap(blob, self)
             if pixmap:

@@ -92,31 +92,32 @@ class MandatoryWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-                    elif isinstance(widget, QComboBox):
-                        widget.addItems(ui_text[widget.objectName()])
-                    elif isinstance(widget, QLineEdit):
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QComboBox):
+                            widget.addItems(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QLineEdit):
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def return_mandatory_data(self) -> list | None:
-        error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
-        inputs = self.findChildren((QLineEdit, QComboBox))
-        labels = self.findChildren(QLabel)
-        mandatory_data = []
         try:
+            error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
+            inputs = self.findChildren((QLineEdit, QComboBox))
+            labels = self.findChildren(QLabel)
+            mandatory_data = []
             for widget in inputs:
                 if isinstance(widget, QComboBox):
                     if widget.currentIndex() == 0:
                         object_name_text = widget.objectName().removeprefix("dialog").removesuffix("Combobox")
-                        DialogsProvider.show_error_dialog(error_text[f"{object_name_text.lower()}Error"])
+                        DialogsProvider.show_error_dialog(error_text.get(f"{object_name_text.lower()}Error", "Chyba"))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
@@ -125,17 +126,17 @@ class MandatoryWidget(QWidget):
                     text = widget.text().strip()
                     if not text and widget.objectName() != "dialogStreetEdit":
                         label_text = self.return_label_text(labels, widget)
-                        DialogsProvider.show_error_dialog(f"{error_text["emptyTextError"]}{label_text}")
+                        DialogsProvider.show_error_dialog(f"{error_text.get("emptyTextError", "")}{label_text}")
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(text):
-                        DialogsProvider.show_error_dialog(error_text["emailValidatorError"])
+                        DialogsProvider.show_error_dialog(error_text.get("emailValidatorError", ""))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
-                        DialogsProvider.show_error_dialog(error_text["phonenumberValidatorError"])
+                        DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
@@ -151,9 +152,19 @@ class MandatoryWidget(QWidget):
 
     def set_contact_data(self, data: dict) -> None:
         try:
-            widget_data = [int(data["gender"]), int(data["relationship"]), data["first_name"], data["second_name"],
-                           data["personal_email"], data["personal_phone_number"], data["personal_street"],
-                           data["personal_house_number"], data["personal_city"], data["personal_post_code"], data["personal_country"]]
+            widget_data = [
+                int(data.get("gender", 0)),
+                int(data.get("relationship", 0)),
+                data.get("first_name", ""),
+                data.get("second_name", ""),
+                data.get("personal_email", ""),
+                data.get("personal_phone_number", ""),
+                data.get("personal_street", ""),
+                data.get("personal_house_number", ""),
+                data.get("personal_city", ""),
+                data.get("personal_post_code", ""),
+                data.get("personal_country", ""),
+            ]
             self.default_data = widget_data
             self.dialog_gender_combobox.setCurrentIndex(widget_data[0])
             self.dialog_relationship_combobox.setCurrentIndex(widget_data[1])

@@ -30,8 +30,9 @@ class ContactsTableviewWidget(QTableView):
         self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
         self.selectionModel().currentChanged.connect(self.set_search_text_label)
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
-        self.gender_items = self.ui_text["gender_items"]
-        self.relationship_items = self.ui_text["relationship_items"]
+        if self.ui_text:
+            self.gender_items = self.ui_text["gender_items"]
+            self.relationship_items = self.ui_text["relationship_items"]
         model = self.model()
         connection = None
         if isinstance(model, QSqlTableModel):

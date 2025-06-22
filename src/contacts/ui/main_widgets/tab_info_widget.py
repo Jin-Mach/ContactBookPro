@@ -156,27 +156,29 @@ class TabInfoWidget(QTabWidget):
         return work_widget
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        tab_text = ["personalTabText", "workTabText"]
         try:
-            for index, text in enumerate(tab_text):
-                if text in ui_text:
-                    self.setTabText(index, ui_text[text])
-            widgets = self.findChildren(QLabel)
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    widget.setText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            tab_text = ["personalTabText", "workTabText"]
+            if ui_text:
+                for index, text in enumerate(tab_text):
+                    if text in ui_text:
+                        self.setTabText(index, ui_text.get(text, ""))
+                widgets = self.findChildren(QLabel)
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-        buttons = self.findChildren(QPushButton)
         try:
-            for button in buttons:
-                if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
-                    button.setToolTipDuration(5000)
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            buttons = self.findChildren(QPushButton)
+            if tooltips_text:
+                for button in buttons:
+                    if button.objectName() in tooltips_text:
+                        button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -190,27 +192,37 @@ class TabInfoWidget(QTabWidget):
 
     def set_data(self, data: dict) -> None:
         try:
-            self.facebook_url = data["facebook_url"]
-            self.x_url = data["x_url"]
-            self.instagram_url = data["instagram_url"]
-            self.personal_email_label.setText(data["personal_email"])
-            self.personal_phone_number_label.setText(data["personal_phone_number"])
-            self.personal_address_label.setText(self.validate_address(data["personal_street"], data["personal_house_number"], data["personal_city"]))
-            self.personal_city_label.setText(data["personal_city"])
-            self.personal_post_code_label.setText(data["personal_post_code"])
-            self.personal_country_label.setText(data["personal_country"])
-            self.linkedin_url = data["linkedin_url"]
-            self.github_url = data["github_url"]
-            self.website_url = data["website_url"]
-            self.work_company_name_label.setText(data["company_name"])
-            self.work_email_label.setText(data["work_email"])
-            self.work_phone_number_label.setText(data["work_phone_number"])
-            self.work_address_label.setText(self.validate_address(data["work_street"], data["work_house_number"], data["work_city"]))
-            self.work_city_label.setText(data["work_city"])
-            self.work_post_code_label.setText(data["work_post_code"])
-            self.work_country_label.setText(data["work_country"])
-            self.urls = [self.facebook_url, self.x_url, self.instagram_url, self.linkedin_url, self.github_url,
-                         self.website_url]
+            self.facebook_url = data.get("facebook_url", "")
+            self.x_url = data.get("x_url", "")
+            self.instagram_url = data.get("instagram_url", "")
+            self.personal_email_label.setText(data.get("personal_email", ""))
+            self.personal_phone_number_label.setText(data.get("personal_phone_number", ""))
+            self.personal_address_label.setText(self.validate_address(
+                data.get("personal_street", ""),
+                data.get("personal_house_number", ""),
+                data.get("personal_city", "")
+            ))
+            self.personal_city_label.setText(data.get("personal_city", ""))
+            self.personal_post_code_label.setText(data.get("personal_post_code", ""))
+            self.personal_country_label.setText(data.get("personal_country", ""))
+            self.linkedin_url = data.get("linkedin_url", "")
+            self.github_url = data.get("github_url", "")
+            self.website_url = data.get("website_url", "")
+            self.work_company_name_label.setText(data.get("company_name", ""))
+            self.work_email_label.setText(data.get("work_email", ""))
+            self.work_phone_number_label.setText(data.get("work_phone_number", ""))
+            self.work_address_label.setText(self.validate_address(
+                data.get("work_street", ""),
+                data.get("work_house_number", ""),
+                data.get("work_city", "")
+            ))
+            self.work_city_label.setText(data.get("work_city", ""))
+            self.work_post_code_label.setText(data.get("work_post_code", ""))
+            self.work_country_label.setText(data.get("work_country", ""))
+            self.urls = [
+                self.facebook_url, self.x_url, self.instagram_url,
+                self.linkedin_url, self.github_url, self.website_url
+            ]
             update_buttons_state(self.buttons, self.urls)
             self.setCurrentIndex(0)
         except Exception as e:

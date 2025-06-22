@@ -22,8 +22,8 @@ class ExportDataProvider:
                 headers_query = QSqlQuery(db_connection)
                 sql = f"PRAGMA table_info({table})"
                 if not headers_query.exec(sql):
-                        ErrorHandler.database_error(headers_query.lastError().text(), False)
-                        return None
+                    ErrorHandler.database_error(headers_query.lastError().text(), False)
+                    return None
                 headers = []
                 while headers_query.next():
                     column = headers_query.value(1)
@@ -36,6 +36,15 @@ class ExportDataProvider:
             return None
 
     @staticmethod
+    def map_value(column_name: str, value: any, index_map: dict | None) -> any:
+        if not index_map:
+            return value
+        mapping_key = f"{column_name}Map"
+        if mapping_key in index_map:
+            return index_map[mapping_key].get(str(value), "")
+        return value
+
+    @staticmethod
     def get_csv_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> tuple[bool, list[str], list[dict[str, Any]]] | None:
         try:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, main_window)
@@ -44,7 +53,7 @@ class ExportDataProvider:
             mandatory_headers = headers_dict["mandatory"]
             data_query = QSqlQuery(db_connection)
             if id_list:
-                placeholders = ", ".join(["?"]*len(id_list))
+                placeholders = ", ".join(["?"] * len(id_list))
                 sql = f"SELECT {', '.join(mandatory_headers)} FROM mandatory WHERE id IN ({placeholders})"
                 data_query.prepare(sql)
                 for displayed_id in id_list:
@@ -55,22 +64,16 @@ class ExportDataProvider:
             if not data_query.exec():
                 ErrorHandler.database_error(data_query.lastError().text(), False)
                 return None
-            final_data = []
             semicolon, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
+            if not index_map:
+                index_map = {}
+            final_data = []
             while data_query.next():
                 row = {}
                 for index in range(data_query.record().count()):
                     column_name = data_query.record().fieldName(index)
-                    if column_name == "gender":
-                        key = index_map["genderMap"]
-                        index_value = data_query.value(index)
-                        row[column_name] = key[str(index_value)]
-                    elif column_name == "relationship":
-                        key = index_map["relationshipMap"]
-                        index_value = data_query.value(index)
-                        row[column_name] = key[str(index_value)]
-                    else:
-                        row[column_name] = data_query.value(index)
+                    value = data_query.value(index)
+                    row[column_name] = ExportDataProvider.map_value(column_name, value, index_map)
                 final_data.append(row)
             return semicolon, mandatory_headers, final_data
         except Exception as e:
@@ -97,21 +100,15 @@ class ExportDataProvider:
                     ErrorHandler.database_error(query.lastError().text(), False)
                     return None
                 _, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
+                if not index_map:
+                    index_map = {}
                 rows = []
                 while query.next():
                     row = {}
                     for index in range(query.record().count()):
                         column_name = query.record().fieldName(index)
-                        if column_name == "gender":
-                            key = index_map["genderMap"]
-                            index_value = query.value(index)
-                            row[column_name] = key[str(index_value)]
-                        elif column_name == "relationship":
-                            key = index_map["relationshipMap"]
-                            index_value = query.value(index)
-                            row[column_name] = key[str(index_value)]
-                        else:
-                            row[column_name] = query.value(index)
+                        value = query.value(index)
+                        row[column_name] = ExportDataProvider.map_value(column_name, value, index_map)
                     rows.append(row)
                 final_data[table] = rows
             return headers_dict, final_data

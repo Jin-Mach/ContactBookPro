@@ -46,25 +46,27 @@ class UserFiltersDialog(QDialog):
         try:
             ui_text = LanguageProvider.get_user_filters_dialog_text(self.objectName())
             widgets = self.findChildren(QLabel)
-            if "dialogTitle" in ui_text:
-                self.setWindowTitle(ui_text["dialogTitle"])
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    button.setText(ui_text[button.objectName()])
+            if ui_text:
+                if "dialogTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("dialogTitle", ""))
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
         try:
             tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
-            for button in self.buttons:
-                if button.objectName() in tooltip_text:
-                    button.setToolTip(tooltip_text[button.objectName()])
-                    button.setToolTipDuration(5000)
+            if tooltip_text:
+                for button in self.buttons:
+                    if button.objectName() in tooltip_text:
+                        button.setToolTip(tooltip_text.get(button.objectName(), ""))
+                        button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -72,11 +74,13 @@ class UserFiltersDialog(QDialog):
         try:
             error_text = LanguageProvider.get_error_text(self.objectName())
             if self.user_filters_listwidget.model().rowCount() < 1:
-                DialogsProvider.show_error_dialog(error_text["noFilters"], self)
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("noFilters", ""), self)
                 return None
             selected_filter = self.user_filters_listwidget.return_selected_filter()
             if not selected_filter:
-                DialogsProvider.show_error_dialog(error_text["noSelection"], self)
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("noSelection", ""), self)
                 return None
             self.accept()
             return selected_filter

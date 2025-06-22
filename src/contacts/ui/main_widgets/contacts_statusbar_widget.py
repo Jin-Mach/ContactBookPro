@@ -11,6 +11,7 @@ class ContactsStatusbarWidget(QWidget):
         self.setObjectName("contactsStatusbarWidget")
         self.contacts_total_count = contacts_count
         self.setLayout(self.create_gui())
+        self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.set_ui_text()
 
     def create_gui(self) -> QLayout:
@@ -24,16 +25,19 @@ class ContactsStatusbarWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.count_display_label]
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    widget.setText(f"{ui_text[widget.objectName()]} {self.contacts_total_count}/{self.contacts_total_count}")
+            widgets = [self.count_display_label]
+            if self.ui_text:
+                for widget in widgets:
+                    if widget.objectName() in self.ui_text:
+                        widget.setText(f"{self.ui_text.get(widget.objectName(), "")} {self.contacts_total_count}/{self.contacts_total_count}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_count_text(self, filter_count: int, added: int) -> None:
-        self.contacts_total_count += added
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        self.count_display_label.setText(f"{ui_text[self.count_display_label.objectName()]} {filter_count}/{self.contacts_total_count}")
+        try:
+            if self.ui_text:
+                self.contacts_total_count += added
+                self.count_display_label.setText(f"{self.ui_text[self.count_display_label.objectName()]} {filter_count}/{self.contacts_total_count}")
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

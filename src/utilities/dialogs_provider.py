@@ -104,16 +104,17 @@ class DialogsProvider:
 
     @staticmethod
     def get_ui_text(dialog: QDialog, widgets: list[QWidget], error_message: str, parent=None) -> None:
-        ui_text = LanguageProvider.get_dialog_text(DialogsProvider.class_name)
         try:
-            if "dialogTitle" in ui_text:
-                dialog.setWindowTitle(ui_text["dialogTitle"])
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(f"{ui_text[widget.objectName()]}\n{error_message}")
-                    if isinstance(widget, QPushButton):
-                        widget.setText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(DialogsProvider.class_name)
+            if ui_text:
+                if "dialogTitle" in ui_text:
+                    dialog.setWindowTitle(ui_text.get("dialogTitle", ""))
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{error_message}")
+                        if isinstance(widget, QPushButton):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             from src.utilities.error_handler import ErrorHandler
             ErrorHandler.exception_handler(e, parent)

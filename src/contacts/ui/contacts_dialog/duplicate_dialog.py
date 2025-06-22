@@ -49,14 +49,15 @@ class DuplicateDialog(QDialog):
         try:
             ui_text = LanguageProvider.get_dialog_text(self.objectName())
             widgets = self.findChildren(QLabel)
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QLabel):
-                        widget.setText(f"{ui_text[widget.objectName()]}\n{len(self.duplicate_contacts)}")
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    if isinstance(button, QPushButton):
-                        button.setText(ui_text[button.objectName()])
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QLabel):
+                            widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{len(self.duplicate_contacts)}")
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        if isinstance(button, QPushButton):
+                            button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -65,7 +66,7 @@ class DuplicateDialog(QDialog):
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
             for button in self.buttons:
                 if isinstance(button, QPushButton):
-                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
                     button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

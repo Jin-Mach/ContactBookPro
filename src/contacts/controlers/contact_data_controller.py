@@ -12,7 +12,7 @@ class ContactDataController:
 
     def get_models_data(self, index: int, parent=None) -> None:
         try:
-            data = RowDataProvider.return_row_data(self.db_connection, index)
+            data = RowDataProvider.return_row_data(self.db_connection, index) or {}
             self.contacts_detail_widget.personal_info_widget.set_data(data)
             self.contacts_detail_widget.tab_info_widget.set_data(data)
             self.contacts_detail_widget.notes_info_widget.set_data(data)

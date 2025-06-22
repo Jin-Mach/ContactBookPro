@@ -24,13 +24,13 @@ class CsvExportControler:
         try:
             id_list = self.table_view.get_displayed_contacts_id()
             if not id_list:
-                DialogsProvider.show_error_dialog(self.error_text["emptyIdList"], main_window)
+                DialogsProvider.show_error_dialog(self.error_text.get("emptyIdList", ""), main_window)
                 return
             semicolon, headers, csv_data = self.export_data_provider.get_csv_data(self.db_connection, id_list, main_window)
             delimiter = ","
             if semicolon:
                 delimiter = ";"
-            file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text["csvFilter"])
+            file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text.get("csvFilter", ""))
             if file_name:
                 export_object = ExportCsvObject(file_name, headers, delimiter, csv_data)
                 self.create_csv_thread(export_object, main_window)
@@ -44,7 +44,7 @@ class CsvExportControler:
             if semicolon:
                 delimiter = ";"
             file_name, _ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path,
-                                                       filter=self.menu_text["csvFilter"])
+                                                       filter=self.menu_text.get("csvFilter", ""))
             if file_name:
                 export_object = ExportCsvObject(file_name, headers, delimiter, csv_data)
                 self.create_csv_thread(export_object, main_window)

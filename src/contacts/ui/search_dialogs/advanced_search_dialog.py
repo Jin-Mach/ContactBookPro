@@ -20,7 +20,7 @@ class AdvancedSearchDialog(QDialog):
         if button_box:
             self.buttons = button_box.findChildren(QPushButton)
         self.set_ui_text()
-        self.set_toolpips_text()
+        self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.buttons, QSize(35, 35))
         self.active_filters_controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
 
@@ -54,23 +54,25 @@ class AdvancedSearchDialog(QDialog):
         try:
             ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
             tab_text = ["mandatory", "nonMandatory"]
-            if "dialogTitle" in ui_text:
-                self.setWindowTitle(ui_text["dialogTitle"])
-            for index, text in enumerate(tab_text):
-                if text in ui_text:
-                    self.search_tab_widget.setTabText(index, ui_text[text])
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    button.setText(ui_text[button.objectName()])
+            if ui_text:
+                if "dialogTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("dialogTitle", ""))
+                for index, text in enumerate(tab_text):
+                    if text in ui_text:
+                        self.search_tab_widget.setTabText(index, ui_text.get(text, ""))
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def set_toolpips_text(self) -> None:
+    def set_tooltips_text(self) -> None:
         tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-        for button in self.buttons:
-            if button.objectName() in tooltips_text:
-                button.setToolTip(tooltips_text[button.objectName()])
-                button.setToolTipDuration(5000)
+        if tooltips_text:
+            for button in self.buttons:
+                if button.objectName() in tooltips_text:
+                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                    button.setToolTipDuration(5000)
 
     def reset_all_filters(self) -> None:
         self.search_tab_widget.setCurrentIndex(0)

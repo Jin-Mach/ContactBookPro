@@ -36,13 +36,14 @@ def reset_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=Non
         ErrorHandler.exception_handler(e, parent)
 
 def set_dialog_filters(parent=None) -> list:
-    ui_text = LanguageProvider.get_dialog_text("photoUtilities")
     try:
+        ui_text = LanguageProvider.get_dialog_text("photoUtilities")
         filters = ["basicFilesFilter", "advancedFilesFilter", "allFilesFilter"]
         final_filter = []
-        for filter_type in filters:
-            if filter_type in ui_text:
-                final_filter.append(ui_text[filter_type])
+        if ui_text:
+            for filter_type in filters:
+                if filter_type in ui_text:
+                    final_filter.append(ui_text.get(filter_type, ""))
         return final_filter
     except Exception as e:
         ErrorHandler.exception_handler(e, parent)

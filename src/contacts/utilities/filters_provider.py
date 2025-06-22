@@ -25,7 +25,7 @@ class FiltersProvider:
         try:
             saved_filters = FiltersProvider.get_filters_data()
             if filter_name in saved_filters:
-                del saved_filters[filter_name]
+                saved_filters.pop(filter_name, None)
                 with open(str(FiltersProvider.filters_path), "w", encoding="utf-8") as file:
                     json.dump(saved_filters, file, indent=2)
         except Exception as e:

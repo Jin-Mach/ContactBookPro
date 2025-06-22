@@ -47,37 +47,39 @@ class ContactDialog(QDialog):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
-        tab_text = ["mandatory", "nonMandatory"]
         try:
-            if "dialogTitle" in ui_text and "dialogTitleUpdate" in ui_text:
-                if self.update_contact:
-                    self.setWindowTitle(ui_text["dialogTitleUpdate"])
-                else:
-                    self.setWindowTitle(ui_text["dialogTitle"])
-            for index, text in enumerate(tab_text):
-                if text in ui_text:
-                    self.dialog_tab_widget.setTabText(index, ui_text[text])
-            for widget in self.buttons:
-                if widget.objectName() in ui_text:
-                    if widget.objectName() == "dialogAddContactButton" and self.update_contact:
-                        widget.setText(ui_text[f"{widget.objectName()}Update"])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            tab_text = ["mandatory", "nonMandatory"]
+            if ui_text:
+                if "dialogTitle" in ui_text and "dialogTitleUpdate" in ui_text:
+                    if self.update_contact:
+                        self.setWindowTitle(ui_text.get("dialogTitleUpdate", ""))
                     else:
-                        widget.setText(ui_text[widget.objectName()])
+                        self.setWindowTitle(ui_text.get("dialogTitle", ""))
+                for index, text in enumerate(tab_text):
+                    if text in ui_text:
+                        self.dialog_tab_widget.setTabText(index, ui_text.get(text, ""))
+                for widget in self.buttons:
+                    if widget.objectName() in ui_text:
+                        if widget.objectName() == "dialogAddContactButton" and self.update_contact:
+                            widget.setText(ui_text.get(f"{widget.objectName()}Update", ""))
+                        else:
+                            widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
         try:
-            for button in self.buttons:
-                if button.objectName() in tooltips_text:
-                    if button.objectName() == "dialogAddContactButton" and self.update_contact:
-                        button.setToolTip(tooltips_text[f"{button.objectName()}Update"])
-                        button.setToolTipDuration(5000)
-                    else:
-                        button.setToolTip(tooltips_text[button.objectName()])
-                        button.setToolTipDuration(5000)
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            if tooltips_text:
+                for button in self.buttons:
+                    if button.objectName() in tooltips_text:
+                        if button.objectName() == "dialogAddContactButton" and self.update_contact:
+                            button.setToolTip(tooltips_text.get(f"{button.objectName()}Update", ""))
+                            button.setToolTipDuration(5000)
+                        else:
+                            button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                            button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -104,7 +106,10 @@ class ContactDialog(QDialog):
             self.accept()
 
     def set_contact_data(self, data: dict) -> None:
-        self.mandatory_widget.set_contact_data(data)
-        self.non_mandatory_widget.work_widget.set_contact_data(data)
-        self.non_mandatory_widget.social_networks_widget.set_contact_data(data)
-        self.non_mandatory_widget.personal_details_widget.set_contact_data(data)
+        try:
+            self.mandatory_widget.set_contact_data(data)
+            self.non_mandatory_widget.work_widget.set_contact_data(data)
+            self.non_mandatory_widget.social_networks_widget.set_contact_data(data)
+            self.non_mandatory_widget.personal_details_widget.set_contact_data(data)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

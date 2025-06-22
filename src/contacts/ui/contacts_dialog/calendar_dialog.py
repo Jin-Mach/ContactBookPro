@@ -40,33 +40,37 @@ class CalendarDialog(QDialog):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_dialog_text(self.objectName())
         try:
-            if "calendarDialogTitle" in ui_text:
-                self.setWindowTitle(ui_text["calendarDialogTitle"])
-            for button in self.buttons:
-                if button.objectName() in ui_text:
-                    if isinstance(button, QPushButton):
-                        button.setText(ui_text[button.objectName()])
+            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            if ui_text:
+                if "calendarDialogTitle" in ui_text:
+                    self.setWindowTitle(ui_text.get("calendarDialogTitle", ""))
+                for button in self.buttons:
+                    if button.objectName() in ui_text:
+                        if isinstance(button, QPushButton):
+                            button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
         try:
+            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
             for button in self.buttons:
                 if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text[button.objectName()])
+                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
                     button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def return_date(self, birthday_input: QLineEdit) -> str | None:
-        error_text = LanguageProvider.get_error_text(self.objectName())
-        selected_date = self.calendar_widget.return_selected_date()
-        if selected_date:
-            birthday_input.setText(selected_date)
-            self.accept()
-            return birthday_input.text()
-        DialogsProvider.show_error_dialog(error_text["selectedDateError"])
-        return None
+        try:
+            error_text = LanguageProvider.get_error_text(self.objectName())
+            selected_date = self.calendar_widget.return_selected_date()
+            if selected_date:
+                birthday_input.setText(selected_date)
+                self.accept()
+                return birthday_input.text()
+            DialogsProvider.show_error_dialog(error_text.get("selectedDateError", ""))
+            return None
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

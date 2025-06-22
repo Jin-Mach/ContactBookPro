@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QWidget, QLayout, QHBoxLayout
 from src.contacts.ui.main_widgets.notes_info_widget import NotesInfoWidget
 from src.contacts.ui.main_widgets.personal_info_widget import PersonalTabInfoWidget
 from src.contacts.ui.main_widgets.tab_info_widget import TabInfoWidget
+from src.utilities.error_handler import ErrorHandler
 
 
 class ContactsDetailWidget(QWidget):
@@ -28,6 +29,9 @@ class ContactsDetailWidget(QWidget):
         return main_layout
 
     def reset_data(self) -> None:
-        self.personal_info_widget.reset_data()
-        self.tab_info_widget.reset_data()
-        self.notes_info_widget.reset_data()
+        try:
+            self.personal_info_widget.reset_data()
+            self.tab_info_widget.reset_data()
+            self.notes_info_widget.reset_data()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

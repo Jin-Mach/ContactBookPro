@@ -105,12 +105,13 @@ class ContextMenu(QMenu):
     def set_ui_text(self) -> None:
         try:
             ui_text = LanguageProvider.get_context_menu_text(self.objectName())
-            for widget in self.widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QMenu):
-                        widget.setTitle(ui_text[widget.objectName()])
-                    elif isinstance(widget, QAction):
-                        widget.setText(ui_text[widget.objectName()])
+            if ui_text:
+                for widget in self.widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QMenu):
+                            widget.setTitle(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QAction):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

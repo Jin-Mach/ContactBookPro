@@ -32,8 +32,9 @@ class SearchNonMandatoryWidget(QWidget):
         try:
             ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
             tab_text = ["work", "social", "detail"]
-            for index, text in enumerate(tab_text):
-                if text in ui_text:
-                    self.non_mandatory_tab_widget.setTabText(index, ui_text[text])
+            if ui_text:
+                for index, text in enumerate(tab_text):
+                    if text in ui_text:
+                        self.non_mandatory_tab_widget.setTabText(index, ui_text.get(text, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

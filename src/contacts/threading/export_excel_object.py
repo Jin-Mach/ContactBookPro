@@ -7,6 +7,7 @@ from src.utilities.language_provider import LanguageProvider
 class ExportExcelObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
+
     def __init__(self, file_path: str, headers: dict[str, list], excel_data: dict[str, list]) -> None:
         super().__init__()
         self.class_name = "exportExcelObject"
@@ -20,9 +21,9 @@ class ExportExcelObject(QObject):
             workbook = xlsxwriter.Workbook(self.file_path)
             headers_format = workbook.add_format({"bold": True, "align": "center"})
             data_format = workbook.add_format({"align": "center"})
-            for table_key, translated_sheet_name in self.index_map["tables"].items():
+            for table_key, translated_sheet_name in self.index_map.get("tables", {}).items():
                 worksheet = workbook.add_worksheet(translated_sheet_name)
-                headers = self.index_map["headers"][table_key]
+                headers = self.index_map.get("headers", {}).get(table_key, {})
                 data_rows = self.excel_data.get(table_key, [])
                 for col_index, header_name in enumerate(headers.values()):
                     max_length = len(header_name)

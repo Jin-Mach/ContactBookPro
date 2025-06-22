@@ -19,11 +19,12 @@ class TrayIcon(QSystemTrayIcon):
             self.create_connection()
 
     def create_context_menu(self) -> QMenu | None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
         try:
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
             menu = QMenu()
-            self.new_contact = menu.addAction(ui_text["addContact"])
-            self.close_application = menu.addAction(ui_text["closeApplication"])
+            if ui_text:
+                self.new_contact = menu.addAction(ui_text.get("addContact", ""))
+                self.close_application = menu.addAction(ui_text.get("closeApplication", ""))
             return menu
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
@@ -40,6 +41,7 @@ class TrayIcon(QSystemTrayIcon):
     def show_notification(self, title: str, message: str) -> None:
         try:
             ui_text = LanguageProvider.get_ui_text("trayIcon")
-            self.showMessage(title, ui_text[message], QSystemTrayIcon.MessageIcon.Information, 5000)
+            if ui_text:
+                self.showMessage(title, ui_text.get(message, ""), QSystemTrayIcon.MessageIcon.Information, 5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

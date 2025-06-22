@@ -52,11 +52,11 @@ class ContactsController:
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
         if not self.table_view.selectionModel().hasSelection():
-            DialogsProvider.show_error_dialog(self.error_text["noTableviewSelection"])
+            DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""))
             return None
         index = self.table_view.selectionModel().currentIndex()
         if not index.isValid():
-            DialogsProvider.show_error_dialog(self.error_text["indexError"])
+            DialogsProvider.show_error_dialog(self.error_text.get("indexError", ""))
             return None
         id_data = self.mandatory_model.index(index.row(), 0)
         contact_id = self.mandatory_model.data(id_data)
@@ -141,7 +141,7 @@ class ContactsController:
                 if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
                     self.table_view.set_detail_data(index)
                     self.main_window.tray_icon.show_notification(
-                        f'{contact_data["first_name"]} {contact_data["second_name"]}',
+                        f'{contact_data.get("first_name", "")} {contact_data.get("second_name", "")}',
                         "contactUpdated"
                     )
         except Exception as e:
@@ -153,7 +153,7 @@ class ContactsController:
             if selected_contact is None:
                 return
             index, contact_id, contact_data = selected_contact
-            dialog = DeleteDialogs.show_delete_contact_dialog(contact_data["first_name"], contact_data["second_name"])
+            dialog = DeleteDialogs.show_delete_contact_dialog(contact_data.get("first_name", ""), contact_data.get("second_name", ""))
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 self.mandatory_model.delete_contact(index.row())
                 self.refresh_ui()

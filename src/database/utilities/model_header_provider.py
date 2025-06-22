@@ -10,8 +10,9 @@ class ModelHeaderProvider:
     def set_mandatory_model_headers(model: QSqlTableModel, parent=None) -> None:
         try:
             headers = LanguageProvider.get_headers_text(model.objectName())
-            for index, key in enumerate(headers.keys()):
-                model.setHeaderData(index, Qt.Orientation.Horizontal, headers[key])
+            if headers:
+                for index, key in enumerate(headers.keys()):
+                    model.setHeaderData(index, Qt.Orientation.Horizontal, headers.get(key, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
 
@@ -19,7 +20,8 @@ class ModelHeaderProvider:
     def set_advanced_filter_model_headers(model: QAbstractTableModel, parent=None) -> None:
         try:
             headers = LanguageProvider.get_headers_text(model.objectName())
-            for index, key in enumerate(headers.keys()):
-                model.setHeaderData(index, Qt.Orientation.Horizontal, headers[key])
+            if headers:
+                for index, key in enumerate(headers.keys()):
+                    model.setHeaderData(index, Qt.Orientation.Horizontal, headers.get(key, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)

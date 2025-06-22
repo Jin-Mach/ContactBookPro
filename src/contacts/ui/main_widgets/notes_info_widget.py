@@ -41,23 +41,24 @@ class NotesInfoWidget(QWidget):
         return main_layout
 
     def set_ui_text(self) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.objectName())
-        widgets = [self.notes_text_edit, self.create_date_text_label, self.update_date_text_label]
         try:
-            for widget in widgets:
-                if widget.objectName() in ui_text:
-                    if isinstance(widget, QTextEdit):
-                        widget.setPlaceholderText(ui_text[widget.objectName()])
-                    elif isinstance(widget, QLabel):
-                        widget.setText(ui_text[widget.objectName()])
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            widgets = [self.notes_text_edit, self.create_date_text_label, self.update_date_text_label]
+            if ui_text:
+                for widget in widgets:
+                    if widget.objectName() in ui_text:
+                        if isinstance(widget, QTextEdit):
+                            widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QLabel):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_data(self, data: dict) -> None:
         try:
-            self.notes_text_edit.setPlainText(data["notes"])
-            self.create_date_label.setText(data["created"])
-            self.update_date_label.setText(data["updated"])
+            self.notes_text_edit.setPlainText(data.get("notes", ""))
+            self.create_date_label.setText(data.get("created", ""))
+            self.update_date_label.setText(data.get("updated", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
