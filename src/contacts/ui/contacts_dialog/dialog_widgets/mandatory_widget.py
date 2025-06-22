@@ -112,36 +112,41 @@ class MandatoryWidget(QWidget):
             error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
             inputs = self.findChildren((QLineEdit, QComboBox))
             labels = self.findChildren(QLabel)
+            gender_relationship_data = []
             mandatory_data = []
             for widget in inputs:
                 if isinstance(widget, QComboBox):
                     if widget.currentIndex() == 0:
                         object_name_text = widget.objectName().removeprefix("dialog").removesuffix("Combobox")
-                        DialogsProvider.show_error_dialog(error_text.get(f"{object_name_text.lower()}Error", "Chyba"))
+                        if error_text:
+                            DialogsProvider.show_error_dialog(error_text.get(f"{object_name_text.lower()}Error", "Chyba"))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
-                    mandatory_data.append(widget.currentIndex())
+                    gender_relationship_data.append(widget.currentIndex())
                 if isinstance(widget, QLineEdit):
                     text = widget.text().strip()
                     if not text and widget.objectName() != "dialogStreetEdit":
                         label_text = self.return_label_text(labels, widget)
-                        DialogsProvider.show_error_dialog(f"{error_text.get("emptyTextError", "")}{label_text}")
+                        if error_text:
+                            DialogsProvider.show_error_dialog(f"{error_text.get("emptyTextError", "")}{label_text}")
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(text):
-                        DialogsProvider.show_error_dialog(error_text.get("emailValidatorError", ""))
+                        if error_text:
+                            DialogsProvider.show_error_dialog(error_text.get("emailValidatorError", ""))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
-                        DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""))
+                        if error_text:
+                            DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""))
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     mandatory_data.append(text)
-            mandatory_data += normalize_texts([self.dialog_first_name_edit, self.dialog_second_name_edit,
+            mandatory_data = gender_relationship_data + mandatory_data + normalize_texts([self.dialog_first_name_edit, self.dialog_second_name_edit,
                                                self.dialog_street_edit, self.dialog_city_edit, self.dialog_country_edit])
             if self.default_data:
                 return [mandatory_data, CheckUpdateProvider.check_update(self.objectName(), self.default_data, mandatory_data)]

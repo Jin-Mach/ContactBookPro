@@ -8,6 +8,7 @@ from src.contacts.controlers.export_controlers.excel_export_controler import Exc
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
+from src.database.delegates.styled_item_delegate import StyledItemDelegate
 from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -21,6 +22,7 @@ class ContactsTableviewWidget(QTableView):
         self.setObjectName("contactsTableviewWidget")
         self.mandatory_model = mandatory_model
         self.detail_widget = detail_widget
+        delegate = StyledItemDelegate(self)
         self.setModel(self.mandatory_model)
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -29,6 +31,7 @@ class ContactsTableviewWidget(QTableView):
         self.set_headers()
         self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
         self.selectionModel().currentChanged.connect(self.set_search_text_label)
+        self.setItemDelegate(delegate)
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         if self.ui_text:
             self.gender_items = self.ui_text["gender_items"]

@@ -172,7 +172,6 @@ class PersonalDetailsWidget(QWidget):
     def set_contact_data(self, data: dict) -> None:
         try:
             widget_data = [data.get("title", ""), data.get("birthday", ""), data.get("notes", ""), data.get("photo", None)]
-            print(widget_data)
             self.default_data = widget_data
             self.dialog_title_edit.setText(widget_data[0])
             self.dialog_birthday_edit.setText(widget_data[1])

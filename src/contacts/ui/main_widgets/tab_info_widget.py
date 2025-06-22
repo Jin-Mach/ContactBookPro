@@ -1,6 +1,7 @@
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QTabWidget, QWidget, QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QFormLayout
 
+from src.contacts.utilities.phone_utilities import format_phone_number
 from src.contacts.utilities.url_utilities import open_url, update_buttons_state
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
@@ -196,7 +197,7 @@ class TabInfoWidget(QTabWidget):
             self.x_url = data.get("x_url", "")
             self.instagram_url = data.get("instagram_url", "")
             self.personal_email_label.setText(data.get("personal_email", ""))
-            self.personal_phone_number_label.setText(data.get("personal_phone_number", ""))
+            self.personal_phone_number_label.setText(format_phone_number(data.get("personal_phone_number", "")))
             self.personal_address_label.setText(self.validate_address(
                 data.get("personal_street", ""),
                 data.get("personal_house_number", ""),
@@ -210,7 +211,7 @@ class TabInfoWidget(QTabWidget):
             self.website_url = data.get("website_url", "")
             self.work_company_name_label.setText(data.get("company_name", ""))
             self.work_email_label.setText(data.get("work_email", ""))
-            self.work_phone_number_label.setText(data.get("work_phone_number", ""))
+            self.work_phone_number_label.setText(format_phone_number(data.get("personal_phone_number", "")))
             self.work_address_label.setText(self.validate_address(
                 data.get("work_street", ""),
                 data.get("work_house_number", ""),
