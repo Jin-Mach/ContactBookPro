@@ -1,8 +1,9 @@
-from PyQt6.QtCore import QStandardPaths, QObject, QThread
+from PyQt6.QtCore import QStandardPaths, QObject
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QTableView, QMainWindow, QFileDialog
 
-from src.contacts.threading.export_excel_object import ExportExcelObject
+from src.contacts.threading.basic_thread import BasicThread
+from src.contacts.threading.objects.export_excel_object import ExportExcelObject
 from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -46,16 +47,12 @@ class ExcelExportControler:
 
     def create_excel_thread(self, export_object: QObject, main_window: QMainWindow) -> None:
         try:
-            self.export_object = export_object
-            self.export_thread = QThread()
-            self.export_object.moveToThread(self.export_thread)
-            self.export_thread.started.connect(self.export_object.run_excel_export)
-            self.export_object.error_message.connect(ExcelExportControler.write_log_exception)
-            self.export_object.finished.connect(self.export_thread.quit)
-            self.export_object.finished.connect(self.export_object.deleteLater)
-            self.export_thread.finished.connect(self.export_thread.deleteLater)
-            self.export_object.finished.connect(lambda success: ExcelExportControler.notification_handler(main_window, success))
-            self.export_thread.start()
+            self.excel_object = export_object
+            self.excel_thread = BasicThread()
+            self.excel_thread.run_basic_thread(worker=self.excel_object, start_slot=self.excel_object.run_excel_export,
+                                               on_error=self.write_log_exception,
+                                               on_finished=lambda success: ExcelExportControler.notification_handler(
+                                                 main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 

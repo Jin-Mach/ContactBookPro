@@ -1,9 +1,9 @@
-from PyQt6.QtCore import QThread
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog
 
-from src.contacts.threading.advanced_search_object import AdvancedSearchObject
-from src.contacts.threading.user_filter_object import UserFilterObject
+from src.contacts.threading.basic_thread import BasicThread
+from src.contacts.threading.objects.advanced_search_object import AdvancedSearchObject
+from src.contacts.threading.objects.user_filter_object import UserFilterObject
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.search_dialogs.advanced_search_dialog import AdvancedSearchDialog
 from src.database.models.mandatory_model import MandatoryModel
@@ -33,16 +33,13 @@ class AdvancedSearchControler:
                 query = QueryProvider.create_search_query(filters, self.parent)
                 if query:
                     self.advanced_search_object = AdvancedSearchObject(self.db_connection.databaseName(), query)
-                    self.advanced_search_thread = QThread()
-                    self.advanced_search_object.moveToThread(self.advanced_search_thread)
-                    self.advanced_search_thread.started.connect(self.advanced_search_object.run_advanced_search)
-                    self.advanced_search_object.search_completed.connect(self.check_search_result)
-                    self.advanced_search_object.error_message.connect(self.log_and_show_error)
-                    self.advanced_search_object.finished.connect(self.advanced_search_thread.quit)
-                    self.advanced_search_thread.finished.connect(self.advanced_search_object.deleteLater)
-                    self.advanced_search_thread.finished.connect(self.advanced_search_thread.deleteLater)
-                    self.advanced_search_object.finished.connect(lambda: AdvancedSearchControler.remove_connection(self.advanced_search_object.connection_name))
-                    self.advanced_search_thread.start()
+                    self.advanced_search_thread = BasicThread()
+                    self.advanced_search_thread.run_basic_thread(worker=self.advanced_search_object,
+                                                                 start_slot=self.advanced_search_object.run_advanced_search,
+                                                                 success_signal=self.advanced_search_object.search_completed,
+                                                                 success_callback=self.check_search_result,
+                                                                 on_error=self.log_and_show_error,
+                                                                 on_finished=lambda: AdvancedSearchControler.remove_connection(self.advanced_search_object.connection_name))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -51,16 +48,13 @@ class AdvancedSearchControler:
             query = QueryProvider.create_search_query(selected_filter, self.parent)
             if query:
                 self.user_filter_object = UserFilterObject(self.db_connection.databaseName(), query)
-                self.user_filter_thread = QThread()
-                self.user_filter_object.moveToThread(self.user_filter_thread)
-                self.user_filter_thread.started.connect(self.user_filter_object.run_user_filter)
-                self.user_filter_object.search_completed.connect(self.check_search_result)
-                self.user_filter_object.error_message.connect(self.log_and_show_error)
-                self.user_filter_object.finished.connect(self.user_filter_thread.quit)
-                self.user_filter_thread.finished.connect(self.user_filter_object.deleteLater)
-                self.user_filter_thread.finished.connect(self.user_filter_thread.deleteLater)
-                self.user_filter_object.finished.connect(lambda: AdvancedSearchControler.remove_connection(self.user_filter_object.connection_name))
-                self.user_filter_thread.start()
+                self.user_filter_thread = BasicThread()
+                self.user_filter_thread.run_basic_thread(worker=self.user_filter_object,
+                                                         start_slot=self.user_filter_object.run_user_filter,
+                                                         success_signal=self.user_filter_object.search_completed,
+                                                         success_callback=self.check_search_result,
+                                                         on_error=self.log_and_show_error,
+                                                         on_finished=lambda: AdvancedSearchControler.remove_connection(self.user_filter_object.connection_name))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 

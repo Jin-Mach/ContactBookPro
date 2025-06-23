@@ -1,8 +1,9 @@
-from PyQt6.QtCore import QStandardPaths, QThread, QObject
+from PyQt6.QtCore import QStandardPaths, QObject
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow, QTableView, QFileDialog
 
-from src.contacts.threading.export_cvs_object import ExportCsvObject
+from src.contacts.threading.basic_thread import BasicThread
+from src.contacts.threading.objects.export_cvs_object import ExportCsvObject
 from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -53,16 +54,11 @@ class CsvExportControler:
 
     def create_csv_thread(self, export_object: QObject, main_window: QMainWindow) -> None:
         try:
-            self.export_object = export_object
-            self.export_thread = QThread()
-            self.export_object.moveToThread(self.export_thread)
-            self.export_thread.started.connect(self.export_object.run_csv_export)
-            self.export_object.error_message.connect(CsvExportControler.write_log_exception)
-            self.export_object.finished.connect(self.export_thread.quit)
-            self.export_object.finished.connect(self.export_object.deleteLater)
-            self.export_thread.finished.connect(self.export_thread.deleteLater)
-            self.export_object.finished.connect(lambda success: CsvExportControler.notification_handler(main_window, success))
-            self.export_thread.start()
+            self.csv_object = export_object
+            self.csv_thread = BasicThread()
+            self.csv_thread.run_basic_thread(worker=self.csv_object, start_slot=self.csv_object.run_csv_export,
+                                             on_error=self.write_log_exception,
+                                             on_finished=lambda success: CsvExportControler.notification_handler(main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
