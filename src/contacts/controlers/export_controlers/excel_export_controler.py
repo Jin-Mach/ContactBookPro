@@ -27,20 +27,18 @@ class ExcelExportControler:
             if not id_list:
                 DialogsProvider.show_error_dialog(self.error_text.get("emptyIdList", ""), main_window)
                 return
-            headers, excel_data = ExportDataProvider.get_excel_data(self.db_connection, id_list, main_window)
             file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text.get("excelFilter", ""))
             if file_name:
-                export_object = ExportExcelObject(file_name, headers, excel_data)
+                export_object = ExportExcelObject(self.db_connection.databaseName(), file_name, id_list, self.export_data_provider, main_window)
                 self.create_excel_thread(export_object, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
     def export_all_to_excel(self, main_window: QMainWindow) -> None:
         try:
-            headers, excel_data = ExportDataProvider.get_excel_data(self.db_connection, None, main_window)
             file_name, _ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text.get("excelFilter", ""))
             if file_name:
-                export_object = ExportExcelObject(file_name, headers, excel_data)
+                export_object = ExportExcelObject(self.db_connection.databaseName(), file_name, None, self.export_data_provider, main_window)
                 self.create_excel_thread(export_object, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

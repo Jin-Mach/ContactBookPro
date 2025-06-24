@@ -81,7 +81,7 @@ class ExportDataProvider:
             return None
 
     @staticmethod
-    def get_excel_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> tuple[dict[str, list[str]], dict[str, list[dict[str, Any]]]] | None:
+    def get_excel_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> dict[str, list[dict[str, Any]]] | None:
         try:
             headers_dict = ExportDataProvider.get_export_headers(db_connection, main_window)
             if not headers_dict:
@@ -111,7 +111,7 @@ class ExportDataProvider:
                         row[column_name] = ExportDataProvider.map_value(column_name, value, index_map)
                     rows.append(row)
                 final_data[table] = rows
-            return headers_dict, final_data
+            return final_data
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None

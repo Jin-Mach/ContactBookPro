@@ -27,27 +27,19 @@ class CsvExportControler:
             if not id_list:
                 DialogsProvider.show_error_dialog(self.error_text.get("emptyIdList", ""), main_window)
                 return
-            semicolon, headers, csv_data = self.export_data_provider.get_csv_data(self.db_connection, id_list, main_window)
-            delimiter = ","
-            if semicolon:
-                delimiter = ";"
             file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text.get("csvFilter", ""))
             if file_name:
-                export_object = ExportCsvObject(file_name, headers, delimiter, csv_data)
+                export_object = ExportCsvObject(self.db_connection.databaseName(), file_name, id_list, self.export_data_provider, main_window)
                 self.create_csv_thread(export_object, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
     def export_all_to_csv(self, main_window: QMainWindow) -> None:
         try:
-            semicolon, headers, csv_data = self.export_data_provider.get_csv_data(self.db_connection, None, main_window)
-            delimiter = ","
-            if semicolon:
-                delimiter = ";"
             file_name, _ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path,
                                                        filter=self.menu_text.get("csvFilter", ""))
             if file_name:
-                export_object = ExportCsvObject(file_name, headers, delimiter, csv_data)
+                export_object = ExportCsvObject(self.db_connection.databaseName(), file_name, None, self.export_data_provider, main_window)
                 self.create_csv_thread(export_object, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

@@ -24,37 +24,34 @@ class AdvancedSearchControler:
         self.error_text = LanguageProvider.get_error_text("contactSearchControler")
         self.parent = parent
         self.dialog = AdvancedSearchDialog(self.parent)
+        self.query_provider = QueryProvider()
 
     def advanced_search(self) -> None:
         try:
             self.dialog.reset_all_filters()
             if self.dialog.exec() == QDialog.DialogCode.Accepted:
                 filters = self.dialog.get_finall_filter()
-                query = QueryProvider.create_search_query(filters, self.parent)
-                if query:
-                    self.advanced_search_object = AdvancedSearchObject(self.db_connection.databaseName(), query)
-                    self.advanced_search_thread = BasicThread()
-                    self.advanced_search_thread.run_basic_thread(worker=self.advanced_search_object,
-                                                                 start_slot=self.advanced_search_object.run_advanced_search,
-                                                                 success_signal=self.advanced_search_object.search_completed,
-                                                                 success_callback=self.check_search_result,
-                                                                 on_error=self.log_and_show_error,
-                                                                 on_finished=lambda: AdvancedSearchControler.remove_connection(self.advanced_search_object.connection_name))
+                self.advanced_search_object = AdvancedSearchObject(self.db_connection.databaseName(), self.query_provider, filters, self.parent)
+                self.advanced_search_thread = BasicThread()
+                self.advanced_search_thread.run_basic_thread(worker=self.advanced_search_object,
+                                                            start_slot=self.advanced_search_object.run_advanced_search,
+                                                            success_signal=self.advanced_search_object.search_completed,
+                                                            success_callback=self.check_search_result,
+                                                            on_error=self.log_and_show_error,
+                                                            on_finished=lambda: AdvancedSearchControler.remove_connection(self.advanced_search_object.connection_name))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
     def apply_saved_filter(self, selected_filter: dict) -> None:
         try:
-            query = QueryProvider.create_search_query(selected_filter, self.parent)
-            if query:
-                self.user_filter_object = UserFilterObject(self.db_connection.databaseName(), query)
-                self.user_filter_thread = BasicThread()
-                self.user_filter_thread.run_basic_thread(worker=self.user_filter_object,
-                                                         start_slot=self.user_filter_object.run_user_filter,
-                                                         success_signal=self.user_filter_object.search_completed,
-                                                         success_callback=self.check_search_result,
-                                                         on_error=self.log_and_show_error,
-                                                         on_finished=lambda: AdvancedSearchControler.remove_connection(self.user_filter_object.connection_name))
+            self.user_filter_object = UserFilterObject(self.db_connection.databaseName(), self.query_provider, selected_filter, self.parent)
+            self.user_filter_thread = BasicThread()
+            self.user_filter_thread.run_basic_thread(worker=self.user_filter_object,
+                                                    start_slot=self.user_filter_object.run_user_filter,
+                                                    success_signal=self.user_filter_object.search_completed,
+                                                    success_callback=self.check_search_result,
+                                                    on_error=self.log_and_show_error,
+                                                    on_finished=lambda: AdvancedSearchControler.remove_connection(self.user_filter_object.connection_name))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
