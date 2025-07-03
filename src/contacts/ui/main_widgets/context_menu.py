@@ -5,8 +5,8 @@ from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
 from src.contacts.controlers.export_controlers.clipboard_export_controler import copy_to_clipboard
-from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportControler
-from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportControler
+from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportController
+from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportController
 from src.contacts.controlers.export_controlers.qr_code_controler import qr_code_preview
 from src.contacts.controlers.export_controlers.vcard_export_controler import export_to_vcard
 from src.utilities.error_handler import ErrorHandler
@@ -18,8 +18,8 @@ if TYPE_CHECKING:
 
 
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "ContactsController | None", csv_export_controler: CsvExportControler | None,
-                 excel_export_controler: ExcelExportControler, parent=None) -> None:
+    def __init__(self, contacts_controler: "ContactsController | None", csv_export_controler: CsvExportController | None,
+                 excel_export_controler: ExcelExportController, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent

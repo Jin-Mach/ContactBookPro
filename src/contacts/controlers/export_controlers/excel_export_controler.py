@@ -1,6 +1,8 @@
-from PyQt6.QtCore import QStandardPaths, QObject
+from typing import TYPE_CHECKING
+
+from PyQt6.QtCore import QStandardPaths
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QTableView, QMainWindow, QFileDialog
+from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.export_excel_object import ExportExcelObject
@@ -10,10 +12,13 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
 
+if TYPE_CHECKING:
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 
-class ExcelExportControler:
-    def __init__(self, db_connection: QSqlDatabase, table_view: QTableView) -> None:
-        self.class_name = "excelExportControler"
+
+class ExcelExportController:
+    def __init__(self, db_connection: QSqlDatabase, table_view: "ContactsTableviewWidget") -> None:
+        self.class_name = "excelExportController"
         self.export_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DocumentsLocation)
         self.db_connection = db_connection
         self.table_view = table_view
@@ -43,13 +48,13 @@ class ExcelExportControler:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    def create_excel_thread(self, export_object: QObject, main_window: QMainWindow) -> None:
+    def create_excel_thread(self, export_object: ExportExcelObject, main_window: QMainWindow) -> None:
         try:
             self.excel_object = export_object
             self.excel_thread = BasicThread()
             self.excel_thread.run_basic_thread(worker=self.excel_object, start_slot=self.excel_object.run_excel_export,
                                                on_error=self.write_log_exception,
-                                               on_finished=lambda success: ExcelExportControler.notification_handler(
+                                               on_finished=lambda success: ExcelExportController.notification_handler(
                                                  main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

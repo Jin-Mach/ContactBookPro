@@ -26,13 +26,13 @@
     "contactCheckBirthdayAction": "Kontrola narození",
     "contactCheckDuplicityAction": "Hledat duplicity"
   },
-  "csvExportControler": {
+  "csvExportController": {
     "csvFilter": "Soubory CSV (*.csv);;Všechny soubory (*)"
   },
-  "excelExportControler": {
+  "excelExportController": {
     "excelFilter": "Soubory Excel (*.xlsx);;Všechny soubory (*)"
   },
-  "vcardExportControler": {
+  "vcardExportController": {
     "vcardFilter": "Soubory vCard (*.vcf);;Všechny soubory (*)"
   }
 }

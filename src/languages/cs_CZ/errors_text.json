@@ -57,10 +57,10 @@
     "noFilters": "Žádné uložené filtry.",
     "noSelection": "Nejprve vyberte filtr."
   },
-  "csvExportControler": {
+  "csvExportController": {
     "emptyIdList": "Žádné kontakty pro export"
   },
-  "excelExportControler": {
+  "excelExportController": {
     "emptyIdList": "Žádné kontakty pro export"
   },
   "validatedLineedit": {

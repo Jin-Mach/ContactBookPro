@@ -5,6 +5,7 @@ from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
 
+# noinspection PyTypeChecker
 def copy_to_clipboard(db_connection: QSqlDatabase, index: int, field: str, main_window: QMainWindow) -> None:
     try:
         clipboard = QApplication.clipboard()
