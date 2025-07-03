@@ -16,7 +16,7 @@ class QrCodePreviewDialog(QDialog):
         self.setFixedSize(400, 500)
         self.setLayout(self.create_gui())
         self.set_ui_text()
-        IconProvider.set_window_icon(self, self.objectName(), self)
+        IconProvider.set_window_icon(self, self.objectName())
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()

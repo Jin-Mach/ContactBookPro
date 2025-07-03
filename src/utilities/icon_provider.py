@@ -11,13 +11,13 @@ class IconProvider:
     icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons")
 
     @staticmethod
-    def set_window_icon(widget: QWidget, widget_name: str, parent=None) -> None:
-        icon_icon_file = IconProvider.icons_path.joinpath(f"{widget_name}", "window_icon.png")
+    def set_window_icon(widget: QWidget, folder_name: str) -> None:
+        icon_icon_file = IconProvider.icons_path.joinpath(f"{folder_name}", "window_icon.png")
         try:
             if icon_icon_file.exists():
                 widget.setWindowIcon(QIcon(str(icon_icon_file)))
         except Exception as e:
-            ErrorHandler.exception_handler(e, parent)
+            ErrorHandler.exception_handler(e, widget)
 
     @staticmethod
     def set_buttons_icon(widget_name: str, widgets: list[QWidget], button_size: QSize | None, parent=None) -> None:

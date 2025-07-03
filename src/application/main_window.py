@@ -18,27 +18,17 @@ class MainWindow(QMainWindow):
         self.setObjectName("mainWindow")
         self.setMinimumSize(1280, 720)
         self.setContentsMargins(0, 0, 0, 0)
-        self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
         self.buttons_size = QSize(200, 50)
         self.icon_size = QSize(40, 40)
         self.contacts_main_widget = ContactsMainWidget(self)
         self.setCentralWidget(self.create_gui())
         self.set_ui_text()
         self.set_tooltips_text()
-        IconProvider.set_window_icon(self, self.objectName(), self)
+        IconProvider.set_window_icon(self, self.objectName())
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         if QSystemTrayIcon.isSystemTrayAvailable():
             self.tray_icon = TrayIcon(self)
             self.tray_icon.show()
-
-    def create_image(self) -> QLabel:
-        pixmap = QPixmap(str(self.icons_path.joinpath( "dog_image.png")))
-        dock_image_label = QLabel()
-        dock_image_label.setFixedSize(150, 150)
-        dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        dock_image_label.setObjectName("dockImageLabel")
-        dock_image_label.setPixmap(pixmap.scaled(QSize(250, 250), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
-        return dock_image_label
 
     def create_gui(self) -> QWidget:
         central_widget = QWidget()
@@ -63,7 +53,7 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.contacts_main_widget)
         self.stacked_widget.setCurrentWidget(self.contacts_main_widget)
         database_buttons_layout.addWidget(self.database_button)
-        dock_layout.addWidget(self.create_image())
+        dock_layout.addWidget(MainWindow.create_image())
         dock_layout.addLayout(database_buttons_layout)
         dock_layout.addStretch()
         main_layout.addLayout(dock_layout)
@@ -95,3 +85,17 @@ class MainWindow(QMainWindow):
                         button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    @staticmethod
+    def create_image() -> QLabel | None:
+        icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
+        if icons_path.exists():
+            pixmap = QPixmap(str(icons_path.joinpath("dog_image.png")))
+            dock_image_label = QLabel()
+            dock_image_label.setFixedSize(150, 150)
+            dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            dock_image_label.setObjectName("dockImageLabel")
+            dock_image_label.setPixmap(pixmap.scaled(QSize(250, 250), Qt.AspectRatioMode.KeepAspectRatio,
+                                                     Qt.TransformationMode.SmoothTransformation))
+            return dock_image_label
+        return None

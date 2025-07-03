@@ -1,12 +1,11 @@
-import pathlib
 from datetime import datetime
 
-from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton
 
 from src.contacts.ui.contacts_dialog.dialog_widgets.mandatory_widget import MandatoryWidget
 from src.contacts.ui.contacts_dialog.dialog_widgets.non_mandatory_widget import NonMandatoryWidget
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -16,7 +15,7 @@ class ContactDialog(QDialog):
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setFixedSize(600, 600)
-        self.setWindowIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
+        IconProvider.set_window_icon(self, "mainWindow")
         self.update_contact = update_contact
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)

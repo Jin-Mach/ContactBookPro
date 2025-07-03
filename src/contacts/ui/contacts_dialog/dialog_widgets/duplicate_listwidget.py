@@ -4,10 +4,10 @@ from PyQt6.QtWidgets import QListWidget, QAbstractItemView, QWidget, QHBoxLayout
 from src.utilities.error_handler import ErrorHandler
 
 
-class DuplicateListwidget(QListWidget):
+class DuplicateListWidget(QListWidget):
     def __init__(self, duplicate_data: list, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("duplicateListwidget")
+        self.setObjectName("duplicateListWidget")
         self.duplicate_data = duplicate_data
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.set_data(self.duplicate_data)

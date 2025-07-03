@@ -1,16 +1,18 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
-from src.contacts.ui.contacts_dialog.dialog_widgets.duplicate_listwidget import DuplicateListwidget
+from src.contacts.ui.contacts_dialog.dialog_widgets.duplicate_listwidget import DuplicateListWidget
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class DuplicateDialog(QDialog):
     def __init__(self, duplicate_contacts: list, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("duplicateDialog")
+        IconProvider.set_window_icon(self, "mainWindow")
         self.duplicate_contacts = duplicate_contacts
         self.setFixedSize(500, 400)
         self.setLayout(self.create_gui())
@@ -28,7 +30,7 @@ class DuplicateDialog(QDialog):
         duplicate_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         duplicate_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
         duplicate_text_label.setObjectName("duplicateTextLabel")
-        self.duplicate_listwidget = DuplicateListwidget(self.duplicate_contacts)
+        self.duplicate_listwidget = DuplicateListWidget(self.duplicate_contacts)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.RestoreDefaults | QDialogButtonBox.StandardButton.Ok
                                       | QDialogButtonBox.StandardButton.Cancel)
         continue_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
