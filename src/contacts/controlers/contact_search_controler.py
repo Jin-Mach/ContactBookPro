@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QLineEdit, QComboBox
 
-from src.contacts.controlers.completer_controler import CompleterControler
+from src.contacts.controlers.completer_controler import CompleterController
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.optimalize_data import normalize_input
@@ -11,11 +11,11 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class ContactSearchControler:
-    def __init__(self, controler: CompleterControler, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
+class ContactSearchController:
+    def __init__(self, controller: CompleterController, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
                  search_combobox: QComboBox, parent=None) -> None:
-        self.class_name = "contactSearchControler"
-        self.controler = controler
+        self.class_name = "contactSearchController"
+        self.controller = controller
         self.mandatory_model = mandatory_model
         self.table_view = table_view
         self.status_bar = status_bar
@@ -101,7 +101,7 @@ class ContactSearchControler:
         filter_list = []
         column_index = self.table_view.currentIndex().column()
         if column_index > -1:
-            if not self.controler.completer_state:
+            if not self.controller.completer_state:
                 for word in prepared_text:
                     for column_name in columns:
                         save_word = word.replace("'", "''")
@@ -122,8 +122,8 @@ class ContactSearchControler:
 
     @staticmethod
     def set_address_filter(search_text: str) -> str:
-        splitted_text = search_text.split(",")
-        prepared_text = [part.strip() for part in splitted_text]
+        split_text = search_text.split(",")
+        prepared_text = [part.strip() for part in split_text]
         return (f"personal_city_normalized = '{prepared_text[0]}' AND "
                 f"personal_house_number = '{prepared_text[-3]}' AND "
                 f"personal_post_code = '{prepared_text[-2]}' AND "

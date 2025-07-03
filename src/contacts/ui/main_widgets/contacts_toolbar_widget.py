@@ -3,11 +3,11 @@ from PyQt6.QtGui import QFont, QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
-from src.contacts.controlers.advanced_search_controler import AdvancedSearchControler
-from src.contacts.controlers.completer_controler import CompleterControler
-from src.contacts.controlers.contact_search_controler import ContactSearchControler
+from src.contacts.controlers.advanced_search_controler import AdvancedSearchController
+from src.contacts.controlers.completer_controler import CompleterController
+from src.contacts.controlers.contact_search_controler import ContactSearchController
 from src.contacts.controlers.contacts_controller import ContactsController
-from src.contacts.controlers.filters_controler import FiltersControler
+from src.contacts.controlers.filters_controler import FiltersController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
@@ -45,12 +45,12 @@ class ContactsToolbarWidget(QWidget):
         self.contacts_controler = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
                                                      social_model, detail_model, info_model, detail_widget, table_view,
                                                      self.status_bar, self)
-        self.completer_controler = CompleterControler(self.completer_model, self.table_view, self.search_line_edit)
+        self.completer_controler = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controler.setup()
-        self.contact_search_controler = ContactSearchControler(self.completer_controler, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
-        self.advanced_search_controler = AdvancedSearchControler(self.db_connection, self.mandatory_model, self.status_bar, self)
-        self.filters_controler = FiltersControler(self.advanced_search_controler.dialog.search_mandatory_widget,
-                                                  self.advanced_search_controler.dialog.search_non_mandatory_widget, self)
+        self.contact_search_controler = ContactSearchController(self.completer_controler, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
+        self.advanced_search_controler = AdvancedSearchController(self.db_connection, self.mandatory_model, self.status_bar, self)
+        self.filters_controler = FiltersController(self.advanced_search_controler.dialog.search_mandatory_widget,
+                                                   self.advanced_search_controler.dialog.search_non_mandatory_widget, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 

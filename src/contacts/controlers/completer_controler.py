@@ -5,7 +5,8 @@ from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTable
 from src.database.models.completer_model import CompleterModel
 
 
-class CompleterControler:
+# noinspection PyUnresolvedReferences
+class CompleterController:
     def __init__(self, query_model: CompleterModel, table_view: ContactsTableviewWidget, search_input: QLineEdit) -> None:
         self.query_model = query_model
         self.table_view = table_view

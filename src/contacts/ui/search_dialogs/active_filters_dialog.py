@@ -14,7 +14,7 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyTypeChecker
 class ActiveFiltersDialog(QDialog):
-    def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, QAbstractTableModel], None],
+    def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, AdvancedFilterModel], None],
                  search_mandatory_widget: SearchMandatoryWidget, search_non_mandatory_widget: SearchNonMandatoryWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("activeFiltersDialog")
@@ -84,8 +84,8 @@ class ActiveFiltersDialog(QDialog):
                 if error_text:
                     DialogsProvider.show_error_dialog(error_text.get("noActiveFilter", ""), self)
                 return
-            from src.contacts.controlers.filters_controler import FiltersControler
-            controler = FiltersControler(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
+            from src.contacts.controlers.filters_controler import FiltersController
+            controler = FiltersController(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
             controler.save_filter()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
