@@ -3,6 +3,7 @@ from typing import Callable
 from PyQt6.QtCore import QThread, QObject, pyqtSignal
 
 
+# noinspection PyUnresolvedReferences
 class BasicThread:
     def __init__(self):
         self.thread = None

@@ -15,8 +15,6 @@ def reset_database() -> bool:
     if db_name is None:
         return False
     db_path = db_path.joinpath(db_name)
-    if not db_path.exists():
-        return False
     database = QSqlDatabase.database()
     if database.isOpen():
         database.close()

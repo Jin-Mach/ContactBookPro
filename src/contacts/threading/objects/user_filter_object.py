@@ -4,6 +4,7 @@ from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from src.database.utilities.query_provider import QueryProvider
 
 
+# noinspection PyUnresolvedReferences
 class UserFilterObject(QObject):
     search_completed = pyqtSignal(list)
     error_message = pyqtSignal(str)
@@ -41,6 +42,7 @@ class UserFilterObject(QObject):
                 return
             while query.next():
                 id_list.append(query.value(0))
+            del query
             self.search_completed.emit(id_list)
             self.finished.emit(True)
         except Exception as e:
@@ -49,4 +51,5 @@ class UserFilterObject(QObject):
         finally:
             if db_connection:
                 db_connection.close()
+                del db_connection
                 QSqlDatabase.removeDatabase(self.connection_name)

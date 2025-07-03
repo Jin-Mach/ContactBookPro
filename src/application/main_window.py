@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(1280, 720)
         self.setContentsMargins(0, 0, 0, 0)
         self.icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
-        self.buttons_size = QSize(150, 50)
+        self.buttons_size = QSize(200, 50)
         self.icon_size = QSize(40, 40)
         self.contacts_main_widget = ContactsMainWidget(self)
         self.setCentralWidget(self.create_gui())

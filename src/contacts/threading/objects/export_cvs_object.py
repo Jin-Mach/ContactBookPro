@@ -8,6 +8,7 @@ from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.encoding_provider import get_encoding
 
 
+# noinspection PyUnresolvedReferences
 class ExportCsvObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
@@ -53,4 +54,5 @@ class ExportCsvObject(QObject):
         finally:
             if db_connection:
                 db_connection.close()
+                del db_connection
                 QSqlDatabase.removeDatabase(self.connection_name)

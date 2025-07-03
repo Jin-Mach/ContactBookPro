@@ -7,6 +7,7 @@ from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class ExportExcelObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
@@ -80,4 +81,5 @@ class ExportExcelObject(QObject):
         finally:
             if db_connection:
                 db_connection.close()
+                del db_connection
                 QSqlDatabase.removeDatabase(self.connection_name)
