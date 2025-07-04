@@ -83,6 +83,6 @@
     "exportSaved": "Soubor uložen"
   },
   "mandatoryModel": {
-    "gengerHeaderText": "Pohlaví uživatele"
+    "genderHeaderText": "Pohlaví uživatele"
   }
 }

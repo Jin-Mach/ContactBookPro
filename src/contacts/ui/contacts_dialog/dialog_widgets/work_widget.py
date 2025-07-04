@@ -102,7 +102,7 @@ class WorkWidget(QWidget):
                     widget.setFocus()
                     return None
                 elif widget.objectName() == "dialogPhoneNumberEdit" and text and not ContactValidator.validate_phone_number(text):
-                    DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", self))
+                    DialogsProvider.show_error_dialog(error_text.get("phoneNumberValidatorError", self))
                     self.set_tab_index()
                     widget.setFocus()
                     return None

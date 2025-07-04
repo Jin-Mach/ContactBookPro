@@ -16,11 +16,11 @@
     "relationshipError": "Prosím, vyberte vztah.",
     "emptyTextError": "Toto pole nesmí být prázdné.\n",
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
-    "phonenumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789."
+    "phoneNumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789."
   },
   "dialogWorkWidget": {
     "emailValidatorError": "Neplatný formát e-mailu.\nZadejte prosím e-mail ve formátu: email@domena.cz",
-    "phonenumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789.",
+    "phoneNumberValidatorError": "Zadejte telefonní číslo ve správném formátu.\nNapříklad: +420123456789.",
     "workAddressValidatorError": "Vyplňte adresu a PSČ nebo město a stát, nebo nechte vše prázdné."
   },
   "dialogSocialNetworkWidget": {

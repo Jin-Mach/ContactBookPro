@@ -1,6 +1,6 @@
 {
   "qrCodePreviewDialog": {
     "qrDialogTitle": "Náhled QR kódu",
-    "infoLableText": "Naskenuj QR kód pro uložení kontaktu"
+    "infoLabelText": "Naskenuj QR kód pro uložení kontaktu"
 }
 }

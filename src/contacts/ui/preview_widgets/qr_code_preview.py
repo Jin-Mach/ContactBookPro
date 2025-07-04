@@ -26,7 +26,7 @@ class QrCodePreviewDialog(QDialog):
         self.qr_code_label = QLabel()
         self.qr_code_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.info_label_text = QLabel()
-        self.info_label_text.setObjectName("infoLableText")
+        self.info_label_text.setObjectName("infoLabelText")
         self.info_label_text.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(self.contact_name_label)
         main_layout.addStretch()

@@ -23,7 +23,7 @@ class MandatoryModel(QSqlTableModel):
         self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
         self.female_icon = str(self.icons_path.joinpath("female_icon.png"))
         self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
-        self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["gengerHeaderText"]
+        self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["genderHeaderText"]
         self.select()
 
     def headerData(self, section: int, orientation: Qt.Orientation, role=Qt.ItemDataRole.DisplayRole) -> bool:

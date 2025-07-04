@@ -141,7 +141,7 @@ class MandatoryWidget(QWidget):
                         return None
                     elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
                         if error_text:
-                            DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""), self)
+                            DialogsProvider.show_error_dialog(error_text.get("phoneNumberValidatorError", ""), self)
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
