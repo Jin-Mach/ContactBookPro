@@ -10,13 +10,12 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences,PyTypeChecker
 class DialogsProvider:
     class_name = "dialogsProvider"
-    icon_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     @staticmethod
     def show_error_dialog(error_message: str, parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("errorDialog")
-        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
+        DialogsProvider.set_dialog_icon(dialog)
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel()
@@ -33,8 +32,8 @@ class DialogsProvider:
     @staticmethod
     def show_init_error_dialog(title: str, error_text: str) -> QDialog:
         dialog = QDialog()
-        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
         dialog.setWindowTitle(title)
+        DialogsProvider.set_dialog_icon(dialog)
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel(error_text)
@@ -53,7 +52,7 @@ class DialogsProvider:
     @staticmethod
     def show_database_error_dialog(db_error: str) -> QDialog:
         dialog = QDialog()
-        dialog.setWindowIcon(QIcon(str(DialogsProvider.icon_path)))
+        DialogsProvider.set_dialog_icon(dialog)
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel()
@@ -75,7 +74,7 @@ class DialogsProvider:
     @staticmethod
     def language_selection_dialog(language_list: list) -> str:
         dialog = QDialog()
-        dialog.setWindowIcon(str(DialogsProvider.icon_path))
+        DialogsProvider.set_dialog_icon(dialog)
         dialog.setWindowTitle("Language error")
         main_layout = QVBoxLayout()
         text_label = QLabel("The selected language could not be loaded.\nPlease select a supported language from the list,\n"
@@ -101,6 +100,16 @@ class DialogsProvider:
         if dialog.exec() == QDialog.DialogCode.Accepted:
             return language_combobox.currentText()
         return ""
+
+    @staticmethod
+    def set_dialog_icon(dialog: QDialog) -> None:
+        try:
+            icon_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
+            if icon_path.exists():
+                dialog.setWindowIcon(QIcon(str(icon_path)))
+        except Exception as e:
+            from src.utilities.error_handler import ErrorHandler
+            ErrorHandler.exception_handler(e, dialog)
 
     @staticmethod
     def get_ui_text(dialog: QDialog, widgets: list[QWidget], error_message: str, parent=None) -> None:

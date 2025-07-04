@@ -36,105 +36,88 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_ui_text(widget_name: str) -> dict[str, str] | None:
+    def load_json(file_name: str) -> dict | None:
         try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "ui_text.json"), "r", encoding="utf-8") as file:
-                language_data = json.load(file)
-            return language_data.get(widget_name)
+            path = LanguageProvider.language_path.joinpath(LanguageProvider.language_code, file_name)
+            if path.exists():
+                with open(path, "r", encoding="utf-8") as file:
+                    return json.load(file)
+            else:
+                return None
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
+
+    @staticmethod
+    def get_ui_text(widget_name: str) -> dict[str, str] | None:
+        data = LanguageProvider.load_json("ui_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_tooltips_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "tooltips_text.json"), encoding="utf-8") as file:
-                tooltips_data = json.load(file)
-            return tooltips_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("tooltips_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_dialog_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "dialog_text.json"), "r", encoding="utf-8") as file:
-                dialog_data = json.load(file)
-            return dialog_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("dialog_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_search_dialog_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "search_dialog_text.json"), "r", encoding="utf-8") as file:
-                search_dialog_data = json.load(file)
-            return search_dialog_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("search_dialog_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_user_filters_dialog_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "user_filters_dialog_text.json"), "r", encoding="utf-8") as file:
-                search_dialog_data = json.load(file)
-            return search_dialog_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("user_filters_dialog_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_context_menu_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "menu_text.json"), "r", encoding="utf-8") as file:
-                context_menu_data = json.load(file)
-            return context_menu_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("menu_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_preview_dialog_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "preview_dialog_text.json"), "r", encoding="utf-8") as file:
-                preview_dialog_data = json.load(file)
-            return preview_dialog_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("preview_dialog_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_error_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "errors_text.json"), "r", encoding="utf-8") as file:
-                error_data = json.load(file)
-            return error_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("errors_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_headers_text(widget_name: str) -> dict[str, str] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "headers_text.json"), "r", encoding="utf-8") as file:
-                headers_data = json.load(file)
-            return headers_data.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("headers_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_export_settings(widget_name: str) -> tuple[bool, dict[str, dict[str, str]]] | None:
-        try:
-            with open(LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "export_settings.json"), "r", encoding="utf-8") as file:
-                index_map = json.load(file)
-            semicolon = LanguageProvider.language_code[:2] in index_map["semicolon_locales"]
-            return semicolon, index_map.get(widget_name)
-        except Exception as e:
-            LanguageProvider.write_log_exception(e)
-            return None
+        data = LanguageProvider.load_json("export_settings.json")
+        if data:
+            semicolon = LanguageProvider.language_code[:2] in data.get("semicolon_locales", [])
+            return semicolon, data.get(widget_name)
+        return None
 
     @staticmethod
     def get_language_dict() -> dict | None:

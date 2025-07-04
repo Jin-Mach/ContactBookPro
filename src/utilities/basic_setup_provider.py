@@ -5,6 +5,7 @@ import requests
 
 class BasicSetupProvider:
     default_path = pathlib.Path(__file__).parent.parent
+    default_path.mkdir(parents=True, exist_ok=True)
     missing_urls = []
 
     @staticmethod
