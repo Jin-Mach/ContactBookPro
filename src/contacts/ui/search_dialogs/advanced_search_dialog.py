@@ -22,7 +22,7 @@ class AdvancedSearchDialog(QDialog):
         self.set_ui_text()
         self.set_tooltips_text()
         IconProvider.set_buttons_icon(self.objectName(), self.buttons, QSize(35, 35))
-        self.active_filters_controler = FiltersController(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
+        self.active_filters_controller = FiltersController(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -82,7 +82,7 @@ class AdvancedSearchDialog(QDialog):
         self.search_non_mandatory_widget.search_social_networks_widget.reset_all_filters()
         self.search_non_mandatory_widget.search_details_widget.reset_all_filters()
 
-    def get_finall_filter(self) -> dict:
+    def get_final_filter(self) -> dict:
         try:
             filters = {"mandatory": self.search_mandatory_widget.return_mandatory_filter(),
                        "work": self.search_non_mandatory_widget.search_work_widget.return_work_filter(),
@@ -103,4 +103,4 @@ class AdvancedSearchDialog(QDialog):
             return {}
 
     def show_current_filter_dialog(self) -> None:
-        self.active_filters_controler.show_active_filters()
+        self.active_filters_controller.show_active_filters()

@@ -30,7 +30,7 @@ class AdvancedSearchController:
         try:
             self.dialog.reset_all_filters()
             if self.dialog.exec() == QDialog.DialogCode.Accepted:
-                filters = self.dialog.get_finall_filter()
+                filters = self.dialog.get_final_filter()
                 self.advanced_search_object = AdvancedSearchObject(self.db_connection.databaseName(), self.query_provider, filters, self.parent)
                 self.advanced_search_thread = BasicThread()
                 self.advanced_search_thread.run_basic_thread(worker=self.advanced_search_object,

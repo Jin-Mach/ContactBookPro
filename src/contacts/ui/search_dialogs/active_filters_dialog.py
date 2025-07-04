@@ -1,6 +1,6 @@
 from typing import Callable
 
-from PyQt6.QtCore import Qt, QAbstractTableModel
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
 from src.contacts.ui.search_dialogs.search_widgets.filters_tableview_widget import FiltersTableviewWidget
@@ -90,7 +90,7 @@ class ActiveFiltersDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def reset_active_filters_widgets(self, row: int, model: QAbstractTableModel) -> None:
+    def reset_active_filters_widgets(self, row: int, model: AdvancedFilterModel) -> None:
         try:
             filter_item = model.filter_data[row]
             combobox_widget = filter_item.get("combobox", None)

@@ -50,7 +50,7 @@ class FiltersController:
                 filter_name = filter_dialog.get_filter_name()
                 advanced_dialog = self.parent.parent()
                 if advanced_dialog and advanced_dialog.objectName() == "advancedSearchDialog":
-                    status, result = FiltersProvider.add_new_filter(filter_name, advanced_dialog.get_finall_filter())
+                    status, result = FiltersProvider.add_new_filter(filter_name, advanced_dialog.get_final_filter())
                     if not status and result == "exists":
                         error_text = LanguageProvider.get_error_text(self.class_name)
                         DialogsProvider.show_error_dialog(error_text.get("existingFilterName", ""), self.parent)
