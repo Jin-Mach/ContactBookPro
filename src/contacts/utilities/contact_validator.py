@@ -31,9 +31,6 @@ class ContactValidator:
     @staticmethod
     def validate_url(url: str, site: str) -> bool:
         parsed_url = urlparse(url)
-        if not parsed_url.scheme:
-            url = "https://" + url
-            parsed_url = urlparse(url)
         domain = tldextract.extract(parsed_url.netloc).domain
         ext = tldextract.extract(parsed_url.netloc)
         if not ext.suffix:

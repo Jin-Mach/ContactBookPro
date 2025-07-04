@@ -82,6 +82,8 @@ class SocialNetworkWidget(QWidget):
                     text = widget.text().strip()
                     site = widget.objectName().replace("dialog", "").replace("UrlEdit", "")
                     if text:
+                        if not text.startswith(("http://", "https://")):
+                            text = f"https://{text}"
                         is_valid = ContactValidator.validate_url(text, site)
                         if site.lower() == "website" and not is_valid:
                             DialogsProvider.show_error_dialog(error_text.get("websiteValidatorError"), self)
