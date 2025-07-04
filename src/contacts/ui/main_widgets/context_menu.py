@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING
-
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
@@ -13,19 +11,17 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
-if TYPE_CHECKING:
-    from src.controlers.contacts_controller import ContactsController
 
-
+# noinspection PyUnresolvedReferences
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controler: "ContactsController | None", csv_export_controler: CsvExportController | None,
-                 excel_export_controler: ExcelExportController, parent=None) -> None:
+    def __init__(self, contacts_controller: "ContactsController | None", csv_export_controller: CsvExportController | None,
+                 excel_export_controller: ExcelExportController, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
-        self.contacts_controler = contacts_controler
-        self.csv_export_controler = csv_export_controler
-        self.excel_export_controler = excel_export_controler
+        self.contacts_controller = contacts_controller
+        self.csv_export_controller = csv_export_controller
+        self.excel_export_controller = excel_export_controller
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -117,21 +113,21 @@ class ContextMenu(QMenu):
             ErrorHandler.exception_handler(e, self)
 
     def create_connection(self) -> None:
-        connections = [(self.add_contact_action, self.contacts_controler.add_new_contact),
-                       (self.update_contact_action, self.contacts_controler.update_contact),
-                       (self.delete_contact_action, lambda: self.contacts_controler.delete_contact(self.tableview)),
-                       (self.copy_name_action, lambda: copy_to_clipboard(self.csv_export_controler.db_connection,
+        connections = [(self.add_contact_action, self.contacts_controller.add_new_contact),
+                       (self.update_contact_action, self.contacts_controller.update_contact),
+                       (self.delete_contact_action, self.contacts_controller.delete_contact),
+                       (self.copy_name_action, lambda: copy_to_clipboard(self.csv_export_controller.db_connection,
                                                                          self.index, "name", self.main_window)),
-                       (self.copy_email_action, lambda: copy_to_clipboard(self.csv_export_controler.db_connection,
+                       (self.copy_email_action, lambda: copy_to_clipboard(self.csv_export_controller.db_connection,
                                                                           self.index, "email", self.main_window)),
-                       (self.copy_phone_number_action, lambda: copy_to_clipboard(self.csv_export_controler.db_connection,
+                       (self.copy_phone_number_action, lambda: copy_to_clipboard(self.csv_export_controller.db_connection,
                                                                                  self.index, "phone", self.main_window)),
-                       (self.export_filtered_data_csv_action, lambda: self.csv_export_controler.export_filtered_to_csv(self.main_window)),
-                       (self.export_all_data_csv_action, lambda: self.csv_export_controler.export_all_to_csv(self.main_window)),
-                       (self.export_filtered_data_excel_action, lambda: self.excel_export_controler.export_filtered_to_excel(self.main_window)),
-                       (self.export_all_data_excel_action, lambda: self.excel_export_controler.export_all_to_excel(self.main_window)),
-                       (self.export_vcard_action, lambda: export_to_vcard(self.csv_export_controler.db_connection, self.index, self.main_window)),
-                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controler.db_connection, self.index, self.main_window))]
+                       (self.export_filtered_data_csv_action, lambda: self.csv_export_controller.export_filtered_to_csv(self.main_window)),
+                       (self.export_all_data_csv_action, lambda: self.csv_export_controller.export_all_to_csv(self.main_window)),
+                       (self.export_filtered_data_excel_action, lambda: self.excel_export_controller.export_filtered_to_excel(self.main_window)),
+                       (self.export_all_data_excel_action, lambda: self.excel_export_controller.export_all_to_excel(self.main_window)),
+                       (self.export_vcard_action, lambda: export_to_vcard(self.csv_export_controller.db_connection, self.index, self.main_window)),
+                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):

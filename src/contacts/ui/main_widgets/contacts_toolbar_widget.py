@@ -1,3 +1,5 @@
+import sys
+
 from PyQt6.QtCore import QSize, QModelIndex, Qt
 from PyQt6.QtGui import QFont, QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
@@ -125,6 +127,9 @@ class ContactsToolbarWidget(QWidget):
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            if sys.platform == "darwin":
+                for key, value in tooltips_text.items():
+                    tooltips_text[key] = value.replace("Ctrl", "Cmd")
             buttons = self.findChildren(QPushButton)
             for button in buttons:
                 if button.objectName() in tooltips_text:

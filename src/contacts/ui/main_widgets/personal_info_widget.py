@@ -107,15 +107,21 @@ class PersonalTabInfoWidget(QTabWidget):
                 label.clear()
 
     def set_photo_pixmap(self, blob: QByteArray, gender: int) -> None:
-        icons_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "personalTabInfoWidget")
         try:
             pixmap = BlobHandler.blob_to_pixmap(blob, self)
             if not pixmap:
-                if gender == 1:
-                    pixmap = QPixmap(str(icons_path.joinpath("male_icon.png")))
+                male_icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons",
+                                                                                             "personalTabInfoWidget",
+                                                                                             "male_icon.png")
+                female_icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons",
+                                                                                             "personalTabInfoWidget",
+                                                                                             "female_icon.png")
+
+                if gender == 1 and male_icon_path.exists():
+                    pixmap = QPixmap(str(male_icon_path))
                     self.contact_photo_label.setPixmap(pixmap)
-                else:
-                    pixmap = QPixmap(str(icons_path.joinpath("female_icon.png")))
+                elif gender == 2 and female_icon_path.exists():
+                    pixmap = QPixmap(str(female_icon_path))
                     self.contact_photo_label.setPixmap(pixmap)
             else:
                 self.contact_photo_label.setPixmap(pixmap)

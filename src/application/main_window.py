@@ -17,6 +17,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setObjectName("mainWindow")
         self.setMinimumSize(1280, 720)
+        self.showMaximized()
         self.setContentsMargins(0, 0, 0, 0)
         self.buttons_size = QSize(200, 50)
         self.icon_size = QSize(40, 40)

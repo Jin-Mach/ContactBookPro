@@ -101,8 +101,8 @@ class ContactsTableviewWidget(QTableView):
 
     def contextMenuEvent(self, event) -> None:
         try:
-            if self.context_menu.contacts_controler is None:
-                self.context_menu.contacts_controler = InstanceProvider.get_contacts_controler_instance(self.context_menu.contacts_controler)
+            if self.context_menu.contacts_controller is None:
+                self.context_menu.contacts_controller = InstanceProvider.get_contacts_controler_instance(self.context_menu.contacts_controller)
             main_window = InstanceProvider.get_main_window_instance()
             model = self.model()
             index = self.selectionModel().currentIndex()
