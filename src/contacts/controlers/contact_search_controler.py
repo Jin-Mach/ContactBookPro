@@ -61,7 +61,7 @@ class ContactSearchController:
                         else:
                             self.new_filter = filters.get(str(column_index), "").replace("VALUE", search_text)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""))
+                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
                 if self.new_filter:
@@ -73,11 +73,11 @@ class ContactSearchController:
                             search_input.setFocus()
                         self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""))
+                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
             else:
-                DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""))
+                DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""), self.parent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -113,7 +113,7 @@ class ContactSearchController:
                 return self.set_address_filter(search_text)
             return ""
         else:
-            DialogsProvider.show_error_dialog(self.index_error_text.get("indexError", ""))
+            DialogsProvider.show_error_dialog(self.index_error_text.get("indexError", ""), self.parent)
             return ""
 
     @staticmethod

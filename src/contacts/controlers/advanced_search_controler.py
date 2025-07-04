@@ -57,7 +57,7 @@ class AdvancedSearchController:
 
     def check_search_result(self, id_list: list) -> None:
         if not id_list:
-            DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""))
+            DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""), self.parent)
             SearchProvider.reset_filter(self.mandatory_model)
             self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
             return

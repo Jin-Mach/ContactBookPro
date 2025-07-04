@@ -52,11 +52,11 @@ class ContactsController:
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
         if not self.table_view.selectionModel().hasSelection():
-            DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""))
+            DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""), self.parent)
             return None
         index = self.table_view.selectionModel().currentIndex()
         if not index.isValid():
-            DialogsProvider.show_error_dialog(self.error_text.get("indexError", ""))
+            DialogsProvider.show_error_dialog(self.error_text.get("indexError", ""), self.parent)
             return None
         id_data = self.mandatory_model.index(index.row(), 0)
         contact_id = self.mandatory_model.data(id_data)

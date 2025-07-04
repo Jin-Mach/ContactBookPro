@@ -3,7 +3,7 @@ from typing import Callable
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
-from src.contacts.ui.search_dialogs.search_widgets.user_filters_listwidget import UserFiltersListwidget
+from src.contacts.ui.search_dialogs.search_widgets.user_filters_listwidget import UserFiltersListWidget
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -29,7 +29,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label.setObjectName("userFiltersTextLabel")
         self.user_filters_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.user_filters_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
-        self.user_filters_listwidget = UserFiltersListwidget(self.delete_filter, self)
+        self.user_filters_listwidget = UserFiltersListWidget(self.delete_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(self.check_selected_filter)
         button_box.rejected.connect(self.reject)

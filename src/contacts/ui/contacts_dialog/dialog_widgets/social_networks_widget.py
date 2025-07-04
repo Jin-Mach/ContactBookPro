@@ -84,13 +84,13 @@ class SocialNetworkWidget(QWidget):
                     if text:
                         is_valid = ContactValidator.validate_url(text, site)
                         if site.lower() == "website" and not is_valid:
-                            DialogsProvider.show_error_dialog(error_text.get("websiteValidatorError"), "")
+                            DialogsProvider.show_error_dialog(error_text.get("websiteValidatorError"), self)
                             self.set_tab_index()
                             widget.setFocus()
                             return None
                         if not is_valid:
                             message = error_text.get("urlValidatorError", "").replace("{site}", site)
-                            DialogsProvider.show_error_dialog(message)
+                            DialogsProvider.show_error_dialog(message, self)
                             self.set_tab_index()
                             widget.setFocus()
                             return None

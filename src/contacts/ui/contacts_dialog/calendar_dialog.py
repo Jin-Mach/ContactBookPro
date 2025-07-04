@@ -68,7 +68,7 @@ class CalendarDialog(QDialog):
                 birthday_input.setText(selected_date)
                 self.accept()
                 return birthday_input.text()
-            DialogsProvider.show_error_dialog(error_text.get("selectedDateError", ""))
+            DialogsProvider.show_error_dialog(error_text.get("selectedDateError", ""), self)
             return None
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

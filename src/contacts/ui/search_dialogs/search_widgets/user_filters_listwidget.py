@@ -10,11 +10,11 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyTypeChecker
-class UserFiltersListwidget(QListWidget):
+# noinspection PyTypeChecker,PyUnresolvedReferences
+class UserFiltersListWidget(QListWidget):
     def __init__(self, delete_filter: Callable[[str], None], parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("userFiltersListwidget")
+        self.setObjectName("userFiltersListWidget")
         self.delete_filter = delete_filter
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
 

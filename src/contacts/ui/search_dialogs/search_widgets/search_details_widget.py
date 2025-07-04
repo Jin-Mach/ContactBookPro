@@ -12,10 +12,11 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
-class SearchDeatilsWidget(QWidget):
+# noinspection PyUnresolvedReferences
+class SearchDetailsWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("searchDetaisWidget")
+        self.setObjectName("searchDetailsWidget")
         self.operator_width = 150
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -45,7 +46,7 @@ class SearchDeatilsWidget(QWidget):
         self.search_notes_text_label = QLabel()
         self.search_notes_text_label.setObjectName("searchNotesTextLabel")
         self.search_notes_edit = ValidatedLineedit(self)
-        self.search_notes_edit.setObjectName("searcNotesEdit")
+        self.search_notes_edit.setObjectName("searchNotesEdit")
         self.search_notes_operator = QComboBox()
         self.search_notes_operator.setObjectName("searchNotesOperator")
         self.search_notes_operator.setFixedWidth(self.operator_width)
@@ -64,7 +65,7 @@ class SearchDeatilsWidget(QWidget):
             if tooltip_text and clear_filter_pushbutton.objectName() in tooltip_text:
                 clear_filter_pushbutton.setToolTip(tooltip_text.get(clear_filter_pushbutton.objectName(), ""))
                 clear_filter_pushbutton.setToolTipDuration(5000)
-            clear_filter_pushbutton.clicked.connect(partial(SearchDeatilsWidget.reset_row_filter, edit, operator))
+            clear_filter_pushbutton.clicked.connect(partial(SearchDetailsWidget.reset_row_filter, edit, operator))
             layout.addWidget(edit)
             if isinstance(edit, QComboBox):
                 layout.addStretch()

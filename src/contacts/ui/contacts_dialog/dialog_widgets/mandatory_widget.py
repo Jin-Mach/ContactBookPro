@@ -119,7 +119,7 @@ class MandatoryWidget(QWidget):
                     if widget.currentIndex() == 0:
                         object_name_text = widget.objectName().removeprefix("dialog").removesuffix("Combobox")
                         if error_text:
-                            DialogsProvider.show_error_dialog(error_text.get(f"{object_name_text.lower()}Error", "Chyba"))
+                            DialogsProvider.show_error_dialog(error_text.get(f"{object_name_text.lower()}Error", "Chyba"), self)
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
@@ -129,19 +129,19 @@ class MandatoryWidget(QWidget):
                     if not text and widget.objectName() != "dialogStreetEdit":
                         label_text = self.return_label_text(labels, widget)
                         if error_text:
-                            DialogsProvider.show_error_dialog(f"{error_text.get("emptyTextError", "")}{label_text}")
+                            DialogsProvider.show_error_dialog(f"{error_text.get("emptyTextError", "")}{label_text}", self)
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogEmailEdit" and not ContactValidator.validate_email(text):
                         if error_text:
-                            DialogsProvider.show_error_dialog(error_text.get("emailValidatorError", ""))
+                            DialogsProvider.show_error_dialog(error_text.get("emailValidatorError", ""), self)
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None
                     elif widget.objectName() == "dialogPhoneNumberEdit" and not ContactValidator.validate_phone_number(text):
                         if error_text:
-                            DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""))
+                            DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""), self)
                         self.main_tab_widget.setCurrentIndex(0)
                         widget.setFocus()
                         return None

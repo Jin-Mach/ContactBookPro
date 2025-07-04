@@ -16,7 +16,7 @@ def check_notes_length(notes_edit: QTextEdit, count_label: QLabel, parent=None) 
             notes_edit.setTextCursor(cursor)
             cursor.deletePreviousChar()
             if error_text:
-                DialogsProvider.show_error_dialog(error_text.get("textLengthError", ""))
+                DialogsProvider.show_error_dialog(error_text.get("textLengthError", parent))
         else:
             count_label.setText(f"{len(text)}/500")
     except Exception as e:

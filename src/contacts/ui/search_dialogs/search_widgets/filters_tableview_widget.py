@@ -10,6 +10,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class FiltersTableviewWidget(QTableView):
     def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, QAbstractTableModel], None], parent=None) -> None:
         super().__init__(parent)

@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget
 
-from src.contacts.ui.search_dialogs.search_widgets.search_details_widget import SearchDeatilsWidget
+from src.contacts.ui.search_dialogs.search_widgets.search_details_widget import SearchDetailsWidget
 from src.contacts.ui.search_dialogs.search_widgets.search_social_networks_widget import \
     SearchSocialNetworksWidget
 from src.contacts.ui.search_dialogs.search_widgets.search_work_widget import SearchWorkWidget
@@ -20,7 +20,7 @@ class SearchNonMandatoryWidget(QWidget):
         self.non_mandatory_tab_widget = QTabWidget()
         self.search_work_widget = SearchWorkWidget(self)
         self.search_social_networks_widget = SearchSocialNetworksWidget(self)
-        self.search_details_widget = SearchDeatilsWidget(self)
+        self.search_details_widget = SearchDetailsWidget(self)
         self.non_mandatory_tab_widget.setObjectName("nonMandatoryTabWidget")
         self.non_mandatory_tab_widget.addTab(self.search_work_widget, "")
         self.non_mandatory_tab_widget.addTab(self.search_social_networks_widget, "")

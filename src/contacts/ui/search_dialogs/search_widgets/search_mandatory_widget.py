@@ -11,6 +11,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class SearchMandatoryWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)

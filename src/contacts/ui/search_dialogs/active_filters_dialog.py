@@ -84,9 +84,9 @@ class ActiveFiltersDialog(QDialog):
                 if error_text:
                     DialogsProvider.show_error_dialog(error_text.get("noActiveFilter", ""), self)
                 return
-            from src.contacts.controlers.filters_controler import FiltersController
-            controler = FiltersController(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
-            controler.save_filter()
+            from src.contacts.controlers.filters_controller import FiltersController
+            controller = FiltersController(self.search_mandatory_widget, self.search_non_mandatory_widget, self)
+            controller.save_filter()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -9,7 +9,7 @@ from src.contacts.controlers.advanced_search_controler import AdvancedSearchCont
 from src.contacts.controlers.completer_controler import CompleterController
 from src.contacts.controlers.contact_search_controler import ContactSearchController
 from src.contacts.controlers.contacts_controller import ContactsController
-from src.contacts.controlers.filters_controler import FiltersController
+from src.contacts.controlers.filters_controller import FiltersController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget

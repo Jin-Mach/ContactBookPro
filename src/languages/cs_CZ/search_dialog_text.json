@@ -72,7 +72,7 @@
     "searchGithubUrlEdit": "Zadej odkaz na Github...",
     "searchWebsiteUrlEdit": "Zadej web..."
   },
-  "searchDetaisWidget": {
+  "searchDetailsWidget": {
     "searchPhotoTextLabel": "Foto kontaktu:",
     "searchPhotoCombobox": ["Nezáleží","s fotkou", "bez fotky"],
     "searchTitleTextLabel": "Titul:",
@@ -81,7 +81,7 @@
     "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
     "searchTitleEdit": "Zadej titul...",
     "searchBirthdayEdit": "Zadej datum...např: 01.01.2000",
-    "searcNotesEdit": "Zadej poznámky..."
+    "searchNotesEdit": "Zadej poznámky..."
   },
   "activeFiltersDialog": {
     "currentFilterTitle": "Aktuální filtr",

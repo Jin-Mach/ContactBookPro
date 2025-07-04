@@ -97,19 +97,19 @@ class WorkWidget(QWidget):
             for widget in inputs:
                 text = widget.text().strip()
                 if widget.objectName() == "dialogWorkEmailEdit" and text and not ContactValidator.validate_email(text):
-                    DialogsProvider.show_error_dialog(error_text.get("emailValidatorError"), "")
+                    DialogsProvider.show_error_dialog(error_text.get("emailValidatorError"), self)
                     self.set_tab_index()
                     widget.setFocus()
                     return None
                 elif widget.objectName() == "dialogPhoneNumberEdit" and text and not ContactValidator.validate_phone_number(text):
-                    DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", ""))
+                    DialogsProvider.show_error_dialog(error_text.get("phonenumberValidatorError", self))
                     self.set_tab_index()
                     widget.setFocus()
                     return None
                 work_data.append(text)
             if not ContactValidator.validate_work_address(self.dialog_work_city_edit, self.dialog_work_house_number_edit,
                                                           self.dialog_work_post_code_edit, self.dialog_work_country_edit):
-                DialogsProvider.show_error_dialog(error_text.get("workAddressValidatorError", ""))
+                DialogsProvider.show_error_dialog(error_text.get("workAddressValidatorError", self))
                 self.set_tab_index()
                 return None
             work_data += normalize_texts(
