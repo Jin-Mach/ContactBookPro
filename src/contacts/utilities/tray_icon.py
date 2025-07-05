@@ -8,11 +8,14 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class TrayIcon(QSystemTrayIcon):
+    icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
+
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("trayIcon")
         self.parent = parent
-        self.setIcon(QIcon(str(pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png"))))
+        if self.icon_path.exists():
+            self.setIcon(QIcon(str(self.icon_path)))
         menu = self.create_context_menu()
         if menu:
             self.setContextMenu(menu)

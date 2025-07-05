@@ -105,7 +105,7 @@ class ContactsController:
                         index = self.mandatory_model.index(self.mandatory_model.rowCount() - 1, 0)
                         self.table_view.selectRow(index.row())
                         self.table_view.scrollTo(index)
-                        self.table_view.contact_data_controler.get_models_data(last_id)
+                        self.table_view.contact_data_controller.get_models_data(last_id)
                         self.main_window.tray_icon.show_notification(f"{data[0][2]} {data[0][3]}", "contactAdded")
                         location_thread = LocationThread(last_id, data[0], self.signal_provider)
                         QThreadPool.globalInstance().start(location_thread)

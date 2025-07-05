@@ -44,15 +44,15 @@ class ContactsToolbarWidget(QWidget):
         self.set_tooltips_text()
         self.create_connection()
         self.create_shortcuts()
-        self.contacts_controler = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
-                                                     social_model, detail_model, info_model, detail_widget, table_view,
-                                                     self.status_bar, self)
-        self.completer_controler = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
-        self.completer_controler.setup()
-        self.contact_search_controler = ContactSearchController(self.completer_controler, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
-        self.advanced_search_controler = AdvancedSearchController(self.db_connection, self.mandatory_model, self.status_bar, self)
-        self.filters_controler = FiltersController(self.advanced_search_controler.dialog.search_mandatory_widget,
-                                                   self.advanced_search_controler.dialog.search_non_mandatory_widget, self)
+        self.contacts_controller = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
+                                                      social_model, detail_model, info_model, detail_widget, table_view,
+                                                      self.status_bar, self)
+        self.completer_controller = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
+        self.completer_controller.setup()
+        self.contact_search_controller = ContactSearchController(self.completer_controller, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
+        self.advanced_search_controller = AdvancedSearchController(self.db_connection, self.mandatory_model, self.status_bar, self)
+        self.filters_controller = FiltersController(self.advanced_search_controller.dialog.search_mandatory_widget,
+                                                    self.advanced_search_controller.dialog.search_non_mandatory_widget, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.table_view.selectionModel().currentColumnChanged.connect(self.set_validator)
 
@@ -168,46 +168,46 @@ class ContactsToolbarWidget(QWidget):
 
     def add_new_contact(self) -> None:
         try:
-            self.contacts_controler.add_new_contact()
+            self.contacts_controller.add_new_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def update_existing_contact(self) -> None:
         try:
-            self.contacts_controler.update_contact()
+            self.contacts_controller.update_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_contact(self) -> None:
         try:
-            self.contacts_controler.delete_contact()
+            self.contacts_controller.delete_contact()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def delete_all_contacts(self) -> None:
         try:
-            self.contacts_controler.delete_all_contacts()
+            self.contacts_controller.delete_all_contacts()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def search_contact(self) -> None:
         try:
-            self.contact_search_controler.basic_search(self.search_line_edit)
+            self.contact_search_controller.basic_search(self.search_line_edit)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def advanced_search(self) -> None:
-        self.advanced_search_controler.advanced_search()
+        self.advanced_search_controller.advanced_search()
 
     def reset_filter(self) -> None:
         try:
-            self.contact_search_controler.reset_filter(self.search_line_edit)
+            self.contact_search_controller.reset_filter(self.search_line_edit)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def show_user_filters(self) -> None:
         try:
-            self.filters_controler.show_user_filters(self.db_connection, self.mandatory_model, self.status_bar)
+            self.filters_controller.show_user_filters(self.db_connection, self.mandatory_model, self.status_bar)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

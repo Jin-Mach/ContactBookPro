@@ -40,10 +40,10 @@ class ContactsTableviewWidget(QTableView):
         connection = None
         if isinstance(model, QSqlTableModel):
             connection = model.database()
-        self.contact_data_controler = ContactDataController(connection, detail_widget)
-        csv_export_controler = CsvExportController(connection, self)
-        excel_export_controler = ExcelExportController(connection, self)
-        self.context_menu = ContextMenu(None, csv_export_controler, excel_export_controler, self)
+        self.contact_data_controller = ContactDataController(connection, detail_widget)
+        csv_export_controller = CsvExportController(connection, self)
+        excel_export_controller = ExcelExportController(connection, self)
+        self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller, self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)
@@ -70,7 +70,7 @@ class ContactsTableviewWidget(QTableView):
                     get_logger().error("indexError", exc_info=True)
                     return
             current_row = self.mandatory_model.data(self.mandatory_model.index(current_index.row(), 0))
-            self.contact_data_controler.get_models_data(current_row, self)
+            self.contact_data_controller.get_models_data(current_row, self)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
