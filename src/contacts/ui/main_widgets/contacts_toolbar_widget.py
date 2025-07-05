@@ -28,8 +28,8 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
-                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel,info_model: InfoModel,
-                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget,status_bar: ContactsStatusbarWidget,
+                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel, info_model: InfoModel,
+                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, contacts_statusbar: ContactsStatusbarWidget,
                  completer_model: CompleterModel, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
@@ -37,7 +37,7 @@ class ContactsToolbarWidget(QWidget):
         self.mandatory_model = mandatory_model
         self.table_view = table_view
         self.completer_model = completer_model
-        self.status_bar = status_bar
+        self.contacts_statusbar = contacts_statusbar
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -46,11 +46,11 @@ class ContactsToolbarWidget(QWidget):
         self.create_shortcuts()
         self.contacts_controller = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
                                                       social_model, detail_model, info_model, detail_widget, table_view,
-                                                      self.status_bar, self)
+                                                      self.contacts_statusbar, self)
         self.completer_controller = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controller.setup()
-        self.contact_search_controller = ContactSearchController(self.completer_controller, self.mandatory_model, table_view, self.status_bar, self.search_combobox, self)
-        self.advanced_search_controller = AdvancedSearchController(self.db_connection, self.mandatory_model, self.status_bar, self)
+        self.contact_search_controller = ContactSearchController(self.completer_controller, self.mandatory_model, table_view, self.contacts_statusbar, self.search_combobox, self)
+        self.advanced_search_controller = AdvancedSearchController(self.db_connection, self.mandatory_model, self.contacts_statusbar, self)
         self.filters_controller = FiltersController(self.advanced_search_controller.dialog.search_mandatory_widget,
                                                     self.advanced_search_controller.dialog.search_non_mandatory_widget, self)
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
@@ -207,7 +207,7 @@ class ContactsToolbarWidget(QWidget):
 
     def show_user_filters(self) -> None:
         try:
-            self.filters_controller.show_user_filters(self.db_connection, self.mandatory_model, self.status_bar)
+            self.filters_controller.show_user_filters(self.db_connection, self.mandatory_model, self.contacts_statusbar)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

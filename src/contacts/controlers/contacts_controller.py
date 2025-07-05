@@ -33,7 +33,7 @@ from src.utilities.language_provider import LanguageProvider
 class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
                  work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel, info_model: InfoModel,
-                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
+                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, contacts_statusbar: ContactsStatusbarWidget,
                  parent=None) -> None:
         self.main_window = main_window
         self.db_connection = db_connection
@@ -44,7 +44,7 @@ class ContactsController:
         self.info_model = info_model
         self.detail_widget = detail_widget
         self.table_view = table_view
-        self.status_bar = status_bar
+        self.contacts_statusbar = contacts_statusbar
         self.parent = parent
         self.signal_provider = SignalProvider()
         self.error_text = LanguageProvider.get_error_text("widgetErrors")
@@ -68,7 +68,7 @@ class ContactsController:
             self.mandatory_model, self.work_model, self.social_model,
             self.detail_model, self.info_model
         ])
-        self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
         self.detail_widget.reset_data()
 
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
@@ -81,7 +81,7 @@ class ContactsController:
                 elif dialog.result_code == "jump_to_contact" and dialog.selected_id:
                     self.mandatory_model.set_filter_by_id([dialog.selected_id])
                     self.table_view.set_selected_contact()
-                    self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+                    self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
                 return False
         return True
 

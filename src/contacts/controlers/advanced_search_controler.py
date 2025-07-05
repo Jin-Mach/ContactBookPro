@@ -16,11 +16,11 @@ from src.utilities.logger_provider import get_logger
 
 
 class AdvancedSearchController:
-    def __init__(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, status_bar: ContactsStatusbarWidget,
+    def __init__(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, contacts_statusbar: ContactsStatusbarWidget,
                  parent=None) -> None:
         self.db_connection= db_connection
         self.mandatory_model = mandatory_model
-        self.status_bar = status_bar
+        self.contacts_statusbar = contacts_statusbar
         self.error_text = LanguageProvider.get_error_text("contactSearchController")
         self.parent = parent
         self.dialog = AdvancedSearchDialog(self.parent)
@@ -59,10 +59,10 @@ class AdvancedSearchController:
         if not id_list:
             DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""), self.parent)
             SearchProvider.reset_filter(self.mandatory_model)
-            self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
             return
         self.mandatory_model.set_filter_by_id(id_list)
-        self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
 
     @staticmethod
     def remove_connection(connection_name: str)-> None:

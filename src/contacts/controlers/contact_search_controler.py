@@ -12,13 +12,13 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class ContactSearchController:
-    def __init__(self, controller: CompleterController, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget, status_bar: ContactsStatusbarWidget,
-                 search_combobox: QComboBox, parent=None) -> None:
+    def __init__(self, controller: CompleterController, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget,
+                 contacts_statusbar: ContactsStatusbarWidget, search_combobox: QComboBox, parent=None) -> None:
         self.class_name = "contactSearchController"
         self.controller = controller
         self.mandatory_model = mandatory_model
         self.table_view = table_view
-        self.status_bar = status_bar
+        self.contacts_statusbar = contacts_statusbar
         self.search_combobox = search_combobox
         self.parent = parent
         self.error_text = LanguageProvider.get_error_text(self.class_name)
@@ -71,7 +71,7 @@ class ContactSearchController:
                             DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""))
                             SearchProvider.reset_filter(self.mandatory_model)
                             search_input.setFocus()
-                        self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
+                        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
                     else:
                         DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
@@ -88,8 +88,8 @@ class ContactSearchController:
             search_input.clear()
             search_input.setDisabled(True)
             SearchProvider.reset_filter(self.mandatory_model)
-            self.status_bar.set_count_text(self.mandatory_model.rowCount(), 0)
-            self.status_bar.contacts_total_count = self.mandatory_model.rowCount()
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+            self.contacts_statusbar.contacts_total_count = self.mandatory_model.rowCount()
             if ui_text:
                 self.parent.search_text_label.setText(ui_text.get(self.parent.search_text_label.objectName(), ""))
         except Exception as e:
