@@ -5,6 +5,7 @@ from PyQt6.QtGui import QPixmap, QFont
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, \
     QSystemTrayIcon
 
+from src.application.status_bar import StatusBar
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
 from src.utilities.error_handler import ErrorHandler
@@ -22,13 +23,15 @@ class MainWindow(QMainWindow):
         self.buttons_size = QSize(200, 50)
         self.icon_size = QSize(40, 40)
         self.contacts_main_widget = ContactsMainWidget(self)
+        self.status_bar = StatusBar(self)
         self.setCentralWidget(self.create_gui())
+        self.setStatusBar(self.status_bar)
         self.set_ui_text()
         self.set_tooltips_text()
         IconProvider.set_window_icon(self, self.objectName())
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         if QSystemTrayIcon.isSystemTrayAvailable():
-            self.tray_icon = TrayIcon(self)
+            self.tray_icon = TrayIcon(self.status_bar, self)
             self.tray_icon.show()
 
     def create_gui(self) -> QWidget:

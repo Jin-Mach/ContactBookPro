@@ -61,6 +61,13 @@ class LanguageProvider:
         if data:
             return data.get(widget_name)
         return None
+    
+    @staticmethod
+    def get_statustips_text(widget_name: str) -> dict[str, str] | None:
+        data = LanguageProvider.load_json("statustips_text.json")
+        if data:
+            return data.get(widget_name)
+        return None
 
     @staticmethod
     def get_dialog_text(widget_name: str) -> dict[str, str] | None:

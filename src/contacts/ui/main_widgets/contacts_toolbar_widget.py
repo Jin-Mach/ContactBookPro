@@ -127,14 +127,16 @@ class ContactsToolbarWidget(QWidget):
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            statustips_text = LanguageProvider.get_statustips_text(self.objectName())
             if sys.platform == "darwin":
-                for key, value in tooltips_text.items():
-                    tooltips_text[key] = value.replace("Ctrl", "Cmd")
+                for key, value in statustips_text.items():
+                    statustips_text[key] = value.replace("Ctrl", "Cmd")
             buttons = self.findChildren(QPushButton)
             for button in buttons:
                 if button.objectName() in tooltips_text:
                     button.setToolTip(tooltips_text.get(button.objectName(), ""))
                     button.setToolTipDuration(5000)
+                    button.setStatusTip(statustips_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

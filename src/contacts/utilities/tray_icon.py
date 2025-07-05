@@ -3,6 +3,7 @@ import pathlib
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu, QApplication, QWidget
 
+from src.application.status_bar import StatusBar
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -10,9 +11,10 @@ from src.utilities.language_provider import LanguageProvider
 class TrayIcon(QSystemTrayIcon):
     icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
-    def __init__(self, parent=None) -> None:
+    def __init__(self, status_bar: StatusBar, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("trayIcon")
+        self.status_bar = status_bar
         self.parent = parent
         if self.icon_path.exists():
             self.setIcon(QIcon(str(self.icon_path)))
@@ -46,5 +48,6 @@ class TrayIcon(QSystemTrayIcon):
             ui_text = LanguageProvider.get_ui_text("trayIcon")
             if ui_text:
                 self.showMessage(title, ui_text.get(message, ""), QSystemTrayIcon.MessageIcon.Information, 5000)
+                self.status_bar.show_statusbar_message(ui_text.get(message, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

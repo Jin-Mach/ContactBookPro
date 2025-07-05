@@ -1,0 +1,12 @@
+{
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Přidat kontakt (Ctrl+N)",
+    "updateContactPushbutton": "Upravit kontakt (Ctrl+U)",
+    "deleteContactPushbutton": "Smazat kontakt (Ctrl+D)",
+    "deleteAllContactsPushbutton": "Smazat vše (Ctrl+Shift+D)",
+    "searchPushbutton": "Vyhledávání (Ctrl+F)",
+    "advancedSearchPushbutton": "Pokročilé hledání (Ctrl+Shift+F)",
+    "resetFilterPushbutton": "Reset filtrů (Ctrl+R)",
+    "userFiltersPushbutton": "Uložené filtry (Ctrl+L)"
+  }
+}
