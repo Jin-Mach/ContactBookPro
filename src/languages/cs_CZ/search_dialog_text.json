@@ -95,5 +95,8 @@
     "filterNameInput": "Pouze písmena, čísla, mezery a základní znaky (-, _)",
     "saveFilterButton": "Uložit",
     "cancelButton": "Zavřít"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Momentík, něco hledám..."
   }
 }
