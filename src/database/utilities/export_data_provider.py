@@ -115,3 +115,29 @@ class ExportDataProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None
+
+    @staticmethod
+    def get_pdf_list_data(db_connection: QSqlDatabase, id_list: list | None, main_window: QMainWindow) -> list[dict[str, str]] | None:
+        try:
+            sql = QueryProvider.create_pdf_list_query(id_list, main_window)
+            if not sql:
+                return None
+            query = QSqlQuery(db_connection)
+            query.prepare(sql)
+            if id_list is not None:
+                for id_value in id_list:
+                    query.addBindValue(id_value)
+            if not query.exec():
+                ErrorHandler.database_error(query.lastError().text(), False)
+                return None
+            results = []
+            while query.next():
+                row = {}
+                for index in range(query.record().count()):
+                    column_name = query.record().fieldName(index)
+                    row[column_name] = query.value(index)
+                results.append(row)
+            return results
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return None

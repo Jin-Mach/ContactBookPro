@@ -72,3 +72,16 @@ class QueryProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None
+
+    @staticmethod
+    def create_pdf_list_query(id_list: list | None, main_window: QMainWindow) -> str | None:
+        try:
+            sql = "SELECT gender, relationship, first_name, second_name, personal_email, personal_phone_number, personal_city FROM mandatory"
+            if id_list is not None:
+                placeholders = ", ".join(["?"] * len(id_list))
+                sql += f" WHERE id IN ({placeholders})"
+            sql += " ORDER BY second_name ASC"
+            return sql
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return None

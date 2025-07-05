@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 from src.contacts.controlers.contact_data_controller import ContactDataController
 from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportController
 from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportController
+from src.contacts.controlers.export_controlers.pdf_export_controller import PdfExportController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
@@ -43,7 +44,9 @@ class ContactsTableviewWidget(QTableView):
         self.contact_data_controller = ContactDataController(connection, detail_widget)
         csv_export_controller = CsvExportController(connection, self)
         excel_export_controller = ExcelExportController(connection, self)
-        self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller, self)
+        pdf_export_controller = PdfExportController(connection, self)
+        self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
+                                        pdf_export_controller, self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)

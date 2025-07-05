@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 from src.contacts.controlers.export_controlers.clipboard_export_controler import copy_to_clipboard
 from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportController
 from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportController
+from src.contacts.controlers.export_controlers.pdf_export_controller import PdfExportController
 from src.contacts.controlers.export_controlers.qr_code_controler import qr_code_preview
 from src.contacts.controlers.export_controlers.vcard_export_controler import export_to_vcard
 from src.utilities.error_handler import ErrorHandler
@@ -15,13 +16,14 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences
 class ContextMenu(QMenu):
     def __init__(self, contacts_controller: "ContactsController | None", csv_export_controller: CsvExportController | None,
-                 excel_export_controller: ExcelExportController, parent=None) -> None:
+                 excel_export_controller: ExcelExportController, pdf_export_controller: PdfExportController, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
         self.contacts_controller = contacts_controller
         self.csv_export_controller = csv_export_controller
         self.excel_export_controller = excel_export_controller
+        self.pdf_export_controller = pdf_export_controller
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -68,8 +70,12 @@ class ContextMenu(QMenu):
         preview_menu.setObjectName("previewMenu")
         self.preview_contact_action = QAction(self)
         self.preview_contact_action.setObjectName("previewContactAction")
-        self.preview_contact_list_action = QAction(self)
-        self.preview_contact_list_action.setObjectName("previewContactListAction")
+        preview_contacts_list_menu = QMenu(self)
+        preview_contacts_list_menu.setObjectName("previewContactsListMenu")
+        self.preview_filtered_contacts_list_action = QAction(self)
+        self.preview_filtered_contacts_list_action.setObjectName("previewFilteredContactsListAction")
+        self.preview_all_contacts_list_action = QAction(self)
+        self.preview_all_contacts_list_action.setObjectName("previewAllContactsListAction")
         self.preview_qr_code_action = QAction(self)
         self.preview_qr_code_action.setObjectName("previewQrCodeAction")
         contact_check_menu = QMenu(self)
@@ -94,7 +100,10 @@ class ContextMenu(QMenu):
         print_menu.addActions([self.print_contact_action, self.print_contact_list_action])
         self.addSeparator()
         self.addMenu(preview_menu)
-        preview_menu.addActions([self.preview_contact_action, self.preview_contact_list_action, self.preview_qr_code_action])
+        preview_menu.addAction(self.preview_contact_action)
+        preview_menu.addMenu(preview_contacts_list_menu)
+        preview_contacts_list_menu.addActions([self.preview_filtered_contacts_list_action, self.preview_all_contacts_list_action])
+        preview_menu.addAction(self.preview_qr_code_action)
         self.addSeparator()
         self.addMenu(contact_check_menu)
         contact_check_menu.addActions([self.contact_check_birthday_action, self.contact_check_duplicity_action])
@@ -127,7 +136,8 @@ class ContextMenu(QMenu):
                        (self.export_filtered_data_excel_action, lambda: self.excel_export_controller.export_filtered_to_excel(self.main_window)),
                        (self.export_all_data_excel_action, lambda: self.excel_export_controller.export_all_to_excel(self.main_window)),
                        (self.export_vcard_action, lambda: export_to_vcard(self.csv_export_controller.db_connection, self.index, self.main_window)),
-                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window))]
+                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window)),
+                       (self.preview_all_contacts_list_action, lambda: self.pdf_export_controller.export_all_list_to_pdf(self.main_window))]
         try:
             for action, method in connections:
                 if isinstance(action, QAction):

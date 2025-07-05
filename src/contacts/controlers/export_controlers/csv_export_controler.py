@@ -55,7 +55,7 @@ class CsvExportController:
             self.csv_object = export_object
             self.csv_thread = BasicThread()
             self.csv_thread.run_basic_thread(worker=self.csv_object, start_slot=self.csv_object.run_csv_export,
-                                             on_error=self.write_log_exception,
+                                             on_error=CsvExportController.write_log_exception,
                                              on_finished=lambda success: CsvExportController.notification_handler(main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

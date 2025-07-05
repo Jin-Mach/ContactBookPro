@@ -53,7 +53,7 @@ class ExcelExportController:
             self.excel_object = export_object
             self.excel_thread = BasicThread()
             self.excel_thread.run_basic_thread(worker=self.excel_object, start_slot=self.excel_object.run_excel_export,
-                                               on_error=self.write_log_exception,
+                                               on_error=ExcelExportController.write_log_exception,
                                                on_finished=lambda success: ExcelExportController.notification_handler(
                                                  main_window, success))
         except Exception as e:

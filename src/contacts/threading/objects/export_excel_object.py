@@ -15,13 +15,13 @@ class ExportExcelObject(QObject):
     def __init__(self, db_path: str, file_path: str, id_list: list | None, export_data_provider: ExportDataProvider,
                  main_window: QMainWindow) -> None:
         super().__init__()
-        self.class_name = "exportExcelObject"
+        self.setObjectName("exportExcelObject")
         self.db_path = db_path
         self.file_path = file_path
         self.id_list = id_list
         self.export_data_provider = export_data_provider
         self.main_window = main_window
-        _, self.index_map = LanguageProvider().get_export_settings(self.class_name)
+        _, self.index_map = LanguageProvider().get_export_settings(self.objectName())
         self.connection_name = f"exportExcelThread{id(self)}"
 
     def run_excel_export(self) -> None:
