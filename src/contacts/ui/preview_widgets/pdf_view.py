@@ -6,7 +6,7 @@ class PdfView(QPdfView):
     def __init__(self, pdf_path: str, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("pdfView")
-        self.setPageMode(QPdfView.PageMode.SinglePage)
+        self.setPageMode(QPdfView.PageMode.MultiPage)
         self.setZoomMode(QPdfView.ZoomMode.Custom)
         self.setZoomFactor(0.8)
         self.pdf_path = pdf_path

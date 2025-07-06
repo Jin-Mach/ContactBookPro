@@ -13,7 +13,7 @@ class QrCodePreviewDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("qrCodePreviewDialog")
-        self.setFixedSize(400, 500)
+        self.setFixedSize(450, 550)
         self.setLayout(self.create_gui())
         self.set_ui_text()
         IconProvider.set_window_icon(self, self.objectName())

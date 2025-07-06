@@ -45,14 +45,13 @@ class BasicSetupProvider:
             "copyPhoneNumberAction_icon.png", "deleteContactAction_icon.png", "exportAllDataCsvAction_icon.png",
             "exportAllDataExcelAction_icon.png", "exportCsvMenu_icon.png", "exportExcelMenuAction_icon.png",
             "exportFilteredDataCsvAction_icon.png", "exportFilteredDataExcelAction_icon.png", "exportVcardAction_icon.png",
-            "printContactAction_icon.png", "printContactListAction_icon.png", "previewContactAction_icon.png",
-            "previewContactListAction_icon.png", "previewQrCodeAction_icon.png", "updateContactAction_icon.png",
+            "previewContactAction_icon.png", "previewContactListAction_icon.png", "previewQrCodeAction_icon.png", "updateContactAction_icon.png",
             "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png", "dialogResetCalendarPushbutton_icon.png",
             "dialogResetPhotoButton_icon.png", "no_user_photo.png","deleteFilterButton_icon.png", "dog_image.png",
-            "mainWindowDatabaseButton_icon.png", "window_icon.png", "pdfFitPageButton_icon.png", "pdfPrintButton_icon.png",
-            "pdfSaveAsButton_icon.png", "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png",
-            "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png", "instagramPushbutton_icon.png",
-            "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png", "deleteFilterPushbutton_icon.png"
+            "mainWindowDatabaseButton_icon.png", "window_icon.png", "pdfFitPageButton_icon.png", "pdfSaveAsButton_icon.png",
+            "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png",
+            "githubPushbutton_icon.png", "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
+            "xPushbutton_icon.png", "deleteFilterPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/src/icons"
@@ -83,8 +82,6 @@ class BasicSetupProvider:
             "exportFilteredDataCsvAction_icon.png": "contextMenu",
             "exportFilteredDataExcelAction_icon.png": "contextMenu",
             "exportVcardAction_icon.png": "contextMenu",
-            "printContactAction_icon.png": "contextMenu",
-            "printContactListAction_icon.png": "contextMenu",
             "previewContactAction_icon.png": "contextMenu",
             "previewContactListAction_icon.png": "contextMenu",
             "previewQrCodeAction_icon.png": "contextMenu",
@@ -99,7 +96,6 @@ class BasicSetupProvider:
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
             "pdfFitPageButton_icon.png": "pdfPreviewDialog",
-            "pdfPrintButton_icon.png": "pdfPreviewDialog",
             "pdfSaveAsButton_icon.png": "pdfPreviewDialog",
             "pdfZoomInButton_icon.png": "pdfPreviewDialog",
             "pdfZoomOutButton_icon.png": "pdfPreviewDialog",

@@ -69,13 +69,10 @@
     "invalidChar": "Nepovolený znak:"
   },
   "pdfPreviewDialog": {
-    "pdfPrintButton": "Vytisknout dokument",
     "pdfSaveAsButton": "Uložit jako..",
     "pdfZoomInButton": "Přiblížit",
     "pdfZoomOutButton": "Oddálit",
     "pdfFitPageButton": "Přizpůsobit stránce",
-    "pdfPreviousPageButton": "Předchozí stránka",
-    "pdfNextPageButton": "Další stránka",
     "closeDialogButton": "Zavřít náhled"
   }
 }

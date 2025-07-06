@@ -28,8 +28,6 @@ class PdfPreviewDialog(QDialog):
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         toolbar_layout = QHBoxLayout()
-        self.print_button = QPushButton()
-        self.print_button.setObjectName("pdfPrintButton")
         self.save_as_button = QPushButton()
         self.save_as_button.setObjectName("pdfSaveAsButton")
         self.fit_page_button = QPushButton()
@@ -42,7 +40,6 @@ class PdfPreviewDialog(QDialog):
         button_layout = QHBoxLayout()
         self.close_dialog_button = QPushButton()
         self.close_dialog_button.setObjectName("closeDialogButton")
-        toolbar_layout.addWidget(self.print_button)
         toolbar_layout.addWidget(self.save_as_button)
         toolbar_layout.addStretch()
         toolbar_layout.addWidget(self.fit_page_button)
@@ -78,7 +75,6 @@ class PdfPreviewDialog(QDialog):
 
     def create_connection(self) -> None:
         connections = [
-            #(self.print_button, self.pdf_view.test),
             #(self.save_as_button, print("save")),
             (self.zoom_in_button, self.pdf_view_widget.zoom_in),
             (self.zoom_out_button, self.pdf_view_widget.zoom_out),
