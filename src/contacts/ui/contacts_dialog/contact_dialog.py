@@ -82,7 +82,7 @@ class ContactDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def colect_data(self) -> list | None:
+    def collect_data(self) -> list | None:
         try:
             mandatory_data = self.mandatory_widget.return_mandatory_data()
             work_data = self.non_mandatory_widget.work_widget.return_work_data()
@@ -100,8 +100,8 @@ class ContactDialog(QDialog):
             return None
 
     def get_data(self) -> None:
-        if self.colect_data():
-            self.colected_data = self.colect_data()
+        if self.collect_data():
+            self.colected_data = self.collect_data()
             self.accept()
 
     def set_contact_data(self, data: dict) -> None:

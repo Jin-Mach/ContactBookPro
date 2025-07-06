@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QMainWindow
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.export_contacts_list_pdf_object import ExportContactsListPdfObject
+from src.contacts.ui.preview_widgets.pdf_preview import PdfPreviewDialog
 from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
@@ -56,10 +57,14 @@ class PdfExportController:
 
     @staticmethod
     def show_preview(main_window: QMainWindow, success: bool, file_path: str) -> None:
-        if success:
-            print("ok", file_path)
-        else:
-            main_window.tray_icon.show_notification("Export PDF", "saveError")
+        try:
+            if success:
+                pdf_dialog = PdfPreviewDialog(file_path, main_window)
+                pdf_dialog.exec()
+            else:
+                main_window.tray_icon.show_notification("Export PDF", "saveError")
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:

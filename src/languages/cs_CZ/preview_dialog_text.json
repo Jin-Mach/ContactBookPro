@@ -2,5 +2,9 @@
   "qrCodePreviewDialog": {
     "qrDialogTitle": "Náhled QR kódu",
     "infoLabelText": "Naskenuj QR kód pro uložení kontaktu"
-}
+  },
+  "pdfPreviewDialog": {
+    "pdfDialogTitle": "Náhled Pdf",
+    "closeDialogButton": "Zavřít náhled"
+  }
 }

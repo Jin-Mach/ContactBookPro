@@ -49,9 +49,10 @@ class BasicSetupProvider:
             "previewContactListAction_icon.png", "previewQrCodeAction_icon.png", "updateContactAction_icon.png",
             "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png", "dialogResetCalendarPushbutton_icon.png",
             "dialogResetPhotoButton_icon.png", "no_user_photo.png","deleteFilterButton_icon.png", "dog_image.png",
-            "mainWindowDatabaseButton_icon.png", "window_icon.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png",
-            "githubPushbutton_icon.png", "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
-            "xPushbutton_icon.png", "deleteFilterPushbutton_icon.png"
+            "mainWindowDatabaseButton_icon.png", "window_icon.png", "pdfFitPageButton_icon.png", "pdfPrintButton_icon.png",
+            "pdfSaveAsButton_icon.png", "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png",
+            "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png", "instagramPushbutton_icon.png",
+            "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png", "deleteFilterPushbutton_icon.png"
         ]
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/src/icons"
@@ -97,6 +98,11 @@ class BasicSetupProvider:
             "dog_image.png": "mainWindow",
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
+            "pdfFitPageButton_icon.png": "pdfPreviewDialog",
+            "pdfPrintButton_icon.png": "pdfPreviewDialog",
+            "pdfSaveAsButton_icon.png": "pdfPreviewDialog",
+            "pdfZoomInButton_icon.png": "pdfPreviewDialog",
+            "pdfZoomOutButton_icon.png": "pdfPreviewDialog",
             "female_icon.png": "personalTabInfoWidget",
             "male_icon.png": "personalTabInfoWidget",
             "facebookPushbutton_icon.png": "tabInfoWidget",
@@ -124,8 +130,31 @@ class BasicSetupProvider:
             return {}
 
     @staticmethod
+    def check_font_files() -> dict:
+        required_fonts = ["TimesNewRoman.ttf"]
+        fonts_directory = BasicSetupProvider.default_path.parent.joinpath("fonts")
+        fonts_base_url = "https://github.com/Jin-Mach/ContactBookPro/raw/main/fonts"
+        missing_fonts_urls = {}
+        found_fonts = set()
+        try:
+            if fonts_directory.exists() and fonts_directory.is_dir():
+                for font_file in fonts_directory.glob("*.ttf"):
+                    font_name = font_file.name
+                    found_fonts.add(font_name)
+            for font_name in required_fonts:
+                if font_name not in found_fonts:
+                    font_url = f"{fonts_base_url}/{font_name}"
+                    font_target_path = fonts_directory.joinpath(font_name)
+                    missing_fonts_urls[font_url] = font_target_path
+            return missing_fonts_urls
+        except Exception as e:
+            BasicSetupProvider.write_log_exception(e)
+            return {}
+
+    @staticmethod
     def download_files() -> bool:
-        missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files()]
+        missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files(),
+                         BasicSetupProvider.check_font_files()]
         download_files = {}
         for files in missing_files:
             if files:
