@@ -137,6 +137,7 @@ class ContextMenu(QMenu):
                        (self.export_all_data_excel_action, lambda: self.excel_export_controller.export_all_to_excel(self.main_window)),
                        (self.export_vcard_action, lambda: export_to_vcard(self.csv_export_controller.db_connection, self.index, self.main_window)),
                        (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window)),
+                       (self.preview_filtered_contacts_list_action, lambda: self.pdf_export_controller.export_filtered_list_to_pdf(self.main_window)),
                        (self.preview_all_contacts_list_action, lambda: self.pdf_export_controller.export_all_list_to_pdf(self.main_window))]
         try:
             for action, method in connections:

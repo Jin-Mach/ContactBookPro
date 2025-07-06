@@ -130,12 +130,16 @@ class ExportDataProvider:
             if not query.exec():
                 ErrorHandler.database_error(query.lastError().text(), False)
                 return None
+            _, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
+            if not index_map:
+                index_map = {}
             results = []
             while query.next():
                 row = {}
                 for index in range(query.record().count()):
                     column_name = query.record().fieldName(index)
-                    row[column_name] = query.value(index)
+                    value = query.value(index)
+                    row[column_name] = ExportDataProvider.map_value(column_name, value, index_map)
                 results.append(row)
             return results
         except Exception as e:

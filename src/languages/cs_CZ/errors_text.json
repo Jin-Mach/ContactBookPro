@@ -63,6 +63,9 @@
   "excelExportController": {
     "emptyIdList": "Žádné kontakty pro export"
   },
+  "pdfExportController": {
+    "emptyIdList": "Žádné kontakty pro export"
+  },
   "validatedLineedit": {
     "emptyClipboard": "Schránka je prázdná, není co vložit"
   }

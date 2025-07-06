@@ -76,7 +76,9 @@ class QueryProvider:
     @staticmethod
     def create_pdf_list_query(id_list: list | None, main_window: QMainWindow) -> str | None:
         try:
-            sql = "SELECT gender, relationship, first_name, second_name, personal_email, personal_phone_number, personal_city FROM mandatory"
+            sql = ("SELECT gender, relationship, first_name, second_name, personal_email, personal_phone_number,"
+                   "personal_street, personal_house_number, personal_city, personal_post_code, personal_country "
+                   "FROM mandatory")
             if id_list is not None:
                 placeholders = ", ".join(["?"] * len(id_list))
                 sql += f" WHERE id IN ({placeholders})"

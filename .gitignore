@@ -170,4 +170,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-/data/user_filters.json
+/output/
+/data/
