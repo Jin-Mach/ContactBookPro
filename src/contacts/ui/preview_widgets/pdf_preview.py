@@ -1,3 +1,5 @@
+from typing import Callable
+
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QPushButton, QHBoxLayout
 
@@ -9,11 +11,12 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class PdfPreviewDialog(QDialog):
-    def __init__(self, pdf_path: str, parent=None) -> None:
+    def __init__(self, pdf_path: str, save_pdf_function: Callable[[], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("pdfPreviewDialog")
         self.setMinimumSize(600, 700)
         self.pdf_path = pdf_path
+        self.save_pdf_function = save_pdf_function
         self.parent = parent
         self.pdf_view = PdfView(self.pdf_path, self)
         if not self.pdf_view.document_sate:
@@ -75,7 +78,7 @@ class PdfPreviewDialog(QDialog):
 
     def create_connection(self) -> None:
         connections = [
-            #(self.save_as_button, print("save")),
+            (self.save_as_button, self.save_pdf_function),
             (self.zoom_in_button, self.pdf_view_widget.zoom_in),
             (self.zoom_out_button, self.pdf_view_widget.zoom_out),
             (self.fit_page_button, self.pdf_view_widget.reset_zoom),

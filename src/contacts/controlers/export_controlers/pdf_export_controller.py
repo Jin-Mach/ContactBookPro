@@ -1,7 +1,10 @@
+import shutil
+
 from typing import TYPE_CHECKING
 
+from PyQt6.QtCore import QStandardPaths
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.export_contacts_list_pdf_object import ExportContactsListPdfObject
@@ -51,16 +54,29 @@ class PdfExportController:
             self.pdf_thread = BasicThread()
             self.pdf_thread.run_basic_thread(worker=self.pdf_object, start_slot=self.pdf_object.run_pdf_list_export,
                                              on_error=PdfExportController.write_log_exception,
-                                             on_finished=lambda success, file_path: PdfExportController.show_preview(main_window, success, file_path))
+                                             on_finished=lambda success, file_path: self.show_preview(main_window, success, file_path))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    @staticmethod
-    def show_preview(main_window: QMainWindow, success: bool, file_path: str) -> None:
+    def show_preview(self, main_window: QMainWindow, success: bool, file_path: str) -> None:
         try:
             if success:
-                pdf_dialog = PdfPreviewDialog(file_path, main_window)
+                pdf_dialog = PdfPreviewDialog(file_path, lambda: self.save_pdf_document(file_path, main_window), main_window)
                 pdf_dialog.exec()
+            else:
+                main_window.tray_icon.show_notification("Export PDF", "saveError")
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+
+    def save_pdf_document(self, default_file_path: str, main_window:QMainWindow) -> None:
+        try:
+            default_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DocumentsLocation)
+            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+            file, _ = QFileDialog.getSaveFileName(parent=main_window, directory=default_path, filter=menu_text.get("pdfFilter", ""))
+            if not file:
+                return
+            if shutil.copyfile(default_file_path, str(file)):
+                main_window.tray_icon.show_notification("Export PDF", "exportSaved")
             else:
                 main_window.tray_icon.show_notification("Export PDF", "saveError")
         except Exception as e:
