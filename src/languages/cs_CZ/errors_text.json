@@ -64,7 +64,9 @@
     "emptyIdList": "Žádné kontakty pro export"
   },
   "pdfExportController": {
-    "emptyIdList": "Žádné kontakty pro export"
+    "emptyIdList": "Žádné kontakty pro export",
+    "indexError": "Není zvolen platný index. Opakuj výběr znovu.",
+    "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
   "validatedLineedit": {
     "emptyClipboard": "Schránka je prázdná, není co vložit"
