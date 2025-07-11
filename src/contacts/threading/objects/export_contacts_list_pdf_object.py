@@ -1,6 +1,6 @@
-import pathlib
 import sys
 
+from pathlib import Path
 from datetime import datetime
 
 from reportlab.lib.pagesizes import letter
@@ -23,19 +23,20 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences
 class ExportContactsListPdfObject(QObject):
     error_message = pyqtSignal(Exception)
-    finished = pyqtSignal(bool, str)
+    finished = pyqtSignal(bool)
 
-    def __init__(self, db_path: str, id_list: list | None, export_data_provider: ExportDataProvider,
+    def __init__(self, db_path: str, pdf_path: Path, id_list: list | None, export_data_provider: ExportDataProvider,
                  main_window: QMainWindow) -> None:
         super().__init__()
         self.setObjectName("exportContactsListPdfObject")
         self.db_path = db_path
+        self.pdf_path = pdf_path
         self.id_list = id_list
         self.export_data_provider = export_data_provider
         self.main_window = main_window
         _, self.index_map = LanguageProvider.get_export_settings("exportDataProvider")
         self.connection_name = f"exportListPdfThread{id(self)}"
-        self.src_path = pathlib.Path(__file__).parent.parent.parent.parent
+        self.src_path = Path(__file__).parent.parent.parent.parent
 
     def run_pdf_list_export(self) -> None:
         db_connection = None
@@ -43,27 +44,26 @@ class ExportContactsListPdfObject(QObject):
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
             db_connection.setDatabaseName(self.db_path)
             if not db_connection.open():
-                self.finished.emit(False, "")
+                self.finished.emit(False)
                 return
             pdf_data = self.export_data_provider.get_pdf_list_data(db_connection, self.id_list, self.main_window)
             if not pdf_data:
-                self.finished.emit(False, "")
+                self.finished.emit(False)
                 return
-            file_path = self.src_path.parent.joinpath("output", "pdf_list.pdf")
-            file_path.parent.mkdir(parents=True, exist_ok=True)
-            font_path = file_path.parent.parent.joinpath("fonts", "TimesNewRoman.ttf")
+            font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
             pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
-            document = SimpleDocTemplate(str(file_path), leftMargin=50, rightMargin=50, topMargin=70, bottomMargin=50,
+            document = SimpleDocTemplate(str(self.pdf_path), leftMargin=50, rightMargin=50, topMargin=70, bottomMargin=50,
                                          pagesize=letter)
             story, error = ExportContactsListPdfObject.create_flowable_list(document, pdf_data)
             if error:
                 self.error_message.emit(error)
-                self.finished.emit(False, "")
+                self.finished.emit(False)
+                return
             document.build(story, onFirstPage=self.draw_header_footer, onLaterPages=self.draw_header_footer)
-            self.finished.emit(True, str(file_path))
+            self.finished.emit(True)
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit(False, "")
+            self.finished.emit(False)
         finally:
             if db_connection:
                 db_connection.close()
@@ -120,7 +120,7 @@ class ExportContactsListPdfObject(QObject):
                              preserveAspectRatio=True, mask="auto", anchor="c")
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit(False,"")
+            self.finished.emit(False)
 
     def draw_footer(self, canvas, document) -> None:
         try:
@@ -147,4 +147,4 @@ class ExportContactsListPdfObject(QObject):
             canvas.drawString(start_x, y_pos, application_name)
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit(False, "")
+            self.finished.emit(False)

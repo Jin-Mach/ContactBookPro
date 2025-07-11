@@ -133,10 +133,11 @@ class ContactsToolbarWidget(QWidget):
                     statustips_text[key] = value.replace("Ctrl", "Cmd")
             buttons = self.findChildren(QPushButton)
             for button in buttons:
-                if button.objectName() in tooltips_text:
-                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
-                    button.setToolTipDuration(5000)
-                    button.setStatusTip(statustips_text.get(button.objectName(), ""))
+                name = button.objectName()
+                if name in tooltips_text:
+                    button.setToolTip(tooltips_text.get(name, ""))
+                if name in statustips_text:
+                    button.setStatusTip(statustips_text.get(name, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

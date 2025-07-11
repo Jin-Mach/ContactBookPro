@@ -1,3 +1,4 @@
+import pathlib
 import shutil
 
 from typing import TYPE_CHECKING, Callable
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 
 
+# noinspection PyBroadException
 class PdfExportController:
 
     def __init__(self, db_connection: QSqlDatabase, table_view: "ContactsTableviewWidget"):
@@ -30,6 +32,8 @@ class PdfExportController:
         self.export_data_provider = ExportDataProvider()
         self.row_data_provider = RowDataProvider()
         self.error_text = LanguageProvider.get_error_text(self.class_name)
+        self.pdf_output_path = pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath("output", "pdf_output.pdf")
+        self.pdf_output_path.parent.mkdir(parents=True, exist_ok=True)
 
     def export_contact_to_pdf(self, main_window:QMainWindow) -> None:
         try:
@@ -43,8 +47,8 @@ class PdfExportController:
             mandatory_model = self.table_view.mandatory_model
             id_data = mandatory_model.index(index.row(), 0)
             contact_id = mandatory_model.data(id_data)
-            export_object = ExportContactPdfObject(self.db_connection.databaseName(), contact_id, self.row_data_provider,
-                                                   main_window)
+            export_object = ExportContactPdfObject(self.db_connection.databaseName(), self.pdf_output_path,
+                                                   contact_id, self.row_data_provider, main_window)
             self.create_pdf_thread(export_object, export_object.run_pdf_contact_export, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -55,16 +59,16 @@ class PdfExportController:
             if not id_list:
                 DialogsProvider.show_error_dialog(self.error_text.get("emptyIdList", ""), main_window)
                 return
-            export_object = ExportContactsListPdfObject(self.db_connection.databaseName(), id_list, self.export_data_provider,
-                                                        main_window)
+            export_object = ExportContactsListPdfObject(self.db_connection.databaseName(), self.pdf_output_path,
+                                                        id_list, self.export_data_provider, main_window)
             self.create_pdf_thread(export_object,export_object.run_pdf_list_export,  main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
     def export_all_list_to_pdf(self, main_window: QMainWindow) -> None:
         try:
-            export_object = ExportContactsListPdfObject(self.db_connection.databaseName(), None, self.export_data_provider,
-                                                 main_window)
+            export_object = ExportContactsListPdfObject(self.db_connection.databaseName(), self.pdf_output_path,
+                                                        None, self.export_data_provider, main_window)
             self.create_pdf_thread(export_object, export_object.run_pdf_list_export, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -76,14 +80,14 @@ class PdfExportController:
             self.pdf_thread = BasicThread()
             self.pdf_thread.run_basic_thread(worker=self.pdf_object, start_slot=start_slot,
                                              on_error=PdfExportController.write_log_exception,
-                                             on_finished=lambda success, file_path: self.show_preview(main_window, success, file_path))
+                                             on_finished=lambda success: self.show_preview(main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    def show_preview(self, main_window: QMainWindow, success: bool, file_path: str) -> None:
+    def show_preview(self, main_window: QMainWindow, success: bool, ) -> None:
         try:
             if success:
-                pdf_dialog = PdfPreviewDialog(file_path, lambda: self.save_pdf_document(file_path, main_window), main_window)
+                pdf_dialog = PdfPreviewDialog(str(self.pdf_output_path), lambda: self.save_pdf_document(str(self.pdf_output_path), main_window), main_window)
                 pdf_dialog.exec()
             else:
                 main_window.tray_icon.show_notification("Export PDF", "saveError")
@@ -97,9 +101,10 @@ class PdfExportController:
             file, _ = QFileDialog.getSaveFileName(parent=main_window, directory=default_path, filter=menu_text.get("pdfFilter", ""))
             if not file:
                 return
-            if shutil.copyfile(default_file_path, str(file)):
+            try:
+                shutil.copyfile(default_file_path, str(file))
                 main_window.tray_icon.show_notification("Export PDF", "exportSaved")
-            else:
+            except Exception:
                 main_window.tray_icon.show_notification("Export PDF", "saveError")
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

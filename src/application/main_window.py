@@ -103,3 +103,9 @@ class MainWindow(QMainWindow):
                                                      Qt.TransformationMode.SmoothTransformation))
             return dock_image_label
         return None
+
+    def closeEvent(self, event) -> None:
+        pdf_path = pathlib.Path(__file__).parent.parent.parent.joinpath("output", "pdf_output.pdf")
+        if pdf_path.exists():
+            pdf_path.unlink()
+        super().closeEvent(event)
