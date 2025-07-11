@@ -1,29 +1,28 @@
+from typing import Any
 from pathlib import Path
 
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
-from src.database.utilities.row_data_provider import RowDataProvider
-from src.utilities.language_provider import LanguageProvider
+from src.database.utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
 class ExportContactPdfObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
-    def __init__(self, db_path: str, pdf_path: Path, index: int, row_data_provider: RowDataProvider,
+    def __init__(self, db_path: str, pdf_path: Path, index: int, export_data_provider: ExportDataProvider,
                  main_window: QMainWindow):
         super().__init__()
         self.setObjectName("exportContactPdfObject")
         self.db_path = db_path
         self.pdf_path = pdf_path
         self.index = index
-        self.row_data_provider = row_data_provider
+        self.export_data_provider = export_data_provider
         self.main_window = main_window
         self.connection_name = f"exportContactPdfThread{id(self)}"
-        _, self.index_map = LanguageProvider.get_export_settings("exportDataProvider")
-        self.src_path = pathlib.Path(__file__).parent.parent.parent.parent
+        self.src_path = Path(__file__).parent.parent.parent.parent
 
     def run_pdf_contact_export(self) -> None:
         db_connection = None
@@ -33,11 +32,11 @@ class ExportContactPdfObject(QObject):
             if not db_connection.open():
                 self.finished.emit(False)
                 return
-            contact_data = self.row_data_provider.return_row_data(db_connection, self.index)
+            contact_data = self.export_data_provider.get_pdf_contact_data(db_connection, self.index, self.main_window)
             if not contact_data:
                 self.finished.emit(False)
                 return
-            font_path = self.src_path.parentjoinpath("fonts", "TimesNewRoman.ttf")
+            font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
             self.create_pdf(contact_data)
             self.finished.emit(True)
         except Exception as e:
@@ -50,5 +49,5 @@ class ExportContactPdfObject(QObject):
                 del db_connection
                 QSqlDatabase.removeDatabase(self.connection_name)
 
-    def create_pdf(self, contact_data: dict[str, str]):
-        print(self.index_map)
+    def create_pdf(self, contact_data: dict[str, Any]):
+        print(contact_data)

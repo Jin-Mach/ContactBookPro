@@ -12,7 +12,6 @@ from src.contacts.threading.objects.export_contacts_list_pdf_object import Expor
 from src.contacts.threading.objects.export_contact_pdf_object import ExportContactPdfObject
 from src.contacts.ui.preview_widgets.pdf_preview import PdfPreviewDialog
 from src.database.utilities.export_data_provider import ExportDataProvider
-from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -30,7 +29,6 @@ class PdfExportController:
         self.db_connection = db_connection
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
-        self.row_data_provider = RowDataProvider()
         self.error_text = LanguageProvider.get_error_text(self.class_name)
         self.pdf_output_path = pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath("output", "pdf_output.pdf")
         self.pdf_output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -48,7 +46,7 @@ class PdfExportController:
             id_data = mandatory_model.index(index.row(), 0)
             contact_id = mandatory_model.data(id_data)
             export_object = ExportContactPdfObject(self.db_connection.databaseName(), self.pdf_output_path,
-                                                   contact_id, self.row_data_provider, main_window)
+                                                   contact_id, self.export_data_provider, main_window)
             self.create_pdf_thread(export_object, export_object.run_pdf_contact_export, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

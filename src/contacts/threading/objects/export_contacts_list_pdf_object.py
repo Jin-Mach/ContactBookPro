@@ -34,7 +34,6 @@ class ExportContactsListPdfObject(QObject):
         self.id_list = id_list
         self.export_data_provider = export_data_provider
         self.main_window = main_window
-        _, self.index_map = LanguageProvider.get_export_settings("exportDataProvider")
         self.connection_name = f"exportListPdfThread{id(self)}"
         self.src_path = Path(__file__).parent.parent.parent.parent
 

@@ -4,6 +4,7 @@ from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from PyQt6.QtWidgets import QMainWindow
 
 from src.database.utilities.query_provider import QueryProvider
+from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -145,3 +146,19 @@ class ExportDataProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None
+
+    @staticmethod
+    def get_pdf_contact_data(db_connection: QSqlDatabase, index: int, main_window: QMainWindow) -> dict[str, Any] | None:
+        try:
+            contact_data = RowDataProvider.return_row_data(db_connection, index)
+            _, index_map = ExportDataProvider.language_provider.get_export_settings(ExportDataProvider.class_name)
+            if not index_map:
+                index_map = {}
+            row = {}
+            for column_name in contact_data.keys():
+                value = contact_data.get(column_name, "")
+                row[column_name] = ExportDataProvider.map_value(column_name, value, index_map)
+            return row
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return  None
