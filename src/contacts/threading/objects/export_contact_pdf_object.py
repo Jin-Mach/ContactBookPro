@@ -1,6 +1,11 @@
 from typing import Any
 from pathlib import Path
 
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
@@ -37,10 +42,10 @@ class ExportContactPdfObject(QObject):
                 self.finished.emit(False)
                 return
             font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
-            self.create_pdf(contact_data)
+            pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
+            self.create_pdf(str(self.pdf_path), contact_data)
             self.finished.emit(True)
         except Exception as e:
-            print(e)
             self.error_message.emit(e)
             self.finished.emit(False)
         finally:
@@ -49,5 +54,11 @@ class ExportContactPdfObject(QObject):
                 del db_connection
                 QSqlDatabase.removeDatabase(self.connection_name)
 
-    def create_pdf(self, contact_data: dict[str, Any]):
-        print(contact_data)
+    def create_pdf(self, pdf_path: str, contact_data: dict[str, Any]) -> None:
+        try:
+            print(contact_data)
+            canvas = Canvas(pdf_path, pagesize=A4)
+            canvas.setFont("TimesNewRoman", 15)
+            canvas.save()
+        except Exception as e:
+            self.error_message.emit(e)

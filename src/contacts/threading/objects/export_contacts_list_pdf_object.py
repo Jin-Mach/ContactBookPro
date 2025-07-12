@@ -119,7 +119,6 @@ class ExportContactsListPdfObject(QObject):
                              preserveAspectRatio=True, mask="auto", anchor="c")
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit(False)
 
     def draw_footer(self, canvas, document) -> None:
         try:
@@ -146,4 +145,3 @@ class ExportContactsListPdfObject(QObject):
             canvas.drawString(start_x, y_pos, application_name)
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit(False)
