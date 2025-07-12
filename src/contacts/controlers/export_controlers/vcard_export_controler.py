@@ -19,7 +19,7 @@ def export_to_vcard(db_connection: QSqlDatabase, index: int, main_window: QMainW
                                                   filter=menu_text.get("vcardFilter", ""))
         if file_name:
             with open(file_name, "w", encoding=get_encoding()) as file:
-                file.write(create_vcard(contact_row_data, main_window))
+                file.write(create_vcard(contact_row_data, main_window=main_window))
                 main_window.tray_icon.show_notification("Export vCard", "exportSaved")
     except Exception as e:
         ErrorHandler.exception_handler(e, main_window)

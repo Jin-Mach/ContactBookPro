@@ -3,9 +3,10 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, KeepTogether
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.lib import colors
@@ -52,7 +53,7 @@ class ExportContactsListPdfObject(QObject):
             font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
             pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
             document = SimpleDocTemplate(str(self.pdf_path), leftMargin=50, rightMargin=50, topMargin=70, bottomMargin=50,
-                                         pagesize=letter)
+                                         pagesize=A4)
             story, error = ExportContactsListPdfObject.create_flowable_list(document, pdf_data)
             if error:
                 self.error_message.emit(error)
@@ -75,12 +76,12 @@ class ExportContactsListPdfObject(QObject):
             styles = getSampleStyleSheet()
             styles.add(ParagraphStyle(name="MyHeading2", parent=styles["Heading2"], fontName="TimesNewRoman"))
             styles.add(ParagraphStyle(name="MyNormal", parent=styles["Normal"], fontName="TimesNewRoman"))
+            styles.add(ParagraphStyle(name="HeaderStyle", parent=styles["MyHeading2"], textColor=colors.red))
             line_width = str(document.pagesize[0] - document.leftMargin - document.rightMargin)
-            header_color_style = ParagraphStyle(name="HeaderStyle", parent=styles["MyHeading2"], textColor=colors.red)
             story = []
             for contact in contact_data:
                 header_paragraph = Paragraph(f"{contact.get('first_name', '')} {contact.get('second_name', '')} ",
-                    header_color_style)
+                    styles["HeaderStyle"])
                 gender_relationship_paragraph = Paragraph(f"({contact.get('gender', '')}, {contact.get('relationship', '')})",
                                                           styles["MyNormal"])
                 email_paragraph = Paragraph(contact.get("personal_email", ""), styles["MyNormal"])
@@ -96,18 +97,21 @@ class ExportContactsListPdfObject(QObject):
                     f"{contact.get('personal_post_code', '')}, {contact.get('personal_country', '')}",
                     styles["MyNormal"]
                 )
-                story.extend([header_paragraph, gender_relationship_paragraph, email_paragraph, phone_paragraph, address_paragraph])
+                contact_block = [
+                    header_paragraph, gender_relationship_paragraph, email_paragraph, phone_paragraph, address_paragraph
+                ]
+                story.append(KeepTogether(contact_block))
                 story.append(Spacer(1, 12))
                 story.append(HRFlowable(width=line_width, thickness=1, lineCap="round", color=colors.black))
             return story, None
         except Exception as e:
             return None, e
 
-    def draw_header_footer(self, canvas, document) -> None:
+    def draw_header_footer(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         self.draw_header(canvas, document)
         self.draw_footer(canvas, document)
 
-    def draw_header(self, canvas, document) -> None:
+    def draw_header(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         try:
             icon_path = self.src_path.joinpath("icons", "mainWindow", "window_icon.png")
             image = ImageReader(str(icon_path))
@@ -120,7 +124,7 @@ class ExportContactsListPdfObject(QObject):
         except Exception as e:
             self.error_message.emit(e)
 
-    def draw_footer(self, canvas, document) -> None:
+    def draw_footer(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         try:
             canvas.setStrokeColor(colors.black)
             canvas.setLineWidth(1)

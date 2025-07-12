@@ -84,5 +84,10 @@
   },
   "mandatoryModel": {
     "genderHeaderText": "Pohlaví uživatele"
+  },
+  "exportContactPdfObject": {
+    "mandatoryColumnContactTitle": "Kontakt:",
+    "mandatoryColumnAddressTitle": "Adresa:",
+    "mandatoryColumnBirthdayTitle": "Datum narození:"
   }
 }

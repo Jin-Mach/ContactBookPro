@@ -14,7 +14,7 @@ class PdfPreviewDialog(QDialog):
     def __init__(self, pdf_path: str, save_pdf_function: Callable[[], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("pdfPreviewDialog")
-        self.setMinimumSize(600, 700)
+        self.setMinimumSize(600, 800)
         self.pdf_path = pdf_path
         self.save_pdf_function = save_pdf_function
         self.parent = parent

@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.utilities.error_handler import ErrorHandler
 
 
-def create_vcard(row_data: dict, main_window: QMainWindow) -> str | None:
+def create_vcard(row_data: dict, main_window: QMainWindow | None = None) -> str | None:
     try:
         row_data = row_data
         vcard = vobject.vCard()
@@ -37,5 +37,6 @@ def create_vcard(row_data: dict, main_window: QMainWindow) -> str | None:
         personal_address.params["TYPE"] = ["HOME"]
         return vcard.serialize()
     except Exception as e:
-        ErrorHandler.exception_handler(e, main_window)
+        if main_window:
+            ErrorHandler.exception_handler(e, main_window)
         return None

@@ -13,10 +13,10 @@ def qr_code_preview(db_connection: QSqlDatabase, index: int, main_window: QMainW
         row_data = RowDataProvider.return_row_data(db_connection, index)
         if not row_data:
             return
-        vcard = create_vcard(row_data, main_window)
+        vcard = create_vcard(row_data, main_window=main_window)
         if not vcard:
             return
-        qr_code = create_qr_code(vcard, main_window)
+        qr_code = create_qr_code(vcard, main_window=main_window)
         if not qr_code:
             return
         qr_preview_dialog = QrCodePreviewDialog(main_window)
