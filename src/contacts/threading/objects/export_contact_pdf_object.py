@@ -107,7 +107,7 @@ class ExportContactPdfObject(QObject):
         contact_image = ExportContactPdfObject.get_image_from_blob(photo)
         if not contact_image:
             contact_image = Spacer(1, 5 * cm)
-        street = ui_text.get('personal_street', '')
+        street = contact_data.get('personal_street', '')
         if not street:
             address = f"{contact_data.get('personal_city', '')} {contact_data.get('personal_house_number', '')}"
         else:
@@ -118,6 +118,15 @@ class ExportContactPdfObject(QObject):
         rows = [
             ("image", contact_image),
             ("spacer", Spacer(1, 30)),
+        ]
+        title = contact_data.get('title', '')
+        if title:
+            rows.extend([
+                ("title", ui_text.get('mandatoryColumnTitleTitle', '')),
+                ("normal", title),
+                ("spacer", spacer_between)
+            ])
+        rows.extend([
             ("title", ui_text.get('mandatoryColumnContactTitle', '')),
             ("normal", contact_data.get('personal_email', '')),
             ("spacer", spacer_normal),
@@ -132,14 +141,15 @@ class ExportContactPdfObject(QObject):
             ("spacer", spacer_normal),
             ("normal", contact_data.get('personal_country', '')),
             ("spacer", spacer_between),
-        ]
+        ])
         birthday = contact_data.get('birthday', '')
         if birthday:
             rows.extend([
                 ("title", ui_text.get('mandatoryColumnBirthdayTitle', "")),
                 ("normal", birthday),
+                ("spacer", spacer_between)
             ])
-        rows.append(("spacer", Spacer(1, 7 * cm)))
+        rows.append(("spacer", Spacer(1, 5 * cm)))
         rows.append(("image", qr_image))
         data = []
         for kind, value in rows:

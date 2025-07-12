@@ -88,6 +88,7 @@
   "exportContactPdfObject": {
     "mandatoryColumnContactTitle": "Kontakt:",
     "mandatoryColumnAddressTitle": "Adresa:",
+    "mandatoryColumnTitleTitle": "Titul:",
     "mandatoryColumnBirthdayTitle": "Datum narození:"
   }
 }
