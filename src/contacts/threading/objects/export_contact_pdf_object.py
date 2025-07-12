@@ -9,7 +9,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.pdfgen.canvas import Canvas
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, Spacer, Image, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, Spacer, Image, TableStyle, HRFlowable
 from reportlab.platypus import Image as RLImage
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -55,14 +55,14 @@ class ExportContactPdfObject(QObject):
             font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
             pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
             ui_text = LanguageProvider.get_ui_text(self.objectName())
-            document = SimpleDocTemplate(str(self.pdf_path), leftMargin=0, rightMargin=0, topMargin=0, bottomMargin=0,
+            document = SimpleDocTemplate(str(self.pdf_path), leftMargin=10, rightMargin=10, topMargin=10, bottomMargin=10,
                                          pageSize=A4)
             story, error = ExportContactPdfObject.create_pdf(contact_data, ui_text)
             if error:
                 self.error_message.emit(error)
                 self.finished.emit(False)
                 return
-            document.build(story, onFirstPage=ExportContactPdfObject.create_color_column)
+            document.build(story, onFirstPage=ExportContactPdfObject.create_color_row, onLaterPages=ExportContactPdfObject.create_color_row)
             self.finished.emit(True)
         except Exception as e:
             self.error_message.emit(e)
@@ -77,105 +77,47 @@ class ExportContactPdfObject(QObject):
     def create_pdf(contact_data: dict[str, Any], ui_text: dict[str, str]) -> tuple[list | None, Exception | None]:
         try:
             print(contact_data)
-            story = []
-            mandatory_column = ExportContactPdfObject.build_mandatory_column(contact_data, ui_text)
-            non_mandatory_column = ""
-            table_data = [[mandatory_column, non_mandatory_column]]
-            table = Table(table_data, colWidths=[200, 350])
-            table.setStyle(TableStyle([
-                ("BOX", (0, 0), (-1, -1), 0.5, colors.red),
-                ("GRID", (0, 0), (-1, -1), 0.5, colors.blue),
-            ]
-            ))
-            story.append(table)
+            mandatory_build = ExportContactPdfObject.create_mandatory_row(contact_data, ui_text)
+            story = mandatory_build
             return story, None
         except Exception as e:
+            print(e)
             return None, e
 
     @staticmethod
-    def build_mandatory_column(contact_data: dict[str, Any], ui_text: dict[str, str]) -> Table:
+    def create_mandatory_row(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
         styles = getSampleStyleSheet()
-        styles.add(ParagraphStyle(name="MyHeading2", parent=styles["Heading2"], fontName="TimesNewRoman", fontSize=20,
-                                  alignment=0))
-        styles.add(ParagraphStyle(name="MyNormal", parent=styles["Normal"], fontName="TimesNewRoman", fontSize=15,
-                                  alignment=0))
-        spacer_normal = Spacer(1, 5)
-        spacer_between = Spacer(1, 15)
-        photo = contact_data.get('photo', None)
-        if isinstance(photo, QByteArray):
-            photo = bytes(photo)
-        contact_image = ExportContactPdfObject.get_image_from_blob(photo)
-        if not contact_image:
-            contact_image = Spacer(1, 5 * cm)
-        street = contact_data.get('personal_street', '')
-        if not street:
-            address = f"{contact_data.get('personal_city', '')} {contact_data.get('personal_house_number', '')}"
-        else:
-            address = f"{street} {contact_data.get('personal_house_number', '')}"
-        qr_image = ExportContactPdfObject.create_pdf_qr_code(contact_data)
-        if qr_image is None:
-            qr_image = Spacer(1, 3 * cm)
-        rows = [
-            ("image", contact_image),
-            ("spacer", Spacer(1, 30)),
-        ]
-        title = contact_data.get('title', '')
-        if title:
-            rows.extend([
-                ("title", ui_text.get('mandatoryColumnTitleTitle', '')),
-                ("normal", title),
-                ("spacer", spacer_between)
-            ])
-        rows.extend([
-            ("title", ui_text.get('mandatoryColumnContactTitle', '')),
-            ("normal", contact_data.get('personal_email', '')),
-            ("spacer", spacer_normal),
-            ("normal", contact_data.get('personal_phone_number', '')),
-            ("spacer", spacer_between),
-            ("title", ui_text.get('mandatoryColumnAddressTitle', '')),
-            ("normal", address),
-            ("spacer", spacer_normal),
-            ("normal", contact_data.get('personal_city', '')),
-            ("spacer", spacer_normal),
-            ("normal", contact_data.get('personal_post_code', '')),
-            ("spacer", spacer_normal),
-            ("normal", contact_data.get('personal_country', '')),
-            ("spacer", spacer_between),
-        ])
-        birthday = contact_data.get('birthday', '')
-        if birthday:
-            rows.extend([
-                ("title", ui_text.get('mandatoryColumnBirthdayTitle', "")),
-                ("normal", birthday),
-                ("spacer", spacer_between)
-            ])
-        rows.append(("spacer", Spacer(1, 5 * cm)))
-        rows.append(("image", qr_image))
-        data = []
-        for kind, value in rows:
-            if kind == "title":
-                data.append([Paragraph(value, styles["MyHeading2"])])
-            elif kind == "normal":
-                data.append([Paragraph(value, styles["MyNormal"])])
-            elif kind == "spacer":
-                data.append([value])
-            elif kind == "image":
-                data.append([value])
+        styles.add(ParagraphStyle(name="MyNameHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=10))
+        styles.add(ParagraphStyle(name="MyContactHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=15, spaceAfter=10))
+        photo = ExportContactPdfObject.get_image_from_blob(contact_data.get('photo', None))
+        if not photo:
+            photo = Spacer(4 * cm, 4 * cm)
+        first_name = Paragraph(f"{contact_data.get('first_name', '')}",styles["MyNameHeading"])
+        second_name = Paragraph(f"{contact_data.get('second_name', '')}", styles["MyNameHeading"])
+        data = [[photo, [first_name, second_name]]]
         table = Table(data)
         table.setStyle(TableStyle([
-            ("ALIGN", (0, 0), (0, 0), "CENTER"),
-            ("ALIGN", (0, len(data) - 1), (0, len(data) - 1), "CENTER"),
+            ('VALIGN', (0, 0), (0, 0), 'MIDDLE'),
+            ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+            ('VALIGN', (1, 0), (1, 0), 'MIDDLE'),
+            ('ALIGN', (1, 0), (1, 0), 'CENTER')
         ]))
-        return table
+        email_paragraph = Paragraph(f"{ui_text.get('personalEmail', '')} {contact_data.get('personal_email', '')}",
+                                    styles["MyContactHeading"])
+        phone_paragraph = Paragraph(f"{ui_text.get('personalPhoneNumber', '')} {contact_data.get('personal_phone_number', '')}",
+                                    styles["MyContactHeading"])
+        story = [table, Spacer(1, 10), email_paragraph, phone_paragraph]
+        return story
 
     @staticmethod
-    def create_color_column(canvas: Canvas, document: SimpleDocTemplate) -> None:
-        x = 0
-        y = 0
+    def create_color_row(canvas: Canvas, document: SimpleDocTemplate) -> None:
         width, height = A4
+        row_height = 150
         custom_blue = Color(0.267, 0.541, 1.0)
         canvas.setFillColor(custom_blue)
-        canvas.rect(x, y, 222, height, stroke=0, fill=1)
+        canvas.rect(0, height - row_height, width, row_height, stroke=0, fill=1)
 
     @staticmethod
     def get_image_from_blob(photo_blob: bytes | None) -> Image | None:
@@ -186,7 +128,7 @@ class ExportContactPdfObject(QObject):
             pil_image = PILImage.open(blob_image)
             pil_image.verify()
             blob_image.seek(0)
-            return Image(blob_image, width=5*cm, height=5*cm)
+            return Image(blob_image, width=4*cm, height=4*cm)
         except IOError:
             return None
 

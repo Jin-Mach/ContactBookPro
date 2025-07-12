@@ -89,6 +89,10 @@
     "mandatoryColumnContactTitle": "Kontakt:",
     "mandatoryColumnAddressTitle": "Adresa:",
     "mandatoryColumnTitleTitle": "Titul:",
-    "mandatoryColumnBirthdayTitle": "Datum narození:"
+    "mandatoryColumnBirthdayTitle": "Datum narození:",
+    "nonMandatoryColumnWorkTitle": "Pracovní:",
+    "nonMandatoryColumnNotesTitle": "Poznámky:",
+    "personalEmail": "Email:",
+    "personalPhoneNumber": "Tel. číslo:"
   }
 }
