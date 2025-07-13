@@ -63,12 +63,15 @@ class ContactsController:
         contact_data = RowDataProvider.return_row_data(self.db_connection, contact_id)
         return index, contact_id, contact_data
 
-    def refresh_ui(self) -> None:
+    def refresh_ui(self, added: int | None) -> None:
         refresh_models([
             self.mandatory_model, self.work_model, self.social_model,
             self.detail_model, self.info_model
         ])
-        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+        if added is None:
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), None)
+        else:
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), added)
         self.detail_widget.reset_data()
 
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
@@ -101,7 +104,7 @@ class ContactsController:
                         self.social_model.add_contact([last_id] + data[2])
                         self.detail_model.add_contact([last_id] + data[3])
                         self.info_model.add_contact([last_id] + data[4])
-                        self.refresh_ui()
+                        self.refresh_ui(1)
                         index = self.mandatory_model.index(self.mandatory_model.rowCount() - 1, 0)
                         self.table_view.selectRow(index.row())
                         self.table_view.scrollTo(index)
@@ -156,7 +159,7 @@ class ContactsController:
             dialog = DeleteDialogs.show_delete_contact_dialog(contact_data.get("first_name", ""), contact_data.get("second_name", ""))
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 self.mandatory_model.delete_contact(index.row())
-                self.refresh_ui()
+                self.refresh_ui(-1)
                 self.main_window.tray_icon.show_notification("", "contactDeleted")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
@@ -170,7 +173,7 @@ class ContactsController:
                     FiltersProvider.delete_filters_file()
                 if not reset_database():
                     self.mandatory_model.clear_database()
-                self.refresh_ui()
+                self.refresh_ui(None)
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
