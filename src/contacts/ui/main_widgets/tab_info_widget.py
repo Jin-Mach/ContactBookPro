@@ -211,7 +211,7 @@ class TabInfoWidget(QTabWidget):
             self.website_url = data.get("website_url", "")
             self.work_company_name_label.setText(data.get("company_name", ""))
             self.work_email_label.setText(data.get("work_email", ""))
-            self.work_phone_number_label.setText(format_phone_number(data.get("personal_phone_number", "")))
+            self.work_phone_number_label.setText(format_phone_number(data.get("work_phone_number", "")))
             self.work_address_label.setText(self.validate_address(
                 data.get("work_street", ""),
                 data.get("work_house_number", ""),

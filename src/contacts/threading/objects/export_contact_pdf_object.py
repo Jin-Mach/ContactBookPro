@@ -8,9 +8,9 @@ from reportlab.lib.colors import Color
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, Spacer, Image, TableStyle, HRFlowable
-from reportlab.platypus import Image as RLImage
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -48,8 +48,8 @@ class ExportContactPdfObject(QObject):
             if not db_connection.open():
                 self.finished.emit(False)
                 return
-            contact_data = self.export_data_provider.get_pdf_contact_data(db_connection, self.index, self.main_window)
-            if not contact_data:
+            self.contact_data = self.export_data_provider.get_pdf_contact_data(db_connection, self.index, self.main_window)
+            if not self.contact_data:
                 self.finished.emit(False)
                 return
             font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
@@ -57,12 +57,12 @@ class ExportContactPdfObject(QObject):
             ui_text = LanguageProvider.get_ui_text(self.objectName())
             document = SimpleDocTemplate(str(self.pdf_path), leftMargin=10, rightMargin=10, topMargin=10, bottomMargin=10,
                                          pageSize=A4)
-            story, error = ExportContactPdfObject.create_pdf(contact_data, ui_text)
+            story, error = ExportContactPdfObject.create_pdf(self.contact_data, ui_text)
             if error:
                 self.error_message.emit(error)
                 self.finished.emit(False)
                 return
-            document.build(story, onFirstPage=ExportContactPdfObject.create_color_row, onLaterPages=ExportContactPdfObject.create_color_row)
+            document.build(story, onFirstPage=self.build_canvas, onLaterPages=self.build_canvas)
             self.finished.emit(True)
         except Exception as e:
             self.error_message.emit(e)
@@ -87,7 +87,6 @@ class ExportContactPdfObject(QObject):
             story.extend(notes_info)
             return story, None
         except Exception as e:
-            print(e)
             return None, e
 
     @staticmethod
@@ -150,25 +149,37 @@ class ExportContactPdfObject(QObject):
                                   fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
         styles.add(ParagraphStyle(name="WorkNormal", parent=styles["Normal"],
                                   fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
+        company = contact_data.get('company_name', '')
+        email = contact_data.get('work_email', '')
+        phone = contact_data.get('work_phone_number', '')
+        country = contact_data.get('work_country', '')
         work_title = Paragraph(f"{ui_text.get('workTitle', '')}", styles["WorkHeading"])
-        company_paragraph = Paragraph(f"{ui_text.get('workCompany', '')} {contact_data.get('company_name','')}",
-                                      styles["WorkNormal"])
-        email_paragraph = Paragraph(f"{ui_text.get('workEmail', '')} {contact_data.get('work_email', '')}",
-                                    styles["WorkNormal"])
-        phone_paragraph = Paragraph(f"{ui_text.get('workPhone', '')} {contact_data.get('work_phone_number', '')}",
-                                    styles["WorkNormal"])
-        street = ui_text.get('work_street', '')
-        if not street:
-            address = f"{contact_data.get('work_city', '')} {contact_data.get('work_house_number', '')}"
-        else:
-            address = f"{street} {contact_data.get('work_house_number', '')}"
-        full_address_paragraph = Paragraph(f"{ui_text.get('workAddress', '')} {address}, "
-                                           f"{contact_data.get('work_city', '')}, {contact_data.get('work_post_code', '')}",
-                                           styles["WorkNormal"])
-        country_paragraph = Paragraph(f"{ui_text.get('workCountry', '')} {contact_data.get('work_country', '')}",
-                                      styles["WorkNormal"])
-        story = [work_title, company_paragraph, email_paragraph, phone_paragraph, full_address_paragraph, country_paragraph,
-                 Spacer(1, 10), HRFlowable(width="100%", thickness=1, color=colors.black)]
+        story = []
+        if company:
+            company_paragraph = Paragraph(f"{ui_text.get('workCompany', '')} {company}", styles["WorkNormal"])
+            story.append(company_paragraph)
+        if email:
+            email_paragraph = Paragraph(f"{ui_text.get('workEmail', '')} {email}", styles["WorkNormal"])
+            story.append(email_paragraph)
+        if phone:
+            phone_paragraph = Paragraph(f"{ui_text.get('workPhone', '')} {phone}", styles["WorkNormal"])
+            story.append(phone_paragraph)
+        if country:
+            street = ui_text.get('work_street', '')
+            if not street:
+                address = f"{contact_data.get('work_city', '')} {contact_data.get('work_house_number', '')}"
+            else:
+                address = f"{street} {contact_data.get('work_house_number', '')}"
+            full_address_paragraph = Paragraph(f"{ui_text.get('workAddress', '')} {address}, "
+                                               f"{contact_data.get('work_city', '')}, {contact_data.get('work_post_code', '')}",
+                                               styles["WorkNormal"])
+            country_paragraph = Paragraph(f"{ui_text.get('workCountry', '')} {country}", styles["WorkNormal"])
+            story.append(full_address_paragraph)
+            story.append(country_paragraph)
+        if story:
+            story = [work_title] + story
+            story += [Spacer(1, 10)]
+            story += [HRFlowable(width="100%", thickness=1, color=colors.black)]
         return story
 
     @staticmethod
@@ -180,21 +191,28 @@ class ExportContactPdfObject(QObject):
                                   fontName="TimesNewRoman", fontSize=20, leading=20, spaceAfter=10))
         notes_title = Paragraph(f"{ui_text.get('notesTitle', '')}", styles["NotesHeading"])
         notes_raw = contact_data.get('notes', '')
-        lines = notes_raw.splitlines()
-        story = [notes_title]
-        for line in lines:
-            story.extend([Paragraph(f"{line}", styles["NotesNormal"])])
+        story = []
+        if notes_raw:
+            lines = notes_raw.splitlines()
+            story = [notes_title]
+            for line in lines:
+                story.extend([Paragraph(f"{line}", styles["NotesNormal"])])
         return story
 
-    @staticmethod
-    def create_color_row(canvas: Canvas, document: SimpleDocTemplate) -> None:
+    def build_canvas(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         width, height = A4
         top_row_height = 150
-        bottom_row_height = 50
+        bottom_row_height = 70
+        qr_size = 2*cm
         custom_blue = Color(0.267, 0.541, 1.0)
         canvas.setFillColor(custom_blue)
         canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
         canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)
+        qr_code = ExportContactPdfObject.create_pdf_qr_code(self.contact_data)
+        if qr_code:
+            image_reader = ImageReader(qr_code)
+            canvas.drawImage(image_reader, width - qr_size - 10, 10, width=qr_size, height=qr_size)
+
 
     @staticmethod
     def get_image_from_blob(photo_blob: bytes | None) -> Image | None:
@@ -210,7 +228,7 @@ class ExportContactPdfObject(QObject):
             return None
 
     @staticmethod
-    def create_pdf_qr_code(contact_data: dict[str, Any]) ->Image | None:
+    def create_pdf_qr_code(contact_data: dict[str, Any]) -> BytesIO| None:
         try:
             vcard = create_vcard(contact_data)
             qr_code = create_qr_code(vcard)
@@ -219,7 +237,6 @@ class ExportContactPdfObject(QObject):
             image_to_bytearray = BytesIO()
             qr_code.save(image_to_bytearray, "PNG")
             image_to_bytearray.seek(0)
-            qr_code_image = RLImage(image_to_bytearray, width=3*cm, height=3*cm)
-            return qr_code_image
+            return image_to_bytearray
         except IOError:
             return None
