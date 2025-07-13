@@ -28,7 +28,8 @@
     "websiteValidatorError": "Neplatný formát.\nZadej platnou url adresu ve formátu: www.example.cz"
   },
     "notesUtilities": {
-    "textLengthError": "Překročen maximální počet znaků pro poznámky."
+    "textLengthError": "Text může mít maximálně 200 znaků.",
+    "textLineCountError": "Poznámky mohou mít maximálně 5 řádků."
   },
   "calendarDialog": {
     "selectedDateError": "Zvolené datum nemůže být vyšší než aktuální datum."

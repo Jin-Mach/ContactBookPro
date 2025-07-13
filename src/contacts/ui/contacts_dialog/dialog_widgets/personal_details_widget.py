@@ -75,7 +75,7 @@ class PersonalDetailsWidget(QWidget):
         self.dialog_notes_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         self.dialog_notes_edit.textChanged.connect(lambda: check_notes_length(self.dialog_notes_edit, self.dialog_letters_count_label, self))
         letters_count_layout = QHBoxLayout()
-        self.dialog_letters_count_label = QLabel("0/500")
+        self.dialog_letters_count_label = QLabel("0/200")
         self.dialog_letters_count_label.setObjectName("dialogLettersCountLabel")
         photo_buttons_layout.addWidget(self.dialog_get_photo_pushbutton)
         photo_buttons_layout.addWidget(self.dialog_reset_photo_button)

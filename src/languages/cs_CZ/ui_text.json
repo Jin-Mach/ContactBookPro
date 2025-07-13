@@ -86,13 +86,18 @@
     "genderHeaderText": "Pohlaví uživatele"
   },
   "exportContactPdfObject": {
-    "mandatoryColumnContactTitle": "Kontakt:",
-    "mandatoryColumnAddressTitle": "Adresa:",
-    "mandatoryColumnTitleTitle": "Titul:",
-    "mandatoryColumnBirthdayTitle": "Datum narození:",
-    "nonMandatoryColumnWorkTitle": "Pracovní:",
-    "nonMandatoryColumnNotesTitle": "Poznámky:",
+    "contactTitle": "Kontakt",
     "personalEmail": "Email:",
-    "personalPhoneNumber": "Tel. číslo:"
+    "personalPhoneNumber": "Tel. číslo:",
+    "addressTitle": "Adresa",
+    "personalAddress": "Adresa:",
+    "personalCountry": "Stát:",
+    "workTitle": "Pracovní",
+    "workCompany": "Firma:",
+    "workEmail": "Email:",
+    "workPhone": "Tel. číslo:",
+    "workAddress": "Adresa:",
+    "workCountry": "Stát:",
+    "notesTitle": "Poznámky"
   }
 }

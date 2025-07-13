@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Odstranit",
     "dialogTitleEdit": "Zadej titul...",
     "dialogBirthdayEdit": "Vyber datum narození...",
-    "dialogNotesEdit": "Poznámky ke kontaktu..."
+    "dialogNotesEdit": "Poznámky ke kontaktu (max. 200 znaků, max. 5 řádků)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Vybrat datum narození",

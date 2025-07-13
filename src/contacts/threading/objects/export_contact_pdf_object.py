@@ -14,7 +14,7 @@ from reportlab.platypus import Image as RLImage
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-from PyQt6.QtCore import QObject, pyqtSignal, QByteArray
+from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
@@ -76,21 +76,29 @@ class ExportContactPdfObject(QObject):
     @staticmethod
     def create_pdf(contact_data: dict[str, Any], ui_text: dict[str, str]) -> tuple[list | None, Exception | None]:
         try:
-            print(contact_data)
-            mandatory_build = ExportContactPdfObject.create_mandatory_row(contact_data, ui_text)
-            story = mandatory_build
+            basic_info = ExportContactPdfObject.create_basic_info(contact_data, ui_text)
+            address_info = ExportContactPdfObject.create_address_info(contact_data, ui_text)
+            work_info = ExportContactPdfObject.create_work_info(contact_data, ui_text)
+            notes_info = ExportContactPdfObject.create_notes_info(contact_data, ui_text)
+            story = []
+            story.extend(basic_info)
+            story.extend(address_info)
+            story.extend(work_info)
+            story.extend(notes_info)
             return story, None
         except Exception as e:
             print(e)
             return None, e
 
     @staticmethod
-    def create_mandatory_row(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
+    def create_basic_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name="MyNameHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=10))
-        styles.add(ParagraphStyle(name="MyContactHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=15, spaceAfter=10))
+                                  fontName="TimesNewRoman", fontSize=40, spaceAfter=10))
+        styles.add(ParagraphStyle(name="ContactHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
+        styles.add(ParagraphStyle(name="ContactNormal", parent=styles["Normal"],
+                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
         photo = ExportContactPdfObject.get_image_from_blob(contact_data.get('photo', None))
         if not photo:
             photo = Spacer(4 * cm, 4 * cm)
@@ -104,20 +112,89 @@ class ExportContactPdfObject(QObject):
             ('VALIGN', (1, 0), (1, 0), 'MIDDLE'),
             ('ALIGN', (1, 0), (1, 0), 'CENTER')
         ]))
+        contact_title = Paragraph(f"{ui_text.get('contactTitle', '')}", styles["ContactHeading"])
         email_paragraph = Paragraph(f"{ui_text.get('personalEmail', '')} {contact_data.get('personal_email', '')}",
-                                    styles["MyContactHeading"])
+                                    styles["ContactNormal"])
         phone_paragraph = Paragraph(f"{ui_text.get('personalPhoneNumber', '')} {contact_data.get('personal_phone_number', '')}",
-                                    styles["MyContactHeading"])
-        story = [table, Spacer(1, 10), email_paragraph, phone_paragraph]
+                                    styles["ContactNormal"])
+        story = [table, Spacer(1, 10), contact_title, email_paragraph, phone_paragraph, Spacer(1, 10),
+                 HRFlowable(width="100%", thickness=1, color=colors.black)]
+        return story
+
+    @staticmethod
+    def create_address_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
+        styles = getSampleStyleSheet()
+        styles.add(ParagraphStyle(name="AddressHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
+        styles.add(ParagraphStyle(name="AddressNormal", parent=styles["Normal"],
+                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
+        address_title = Paragraph(f"{ui_text.get('addressTitle', '')}", styles["AddressHeading"])
+        street = contact_data.get('personal_street', '')
+        if not street:
+            address = f"{contact_data.get('personal_city', '')} {contact_data.get('personal_house_number', '')}"
+        else:
+            address = f"{street} {contact_data.get('personal_house_number', '')}"
+        full_address_paragraph = Paragraph(f"{ui_text.get('personalAddress', '')} {address}, "
+                                           f"{contact_data.get('personal_city', '')}, {contact_data.get('personal_post_code', '')}",
+                                           styles["AddressNormal"])
+        country_paragraph = Paragraph(f"{ui_text.get('personalCountry', '')} {contact_data.get('personal_country', '')}",
+                                      styles["AddressNormal"])
+        story = [address_title, full_address_paragraph, country_paragraph, Spacer(1, 10),
+                 HRFlowable(width="100%", thickness=1, color=colors.black)]
+        return story
+
+    @staticmethod
+    def create_work_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
+        styles = getSampleStyleSheet()
+        styles.add(ParagraphStyle(name="WorkHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
+        styles.add(ParagraphStyle(name="WorkNormal", parent=styles["Normal"],
+                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
+        work_title = Paragraph(f"{ui_text.get('workTitle', '')}", styles["WorkHeading"])
+        company_paragraph = Paragraph(f"{ui_text.get('workCompany', '')} {contact_data.get('company_name','')}",
+                                      styles["WorkNormal"])
+        email_paragraph = Paragraph(f"{ui_text.get('workEmail', '')} {contact_data.get('work_email', '')}",
+                                    styles["WorkNormal"])
+        phone_paragraph = Paragraph(f"{ui_text.get('workPhone', '')} {contact_data.get('work_phone_number', '')}",
+                                    styles["WorkNormal"])
+        street = ui_text.get('work_street', '')
+        if not street:
+            address = f"{contact_data.get('work_city', '')} {contact_data.get('work_house_number', '')}"
+        else:
+            address = f"{street} {contact_data.get('work_house_number', '')}"
+        full_address_paragraph = Paragraph(f"{ui_text.get('workAddress', '')} {address}, "
+                                           f"{contact_data.get('work_city', '')}, {contact_data.get('work_post_code', '')}",
+                                           styles["WorkNormal"])
+        country_paragraph = Paragraph(f"{ui_text.get('workCountry', '')} {contact_data.get('work_country', '')}",
+                                      styles["WorkNormal"])
+        story = [work_title, company_paragraph, email_paragraph, phone_paragraph, full_address_paragraph, country_paragraph,
+                 Spacer(1, 10), HRFlowable(width="100%", thickness=1, color=colors.black)]
+        return story
+
+    @staticmethod
+    def create_notes_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
+        styles = getSampleStyleSheet()
+        styles.add(ParagraphStyle(name="NotesHeading", parent=styles["Heading2"],
+                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
+        styles.add(ParagraphStyle(name="NotesNormal", parent=styles["Normal"],
+                                  fontName="TimesNewRoman", fontSize=20, leading=20, spaceAfter=10))
+        notes_title = Paragraph(f"{ui_text.get('notesTitle', '')}", styles["NotesHeading"])
+        notes_raw = contact_data.get('notes', '')
+        lines = notes_raw.splitlines()
+        story = [notes_title]
+        for line in lines:
+            story.extend([Paragraph(f"{line}", styles["NotesNormal"])])
         return story
 
     @staticmethod
     def create_color_row(canvas: Canvas, document: SimpleDocTemplate) -> None:
         width, height = A4
-        row_height = 150
+        top_row_height = 150
+        bottom_row_height = 50
         custom_blue = Color(0.267, 0.541, 1.0)
         canvas.setFillColor(custom_blue)
-        canvas.rect(0, height - row_height, width, row_height, stroke=0, fill=1)
+        canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
+        canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)
 
     @staticmethod
     def get_image_from_blob(photo_blob: bytes | None) -> Image | None:
