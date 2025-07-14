@@ -13,16 +13,16 @@ def create_db_connection(db_name: str) -> QSqlDatabase | None:
     if not connection.open():
         ErrorHandler.database_error(connection.lastError().text(), True)
         return None
-    query = QSqlQuery()
+    query = QSqlQuery(connection)
     query.exec("PRAGMA foreign_keys = ON")
-    result, query = create_contacts_tables()
+    result, query = create_contacts_tables(connection)
     if not result:
         ErrorHandler.database_error(query.lastError().text(), True)
         return None
     return connection
 
-def create_contacts_tables() -> tuple[bool, QSqlQuery]:
-    query = QSqlQuery()
+def create_contacts_tables(connection: QSqlDatabase) -> tuple[bool, QSqlQuery]:
+    query = QSqlQuery(connection)
     create_mandatory_table = query.exec("""CREATE TABLE IF NOT EXISTS mandatory(
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
         gender TEXT NOT NULL,

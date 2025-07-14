@@ -9,6 +9,8 @@
     "queryError": "Chyba při provádění databázového dotazu.",
     "RuntimeError": "Odkaz se nepodařilo otevřít. Zkontrolujte, zda je platný a zda máte připojený internet.",
     "URLError": "Odkaz je neplatný nebo se nepodařilo navázat spojení.",
+    "FileNotFoundError": "Spustitelný soubor nebo skript nebyl nalezen. Zkontrolujte prosím cestu.",
+    "OSError": "Došlo k systémové chybě při pokusu o restart aplikace. Restartujte aplikaci ručně.",
     "UnexpectedError": "Došlo k neočekávané chybě."
   },
   "dialogMandatoryWidget": {

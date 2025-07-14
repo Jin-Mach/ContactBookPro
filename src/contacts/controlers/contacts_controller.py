@@ -28,8 +28,10 @@ from src.database.utilities.update_models import update_models_data
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.restart_app import restart_application
 
 
+# noinspection PyBroadException
 class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
                  work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel, info_model: InfoModel,
@@ -173,7 +175,11 @@ class ContactsController:
                     FiltersProvider.delete_filters_file()
                 if not reset_database():
                     self.mandatory_model.clear_database()
-                self.refresh_ui(None)
+                    self.refresh_ui(None)
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")
+                try:
+                    restart_application()
+                except Exception:
+                    ErrorHandler.exception_handler(OSError())
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

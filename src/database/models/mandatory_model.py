@@ -102,6 +102,7 @@ class MandatoryModel(QSqlTableModel):
             if not self.removeRows(0, self.rowCount()):
                 ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
+        self.select()
 
     def set_filter_by_id(self, id_list: list) -> None:
         map_list = ",".join(map(str, id_list))
