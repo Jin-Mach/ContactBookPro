@@ -2,12 +2,13 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.export_controlers.clipboard_export_controler import copy_to_clipboard
-from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportController
-from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportController
-from src.contacts.controlers.export_controlers.pdf_export_controller import PdfExportController
-from src.contacts.controlers.export_controlers.qr_code_controler import qr_code_preview
-from src.contacts.controlers.export_controlers.vcard_export_controler import export_to_vcard
+from src.contacts.controlers.context_menu_controllers.check_birthday_controler import CheckBirthdayController
+from src.contacts.controlers.context_menu_controllers.clipboard_export_controler import copy_to_clipboard
+from src.contacts.controlers.context_menu_controllers.csv_export_controler import CsvExportController
+from src.contacts.controlers.context_menu_controllers.excel_export_controler import ExcelExportController
+from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
+from src.contacts.controlers.context_menu_controllers.qr_code_controler import qr_code_preview
+from src.contacts.controlers.context_menu_controllers.vcard_export_controler import export_to_vcard
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -16,7 +17,8 @@ from src.utilities.language_provider import LanguageProvider
 # noinspection PyUnresolvedReferences
 class ContextMenu(QMenu):
     def __init__(self, contacts_controller: "ContactsController | None", csv_export_controller: CsvExportController | None,
-                 excel_export_controller: ExcelExportController, pdf_export_controller: PdfExportController, parent=None) -> None:
+                 excel_export_controller: ExcelExportController, pdf_export_controller: PdfExportController,
+                 check_birthday_controller: CheckBirthdayController, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
@@ -24,6 +26,7 @@ class ContextMenu(QMenu):
         self.csv_export_controller = csv_export_controller
         self.excel_export_controller = excel_export_controller
         self.pdf_export_controller = pdf_export_controller
+        self.check_birthday_controller = check_birthday_controller
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -130,7 +133,8 @@ class ContextMenu(QMenu):
                        (self.preview_contact_action, lambda: self.pdf_export_controller.export_contact_to_pdf(self.main_window)),
                        (self.preview_filtered_contacts_list_action, lambda: self.pdf_export_controller.export_filtered_list_to_pdf(self.main_window)),
                        (self.preview_all_contacts_list_action, lambda: self.pdf_export_controller.export_all_list_to_pdf(self.main_window)),
-                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window))
+                       (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window)),
+                       (self.contact_check_birthday_action, lambda: self.check_birthday_controller.check_birthday(self.main_window))
                        ]
         try:
             for action, method in connections:

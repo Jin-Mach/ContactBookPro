@@ -82,7 +82,7 @@ class PdfExportController:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    def show_preview(self, main_window: QMainWindow, success: bool, ) -> None:
+    def show_preview(self, main_window: QMainWindow, success: bool) -> None:
         try:
             if success:
                 pdf_dialog = PdfPreviewDialog(str(self.pdf_output_path), lambda: self.save_pdf_document(str(self.pdf_output_path), main_window), main_window)

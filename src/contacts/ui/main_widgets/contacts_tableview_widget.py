@@ -3,9 +3,10 @@ from PyQt6.QtSql import QSqlTableModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.controlers.contact_data_controller import ContactDataController
-from src.contacts.controlers.export_controlers.csv_export_controler import CsvExportController
-from src.contacts.controlers.export_controlers.excel_export_controler import ExcelExportController
-from src.contacts.controlers.export_controlers.pdf_export_controller import PdfExportController
+from src.contacts.controlers.context_menu_controllers.check_birthday_controler import CheckBirthdayController
+from src.contacts.controlers.context_menu_controllers.csv_export_controler import CsvExportController
+from src.contacts.controlers.context_menu_controllers.excel_export_controler import ExcelExportController
+from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
@@ -45,8 +46,9 @@ class ContactsTableviewWidget(QTableView):
         csv_export_controller = CsvExportController(connection, self)
         excel_export_controller = ExcelExportController(connection, self)
         pdf_export_controller = PdfExportController(connection, self)
+        check_birthday_controller = CheckBirthdayController(connection)
         self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
-                                        pdf_export_controller, self)
+                                        pdf_export_controller, check_birthday_controller, self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)

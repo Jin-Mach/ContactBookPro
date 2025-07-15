@@ -87,3 +87,36 @@ class QueryProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
             return None
+
+    @staticmethod
+    def create_check_birthday_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list | None:
+        try:
+            ids = []
+            detail_query = QSqlQuery(db_connection)
+            if not detail_query.exec("SELECT id from detail "
+                                     "WHERE birthday IS NOT NULL "
+                                     "AND ("
+                                     "julianday('now') - julianday(strftime('%Y', 'now') || '-' || strftime('%m-%d', birthday))"
+                                     ") BETWEEN -7 AND 7"):
+                ErrorHandler.database_error(detail_query.lastError().text(), False)
+            while detail_query.next():
+                ids.append(str(detail_query.value(0)))
+            if not ids:
+                return []
+            contacts_query = QSqlQuery(db_connection)
+            str_ids = ', '.join(ids)
+            query = f"SELECT id, first_name, second_name FROM mandatory WHERE id IN ({str_ids})"
+            if not contacts_query.exec(query):
+                ErrorHandler.database_error(contacts_query.lastError().text(), False)
+            results = []
+            while contacts_query.next():
+                row = {
+                    "id": contacts_query.value(0),
+                    "first_name": contacts_query.value(1),
+                    "second_name": contacts_query.value(2)
+                }
+                results.append(row)
+            return results
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return None
