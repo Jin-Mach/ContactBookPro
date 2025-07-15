@@ -18,9 +18,11 @@ from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
+from src.contacts.utilities.date_handler import format_date
 from src.contacts.utilities.generate_qr_code import create_qr_code
 from src.contacts.utilities.generate_vcard import create_vcard
 from src.database.utilities.export_data_provider import ExportDataProvider
+from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.language_provider import LanguageProvider
 
 
@@ -49,6 +51,7 @@ class ExportContactPdfObject(QObject):
                 self.finished.emit(False)
                 return
             self.contact_data = self.export_data_provider.get_pdf_contact_data(db_connection, self.index, self.main_window)
+            self.row_data = RowDataProvider.return_row_data(db_connection, self.index)
             if not self.contact_data:
                 self.finished.emit(False)
                 return
@@ -91,127 +94,167 @@ class ExportContactPdfObject(QObject):
 
     @staticmethod
     def create_basic_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
-        styles = getSampleStyleSheet()
-        styles.add(ParagraphStyle(name="MyNameHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=40, spaceAfter=10))
-        styles.add(ParagraphStyle(name="ContactHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
-        styles.add(ParagraphStyle(name="ContactNormal", parent=styles["Normal"],
-                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
-        photo = ExportContactPdfObject.get_image_from_blob(contact_data.get('photo', None))
-        if not photo:
-            photo = Spacer(4 * cm, 4 * cm)
-        first_name = Paragraph(f"{contact_data.get('first_name', '')}",styles["MyNameHeading"])
-        second_name = Paragraph(f"{contact_data.get('second_name', '')}", styles["MyNameHeading"])
-        data = [[photo, [first_name, second_name]]]
-        table = Table(data)
-        table.setStyle(TableStyle([
-            ('VALIGN', (0, 0), (0, 0), 'MIDDLE'),
-            ('ALIGN', (0, 0), (0, 0), 'LEFT'),
-            ('VALIGN', (1, 0), (1, 0), 'MIDDLE'),
-            ('ALIGN', (1, 0), (1, 0), 'CENTER')
-        ]))
-        contact_title = Paragraph(f"{ui_text.get('contactTitle', '')}", styles["ContactHeading"])
-        email_paragraph = Paragraph(f"{ui_text.get('personalEmail', '')} {contact_data.get('personal_email', '')}",
-                                    styles["ContactNormal"])
-        phone_paragraph = Paragraph(f"{ui_text.get('personalPhoneNumber', '')} {contact_data.get('personal_phone_number', '')}",
-                                    styles["ContactNormal"])
-        story = [table, Spacer(1, 10), contact_title, email_paragraph, phone_paragraph, Spacer(1, 10),
-                 HRFlowable(width="100%", thickness=1, color=colors.black)]
-        return story
+        try:
+            styles = getSampleStyleSheet()
+            styles.add(ParagraphStyle(name="MyNameHeading", parent=styles["Heading2"],
+                                      fontName="TimesNewRoman", fontSize=25, spaceBefore=0, spaceAfter=4, leading=25))
+            styles.add(ParagraphStyle(name="ContactHeading", parent=styles["Heading2"],
+                                      fontName="TimesNewRoman", fontSize=15, spaceAfter=10))
+            styles.add(ParagraphStyle(name="ContactNormal", parent=styles["Normal"],
+                                      fontName="TimesNewRoman", fontSize=12, spaceAfter=6, leading=15))
+            styles.add(ParagraphStyle(name="TitleStyle", parent=styles["Normal"],
+                                      fontName="TimesNewRoman", fontSize=12, spaceBefore=0, spaceAfter=2))
+            styles.add(ParagraphStyle(name="BirthdayStyle", parent=styles["Normal"],
+                                      fontName="TimesNewRoman", fontSize=12, spaceBefore=2, spaceAfter=0))
+            photo = ExportContactPdfObject.get_image_from_blob(contact_data.get('photo', None))
+            if not photo:
+                photo = Spacer(4 * cm, 4 * cm)
+            title = contact_data.get('title', '')
+            birthday = contact_data.get('birthday', '')
+            data = []
+            if title:
+                title_paragraph = Paragraph(title, styles["TitleStyle"])
+                data.append(title_paragraph)
+            first_name = Paragraph(f"{contact_data.get('first_name', '')}", styles["MyNameHeading"])
+            second_name = Paragraph(f"{contact_data.get('second_name', '')}", styles["MyNameHeading"])
+            data.append(first_name)
+            data.append(second_name)
+            if birthday:
+                birthday = format_date(birthday)
+                birthday_paragraph = Paragraph(birthday, styles["BirthdayStyle"])
+                data.append(birthday_paragraph)
+            final_data = [[photo, data]]
+            table = Table(final_data)
+            table.setStyle(TableStyle([
+                ('VALIGN', (0, 0), (0, 0), 'MIDDLE'),
+                ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+                ('VALIGN', (1, 0), (1, 0), 'MIDDLE'),
+                ('ALIGN', (1, 0), (1, 0), 'CENTER')
+            ]))
+            contact_title = Paragraph(f"{ui_text.get('contactTitle', '')}", styles["ContactHeading"])
+            email_paragraph = Paragraph(f"{ui_text.get('personalEmail', '')} {contact_data.get('personal_email', '')}",
+                                        styles["ContactNormal"])
+            phone_paragraph = Paragraph(f"{ui_text.get('personalPhoneNumber', '')} {contact_data.get('personal_phone_number', '')}",
+                                        styles["ContactNormal"])
+            story = [table, Spacer(1, 10), contact_title, email_paragraph, phone_paragraph, Spacer(1, 10),
+                     HRFlowable(width="100%", thickness=1, color=colors.black)]
+            return story
+        except Exception as e:
+            ExportContactPdfObject.error_message.emit(e)
+            return []
 
     @staticmethod
     def create_address_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
-        styles = getSampleStyleSheet()
-        styles.add(ParagraphStyle(name="AddressHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
-        styles.add(ParagraphStyle(name="AddressNormal", parent=styles["Normal"],
-                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
-        address_title = Paragraph(f"{ui_text.get('addressTitle', '')}", styles["AddressHeading"])
-        street = contact_data.get('personal_street', '')
-        if not street:
-            address = f"{contact_data.get('personal_city', '')} {contact_data.get('personal_house_number', '')}"
-        else:
-            address = f"{street} {contact_data.get('personal_house_number', '')}"
-        full_address_paragraph = Paragraph(f"{ui_text.get('personalAddress', '')} {address}, "
-                                           f"{contact_data.get('personal_city', '')}, {contact_data.get('personal_post_code', '')}",
-                                           styles["AddressNormal"])
-        country_paragraph = Paragraph(f"{ui_text.get('personalCountry', '')} {contact_data.get('personal_country', '')}",
-                                      styles["AddressNormal"])
-        story = [address_title, full_address_paragraph, country_paragraph, Spacer(1, 10),
-                 HRFlowable(width="100%", thickness=1, color=colors.black)]
-        return story
+        try:
+            styles = getSampleStyleSheet()
+            styles.add(ParagraphStyle(name="AddressHeading", parent=styles["Heading2"],
+                                      fontName="TimesNewRoman", fontSize=15, spaceAfter=10))
+            styles.add(ParagraphStyle(name="AddressNormal", parent=styles["Normal"],
+                                      fontName="TimesNewRoman", fontSize=12, spaceAfter=6, leading=15))
+            address_title = Paragraph(f"{ui_text.get('addressTitle', '')}", styles["AddressHeading"])
+            street = contact_data.get('personal_street', '')
+            if not street:
+                address = f"{contact_data.get('personal_city', '')} {contact_data.get('personal_house_number', '')}"
+            else:
+                address = f"{street} {contact_data.get('personal_house_number', '')}"
+            full_address_paragraph = Paragraph(f"{ui_text.get('personalAddress', '')} {address}, "
+                                               f"{contact_data.get('personal_city', '')}, {contact_data.get('personal_post_code', '')}",
+                                               styles["AddressNormal"])
+            country_paragraph = Paragraph(f"{ui_text.get('personalCountry', '')} {contact_data.get('personal_country', '')}",
+                                          styles["AddressNormal"])
+            story = [address_title, full_address_paragraph, country_paragraph, Spacer(1, 10),
+                     HRFlowable(width="100%", thickness=1, color=colors.black)]
+            return story
+        except Exception as e:
+            ExportContactPdfObject.error_message.emit(e)
+            return []
 
     @staticmethod
     def create_work_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
-        styles = getSampleStyleSheet()
-        styles.add(ParagraphStyle(name="WorkHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
-        styles.add(ParagraphStyle(name="WorkNormal", parent=styles["Normal"],
-                                  fontName="TimesNewRoman", fontSize=20, spaceAfter=10))
-        company = contact_data.get('company_name', '')
-        email = contact_data.get('work_email', '')
-        phone = contact_data.get('work_phone_number', '')
-        country = contact_data.get('work_country', '')
-        work_title = Paragraph(f"{ui_text.get('workTitle', '')}", styles["WorkHeading"])
-        story = []
-        if company:
-            company_paragraph = Paragraph(f"{ui_text.get('workCompany', '')} {company}", styles["WorkNormal"])
-            story.append(company_paragraph)
-        if email:
-            email_paragraph = Paragraph(f"{ui_text.get('workEmail', '')} {email}", styles["WorkNormal"])
-            story.append(email_paragraph)
-        if phone:
-            phone_paragraph = Paragraph(f"{ui_text.get('workPhone', '')} {phone}", styles["WorkNormal"])
-            story.append(phone_paragraph)
-        if country:
-            street = ui_text.get('work_street', '')
-            if not street:
-                address = f"{contact_data.get('work_city', '')} {contact_data.get('work_house_number', '')}"
-            else:
-                address = f"{street} {contact_data.get('work_house_number', '')}"
-            full_address_paragraph = Paragraph(f"{ui_text.get('workAddress', '')} {address}, "
-                                               f"{contact_data.get('work_city', '')}, {contact_data.get('work_post_code', '')}",
-                                               styles["WorkNormal"])
-            country_paragraph = Paragraph(f"{ui_text.get('workCountry', '')} {country}", styles["WorkNormal"])
-            story.append(full_address_paragraph)
-            story.append(country_paragraph)
-        if story:
-            story = [work_title] + story
-            story += [Spacer(1, 10)]
-            story += [HRFlowable(width="100%", thickness=1, color=colors.black)]
-        return story
+        try:
+            styles = getSampleStyleSheet()
+            styles.add(ParagraphStyle(name="WorkHeading", parent=styles["Heading2"], fontName="TimesNewRoman", fontSize=15,
+                                      spaceAfter=10))
+            styles.add(ParagraphStyle(name="WorkNormal", parent=styles["Normal"], fontName="TimesNewRoman", fontSize=12,
+                                      spaceAfter=6))
+            company = contact_data.get('company_name', '')
+            email = contact_data.get('work_email', '')
+            phone = contact_data.get('work_phone_number', '')
+            country = contact_data.get('work_country', '')
+            work_title = Paragraph(f"{ui_text.get('workTitle', '')}", styles["WorkHeading"])
+            story = []
+            if company:
+                company_paragraph = Paragraph(f"{ui_text.get('workCompany', '')} {company}", styles["WorkNormal"])
+                story.append(company_paragraph)
+            if email:
+                email_paragraph = Paragraph(f"{ui_text.get('workEmail', '')} {email}", styles["WorkNormal"])
+                story.append(email_paragraph)
+            if phone:
+                phone_paragraph = Paragraph(f"{ui_text.get('workPhone', '')} {phone}", styles["WorkNormal"])
+                story.append(phone_paragraph)
+            if country:
+                street = ui_text.get('work_street', '')
+                if not street:
+                    address = f"{contact_data.get('work_city', '')} {contact_data.get('work_house_number', '')}"
+                else:
+                    address = f"{street} {contact_data.get('work_house_number', '')}"
+                full_address_paragraph = Paragraph(f"{ui_text.get('workAddress', '')} {address}, "
+                                                   f"{contact_data.get('work_city', '')}, {contact_data.get('work_post_code', '')}",
+                                                   styles["WorkNormal"])
+                country_paragraph = Paragraph(f"{ui_text.get('workCountry', '')} {country}", styles["WorkNormal"])
+                story.append(full_address_paragraph)
+                story.append(country_paragraph)
+            if story:
+                story = [work_title] + story
+                story += [Spacer(1, 10)]
+                story += [HRFlowable(width="100%", thickness=1, color=colors.black)]
+            return story
+        except Exception as e:
+            ExportContactPdfObject.error_message.emit(e)
+            return []
 
     @staticmethod
     def create_notes_info(contact_data: dict[str, Any], ui_text: dict[str, str]) -> list:
-        styles = getSampleStyleSheet()
-        styles.add(ParagraphStyle(name="NotesHeading", parent=styles["Heading2"],
-                                  fontName="TimesNewRoman", fontSize=30, spaceAfter=15))
-        styles.add(ParagraphStyle(name="NotesNormal", parent=styles["Normal"],
-                                  fontName="TimesNewRoman", fontSize=20, leading=20, spaceAfter=10))
-        notes_title = Paragraph(f"{ui_text.get('notesTitle', '')}", styles["NotesHeading"])
-        notes_raw = contact_data.get('notes', '')
-        story = []
-        if notes_raw:
-            lines = notes_raw.splitlines()
-            story = [notes_title]
-            for line in lines:
-                story.extend([Paragraph(f"{line}", styles["NotesNormal"])])
-        return story
+        try:
+            styles = getSampleStyleSheet()
+            styles.add(ParagraphStyle(name="NotesHeading", parent=styles["Heading2"], fontName="TimesNewRoman", fontSize=15,
+                                      spaceAfter=10))
+            styles.add(ParagraphStyle(name="NotesNormal", parent=styles["Normal"], fontName="TimesNewRoman", fontSize=12,
+                                      leading=15, spaceAfter=6))
+            notes_title = Paragraph(f"{ui_text.get('notesTitle', '')}", styles["NotesHeading"])
+            notes_raw = contact_data.get('notes', '')
+            story = []
+            if notes_raw:
+                lines = notes_raw.splitlines()
+                story = [notes_title]
+                for line in lines:
+                    story.extend([Paragraph(f"{line}", styles["NotesNormal"])])
+            return story
+        except Exception as e:
+            ExportContactPdfObject.error_message.emit(e)
+            return []
 
     def build_canvas(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
-        width, height = A4
-        top_row_height = 150
-        bottom_row_height = 70
-        qr_size = 2*cm
-        custom_blue = Color(0.267, 0.541, 1.0)
-        canvas.setFillColor(custom_blue)
-        canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
-        canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)
-        qr_code = ExportContactPdfObject.create_pdf_qr_code(self.contact_data)
-        if qr_code:
-            image_reader = ImageReader(qr_code)
-            canvas.drawImage(image_reader, width - qr_size - 10, 10, width=qr_size, height=qr_size)
+        try:
+            row_data = self.row_data
+            width, height = A4
+            top_row_height = 150
+            bottom_row_height = 70
+            qr_size = 2*cm
+            custom_color = Color(0.267, 0.541, 1.0)
+            gender = row_data.get('gender', '')
+            if gender:
+                if int(gender) == 2:
+                    custom_color = Color(1, 0.8, 0.86)
+            canvas.setFillColor(custom_color)
+            canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
+            canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)
+            qr_code = ExportContactPdfObject.create_pdf_qr_code(self.contact_data)
+            if qr_code:
+                image_reader = ImageReader(qr_code)
+                canvas.drawImage(image_reader, width - qr_size - 10, 10, width=qr_size, height=qr_size)
+        except Exception as e:
+            ExportContactPdfObject.error_message.emit(e)
 
 
     @staticmethod

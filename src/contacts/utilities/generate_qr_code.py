@@ -15,7 +15,7 @@ def create_qr_code(vcard_data: str, main_window: QMainWindow | None = None) -> I
         )
         qr.add_data(vcard_data)
         qr.make(fit=True)
-        img = qr.make_image(fill_color="#1e3a8a", back_color="#eaeaea")
+        img = qr.make_image(fill_color="black", back_color="white")
         return img
     except Exception as e:
         if main_window:

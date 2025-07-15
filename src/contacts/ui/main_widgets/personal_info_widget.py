@@ -5,6 +5,7 @@ from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFormLayout, QTabWidget
 
 from src.contacts.utilities.blob_handler import BlobHandler
+from src.contacts.utilities.date_handler import format_date
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -96,7 +97,8 @@ class PersonalTabInfoWidget(QTabWidget):
                 self.contact_first_name_label.setText(data.get("first_name", ""))
                 self.contact_second_name_label.setText(data.get("second_name", ""))
                 self.contact_relationship_label.setText(relationship_dict.get(str(data.get("relationship", "")), ""))
-                self.contact_birthday_label.setText(data.get("birthday", ""))
+                iso_date = data.get("birthday", "")
+                self.contact_birthday_label.setText(format_date(iso_date))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -30,5 +30,5 @@ class CalendarWidget(QCalendarWidget):
         current_date = QDate.currentDate()
         selected_date = self.selectedDate()
         if selected_date < current_date:
-            return selected_date.toString("dd.MM.yyyy")
+            return selected_date.toString("yyyy-MM-dd")
         return None

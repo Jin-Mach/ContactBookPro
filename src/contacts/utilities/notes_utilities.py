@@ -8,8 +8,8 @@ from src.utilities.language_provider import LanguageProvider
 
 def check_notes_length(notes_edit: QTextEdit, count_label: QLabel, parent=None) -> None:
     try:
-        max_chars = 200
-        max_lines = 5
+        max_chars = 300
+        max_lines = 10
         text = notes_edit.toPlainText()
         lines = text.splitlines()
         error_text = LanguageProvider.get_error_text("notesUtilities")

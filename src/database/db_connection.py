@@ -74,7 +74,7 @@ def create_contacts_tables(connection: QSqlDatabase) -> tuple[bool, QSqlQuery]:
     create_detail_table = query.exec("""CREATE TABLE IF NOT EXISTS detail(
         id INTEGER PRIMARY KEY,
         title TEXT,
-        birthday TEXT,
+        birthday DATE,
         notes TEXT,
         photo BLOB,
         title_normalized TEXT,
