@@ -92,7 +92,7 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def create_image() -> QLabel | None:
-        icons_path = pathlib.Path(__file__).parent.parent.joinpath("icons", "mainWindow")
+        icons_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow")
         if icons_path.exists():
             pixmap = QPixmap(str(icons_path.joinpath("dog_image.png")))
             dock_image_label = QLabel()

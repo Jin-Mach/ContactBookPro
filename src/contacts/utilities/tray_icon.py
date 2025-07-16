@@ -9,7 +9,7 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class TrayIcon(QSystemTrayIcon):
-    icon_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
+    icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons", "mainWindow", "window_icon.png")
 
     def __init__(self, status_bar: StatusBar, parent=None) -> None:
         super().__init__(parent)
