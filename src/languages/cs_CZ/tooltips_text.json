@@ -60,10 +60,12 @@
   "userFiltersListWidget": {
     "deleteFilterPushbutton": "Odstraní uložený filtr"
   },
-  "duplicateDialog": {
+  "contactsListDialog": {
     "showContactButton": "Zavře dialog a vybere duplicitní kontakt v tabulce",
+    "showContactButtonBirthday": "Zavře dialog a vybere kontakt v tabulce",
     "continueButton": "Uloží duplicitní kontakt",
-    "cancelButton": "Zavře okno bez uložení"
+    "cancelButton": "Zavře okno bez uložení",
+    "cancelButtonBirthday": "Zavře dialog"
   },
   "validatedLineedit": {
     "invalidChar": "Nepovolený znak:"

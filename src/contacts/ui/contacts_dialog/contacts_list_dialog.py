@@ -8,12 +8,13 @@ from src.utilities.language_provider import LanguageProvider
 
 
 # noinspection PyTypeChecker,PyUnresolvedReferences
-class DuplicateDialog(QDialog):
-    def __init__(self, duplicate_contacts: list, parent=None) -> None:
+class ContactsListDialog(QDialog):
+    def __init__(self, duplicate_contacts: list, mode: str, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("duplicateDialog")
+        self.setObjectName("contactsListDialog")
         IconProvider.set_window_icon(self, "mainWindow")
-        self.duplicate_contacts = duplicate_contacts
+        self.contacts_list = duplicate_contacts
+        self.mode = mode
         self.setFixedSize(500, 400)
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)
@@ -30,7 +31,7 @@ class DuplicateDialog(QDialog):
         duplicate_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         duplicate_text_label.setStyleSheet("font-size: 25px; font-family: Arial;")
         duplicate_text_label.setObjectName("duplicateTextLabel")
-        self.duplicate_listwidget = DuplicateListWidget(self.duplicate_contacts)
+        self.duplicate_listwidget = DuplicateListWidget(self.contacts_list)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.RestoreDefaults | QDialogButtonBox.StandardButton.Ok
                                       | QDialogButtonBox.StandardButton.Cancel)
         continue_button = button_box.button(QDialogButtonBox.StandardButton.Ok)
@@ -55,11 +56,21 @@ class DuplicateDialog(QDialog):
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):
-                            widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{len(self.duplicate_contacts)}")
+                            if self.mode == "birthday":
+                                widget.setText(f"{ui_text.get(f"{widget.objectName()}Birthday", "")}\n{len(self.contacts_list)}")
+                            else:
+                                widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{len(self.contacts_list)}")
                 for button in self.buttons:
                     if button.objectName() in ui_text:
                         if isinstance(button, QPushButton):
-                            button.setText(ui_text.get(button.objectName(), ""))
+                            if self.mode == "birthday":
+                                if button.objectName() == "continueButton":
+                                    button.hide()
+                                    continue
+                                else:
+                                    button.setText(ui_text.get(button.objectName(), ""))
+                            else:
+                                button.setText(ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -68,8 +79,14 @@ class DuplicateDialog(QDialog):
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
             for button in self.buttons:
                 if isinstance(button, QPushButton):
-                    button.setToolTip(tooltips_text.get(button.objectName(), ""))
-                    button.setToolTipDuration(5000)
+                    if self.mode == "birthday":
+                        if button.objectName() == "continueButton":
+                            continue
+                        else:
+                            button.setToolTip(tooltips_text.get(f"{button.objectName()}Birthday", ""))
+                    else:
+                        button.setToolTip(tooltips_text.get(button.objectName(), ""))
+                button.setToolTipDuration(5000)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

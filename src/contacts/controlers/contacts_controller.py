@@ -9,12 +9,13 @@ from src.contacts.threading.location_thread import LocationThread
 from src.contacts.threading.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
-from src.contacts.ui.contacts_dialog.duplicate_dialog import DuplicateDialog
+from src.contacts.ui.contacts_dialog.contacts_list_dialog import ContactsListDialog
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.filters_provider import FiltersProvider
+from src.contacts.utilities.set_contact import show_selected_contact
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
 from src.database.models.mandatory_model import MandatoryModel
@@ -79,14 +80,13 @@ class ContactsController:
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
         duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
         if duplicity:
-            dialog = DuplicateDialog(duplicity, self.parent)
+            dialog = ContactsListDialog(duplicity, "duplicates", self.parent, )
             if dialog.exec() == QDialog.DialogCode.Rejected:
                 if dialog.result_code == "rejected":
                     return False
                 elif dialog.result_code == "jump_to_contact" and dialog.selected_id:
-                    self.mandatory_model.set_filter_by_id([dialog.selected_id])
-                    self.table_view.set_selected_contact()
-                    self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+                    show_selected_contact(self.mandatory_model, self.table_view, self.contacts_statusbar,
+                                          dialog.selected_id)
                 return False
         return True
 

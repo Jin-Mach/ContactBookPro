@@ -71,6 +71,9 @@
     "indexError": "Není zvolen platný index. Opakuj výběr znovu.",
     "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
+  "checkBirthdayController": {
+    "noBirthday": "Nikdo z kontaktů nemá narozeniny v blízkém období."
+  },
   "validatedLineedit": {
     "emptyClipboard": "Schránka je prázdná, není co vložit"
   }

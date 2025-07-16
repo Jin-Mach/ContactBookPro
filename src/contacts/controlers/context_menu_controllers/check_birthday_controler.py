@@ -1,21 +1,32 @@
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.check_birthday_object import CheckBirthdayObject
+from src.contacts.ui.contacts_dialog.contacts_list_dialog import ContactsListDialog
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.utilities.set_contact import show_selected_contact
+from src.database.models.mandatory_model import MandatoryModel
 from src.database.utilities.query_provider import QueryProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
 
+if TYPE_CHECKING:
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+
 
 class CheckBirthdayController:
-    def __init__(self, db_connection: QSqlDatabase) -> None:
+    def __init__(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, table_view: "ContactsTableviewWidget",
+                 status_bar: ContactsStatusbarWidget) -> None:
         self.class_name = "checkBirthdayController"
         self.db_connection = db_connection
+        self.mandatory_model = mandatory_model
+        self.table_view = table_view
+        self.status_bar = status_bar
         self.error_text = LanguageProvider.get_error_text(self.class_name)
 
     def check_birthday(self, main_window: QMainWindow) -> None:
@@ -48,7 +59,11 @@ class CheckBirthdayController:
                         if key in contact:
                             sorted_dict[key] = contact[key]
                     sorted_contacts_list.append(sorted_dict)
-                print(sorted_contacts_list)
+                dialog = ContactsListDialog(sorted_contacts_list, "birthday", main_window, )
+                if dialog.exec() == dialog.DialogCode.Rejected:
+                    if dialog.result_code == "jump_to_contact" and dialog.selected_id:
+                        show_selected_contact(self.mandatory_model, self.table_view, self.status_bar,
+                                                dialog.selected_id)
             else:
                 error_text = self.error_text.get("noBirthday", "")
                 DialogsProvider.show_error_dialog(error_text, main_window)

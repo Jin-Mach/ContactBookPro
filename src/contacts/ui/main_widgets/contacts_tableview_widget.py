@@ -8,6 +8,7 @@ from src.contacts.controlers.context_menu_controllers.csv_export_controler impor
 from src.contacts.controlers.context_menu_controllers.excel_export_controler import ExcelExportController
 from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
 from src.database.delegates.styled_item_delegate import StyledItemDelegate
@@ -19,11 +20,13 @@ from src.utilities.logger_provider import get_logger
 
 # noinspection PyTypeChecker
 class ContactsTableviewWidget(QTableView):
-    def __init__(self, mandatory_model: MandatoryModel, detail_widget: ContactsDetailWidget, parent=None) -> None:
+    def __init__(self, mandatory_model: MandatoryModel, detail_widget: ContactsDetailWidget,
+                 status_bar: ContactsStatusbarWidget, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsTableviewWidget")
         self.mandatory_model = mandatory_model
         self.detail_widget = detail_widget
+        self.status_bar = status_bar
         delegate = StyledItemDelegate(self)
         self.setModel(self.mandatory_model)
         self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
@@ -46,7 +49,7 @@ class ContactsTableviewWidget(QTableView):
         csv_export_controller = CsvExportController(connection, self)
         excel_export_controller = ExcelExportController(connection, self)
         pdf_export_controller = PdfExportController(connection, self)
-        check_birthday_controller = CheckBirthdayController(connection)
+        check_birthday_controller = CheckBirthdayController(connection, self.mandatory_model, self, self.status_bar)
         self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
                                         pdf_export_controller, check_birthday_controller, self)
 
