@@ -1,7 +1,10 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import pyqtSignal, QObject
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 
-from src.database.utilities.query_provider import QueryProvider
+if TYPE_CHECKING:
+    from src.database.utilities.query_provider import QueryProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -10,7 +13,7 @@ class UserFilterObject(QObject):
     error_message = pyqtSignal(str)
     finished = pyqtSignal(bool)
 
-    def __init__(self, db_path: str, query_provider: QueryProvider, selected_filter: dict, parent = None) -> None:
+    def __init__(self, db_path: str, query_provider: "QueryProvider", selected_filter: dict, parent = None) -> None:
         super().__init__()
         self.db_path = db_path
         self.query_provider = query_provider

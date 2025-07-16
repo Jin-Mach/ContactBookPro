@@ -62,10 +62,12 @@
   },
   "contactsListDialog": {
     "showContactButton": "Zavře dialog a vybere duplicitní kontakt v tabulce",
-    "showContactButtonContext": "Zavře dialog a vybere kontakt v tabulce",
+    "showContactButtonContextBirthday": "Zavře dialog a vybere kontakt v tabulce",
+    "showContactButtonContextDuplicity": "Zavře dialog a vybere kontakt v tabulce",
     "continueButton": "Uloží duplicitní kontakt",
     "cancelButton": "Zavře okno bez uložení",
-    "cancelButtonContext": "Zavře dialog"
+    "cancelButtonContextBirthday": "Zavře dialog",
+    "cancelButtonContextDuplicity": "Zavře dialog"
   },
   "validatedLineedit": {
     "invalidChar": "Nepovolený znak:"

@@ -1,17 +1,21 @@
 import pathlib
 
+from typing import TYPE_CHECKING
+
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu, QApplication, QWidget
 
-from src.application.status_bar import StatusBar
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
+
+if TYPE_CHECKING:
+    from src.application.status_bar import StatusBar
 
 
 class TrayIcon(QSystemTrayIcon):
     icon_path = pathlib.Path(__file__).parents[3].joinpath("icons", "mainWindow", "window_icon.png")
 
-    def __init__(self, status_bar: StatusBar, parent=None) -> None:
+    def __init__(self, status_bar: "StatusBar", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("trayIcon")
         self.status_bar = status_bar

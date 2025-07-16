@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 from PyQt6.QtCore import QThreadPool, QModelIndex
 from PyQt6.QtSql import QSqlDatabase
@@ -10,17 +10,9 @@ from src.contacts.threading.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
 from src.contacts.ui.contacts_dialog.contacts_list_dialog import ContactsListDialog
-from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.filters_provider import FiltersProvider
 from src.contacts.utilities.set_contact import show_selected_contact
-from src.database.models.detail_model import DetailModel
-from src.database.models.info_model import InfoModel
-from src.database.models.mandatory_model import MandatoryModel
-from src.database.models.social_model import SocialModel
-from src.database.models.work_model import WorkModel
 from src.database.utilities.models_refresher import refresh_models
 from src.database.utilities.query_provider import QueryProvider
 from src.database.utilities.reset_database import reset_database
@@ -31,12 +23,22 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.restart_app import restart_application
 
+if TYPE_CHECKING:
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.database.models.work_model import WorkModel
+    from src.database.models.social_model import SocialModel
+    from src.database.models.detail_model import DetailModel
+    from src.database.models.info_model import InfoModel
+    from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+
 
 # noinspection PyBroadException
 class ContactsController:
-    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
-                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel, info_model: InfoModel,
-                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, contacts_statusbar: ContactsStatusbarWidget,
+    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
+                 work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
+                 detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
                  parent=None) -> None:
         self.main_window = main_window
         self.db_connection = db_connection

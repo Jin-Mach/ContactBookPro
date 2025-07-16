@@ -1,18 +1,21 @@
+from typing import TYPE_CHECKING
 import csv
 
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
-from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.encoding_provider import get_encoding
+
+if TYPE_CHECKING:
+    from src.database.utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
 class ExportCsvObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
-    def __init__(self, db_path: str, file_path: str, id_list: list | None, export_data_provider: ExportDataProvider,
+    def __init__(self, db_path: str, file_path: str, id_list: list | None, export_data_provider: "ExportDataProvider",
                  main_window: QMainWindow) -> None:
         super().__init__()
         self.db_path = db_path

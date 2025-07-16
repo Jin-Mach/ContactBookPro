@@ -111,7 +111,8 @@
   },
   "contactsListDialog": {
     "duplicateTextLabel": "Počet nalezených duplicitních kontaků",
-    "duplicateTextLabelContext": "Počet kontaktů s narozeninami",
+    "duplicateTextLabelContextBirthday": "Počet kontaktů s narozeninami",
+    "duplicateTextLabelContextDuplicity": "Počet kontaktů s duplicitou",
     "showContactButton": "Přejít na kontakt",
     "continueButton": "Pokračovat",
     "cancelButton": "Zrušit"

@@ -1,5 +1,6 @@
 import sys
 
+from typing import TYPE_CHECKING
 from pathlib import Path
 from datetime import datetime
 
@@ -17,8 +18,10 @@ from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
 from src.contacts.utilities.phone_utilities import format_phone_number
-from src.database.utilities.export_data_provider import ExportDataProvider
 from src.utilities.language_provider import LanguageProvider
+
+if TYPE_CHECKING:
+    from src.database.utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -26,7 +29,7 @@ class ExportContactsListPdfObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
 
-    def __init__(self, db_path: str, pdf_path: Path, id_list: list | None, export_data_provider: ExportDataProvider,
+    def __init__(self, db_path: str, pdf_path: Path, id_list: list | None, export_data_provider: "ExportDataProvider",
                  main_window: QMainWindow) -> None:
         super().__init__()
         self.setObjectName("exportContactsListPdfObject")

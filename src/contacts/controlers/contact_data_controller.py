@@ -1,12 +1,16 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtSql import QSqlDatabase
 
-from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
+if TYPE_CHECKING:
+    from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+
 
 class ContactDataController:
-    def __init__(self, db_connection: QSqlDatabase, detail_widget: ContactsDetailWidget) -> None:
+    def __init__(self, db_connection: QSqlDatabase, detail_widget: "ContactsDetailWidget") -> None:
         self.db_connection = db_connection
         self.contacts_detail_widget = detail_widget
 

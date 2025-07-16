@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import Qt, QModelIndex, QItemSelectionModel
 from PyQt6.QtSql import QSqlTableModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
@@ -8,21 +10,23 @@ from src.contacts.controlers.context_menu_controllers.check_duplicates_controlle
 from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
 from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
 from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
-from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.context_menu import ContextMenu
 from src.contacts.utilities.instance_provider import InstanceProvider
 from src.database.delegates.styled_item_delegate import StyledItemDelegate
-from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
 
+if TYPE_CHECKING:
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+
 
 # noinspection PyTypeChecker
 class ContactsTableviewWidget(QTableView):
-    def __init__(self, mandatory_model: MandatoryModel, detail_widget: ContactsDetailWidget,
-                 status_bar: ContactsStatusbarWidget, parent=None) -> None:
+    def __init__(self, mandatory_model: "MandatoryModel", detail_widget: "ContactsDetailWidget",
+                 status_bar: "ContactsStatusbarWidget", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsTableviewWidget")
         self.mandatory_model = mandatory_model

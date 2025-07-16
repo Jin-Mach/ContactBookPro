@@ -1,21 +1,23 @@
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QDialogButtonBox, QPushButton
 
 from src.contacts.ui.search_dialogs.search_widgets.filters_tableview_widget import FiltersTableviewWidget
-from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
-from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
-from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.database.models.advanced_filter_model import AdvancedFilterModel
+    from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
+    from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+
 
 # noinspection PyTypeChecker
 class ActiveFiltersDialog(QDialog):
-    def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, AdvancedFilterModel], None],
-                 search_mandatory_widget: SearchMandatoryWidget, search_non_mandatory_widget: SearchNonMandatoryWidget, parent=None) -> None:
+    def __init__(self, advanced_filter_model: "AdvancedFilterModel", remove_filter: "Callable[[int, AdvancedFilterModel], None]",
+                 search_mandatory_widget: "SearchMandatoryWidget", search_non_mandatory_widget: "SearchNonMandatoryWidget", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("activeFiltersDialog")
         self.setMinimumSize(700, 400)
@@ -90,7 +92,7 @@ class ActiveFiltersDialog(QDialog):
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
-    def reset_active_filters_widgets(self, row: int, model: AdvancedFilterModel) -> None:
+    def reset_active_filters_widgets(self, row: int, model: "AdvancedFilterModel") -> None:
         try:
             filter_item = model.filter_data[row]
             combobox_widget = filter_item.get("combobox", None)

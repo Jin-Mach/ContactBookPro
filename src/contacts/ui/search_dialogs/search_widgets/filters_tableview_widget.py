@@ -1,18 +1,20 @@
-from typing import Callable
+from typing import Callable, TYPE_CHECKING
 
 from PyQt6.QtCore import QAbstractTableModel, QSize
 from PyQt6.QtWidgets import QTableView, QAbstractItemView, QHeaderView, QPushButton
 
-from src.database.models.advanced_filter_model import AdvancedFilterModel
 from src.database.utilities.model_header_provider import ModelHeaderProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.database.models.advanced_filter_model import AdvancedFilterModel
+
 
 # noinspection PyUnresolvedReferences
 class FiltersTableviewWidget(QTableView):
-    def __init__(self, advanced_filter_model: AdvancedFilterModel, remove_filter: Callable[[int, QAbstractTableModel], None], parent=None) -> None:
+    def __init__(self, advanced_filter_model: "AdvancedFilterModel", remove_filter: Callable[[int, QAbstractTableModel], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("filtersTableviewWidget")
         self.advanced_filter_model = advanced_filter_model

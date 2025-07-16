@@ -1,25 +1,30 @@
+from typing import TYPE_CHECKING, Optional
+
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import QMenu, QMainWindow, QTableView
 
-from src.contacts.controlers.context_menu_controllers.check_birthday_controller import CheckBirthdayController
-from src.contacts.controlers.context_menu_controllers.check_duplicates_controller import CheckDuplicatesController
 from src.contacts.controlers.context_menu_controllers.clipboard_export_controller import copy_to_clipboard
-from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
-from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
-from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
 from src.contacts.controlers.context_menu_controllers.qr_code_controller import qr_code_preview
 from src.contacts.controlers.context_menu_controllers.vcard_export_controller import export_to_vcard
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.contacts.controlers.context_menu_controllers.check_birthday_controller import CheckBirthdayController
+    from src.contacts.controlers.context_menu_controllers.check_duplicates_controller import CheckDuplicatesController
+    from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
+    from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
+    from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
+    from src.contacts.controlers.contacts_controller import ContactsController
+
 
 # noinspection PyUnresolvedReferences
 class ContextMenu(QMenu):
-    def __init__(self, contacts_controller: "ContactsController | None", csv_export_controller: CsvExportController | None,
-                 excel_export_controller: ExcelExportController, pdf_export_controller: PdfExportController,
-                 check_birthday_controller: CheckBirthdayController, check_duplicates_controller: CheckDuplicatesController,
+    def __init__(self, contacts_controller: Optional["ContactsController"], csv_export_controller: Optional["CsvExportController"],
+                 excel_export_controller: "ExcelExportController", pdf_export_controller: "PdfExportController",
+                 check_birthday_controller: "CheckBirthdayController", check_duplicates_controller: "CheckDuplicatesController",
                  parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")

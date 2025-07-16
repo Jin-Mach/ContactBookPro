@@ -1,15 +1,18 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
-from src.database.utilities.query_provider import QueryProvider
+if TYPE_CHECKING:
+    from src.database.utilities.query_provider import QueryProvider
 
 
 # noinspection PyUnresolvedReferences
 class CheckBirthdayObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(list)
-    def __init__(self, db_path: str, query_provider: QueryProvider, main_window: QMainWindow) -> None:
+    def __init__(self, db_path: str, query_provider: "QueryProvider", main_window: QMainWindow) -> None:
         super().__init__()
         self.setObjectName("checkBirthdayObject")
         self.db_path = db_path

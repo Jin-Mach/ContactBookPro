@@ -1,13 +1,16 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QCompleter, QLineEdit
 
-from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
-from src.database.models.completer_model import CompleterModel
+if TYPE_CHECKING:
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+    from src.database.models.completer_model import CompleterModel
 
 
 # noinspection PyUnresolvedReferences
 class CompleterController:
-    def __init__(self, query_model: CompleterModel, table_view: ContactsTableviewWidget, search_input: QLineEdit) -> None:
+    def __init__(self, query_model: "CompleterModel", table_view: "ContactsTableviewWidget", search_input: QLineEdit) -> None:
         self.query_model = query_model
         self.table_view = table_view
         self.search_input = search_input

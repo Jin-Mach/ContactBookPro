@@ -1,13 +1,13 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.advanced_search_object import AdvancedSearchObject
 from src.contacts.threading.objects.user_filter_object import UserFilterObject
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.search_dialogs.advanced_search_dialog import AdvancedSearchDialog
 from src.contacts.ui.shared_widgets.progress_dialog import ProgressDialog
-from src.database.models.mandatory_model import MandatoryModel
 from src.database.utilities.query_provider import QueryProvider
 from src.database.utilities.search_provider import SearchProvider
 from src.utilities.dialogs_provider import DialogsProvider
@@ -15,9 +15,13 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
 
+if TYPE_CHECKING:
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+
 
 class AdvancedSearchController:
-    def __init__(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, contacts_statusbar: ContactsStatusbarWidget,
+    def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", contacts_statusbar: "ContactsStatusbarWidget",
                  parent=None) -> None:
         self.db_connection= db_connection
         self.mandatory_model = mandatory_model

@@ -1,23 +1,27 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog
 
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.search_dialogs.active_filters_dialog import ActiveFiltersDialog
 from src.contacts.ui.search_dialogs.filter_name_dialog import FilterNameDialog
-from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
-from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 from src.contacts.ui.search_dialogs.user_filters_dialog import UserFiltersDialog
 from src.contacts.utilities.filters_provider import FiltersProvider
 from src.contacts.utilities.instance_provider import InstanceProvider
 from src.database.models.advanced_filter_model import AdvancedFilterModel
-from src.database.models.mandatory_model import MandatoryModel
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+    from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+
 
 class FiltersController:
-    def __init__(self, search_mandatory_widget: SearchMandatoryWidget, search_non_mandatory_widget: SearchNonMandatoryWidget,
+    def __init__(self, search_mandatory_widget: "SearchMandatoryWidget", search_non_mandatory_widget: "SearchNonMandatoryWidget",
                  parent=None) -> None:
         self.class_name = "filtersController"
         self.search_mandatory_widget = search_mandatory_widget
@@ -71,7 +75,7 @@ class FiltersController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
-    def show_user_filters(self, db_connection: QSqlDatabase, mandatory_model: MandatoryModel, contacts_statusbar: ContactsStatusbarWidget) -> None:
+    def show_user_filters(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", contacts_statusbar: "ContactsStatusbarWidget") -> None:
         try:
             filters = FiltersProvider.get_filters_data()
             if not filters:

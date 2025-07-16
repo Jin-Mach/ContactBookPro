@@ -1,6 +1,6 @@
 from io import BytesIO
 from PIL import Image as PILImage
-from typing import Any
+from typing import Any, TYPE_CHECKING
 from pathlib import Path
 
 from reportlab.lib import colors
@@ -21,16 +21,18 @@ from PyQt6.QtWidgets import QMainWindow
 from src.contacts.utilities.date_handler import format_date
 from src.contacts.utilities.generate_qr_code import create_qr_code
 from src.contacts.utilities.generate_vcard import create_vcard
-from src.database.utilities.export_data_provider import ExportDataProvider
 from src.database.utilities.row_data_provider import RowDataProvider
 from src.utilities.language_provider import LanguageProvider
+
+if TYPE_CHECKING:
+    from src.database.utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
 class ExportContactPdfObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(bool)
-    def __init__(self, db_path: str, pdf_path: Path, index: int, export_data_provider: ExportDataProvider,
+    def __init__(self, db_path: str, pdf_path: Path, index: int, export_data_provider: "ExportDataProvider",
                  main_window: QMainWindow):
         super().__init__()
         self.setObjectName("exportContactPdfObject")

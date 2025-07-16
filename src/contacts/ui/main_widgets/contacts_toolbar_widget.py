@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING
 import sys
 
 from PyQt6.QtCore import QSize, QModelIndex, Qt
@@ -10,27 +11,29 @@ from src.contacts.controlers.completer_controller import CompleterController
 from src.contacts.controlers.contact_search_controler import ContactSearchController
 from src.contacts.controlers.contacts_controller import ContactsController
 from src.contacts.controlers.filters_controller import FiltersController
-from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.contact_validator import ContactValidator
-from src.database.models.completer_model import CompleterModel
-from src.database.models.detail_model import DetailModel
-from src.database.models.info_model import InfoModel
-from src.database.models.mandatory_model import MandatoryModel
-from src.database.models.social_model import SocialModel
-from src.database.models.work_model import WorkModel
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.database.models.work_model import WorkModel
+    from src.database.models.social_model import SocialModel
+    from src.database.models.detail_model import DetailModel
+    from src.database.models.info_model import InfoModel
+    from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+    from src.database.models.completer_model import CompleterModel
+
 
 # noinspection PyUnresolvedReferences
 class ContactsToolbarWidget(QWidget):
-    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: MandatoryModel,
-                 work_model: WorkModel, social_model: SocialModel, detail_model: DetailModel, info_model: InfoModel,
-                 detail_widget: ContactsDetailWidget, table_view: ContactsTableviewWidget, contacts_statusbar: ContactsStatusbarWidget,
-                 completer_model: CompleterModel, parent=None) -> None:
+    def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
+                 work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
+                 detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
+                 completer_model: "CompleterModel", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.db_connection = db_connection

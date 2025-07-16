@@ -1,19 +1,23 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtWidgets import QLineEdit, QComboBox
 
-from src.contacts.controlers.completer_controller import CompleterController
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
-from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.utilities.optimalize_data import normalize_input
-from src.database.models.mandatory_model import MandatoryModel
 from src.database.utilities.search_provider import SearchProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.contacts.controlers.completer_controller import CompleterController
+    from src.database.models.mandatory_model import MandatoryModel
+    from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+
 
 class ContactSearchController:
-    def __init__(self, controller: CompleterController, mandatory_model: MandatoryModel, table_view: ContactsTableviewWidget,
-                 contacts_statusbar: ContactsStatusbarWidget, search_combobox: QComboBox, parent=None) -> None:
+    def __init__(self, controller: "CompleterController", mandatory_model: "MandatoryModel", table_view: "ContactsTableviewWidget",
+                 contacts_statusbar: "ContactsStatusbarWidget", search_combobox: QComboBox, parent=None) -> None:
         self.class_name = "contactSearchController"
         self.controller = controller
         self.mandatory_model = mandatory_model
