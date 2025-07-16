@@ -8,7 +8,7 @@ from src.utilities.error_handler import ErrorHandler
 
 
 class IconProvider:
-    icons_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons")
+    icons_path = pathlib.Path(__file__).parents[2].joinpath("icons")
 
     @staticmethod
     def set_window_icon(widget: QWidget, folder_name: str) -> None:

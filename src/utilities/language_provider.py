@@ -6,7 +6,7 @@ from PyQt6.QtCore import QLocale
 
 
 class LanguageProvider:
-    language_path = pathlib.Path(__file__).parent.parent.parent.joinpath("languages")
+    language_path = pathlib.Path(__file__).parents[2].joinpath("languages")
     language_code = None
 
     @staticmethod

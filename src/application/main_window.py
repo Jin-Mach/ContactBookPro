@@ -92,7 +92,7 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def create_image() -> QLabel | None:
-        icons_path = pathlib.Path(__file__).parent.parent.parent.joinpath("icons", "mainWindow")
+        icons_path = pathlib.Path(__file__).parents[2].joinpath("icons", "mainWindow")
         if icons_path.exists():
             pixmap = QPixmap(str(icons_path.joinpath("dog_image.png")))
             dock_image_label = QLabel()
@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
         return None
 
     def closeEvent(self, event) -> None:
-        pdf_path = pathlib.Path(__file__).parent.parent.parent.joinpath("output", "pdf_output.pdf")
+        pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
         if pdf_path.exists():
             pdf_path.unlink()
         super().closeEvent(event)

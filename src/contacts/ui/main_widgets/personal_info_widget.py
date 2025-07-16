@@ -112,10 +112,10 @@ class PersonalTabInfoWidget(QTabWidget):
         try:
             pixmap = BlobHandler.blob_to_pixmap(blob, self)
             if not pixmap:
-                male_icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons",
+                male_icon_path = pathlib.Path(__file__).parents[3].joinpath("icons",
                                                                                              "personalTabInfoWidget",
                                                                                              "male_icon.png")
-                female_icon_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("icons",
+                female_icon_path = pathlib.Path(__file__).parents[3].joinpath("icons",
                                                                                              "personalTabInfoWidget",
                                                                                              "female_icon.png")
 

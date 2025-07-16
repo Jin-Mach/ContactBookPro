@@ -30,7 +30,7 @@ class PdfExportController:
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
         self.error_text = LanguageProvider.get_error_text(self.class_name)
-        self.pdf_output_path = pathlib.Path(__file__).parent.parent.parent.parent.parent.joinpath("output", "pdf_output.pdf")
+        self.pdf_output_path = pathlib.Path(__file__).parents[4].joinpath("output", "pdf_output.pdf")
         self.pdf_output_path.parent.mkdir(parents=True, exist_ok=True)
 
     def export_contact_to_pdf(self, main_window:QMainWindow) -> None:

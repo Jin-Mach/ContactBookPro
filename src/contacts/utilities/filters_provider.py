@@ -4,7 +4,7 @@ from typing import Any
 
 
 class FiltersProvider:
-    filters_path = pathlib.Path(__file__).parent.parent.parent.parent.joinpath("data", "user_filters.json")
+    filters_path = pathlib.Path(__file__).parents[3].joinpath("data", "user_filters.json")
     filters_path.parent.mkdir(parents=True, exist_ok=True)
 
     @staticmethod
