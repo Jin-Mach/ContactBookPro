@@ -78,7 +78,7 @@ class FiltersController:
                 error_text = LanguageProvider.get_error_text(self.class_name)
                 DialogsProvider.show_error_dialog(error_text.get("noUserFilters", ""), self.parent)
                 return
-            from src.contacts.controlers.advanced_search_controler import AdvancedSearchController
+            from src.contacts.controlers.advanced_search_controller import AdvancedSearchController
             advanced_search_controller = AdvancedSearchController(db_connection, mandatory_model, contacts_statusbar, self.parent)
             self.user_filters_dialog.user_filters_listwidget.set_filters_data(filters)
             if self.user_filters_dialog.exec() == QDialog.DialogCode.Accepted:

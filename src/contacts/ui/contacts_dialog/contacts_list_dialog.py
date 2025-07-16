@@ -56,14 +56,14 @@ class ContactsListDialog(QDialog):
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):
-                            if self.mode == "birthday":
-                                widget.setText(f"{ui_text.get(f"{widget.objectName()}Birthday", "")}\n{len(self.contacts_list)}")
+                            if self.mode == "context":
+                                widget.setText(f"{ui_text.get(f"{widget.objectName()}Context", "")}\n{len(self.contacts_list)}")
                             else:
                                 widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{len(self.contacts_list)}")
                 for button in self.buttons:
                     if button.objectName() in ui_text:
                         if isinstance(button, QPushButton):
-                            if self.mode == "birthday":
+                            if self.mode == "context":
                                 if button.objectName() == "continueButton":
                                     button.hide()
                                     continue
@@ -79,11 +79,11 @@ class ContactsListDialog(QDialog):
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
             for button in self.buttons:
                 if isinstance(button, QPushButton):
-                    if self.mode == "birthday":
+                    if self.mode == "context":
                         if button.objectName() == "continueButton":
                             continue
                         else:
-                            button.setToolTip(tooltips_text.get(f"{button.objectName()}Birthday", ""))
+                            button.setToolTip(tooltips_text.get(f"{button.objectName()}Context", ""))
                     else:
                         button.setToolTip(tooltips_text.get(button.objectName(), ""))
                 button.setToolTipDuration(5000)

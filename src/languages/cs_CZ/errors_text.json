@@ -74,6 +74,9 @@
   "checkBirthdayController": {
     "noBirthday": "Nikdo z kontaktů nemá narozeniny v blízkém období."
   },
+  "checkDuplicatesController": {
+    "noDuplicates": "Žádné duplictní kontakty."
+  },
   "validatedLineedit": {
     "emptyClipboard": "Schránka je prázdná, není co vložit"
   }

@@ -5,8 +5,8 @@ from PyQt6.QtGui import QFont, QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
-from src.contacts.controlers.advanced_search_controler import AdvancedSearchController
-from src.contacts.controlers.completer_controler import CompleterController
+from src.contacts.controlers.advanced_search_controller import AdvancedSearchController
+from src.contacts.controlers.completer_controller import CompleterController
 from src.contacts.controlers.contact_search_controler import ContactSearchController
 from src.contacts.controlers.contacts_controller import ContactsController
 from src.contacts.controlers.filters_controller import FiltersController

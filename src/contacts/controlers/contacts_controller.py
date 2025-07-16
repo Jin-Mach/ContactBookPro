@@ -80,7 +80,7 @@ class ContactsController:
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
         duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
         if duplicity:
-            dialog = ContactsListDialog(duplicity, "duplicates", self.parent, )
+            dialog = ContactsListDialog(duplicity, "validation", self.parent, )
             if dialog.exec() == QDialog.DialogCode.Rejected:
                 if dialog.result_code == "rejected":
                     return False

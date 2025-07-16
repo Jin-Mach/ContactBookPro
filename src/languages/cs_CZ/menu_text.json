@@ -22,8 +22,8 @@
     "previewAllContactsListAction": "Náhled všech kontaktů",
     "previewQrCodeAction": "QR kód kontaktu",
     "contactCheckMenu": "Kontrola kontaktů",
-    "contactCheckBirthdayAction": "Kontrola narození",
-    "contactCheckDuplicityAction": "Hledat duplicity"
+    "contactCheckBirthdayAction": "Zobrazit narozeniny",
+    "contactCheckDuplicityAction": "Zobrazit duplicity"
   },
   "csvExportController": {
     "csvFilter": "Soubory CSV (*.csv);;Všechny soubory (*)"

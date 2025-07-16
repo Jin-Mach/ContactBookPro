@@ -3,9 +3,10 @@ from PyQt6.QtSql import QSqlTableModel
 from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.controlers.contact_data_controller import ContactDataController
-from src.contacts.controlers.context_menu_controllers.check_birthday_controler import CheckBirthdayController
-from src.contacts.controlers.context_menu_controllers.csv_export_controler import CsvExportController
-from src.contacts.controlers.context_menu_controllers.excel_export_controler import ExcelExportController
+from src.contacts.controlers.context_menu_controllers.check_birthday_controller import CheckBirthdayController
+from src.contacts.controlers.context_menu_controllers.check_duplicates_controller import CheckDuplicatesController
+from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
+from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
 from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
@@ -50,8 +51,10 @@ class ContactsTableviewWidget(QTableView):
         excel_export_controller = ExcelExportController(connection, self)
         pdf_export_controller = PdfExportController(connection, self)
         check_birthday_controller = CheckBirthdayController(connection, self.mandatory_model, self, self.status_bar)
+        check_duplicates_controller = CheckDuplicatesController(connection, self.mandatory_model, self, self.status_bar)
         self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
-                                        pdf_export_controller, check_birthday_controller, self)
+                                        pdf_export_controller, check_birthday_controller, check_duplicates_controller,
+                                        self)
 
     def set_headers(self) -> None:
         self.setColumnWidth(1, 30)
