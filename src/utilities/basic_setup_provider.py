@@ -45,8 +45,9 @@ class BasicSetupProvider:
             "copyPhoneNumberAction_icon.png", "deleteContactAction_icon.png", "exportAllDataCsvAction_icon.png",
             "exportAllDataExcelAction_icon.png", "exportCsvMenu_icon.png", "exportExcelMenuAction_icon.png",
             "exportFilteredDataCsvAction_icon.png", "exportFilteredDataExcelAction_icon.png",
-            "exportVcardAction_icon.png",
-            "previewContactAction_icon.png", "previewContactListAction_icon.png", "previewQrCodeAction_icon.png",
+            "exportVcardAction_icon.png", "previewAllContactsListAction_icon.png"
+            "previewContactAction_icon.png", "previewContactListAction_icon.png", "previewFilteredContactsListAction_icon.png",
+            "previewQrCodeAction_icon.png",
             "updateContactAction_icon.png", "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png",
             "dialogResetCalendarPushbutton_icon.png", "dialogResetPhotoButton_icon.png", "no_user_photo.png",
             "deleteFilterButton_icon.png", "dog_image.png", "mainWindowDatabaseButton_icon.png", "window_icon.png",
@@ -57,7 +58,6 @@ class BasicSetupProvider:
             "xPushbutton_icon.png",
             "deleteFilterPushbutton_icon.png"
         ]
-
         icon_folders = {
             "clearFilterPushbutton_icon.png": "advancedSearchDialog",
             "currentFilterButton_icon.png": "advancedSearchDialog",
@@ -83,8 +83,10 @@ class BasicSetupProvider:
             "exportFilteredDataCsvAction_icon.png": "contextMenu",
             "exportFilteredDataExcelAction_icon.png": "contextMenu",
             "exportVcardAction_icon.png": "contextMenu",
+            "previewAllContactsListAction_icon.png": "contextMenu",
             "previewContactAction_icon.png": "contextMenu",
             "previewContactListAction_icon.png": "contextMenu",
+            "previewFilteredContactsListAction_icon.png": "contextMenu",
             "previewQrCodeAction_icon.png": "contextMenu",
             "updateContactAction_icon.png": "contextMenu",
             "dialogCalendarPushbutton_icon.png": "dialogPersonalDetailWidget",
@@ -110,7 +112,6 @@ class BasicSetupProvider:
             "xPushbutton_icon.png": "tabInfoWidget",
             "deleteFilterPushbutton_icon.png": "userFiltersListWidget"
         }
-
         icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
         icons_url_base = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/icons"
         missing_icons_urls = {}
@@ -122,7 +123,6 @@ class BasicSetupProvider:
                     if icon_dir.is_dir():
                         for icon_file in icon_dir.glob("*.png"):
                             found_icons.add(icon_file.name)
-
             for icon in required_files:
                 if icon not in found_icons:
                     if icon in icon_folders:
@@ -130,9 +130,6 @@ class BasicSetupProvider:
                         url = f"{icons_url_base}/{folder}/{icon}"
                         local_path = icon_files_path.joinpath(folder, icon)
                         missing_icons_urls[url] = local_path
-                        print(f"[DEBUG] Missing icon: {icon} → {url}")
-                    else:
-                        print(f"[WARNING] Missing folder mapping for icon: {icon}")
             return missing_icons_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)

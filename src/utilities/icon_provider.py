@@ -2,7 +2,7 @@ import pathlib
 
 from PyQt6.QtCore import QSize
 from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtWidgets import QPushButton, QWidget, QToolButton
+from PyQt6.QtWidgets import QPushButton, QWidget, QToolButton, QMenu
 
 from src.utilities.error_handler import ErrorHandler
 
@@ -30,8 +30,12 @@ class IconProvider:
                         if icon_file.exists():
                             widget.setIcon(QIcon(str(icon_file)))
                             widget.setIconSize(button_size)
-                    elif isinstance(widget, (QToolButton, QAction)):
+                    elif isinstance(widget, QMenu):
                         if icon_file.exists():
                             widget.setIcon(QIcon(str(icon_file)))
+                    elif isinstance(widget, QAction):
+                        if icon_file.exists():
+                            widget.setIcon(QIcon(str(icon_file)))
+                            widget.setIconVisibleInMenu(True)
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
