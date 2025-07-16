@@ -36,26 +36,28 @@ class BasicSetupProvider:
     @staticmethod
     def check_icon_files() -> dict:
         required_files = [
-            "clearFilterPushbutton_icon.png","currentFilterButton_icon.png", "addNewContactPushbutton_icon.png",
-            "advancedSearchPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png", "deleteContactPushbutton_icon.png",
+            "clearFilterPushbutton_icon.png", "currentFilterButton_icon.png", "addNewContactPushbutton_icon.png",
+            "advancedSearchPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png",
+            "deleteContactPushbutton_icon.png",
             "resetFilterPushbutton_icon.png", "searchPushbutton_icon.png", "updateContactPushbutton_icon.png",
             "userFiltersPushbutton_icon.png", "addContactAction_icon.png", "contactCheckBirthdayAction_icon.png",
             "contactCheckDuplicityAction_icon.png", "copyEmailAction_icon.png", "copyNameAction_icon.png",
             "copyPhoneNumberAction_icon.png", "deleteContactAction_icon.png", "exportAllDataCsvAction_icon.png",
             "exportAllDataExcelAction_icon.png", "exportCsvMenu_icon.png", "exportExcelMenuAction_icon.png",
-            "exportFilteredDataCsvAction_icon.png", "exportFilteredDataExcelAction_icon.png", "exportVcardAction_icon.png",
-            "previewContactAction_icon.png", "previewContactListAction_icon.png", "previewQrCodeAction_icon.png", "updateContactAction_icon.png",
-            "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png", "dialogResetCalendarPushbutton_icon.png",
-            "dialogResetPhotoButton_icon.png", "no_user_photo.png","deleteFilterButton_icon.png", "dog_image.png",
-            "mainWindowDatabaseButton_icon.png", "window_icon.png", "pdfFitPageButton_icon.png", "pdfSaveAsButton_icon.png",
-            "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png",
-            "githubPushbutton_icon.png", "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
-            "xPushbutton_icon.png", "deleteFilterPushbutton_icon.png"
+            "exportFilteredDataCsvAction_icon.png", "exportFilteredDataExcelAction_icon.png",
+            "exportVcardAction_icon.png",
+            "previewContactAction_icon.png", "previewContactListAction_icon.png", "previewQrCodeAction_icon.png",
+            "updateContactAction_icon.png", "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png",
+            "dialogResetCalendarPushbutton_icon.png", "dialogResetPhotoButton_icon.png", "no_user_photo.png",
+            "deleteFilterButton_icon.png", "dog_image.png", "mainWindowDatabaseButton_icon.png", "window_icon.png",
+            "pdfFitPageButton_icon.png", "pdfSaveAsButton_icon.png", "pdfZoomInButton_icon.png",
+            "pdfZoomOutButton_icon.png",
+            "female_icon.png", "male_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
+            "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png",
+            "xPushbutton_icon.png",
+            "deleteFilterPushbutton_icon.png"
         ]
-        icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
-        icons_url_base = "https://github.com/Jin-Mach/ContactBookPro/raw/main/icons"
-        missing_icons_urls = {}
-        found_icons = set()
+
         icon_folders = {
             "clearFilterPushbutton_icon.png": "advancedSearchDialog",
             "currentFilterButton_icon.png": "advancedSearchDialog",
@@ -90,7 +92,7 @@ class BasicSetupProvider:
             "dialogResetCalendarPushbutton_icon.png": "dialogPersonalDetailWidget",
             "dialogResetPhotoButton_icon.png": "dialogPersonalDetailWidget",
             "no_user_photo.png": "dialogPersonalDetailWidget",
-            "deleteFilterButton_icon.png":"filtersTableviewWidget",
+            "deleteFilterButton_icon.png": "filtersTableviewWidget",
             "dog_image.png": "mainWindow",
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "window_icon.png": "mainWindow",
@@ -108,17 +110,29 @@ class BasicSetupProvider:
             "xPushbutton_icon.png": "tabInfoWidget",
             "deleteFilterPushbutton_icon.png": "userFiltersListWidget"
         }
+
+        icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
+        icons_url_base = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/icons"
+        missing_icons_urls = {}
+        found_icons = set()
+
         try:
             if icon_files_path.exists() and icon_files_path.is_dir():
                 for icon_dir in icon_files_path.iterdir():
                     if icon_dir.is_dir():
                         for icon_file in icon_dir.glob("*.png"):
                             found_icons.add(icon_file.name)
+
             for icon in required_files:
                 if icon not in found_icons:
                     if icon in icon_folders:
                         folder = icon_folders[icon]
-                        missing_icons_urls[f"{icons_url_base}/{folder}/{icon}"] = icon_files_path.joinpath(folder, icon)
+                        url = f"{icons_url_base}/{folder}/{icon}"
+                        local_path = icon_files_path.joinpath(folder, icon)
+                        missing_icons_urls[url] = local_path
+                        print(f"[DEBUG] Missing icon: {icon} → {url}")
+                    else:
+                        print(f"[WARNING] Missing folder mapping for icon: {icon}")
             return missing_icons_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)
