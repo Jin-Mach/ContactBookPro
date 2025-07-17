@@ -12,7 +12,7 @@
     "searchGenderTextLabel": "Pohlaví:",
     "searchGenderCombobox": ["Vše", "Muž", "Žena"],
     "searchRelationshipTextLabel": "Vztah:",
-    "searchRelationshipCombobox": ["Vše","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
+    "searchRelationshipCombobox": ["Vše","Rodina", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
     "searchFirstNameTextLabel": "Křestní jméno:",
     "searchSecondNameTextLabel": "Příjmení:",
     "searchEmailTextLabel": "Email (osobní):",

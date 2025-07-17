@@ -6,7 +6,7 @@ from src.database.db_connection import create_db_connection
 
 
 def reset_database() -> bool:
-    db_path = pathlib.Path(__file__).parents[2].joinpath("db_file")
+    db_path = pathlib.Path(__file__).parents[3].joinpath("db_file")
     db_name = None
     for item in db_path.iterdir():
         if item.is_file() and item.name.endswith(".sqlite"):

@@ -30,7 +30,7 @@
     "dialogGenderTextLabel": "Pohlaví",
     "dialogGenderCombobox": ["---Vyberte pohlaví---","Muž", "Žena"],
     "dialogRelationshipTextLabel": "Vztah:",
-    "dialogRelationshipCombobox": ["---Vyberte vztah---","Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
+    "dialogRelationshipCombobox": ["---Vyberte vztah---","Rodina", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"],
     "dialogFirstNameTextLabel": "Křestní jméno:",
     "dialogSecondNameTextLabel": "Příjmení:",
     "dialogEmailTextLabel": "Email (osobní):",

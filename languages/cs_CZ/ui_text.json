@@ -19,7 +19,7 @@
       "6": "adresa"
     },
     "gender_items": ["Vše", "Muž", "Žena"],
-    "relationship_items": ["Vše", "Rodinný příslušník", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"]
+    "relationship_items": ["Vše", "Rodina", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"]
   },
   "contactsStatusbarWidget": {
     "countDisplayLabel": "filtr:"
@@ -37,7 +37,7 @@
         "2": "Žena"
       },
       "relationship_key": {
-        "1": "Rodinný příslušník",
+        "1": "Rodina",
         "2": "Příbuzný",
         "3": "Kolega",
         "4": "Kamarád",
@@ -107,5 +107,13 @@
   },
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
+  },
+  "pieChartWidget": {
+    "title": "Pohlaví",
+    "noData": "Žádna data"
+  },
+  "barChartWidget": {
+    "title": "Vztah",
+    "noData": "Žádná data"
   }
 }

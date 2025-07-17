@@ -25,7 +25,7 @@ def create_contacts_tables(connection: QSqlDatabase) -> tuple[bool, QSqlQuery]:
     query = QSqlQuery(connection)
     create_mandatory_table = query.exec("""CREATE TABLE IF NOT EXISTS mandatory(
         id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-        gender TEXT NOT NULL,
+        gender INTEGER NOT NULL,
         relationship INTEGER NOT NULL,
         first_name TEXT NOT NULL,
         second_name TEXT NOT NULL,

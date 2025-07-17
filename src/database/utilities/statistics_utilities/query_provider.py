@@ -19,11 +19,11 @@ class QueryProvider:
             result = []
             while data_query.next():
                 if column_name == "gender":
-                    value = QueryProvider.map_key.mapping_keys("gender", data_query.value(0))
+                    value = QueryProvider.map_key.mapping_keys("gender", str(data_query.value(0)))
                     result.append((data_query.value(0), value, data_query.value(1)))
                 elif column_name == "relationship":
-                    value = QueryProvider.map_key.mapping_keys("relationship", data_query.value(0))
-                    result.append((value, data_query.value(1)))
+                    value = QueryProvider.map_key.mapping_keys("relationship", str(data_query.value(0)))
+                    result.append((data_query.value(0), value, data_query.value(1)))
                 elif column_name.endswith("city") or column_name.endswith("country"):
                     result.append((data_query.value(0).casefold(), data_query.value(1)))
                 else:
