@@ -39,7 +39,7 @@ class ExportContactsListPdfObject(QObject):
         self.export_data_provider = export_data_provider
         self.main_window = main_window
         self.connection_name = f"exportListPdfThread{id(self)}"
-        self.src_path = Path(__file__).parents[3]
+        self.src_path = Path(__file__).parents[4]
 
     def run_pdf_list_export(self) -> None:
         db_connection = None
@@ -116,7 +116,7 @@ class ExportContactsListPdfObject(QObject):
 
     def draw_header(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         try:
-            icon_path = self.src_path.joinpath("icons", "mainWindow", "window_icon.png")
+            icon_path = self.src_path.joinpath("icons", "mainWindow", "mainWindowLogo.png")
             image = ImageReader(str(icon_path))
             image_width = 50
             image_height = 50

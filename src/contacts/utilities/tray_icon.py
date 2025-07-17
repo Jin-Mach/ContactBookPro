@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 class TrayIcon(QSystemTrayIcon):
-    icon_path = pathlib.Path(__file__).parents[3].joinpath("icons", "mainWindow", "window_icon.png")
+    icon_path = pathlib.Path(__file__).parents[3].joinpath("icons", "mainWindow", "mainWindowLogo.png")
 
     def __init__(self, status_bar: "StatusBar", parent=None) -> None:
         super().__init__(parent)

@@ -1,6 +1,7 @@
 {
   "mainWindow": {
-    "mainWindowDatabaseButton": "Zobrazí databázi kontaktů"
+    "mainWindowDatabaseButton": "Zobrazí databázi kontaktů",
+    "mainWindowStatisticsButton": "Zobrazí statistiky"
   },
   "contactsToolbarWidget": {
     "addNewContactPushbutton": "Přidat kontakt do databáze",
