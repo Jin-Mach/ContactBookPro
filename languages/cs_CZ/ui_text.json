@@ -104,5 +104,8 @@
   "statisticsMainWidget": {
     "mandatoryStatisticsWidget": "Základní statistiky",
     "testTab": "testovací widget"
+  },
+  "statisticsController": {
+    "statisticsUpdate": "Statistiky aktualizovány"
   }
 }

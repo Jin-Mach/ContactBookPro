@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QTabWidget, QMainWindow
 
@@ -6,12 +8,16 @@ from src.statistics.ui.statistics_widgets.mandatory_statistics_widget import Man
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
+if TYPE_CHECKING:
+    from src.application.status_bar import StatusBar
+
 
 class StatisticsMainWidget(QWidget):
-    def __init__(self, db_connection: QSqlDatabase, main_window: QMainWindow, parent=None) -> None:
+    def __init__(self, db_connection: QSqlDatabase, status_bar: "StatusBar", main_window: QMainWindow, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("statisticsMainWidget")
         self.db_connection = db_connection
+        self.status_bar = status_bar
         self.main_window = main_window
         self.statistics_controller = StatisticsController(self.db_connection, self, self.main_window)
         self.setLayout(self.create_gui())

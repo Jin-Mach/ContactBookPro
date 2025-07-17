@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.database.utilities.statistics_utilities.query_provider import QueryProvider
 from src.statistics.threading.statistics_data_object import StatisticsDataObject
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
 class StatisticsController:
     def __init__(self, db_connection: QSqlDatabase, statistics_main_widget: "StatisticsMainWidget",
                  main_window: QMainWindow) -> None:
+        self.class_name = "statisticsController"
         self.db_connection = db_connection
         self.statistics_main_widget = statistics_main_widget
         self.main_window = main_window
@@ -36,4 +38,9 @@ class StatisticsController:
             ErrorHandler.exception_handler(e, self.main_window)
 
     def set_statistics_data(self, data: dict) -> None:
-        self.statistics_main_widget.mandatory_statistics_widget.gender_pie.draw_pie(data.get("gender", ""))
+        try:
+            ui_text = LanguageProvider.get_ui_text("statisticsController")
+            self.statistics_main_widget.mandatory_statistics_widget.gender_pie.draw_pie(data.get("gender", ""))
+            self.statistics_main_widget.status_bar.show_statusbar_message(ui_text.get("statisticsUpdate", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
