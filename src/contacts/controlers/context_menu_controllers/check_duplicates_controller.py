@@ -7,7 +7,7 @@ from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.check_duplicates_object import CheckDuplicatesObject
 from src.contacts.ui.contacts_dialog.contacts_list_dialog import ContactsListDialog
 from src.contacts.utilities.set_contact import show_selected_contact
-from src.database.utilities.query_provider import QueryProvider
+from src.database.utilities.contacts_utilities.query_provider import QueryProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

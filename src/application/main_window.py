@@ -9,6 +9,7 @@ from src.application.main_window_widgets.button_widget import MainWindowButtonWi
 from src.application.status_bar import StatusBar
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
+from src.database.db_connection import create_db_connection
 from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
@@ -24,8 +25,9 @@ class MainWindow(QMainWindow):
         self.showMaximized()
         self.setContentsMargins(0, 0, 0, 0)
         self.icon_size = QSize(30, 30)
-        self.contacts_main_widget = ContactsMainWidget(self)
-        self.statistics_main_widget = StatisticsMainWidget(self)
+        db_connection = create_db_connection("contacts_db.sqlite")
+        self.contacts_main_widget = ContactsMainWidget(db_connection, self)
+        self.statistics_main_widget = StatisticsMainWidget(db_connection, self)
         self.status_bar = StatusBar(self)
         self.setCentralWidget(self.create_gui())
         self.setStatusBar(self.status_bar)

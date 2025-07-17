@@ -3,8 +3,8 @@ from typing import Any
 from PyQt6.QtSql import QSqlDatabase, QSqlQuery
 from PyQt6.QtWidgets import QMainWindow
 
-from src.database.utilities.query_provider import QueryProvider
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.query_provider import QueryProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 

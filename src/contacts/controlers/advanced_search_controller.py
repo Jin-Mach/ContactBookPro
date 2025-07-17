@@ -8,8 +8,8 @@ from src.contacts.threading.objects.advanced_search_object import AdvancedSearch
 from src.contacts.threading.objects.user_filter_object import UserFilterObject
 from src.contacts.ui.search_dialogs.advanced_search_dialog import AdvancedSearchDialog
 from src.contacts.ui.shared_widgets.progress_dialog import ProgressDialog
-from src.database.utilities.query_provider import QueryProvider
-from src.database.utilities.search_provider import SearchProvider
+from src.database.utilities.contacts_utilities.query_provider import QueryProvider
+from src.database.utilities.contacts_utilities.search_provider import SearchProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

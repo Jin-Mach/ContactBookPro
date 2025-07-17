@@ -5,7 +5,7 @@ from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
 if TYPE_CHECKING:
-    from src.database.utilities.query_provider import QueryProvider
+    from src.database.utilities.contacts_utilities.query_provider import QueryProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -41,4 +41,4 @@ class CheckDuplicatesObject(QObject):
             if db_connection:
                 db_connection.close()
                 del db_connection
-                QSqlDatabase.removeDatabase(self.connection_name)
+            QSqlDatabase.removeDatabase(self.connection_name)

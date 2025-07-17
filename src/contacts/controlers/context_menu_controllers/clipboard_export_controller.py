@@ -1,7 +1,7 @@
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
 

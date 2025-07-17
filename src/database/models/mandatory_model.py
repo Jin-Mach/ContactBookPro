@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt, QModelIndex
 from PyQt6.QtGui import QIcon
 from PyQt6.QtSql import QSqlTableModel, QSqlDatabase
 
-from src.database.utilities.model_header_provider import ModelHeaderProvider
+from src.database.utilities.contacts_utilities.model_header_provider import ModelHeaderProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider

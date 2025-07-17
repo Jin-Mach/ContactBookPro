@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
 from src.contacts.threading.basic_thread import BasicThread
 from src.contacts.threading.objects.export_excel_object import ExportExcelObject
-from src.database.utilities.export_data_provider import ExportDataProvider
+from src.database.utilities.contacts_utilities.export_data_provider import ExportDataProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

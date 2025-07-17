@@ -13,11 +13,11 @@ from src.contacts.ui.contacts_dialog.contacts_list_dialog import ContactsListDia
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.filters_provider import FiltersProvider
 from src.contacts.utilities.set_contact import show_selected_contact
-from src.database.utilities.models_refresher import refresh_models
-from src.database.utilities.query_provider import QueryProvider
-from src.database.utilities.reset_database import reset_database
-from src.database.utilities.row_data_provider import RowDataProvider
-from src.database.utilities.update_models import update_models_data
+from src.database.utilities.contacts_utilities.models_refresher import refresh_models
+from src.database.utilities.contacts_utilities.query_provider import QueryProvider
+from src.database.utilities.contacts_utilities.reset_database import reset_database
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.update_models import update_models_data
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

@@ -21,7 +21,7 @@ from src.contacts.utilities.phone_utilities import format_phone_number
 from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
-    from src.database.utilities.export_data_provider import ExportDataProvider
+    from src.database.utilities.contacts_utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -71,7 +71,7 @@ class ExportContactsListPdfObject(QObject):
             if db_connection:
                 db_connection.close()
                 del db_connection
-                QSqlDatabase.removeDatabase(self.connection_name)
+            QSqlDatabase.removeDatabase(self.connection_name)
 
     @staticmethod
     def create_flowable_list(document: SimpleDocTemplate, contact_data: list[dict[str, str]]) -> tuple[list | None, Exception | None]:

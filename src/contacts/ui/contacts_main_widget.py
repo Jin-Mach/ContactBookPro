@@ -1,10 +1,10 @@
+from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QMainWindow
 
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
 from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.ui.main_widgets.contacts_toolbar_widget import ContactsToolbarWidget
-from src.database.db_connection import create_db_connection
 from src.database.models.completer_model import CompleterModel
 from src.database.models.detail_model import DetailModel
 from src.database.models.info_model import InfoModel
@@ -14,10 +14,10 @@ from src.database.models.work_model import WorkModel
 
 
 class ContactsMainWidget(QWidget):
-    def __init__(self, main_window: QMainWindow, parent=None) -> None:
+    def __init__(self, db_connection: QSqlDatabase, main_window: QMainWindow, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsMainWidget")
-        self.db_connection = create_db_connection("contacts_db.sqlite")
+        self.db_connection = db_connection
         self.mandatory_model = MandatoryModel(self.db_connection)
         self.work_model = WorkModel(self.db_connection)
         self.social_model = SocialModel(self.db_connection)

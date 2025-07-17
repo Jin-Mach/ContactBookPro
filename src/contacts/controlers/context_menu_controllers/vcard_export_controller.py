@@ -3,7 +3,7 @@ from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
 from src.contacts.utilities.generate_vcard import create_vcard
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.encoding_provider import get_encoding
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

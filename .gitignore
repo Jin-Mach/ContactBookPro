@@ -172,4 +172,5 @@ cython_debug/
 .pypirc
 /output/
 /data/
+/map/
 .DS_Store

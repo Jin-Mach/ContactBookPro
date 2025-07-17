@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 from PyQt6.QtSql import QSqlDatabase
 
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
 if TYPE_CHECKING:

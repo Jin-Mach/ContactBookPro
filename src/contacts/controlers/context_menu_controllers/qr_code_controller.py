@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.contacts.ui.preview_widgets.qr_code_preview import QrCodePreviewDialog
 from src.contacts.utilities.generate_qr_code import create_qr_code
 from src.contacts.utilities.generate_vcard import create_vcard
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.error_handler import ErrorHandler
 
 

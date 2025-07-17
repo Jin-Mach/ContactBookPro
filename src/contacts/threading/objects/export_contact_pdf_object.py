@@ -21,11 +21,11 @@ from PyQt6.QtWidgets import QMainWindow
 from src.contacts.utilities.date_handler import format_date
 from src.contacts.utilities.generate_qr_code import create_qr_code
 from src.contacts.utilities.generate_vcard import create_vcard
-from src.database.utilities.row_data_provider import RowDataProvider
+from src.database.utilities.contacts_utilities.row_data_provider import RowDataProvider
 from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
-    from src.database.utilities.export_data_provider import ExportDataProvider
+    from src.database.utilities.contacts_utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -76,7 +76,7 @@ class ExportContactPdfObject(QObject):
             if db_connection:
                 db_connection.close()
                 del db_connection
-                QSqlDatabase.removeDatabase(self.connection_name)
+            QSqlDatabase.removeDatabase(self.connection_name)
 
     @staticmethod
     def create_pdf(contact_data: dict[str, Any], ui_text: dict[str, str]) -> tuple[list | None, Exception | None]:

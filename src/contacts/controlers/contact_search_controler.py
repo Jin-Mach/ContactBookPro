@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QLineEdit, QComboBox
 
 from src.contacts.utilities.optimalize_data import normalize_input
-from src.database.utilities.search_provider import SearchProvider
+from src.database.utilities.contacts_utilities.search_provider import SearchProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

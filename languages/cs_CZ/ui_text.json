@@ -100,5 +100,9 @@
     "workAddress": "Adresa:",
     "workCountry": "Stát:",
     "notesTitle": "Poznámky"
+  },
+  "statisticsMainWidget": {
+    "mandatoryStatisticsWidget": "Základní statistiky",
+    "testTab": "testovací widget"
   }
 }

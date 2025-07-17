@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.utilities.encoding_provider import get_encoding
 
 if TYPE_CHECKING:
-    from src.database.utilities.export_data_provider import ExportDataProvider
+    from src.database.utilities.contacts_utilities.export_data_provider import ExportDataProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -58,4 +58,4 @@ class ExportCsvObject(QObject):
             if db_connection:
                 db_connection.close()
                 del db_connection
-                QSqlDatabase.removeDatabase(self.connection_name)
+            QSqlDatabase.removeDatabase(self.connection_name)
