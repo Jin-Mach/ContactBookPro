@@ -26,8 +26,8 @@ class MainWindow(QMainWindow):
         self.setContentsMargins(0, 0, 0, 0)
         self.icon_size = QSize(30, 30)
         db_connection = create_db_connection("contacts_db.sqlite")
-        self.contacts_main_widget = ContactsMainWidget(db_connection, self)
         self.statistics_main_widget = StatisticsMainWidget(db_connection, self)
+        self.contacts_main_widget = ContactsMainWidget(db_connection, self, self.statistics_main_widget.statistics_controller)
         self.status_bar = StatusBar(self)
         self.setCentralWidget(self.create_gui())
         self.setStatusBar(self.status_bar)
@@ -130,6 +130,8 @@ class MainWindow(QMainWindow):
         super().closeEvent(event)
 
     def changed_stack(self, index: int) -> None:
+        if index == 1:
+            self.statistics_main_widget.statistics_tab_widget.setCurrentIndex(0)
         self.stacked_widget.setCurrentIndex(index)
 
     @staticmethod

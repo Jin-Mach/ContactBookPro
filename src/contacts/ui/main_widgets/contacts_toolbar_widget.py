@@ -26,6 +26,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
     from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
     from src.database.models.completer_model import CompleterModel
+    from src.statistics.controllers.statistics_controller import StatisticsController
 
 
 # noinspection PyUnresolvedReferences
@@ -33,7 +34,7 @@ class ContactsToolbarWidget(QWidget):
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
                  work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
                  detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
-                 completer_model: "CompleterModel", parent=None) -> None:
+                 completer_model: "CompleterModel", statistics_controller: "StatisticsController", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsToolbarWidget")
         self.db_connection = db_connection
@@ -41,6 +42,7 @@ class ContactsToolbarWidget(QWidget):
         self.table_view = table_view
         self.completer_model = completer_model
         self.contacts_statusbar = contacts_statusbar
+        self.statistics_controller = statistics_controller
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -49,7 +51,7 @@ class ContactsToolbarWidget(QWidget):
         self.create_shortcuts()
         self.contacts_controller = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
                                                       social_model, detail_model, info_model, detail_widget, table_view,
-                                                      self.contacts_statusbar, self)
+                                                      self.contacts_statusbar, self.statistics_controller, self)
         self.completer_controller = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controller.setup()
         self.contact_search_controller = ContactSearchController(self.completer_controller, self.mandatory_model, table_view, self.contacts_statusbar, self.search_combobox, self)

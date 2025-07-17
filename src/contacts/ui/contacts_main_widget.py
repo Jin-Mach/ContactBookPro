@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QMainWindow
 
@@ -12,12 +14,17 @@ from src.database.models.mandatory_model import MandatoryModel
 from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
 
+if TYPE_CHECKING:
+    from src.statistics.controllers.statistics_controller import StatisticsController
+
 
 class ContactsMainWidget(QWidget):
-    def __init__(self, db_connection: QSqlDatabase, main_window: QMainWindow, parent=None) -> None:
+    def __init__(self, db_connection: QSqlDatabase, main_window: QMainWindow, statistics_controller: "StatisticsController",
+                 parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsMainWidget")
         self.db_connection = db_connection
+        self.statistics_controller = statistics_controller
         self.mandatory_model = MandatoryModel(self.db_connection)
         self.work_model = WorkModel(self.db_connection)
         self.social_model = SocialModel(self.db_connection)
@@ -31,7 +38,8 @@ class ContactsMainWidget(QWidget):
         self.contacts_toolbar_widget = ContactsToolbarWidget(main_window, self.db_connection, self.mandatory_model, self.work_model,
                                                              self.social_model,self.detail_model, self.info_model,
                                                              self.contacts_detail_widget,self.contacts_tableview_widget,
-                                                             self.contacts_statusbar_widget,self.completer_model, self)
+                                                             self.contacts_statusbar_widget,self.completer_model,
+                                                             self.statistics_controller, self)
         self.setLayout(self.create_gui())
 
     def create_gui(self) -> QLayout:

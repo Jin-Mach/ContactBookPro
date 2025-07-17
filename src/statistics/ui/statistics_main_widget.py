@@ -1,6 +1,7 @@
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QTabWidget, QMainWindow
 
+from src.statistics.controllers.statistics_controller import StatisticsController
 from src.statistics.ui.statistics_widgets.mandatory_statistics_widget import MandatoryStatisticsWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -12,14 +13,16 @@ class StatisticsMainWidget(QWidget):
         self.setObjectName("statisticsMainWidget")
         self.db_connection = db_connection
         self.main_window = main_window
+        self.statistics_controller = StatisticsController(self.db_connection, self, self.main_window)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.statistics_controller.set_data()
 
     def create_gui(self) -> QLayout:
         main_layout = QGridLayout()
         self.statistics_tab_widget = QTabWidget()
         self.statistics_tab_widget.setObjectName("statisticsTabWidget")
-        self.mandatory_statistics_widget = MandatoryStatisticsWidget(self.db_connection, self)
+        self.mandatory_statistics_widget = MandatoryStatisticsWidget(self.db_connection, self.main_window, self)
         self.mandatory_statistics_widget.setObjectName("mandatoryStatisticsWidget")
         self.test_tab = QWidget()
         self.test_tab.setObjectName("testTab")
