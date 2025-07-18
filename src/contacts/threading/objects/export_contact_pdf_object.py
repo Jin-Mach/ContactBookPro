@@ -247,7 +247,7 @@ class ExportContactPdfObject(QObject):
             gender = row_data.get('gender', '')
             if gender:
                 if int(gender) == 2:
-                    custom_color = Color(1, 0.8, 0.86)
+                    custom_color = Color(1.0, 0.6, 0.733)
             canvas.setFillColor(custom_color)
             canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
             canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)

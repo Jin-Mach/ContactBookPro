@@ -10,6 +10,7 @@ from src.application.status_bar import StatusBar
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
 from src.database.db_connection import create_db_connection
+from src.database.models.mandatory_model import MandatoryModel
 from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
@@ -28,8 +29,10 @@ class MainWindow(QMainWindow):
         self.status_bar = StatusBar(self)
         self.setStatusBar(self.status_bar)
         db_connection = create_db_connection("contacts_db.sqlite")
-        self.statistics_main_widget = StatisticsMainWidget(db_connection, self.status_bar, self)
-        self.contacts_main_widget = ContactsMainWidget(db_connection, self, self.statistics_main_widget.statistics_controller)
+        mandatory_model = MandatoryModel(db_connection)
+        self.statistics_main_widget = StatisticsMainWidget(db_connection, mandatory_model, self.status_bar, self)
+        self.contacts_main_widget = ContactsMainWidget(db_connection, mandatory_model, self,
+                                                       self.statistics_main_widget.statistics_controller)
         self.setCentralWidget(self.create_gui())
         self.set_icons()
         self.set_ui_text()

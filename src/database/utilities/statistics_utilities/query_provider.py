@@ -13,7 +13,10 @@ class QueryProvider:
     def get_statistics_data(db_connection: QSqlDatabase, db_table: str, column_name: str) -> list[tuple[str, Any]] | None:
         try:
             data_query = QSqlQuery(db_connection)
-            if not data_query.exec(f"SELECT {column_name}, COUNT (*) FROM {db_table} GROUP BY {column_name}"):
+            sql = f"SELECT {column_name}, COUNT (*) FROM {db_table} GROUP BY {column_name}"
+            if column_name.endswith("city") or column_name.endswith("country"):
+                sql = f"SELECT LOWER({column_name}), COUNT (*) FROM {db_table} GROUP BY LOWER({column_name})"
+            if not data_query.exec(sql):
                 ErrorHandler.database_error(data_query.lastError().text(), False)
                 return None
             result = []
@@ -25,7 +28,7 @@ class QueryProvider:
                     value = QueryProvider.map_key.mapping_keys("relationship", str(data_query.value(0)))
                     result.append((data_query.value(0), value, data_query.value(1)))
                 elif column_name.endswith("city") or column_name.endswith("country"):
-                    result.append((data_query.value(0).casefold(), data_query.value(1)))
+                    result.append((str(data_query.value(0).casefold()), data_query.value(1)))
                 else:
                     result.append((data_query.value(0), data_query.value(1)))
             return result

@@ -108,12 +108,20 @@
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
   },
-  "pieChartWidget": {
+  "genderPieChartWidget": {
     "title": "Pohlaví",
     "noData": "Žádna data"
   },
-  "barChartWidget": {
+  "relationshipBarChartWidget": {
     "title": "Vztah",
     "noData": "Žádná data"
+  },
+  "cityBarCharWidget": {
+    "title": "Město",
+    "noData": "Žádná data",
+    "others": "Ostatní"
+  },
+  "mandatoryStatisticsWidget": {
+    "totalCount": "Celkový počet kontaktů:"
   }
 }

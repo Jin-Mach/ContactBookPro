@@ -1,17 +1,17 @@
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.ticker import MaxNLocator
 
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout
-from matplotlib.ticker import MaxNLocator
 
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class BarChartWidget(QWidget):
+class RelationshipBarChartWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("barChartWidget")
+        self.setObjectName("relationshipBarChartWidget")
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.setLayout(self.create_gui())
@@ -32,6 +32,10 @@ class BarChartWidget(QWidget):
             place.set_facecolor("#31363b")
             place.tick_params(axis="x", colors="#ffffff")
             place.tick_params(axis="y", colors="#ffffff")
+            place.spines["top"].set_visible(False)
+            place.spines["right"].set_visible(False)
+            place.spines["bottom"].set_color("#ffffff")
+            place.spines["left"].set_color("#ffffff")
             if not data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")

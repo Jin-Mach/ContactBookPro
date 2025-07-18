@@ -10,13 +10,16 @@ from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.application.status_bar import StatusBar
+    from src.database.models.mandatory_model import MandatoryModel
 
 
 class StatisticsMainWidget(QWidget):
-    def __init__(self, db_connection: QSqlDatabase, status_bar: "StatusBar", main_window: QMainWindow, parent=None) -> None:
+    def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", status_bar: "StatusBar",
+                 main_window: QMainWindow, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("statisticsMainWidget")
         self.db_connection = db_connection
+        self.mandatory_model = mandatory_model
         self.status_bar = status_bar
         self.main_window = main_window
         self.statistics_controller = StatisticsController(self.db_connection, self, self.main_window)
@@ -28,7 +31,8 @@ class StatisticsMainWidget(QWidget):
         main_layout = QGridLayout()
         self.statistics_tab_widget = QTabWidget()
         self.statistics_tab_widget.setObjectName("statisticsTabWidget")
-        self.mandatory_statistics_widget = MandatoryStatisticsWidget(self.db_connection, self.main_window, self)
+        self.mandatory_statistics_widget = MandatoryStatisticsWidget(self.db_connection, self.mandatory_model,
+                                                                     self.main_window, self)
         self.mandatory_statistics_widget.setObjectName("mandatoryStatisticsWidget")
         self.test_tab = QWidget()
         self.test_tab.setObjectName("testTab")

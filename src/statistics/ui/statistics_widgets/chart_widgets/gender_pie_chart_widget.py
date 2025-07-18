@@ -1,3 +1,5 @@
+from typing import Callable
+
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
@@ -7,10 +9,11 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class PieChartWidget(QWidget):
-    def __init__(self, parent=None) -> None:
+class GenderPieChartWidget(QWidget):
+    def __init__(self, total_count: Callable[[], None], parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("pieChartWidget")
+        self.setObjectName("genderPieChartWidget")
+        self.total_count = total_count
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.setLayout(self.create_gui())
@@ -36,7 +39,7 @@ class PieChartWidget(QWidget):
             else:
                 color_map = {
                     "1": "#448aff",
-                    "2": "#ffccdb"
+                    "2": "#ff99bb"
                 }
                 sizes = []
                 labels = []
@@ -50,5 +53,6 @@ class PieChartWidget(QWidget):
                     label.set_color("#ffffff")
                 place.axis("equal")
             self.figure.canvas.draw()
+            self.total_count()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
