@@ -1,10 +1,11 @@
 from typing import TYPE_CHECKING
 
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QTabWidget, QMainWindow
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QWidget, QLayout, QTabWidget, QMainWindow, QVBoxLayout, QLabel
 
 from src.statistics.controllers.statistics_controller import StatisticsController
-from src.statistics.ui.statistics_widgets.mandatory_statistics_widget import MandatoryStatisticsWidget
+from src.statistics.ui.statistics_widgets.basic_statistics_widget import BasicStatisticsWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
@@ -28,23 +29,32 @@ class StatisticsMainWidget(QWidget):
         self.statistics_controller.set_data()
 
     def create_gui(self) -> QLayout:
-        main_layout = QGridLayout()
+        main_layout = QVBoxLayout()
+        self.count_label = QLabel()
+        self.count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.count_label.setStyleSheet("font-size: 25pt;")
         self.statistics_tab_widget = QTabWidget()
         self.statistics_tab_widget.setObjectName("statisticsTabWidget")
-        self.mandatory_statistics_widget = MandatoryStatisticsWidget(self.db_connection, self.mandatory_model,
-                                                                     self.main_window, self)
+        self.mandatory_statistics_widget = BasicStatisticsWidget(self.db_connection, self.mandatory_model, self)
         self.mandatory_statistics_widget.setObjectName("mandatoryStatisticsWidget")
         self.test_tab = QWidget()
         self.test_tab.setObjectName("testTab")
         self.statistics_tab_widget.addTab(self.mandatory_statistics_widget, "")
         self.statistics_tab_widget.addTab(self.test_tab, "")
+        main_layout.addWidget(self.count_label)
         main_layout.addWidget(self.statistics_tab_widget)
         return main_layout
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
-            self.statistics_tab_widget.setTabText(0, ui_text.get("mandatoryStatisticsWidget", ""))
-            self.statistics_tab_widget.setTabText(1, ui_text.get("testTab", ""))
+            self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.statistics_tab_widget.setTabText(0, self.ui_text.get("mandatoryStatisticsWidget", ""))
+            self.statistics_tab_widget.setTabText(1, self.ui_text.get("testTab", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
+
+    def set_count_label_text(self) -> None:
+        try:
+            self.count_label.setText(f"{self.ui_text.get("totalCount", "")} {self.mandatory_model.rowCount()}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

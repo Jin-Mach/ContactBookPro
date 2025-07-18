@@ -102,8 +102,9 @@
     "notesTitle": "Poznámky"
   },
   "statisticsMainWidget": {
+    "totalCount": "Celkový počet kontaktů:",
     "mandatoryStatisticsWidget": "Základní statistiky",
-    "testTab": "testovací widget"
+    "testTab": "Pracovní statistiky"
   },
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
@@ -120,8 +121,5 @@
     "title": "Město",
     "noData": "Žádná data",
     "others": "Ostatní"
-  },
-  "mandatoryStatisticsWidget": {
-    "totalCount": "Celkový počet kontaktů:"
   }
 }
