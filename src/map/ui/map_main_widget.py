@@ -35,7 +35,7 @@ class MapMainWidget(QWidget):
         return main_layout
 
     def show_map(self, html_map: str) -> None:
-        html_map = ""
+        #html_map = ""
         if not html_map:
             self.web_view.hide()
             self.no_data_label.show()

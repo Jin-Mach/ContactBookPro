@@ -20,9 +20,9 @@ class TabInfoWidget(QTabWidget):
         self.addTab(self.create_work_tab(), "")
         self.set_ui_text()
         self.set_tooltips_text()
-        IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QPushButton), self.buttons_size, self)
         self.buttons = [self.facebook_pushbutton, self.x_pushbutton, self.instagram_pushbutton,
                         self.linkedin_pushbutton, self.github_pushbutton, self.work_website_pushbutton]
+        IconProvider.set_buttons_icon(self.objectName(), self.buttons, self.buttons_size, self)
         self.create_connection()
 
     def create_personal_tab(self) -> QWidget:
