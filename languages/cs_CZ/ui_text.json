@@ -104,7 +104,7 @@
   "statisticsMainWidget": {
     "totalCount": "Celkový počet kontaktů:",
     "mandatoryStatisticsWidget": "Základní statistiky",
-    "testTab": "Pracovní statistiky"
+    "workStatisticsWidget": "Pracovní statistiky"
   },
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
@@ -120,6 +120,14 @@
   "cityBarCharWidget": {
     "title": "Město",
     "noData": "Žádná data",
-    "others": "Ostatní"
+    "others": "Ostatní",
+    "unfilled": "Nevyplněno"
+  },
+  "workPieChartWidget": {
+    "email": "Email",
+    "phone": "Telefonní číslo",
+    "address": "Adresa",
+    "filled": "Vyplněno",
+    "empty": "Nevyplněno"
   }
 }

@@ -42,12 +42,13 @@ class ContactValidator:
         return domain == site.lower() and bool(ext.suffix) and validators.url(url)
 
     @staticmethod
-    def validate_work_address(address: QLineEdit, post_code: QLineEdit, city: QLineEdit, country: QLineEdit) -> bool:
-        if (address.text().strip() and not post_code.text().strip()) or (not address.text().strip() and post_code.text().strip()):
-            return False
-        if (city.text().strip() and not country.text().strip()) or (not city.text().strip() and country.text().strip()):
-            return False
-        return True
+    def validate_work_address(house_number: QLineEdit, city: QLineEdit, post_code: QLineEdit, country: QLineEdit) -> bool:
+        all_empty = (not house_number.text().strip() and not city.text().strip() and not post_code.text().strip()
+                     and not country.text().strip())
+        all_filled = (house_number.text().strip() and city.text().strip() and post_code.text().strip()
+                     and country.text().strip())
+        return all_empty or all_filled
+
 
     @staticmethod
     def contact_input_validator(name_city_edits: list[QLineEdit] = None, house_number_edit: QLineEdit = None,

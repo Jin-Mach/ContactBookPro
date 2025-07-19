@@ -20,17 +20,24 @@ class StatisticsDataObject(QObject):
 
     def get_statistics_data(self):
         db_connection = None
-        results = {}
+        results = {
+            "basic": {},
+            "work": {}
+        }
         try:
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
             db_connection.setDatabaseName(self.db_path)
             if not db_connection.open():
                 self.data_ready.emit(results)
                 self.finished.emit()
-            results["gender"] = self.query_provider.get_statistics_data(db_connection, "mandatory", "gender")
-            results["relationship"] = self.query_provider.get_statistics_data(db_connection, "mandatory", "relationship")
-            results["personal_city"] = self.query_provider.get_statistics_data(db_connection, "mandatory", "personal_city")
-            results["personal_country"] = self.query_provider.get_statistics_data(db_connection, "mandatory", "personal_country")
+                return
+            results["basic"]["gender"] = self.query_provider.get_basic_statistics_data(db_connection, "gender")
+            results["basic"]["relationship"] = self.query_provider.get_basic_statistics_data(db_connection, "relationship")
+            results["basic"]["personal_city"] = self.query_provider.get_basic_statistics_data(db_connection, "personal_city")
+            results["basic"]["personal_country"] = self.query_provider.get_basic_statistics_data(db_connection, "personal_country")
+            results["work"]["work_email"] = self.query_provider.get_work_statistics_data(db_connection, "work_email")
+            results["work"]["work_phone_number"] = self.query_provider.get_work_statistics_data(db_connection, "work_phone_number")
+            results["work"]["work_city"] = self.query_provider.get_work_statistics_data(db_connection, "work_city")
             self.data_ready.emit(results)
             self.finished.emit()
         except Exception:

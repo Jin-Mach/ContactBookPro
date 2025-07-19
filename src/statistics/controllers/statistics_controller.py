@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from PyQt6.QtCore import QThread
 from PyQt6.QtSql import QSqlDatabase
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyArgumentList
 class StatisticsController:
     def __init__(self, db_connection: QSqlDatabase, statistics_main_widget: "StatisticsMainWidget",
                  main_window: QMainWindow) -> None:
@@ -37,12 +37,32 @@ class StatisticsController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)
 
-    def set_statistics_data(self, data: dict) -> None:
+    def set_statistics_data(self, data: dict[str, dict[str, Any]]) -> None:
         try:
             ui_text = LanguageProvider.get_ui_text("statisticsController")
-            self.statistics_main_widget.mandatory_statistics_widget.gender_pie.draw_pie(data.get("gender", ""))
-            self.statistics_main_widget.mandatory_statistics_widget.relationship_bar.draw_bar(data.get("relationship", ""))
-            self.statistics_main_widget.mandatory_statistics_widget.city_bar.draw_bar(data.get("personal_city", ""))
+            handlers = {
+                "basic": self.set_basic,
+                "work": self.set_work
+            }
+            for key, handler in handlers.items():
+                if key in data:
+                    handler(data[key])
             self.statistics_main_widget.status_bar.show_statusbar_message(ui_text.get("statisticsUpdate", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def set_basic(self, basic_data: dict[str, Any]) -> None:
+        try:
+            self.statistics_main_widget.basic_statistics_widget.gender_pie.draw_pie(basic_data.get("gender", ""))
+            self.statistics_main_widget.basic_statistics_widget.relationship_bar.draw_bar(basic_data.get("relationship", ""))
+            self.statistics_main_widget.basic_statistics_widget.city_bar.draw_bar(basic_data.get("personal_city", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def set_work(self, basic_data: dict[str, Any]) -> None:
+        try:
+            self.statistics_main_widget.work_statistics_widget.email_pie.draw_pie(basic_data.get("work_email", ""))
+            self.statistics_main_widget.work_statistics_widget.phone_pie.draw_pie(basic_data.get("work_phone_number", ""))
+            self.statistics_main_widget.work_statistics_widget.city_bar.draw_bar(basic_data.get("work_city", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)

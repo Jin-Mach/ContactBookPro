@@ -48,7 +48,8 @@ class GenderPieChartWidget(QWidget):
                     colors.append(color_map.get(str(index)))
                     labels.append(label)
                     sizes.append(size)
-                _, label_text , _ = place.pie(sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90)
+                _, label_text , _ = place.pie(sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90,
+                                              counterclock=False)
                 for label in label_text:
                     label.set_color("#ffffff")
                 place.axis("equal")

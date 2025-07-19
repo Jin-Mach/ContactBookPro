@@ -1,6 +1,5 @@
 from typing import TYPE_CHECKING
 
-from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QLayout, QGridLayout, QLabel
 
@@ -9,17 +8,14 @@ from src.statistics.ui.statistics_widgets.chart_widgets.gender_pie_chart_widget 
 from src.statistics.ui.statistics_widgets.chart_widgets.city_bar_chart_widget import CityBarChartWidget
 
 if TYPE_CHECKING:
-    from src.database.models.mandatory_model import MandatoryModel
     from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 
 
 class BasicStatisticsWidget(QWidget):
-    def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", statistics_main_widget: "StatisticsMainWidget",
+    def __init__(self, statistics_main_widget: "StatisticsMainWidget",
                  parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("basicStatisticsWidget")
-        self.db_connection = db_connection
-        self.mandatory_model = mandatory_model
         self.statistics_main_widget = statistics_main_widget
         self.setLayout(self.create_gui())
 
