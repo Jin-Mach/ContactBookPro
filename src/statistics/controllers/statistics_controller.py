@@ -42,7 +42,8 @@ class StatisticsController:
             ui_text = LanguageProvider.get_ui_text("statisticsController")
             handlers = {
                 "basic": self.set_basic,
-                "work": self.set_work
+                "work": self.set_work,
+                "social": self.set_social
             }
             for key, handler in handlers.items():
                 if key in data:
@@ -64,5 +65,11 @@ class StatisticsController:
             self.statistics_main_widget.work_statistics_widget.email_pie.draw_pie(basic_data.get("work_email", ""))
             self.statistics_main_widget.work_statistics_widget.phone_pie.draw_pie(basic_data.get("work_phone_number", ""))
             self.statistics_main_widget.work_statistics_widget.city_bar.draw_bar(basic_data.get("work_city", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def set_social(self, basic_data: dict) -> None:
+        try:
+            self.statistics_main_widget.social_statistics_widget.social_bar.draw_bar(basic_data.get("social_all", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)

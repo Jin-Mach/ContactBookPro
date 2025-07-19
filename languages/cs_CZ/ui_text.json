@@ -104,7 +104,8 @@
   "statisticsMainWidget": {
     "totalCount": "Celkový počet kontaktů:",
     "mandatoryStatisticsWidget": "Základní statistiky",
-    "workStatisticsWidget": "Pracovní statistiky"
+    "workStatisticsWidget": "Pracovní statistiky",
+    "socialStatisticsWidget": "Sociální statistiky"
   },
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
@@ -124,10 +125,19 @@
     "unfilled": "Nevyplněno"
   },
   "workPieChartWidget": {
+    "noData": "Žádná data",
     "email": "Email",
     "phone": "Telefonní číslo",
     "address": "Adresa",
     "filled": "Vyplněno",
     "empty": "Nevyplněno"
+  },
+  "socialBarChartWidget": {
+    "title": "Sociální sítě",
+    "noData": "Žádná data",
+    "filled": "Vyplněno",
+    "empty": "Nevyplněno",
+    "x": "x (twitter)",
+    "website": "webová stránka"
   }
 }

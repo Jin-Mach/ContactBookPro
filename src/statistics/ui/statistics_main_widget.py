@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QWidget, QLayout, QTabWidget, QMainWindow, QVBoxLayo
 
 from src.statistics.controllers.statistics_controller import StatisticsController
 from src.statistics.ui.statistics_widgets.basic_statistics_widget import BasicStatisticsWidget
+from src.statistics.ui.statistics_widgets.social_statistics_widget import SocialStatisticsWidget
 from src.statistics.ui.statistics_widgets.work_statistics_widget import WorkStatisticsWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
@@ -40,8 +41,11 @@ class StatisticsMainWidget(QWidget):
         self.basic_statistics_widget.setObjectName("mandatoryStatisticsWidget")
         self.work_statistics_widget = WorkStatisticsWidget(self)
         self.work_statistics_widget.setObjectName("workStatisticsWidget")
+        self.social_statistics_widget = SocialStatisticsWidget(self)
+        self.social_statistics_widget.setObjectName("socialStatisticsWidget")
         self.statistics_tab_widget.addTab(self.basic_statistics_widget, "")
         self.statistics_tab_widget.addTab(self.work_statistics_widget, "")
+        self.statistics_tab_widget.addTab(self.social_statistics_widget, "")
         main_layout.addWidget(self.count_label)
         main_layout.addWidget(self.statistics_tab_widget)
         return main_layout
@@ -51,6 +55,7 @@ class StatisticsMainWidget(QWidget):
             self.ui_text = LanguageProvider.get_ui_text(self.objectName())
             self.statistics_tab_widget.setTabText(0, self.ui_text.get("mandatoryStatisticsWidget", ""))
             self.statistics_tab_widget.setTabText(1, self.ui_text.get("workStatisticsWidget", ""))
+            self.statistics_tab_widget.setTabText(2, self.ui_text.get("socialStatisticsWidget", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
