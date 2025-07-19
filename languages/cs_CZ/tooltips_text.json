@@ -1,6 +1,7 @@
 {
   "mainWindow": {
     "mainWindowDatabaseButton": "Zobrazí databázi kontaktů",
+    "mainWindowMapButton": "Zobrazí mapu kontaktů",
     "mainWindowStatisticsButton": "Zobrazí statistiky"
   },
   "contactsToolbarWidget": {

@@ -11,6 +11,7 @@ from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
 from src.database.db_connection import create_db_connection
 from src.database.models.mandatory_model import MandatoryModel
+from src.map.ui.map_main_widget import MapMainWidget
 from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
@@ -30,6 +31,7 @@ class MainWindow(QMainWindow):
         self.setStatusBar(self.status_bar)
         db_connection = create_db_connection("contacts_db.sqlite")
         mandatory_model = MandatoryModel(db_connection)
+        self.map_main_widget = MapMainWidget(db_connection, self.status_bar, self)
         self.statistics_main_widget = StatisticsMainWidget(db_connection, mandatory_model, self.status_bar, self)
         self.contacts_main_widget = ContactsMainWidget(db_connection, mandatory_model, self,
                                                        self.statistics_main_widget.statistics_controller)
@@ -59,15 +61,19 @@ class MainWindow(QMainWindow):
         database_buttons_layout.setSpacing(10)
         self.database_button = MainWindowButtonWidget(lambda: self.changed_stack(0), self)
         self.database_button.setObjectName("mainWindowDatabaseButton")
-        self.statistics_button = MainWindowButtonWidget(lambda: self.changed_stack(1), self)
+        self.map_button = MainWindowButtonWidget(lambda: self.changed_stack(1), self)
+        self.map_button.setObjectName("mainWindowMapButton")
+        self.statistics_button = MainWindowButtonWidget(lambda: self.changed_stack(2), self)
         self.statistics_button.setObjectName("mainWindowStatisticsButton")
         self.stacked_widget = QStackedWidget()
         self.stacked_widget.setObjectName("mainWindowStackedWidget")
         self.stacked_widget.setContentsMargins(0, 0, 0, 0)
         self.stacked_widget.addWidget(self.contacts_main_widget)
+        self.stacked_widget.addWidget(self.map_main_widget)
         self.stacked_widget.addWidget(self.statistics_main_widget)
         self.stacked_widget.setCurrentWidget(self.contacts_main_widget)
         database_buttons_layout.addWidget(self.database_button)
+        database_buttons_layout.addWidget(self.map_button)
         database_buttons_layout.addWidget(self.statistics_button)
         dock_layout.addWidget(MainWindow.create_image())
         dock_layout.addLayout(database_buttons_layout)
@@ -80,7 +86,7 @@ class MainWindow(QMainWindow):
 
     def set_icons(self) -> None:
         try:
-            buttons = [self.database_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button]
             for button in buttons:
                 if button.objectName().endswith("Button"):
                     button.set_label_icon(button.objectName())
@@ -90,7 +96,7 @@ class MainWindow(QMainWindow):
     def set_ui_text(self) -> None:
         try:
             ui_text = LanguageProvider.get_ui_text(self.objectName())
-            buttons = [self.database_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button]
             if ui_text:
                 if "mainWindowTitle" in ui_text:
                     self.setWindowTitle(ui_text.get("mainWindowTitle", ""))

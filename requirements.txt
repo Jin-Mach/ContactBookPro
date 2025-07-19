@@ -78,3 +78,5 @@ xlsxwriter==3.2.5
 yarg==0.1.10
 email_validator~=2.2.0
 matplotlib~=3.10.3
+folium~=0.20.0
+email_validator~=2.2.0

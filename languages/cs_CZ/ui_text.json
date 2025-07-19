@@ -2,6 +2,7 @@
   "mainWindow": {
     "mainWindowTitle": "Databáze kontaktů",
     "mainWindowDatabaseButton": "Kontakty",
+    "mainWindowMapButton": "Mapa",
     "mainWindowStatisticsButton": "Statistika"
   },
   "contactsToolbarWidget": {
@@ -100,6 +101,9 @@
     "workAddress": "Adresa:",
     "workCountry": "Stát:",
     "notesTitle": "Poznámky"
+  },
+  "mapMainWidget": {
+    "noData": "Žádný z kontaktů nemá platné GPS souřadnice."
   },
   "statisticsMainWidget": {
     "totalCount": "Celkový počet kontaktů:",
