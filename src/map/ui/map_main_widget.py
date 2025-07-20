@@ -6,6 +6,8 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QMainWindow, QLabel
 
 from src.map.controllers.map_controller import MapController
+from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.application.status_bar import StatusBar
@@ -25,20 +27,21 @@ class MapMainWidget(QWidget):
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
-        self.no_data_label = QLabel("text...")
-        self.no_data_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.no_data_label.setStyleSheet("font-size: 25pt")
-        self.no_data_label.hide()
+        self.contacts_count_label = QLabel()
+        self.contacts_count_label.setObjectName("contactsCountLabel")
+        self.contacts_count_label.setFixedHeight(20)
+        self.contacts_count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.contacts_count_label.setStyleSheet("font-size: 20pt")
         self.web_view = QWebEngineView()
-        main_layout.addWidget(self.no_data_label)
+        main_layout.addWidget(self.contacts_count_label)
         main_layout.addWidget(self.web_view)
         return main_layout
 
-    def show_map(self, html_map: str) -> None:
-        #html_map = ""
-        if not html_map:
-            self.web_view.hide()
-            self.no_data_label.show()
-        else:
+    def show_map(self, html_map: str, count: int) -> None:
+        try:
+            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.contacts_count_label.setText(f"{ui_text.get("totalCount", "")} {count}")
             self.web_view.setHtml(html_map)
             self.web_view.show()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)

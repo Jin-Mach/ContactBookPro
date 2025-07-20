@@ -103,7 +103,10 @@
     "notesTitle": "Poznámky"
   },
   "mapMainWidget": {
-    "noData": "Žádný z kontaktů nemá platné GPS souřadnice."
+    "totalCount": "Počet zobrazených kontaktů:"
+  },
+  "mapController": {
+    "mapUpdate": "Mapa aktualizována"
   },
   "statisticsMainWidget": {
     "totalCount": "Celkový počet kontaktů:",

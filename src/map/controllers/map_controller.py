@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.database.utilities.map_utilities.query_provider import QueryProvider
 from src.map.threading.generate_map_object import GenerateMapObject
 from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.map.ui.map_main_widget import MapMainWidget
@@ -15,6 +16,7 @@ if TYPE_CHECKING:
 # noinspection PyUnresolvedReferences
 class MapController:
     def __init__(self, db_connection: QSqlDatabase, map_main_widget: "MapMainWidget", main_window: QMainWindow) -> None:
+        self.class_name = "mapController"
         self.db_connection = db_connection
         self.map_main_widget = map_main_widget
         self.main_window = main_window
@@ -34,9 +36,10 @@ class MapController:
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)
 
-    def set_map(self, data: str) -> None:
+    def set_map(self, html: str, count: int) -> None:
         try:
-            self.map_main_widget.show_map(data)
-            self.map_main_widget.status_bar.show_statusbar_message("mapa aktualizovaná")
+            ui_text = LanguageProvider.get_ui_text(self.class_name)
+            self.map_main_widget.show_map(html, count)
+            self.map_main_widget.status_bar.show_statusbar_message(ui_text.get("mapUpdate", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 # noinspection PyBroadException,PyUnresolvedReferences
 class GenerateMapObject(QObject):
-    map_ready = pyqtSignal(str)
+    map_ready = pyqtSignal(str, int)
     finished = pyqtSignal()
     def __init__(self, db_path: str, query_provider: "QueryProvider") -> None:
         super().__init__()
@@ -27,7 +27,7 @@ class GenerateMapObject(QObject):
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
             db_connection.setDatabaseName(self.db_path)
             if not db_connection.open():
-                self.map_ready.emit(contacts_map)
+                self.map_ready.emit(contacts_map, 0)
                 self.finished.emit()
                 return
             contacts_data = self.query_provider.get_maps_contacts(db_connection)
@@ -36,10 +36,10 @@ class GenerateMapObject(QObject):
                 self.finished.emit()
                 return
             contacts_map = create_map(contacts_data)
-            self.map_ready.emit(contacts_map)
+            self.map_ready.emit(contacts_map, len(contacts_data))
             self.finished.emit()
         except Exception:
-            self.map_ready.emit(contacts_map)
+            self.map_ready.emit(contacts_map, 0)
             self.finished.emit()
         finally:
             if db_connection:
