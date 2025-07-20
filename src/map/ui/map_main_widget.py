@@ -27,21 +27,54 @@ class MapMainWidget(QWidget):
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
+        self.loading_map_label = QLabel()
+        self.loading_map_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.loading_map_label.setStyleSheet("font-size: 20pt")
+        self.loading_map_label.hide()
         self.contacts_count_label = QLabel()
-        self.contacts_count_label.setObjectName("contactsCountLabel")
         self.contacts_count_label.setFixedHeight(20)
         self.contacts_count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.contacts_count_label.setStyleSheet("font-size: 20pt")
+        self.contacts_count_label.hide()
         self.web_view = QWebEngineView()
+        self.web_view.hide()
+        self.web_view.loadFinished.connect(self.show_map)
+        main_layout.addWidget(self.loading_map_label)
         main_layout.addWidget(self.contacts_count_label)
         main_layout.addWidget(self.web_view)
         return main_layout
 
-    def show_map(self, html_map: str, count: int) -> None:
+    def load_map(self, html_map: str, count: int, connection: bool) -> None:
         try:
             ui_text = LanguageProvider.get_ui_text(self.objectName())
-            self.contacts_count_label.setText(f"{ui_text.get("totalCount", "")} {count}")
-            self.web_view.setHtml(html_map)
-            self.web_view.show()
+            self.has_connection = connection
+            if not self.has_connection:
+                self.loading_map_label.setText(ui_text.get("noConnection", ""))
+                self.loading_map_label.show()
+                self.contacts_count_label.hide()
+                self.web_view.hide()
+            else:
+                self.loading_map_label.setText(f"{ui_text.get("loadingMap", "")}")
+                self.loading_map_label.show()
+                self.contacts_count_label.setText(f"{ui_text.get("totalCount", "")} {count}")
+                self.contacts_count_label.hide()
+                self.web_view.hide()
+                self.web_view.setHtml(html_map)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def show_map(self, state: bool) -> None:
+        try:
+            if state:
+                self.loading_map_label.hide()
+                self.contacts_count_label.show()
+                self.web_view.show()
+            else:
+                if self.has_connection:
+                    ui_text = LanguageProvider.get_ui_text(self.objectName())
+                    self.contacts_count_label.hide()
+                    self.web_view.hide()
+                    self.loading_map_label.setText(f"{ui_text.get("loadingError", "")}")
+                    self.loading_map_label.show()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)

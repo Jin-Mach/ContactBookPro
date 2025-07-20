@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 
+from src.database.utilities.map_utilities.check_connection import connection_result
 from src.map.utilitites.map_provider import create_map
 
 if TYPE_CHECKING:
@@ -11,7 +12,7 @@ if TYPE_CHECKING:
 
 # noinspection PyBroadException,PyUnresolvedReferences
 class GenerateMapObject(QObject):
-    map_ready = pyqtSignal(str, int)
+    map_ready = pyqtSignal(str, int, bool)
     finished = pyqtSignal()
     def __init__(self, db_path: str, query_provider: "QueryProvider") -> None:
         super().__init__()
@@ -26,20 +27,25 @@ class GenerateMapObject(QObject):
         try:
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
             db_connection.setDatabaseName(self.db_path)
+            is_connect = connection_result()
+            if not is_connect:
+                self.map_ready.emit(contacts_map, 0, is_connect)
+                self.finished.emit()
+                return
             if not db_connection.open():
-                self.map_ready.emit(contacts_map, 0)
+                self.map_ready.emit(contacts_map, 0, is_connect)
                 self.finished.emit()
                 return
             contacts_data = self.query_provider.get_maps_contacts(db_connection)
             if not contacts_data:
-                self.map_ready.emit(contacts_map)
+                self.map_ready.emit(contacts_map, 0, is_connect)
                 self.finished.emit()
                 return
             contacts_map = create_map(contacts_data)
-            self.map_ready.emit(contacts_map, len(contacts_data))
+            self.map_ready.emit(contacts_map, len(contacts_data), is_connect)
             self.finished.emit()
         except Exception:
-            self.map_ready.emit(contacts_map, 0)
+            self.map_ready.emit(contacts_map, 0, False)
             self.finished.emit()
         finally:
             if db_connection:

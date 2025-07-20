@@ -35,7 +35,9 @@ def create_map(contacts: list[dict[str, Any]]) -> str | None:
         marker_cluster = MarkerCluster()
         marker_cluster.add_to(folium_map)
         for contact in contacts:
-            popup_str = f"{contact.get("first_name", "")} {contact.get("second_name", "")}"
+            popup_str = (f"{contact.get('first_name', '')} {contact.get('second_name', '')}\n"
+                        f"{contact.get('email', '')}\n"
+                        f"{contact.get('phone_number', '')}")
             marker = Marker(location=[contact.get("latitude"), contact.get("longitude")], popup=popup_str)
             marker.add_to(marker_cluster)
         minimap = plugins.MiniMap()

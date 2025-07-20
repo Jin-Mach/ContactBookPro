@@ -12,7 +12,8 @@ class QueryProvider:
         try:
             result = []
             query = QSqlQuery(db_connection)
-            sql = ("SELECT mandatory.id, mandatory.first_name, mandatory.second_name, info.latitude, info.longitude "
+            sql = ("SELECT mandatory.first_name, mandatory.second_name, mandatory.personal_email, "
+                   "mandatory.personal_phone_number, info.latitude, info.longitude "
                    "FROM mandatory INNER JOIN info ON mandatory.id = info.id "
                    "WHERE (info.latitude IS NOT NULL AND info.latitude != '') "
                    "AND (info.longitude IS NOT NULL AND info.longitude != '')")
@@ -21,11 +22,12 @@ class QueryProvider:
                 return None
             while query.next():
                 row = {
-                    "id": query.value(0),
-                    "first_name": query.value(1),
-                    "second_name": query.value(2),
-                    "latitude": query.value(3),
-                    "longitude": query.value(4)
+                    "first_name": query.value(0),
+                    "second_name": query.value(1),
+                    "email": query.value(2),
+                    "phone_number": query.value(3),
+                    "latitude": query.value(4),
+                    "longitude": query.value(5)
                 }
                 result.append(row)
             return result
