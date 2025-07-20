@@ -4,7 +4,7 @@ from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 
 from src.database.utilities.map_utilities.check_connection import connection_result
-from src.map.utilitites.map_provider import create_map
+from src.map.utilities.map_provider import create_map
 
 if TYPE_CHECKING:
     from src.database.utilities.map_utilities.query_provider import QueryProvider

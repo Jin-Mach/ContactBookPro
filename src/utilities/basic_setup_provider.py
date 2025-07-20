@@ -139,7 +139,7 @@ class BasicSetupProvider:
     @staticmethod
     def check_font_files() -> dict:
         required_fonts = ["TimesNewRoman.ttf"]
-        fonts_directory = BasicSetupProvider.default_path.parent.joinpath("fonts")
+        fonts_directory = BasicSetupProvider.default_path.joinpath("fonts")
         fonts_base_url = "https://github.com/Jin-Mach/ContactBookPro/raw/main/fonts"
         missing_fonts_urls = {}
         found_fonts = set()
