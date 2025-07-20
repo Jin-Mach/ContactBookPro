@@ -14,18 +14,20 @@ from src.database.models.social_model import SocialModel
 from src.database.models.work_model import WorkModel
 
 if TYPE_CHECKING:
+    from src.map.controllers.map_controller import MapController
     from src.statistics.controllers.statistics_controller import StatisticsController
     from src.database.models.mandatory_model import MandatoryModel
 
 
 class ContactsMainWidget(QWidget):
     def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",main_window: QMainWindow,
-                 statistics_controller: "StatisticsController",
+                 map_controller: "MapController", statistics_controller: "StatisticsController",
                  parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsMainWidget")
         self.db_connection = db_connection
         self.mandatory_model = mandatory_model
+        self.map_controller = map_controller
         self.statistics_controller = statistics_controller
         self.work_model = WorkModel(self.db_connection)
         self.social_model = SocialModel(self.db_connection)
@@ -40,7 +42,7 @@ class ContactsMainWidget(QWidget):
                                                              self.social_model,self.detail_model, self.info_model,
                                                              self.contacts_detail_widget,self.contacts_tableview_widget,
                                                              self.contacts_statusbar_widget,self.completer_model,
-                                                             self.statistics_controller, self)
+                                                             self.map_controller, self.statistics_controller, self)
         self.setLayout(self.create_gui())
 
     def create_gui(self) -> QLayout:

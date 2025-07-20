@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
     from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+    from src.map.controllers.map_controller import MapController
     from src.statistics.controllers.statistics_controller import StatisticsController
 
 
@@ -40,7 +41,7 @@ class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
                  work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
                  detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
-                 statistics_controller: "StatisticsController", parent=None) -> None:
+                 map_controller: "MapController",  statistics_controller: "StatisticsController", parent=None) -> None:
         self.main_window = main_window
         self.db_connection = db_connection
         self.mandatory_model = mandatory_model
@@ -51,6 +52,7 @@ class ContactsController:
         self.detail_widget = detail_widget
         self.table_view = table_view
         self.contacts_statusbar = contacts_statusbar
+        self.map_controller = map_controller
         self.statistics_controller = statistics_controller
         self.parent = parent
         self.signal_provider = SignalProvider()
@@ -119,9 +121,8 @@ class ContactsController:
                         location_thread = LocationThread(last_id, data[0], self.signal_provider)
                         QThreadPool.globalInstance().start(location_thread)
                         self.signal_provider.contact_coordinates.connect(
-                            lambda contact_id, coords: self.info_model.update_location_data(contact_id, coords)
-                        )
-                        self.statistics_controller.set_data()
+                            lambda contact_id, coords: (self.info_model.update_location_data(contact_id, coords),
+                            self.map_controller.create_map(), self.statistics_controller.set_data()))
                     else:
                         ErrorHandler.database_error(self.mandatory_model.lastError().text(), False, custom_message="queryError")
         except Exception as e:
@@ -148,7 +149,7 @@ class ContactsController:
                     self.mandatory_model, self.work_model, self.social_model,
                     self.detail_model, self.info_model
                 ]
-                if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider):
+                if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider, self.map_controller):
                     self.table_view.set_detail_data(index)
                     self.main_window.tray_icon.show_notification(
                         f'{contact_data.get("first_name", "")} {contact_data.get("second_name", "")}',
@@ -168,8 +169,9 @@ class ContactsController:
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 self.mandatory_model.delete_contact(index.row())
                 self.refresh_ui(-1)
-                self.statistics_controller.set_data()
                 self.main_window.tray_icon.show_notification("", "contactDeleted")
+                self.map_controller.create_map()
+                self.statistics_controller.set_data()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -184,6 +186,7 @@ class ContactsController:
                     self.mandatory_model.clear_database()
                     self.refresh_ui(None)
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")
+                self.map_controller.create_map()
                 self.statistics_controller.set_data()
                 try:
                     restart_application()

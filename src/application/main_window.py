@@ -34,7 +34,7 @@ class MainWindow(QMainWindow):
         self.map_main_widget = MapMainWidget(db_connection, self.status_bar, self)
         self.statistics_main_widget = StatisticsMainWidget(db_connection, mandatory_model, self.status_bar, self)
         self.contacts_main_widget = ContactsMainWidget(db_connection, mandatory_model, self,
-                                                       self.statistics_main_widget.statistics_controller)
+                                                       self.map_main_widget.map_controller, self.statistics_main_widget.statistics_controller)
         self.setCentralWidget(self.create_gui())
         self.set_icons()
         self.set_ui_text()
