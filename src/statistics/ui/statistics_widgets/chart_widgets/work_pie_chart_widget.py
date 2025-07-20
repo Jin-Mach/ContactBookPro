@@ -35,6 +35,7 @@ class WorkPieChartWidget(QWidget):
                            transform=place.transAxes, color="#ffffff")
                 place.set_xticks([])
                 place.set_yticks([])
+                return
             else:
                 sizes = []
                 labels = []

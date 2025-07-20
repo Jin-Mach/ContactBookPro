@@ -107,3 +107,35 @@ class QueryProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e)
             return None
+
+    @staticmethod
+    def gen_completion_data(db_connection: QSqlDatabase, table_name: str) -> tuple[int, int] | None:
+        try:
+            pragma_query = QSqlQuery(db_connection)
+            data_query = QSqlQuery(db_connection)
+            if not pragma_query.exec(f"PRAGMA table_info({table_name})"):
+                ErrorHandler.database_error(pragma_query.lastError().text(), False)
+                return None
+            columns = []
+            while pragma_query.next():
+                column_name = pragma_query.value(1)
+                if column_name != "id" and not column_name.endswith("_normalized"):
+                    columns.append(column_name)
+            sql_parts = []
+            for column in columns:
+                sql_parts.append(f"SUM(CASE WHEN {column} IS NOT NULL AND {column} != '' THEN 1 ELSE 0 END) AS {column}_count")
+            sql = "SELECT COUNT(*) AS total_rows," + ", ".join(sql_parts) + f" FROM {table_name}"
+            if not data_query.exec(sql):
+                ErrorHandler.database_error(data_query.lastError().text(), False)
+                return None
+            row_count = 0
+            filled_count = 0
+            while data_query.next():
+                row_count = data_query.value(0)
+                for index in range(1, data_query.record().count()):
+                    filled_count += data_query.value(index)
+            total_cells = row_count * len(columns)
+            return total_cells, filled_count
+        except Exception as e:
+            ErrorHandler.exception_handler(e)
+            return None

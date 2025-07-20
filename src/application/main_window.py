@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
         super().closeEvent(event)
 
     def changed_stack(self, index: int) -> None:
-        if index == 1:
+        if index == 2:
             self.statistics_main_widget.statistics_tab_widget.setCurrentIndex(0)
         self.stacked_widget.setCurrentIndex(index)
 

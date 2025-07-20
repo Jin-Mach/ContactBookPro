@@ -115,7 +115,8 @@
     "totalCount": "Celkový počet kontaktů:",
     "mandatoryStatisticsWidget": "Základní statistiky",
     "workStatisticsWidget": "Pracovní statistiky",
-    "socialStatisticsWidget": "Sociální statistiky"
+    "socialStatisticsWidget": "Sociální statistiky",
+    "completionStatisticsWidget": "Systémová statistika"
   },
   "statisticsController": {
     "statisticsUpdate": "Statistiky aktualizovány"
@@ -149,5 +150,15 @@
     "empty": "Nevyplněno",
     "x": "x (twitter)",
     "website": "webová stránka"
+  },
+  "completionBartChartWidget": {
+    "title": "Statistika vyplnění tabulek",
+    "noData": "Žádná data",
+    "mandatory": "Povinné\núdaje",
+    "work": "Pracovní",
+    "social": "Sociální",
+    "detail": "Detailní",
+    "info": "Informační\n(systémová)",
+    "total": "Celkový\npřehled"
   }
 }

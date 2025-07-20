@@ -23,7 +23,8 @@ class StatisticsDataObject(QObject):
         results = {
             "basic": {},
             "work": {},
-            "social": {}
+            "social": {},
+            "completion": {}
         }
         try:
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
@@ -40,6 +41,11 @@ class StatisticsDataObject(QObject):
             results["work"]["work_phone_number"] = self.query_provider.get_work_statistics_data(db_connection, "work_phone_number")
             results["work"]["work_city"] = self.query_provider.get_work_statistics_data(db_connection, "work_city")
             results["social"]["social_all"] = self.query_provider.get_social_statistics_data(db_connection)
+            results["completion"]["mandatory"] = self.query_provider.gen_completion_data(db_connection, "mandatory")
+            results["completion"]["work"] = self.query_provider.gen_completion_data(db_connection, "work")
+            results["completion"]["social"] = self.query_provider.gen_completion_data(db_connection, "social")
+            results["completion"]["detail"] = self.query_provider.gen_completion_data(db_connection, "detail")
+            results["completion"]["info"] = self.query_provider.gen_completion_data(db_connection, "info")
             self.data_ready.emit(results)
             self.finished.emit()
         except Exception:

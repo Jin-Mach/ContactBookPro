@@ -46,6 +46,7 @@ class CityBarChartWidget(QWidget):
                 place.set_xticks([])
                 place.set_yticks([])
                 place.tick_params(left=False)
+                return
             else:
                 sizes = []
                 labels = []

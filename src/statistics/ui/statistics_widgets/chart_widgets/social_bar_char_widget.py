@@ -43,6 +43,7 @@ class SocialBarCharWidget(QWidget):
                 place.set_xticks([])
                 place.set_yticks([])
                 place.tick_params(left=False)
+                return
             categories_names = list(data.keys())
             categories_names[1] = ui_text.get(categories_names[1], "")
             categories_names[-1] = ui_text.get(categories_names[-1], "")

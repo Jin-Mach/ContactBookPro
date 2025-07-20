@@ -36,6 +36,7 @@ class GenderPieChartWidget(QWidget):
                            transform=place.transAxes, color="#ffffff")
                 place.set_xticks([])
                 place.set_yticks([])
+                return
             else:
                 color_map = {
                     "1": "#448aff",

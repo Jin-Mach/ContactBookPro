@@ -43,7 +43,8 @@ class StatisticsController:
             handlers = {
                 "basic": self.set_basic,
                 "work": self.set_work,
-                "social": self.set_social
+                "social": self.set_social,
+                "completion": self.set_completion
             }
             for key, handler in handlers.items():
                 if key in data:
@@ -71,5 +72,11 @@ class StatisticsController:
     def set_social(self, basic_data: dict) -> None:
         try:
             self.statistics_main_widget.social_statistics_widget.social_bar.draw_bar(basic_data.get("social_all", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def set_completion(self, basic_data: dict) -> None:
+        try:
+            self.statistics_main_widget.completion_statistics_widget.detail_bar.draw_bar(basic_data)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)
