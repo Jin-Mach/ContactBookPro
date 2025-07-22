@@ -1,8 +1,9 @@
 import pathlib
+
 from typing import Callable
 
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtGui import QFont, QPixmap
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLayout, QHBoxLayout, QLabel, QPushButton, QFrame
 
 

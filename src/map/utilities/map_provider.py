@@ -1,5 +1,4 @@
 from typing import Any
-
 from folium import Map, Marker, Element, plugins
 from folium.plugins import MarkerCluster
 

@@ -1,8 +1,10 @@
 import json
-from typing import Any
 import pathlib
 
+from typing import Any
+
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 
 
 class MapKeys:
@@ -25,6 +27,5 @@ class MapKeys:
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
-        from src.utilities.logger_provider import get_logger
         logger = get_logger()
         logger.error(exception)

@@ -1,5 +1,6 @@
-from typing import TYPE_CHECKING
 import sys
+
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import QSize, QModelIndex, Qt
 from PyQt6.QtGui import QFont, QShortcut, QKeySequence

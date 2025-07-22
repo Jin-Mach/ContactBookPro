@@ -1,7 +1,6 @@
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
-
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout
 
 from src.utilities.error_handler import ErrorHandler

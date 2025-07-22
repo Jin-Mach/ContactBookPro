@@ -1,5 +1,4 @@
 from PyQt6.QtCore import Qt
-
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QLabel, QProgressBar
 
 from src.utilities.error_handler import ErrorHandler
@@ -44,4 +43,4 @@ class ProgressDialog(QDialog):
 
     def hide_dialog(self) -> None:
         if self.isVisible():
-            self.deleteLater()
+            self.close()

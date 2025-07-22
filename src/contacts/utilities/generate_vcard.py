@@ -1,4 +1,5 @@
 import vobject
+
 from PyQt6.QtWidgets import QMainWindow
 
 from src.utilities.error_handler import ErrorHandler

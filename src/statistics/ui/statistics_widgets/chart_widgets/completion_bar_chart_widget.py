@@ -1,8 +1,8 @@
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.ticker import MaxNLocator
 
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout
-from matplotlib.ticker import MaxNLocator
 
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider

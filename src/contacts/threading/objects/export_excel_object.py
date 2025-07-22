@@ -1,5 +1,6 @@
-from typing import TYPE_CHECKING
 import xlsxwriter
+
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase

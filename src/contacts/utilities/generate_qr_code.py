@@ -1,5 +1,7 @@
 import qrcode
+
 from PIL.Image import Image
+
 from PyQt6.QtWidgets import QMainWindow
 
 from src.utilities.error_handler import ErrorHandler

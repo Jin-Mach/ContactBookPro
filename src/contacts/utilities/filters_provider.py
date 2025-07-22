@@ -1,6 +1,8 @@
 import json
 import pathlib
+
 from typing import Any
+from src.utilities.logger_provider import get_logger
 
 
 class FiltersProvider:
@@ -61,6 +63,5 @@ class FiltersProvider:
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
-        from src.utilities.logger_provider import get_logger
         logger = get_logger()
         logger.error(exception, exc_info=True)

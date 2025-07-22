@@ -1,4 +1,5 @@
 import unicodedata
+
 from PyQt6.QtWidgets import QLineEdit, QTextEdit
 
 

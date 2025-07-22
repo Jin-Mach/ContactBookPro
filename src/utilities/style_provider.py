@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import QApplication
 from qt_material import apply_stylesheet
+
+from PyQt6.QtWidgets import QApplication
 
 
 def set_application_style(application: QApplication) -> None:

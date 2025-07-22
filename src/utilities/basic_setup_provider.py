@@ -1,6 +1,8 @@
 import pathlib
 import requests
 
+from src.utilities.logger_provider import get_logger
+
 
 class BasicSetupProvider:
     default_path = pathlib.Path(__file__).parents[2]
@@ -187,6 +189,5 @@ class BasicSetupProvider:
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
-        from src.utilities.logger_provider import get_logger
         logger  = get_logger()
         logger.error(exception, exc_info=True)

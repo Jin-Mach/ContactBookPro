@@ -1,11 +1,10 @@
-from src.utilities.logger_provider import get_logger
-
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 from geopy.geocoders import Nominatim
 
 from PyQt6.QtCore import QRunnable
 
 from src.contacts.threading.signal_provider import SignalProvider
+from src.utilities.logger_provider import get_logger
 
 
 class LocationThread(QRunnable):
