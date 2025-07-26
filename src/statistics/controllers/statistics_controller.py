@@ -77,6 +77,7 @@ class StatisticsController:
 
     def set_completion(self, basic_data: dict) -> None:
         try:
+            self.statistics_main_widget.completion_statistics_widget.total_bar.draw_bar(basic_data)
             self.statistics_main_widget.completion_statistics_widget.detail_bar.draw_bar(basic_data)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)

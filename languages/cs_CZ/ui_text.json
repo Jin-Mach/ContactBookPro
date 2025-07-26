@@ -152,13 +152,13 @@
     "website": "webová stránka"
   },
   "completionBartChartWidget": {
-    "title": "Statistika vyplnění tabulek",
+    "title": "Statistika vyplnění jednotlivých tabulek",
     "noData": "Žádná data",
     "mandatory": "Povinné\núdaje",
     "work": "Pracovní",
     "social": "Sociální",
     "detail": "Detailní",
     "info": "Informační\n(systémová)",
-    "total": "Celkový\npřehled"
+    "total": "Celkové vyplnění"
   }
 }

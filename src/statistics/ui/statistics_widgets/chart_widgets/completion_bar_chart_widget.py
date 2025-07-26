@@ -9,9 +9,10 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class CompletionBarChartWidget(QWidget):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, total: bool, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("completionBartChartWidget")
+        self.total = total
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)
         self.setLayout(self.create_gui())
@@ -27,7 +28,6 @@ class CompletionBarChartWidget(QWidget):
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
-            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
             place.yaxis.set_major_locator(MaxNLocator(integer=True))
             place.set_facecolor("#31363b")
             place.tick_params(axis="x", colors="#ffffff")
@@ -36,24 +36,55 @@ class CompletionBarChartWidget(QWidget):
             place.spines["top"].set_visible(False)
             place.spines["right"].set_visible(False)
             place.spines["bottom"].set_color("#ffffff")
-            if not data:
-                place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
-                           transform=place.transAxes, color="#ffffff")
-                place.set_xticks([])
-                place.set_yticks([])
-                place.tick_params(left=False)
-                return
-            labels = []
-            values = []
-            for key in data.keys():
-                labels.append(ui_text.get(key, ""))
-            for counts in data.values():
-                values.append((counts[1] / counts[0]) * 100)
-            bars = place.barh(labels, values, color="#64b5f6")
-            for bar in bars:
-                width = bar.get_width()
-                y = bar.get_y() + bar.get_height() / 2
-                place.text(width + 1, y, f"{width:.1f}%", va='center', color="#ffffff", fontsize=10)
+            if self.total:
+                if not data:
+                    place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
+                               transform=place.transAxes, color="#ffffff")
+                    place.set_xticks([])
+                    place.set_yticks([])
+                    place.tick_params(left=False)
+                    return
+                place.yaxis.set_major_locator(MaxNLocator(nbins=1))
+                place.set_yticks([0])
+                place.set_ylim(-0.5, 0.5)
+                place.get_xaxis().set_visible(False)
+                place.tick_params(axis='y', which='both', length=0)
+                place.spines["left"].set_visible(False)
+                place.spines["top"].set_visible(False)
+                place.spines["bottom"].set_visible(False)
+                place.spines["right"].set_visible(False)
+                total = 0
+                filled = 0
+                for table_data in data.values():
+                    total += table_data[0]
+                    filled += table_data[1]
+                labels = [ui_text.get("total", "")]
+                values = [(filled / total) * 100]
+                bars = place.barh(labels, values, color="red")
+                for bar in bars:
+                    width = bar.get_width()
+                    y = bar.get_y() + bar.get_height() / 2
+                    place.text(width + 1, y, f"{width:.1f}%", va='center', color="#ffffff", fontsize=10)
+            else:
+                if not data:
+                    place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
+                               transform=place.transAxes, color="#ffffff")
+                    place.set_xticks([])
+                    place.set_yticks([])
+                    place.tick_params(left=False)
+                    return
+                place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
+                labels = []
+                values = []
+                for key in data.keys():
+                    labels.append(ui_text.get(key, ""))
+                for counts in data.values():
+                    values.append((counts[1] / counts[0]) * 100)
+                bars = place.barh(labels, values, color="#64b5f6")
+                for bar in bars:
+                    width = bar.get_width()
+                    y = bar.get_y() + bar.get_height() / 2
+                    place.text(width + 1, y, f"{width:.1f}%", va='center', color="#ffffff", fontsize=10)
             self.figure.canvas.draw()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
