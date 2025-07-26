@@ -26,7 +26,6 @@ class RelationshipBarChartWidget(QWidget):
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
-            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
             place.set_facecolor("#31363b")
             place.tick_params(axis="x", colors="#ffffff")
             place.tick_params(axis="y", colors="#ffffff")
@@ -37,30 +36,31 @@ class RelationshipBarChartWidget(QWidget):
             if not data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")
+                place.spines["bottom"].set_visible(False)
                 place.set_xticks([])
                 place.set_yticks([])
                 place.tick_params(left=False)
                 return
-            else:
-                color_map = {
-                    "1": "#ff6f61",
-                    "2": "#fbc02d",
-                    "3": "#4db6ac",
-                    "4": "#64b5f6",
-                    "5": "#ba68c8",
-                    "6": "#81c784",
-                }
-                sizes = []
-                labels = []
-                colors = []
-                for index, label, size in data:
-                    colors.append(color_map.get(str(index), ""))
-                    labels.append(label)
-                    sizes.append(size)
-                titles = place.bar(labels, sizes, color=colors)
-                place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
-                place.set_yticks([])
-                place.tick_params(left=False)
+            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
+            color_map = {
+                "1": "#ff6f61",
+                "2": "#fbc02d",
+                "3": "#4db6ac",
+                "4": "#64b5f6",
+                "5": "#ba68c8",
+                "6": "#81c784",
+            }
+            sizes = []
+            labels = []
+            colors = []
+            for index, label, size in data:
+                colors.append(color_map.get(str(index), ""))
+                labels.append(label)
+                sizes.append(size)
+            titles = place.bar(labels, sizes, color=colors)
+            place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
+            place.set_yticks([])
+            place.tick_params(left=False)
             self.figure.canvas.draw()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

@@ -31,7 +31,6 @@ class CityBarChartWidget(QWidget):
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
-            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
             place.yaxis.set_major_locator(MaxNLocator(integer=True))
             place.set_facecolor("#31363b")
             place.tick_params(axis="x", colors="#ffffff")
@@ -40,38 +39,38 @@ class CityBarChartWidget(QWidget):
             place.spines["top"].set_visible(False)
             place.spines["right"].set_visible(False)
             place.spines["bottom"].set_color("#ffffff")
-            if not data:
+            if not sorted_data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")
+                place.spines["bottom"].set_visible(False)
                 place.set_xticks([])
                 place.set_yticks([])
                 place.tick_params(left=False)
                 return
-            else:
-                sizes = []
-                labels = []
-                colors = ["#ff6f61", "#fbc02d", "#4db6ac", "#64b5f6", "#81c784"]
-                main = 4
-                if self.column_name == "work":
-                    main = 3
-                top_items = sorted_data[:main]
-                others_items = sorted_data[main:]
-                for label, size in top_items:
-                    labels.append(label)
-                    sizes.append(size)
-                others_size = 0
-                for _, size in others_items:
-                    others_size += size
-                if others_size > 0:
-                    labels.append(ui_text.get("others", ""))
-                    sizes.append(others_size)
-                if self.column_name == "work":
-                    labels.append(ui_text.get("unfilled", ""))
-                    sizes.append(data[1][0])
-                titles = place.bar(labels, sizes, color=colors)
-                place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
-                place.set_yticks([])
-                place.tick_params(left=False)
+            sizes = []
+            labels = []
+            colors = ["#ff6f61", "#fbc02d", "#4db6ac", "#64b5f6", "#81c784"]
+            main = 4
+            if self.column_name == "work":
+                main = 3
+            top_items = sorted_data[:main]
+            others_items = sorted_data[main:]
+            for label, size in top_items:
+                labels.append(label)
+                sizes.append(size)
+            others_size = 0
+            for _, size in others_items:
+                others_size += size
+            if others_size > 0:
+                labels.append(ui_text.get("others", ""))
+                sizes.append(others_size)
+            if self.column_name == "work":
+                labels.append(ui_text.get("unfilled", ""))
+                sizes.append(data[1][0])
+            titles = place.bar(labels, sizes, color=colors)
+            place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
+            place.set_yticks([])
+            place.tick_params(left=False)
             self.figure.canvas.draw()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

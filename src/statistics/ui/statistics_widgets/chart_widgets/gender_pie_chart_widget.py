@@ -28,31 +28,35 @@ class GenderPieChartWidget(QWidget):
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
-            place.set_title(ui_text.get("title", ""), color="#ffffff", fontsize=12)
             place.set_facecolor("#31363b")
             if not data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")
+                place.spines["left"].set_visible(False)
+                place.spines["top"].set_visible(False)
+                place.spines["right"].set_visible(False)
+                place.spines["bottom"].set_visible(False)
                 place.set_xticks([])
                 place.set_yticks([])
+                place.tick_params(left=False)
                 return
-            else:
-                color_map = {
-                    "1": "#448aff",
-                    "2": "#ff99bb"
-                }
-                sizes = []
-                labels = []
-                colors = []
-                for index, label, size in data:
-                    colors.append(color_map.get(str(index)))
-                    labels.append(label)
-                    sizes.append(size)
-                _, label_text , _ = place.pie(sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90,
-                                              counterclock=False)
-                for label in label_text:
-                    label.set_color("#ffffff")
-                place.axis("equal")
+            place.set_title(ui_text.get("title", ""), color="#ffffff", fontsize=12)
+            color_map = {
+                "1": "#448aff",
+                "2": "#ff99bb"
+            }
+            sizes = []
+            labels = []
+            colors = []
+            for index, label, size in data:
+                colors.append(color_map.get(str(index)))
+                labels.append(label)
+                sizes.append(size)
+            _, label_text , _ = place.pie(sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90,
+                                          counterclock=False)
+            for label in label_text:
+                label.set_color("#ffffff")
+            place.axis("equal")
             self.figure.canvas.draw()
             self.total_count()
         except Exception as e:

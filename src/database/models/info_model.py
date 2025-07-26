@@ -33,7 +33,8 @@ class InfoModel(QSqlTableModel):
 
     def update_location_data(self, contact_id: int, coordinates: tuple) -> None:
         location_query = QSqlQuery(self.db_connection)
-        location_query.prepare("UPDATE info SET latitude = ?, longitude = ? WHERE id = ?")
+        location_query.prepare(
+            "UPDATE info SET latitude = ?, longitude = ?, location_tries = location_tries + 1 WHERE id = ?")
         location_query.addBindValue(coordinates[0])
         location_query.addBindValue(coordinates[1])
         location_query.addBindValue(contact_id)

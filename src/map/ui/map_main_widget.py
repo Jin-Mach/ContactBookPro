@@ -48,7 +48,7 @@ class MapMainWidget(QWidget):
         try:
             ui_text = LanguageProvider.get_ui_text(self.objectName())
             self.has_connection = connection
-            if not self.has_connection:
+            if not self.has_connection or html_map.strip() == "":
                 self.loading_map_label.setText(ui_text.get("noConnection", ""))
                 self.loading_map_label.show()
                 self.contacts_count_label.hide()

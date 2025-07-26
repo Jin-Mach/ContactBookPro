@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 
-from src.database.utilities.map_utilities.check_connection import connection_result
+from src.utilities.check_connection import connection_result
 from src.map.utilities.map_provider import create_map
 
 if TYPE_CHECKING:

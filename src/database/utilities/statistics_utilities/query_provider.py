@@ -109,7 +109,7 @@ class QueryProvider:
             return None
 
     @staticmethod
-    def gen_completion_data(db_connection: QSqlDatabase, table_name: str) -> tuple[int, int] | None:
+    def get_completion_data(db_connection: QSqlDatabase, table_name: str) -> tuple[int, int] | None:
         try:
             pragma_query = QSqlQuery(db_connection)
             data_query = QSqlQuery(db_connection)
@@ -133,7 +133,11 @@ class QueryProvider:
             while data_query.next():
                 row_count = data_query.value(0)
                 for index in range(1, data_query.record().count()):
-                    filled_count += data_query.value(index)
+                    value = data_query.value(index)
+                    try:
+                        filled_count += int(value)
+                    except (TypeError, ValueError):
+                        filled_count += 0
             total_cells = row_count * len(columns)
             return total_cells, filled_count
         except Exception as e:

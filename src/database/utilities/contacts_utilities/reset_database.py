@@ -15,9 +15,10 @@ def reset_database() -> bool:
     if db_name is None:
         return False
     db_path = db_path.joinpath(db_name)
-    database = QSqlDatabase.database()
+    database = QSqlDatabase.database("default_connection")
     if database.isOpen():
         database.close()
+    QSqlDatabase.removeDatabase("default_connection")
     db_path.unlink()
     create_db_connection(db_name)
     return True

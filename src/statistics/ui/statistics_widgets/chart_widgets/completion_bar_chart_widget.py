@@ -36,14 +36,21 @@ class CompletionBarChartWidget(QWidget):
             place.spines["top"].set_visible(False)
             place.spines["right"].set_visible(False)
             place.spines["bottom"].set_color("#ffffff")
+            is_data = False
+            for value in data.values():
+                if value != (0, 0):
+                    is_data = True
+                    break
+            if not is_data:
+                place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
+                           transform=place.transAxes, color="#ffffff")
+                for spine in place.spines.values():
+                    spine.set_visible(False)
+                place.set_xticks([])
+                place.set_yticks([])
+                place.tick_params(left=False, bottom=False)
+                return
             if self.total:
-                if not data:
-                    place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
-                               transform=place.transAxes, color="#ffffff")
-                    place.set_xticks([])
-                    place.set_yticks([])
-                    place.tick_params(left=False)
-                    return
                 place.yaxis.set_major_locator(MaxNLocator(nbins=1))
                 place.set_yticks([0])
                 place.set_ylim(-0.5, 0.5)
@@ -59,27 +66,28 @@ class CompletionBarChartWidget(QWidget):
                     total += table_data[0]
                     filled += table_data[1]
                 labels = [ui_text.get("total", "")]
-                values = [(filled / total) * 100]
+                if total != 0:
+                    values = [(filled / total) * 100]
+                else:
+                    values = [0]
                 bars = place.barh(labels, values, color="red")
                 for bar in bars:
                     width = bar.get_width()
                     y = bar.get_y() + bar.get_height() / 2
                     place.text(width + 1, y, f"{width:.1f}%", va='center', color="#ffffff", fontsize=10)
             else:
-                if not data:
-                    place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
-                               transform=place.transAxes, color="#ffffff")
-                    place.set_xticks([])
-                    place.set_yticks([])
-                    place.tick_params(left=False)
-                    return
                 place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
                 labels = []
                 values = []
                 for key in data.keys():
                     labels.append(ui_text.get(key, ""))
                 for counts in data.values():
-                    values.append((counts[1] / counts[0]) * 100)
+                    total = counts[0]
+                    filled = counts[1]
+                    if total != 0:
+                        values.append((filled / total) * 100)
+                    else:
+                        values.append(0)
                 bars = place.barh(labels, values, color="#64b5f6")
                 for bar in bars:
                     width = bar.get_width()

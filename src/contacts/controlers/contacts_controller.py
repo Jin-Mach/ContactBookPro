@@ -1,11 +1,12 @@
 from datetime import datetime
 from typing import Any, TYPE_CHECKING
 
-from PyQt6.QtCore import QThreadPool, QModelIndex
+from PyQt6.QtCore import QThreadPool, QModelIndex, QThread
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox
 
 from src.contacts.threading.location_thread import LocationThread
+from src.contacts.threading.objects.update_locations_object import UpdateLocationsObject
 from src.contacts.threading.signal_provider import SignalProvider
 from src.contacts.ui.contacts_dialog.contact_dialog import ContactDialog
 from src.contacts.ui.contacts_dialog.delete_dialogs import DeleteDialogs
@@ -21,6 +22,7 @@ from src.database.utilities.contacts_utilities.update_models import update_model
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 from src.utilities.restart_app import restart_application
 
 if TYPE_CHECKING:
@@ -36,7 +38,7 @@ if TYPE_CHECKING:
     from src.statistics.controllers.statistics_controller import StatisticsController
 
 
-# noinspection PyBroadException
+# noinspection PyBroadException,PyUnresolvedReferences
 class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
                  work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
@@ -182,8 +184,9 @@ class ContactsController:
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 if isinstance(check_box, QCheckBox) and check_box.isChecked():
                     FiltersProvider.delete_filters_file()
+                self.mandatory_model.clear_database()
+                del self.mandatory_model
                 if not reset_database():
-                    self.mandatory_model.clear_database()
                     self.refresh_ui(None)
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")
                 self.map_controller.create_map()
@@ -194,3 +197,45 @@ class ContactsController:
                     ErrorHandler.exception_handler(OSError())
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
+
+    def update_locations(self) -> None:
+        try:
+            self.location_object = UpdateLocationsObject(self.db_connection.databaseName(), self.main_window)
+            self.location_thread = QThread()
+            self.location_object.moveToThread(self.location_thread)
+            self.location_thread.started.connect(self.location_object.get_locations)
+            self.location_object.finished.connect(self.update_coordinates)
+            self.location_object.finished.connect(self.location_thread.quit)
+            self.location_object.finished.connect(self.location_object.deleteLater)
+            self.location_thread.finished.connect(self.location_thread.deleteLater)
+            self.location_thread.start()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def update_coordinates(self, data: list[tuple[int, tuple[float, float]]]) -> None:
+        try:
+            if data:
+                for contact in data:
+                    self.info_model.update_location_data(contact[0], contact[1])
+                self.statistics_controller.set_data()
+                self.map_controller.create_map()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.main_window)
+
+    def destroy_thread(self) -> None:
+        location_thread = getattr(self, 'location_thread', None)
+        if location_thread is not None:
+            try:
+                running = False
+                try:
+                    running = location_thread.isRunning()
+                except RuntimeError:
+                    running = False
+                if running:
+                    location_thread.quit()
+                    location_thread.wait()
+            except RuntimeError as e:
+                logger = get_logger()
+                logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
+            finally:
+                self.location_thread = None

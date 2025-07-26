@@ -17,5 +17,8 @@ def create_application() -> None:
             sys.exit(1)
     window = MainWindow()
     application.main_window = window
+    controller = window.contacts_main_widget.contacts_toolbar_widget.contacts_controller
+    controller.update_locations()
+    application.aboutToQuit.connect(controller.destroy_thread)
     window.show()
     sys.exit(application.exec())

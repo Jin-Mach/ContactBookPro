@@ -8,7 +8,7 @@ from src.utilities.error_handler import ErrorHandler
 def create_db_connection(db_name: str) -> QSqlDatabase | None:
     db_path = pathlib.Path(__file__).parent.parent.joinpath("db_file")
     db_path.mkdir(parents=True, exist_ok=True)
-    connection = QSqlDatabase.addDatabase("QSQLITE")
+    connection = QSqlDatabase.addDatabase("QSQLITE", "default_connection")
     connection.setDatabaseName(str(db_path.joinpath(db_name)))
     if not connection.open():
         ErrorHandler.database_error(connection.lastError().text(), True)
@@ -88,7 +88,7 @@ def create_contacts_tables(connection: QSqlDatabase) -> tuple[bool, QSqlQuery]:
         updated TEXT,
         latitude REAL,
         longitude REAL,
-        location_tries INTEGER NOT NULL,
+        location_tries INTEGER NOT NULL DEFAULT 0,
         FOREIGN KEY (id) REFERENCES mandatory(id) ON DELETE CASCADE
         )
     """)

@@ -99,6 +99,7 @@ class QueryProvider:
                                      "julianday('now') - julianday(strftime('%Y', 'now') || '-' || strftime('%m-%d', birthday))"
                                      ") BETWEEN -7 AND 7"):
                 ErrorHandler.database_error(detail_query.lastError().text(), False)
+                return None
             while detail_query.next():
                 ids.append(str(detail_query.value(0)))
             if not ids:
@@ -108,6 +109,7 @@ class QueryProvider:
             query = f"SELECT id, first_name, second_name FROM mandatory WHERE id IN ({str_ids})"
             if not contacts_query.exec(query):
                 ErrorHandler.database_error(contacts_query.lastError().text(), False)
+                return None
             results = []
             while contacts_query.next():
                 row = {
@@ -132,6 +134,7 @@ class QueryProvider:
                                                     (SELECT personal_phone_number FROM mandatory GROUP BY personal_phone_number HAVING COUNT(*) > 1)
                                                 """):
                 ErrorHandler.database_error(duplicates_query.lastError().text(), False)
+                return None
             results = []
             while duplicates_query.next():
                 row = {
@@ -140,6 +143,33 @@ class QueryProvider:
                     "second_name": duplicates_query.value(2)
                 }
                 results.append(row)
+            return results
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return None
+
+    @staticmethod
+    def create_update_locations_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list[tuple[int, str, str, str, str, str]] | None:
+        try:
+            location_query = QSqlQuery(db_connection)
+            sql = ("SELECT info.id, mandatory.personal_street, mandatory.personal_house_number, mandatory.personal_city, "
+                   "mandatory.personal_post_code, mandatory.personal_country "
+                   "FROM mandatory JOIN info ON mandatory.id = info.id "
+                   "WHERE info.location_tries < 20 "
+                   "AND (info.latitude IS NULL OR info.latitude = '') "
+                   "AND (info.longitude IS NULL OR info.longitude = '')")
+            if not location_query.exec(sql):
+                ErrorHandler.database_error(location_query.lastError().text(), False)
+                return None
+            results = []
+            while location_query.next():
+                contact_id = location_query.value(0)
+                street = location_query.value(1)
+                house_number = location_query.value(2)
+                city = location_query.value(3)
+                post_code = location_query.value(4)
+                country = location_query.value(5)
+                results.append((contact_id, street, house_number, city, post_code, country))
             return results
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)

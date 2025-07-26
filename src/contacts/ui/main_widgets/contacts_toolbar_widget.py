@@ -45,7 +45,7 @@ class ContactsToolbarWidget(QWidget):
         self.table_view = table_view
         self.completer_model = completer_model
         self.contacts_statusbar = contacts_statusbar
-        self.map_controler = map_controller
+        self.map_controller = map_controller
         self.statistics_controller = statistics_controller
         self.buttons_size = QSize(35, 35)
         self.setLayout(self.create_gui())
@@ -55,7 +55,7 @@ class ContactsToolbarWidget(QWidget):
         self.create_shortcuts()
         self.contacts_controller = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
                                                       social_model, detail_model, info_model, detail_widget, table_view,
-                                                      self.contacts_statusbar, self.map_controler, self.statistics_controller,
+                                                      self.contacts_statusbar, self.map_controller, self.statistics_controller,
                                                       self)
         self.completer_controller = CompleterController(self.completer_model, self.table_view, self.search_line_edit)
         self.completer_controller.setup()
