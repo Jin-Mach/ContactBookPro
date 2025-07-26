@@ -2,6 +2,8 @@ from typing import Any
 from folium import Map, Marker, Element, plugins
 from folium.plugins import MarkerCluster
 
+from src.utilities.logger_provider import get_logger
+
 def create_map(contacts: list[dict[str, Any]]) -> str | None:
     try:
         folium_map = Map(location=(50.07, 14.45), zoom_start=10)
@@ -44,7 +46,6 @@ def create_map(contacts: list[dict[str, Any]]) -> str | None:
         html = folium_map.get_root().render()
         return html
     except Exception as e:
-        from src.utilities.logger_provider import get_logger
         logger = get_logger()
-        logger.error(e)
+        logger.error(f"{create_map.__name__} : {e}", exc_info=True)
         return None

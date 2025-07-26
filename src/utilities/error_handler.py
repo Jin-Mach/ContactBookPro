@@ -11,7 +11,7 @@ class ErrorHandler:
 
     @staticmethod
     def exception_handler(exception: Exception, parent=None) -> None:
-        ErrorHandler.logger.error(exception, exc_info=True)
+        ErrorHandler.logger.error(f"{ErrorHandler.__class__.__name__}: {exception}", exc_info=True)
         DialogsProvider.show_error_dialog(ErrorHandler.get_error_text(exception), parent)
 
     @staticmethod
@@ -22,13 +22,13 @@ class ErrorHandler:
                 return ""
             return errors_data.get(exception.__class__.__name__, errors_data.get("UnexpectedError", ""))
         except Exception as e:
-            ErrorHandler.logger.error(f"Error getting error text: {e}", exc_info=True)
+            ErrorHandler.logger.error(f"{ErrorHandler.__class__.__name__}: {e}", exc_info=True)
             return "Unknown error"
 
     @staticmethod
     def database_error(error_message: str, close_app: bool, custom_message: str | None = None) -> None:
         try:
-            ErrorHandler.logger.error(error_message)
+            ErrorHandler.logger.error(f"{ErrorHandler.__class__.__name__}: {error_message}", exc_info=True)
             errors_data = LanguageProvider.get_error_text(ErrorHandler.class_name) or {}
             if custom_message is not None and custom_message in errors_data:
                 message = custom_message

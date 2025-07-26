@@ -35,5 +35,5 @@ class LocationThread(QRunnable):
                 self.signal.contact_coordinates.emit(self.contact_id, (None, None))
         except (GeocoderTimedOut, GeocoderUnavailable, Exception) as e:
             logger = get_logger()
-            logger.error(e)
+            logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
             self.signal.contact_coordinates.emit(self.contact_id, (None, None))

@@ -28,4 +28,4 @@ class MapKeys:
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
         logger = get_logger()
-        logger.error(exception)
+        logger.error(f"{MapKeys.__class__.__name__}: {exception}", exc_info=True)

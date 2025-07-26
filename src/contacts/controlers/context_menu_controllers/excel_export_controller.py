@@ -69,4 +69,4 @@ class ExcelExportController:
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
         logger = get_logger()
-        logger.error(exception, exc_info=True)
+        logger.error(f"{ExcelExportController.__class__.__name__}: {exception}", exc_info=True)
