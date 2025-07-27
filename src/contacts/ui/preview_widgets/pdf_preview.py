@@ -19,7 +19,7 @@ class PdfPreviewDialog(QDialog):
         self.save_pdf_function = save_pdf_function
         self.parent = parent
         self.pdf_view = PdfView(self.pdf_path, self)
-        if not self.pdf_view.document_sate:
+        if not self.pdf_view.document_state:
             raise ValueError()
         self.setLayout(self.create_gui())
         self.buttons = self.findChildren(QPushButton)

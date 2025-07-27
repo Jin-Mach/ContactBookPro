@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import QStatusBar, QLabel
 class StatusBar(QStatusBar):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
+        self.setObjectName("statusBar")
         self.create_gui()
         self.update_time()
         self.timer = QTimer(self)

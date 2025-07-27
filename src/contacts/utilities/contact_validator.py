@@ -11,6 +11,7 @@ from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import QLineEdit
 
 
+# noinspection PyUnresolvedReferences
 class ContactValidator:
 
     @staticmethod

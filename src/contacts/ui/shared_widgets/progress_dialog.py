@@ -11,7 +11,7 @@ class ProgressDialog(QDialog):
         self.setObjectName("progressDialog")
         self.setFixedSize(250, 70)
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint |Qt.WindowType.Dialog)
-        self.setModal(True)
+        self.setWindowModality(Qt.WindowModality.NonModal)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 
@@ -43,4 +43,4 @@ class ProgressDialog(QDialog):
 
     def hide_dialog(self) -> None:
         if self.isVisible():
-            self.close()
+            self.hide()

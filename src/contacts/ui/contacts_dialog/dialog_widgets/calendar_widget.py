@@ -17,9 +17,6 @@ class CalendarWidget(QCalendarWidget):
                 width: 60px;
             }
         """)
-        self.set_icons()
-
-    def set_icons(self) -> None:
         IconProvider.set_buttons_icon(self.objectName(), self.findChildren(QToolButton), None, self)
 
     def set_today(self) -> None:

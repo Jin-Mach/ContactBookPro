@@ -5,7 +5,7 @@ from src.database.utilities.contacts_utilities.row_data_provider import RowDataP
 from src.utilities.error_handler import ErrorHandler
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 def copy_to_clipboard(db_connection: QSqlDatabase, index: int, field: str, main_window: QMainWindow) -> None:
     try:
         clipboard = QApplication.clipboard()

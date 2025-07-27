@@ -14,10 +14,10 @@ class PdfView(QPdfView):
         self.pdf_document = QPdfDocument(self)
         self.pdf_document.load(pdf_path)
         if not self.pdf_document.status().Ready:
-            self.document_sate = False
+            self.document_state = False
         else:
             self.setDocument(self.pdf_document)
-            self.document_sate = True
+            self.document_state = True
 
     def zoom_in(self) -> None:
         if self.zoomFactor() < 2.0:

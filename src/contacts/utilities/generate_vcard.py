@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.utilities.error_handler import ErrorHandler
 
 
+# noinspection PyUnresolvedReferences
 def create_vcard(row_data: dict, main_window: QMainWindow | None = None) -> str | None:
     try:
         row_data = row_data

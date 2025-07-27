@@ -9,6 +9,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 def export_to_vcard(db_connection: QSqlDatabase, index: int, main_window: QMainWindow) -> None:
     try:
         menu_text = LanguageProvider.get_context_menu_text("vcardExportController")

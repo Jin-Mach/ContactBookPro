@@ -194,17 +194,17 @@ class SearchMandatoryWidget(QWidget):
                     if column in normalized_columns:
                         value = normalize_input(edit)
                     operation = operator.currentIndex()
-                    if value and operation > 0:
-                        if operation == 1:
+                    if value:
+                        if operation == 0:
                             filters.append(f"{column} = ?")
                             values.append(value)
-                        elif operation == 2:
+                        elif operation == 1:
                             filters.append(f"{column} LIKE ?")
                             values.append(f"%{value}%")
-                        elif operation == 3:
+                        elif operation == 2:
                             filters.append(f"{column} LIKE ?")
                             values.append(f"{value}%")
-                        elif operation == 4:
+                        elif operation == 3:
                             filters.append(f"{column} LIKE ?")
                             values.append(f"%{value}")
                 elif isinstance(edit, QComboBox):

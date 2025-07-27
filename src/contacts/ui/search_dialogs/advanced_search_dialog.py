@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QTabWidget, QDialogBu
 from src.contacts.controlers.filters_controller import FiltersController
 from src.contacts.ui.search_dialogs.search_widgets.search_mandatory_widget import SearchMandatoryWidget
 from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
@@ -104,3 +105,14 @@ class AdvancedSearchDialog(QDialog):
 
     def show_current_filter_dialog(self) -> None:
         self.active_filters_controller.show_active_filters()
+
+    def accept(self) -> None:
+        try:
+            filters = self.get_final_filter()
+            if not filters:
+                error_text = LanguageProvider.get_error_text(self.objectName())
+                DialogsProvider.show_error_dialog(error_text.get("noSelectedFilter", ""), self)
+                return
+            super().accept()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)

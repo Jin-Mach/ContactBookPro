@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 
 
+# noinspection PyUnresolvedReferences
 class ExcelExportController:
     def __init__(self, db_connection: QSqlDatabase, table_view: "ContactsTableviewWidget") -> None:
         self.class_name = "excelExportController"

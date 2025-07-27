@@ -64,21 +64,31 @@ class AdvancedSearchController:
             ErrorHandler.exception_handler(e, self.parent)
 
     def check_search_result(self, id_list: list) -> None:
-        if not id_list:
-            self.progress_dialog.hide_dialog()
-            DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""), self.parent)
-            SearchProvider.reset_filter(self.mandatory_model)
+        try:
+            if not id_list:
+                self.progress_dialog.hide_dialog()
+                DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""), self.parent)
+                SearchProvider.reset_filter(self.mandatory_model)
+                self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+                return
+            self.mandatory_model.set_filter_by_id(id_list)
             self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
-            return
-        self.mandatory_model.set_filter_by_id(id_list)
-        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
-    def search_finished(self, connection_name: str)-> None:
-        QSqlDatabase.removeDatabase(connection_name)
-        self.progress_dialog.hide_dialog()
+    def search_finished(self, connection_name: str) -> None:
+        try:
+            QSqlDatabase.removeDatabase(connection_name)
+        except Exception as e:
+            logger = get_logger()
+            logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
+        finally:
+            if self.progress_dialog and self.progress_dialog.isVisible():
+                self.progress_dialog.hide_dialog()
 
     @staticmethod
     def log_and_show_error(error: str) -> None:
+        print(error)
         logger = get_logger()
         logger.error(f"{AdvancedSearchController.__class__.__name__}: {error}", exc_info=True)
         ErrorHandler.database_error(error, False, custom_message="queryError")

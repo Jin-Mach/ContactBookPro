@@ -30,7 +30,6 @@ class ContactSearchController:
         self.new_filter = None
 
     def basic_search(self, search_input: QLineEdit) -> None:
-        search_text = normalize_input(search_input)
         self.new_filter = None
         filters = {
             "1": "gender VALUE",
@@ -44,6 +43,7 @@ class ContactSearchController:
             )
         }
         try:
+            search_text = normalize_input(search_input)
             if self.table_view.selectionModel().hasSelection():
                 column_index = self.table_view.currentIndex().column()
                 combobox_index = self.search_combobox.currentIndex()
@@ -86,8 +86,8 @@ class ContactSearchController:
             ErrorHandler.exception_handler(e, self.parent)
 
     def reset_filter(self, search_input: QLineEdit) -> None:
-        ui_text = LanguageProvider.get_ui_text(self.parent.objectName())
         try:
+            ui_text = LanguageProvider.get_ui_text(self.parent.objectName())
             self.search_combobox.setDisabled(True)
             search_input.clear()
             search_input.setDisabled(True)

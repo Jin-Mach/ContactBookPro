@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class CsvExportController:
     def __init__(self, db_connection: QSqlDatabase, table_view: "ContactsTableviewWidget") -> None:
         self.class_name = "csvExportController"

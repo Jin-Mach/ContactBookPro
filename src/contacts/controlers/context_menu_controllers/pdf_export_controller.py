@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 
 
-# noinspection PyBroadException
+# noinspection PyBroadException,PyUnresolvedReferences
 class PdfExportController:
 
     def __init__(self, db_connection: QSqlDatabase, table_view: "ContactsTableviewWidget"):

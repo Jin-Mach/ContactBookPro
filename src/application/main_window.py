@@ -16,6 +16,7 @@ from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 from src.utilities.settings_provider import SettingsProvider
 
 
@@ -122,24 +123,33 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def create_image() -> QLabel | None:
-        icons_path = pathlib.Path(__file__).parents[2].joinpath("icons", "mainWindow")
-        if icons_path.exists():
-            pixmap = QPixmap(str(icons_path.joinpath("mainWindowLogo.png")))
-            dock_image_label = QLabel()
-            dock_image_label.setFixedSize(150, 150)
-            dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            dock_image_label.setObjectName("dockImageLabel")
-            dock_image_label.setPixmap(pixmap.scaled(QSize(100, 100), Qt.AspectRatioMode.KeepAspectRatio,
-                                                     Qt.TransformationMode.SmoothTransformation))
-            return dock_image_label
-        return None
+        try:
+            icons_path = pathlib.Path(__file__).parents[2].joinpath("icons", "mainWindow")
+            if icons_path.exists():
+                pixmap = QPixmap(str(icons_path.joinpath("mainWindowLogo.png")))
+                dock_image_label = QLabel()
+                dock_image_label.setFixedSize(150, 150)
+                dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                dock_image_label.setObjectName("dockImageLabel")
+                dock_image_label.setPixmap(pixmap.scaled(QSize(100, 100), Qt.AspectRatioMode.KeepAspectRatio,
+                                                         Qt.TransformationMode.SmoothTransformation))
+                return dock_image_label
+            return None
+        except Exception as e:
+            ErrorHandler.exception_handler(e, MainWindow)
+            return None
 
     def closeEvent(self, event) -> None:
-        pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
-        if pdf_path.exists():
-            pdf_path.unlink()
-        SettingsProvider.save_settings(self)
-        super().closeEvent(event)
+        try:
+            pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
+            if pdf_path.exists():
+                pdf_path.unlink()
+            SettingsProvider.save_settings(self)
+        except Exception as e:
+            logger = get_logger()
+            logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
+        finally:
+            super().closeEvent(event)
 
     def changed_stack(self, index: int) -> None:
         if index == 2:

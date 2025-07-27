@@ -7,7 +7,7 @@ from src.utilities.error_handler import ErrorHandler
 class QueryProvider:
 
     @staticmethod
-    def create_search_query(filters: dict, parent=None) -> tuple | None:
+    def create_search_query(filters: dict, parent=None) -> tuple[str, list] | None:
         try:
             if not filters:
                 return None
@@ -28,7 +28,7 @@ class QueryProvider:
             return None
 
     @staticmethod
-    def create_check_duplicate_query(db_connection: QSqlDatabase, contact_id: int | None, new_email: str, new_phone_number: str, parent=None) -> list | None:
+    def create_check_duplicate_query(db_connection: QSqlDatabase, contact_id: int | None, new_email: str, new_phone_number: str, parent=None) -> list[dict]| None:
         try:
             query = QSqlQuery(db_connection)
             if contact_id is None:
@@ -89,7 +89,7 @@ class QueryProvider:
             return None
 
     @staticmethod
-    def create_check_birthday_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list | None:
+    def create_check_birthday_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list[dict[str, int | str]] | None:
         try:
             ids = []
             detail_query = QSqlQuery(db_connection)
@@ -124,7 +124,7 @@ class QueryProvider:
             return None
 
     @staticmethod
-    def create_check_duplicates_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list | None:
+    def create_check_duplicates_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list[dict[str, int | str]] | None:
         try:
             duplicates_query = QSqlQuery(db_connection)
             if not duplicates_query.exec("""SELECT id, first_name, second_name FROM mandatory 

@@ -39,7 +39,7 @@ class ExportContactsListPdfObject(QObject):
         self.export_data_provider = export_data_provider
         self.main_window = main_window
         self.connection_name = f"exportListPdfThread{id(self)}"
-        self.src_path = Path(__file__).parents[4]
+        self.src_path = Path(__file__).parents[3]
 
     def run_pdf_list_export(self) -> None:
         db_connection = None

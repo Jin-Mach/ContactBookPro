@@ -22,7 +22,7 @@
     "searchHouseNumberTextLabel": "Číslo popisné (osobní):",
     "searchPostCodeTextLabel": "PSČ (osobní):",
     "searchCountryTextLabel": "Stát (osobní):",
-    "operators": ["Vše", "Shoda", "Obsahuje", "Začíná na", "Končí na"],
+    "operators": ["Shoda", "Obsahuje", "Začíná na", "Končí na"],
     "searchFirstNameEdit": "Zadej křestní jméno...",
     "searchSecondNameEdit": "Zadej příjmení...",
     "searchEmailEdit": "Zadej email...",

@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import QMainWindow
 from src.utilities.error_handler import ErrorHandler
 
 
+# noinspection PyUnresolvedReferences
 def create_qr_code(vcard_data: str, main_window: QMainWindow | None = None) -> Image | None:
     try:
         qr = qrcode.QRCode(
