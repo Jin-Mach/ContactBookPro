@@ -1,10 +1,12 @@
 import sys
+import time
 
 from PyQt6.QtWidgets import QApplication, QDialog
 
 from src.application.main_window import MainWindow
 from src.utilities.app_init import application_init
 from src.utilities.dialogs_provider import DialogsProvider
+from src.utilities.splash_screen import SplashScreen
 
 
 def create_application() -> None:
@@ -15,10 +17,12 @@ def create_application() -> None:
                                                          "\nThe application will close now.")
         if result == QDialog.DialogCode.Accepted or result == QDialog.DialogCode.Rejected:
             sys.exit(1)
+    splash_screen = SplashScreen()
+    splash_screen.show()
+    QApplication.processEvents()
     window = MainWindow()
     application.main_window = window
-    controller = window.contacts_main_widget.contacts_toolbar_widget.contacts_controller
-    controller.update_locations()
-    application.aboutToQuit.connect(controller.destroy_thread)
     window.show()
+    time.sleep(1)
+    splash_screen.finish(window)
     sys.exit(application.exec())

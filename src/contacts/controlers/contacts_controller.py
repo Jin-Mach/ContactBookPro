@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import Any, TYPE_CHECKING
 
-from PyQt6.QtCore import QThreadPool, QModelIndex, QThread
+from PyQt6.QtCore import QThreadPool, QModelIndex, QThread, QTimer
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox
+from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox, QApplication
 
 from src.contacts.threading.location_thread import LocationThread
 from src.contacts.threading.objects.update_locations_object import UpdateLocationsObject
@@ -60,6 +60,9 @@ class ContactsController:
         self.signal_provider = SignalProvider()
         self.error_text = LanguageProvider.get_error_text("widgetErrors")
         self.table_view.doubleClicked.connect(self.update_contact)
+        application = QApplication.instance()
+        QTimer.singleShot(0, self.update_locations)
+        application.aboutToQuit.connect(self.destroy_thread)
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
         if not self.table_view.selectionModel().hasSelection():
