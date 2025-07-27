@@ -16,6 +16,7 @@ from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.settings_provider import SettingsProvider
 
 
 # noinspection PyUnresolvedReferences
@@ -43,6 +44,7 @@ class MainWindow(QMainWindow):
         if QSystemTrayIcon.isSystemTrayAvailable():
             self.tray_icon = TrayIcon(self.status_bar, self)
             self.tray_icon.show()
+        SettingsProvider.load_settings(self, QSize(1280, 720))
 
     def create_gui(self) -> QWidget:
         central_widget = QWidget()
@@ -136,6 +138,7 @@ class MainWindow(QMainWindow):
         pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
         if pdf_path.exists():
             pdf_path.unlink()
+        SettingsProvider.save_settings(self)
         super().closeEvent(event)
 
     def changed_stack(self, index: int) -> None:
