@@ -28,7 +28,12 @@ class WorkPieChartWidget(QWidget):
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
             place.set_facecolor("#31363b")
-            if not data:
+            is_data = True
+            for values in data:
+                if values[1] == 0:
+                    is_data = False
+                    break
+            if not is_data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")
                 place.spines["left"].set_visible(False)
