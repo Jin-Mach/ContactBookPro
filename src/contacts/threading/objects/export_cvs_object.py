@@ -6,7 +6,7 @@ from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
-from src.utilities.encoding_provider import get_encoding
+from src.utilities.application_support_provider import ApplicationSupportProvider
 
 if TYPE_CHECKING:
     from src.database.utilities.contacts_utilities.export_data_provider import ExportDataProvider
@@ -42,7 +42,7 @@ class ExportCsvObject(QObject):
             delimiter = ","
             if semicolon:
                 delimiter = ";"
-            with open(self.file_path, "w", newline="", encoding=get_encoding()) as file:
+            with open(self.file_path, "w", newline="", encoding=ApplicationSupportProvider.get_encoding()) as file:
                 writer = csv.DictWriter(file, fieldnames=headers, delimiter=delimiter)
                 try:
                     writer.writeheader()

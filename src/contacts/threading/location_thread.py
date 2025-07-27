@@ -4,7 +4,7 @@ from geopy.geocoders import Nominatim
 from PyQt6.QtCore import QRunnable
 
 from src.contacts.threading.signal_provider import SignalProvider
-from src.utilities.check_connection import connection_result
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.logger_provider import get_logger
 
 
@@ -21,7 +21,7 @@ class LocationThread(QRunnable):
 
     def run(self) -> None:
         try:
-            if not connection_result():
+            if not ApplicationSupportProvider.connection_result():
                 self.signal.contact_coordinates.emit(self.contact_id, (None, None))
                 return
             full_address = f"{self.contact_house_number}, {self.contact_city}, {self.contact_post_code}, {self.contact_country}"

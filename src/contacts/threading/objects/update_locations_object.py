@@ -5,7 +5,7 @@ from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
 from src.database.utilities.contacts_utilities.query_provider import QueryProvider
-from src.utilities.check_connection import connection_result
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.logger_provider import get_logger
 
 # noinspection PyUnresolvedReferences
@@ -24,7 +24,7 @@ class UpdateLocationsObject(QObject):
         db_connection = None
         updated_contacts = []
         try:
-            if not connection_result():
+            if not ApplicationSupportProvider.connection_result():
                 self.finished.emit(updated_contacts)
                 return
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)

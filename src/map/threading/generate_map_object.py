@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 
-from src.utilities.check_connection import connection_result
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.map.utilities.map_provider import create_map
 
 if TYPE_CHECKING:
@@ -27,7 +27,7 @@ class GenerateMapObject(QObject):
         try:
             db_connection = QSqlDatabase.addDatabase("QSQLITE", self.connection_name)
             db_connection.setDatabaseName(self.db_path)
-            is_connect = connection_result()
+            is_connect = ApplicationSupportProvider.connection_result()
             if not is_connect:
                 self.map_ready.emit(contacts_map, 0, is_connect)
                 self.finished.emit()

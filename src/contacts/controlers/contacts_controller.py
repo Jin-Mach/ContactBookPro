@@ -23,7 +23,7 @@ from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
-from src.utilities.restart_app import restart_application
+from src.utilities.application_support_provider import ApplicationSupportProvider
 
 if TYPE_CHECKING:
     from src.database.models.mandatory_model import MandatoryModel
@@ -192,7 +192,7 @@ class ContactsController:
                 self.map_controller.create_map()
                 self.statistics_controller.set_data()
                 try:
-                    restart_application()
+                    ApplicationSupportProvider.restart_application()
                 except Exception:
                     ErrorHandler.exception_handler(OSError())
         except Exception as e:
