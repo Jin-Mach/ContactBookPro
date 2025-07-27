@@ -2,11 +2,23 @@ from typing import Any
 from folium import Map, Marker, Element, plugins
 from folium.plugins import MarkerCluster
 
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.logger_provider import get_logger
 
+
+# noinspection PyUnresolvedReferences
 def create_map(contacts: list[dict[str, Any]]) -> str | None:
     try:
-        folium_map = Map(location=(50.07, 14.45), zoom_start=10)
+        latitude = 0.0
+        longitude = 0.0
+        start_zoom = 2
+        location_data = ApplicationSupportProvider.get_default_location()
+        if location_data:
+            location = location_data.get("location", {})
+            latitude = location.get("latitude", 0.0)
+            longitude = location.get("longitude", 0.0)
+            start_zoom = 10
+        folium_map = Map(location=(latitude, longitude), zoom_start=start_zoom, min_zoom=2)
         disable_context_menu = Element("""
         <script>
             document.addEventListener('DOMContentLoaded', function() {

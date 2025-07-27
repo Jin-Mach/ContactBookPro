@@ -134,7 +134,7 @@ class LanguageProvider:
         try:
             for language in LanguageProvider.language_path.iterdir():
                 if language.is_dir():
-                    with open(language.joinpath("language_info.json"), "r", encoding="utf-8") as file:
+                    with open(language.joinpath("language_setup.json"), "r", encoding="utf-8") as file:
                         language_text = json.load(file)
                     language_dict[language.name] = list(language_text.values())[0]
             return language_dict

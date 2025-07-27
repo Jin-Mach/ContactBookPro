@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import requests
@@ -5,6 +6,9 @@ import requests
 from qt_material import apply_stylesheet
 
 from PyQt6.QtWidgets import QApplication
+
+from src.utilities.error_handler import ErrorHandler
+from src.utilities.language_provider import LanguageProvider
 
 
 class ApplicationSupportProvider:
@@ -31,3 +35,17 @@ class ApplicationSupportProvider:
     @staticmethod
     def set_application_style(application: QApplication) -> None:
         apply_stylesheet(application, "dark_blue.xml")
+
+    @staticmethod
+    def get_default_location() -> dict | None:
+        try:
+            application_language = LanguageProvider.language_code
+            language_path = LanguageProvider.language_path
+            path = language_path.joinpath(application_language, "language_setup.json")
+            if path.exists():
+                with open(path, "r", encoding="utf-8") as file:
+                    return json.load(file)
+            return None
+        except Exception as e:
+            ErrorHandler.exception_handler(e)
+            return None
