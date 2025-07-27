@@ -23,7 +23,7 @@ class QrCodePreviewDialog(QDialog):
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         self.contact_name_label = QLabel()
-        self.contact_name_label.setStyleSheet("font-family: Arial; font-size: 20pt;")
+        self.contact_name_label.setStyleSheet("font-size: 20pt;")
         self.contact_name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.qr_code_label = QLabel()
         self.qr_code_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
