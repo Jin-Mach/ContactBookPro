@@ -3,7 +3,7 @@ import sys
 from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import QSize, QModelIndex, Qt
-from PyQt6.QtGui import QFont, QShortcut, QKeySequence
+from PyQt6.QtGui import QShortcut, QKeySequence
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QLabel, QLineEdit, QPushButton, QWidget, QLayout, QHBoxLayout, QMainWindow, QComboBox
 
@@ -51,6 +51,7 @@ class ContactsToolbarWidget(QWidget):
         self.setLayout(self.create_gui())
         self.set_ui_text()
         self.set_tooltips_text()
+        self.set_style()
         self.create_connection()
         self.create_shortcuts()
         self.contacts_controller = ContactsController(main_window, self.db_connection, self.mandatory_model, work_model,
@@ -81,17 +82,16 @@ class ContactsToolbarWidget(QWidget):
         self.delete_all_contacts_pushbutton.setObjectName("deleteAllContactsPushbutton")
         self.delete_all_contacts_pushbutton.setFixedSize(self.buttons_size)
         self.search_text_label = QLabel()
-        self.search_text_label.setFont(QFont("Arial", 12))
         self.search_text_label.setObjectName("searchTextLabel")
         self.search_combobox = QComboBox()
         self.search_combobox.setObjectName("searchCombobox")
         self.search_combobox.setDisabled(True)
-        self.search_combobox.setFixedWidth(200)
+        self.search_combobox.setFixedWidth(300)
+        self.search_combobox.hide()
         self.search_line_edit = QLineEdit()
         self.search_line_edit.setObjectName("searchLineEdit")
         self.search_line_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
-        self.search_line_edit.setFixedSize(400, 35)
-        self.search_line_edit.setFont(QFont("Arial", 15))
+        self.search_line_edit.setFixedSize(300, 35)
         self.search_line_edit.setDisabled(True)
         self.search_pushbutton = QPushButton()
         self.search_pushbutton.setObjectName("searchPushbutton")
@@ -111,9 +111,11 @@ class ContactsToolbarWidget(QWidget):
         main_layout.addWidget(self.delete_all_contacts_pushbutton)
         main_layout.addStretch()
         main_layout.addWidget(self.search_text_label)
+        main_layout.addSpacing(10)
         main_layout.addWidget(self.search_combobox)
         main_layout.addWidget(self.search_line_edit)
         main_layout.addWidget(self.search_pushbutton)
+        main_layout.addSpacing(10)
         main_layout.addWidget(self.advanced_search_pushbutton)
         main_layout.addWidget(self.reset_filter_pushbutton)
         main_layout.addWidget(self.user_filters_pushbutton)
@@ -150,6 +152,10 @@ class ContactsToolbarWidget(QWidget):
                     button.setStatusTip(statustips_text.get(name, ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
+
+    def set_style(self) -> None:
+        self.search_text_label.setStyleSheet("font-size: 12pt;")
+        self.search_line_edit.setStyleSheet("font-size: 15pt;")
 
     def create_connection(self) -> None:
         self.add_new_contact_pushbutton.clicked.connect(self.add_new_contact)

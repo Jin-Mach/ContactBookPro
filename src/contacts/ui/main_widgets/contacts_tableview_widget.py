@@ -102,11 +102,15 @@ class ContactsTableviewWidget(QTableView):
                     else:
                         tool_bar.search_combobox.addItems(self.relationship_items)
                     tool_bar.search_combobox.setDisabled(False)
+                    tool_bar.search_combobox.show()
                     tool_bar.search_line_edit.setDisabled(True)
+                    tool_bar.search_line_edit.hide()
                 else:
                     tool_bar.search_combobox.clear()
                     tool_bar.search_combobox.setDisabled(True)
+                    tool_bar.search_combobox.hide()
                     tool_bar.search_line_edit.setDisabled(False)
+                    tool_bar.search_line_edit.show()
             search_filter = self.ui_text["searchFilter"]
             current_filter = search_filter[str(current_column)]
             if tool_bar:
