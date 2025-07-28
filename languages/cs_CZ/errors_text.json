@@ -37,7 +37,7 @@
     "selectedDateError": "Zvolené datum nemůže být vyšší než aktuální datum."
   },
   "advancedSearchDialog": {
-    "noSelectedFilter": "Pro pokročilé vyhledávání je potřeba zadat alespoň jeden filtr:"
+    "noSelectedFilter": "Žádný aktivní filtr."
   },
   "contactSearchController": {
     "emptySearchText": "Nelze vyhledat bez zadaného textu.",

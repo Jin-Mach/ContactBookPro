@@ -121,7 +121,7 @@ class DialogsProvider:
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):
-                            widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{error_message}")
+                            widget.setText(error_message)
                         if isinstance(widget, QPushButton):
                             widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:

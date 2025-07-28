@@ -17,7 +17,8 @@ def create_map(contacts: list[dict[str, Any]]) -> str | None:
             location = location_data.get("location", {})
             latitude = location.get("latitude", 0.0)
             longitude = location.get("longitude", 0.0)
-            start_zoom = 10
+            if latitude != 0.0 and longitude != 0.0:
+                start_zoom = 8
         folium_map = Map(location=(latitude, longitude), zoom_start=start_zoom, min_zoom=2)
         disable_context_menu = Element("""
         <script>

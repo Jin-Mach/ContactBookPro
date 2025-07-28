@@ -62,7 +62,7 @@ class MandatoryModel(QSqlTableModel):
         if role == Qt.ItemDataRole.DecorationRole:
             if index.column() == 1:
                 value = super().data(self.index(index.row(), 1), Qt.ItemDataRole.DisplayRole)
-                if value == str(1):
+                if value == 1:
                     return QIcon(self.male_icon)
                 else:
                     return QIcon(self.female_icon)

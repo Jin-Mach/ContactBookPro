@@ -19,7 +19,7 @@ class SplashScreen(QSplashScreen):
     def load_gui(self) -> None:
         logger = get_logger()
         try:
-            icon_path = pathlib.Path(__file__).parents[2].joinpath("icons", "splashScreen", "splash_icon.jpg")
+            icon_path = pathlib.Path(__file__).parents[2].joinpath("icons", "splashScreen", "splash_icon.png")
             if not icon_path.exists():
                 logger.error(f"{self.__class__.__name__}: Icon not found at {icon_path}")
                 self.close()

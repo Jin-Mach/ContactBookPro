@@ -31,14 +31,25 @@ class CityBarChartWidget(QWidget):
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
-            place.yaxis.set_major_locator(MaxNLocator(integer=True))
             place.set_facecolor("#31363b")
+            place.yaxis.set_major_locator(MaxNLocator(integer=True))
             place.tick_params(axis="x", colors="#ffffff")
             place.tick_params(axis="y", colors="#ffffff")
             place.spines["left"].set_visible(False)
             place.spines["top"].set_visible(False)
             place.spines["right"].set_visible(False)
             place.spines["bottom"].set_color("#ffffff")
+            if self.column_name == "work" and not sorted_data and data[1][0] > 0:
+                place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
+                labels = [ui_text.get("unfilled", "")]
+                sizes = [data[1][0]]
+                colors = ["#4db6ac"]
+                titles = place.bar(labels, sizes, color=colors)
+                place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
+                place.set_yticks([])
+                place.tick_params(left=False)
+                self.figure.canvas.draw()
+                return
             if not sorted_data:
                 place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
                            transform=place.transAxes, color="#ffffff")
@@ -58,15 +69,14 @@ class CityBarChartWidget(QWidget):
             for label, size in top_items:
                 labels.append(label)
                 sizes.append(size)
-            others_size = 0
-            for _, size in others_items:
-                others_size += size
+            others_size = sum(size for _, size in others_items)
             if others_size > 0:
                 labels.append(ui_text.get("others", ""))
                 sizes.append(others_size)
             if self.column_name == "work":
                 labels.append(ui_text.get("unfilled", ""))
                 sizes.append(data[1][0])
+            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
             titles = place.bar(labels, sizes, color=colors)
             place.bar_label(titles, padding=3, color="#ffffff", fontsize=10)
             place.set_yticks([])

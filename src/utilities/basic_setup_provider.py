@@ -53,7 +53,7 @@ class BasicSetupProvider:
             "deleteFilterButton_icon.png", "mainWindowLogo.png", "mainWindowMapButton_icon.png",
             "mainWindowDatabaseButton_icon.png", "mainWindowStatisticsButton_icon.png", "pdfFitPageButton_icon.png",
             "pdfSaveAsButton_icon.png", "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png",
-            "male_icon.png", "window_icon.png", "splash_icon.jpg", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
+            "male_icon.png", "window_icon.png", "splash_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
             "instagramPushbutton_icon.png", "linkedinPushbutton_icon.png", "websitePushbutton_icon.png", "xPushbutton_icon.png",
             "deleteFilterPushbutton_icon.png"
         ]
@@ -106,7 +106,7 @@ class BasicSetupProvider:
             "female_icon.png": "personalTabInfoWidget",
             "male_icon.png": "personalTabInfoWidget",
             "window_icon.png": "qrCodePreviewDialog",
-            "splash_icon.jpg": "splashScreen",
+            "splash_icon.png": "splashScreen",
             "facebookPushbutton_icon.png": "tabInfoWidget",
             "githubPushbutton_icon.png": "tabInfoWidget",
             "instagramPushbutton_icon.png": "tabInfoWidget",
