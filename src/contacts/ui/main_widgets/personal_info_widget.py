@@ -44,10 +44,12 @@ class PersonalTabInfoWidget(QTabWidget):
         self.contact_first_name_text_label.setObjectName("contactFirstNameTextLabel")
         self.contact_first_name_label = QLabel()
         self.contact_first_name_label.setObjectName("contactFirstNameLabel")
+        self.contact_first_name_label.setWordWrap(True)
         self.contact_second_name_text_label = QLabel()
         self.contact_second_name_text_label.setObjectName("contactSecondNameTextLabel")
         self.contact_second_name_label = QLabel()
         self.contact_second_name_label.setObjectName("contactSecondNameLabel")
+        self.contact_second_name_label.setWordWrap(True)
         self.contact_relationship_text_label = QLabel()
         self.contact_relationship_text_label.setObjectName("contactRelationshipTextLabel")
         self.contact_relationship_label = QLabel()
@@ -99,6 +101,7 @@ class PersonalTabInfoWidget(QTabWidget):
                 self.contact_relationship_label.setText(relationship_dict.get(str(data.get("relationship", "")), ""))
                 iso_date = data.get("birthday", "")
                 self.contact_birthday_label.setText(format_date(iso_date))
+                self.resize(self.sizeHint())
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 

@@ -22,8 +22,8 @@ from src.database.utilities.contacts_utilities.update_models import update_model
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 from src.utilities.application_support_provider import ApplicationSupportProvider
+from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.database.models.mandatory_model import MandatoryModel
@@ -38,12 +38,12 @@ if TYPE_CHECKING:
     from src.statistics.controllers.statistics_controller import StatisticsController
 
 
-# noinspection PyBroadException,PyUnresolvedReferences
+# noinspection PyUnresolvedReferences
 class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
                  work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
                  detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
-                 map_controller: "MapController",  statistics_controller: "StatisticsController", parent=None) -> None:
+                 map_controller: "MapController", statistics_controller: "StatisticsController", parent=None) -> None:
         self.main_window = main_window
         self.db_connection = db_connection
         self.mandatory_model = mandatory_model
@@ -60,9 +60,15 @@ class ContactsController:
         self.signal_provider = SignalProvider()
         self.error_text = LanguageProvider.get_error_text("widgetErrors")
         self.table_view.doubleClicked.connect(self.update_contact)
+        self.signal_provider.contact_coordinates.connect(self.on_location_updated)
         application = QApplication.instance()
         QTimer.singleShot(0, self.update_locations)
         application.aboutToQuit.connect(self.destroy_thread)
+
+    def on_location_updated(self, contact_id: int, coords: tuple[float, float]) -> None:
+        self.info_model.update_location_data(contact_id, coords)
+        self.map_controller.create_map()
+        self.statistics_controller.set_data()
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
         if not self.table_view.selectionModel().hasSelection():
@@ -91,7 +97,7 @@ class ContactsController:
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
         duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
         if duplicity:
-            dialog = ContactsListDialog(duplicity, "validation", self.parent, )
+            dialog = ContactsListDialog(duplicity, "validation", self.parent)
             if dialog.exec() == QDialog.DialogCode.Rejected:
                 if dialog.result_code == "rejected":
                     return False
@@ -123,11 +129,7 @@ class ContactsController:
                         self.table_view.scrollTo(index)
                         self.table_view.contact_data_controller.get_models_data(last_id)
                         self.main_window.tray_icon.show_notification(f"{data[0][2]} {data[0][3]}", "contactAdded")
-                        location_thread = LocationThread(last_id, data[0], self.signal_provider)
-                        QThreadPool.globalInstance().start(location_thread)
-                        self.signal_provider.contact_coordinates.connect(
-                            lambda contact_id, coords: (self.info_model.update_location_data(contact_id, coords),
-                            self.map_controller.create_map(), self.statistics_controller.set_data()))
+                        QThreadPool.globalInstance().start(LocationThread(last_id, data[0], self.signal_provider))
                     else:
                         ErrorHandler.database_error(self.mandatory_model.lastError().text(), False, custom_message="queryError")
         except Exception as e:
@@ -156,6 +158,7 @@ class ContactsController:
                 ]
                 if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider, self.map_controller):
                     self.table_view.set_detail_data(index)
+                    self.table_view.select_contact_by_id(contact_id)
                     self.main_window.tray_icon.show_notification(
                         f'{new_data[0][0][2]} {new_data[0][0][3]}',
                         "contactUpdated"
@@ -229,16 +232,10 @@ class ContactsController:
         location_thread = getattr(self, 'location_thread', None)
         if location_thread is not None:
             try:
-                running = False
-                try:
-                    running = location_thread.isRunning()
-                except RuntimeError:
-                    running = False
-                if running:
+                if location_thread.isRunning():
                     location_thread.quit()
                     location_thread.wait()
             except RuntimeError as e:
-                logger = get_logger()
-                logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
+                get_logger().error(f"{self.__class__.__name__}: {e}", exc_info=True)
             finally:
                 self.location_thread = None
