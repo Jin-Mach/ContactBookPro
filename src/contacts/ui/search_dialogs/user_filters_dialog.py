@@ -28,7 +28,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label = QLabel()
         self.user_filters_text_label.setObjectName("userFiltersTextLabel")
         self.user_filters_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.user_filters_text_label.setStyleSheet("font-size: 25pt;")
+        self.user_filters_text_label.setStyleSheet("font-size: 20pt;")
         self.user_filters_listwidget = UserFiltersListWidget(self.delete_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(self.check_selected_filter)

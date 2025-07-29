@@ -11,7 +11,7 @@ from src.utilities.language_provider import LanguageProvider
 class CompletionBarChartWidget(QWidget):
     def __init__(self, total: bool, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("completionBartChartWidget")
+        self.setObjectName("completionBarChartWidget")
         self.total = total
         self.figure = Figure()
         self.canvas = FigureCanvas(self.figure)

@@ -22,7 +22,7 @@ class BasicStatisticsWidget(QWidget):
     def create_gui(self) -> QLayout:
         main_layout = QGridLayout()
         self.count_label = QLabel()
-        self.count_label.setStyleSheet("font-size: 25pt")
+        self.count_label.setStyleSheet("font-size: 20pt")
         self.count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.gender_pie = GenderPieChartWidget(self.statistics_main_widget.set_count_label_text, self)
         self.relationship_bar = RelationshipBarChartWidget(self)

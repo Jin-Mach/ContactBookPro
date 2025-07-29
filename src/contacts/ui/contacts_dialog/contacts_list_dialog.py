@@ -29,7 +29,7 @@ class ContactsListDialog(QDialog):
         main_layout = QVBoxLayout()
         duplicate_text_label = QLabel()
         duplicate_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        duplicate_text_label.setStyleSheet("font-size: 25pt;")
+        duplicate_text_label.setStyleSheet("font-size: 20pt;")
         duplicate_text_label.setObjectName("duplicateTextLabel")
         self.duplicate_listwidget = DuplicateListWidget(self.contacts_list)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.RestoreDefaults | QDialogButtonBox.StandardButton.Ok

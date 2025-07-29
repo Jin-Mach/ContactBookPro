@@ -12,7 +12,7 @@
     "cancelContactButton": "Zrušit",
     "deleteAllContactsDialog": "Smazat všechny kontakty",
     "deleteAllContactsTextLabel": "Opravdu smazat všechny kontakty?\nPro potvrzení napiš:\nSMAZAT",
-    "deleteFiltersCheckboxTextLabel": "Smazat uložené filty?",
+    "deleteFiltersCheckboxTextLabel": "Smazat uložené filtry?",
     "deleteAllContactsButton": "Smazat vše",
     "cancelAllContactsButton": "Zrušit"
   },
@@ -110,7 +110,7 @@
     "allFilesFilter": "Všechny formáty: (*.*)"
   },
   "contactsListDialog": {
-    "duplicateTextLabel": "Počet nalezených duplicitních kontaků",
+    "duplicateTextLabel": "Počet nalezených duplicitních kontaktů",
     "duplicateTextLabelContextBirthday": "Počet kontaktů s narozeninami",
     "duplicateTextLabelContextDuplicity": "Počet kontaktů s duplicitou",
     "showContactButton": "Přejít na kontakt",

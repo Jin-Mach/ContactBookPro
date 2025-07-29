@@ -35,7 +35,7 @@ class StatisticsMainWidget(QWidget):
         main_layout = QVBoxLayout()
         self.count_label = QLabel()
         self.count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.count_label.setStyleSheet("font-size: 25pt;")
+        self.count_label.setStyleSheet("font-size: 20pt;")
         self.statistics_tab_widget = QTabWidget()
         self.statistics_tab_widget.setObjectName("statisticsTabWidget")
         self.basic_statistics_widget = BasicStatisticsWidget(self)

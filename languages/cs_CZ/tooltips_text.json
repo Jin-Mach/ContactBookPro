@@ -18,7 +18,7 @@
     "facebookPushbutton": "Otevře odkaz na Facebook",
     "xPushbutton": "Otevře odkaz na X (Twitter)",
     "instagramPushbutton": "Otevře odkaz na Instagram",
-    "linkedinPushbutton": "Otevře odkaz na Linkedin",
+    "linkedinPushbutton": "Otevře odkaz na LinkedIn",
     "githubPushbutton": "Otevře odkaz na GitHub",
     "websitePushbutton": "Otevře webovou stránku"
   },
@@ -28,7 +28,7 @@
     "dialogAddContactButtonUpdate": "Uložit změny"
   },
   "dialogPersonalDetailWidget": {
-    "dialogGetPhotoPushbutton": "Vybrat fotku kontaku",
+    "dialogGetPhotoPushbutton": "Vybrat fotku kontaktu",
     "dialogResetPhotoButton": "Odstranit fotku",
     "dialogCalendarPushbutton": "Vybrat datum narození",
     "dialogResetCalendarPushbutton": "Odstranit datum narození"
@@ -52,7 +52,7 @@
     "deleteFilterButton": "Zruší filtr pro daný řádek"
   },
   "userFiltersDialog": {
-    "filterButton": "Spustí vyhladávání dle vybraného filtru",
+    "filterButton": "Spustí vyhledávání dle vybraného filtru",
     "cancelButton": "Zavře dialog"
   },
   "filterNameDialog": {

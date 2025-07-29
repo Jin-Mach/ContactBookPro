@@ -27,7 +27,7 @@ class FilterNameDialog(QDialog):
         filter_name_text_label = QLabel()
         filter_name_text_label.setObjectName("filterNameTextLabel")
         filter_name_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        filter_name_text_label.setStyleSheet("font-size: 25pt;")
+        filter_name_text_label.setStyleSheet("font-size: 20pt;")
         self.filter_name_input = ValidatedLineedit(self)
         self.filter_name_input.setObjectName("filterNameInput")
         self.filter_name_input.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)

@@ -1,7 +1,7 @@
 import pathlib
 
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont, QIcon
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton, QComboBox, QHBoxLayout
 
 from src.utilities.language_provider import LanguageProvider
@@ -20,6 +20,7 @@ class DialogsProvider:
         main_layout = QVBoxLayout()
         text_label = QLabel()
         text_label.setObjectName("errorTextLabel")
+        text_label.setStyleSheet("font-size: 15pt; font-weight: bold;")
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
         button_box.accepted.connect(dialog.accept)
@@ -37,9 +38,7 @@ class DialogsProvider:
         dialog.setMinimumSize(250, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel(error_text)
-        font = QFont()
-        font.setBold(True)
-        text_label.setFont(font)
+        text_label.setStyleSheet("font-size: 15pt; font-weight: bold;")
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
         button_box.accepted.connect(dialog.accept)
@@ -57,9 +56,7 @@ class DialogsProvider:
         main_layout = QVBoxLayout()
         text_label = QLabel()
         text_label.setObjectName("databaseErrorTextLabel")
-        font = QFont()
-        font.setBold(True)
-        text_label.setFont(font)
+        text_label.setStyleSheet("font-size: 15pt; font-weight: bold;")
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
         close_button = button_box.button(QDialogButtonBox.StandardButton.Close)
@@ -79,9 +76,7 @@ class DialogsProvider:
         main_layout = QVBoxLayout()
         text_label = QLabel("The selected language could not be loaded.\nPlease select a supported language from the list,\n"
                             "or exit the application.")
-        font = QFont()
-        font.setBold(True)
-        text_label.setFont(font)
+        text_label.setStyleSheet("font-size: 15pt; font-weight: bold;")
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         combobox_layout = QHBoxLayout()
         combobox_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)

@@ -6,7 +6,7 @@
     "mainWindowStatisticsButton": "Statistika"
   },
   "contactsToolbarWidget": {
-    "searchTextLabel": "vyhledat:",
+    "searchTextLabel": "Vyhledat:",
     "searchLineEdit": "text pro vyhledání..."
   },
   "contactsTableviewWidget": {
@@ -15,8 +15,8 @@
       "1": "pohlaví",
       "2": "vztah",
       "3": "jméno",
-      "4": "email",
-      "5": "telefon",
+      "4": "e-mail",
+      "5": "tel. číslo",
       "6": "adresa"
     },
     "gender_items": ["Vše", "Muž", "Žena"],
@@ -28,7 +28,7 @@
     "personalTabInfoWidget": {
       "personalTabInfoWidget_tabText": "Informace o kontaktu",
       "contactTitleTextLabel": "Titul:",
-      "contactGenderTextLabel": "Pohlaví",
+      "contactGenderTextLabel": "Pohlaví:",
       "contactFirstNameTextLabel": "Jméno:",
       "contactSecondNameTextLabel": "Příjmení:",
       "contactRelationshipTextLabel": "Vztah:",
@@ -104,7 +104,7 @@
   },
   "mapMainWidget": {
     "totalCount": "Počet zobrazených kontaktů:",
-    "noConnection": "Nepodařilo se zobrazit mapu. Zkontrolujet připojení k internetu.",
+    "noConnection": "Nepodařilo se zobrazit mapu. Zkontrolujte připojení k internetu.",
     "loadingMap": "Načítám mapu...",
     "loadingError": "Nepodařilo se načíst mapu."
   },
@@ -123,7 +123,7 @@
   },
   "genderPieChartWidget": {
     "title": "Pohlaví",
-    "noData": "Žádna data"
+    "noData": "Žádná data"
   },
   "relationshipBarChartWidget": {
     "title": "Vztah",
@@ -148,13 +148,13 @@
     "noData": "Žádná data",
     "filled": "Vyplněno",
     "empty": "Nevyplněno",
-    "x": "x (twitter)",
+    "x": "X (Twitter)",
     "website": "webová stránka"
   },
-  "completionBartChartWidget": {
+  "completionBarChartWidget": {
     "title": "Statistika vyplnění jednotlivých tabulek",
     "noData": "Žádná data",
-    "mandatory": "Povinné\núdaje",
+    "mandatory": "Povinné údaje",
     "work": "Pracovní",
     "social": "Sociální",
     "detail": "Detailní",

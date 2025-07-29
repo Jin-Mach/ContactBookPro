@@ -157,7 +157,7 @@ class ContactsController:
                 if update_models_data(index.row(), contact_id, models, new_data, now, self.signal_provider, self.map_controller):
                     self.table_view.set_detail_data(index)
                     self.main_window.tray_icon.show_notification(
-                        f'{contact_data.get("first_name", "")} {contact_data.get("second_name", "")}',
+                        f'{new_data[0][0][2]} {new_data[0][0][3]}',
                         "contactUpdated"
                     )
                 self.statistics_controller.set_data()

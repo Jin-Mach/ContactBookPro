@@ -27,7 +27,7 @@
         "relationship": "Vztah",
         "first_name": "Jméno",
         "second_name": "Příjmení",
-        "personal_email": "Osobní email",
+        "personal_email": "Osobní e-mail",
         "personal_phone_number": "Osobní telefon",
         "personal_street": "Ulice",
         "personal_house_number": "Číslo domu",
@@ -37,7 +37,7 @@
       },
       "work": {
         "company_name": "Název firmy",
-        "work_email": "Pracovní email",
+        "work_email": "Pracovní e-mail",
         "work_phone_number": "Pracovní telefon",
         "work_street": "Ulice (práce)",
         "work_house_number": "Číslo domu (práce)",

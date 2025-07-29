@@ -38,7 +38,7 @@ class ActiveFiltersDialog(QDialog):
         self.current_filter_text_label = QLabel()
         self.current_filter_text_label.setObjectName("currentFilterTextLabel")
         self.current_filter_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.current_filter_text_label.setStyleSheet("font-size: 25pt;")
+        self.current_filter_text_label.setStyleSheet("font-size: 20pt;")
         self.filters_tableview_widget = FiltersTableviewWidget(self.advanced_filter_model, self.remove_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Reset | QDialogButtonBox.StandardButton.Close)
         save_filter = button_box.button(QDialogButtonBox.StandardButton.Reset)
