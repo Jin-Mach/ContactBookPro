@@ -1,5 +1,5 @@
 {
-  "semicolon_locales": ["cs"],
+"semicolon_locales": ["cs", "sk", "de", "fr", "it", "es", "pt", "nl", "pl", "hr", "hu", "ro"],
   "exportDataProvider": {
     "genderMap": {
       "1": "Muž",
