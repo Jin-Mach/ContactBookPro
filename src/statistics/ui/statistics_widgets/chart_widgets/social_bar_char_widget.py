@@ -47,7 +47,7 @@ class SocialBarCharWidget(QWidget):
                 place.set_yticks([])
                 place.tick_params(left=False, bottom=False)
                 return
-            place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
+            place.set_title(ui_text.get("title", ""), pad=20, color="#ffffff", fontsize=12)
             place.tick_params(axis="x", colors="#ffffff")
             place.tick_params(axis="y", colors="#ffffff")
             place.yaxis.set_major_locator(MaxNLocator(integer=True))

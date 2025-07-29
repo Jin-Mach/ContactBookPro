@@ -39,7 +39,11 @@ class CityBarChartWidget(QWidget):
             place.spines["top"].set_visible(False)
             place.spines["right"].set_visible(False)
             place.spines["bottom"].set_color("#ffffff")
-            if self.column_name == "work" and not sorted_data and data[1][0] > 0:
+            try:
+                value = int(data[1][0])
+            except (ValueError, TypeError):
+                value = 0
+            if self.column_name == "work" and not sorted_data and value > 0:
                 place.set_title(ui_text.get("title", ""), pad=15, color="#ffffff", fontsize=12)
                 labels = [ui_text.get("unfilled", "")]
                 sizes = [data[1][0]]

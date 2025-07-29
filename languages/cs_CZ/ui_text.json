@@ -104,7 +104,7 @@
   },
   "mapMainWidget": {
     "totalCount": "Počet zobrazených kontaktů:",
-    "noConnection": "Nepodařilo se zobrazit mapu. Zkontrolujte připojení k internetu.",
+    "noConnection": "Nepodařilo se zobrazit mapu – nejsou žádné kontakty s platnou adresou, nebo není připojení k internetu.",
     "loadingMap": "Načítám mapu...",
     "loadingError": "Nepodařilo se načíst mapu."
   },

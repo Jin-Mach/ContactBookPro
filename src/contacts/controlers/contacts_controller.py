@@ -236,6 +236,7 @@ class ContactsController:
                     location_thread.quit()
                     location_thread.wait()
             except RuntimeError as e:
-                get_logger().error(f"{self.__class__.__name__}: {e}", exc_info=True)
+                logger = get_logger()
+                logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
             finally:
                 self.location_thread = None
