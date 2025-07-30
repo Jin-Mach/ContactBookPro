@@ -112,7 +112,7 @@ class MainWindow(QMainWindow):
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-            buttons = [self.database_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button]
             if tooltips_text:
                 for button in buttons:
                     if button.objectName().endswith("Button") and button.objectName() in tooltips_text:

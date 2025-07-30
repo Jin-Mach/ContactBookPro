@@ -1,6 +1,7 @@
 import pathlib
 import requests
 
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.logger_provider import get_logger
 
 
@@ -170,6 +171,8 @@ class BasicSetupProvider:
         if not download_files:
             return True
         try:
+            if not ApplicationSupportProvider.connection_result():
+                return False
             for key, value in download_files.items():
                 directory = value.parent
                 directory.mkdir(parents=True, exist_ok=True)

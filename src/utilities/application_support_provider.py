@@ -16,7 +16,7 @@ class ApplicationSupportProvider:
     @staticmethod
     def connection_result() -> bool:
         try:
-            response = requests.get(url="https://www.google.com", timeout=5)
+            response = requests.get(url="https://github.com", timeout=5)
             return response.status_code == 200
         except requests.RequestException:
             return False

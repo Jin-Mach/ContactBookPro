@@ -28,22 +28,6 @@ class WorkPieChartWidget(QWidget):
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)
             place.set_facecolor("#31363b")
-            is_data = True
-            for values in data:
-                if values[1] == 0:
-                    is_data = False
-                    break
-            if not is_data:
-                place.text(0.5, 0.5, ui_text.get("noData", ""), fontsize=14, ha='center', va='center',
-                           transform=place.transAxes, color="#ffffff")
-                place.spines["left"].set_visible(False)
-                place.spines["top"].set_visible(False)
-                place.spines["right"].set_visible(False)
-                place.spines["bottom"].set_visible(False)
-                place.set_xticks([])
-                place.set_yticks([])
-                place.tick_params(left=False)
-                return
             sizes = []
             labels = []
             colors = ["#448aff", "#bbdefb"]
@@ -65,8 +49,8 @@ class WorkPieChartWidget(QWidget):
                 place.tick_params(left=False)
             else:
                 place.set_title(ui_text.get(self.title, ""), pad=15, color="#ffffff", fontsize=12)
-                _, label_text, _ = place.pie(sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90,
-                                             counterclock=False)
+                _, label_text, _ = place.pie(
+                    sizes, labels=labels, colors=colors, autopct="%1.1f%%", startangle=90, counterclock=False)
                 for label in label_text:
                     label.set_color("#ffffff")
                 place.axis("equal")

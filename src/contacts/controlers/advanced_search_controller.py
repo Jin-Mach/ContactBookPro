@@ -88,7 +88,6 @@ class AdvancedSearchController:
 
     @staticmethod
     def log_and_show_error(error: str) -> None:
-        print(error)
         logger = get_logger()
         logger.error(f"{AdvancedSearchController.__class__.__name__}: {error}", exc_info=True)
         ErrorHandler.database_error(error, False, custom_message="queryError")

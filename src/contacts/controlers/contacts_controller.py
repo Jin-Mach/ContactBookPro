@@ -62,7 +62,7 @@ class ContactsController:
         self.table_view.doubleClicked.connect(self.update_contact)
         self.signal_provider.contact_coordinates.connect(self.on_location_updated)
         application = QApplication.instance()
-        QTimer.singleShot(0, self.update_locations)
+        QTimer.singleShot(5 * 60 * 1000, self.update_locations)
         application.aboutToQuit.connect(self.destroy_thread)
 
     def on_location_updated(self, contact_id: int, coords: tuple[float, float]) -> None:

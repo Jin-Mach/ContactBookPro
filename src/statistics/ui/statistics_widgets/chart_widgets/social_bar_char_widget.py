@@ -47,7 +47,7 @@ class SocialBarCharWidget(QWidget):
                 place.set_yticks([])
                 place.tick_params(left=False, bottom=False)
                 return
-            place.set_title(ui_text.get("title", ""), pad=20, color="#ffffff", fontsize=12)
+            place.set_title(ui_text.get("title", ""), pad=50, color="#ffffff", fontsize=12)
             place.tick_params(axis="x", colors="#ffffff")
             place.tick_params(axis="y", colors="#ffffff")
             place.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -72,7 +72,7 @@ class SocialBarCharWidget(QWidget):
             place.bar(empty_positions, empty_values, width=width, label=ui_text.get("empty", ""), color="#f44336")
             place.set_xticks(categories_positions)
             place.set_xticklabels(categories_names)
-            place.legend(loc="upper left", bbox_to_anchor=(0.75, 1.15))
+            place.legend(loc="upper left", bbox_to_anchor=(0.8, 1.25))
             for i in range(len(filled_values)):
                 try:
                     y = float(filled_values[i]) + 0.1
@@ -87,6 +87,7 @@ class SocialBarCharWidget(QWidget):
                 place.text(empty_positions[i], y, str(empty_values[i]), ha='center', va='bottom', color="#ffffff")
             place.set_yticks([])
             place.tick_params(left=False)
+            self.figure.tight_layout(rect=(0.0, 0.0, 1.0, 0.97))
             self.canvas.draw()
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

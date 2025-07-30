@@ -1,6 +1,6 @@
 from geopy.geocoders import Nominatim
 
-from PyQt6.QtCore import QObject, QTimer, pyqtSignal
+from PyQt6.QtCore import QObject, pyqtSignal
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow
 
@@ -18,7 +18,6 @@ class UpdateLocationsObject(QObject):
         self.db_path = db_path
         self.main_window = main_window
         self.connection_name = f"updateLocationsThread{id(self)}"
-        QTimer.singleShot(5 * 60 * 1000, self.get_locations)
 
     def get_locations(self) -> None:
         db_connection = None
