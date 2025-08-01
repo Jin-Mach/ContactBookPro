@@ -3,7 +3,7 @@ from typing import Any, TYPE_CHECKING
 
 from PyQt6.QtCore import QThreadPool, QModelIndex, QThread, QTimer
 from PyQt6.QtSql import QSqlDatabase
-from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox, QApplication
+from PyQt6.QtWidgets import QDialog, QMainWindow, QCheckBox
 
 from src.contacts.threading.location_thread import LocationThread
 from src.contacts.threading.objects.update_locations_object import UpdateLocationsObject
@@ -23,7 +23,6 @@ from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.application_support_provider import ApplicationSupportProvider
-from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.database.models.mandatory_model import MandatoryModel
@@ -61,9 +60,7 @@ class ContactsController:
         self.error_text = LanguageProvider.get_error_text("widgetErrors")
         self.table_view.doubleClicked.connect(self.update_contact)
         self.signal_provider.contact_coordinates.connect(self.on_location_updated)
-        application = QApplication.instance()
         QTimer.singleShot(5 * 60 * 1000, self.update_locations)
-        application.aboutToQuit.connect(self.destroy_thread)
 
     def on_location_updated(self, contact_id: int, coords: tuple[float, float]) -> None:
         self.info_model.update_location_data(contact_id, coords)
@@ -227,16 +224,3 @@ class ContactsController:
                 self.map_controller.create_map()
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)
-
-    def destroy_thread(self) -> None:
-        location_thread = getattr(self, 'location_thread', None)
-        if location_thread is not None:
-            try:
-                if location_thread.isRunning():
-                    location_thread.quit()
-                    location_thread.wait()
-            except RuntimeError as e:
-                logger = get_logger()
-                logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
-            finally:
-                self.location_thread = None
