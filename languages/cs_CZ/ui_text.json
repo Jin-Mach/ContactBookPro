@@ -3,7 +3,11 @@
     "mainWindowTitle": "Databáze kontaktů",
     "mainWindowDatabaseButton": "Kontakty",
     "mainWindowMapButton": "Mapa",
-    "mainWindowStatisticsButton": "Statistika"
+    "mainWindowStatisticsButton": "Statistika",
+    "messageboxTitle": "Zavřít aplikaci",
+    "messageboxText": "Zavřít aplikaci?\nANO/NE",
+    "close": "Zavřít",
+    "cancel": "Zrušit"
   },
   "contactsToolbarWidget": {
     "searchTextLabel": "Vyhledat:",

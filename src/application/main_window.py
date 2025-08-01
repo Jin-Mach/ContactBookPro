@@ -1,7 +1,7 @@
 import pathlib
 
 from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QCloseEvent
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QLabel, \
     QSystemTrayIcon, QFrame
 
@@ -17,6 +17,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 from src.utilities.logger_provider import get_logger
+from src.utilities.messagebox_provider import MessageboxProvider
 from src.utilities.settings_provider import SettingsProvider
 
 
@@ -98,14 +99,14 @@ class MainWindow(QMainWindow):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.ui_text = LanguageProvider.get_ui_text(self.objectName())
             buttons = [self.database_button, self.map_button, self.statistics_button]
-            if ui_text:
-                if "mainWindowTitle" in ui_text:
-                    self.setWindowTitle(ui_text.get("mainWindowTitle", ""))
+            if self.ui_text:
+                if "mainWindowTitle" in self.ui_text:
+                    self.setWindowTitle(self.ui_text.get("mainWindowTitle", ""))
                 for button in buttons:
-                    if button.objectName().endswith("Button") and button.objectName() in ui_text:
-                        button.set_text(ui_text.get(button.objectName(), ""))
+                    if button.objectName().endswith("Button") and button.objectName() in self.ui_text:
+                        button.set_text(self.ui_text.get(button.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
@@ -125,31 +126,33 @@ class MainWindow(QMainWindow):
     def create_image() -> QLabel | None:
         try:
             icons_path = pathlib.Path(__file__).parents[2].joinpath("icons", "mainWindow")
+            dock_image_label = QLabel()
+            dock_image_label.setFixedSize(150, 150)
+            dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            dock_image_label.setObjectName("dockImageLabel")
             if icons_path.exists():
                 pixmap = QPixmap(str(icons_path.joinpath("mainWindowLogo.png")))
-                dock_image_label = QLabel()
-                dock_image_label.setFixedSize(150, 150)
-                dock_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                dock_image_label.setObjectName("dockImageLabel")
                 dock_image_label.setPixmap(pixmap.scaled(QSize(100, 100), Qt.AspectRatioMode.KeepAspectRatio,
                                                          Qt.TransformationMode.SmoothTransformation))
-                return dock_image_label
-            return None
+            return dock_image_label
         except Exception as e:
             ErrorHandler.exception_handler(e, MainWindow)
             return None
 
-    def closeEvent(self, event) -> None:
+    def closeEvent(self, event: QCloseEvent) -> None:
         try:
-            pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
-            if pdf_path.exists():
-                pdf_path.unlink()
-            SettingsProvider.save_settings(self)
+            result = MessageboxProvider.close_application_messagebox(self.ui_text, self)
+            if not result:
+                event.ignore()
+            else:
+                pdf_path = pathlib.Path(__file__).parents[2].joinpath("output", "pdf_output.pdf")
+                if pdf_path.exists():
+                    pdf_path.unlink()
+                SettingsProvider.save_settings(self)
+                event.accept()
         except Exception as e:
             logger = get_logger()
             logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)
-        finally:
-            super().closeEvent(event)
 
     def changed_stack(self, index: int) -> None:
         if index == 2:
