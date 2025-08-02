@@ -188,7 +188,6 @@ class ContactsController:
                 if isinstance(check_box, QCheckBox) and check_box.isChecked():
                     FiltersProvider.delete_filters_file()
                 self.mandatory_model.clear_database()
-                del self.mandatory_model
                 if not reset_database():
                     self.refresh_ui(None)
                 self.main_window.tray_icon.show_notification("", "databaseDeleted")

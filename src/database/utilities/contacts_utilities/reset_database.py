@@ -18,6 +18,7 @@ def reset_database() -> bool:
     database = QSqlDatabase.database("default_connection")
     if database.isOpen():
         database.close()
+    del database
     QSqlDatabase.removeDatabase("default_connection")
     db_path.unlink()
     create_db_connection(db_name)
