@@ -11,6 +11,7 @@ from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
 from src.database.db_connection import create_db_connection
 from src.database.models.mandatory_model import MandatoryModel
+from src.manual.ui.manual_main_widget import ManualMainWidget
 from src.map.ui.map_main_widget import MapMainWidget
 from src.statistics.ui.statistics_main_widget import StatisticsMainWidget
 from src.utilities.error_handler import ErrorHandler
@@ -38,6 +39,7 @@ class MainWindow(QMainWindow):
         self.statistics_main_widget = StatisticsMainWidget(db_connection, mandatory_model, self.status_bar, self)
         self.contacts_main_widget = ContactsMainWidget(db_connection, mandatory_model, self,
                                                        self.map_main_widget.map_controller, self.statistics_main_widget.statistics_controller)
+        self.manual_main_widget = ManualMainWidget(self)
         self.setCentralWidget(self.create_gui())
         self.set_icons()
         self.set_ui_text()
@@ -58,10 +60,10 @@ class MainWindow(QMainWindow):
         dock_frame.setObjectName("mainWindowDockFrame")
         dock_frame.setStyleSheet(self.set_frame_style())
         dock_layout = QVBoxLayout(dock_frame)
-        dock_layout.setContentsMargins(0,0,0,0)
+        dock_layout.setContentsMargins(0, 0, 0, 10)
         dock_layout.setSpacing(0)
         database_buttons_layout = QVBoxLayout()
-        database_buttons_layout.setContentsMargins(0,0,0,0)
+        database_buttons_layout.setContentsMargins(0, 0, 0, 0)
         database_buttons_layout.setSpacing(10)
         self.database_button = MainWindowButtonWidget(lambda: self.changed_stack(0), self)
         self.database_button.setObjectName("mainWindowDatabaseButton")
@@ -69,19 +71,23 @@ class MainWindow(QMainWindow):
         self.map_button.setObjectName("mainWindowMapButton")
         self.statistics_button = MainWindowButtonWidget(lambda: self.changed_stack(2), self)
         self.statistics_button.setObjectName("mainWindowStatisticsButton")
+        self.manual_button = MainWindowButtonWidget(lambda: self.changed_stack(3), self)
+        self.manual_button.setObjectName("mainWindowManualButton")
         self.stacked_widget = QStackedWidget()
         self.stacked_widget.setObjectName("mainWindowStackedWidget")
         self.stacked_widget.setContentsMargins(0, 0, 0, 0)
         self.stacked_widget.addWidget(self.contacts_main_widget)
         self.stacked_widget.addWidget(self.map_main_widget)
         self.stacked_widget.addWidget(self.statistics_main_widget)
+        self.stacked_widget.addWidget(self.manual_main_widget)
         self.stacked_widget.setCurrentWidget(self.contacts_main_widget)
         database_buttons_layout.addWidget(self.database_button)
         database_buttons_layout.addWidget(self.map_button)
         database_buttons_layout.addWidget(self.statistics_button)
+        database_buttons_layout.addStretch()
+        database_buttons_layout.addWidget(self.manual_button)
         dock_layout.addWidget(MainWindow.create_image())
         dock_layout.addLayout(database_buttons_layout)
-        dock_layout.addStretch()
         dock_frame.setLayout(dock_layout)
         main_layout.addWidget(dock_frame)
         main_layout.addWidget(self.stacked_widget)
@@ -90,7 +96,7 @@ class MainWindow(QMainWindow):
 
     def set_icons(self) -> None:
         try:
-            buttons = [self.database_button, self.map_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
             for button in buttons:
                 if button.objectName().endswith("Button"):
                     button.set_label_icon(button.objectName())
@@ -100,7 +106,7 @@ class MainWindow(QMainWindow):
     def set_ui_text(self) -> None:
         try:
             self.ui_text = LanguageProvider.get_ui_text(self.objectName())
-            buttons = [self.database_button, self.map_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
             if self.ui_text:
                 if "mainWindowTitle" in self.ui_text:
                     self.setWindowTitle(self.ui_text.get("mainWindowTitle", ""))
@@ -113,7 +119,7 @@ class MainWindow(QMainWindow):
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-            buttons = [self.database_button, self.map_button, self.statistics_button]
+            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
             if tooltips_text:
                 for button in buttons:
                     if button.objectName().endswith("Button") and button.objectName() in tooltips_text:

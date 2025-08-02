@@ -4,6 +4,7 @@
     "mainWindowDatabaseButton": "Kontakty",
     "mainWindowMapButton": "Mapa",
     "mainWindowStatisticsButton": "Statistika",
+    "mainWindowManualButton": "Nápověda",
     "messageboxTitle": "Zavřít aplikaci",
     "messageboxText": "Zavřít aplikaci?\nANO/NE",
     "close": "Zavřít",
@@ -27,7 +28,7 @@
     "relationship_items": ["Vše", "Rodina", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"]
   },
   "contactsStatusbarWidget": {
-    "countDisplayLabel": "filtr:"
+    "countDisplayLabel": "Filtr (zobrazeno/celkem):"
   },
     "personalTabInfoWidget": {
       "personalTabInfoWidget_tabText": "Informace o kontaktu",
