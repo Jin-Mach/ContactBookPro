@@ -1,3 +1,5 @@
+import pathlib
+
 from io import BytesIO
 from PIL import Image as PILImage
 from typing import Any, TYPE_CHECKING
@@ -247,7 +249,7 @@ class ExportContactPdfObject(QObject):
             gender = row_data.get('gender', '')
             if gender:
                 if int(gender) == 2:
-                    custom_color = Color(1.0, 0.6, 0.733)
+                    custom_color = Color(0.91, 0.67, 0.72)
             canvas.setFillColor(custom_color)
             canvas.rect(0, height - top_row_height, width, top_row_height, stroke=0, fill=1)
             canvas.rect(0, 0, width, bottom_row_height, stroke=0, fill=1)
@@ -261,9 +263,12 @@ class ExportContactPdfObject(QObject):
 
     @staticmethod
     def get_image_from_blob(photo_blob: bytes | None) -> Image | None:
-        if photo_blob is None:
-            return None
         try:
+            if photo_blob is None:
+                icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "exportContactPdfObject", "noContactImage.png")
+                if icon_path.exists():
+                    return Image(str(icon_path), width=4*cm, height=4*cm)
+                return None
             blob_image = BytesIO(photo_blob)
             pil_image = PILImage.open(blob_image)
             pil_image.verify()
