@@ -163,6 +163,8 @@ class MainWindow(QMainWindow):
     def changed_stack(self, index: int) -> None:
         if index == 2:
             self.statistics_main_widget.statistics_tab_widget.setCurrentIndex(0)
+        elif index == 3:
+            self.manual_main_widget.tree_widget.hide_child_items()
         self.stacked_widget.setCurrentIndex(index)
 
     @staticmethod

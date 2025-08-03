@@ -165,5 +165,15 @@
     "detail": "Detailní",
     "info": "Informační\n(systémová)",
     "total": "Celkové vyplnění"
+  },
+  "manualTreeWidget": {
+    "headers": ["Obsah nápovědy"],
+    "items": {
+      "introduction": ["Úvod", ["O aplikaci", "Jak používat nápovědu"]],
+      "contacts": ["Kontakty", ["Přidání a úprava kontaktu", "Odstranění kontaktu", "Vyhledávání kontaktů", "Kontextové menu"]],
+      "export": ["Export", ["Kopírování do schránky", "Export do CSV", "Export do Excelu", "Export do vCard"]],
+      "map": ["Mapa", ["Zobrazení kontaktů na mapě"]],
+      "statistics": ["Statistika", ["Zobrazení statistik", "Práce se záložkami"]]
+    }
   }
 }
