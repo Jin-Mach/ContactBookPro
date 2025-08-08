@@ -164,7 +164,7 @@ class MainWindow(QMainWindow):
         if index == 2:
             self.statistics_main_widget.statistics_tab_widget.setCurrentIndex(0)
         elif index == 3:
-            self.manual_main_widget.tree_widget.hide_child_items()
+           self.manual_main_widget.set_manual_widget_to_default()
         self.stacked_widget.setCurrentIndex(index)
 
     @staticmethod

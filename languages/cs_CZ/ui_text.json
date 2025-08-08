@@ -171,9 +171,55 @@
     "items": {
       "introduction": ["Úvod", ["O aplikaci", "Jak používat nápovědu"]],
       "contacts": ["Kontakty", ["Přidání a úprava kontaktu", "Odstranění kontaktu", "Vyhledávání kontaktů", "Kontextové menu"]],
-      "export": ["Export", ["Kopírování do schránky", "Export do CSV", "Export do Excelu", "Export do vCard"]],
-      "map": ["Mapa", ["Zobrazení kontaktů na mapě"]],
-      "statistics": ["Statistika", ["Zobrazení statistik", "Práce se záložkami"]]
+      "export": ["Export", ["Export do CSV", "Export do Excelu", "Export do vCard"]],
+      "preview": ["Náhled", ["PDF", "QR kód"]],
+      "check": ["Kontrola kontaktů", ["Kontrola narozenin", "Kontrola duplicit", "Kontrola souřadnic"]],
+      "map": ["Mapa", ["Zobrazení kontaktů"]],
+      "statistics": ["Statistika", ["Zobrazení statistik"]]
+    }
+  },
+  "manualIntroductionWidget": {
+    "tabTexts": {
+      "aboutApplicationTextEdit": "O aplikaci",
+      "usageApplicationTextEdit": "Jak používat manuál"
+    }
+  },
+  "manualContactsWidget": {
+    "tabTexts": {
+      "addUpdateContactsTextEdit": "Přidání a úprava kontaktu",
+      "deleteContactsTextEdit": "Odstranění kontaktů",
+      "searchContactsTextEdit": "Vyhledávání kontaktů",
+      "contextMenuTextEdit": "Kontextové menu"
+    }
+  },
+  "manualExportWidget": {
+    "tabTexts": {
+      "csvExportTextEdit": "Export do CSV",
+      "excelExportTextEdit": "Export do Excelu",
+      "vcardExportTextEdit": "Export vCard"
+    }
+  },
+  "manualPreviewWidget": {
+    "tabTexts": {
+      "pdfPreviewTextEdit": "Náhled PDF",
+      "qrCodePreviewTextEdit": "QR kód"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Zobrazení kontaktů"
+    }
+  },
+  "manualCheckWidget": {
+    "tabTexts": {
+      "checkBirthdayTextEdit": "Kontrola narozeni",
+      "checkDuplicityTextEdit": "Kontrola duplicit",
+      "checkMissingCoordsTextEdit": "Kontrola souřadnic"
+    }
+  },
+  "manualStatisticsWidget": {
+    "tabTexts": {
+      "statisticsTextEdit": "Zobrazení statistik"
     }
   }
 }
