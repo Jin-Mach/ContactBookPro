@@ -69,10 +69,10 @@ class AdvancedSearchController:
                 self.progress_dialog.hide_dialog()
                 DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""), self.parent)
                 SearchProvider.reset_filter(self.mandatory_model)
-                self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+                self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
                 return
             self.mandatory_model.set_filter_by_id(id_list)
-            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 

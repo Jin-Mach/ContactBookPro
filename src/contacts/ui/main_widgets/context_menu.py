@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
     from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
     from src.contacts.controlers.context_menu_controllers.pdf_export_controller import PdfExportController
+    from src.contacts.controlers.context_menu_controllers.check_coords_controller import CheckCoordsController
     from src.contacts.controlers.contacts_controller import ContactsController
 
 
@@ -25,7 +26,7 @@ class ContextMenu(QMenu):
     def __init__(self, contacts_controller: Optional["ContactsController"], csv_export_controller: Optional["CsvExportController"],
                  excel_export_controller: "ExcelExportController", pdf_export_controller: "PdfExportController",
                  check_birthday_controller: "CheckBirthdayController", check_duplicates_controller: "CheckDuplicatesController",
-                 parent=None) -> None:
+                 check_coords_controller: "CheckCoordsController" ,parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contextMenu")
         self.parent = parent
@@ -35,6 +36,7 @@ class ContextMenu(QMenu):
         self.pdf_export_controller = pdf_export_controller
         self.check_birthday_controller = check_birthday_controller
         self.check_duplicates_controller = check_duplicates_controller
+        self.check_coords_controller = check_coords_controller
         self.create_gui()
         self.widgets = self.findChildren((QMenu, QAction))
         self.set_ui_text()
@@ -89,6 +91,8 @@ class ContextMenu(QMenu):
         self.contact_check_birthday_action.setObjectName("contactCheckBirthdayAction")
         self.contact_check_duplicity_action = QAction(self)
         self.contact_check_duplicity_action.setObjectName("contactCheckDuplicityAction")
+        self.contact_check_coords_action = QAction(self)
+        self.contact_check_coords_action.setObjectName("contactsCheckCoordsAction")
         self.addActions([self.add_contact_action, self.update_contact_action, self.delete_contact_action])
         self.addSeparator()
         self.addMenu(copy_menu)
@@ -108,7 +112,8 @@ class ContextMenu(QMenu):
         preview_menu.addAction(self.preview_qr_code_action)
         self.addSeparator()
         self.addMenu(contact_check_menu)
-        contact_check_menu.addActions([self.contact_check_birthday_action, self.contact_check_duplicity_action])
+        contact_check_menu.addActions([self.contact_check_birthday_action, self.contact_check_duplicity_action,
+                                       self.contact_check_coords_action])
 
     def set_ui_text(self) -> None:
         try:
@@ -143,7 +148,8 @@ class ContextMenu(QMenu):
                        (self.preview_all_contacts_list_action, lambda: self.pdf_export_controller.export_all_list_to_pdf(self.main_window)),
                        (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window)),
                        (self.contact_check_birthday_action, lambda: self.check_birthday_controller.check_birthday(self.main_window)),
-                       (self.contact_check_duplicity_action, lambda: self.check_duplicates_controller.check_duplicates(self.main_window))
+                       (self.contact_check_duplicity_action, lambda: self.check_duplicates_controller.check_duplicates(self.main_window)),
+                       (self.contact_check_coords_action, lambda: self.check_coords_controller.check_coords(self.main_window))
                        ]
         try:
             for action, method in connections:

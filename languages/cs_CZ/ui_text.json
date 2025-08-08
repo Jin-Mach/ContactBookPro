@@ -108,7 +108,8 @@
     "notesTitle": "Poznámky"
   },
   "mapMainWidget": {
-    "totalCount": "Počet zobrazených kontaktů:",
+    "showCount": "Počet zobrazených kontaktů:",
+    "totalCount": "Celkem kontaktů:",
     "noConnection": "Nepodařilo se zobrazit mapu – nejsou žádné kontakty s platnou adresou, nebo není připojení k internetu.",
     "loadingMap": "Načítám mapu...",
     "loadingError": "Nepodařilo se načíst mapu."

@@ -24,16 +24,17 @@ class CsvExportController:
         self.db_connection = db_connection
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
-        self.menu_text = LanguageProvider.get_context_menu_text(self.class_name)
-        self.error_text = LanguageProvider.get_error_text(self.class_name)
 
     def export_filtered_to_csv(self, main_window: QMainWindow) -> None:
         try:
             id_list = self.table_view.get_displayed_contacts_id()
             if not id_list:
-                DialogsProvider.show_error_dialog(self.error_text.get("emptyIdList", ""), main_window)
+                error_text = LanguageProvider.get_error_text(self.class_name)
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("emptyIdList", ""), main_window)
                 return
-            file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=self.menu_text.get("csvFilter", ""))
+            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+            file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=menu_text.get("csvFilter", ""))
             if file_name:
                 export_object = ExportCsvObject(self.db_connection.databaseName(), file_name, id_list, self.export_data_provider, main_window)
                 self.create_csv_thread(export_object, main_window)
@@ -42,8 +43,9 @@ class CsvExportController:
 
     def export_all_to_csv(self, main_window: QMainWindow) -> None:
         try:
+            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
             file_name, _ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path,
-                                                       filter=self.menu_text.get("csvFilter", ""))
+                                                       filter=menu_text.get("csvFilter", ""))
             if file_name:
                 export_object = ExportCsvObject(self.db_connection.databaseName(), file_name, None, self.export_data_provider, main_window)
                 self.create_csv_thread(export_object, main_window)

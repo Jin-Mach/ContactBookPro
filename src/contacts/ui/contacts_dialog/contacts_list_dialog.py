@@ -60,12 +60,14 @@ class ContactsListDialog(QDialog):
                                 widget.setText(f"{ui_text.get(f"{widget.objectName()}ContextBirthday", "")}\n{len(self.contacts_list)}")
                             elif self.mode == "context_duplicity":
                                 widget.setText(f"{ui_text.get(f"{widget.objectName()}ContextDuplicity", "")}\n{len(self.contacts_list)}")
+                            elif self.mode == "context_coords":
+                                widget.setText(f"{ui_text.get(f"{widget.objectName()}ContextCoords", "")}\n{len(self.contacts_list)}")
                             else:
                                 widget.setText(f"{ui_text.get(widget.objectName(), "")}\n{len(self.contacts_list)}")
                 for button in self.buttons:
                     if button.objectName() in ui_text:
                         if isinstance(button, QPushButton):
-                            if self.mode == "context_birthday" or self.mode == "context_duplicity":
+                            if self.mode in ("context_birthday", "context_duplicity", "context_coords"):
                                 if button.objectName() == "continueButton":
                                     button.hide()
                                     continue

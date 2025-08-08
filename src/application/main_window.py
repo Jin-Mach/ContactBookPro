@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
         self.setStatusBar(self.status_bar)
         db_connection = create_db_connection("contacts_db.sqlite")
         mandatory_model = MandatoryModel(db_connection)
-        self.map_main_widget = MapMainWidget(db_connection, self.status_bar, self)
+        self.map_main_widget = MapMainWidget(db_connection, mandatory_model, self.status_bar, self)
         self.statistics_main_widget = StatisticsMainWidget(db_connection, mandatory_model, self.status_bar, self)
         self.contacts_main_widget = ContactsMainWidget(db_connection, mandatory_model, self,
                                                        self.map_main_widget.map_controller, self.statistics_main_widget.statistics_controller)

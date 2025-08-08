@@ -75,7 +75,7 @@ class ContactSearchController:
                             DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""))
                             SearchProvider.reset_filter(self.mandatory_model)
                             search_input.setFocus()
-                        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+                        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
                     else:
                         DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
@@ -92,7 +92,7 @@ class ContactSearchController:
             search_input.clear()
             search_input.setDisabled(True)
             SearchProvider.reset_filter(self.mandatory_model)
-            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), 0)
+            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
             self.contacts_statusbar.contacts_total_count = self.mandatory_model.rowCount()
             if ui_text:
                 self.parent.search_text_label.setText(ui_text.get(self.parent.search_text_label.objectName(), ""))

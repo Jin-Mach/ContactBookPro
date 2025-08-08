@@ -66,6 +66,6 @@ class StatisticsMainWidget(QWidget):
 
     def set_count_label_text(self) -> None:
         try:
-            self.count_label.setText(f"{self.ui_text.get("totalCount", "")} {self.mandatory_model.rowCount()}")
+            self.count_label.setText(f"{self.ui_text.get("totalCount", "")} {self.mandatory_model.total_rows}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

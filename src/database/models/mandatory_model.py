@@ -25,6 +25,7 @@ class MandatoryModel(QSqlTableModel):
         self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
         self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["genderHeaderText"]
         self.select()
+        self.total_rows = self.rowCount()
 
     def headerData(self, section: int, orientation: Qt.Orientation, role=Qt.ItemDataRole.DisplayRole) -> bool:
         if role == Qt.ItemDataRole.ToolTipRole:
@@ -78,6 +79,7 @@ class MandatoryModel(QSqlTableModel):
         if not self.submitAll():
             ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
             return
+        self.total_rows += 1
 
     def update_contact(self, row_index: int, data: list) -> None:
         column_count = self.columnCount()
@@ -96,12 +98,14 @@ class MandatoryModel(QSqlTableModel):
             if not self.submitAll():
                 ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
+            self.total_rows -= 1
 
     def clear_database(self) -> None:
         if self.rowCount() > 0:
             if not self.removeRows(0, self.rowCount()):
                 ErrorHandler.database_error(self.lastError().text(), False, custom_message="queryError")
                 return
+        self.total_rows = 0
         self.select()
 
     def set_filter_by_id(self, id_list: list) -> None:

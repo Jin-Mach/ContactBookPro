@@ -10,15 +10,18 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
+    from src.database.models.mandatory_model import MandatoryModel
     from src.application.status_bar import StatusBar
 
 
 class MapMainWidget(QWidget):
-    def __init__(self, db_connection: QSqlDatabase, status_bar: "StatusBar", main_window: QMainWindow,
+    def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", status_bar: "StatusBar",
+                 main_window: QMainWindow,
                  parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("mapMainWidget")
         self.db_connection = db_connection
+        self.mandatory_model = mandatory_model
         self.status_bar = status_bar
         self.main_window = main_window
         self.map_controller = MapController(self.db_connection, self, self.main_window)
@@ -56,7 +59,8 @@ class MapMainWidget(QWidget):
             else:
                 self.loading_map_label.setText(f"{ui_text.get("loadingMap", "")}")
                 self.loading_map_label.show()
-                self.contacts_count_label.setText(f"{ui_text.get("totalCount", "")} {count}")
+                self.contacts_count_label.setText(f"{ui_text.get("showCount", "")} {count} "
+                                                  f"({ui_text.get("totalCount", "")} {self.mandatory_model.total_rows})")
                 self.contacts_count_label.hide()
                 self.web_view.hide()
                 self.web_view.setHtml(html_map)

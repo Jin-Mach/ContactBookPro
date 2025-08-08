@@ -9,18 +9,18 @@ if TYPE_CHECKING:
 
 
 # noinspection PyUnresolvedReferences
-class CheckBirthdayObject(QObject):
+class CheckCoordsObject(QObject):
     error_message = pyqtSignal(Exception)
     finished = pyqtSignal(list)
     def __init__(self, db_path: str, query_provider: "QueryProvider", main_window: QMainWindow) -> None:
         super().__init__()
-        self.setObjectName("checkBirthdayObject")
+        self.setObjectName("checkCoordsObject")
         self.db_path = db_path
         self.query_provider = query_provider
         self.main_window = main_window
-        self.connection_name = f"checkBirthdayThread{id(self)}"
+        self.connection_name = f"checkCoordsThread{id(self)}"
 
-    def run_check_birthday(self) -> None:
+    def run_check_coords(self) -> None:
         db_connection = None
         self.selected_contacts = []
         try:
@@ -29,7 +29,7 @@ class CheckBirthdayObject(QObject):
             if not db_connection.open():
                 self.finished.emit(self.selected_contacts)
                 return
-            self.selected_contacts = self.query_provider.create_check_birthday_query(db_connection, self.main_window)
+            self.selected_contacts = self.query_provider.create_check_coords_query(db_connection, self.main_window)
             if not self.selected_contacts:
                 self.finished.emit(self.selected_contacts)
                 return

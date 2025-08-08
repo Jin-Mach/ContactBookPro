@@ -127,12 +127,11 @@ class QueryProvider:
     def create_check_duplicates_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list[dict[str, int | str]] | None:
         try:
             duplicates_query = QSqlQuery(db_connection)
-            if not duplicates_query.exec("""SELECT id, first_name, second_name FROM mandatory 
-                                                    WHERE personal_email IN 
-                                                    (SELECT personal_email FROM mandatory GROUP BY personal_email HAVING COUNT(*) > 1) 
-                                                    OR personal_phone_number IN 
-                                                    (SELECT personal_phone_number FROM mandatory GROUP BY personal_phone_number HAVING COUNT(*) > 1)
-                                                """):
+            if not duplicates_query.exec("SELECT id, first_name, second_name FROM mandatory "
+                                        "WHERE personal_email IN "
+                                        "(SELECT personal_email FROM mandatory GROUP BY personal_email HAVING COUNT(*) > 1) "
+                                        "OR personal_phone_number IN "
+                                        "(SELECT personal_phone_number FROM mandatory GROUP BY personal_phone_number HAVING COUNT(*) > 1)"):
                 ErrorHandler.database_error(duplicates_query.lastError().text(), False)
                 return None
             results = []
@@ -141,6 +140,28 @@ class QueryProvider:
                     "id": duplicates_query.value(0),
                     "first_name": duplicates_query.value(1),
                     "second_name": duplicates_query.value(2)
+                }
+                results.append(row)
+            return results
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+            return None
+
+    @staticmethod
+    def create_check_coords_query(db_connection: QSqlDatabase, main_window: QMainWindow) -> list[dict[str, int | str]] | None:
+        try:
+            coords_query = QSqlQuery(db_connection)
+            if not coords_query.exec("SELECT mandatory.id, mandatory.first_name, mandatory.second_name "
+                    "FROM mandatory JOIN info ON mandatory.id = info.id "
+                    "WHERE (info.latitude IS NULL OR info.latitude = '') "
+                    "AND (info.longitude IS NULL OR info.longitude = '')"):
+                ErrorHandler.database_error(coords_query.lastError().text(), False)
+            results = []
+            while coords_query.next():
+                row = {
+                    "id": coords_query.value(0),
+                    "first_name": coords_query.value(1),
+                    "second_name": coords_query.value(2)
                 }
                 results.append(row)
             return results

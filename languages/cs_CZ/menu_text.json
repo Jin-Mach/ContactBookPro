@@ -23,7 +23,8 @@
     "previewQrCodeAction": "QR kód kontaktu",
     "contactCheckMenu": "Kontrola kontaktů",
     "contactCheckBirthdayAction": "Zobrazit narozeniny",
-    "contactCheckDuplicityAction": "Zobrazit duplicity"
+    "contactCheckDuplicityAction": "Zobrazit duplicity",
+    "contactsCheckCoordsAction": "Zobrazit kontakty bez souřadnic"
   },
   "csvExportController": {
     "csvFilter": "Soubory CSV (*.csv);;Všechny soubory (*)"

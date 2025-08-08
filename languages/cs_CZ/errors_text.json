@@ -80,6 +80,9 @@
   "checkDuplicatesController": {
     "noDuplicates": "Žádné duplicitní kontakty."
   },
+  "checkCoordsController": {
+    "noCoords": "Všechny kontakty mají platné souřadnice"
+  },
   "validatedLineedit": {
     "emptyClipboard": "Schránka je prázdná, není co vložit"
   }

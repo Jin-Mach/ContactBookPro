@@ -27,7 +27,6 @@ class CheckBirthdayController:
         self.mandatory_model = mandatory_model
         self.table_view = table_view
         self.status_bar = status_bar
-        self.error_text = LanguageProvider.get_error_text(self.class_name)
 
     def check_birthday(self, main_window: QMainWindow) -> None:
         try:
@@ -65,8 +64,10 @@ class CheckBirthdayController:
                         show_selected_contact(self.mandatory_model, self.table_view, self.status_bar,
                                                 dialog.selected_id)
             else:
-                error_text = self.error_text.get("noBirthday", "")
-                DialogsProvider.show_error_dialog(error_text, main_window)
+                error_text = LanguageProvider.get_error_text(self.class_name)
+                if error_text:
+                    error_text = error_text.get("noBirthday", "")
+                    DialogsProvider.show_error_dialog(error_text, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 

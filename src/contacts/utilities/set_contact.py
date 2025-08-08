@@ -9,5 +9,5 @@ if TYPE_CHECKING:
 def show_selected_contact(mandatory_model: "MandatoryModel", table_view: "ContactsTableviewWidget", status_bar: "ContactsStatusbarWidget",
                           selected_id: int) -> None:
     mandatory_model.set_filter_by_id([selected_id])
-    table_view.set_selected_contact()
-    status_bar.set_count_text(mandatory_model.rowCount(), 0)
+    table_view.select_contact_by_id(selected_id)
+    status_bar.set_count_text(mandatory_model.rowCount(), mandatory_model.total_rows)
