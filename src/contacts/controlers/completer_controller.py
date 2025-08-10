@@ -32,7 +32,7 @@ class CompleterController:
         return completer
 
     def update_completer(self) -> None:
-        self.state = False
+        self.completer_state = False
         index = self.table_view.selectionModel().currentIndex()
         if index.isValid():
             self.query_model.get_data(index.column(), self.search_input)

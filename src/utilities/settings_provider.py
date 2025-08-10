@@ -14,9 +14,12 @@ class SettingsProvider:
             screen_size = QApplication.primaryScreen().size()
             store_size = SettingsProvider.settings.value("windowSize", None)
             store_position = SettingsProvider.settings.value("windowPosition",
-                                                             QPoint(screen_size.width() // 2, screen_size.height() // 2))
+                                                             QPoint(
+                                                                 (screen_size.width() - store_size.width()) // 2,
+                                                                 (screen_size.height() - store_size.height()) // 2))
             if store_size is None:
                 store_size = window_size
+                main_window.move(store_position)
             if store_size.width() < screen_size.width() and store_size.height() < screen_size.height():
                 main_window.resize(store_size)
                 main_window.move(store_position)
