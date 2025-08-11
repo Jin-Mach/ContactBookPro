@@ -13,6 +13,7 @@ class ManualTreeWidget(QTreeWidget):
         self.set_headers()
         self.set_items()
         self.hide_child_items()
+        self.initialized= False
 
     def set_headers(self) -> None:
         try:

@@ -22,13 +22,13 @@ class ManualMainWidget(QWidget):
         self.tree_widget = ManualTreeWidget(self)
         self.tree_widget.itemClicked.connect(self.set_stacked_widget)
         self.stacked_widget = QStackedWidget()
-        self.manual_introduction_widget = ManualIntroductionWidget(self)
-        self.manual_contacts_widget = ManualContactsWidget(self)
-        self.manual_export_widget = ManualExportWidget(self)
-        self.manual_preview_widget = ManualPreviewWidget(self)
-        self.manual_chcek_widget = ManualCheckWidget(self)
-        self.manual_map_widget = ManualMapWidget(self)
-        self.manual_statistics_widget = ManualStatisticsWidget(self)
+        self.manual_introduction_widget = ManualIntroductionWidget(self.tree_widget, 0, self)
+        self.manual_contacts_widget = ManualContactsWidget(self.tree_widget, 1, self)
+        self.manual_export_widget = ManualExportWidget(self.tree_widget, 2, self)
+        self.manual_preview_widget = ManualPreviewWidget(self.tree_widget, 3, self)
+        self.manual_chcek_widget = ManualCheckWidget(self.tree_widget, 4, self)
+        self.manual_map_widget = ManualMapWidget(self.tree_widget, 5, self)
+        self.manual_statistics_widget = ManualStatisticsWidget(self.tree_widget, 6, self)
         self.stacked_widget.addWidget(self.manual_introduction_widget)
         self.stacked_widget.addWidget(self.manual_contacts_widget)
         self.stacked_widget.addWidget(self.manual_export_widget)
@@ -48,6 +48,7 @@ class ManualMainWidget(QWidget):
             current_widget.set_default_tab(0)
 
     def set_stacked_widget(self) -> None:
+        self.tree_widget.initialized = True
         stacked_index, tab_index = self.tree_widget.currentItem().data(0, Qt.ItemDataRole.UserRole)
         self.stacked_widget.setCurrentIndex(stacked_index)
         current_widget = self.stacked_widget.currentWidget()
