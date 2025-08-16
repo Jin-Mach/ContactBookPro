@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget, QTextEdit
 
 from src.manual.utilities.set_tab_texts import apply_tab_texts
+from src.manual.utilities.set_text_edit import set_text_edit_state
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -18,6 +20,8 @@ class ManualIntroductionWidget(QWidget):
         self.setLayout(self.create_gui())
         tab_widgets = [self.about_application_text_edit, self.usage_manual_text_edit]
         apply_tab_texts(self.objectName(), self.manual_introduction_tab_widget, tab_widgets, self)
+        set_text_edit_state(tab_widgets, self)
+        LanguageProvider.get_manual_text(tab_widgets)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -25,12 +29,8 @@ class ManualIntroductionWidget(QWidget):
         self.manual_introduction_tab_widget.currentChanged.connect(self.set_tree_item)
         self.about_application_text_edit = QTextEdit()
         self.about_application_text_edit.setObjectName("aboutApplicationTextEdit")
-        self.about_application_text_edit.setReadOnly(True)
-        self.about_application_text_edit.setText("about")
         self.usage_manual_text_edit = QTextEdit()
         self.usage_manual_text_edit.setObjectName("usageApplicationTextEdit")
-        self.usage_manual_text_edit.setReadOnly(True)
-        self.usage_manual_text_edit.setText("usage")
         self.manual_introduction_tab_widget.addTab(self.about_application_text_edit, "")
         self.manual_introduction_tab_widget.addTab(self.usage_manual_text_edit, "")
         main_layout.addWidget(self.manual_introduction_tab_widget)

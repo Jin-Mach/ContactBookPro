@@ -1,0 +1,65 @@
+Formulář slouží k vytvoření nového nebo úpravě stávajícího kontaktu.
+Obsahuje povinné a nepovinné položky rozdělené do několika sekcí.
+Před uložením probíhá kontrola vyplnění a formátu dat.
+
+POVINNÁ POLE
+Pohlaví (výběr ze seznamu) – výběr z předdefinované nabídky
+Vztah (výběr ze seznamu) – výběr z předdefinované nabídky
+Křestní jméno (textový vstup)
+Příjmení (textový vstup)
+E-mail (textový vstup) – kontrola správného formátu
+Telefon (textový vstup) – kontrola správného formátu
+Ulice (textový vstup) – nepovinná, pokud neexistuje
+Číslo popisné (textový vstup)
+Město (textový vstup)
+PSČ (textový vstup)
+Stát (textový vstup)
+
+VOLITELNÉ ÚDAJE
+
+PRACOVNÍ
+Firma (textový vstup)
+E-mail (textový vstup) – kontrola formátu
+Telefonní číslo (textový vstup) – kontrola formátu
+Ulice (textový vstup) – nepovinná
+Číslo popisné (textový vstup)
+Město (textový vstup)
+PSČ (textový vstup)
+Stát (textový vstup)
+Poznámka: u pracovní adresy musí být buď vyplněna všechna pole (mimo ulice), nebo žádné. Částečně vyplněná adresa není povolena.
+
+SOCIÁLNÍ SÍTĚ
+Facebook (textový vstup)
+X (Twitter) (textový vstup)
+Instagram (textový vstup)
+LinkedIn (textový vstup)
+GitHub (textový vstup)
+Webová stránka (textový vstup)
+
+DETAILNÍ
+Fotografie – volba souboru přes dialog
+Titul (textový vstup)
+Datum narození (kalendář)
+Poznámky (víceřádkový vstup)
+
+Validace a chybová hlášení
+Pokud nejsou vyplněna povinná pole, pracovní adresa je nekompletní nebo je formát e-mailu / telefonu chybný, zobrazí se chybové hlášení.
+Kurzor se automaticky nastaví na první chybný vstup.
+Pokud při ukládání nového kontaktu nebo úpravě existujícího již existuje v databázi kontakt se stejným e-mailem nebo telefonním číslem, zobrazí se dialog s přehledem nalezených duplicit.
+V tomto dialogu lze nový kontakt uložit i přesto, že je duplicitní, zrušit ukládání nebo přejít na vybraný existující kontakt zobrazený v seznamu.
+
+Po dokončení se zobrazí vyskakovací okno s informací o úspěšném uložení/smazání kontaktu.
+
+Získávání souřadnic
+Po přidání nového kontaktu se aplikace pokusí automaticky získat jeho zeměpisné souřadnice (dle adresy v povinných údajích).
+Pokud se souřadnice podaří najít, kontakt se zobrazí na mapě.
+Pokud se souřadnice nepodaří zjistit, kontakt zůstane uložen bez souřadnic.
+Aplikace také obsahuje automatickou kontrolu, která se spustí jednou po 5 minutách od spuštění aplikace.
+Tato kontrola se pokusí doplnit souřadnice dle uložené adresy u všech kontaktů, které je nemají. Každý kontakt bez souřadnic je takto zkontrolován maximálně 20×.
+Poznámka: je nutné mít aktivní připojení k internetu, pokud připojení k internetu neexistuje, souřadnice se neověřují, ale aplikace běží dál.
+
+Klávesové zkratky
+Nový kontakt: Ctrl + N (macOS: Cmd + N)
+Aktualizovat kontakt: Ctrl + U (macOS: Cmd + U)
+
+Poznámka: klávesové zkratky fungují pouze, pokud je aplikace nastavena na okno "Kontakty".

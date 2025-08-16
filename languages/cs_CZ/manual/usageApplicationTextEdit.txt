@@ -1,0 +1,9 @@
+Manuál je rozdělený do kapitol, které jsou uvedené v levém panelu jako seznam témat.
+
+Kliknutím na některé téma v levém seznamu se vpravo zobrazí odpovídající část manuálu.
+
+Některá témata mají pod sebou další podtémata, na která můžete kliknout a zobrazit tak podrobnější informace.
+
+Když v levém seznamu vyberete záložku vpravo, automaticky se v levém panelu zvýrazní téma, které právě čtete.
+
+Tento způsob vám umožní rychle najít potřebné informace a snadno se mezi jednotlivými částmi manuálu přepínat.

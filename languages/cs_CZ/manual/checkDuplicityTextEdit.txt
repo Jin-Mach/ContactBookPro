@@ -1,0 +1,10 @@
+Aplikace umožňuje zkontrolovat kontakty s duplicitními údaji.
+
+Kontrola projde všechny kontakty a vybere ty, které mají stejné e-mailové adresy, telefonní číslo nebo obojí.
+Duplicitní hodnoty se hledají pouze v povinných údajích kontaktu (osobní, nikoli pracovní).
+Na konci se zobrazí buď oznámení, že žádný kontakt neodpovídá kritériím, nebo dialog se seznamem nalezených kontaktů.
+V dialogu lze přejít na vybraný kontakt, čímž se nastaví filtr na tento kontakt.
+
+Kontrola probíhá na pozadí, takže aplikaci lze během ní dál používat.
+
+Uživatel je o dokončení informován dialogem s výsledkem.

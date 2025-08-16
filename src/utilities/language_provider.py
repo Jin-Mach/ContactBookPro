@@ -3,6 +3,7 @@ import pathlib
 import sys
 
 from PyQt6.QtCore import QLocale
+from PyQt6.QtWidgets import QTextEdit
 
 from src.utilities.logger_provider import get_logger
 
@@ -141,6 +142,20 @@ class LanguageProvider:
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
+
+    @staticmethod
+    def get_manual_text(text_edit_list: list[QTextEdit]) -> None:
+        try:
+            path = LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "manual")
+            if path.exists():
+                for text_edit in text_edit_list:
+                    text_path = path.joinpath(f"{text_edit.objectName()}.txt")
+                    if text_path.exists():
+                        with open(text_path, "r", encoding="utf-8") as file:
+                            text = file.read()
+                            text_edit.setPlainText(text)
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:

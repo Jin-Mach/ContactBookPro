@@ -1,0 +1,6 @@
+Aplikace umožňuje zobrazit náhled QR kódu pro vybraný kontakt.
+
+Aplikace umožňuje zobrazit náhled QR kódu pro vybraný kontakt.
+
+QR kód obsahuje stejné údaje jako export do vCard – jméno, příjmení, e-mail, telefon a osobní adresu.
+Náhled QR kódu se otevře v samostatném okně a je pouze statický, nelze jej přiblížit, oddálit ani uložit.

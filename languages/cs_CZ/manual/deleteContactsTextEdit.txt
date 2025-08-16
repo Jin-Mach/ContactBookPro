@@ -1,0 +1,20 @@
+Aplikace umožňuje mazání jednotlivých kontaktů i odstranění všech kontaktů najednou.
+
+Smazání jednoho kontaktu
+Označte požadovaný kontakt v tabulce a klikněte na tlačítko pro smazání.
+Zobrazí se potvrzovací okno s dotazem "Opravdu smazat?" a možností potvrdit nebo zrušit smazání.
+Po potvrzení bude vybraný kontakt odstraněn, ostatní kontakty zůstanou nezměněny.
+
+Smazání všech kontaktů
+Není nutné nic označovat – stačí kliknout na tlačítko pro smazání celé databáze.
+Otevře se potvrzovací okno s textovým polem, do kterého je nutné napsat slovo „smazat“ pro potvrzení akce.
+V tomto okně lze také zaškrtnout volbu pro odstranění uložených filtrů. Pokud je tato volba zapnuta, budou smazány i všechny uložené filtry.
+Po potvrzení se aplikace pokusí vymazat všechny kontakty z databáze, smazat uložené filtry (pokud byla volba zapnuta) a odstranit soubor databáze (contacts_db.sqlite).
+Pokud soubor databáze nelze odstranit, vymaže se pouze její obsah a soubor zůstane zachován.
+Poté se aplikace automaticky restartuje a vytvoří novou prázdnou databázi.
+
+Klávesové zkratky
+Smazat vybraný kontakt: Ctrl + D (macOS: Cmd + D)
+Smazat celou databázi: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Poznámka: klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty".

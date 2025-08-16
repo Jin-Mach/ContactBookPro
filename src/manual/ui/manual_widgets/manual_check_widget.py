@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget, QTextEdit
 
 from src.manual.utilities.set_tab_texts import apply_tab_texts
+from src.manual.utilities.set_text_edit import set_text_edit_state
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -18,6 +20,8 @@ class ManualCheckWidget(QWidget):
         self.setLayout(self.create_gui())
         tab_widgets = [self.check_birthday_text_edit, self.check_duplicity_text_edit, self.check_missing_coords_text_edit]
         apply_tab_texts(self.objectName(), self.manual_check_tab_widget, tab_widgets, self)
+        set_text_edit_state(tab_widgets, self)
+        LanguageProvider.get_manual_text(tab_widgets)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -25,16 +29,10 @@ class ManualCheckWidget(QWidget):
         self.manual_check_tab_widget.currentChanged.connect(self.set_tree_item)
         self.check_birthday_text_edit = QTextEdit()
         self.check_birthday_text_edit.setObjectName("checkBirthdayTextEdit")
-        self.check_birthday_text_edit.setReadOnly(True)
-        self.check_birthday_text_edit.setText("birthday")
         self.check_duplicity_text_edit = QTextEdit()
         self.check_duplicity_text_edit.setObjectName("checkDuplicityTextEdit")
-        self.check_duplicity_text_edit.setReadOnly(True)
-        self.check_duplicity_text_edit.setText("duplicity")
         self.check_missing_coords_text_edit = QTextEdit()
         self.check_missing_coords_text_edit.setObjectName("checkMissingCoordsTextEdit")
-        self.check_missing_coords_text_edit.setReadOnly(True)
-        self.check_missing_coords_text_edit.setText("coords")
         self.manual_check_tab_widget.addTab(self.check_birthday_text_edit, "")
         self.manual_check_tab_widget.addTab(self.check_duplicity_text_edit, "")
         self.manual_check_tab_widget.addTab(self.check_missing_coords_text_edit, "")

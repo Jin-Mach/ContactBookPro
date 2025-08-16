@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTextEdit, QTabWidget
 
 from src.manual.utilities.set_tab_texts import apply_tab_texts
+from src.manual.utilities.set_text_edit import set_text_edit_state
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -19,6 +21,8 @@ class ManualContactsWidget(QWidget):
         tab_widgets = [self.add_update_contact_text_edit, self.delete_contacts_text_edit, self.search_contacts_text_edit,
                        self.context_menu_text_edit]
         apply_tab_texts(self.objectName(), self.manual_contacts_tab_widget, tab_widgets, self)
+        set_text_edit_state(tab_widgets, self)
+        LanguageProvider.get_manual_text(tab_widgets)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -26,20 +30,12 @@ class ManualContactsWidget(QWidget):
         self.manual_contacts_tab_widget.currentChanged.connect(self.set_tree_item)
         self.add_update_contact_text_edit = QTextEdit()
         self.add_update_contact_text_edit.setObjectName("addUpdateContactsTextEdit")
-        self.add_update_contact_text_edit.setReadOnly(True)
-        self.add_update_contact_text_edit.setText("add/edit")
         self.delete_contacts_text_edit = QTextEdit()
         self.delete_contacts_text_edit.setObjectName("deleteContactsTextEdit")
-        self.delete_contacts_text_edit.setReadOnly(True)
-        self.delete_contacts_text_edit.setText("delete")
         self.search_contacts_text_edit = QTextEdit()
         self.search_contacts_text_edit.setObjectName("searchContactsTextEdit")
-        self.search_contacts_text_edit.setReadOnly(True)
-        self.search_contacts_text_edit.setText("search")
         self.context_menu_text_edit = QTextEdit()
         self.context_menu_text_edit.setObjectName("contextMenuTextEdit")
-        self.context_menu_text_edit.setReadOnly(True)
-        self.context_menu_text_edit.setText("context menu")
         self.manual_contacts_tab_widget.addTab(self.add_update_contact_text_edit, "")
         self.manual_contacts_tab_widget.addTab(self.delete_contacts_text_edit, "")
         self.manual_contacts_tab_widget.addTab(self.search_contacts_text_edit, "")

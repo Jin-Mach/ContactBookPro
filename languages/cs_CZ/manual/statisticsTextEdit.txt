@@ -1,0 +1,37 @@
+Aplikace nabízí přehled statistik kontaktů, rozdělený do několika záložek, které vizualizují různé aspekty databáze pomocí grafů.
+
+Základní statistiky
+Koláčový graf zobrazuje rozdělení kontaktů podle pohlaví.
+Sloupcový graf ukazuje rozdělení kontaktů podle vztahu.
+Sloupcový graf zobrazuje nejčastější města kontaktů.
+
+Pracovní statistiky
+Dva koláčové grafy zobrazují procentuální vyplnění nepovinných polí E-mail a Telefon.
+Sloupcový graf ukazuje počet kontaktů podle měst založený na pracovních údajích.
+
+Sociální statistiky
+Sloupcový graf, kde každý sloupec je rozdělen na dvě části – počet vyplněných a nevyplněných záznamů pro jednotlivé sociální sítě.
+
+Systémová statistika
+Horní vodorovný sloupcový graf zobrazuje procentuální zaplnění celé databáze – poměr všech možných polí vůči počtu vyplněných.
+Spodní vodorovný sloupcový graf ukazuje totéž pro jednotlivé tabulky databáze.
+
+Po přidání, úpravě nebo smazání kontaktu je uživatel o změně informován krátkým oznámením v dolní části aplikace.Aplikace nabízí přehled statistik kontaktů, rozdělený do několika záložek, které vizualizují různé aspekty databáze pomocí grafů.
+
+Základní statistiky
+Koláčový graf zobrazuje rozdělení kontaktů podle pohlaví.
+Sloupcový graf ukazuje rozdělení kontaktů podle vztahu.
+Sloupcový graf zobrazuje nejčastější města kontaktů.
+
+Pracovní statistiky
+Dva koláčové grafy zobrazují procentuální vyplnění nepovinných polí E-mail a Telefon.
+Sloupcový graf ukazuje počet kontaktů podle měst založený na pracovních údajích.
+
+Sociální statistiky
+Sloupcový graf, kde každý sloupec je rozdělen na dvě části – počet vyplněných a nevyplněných záznamů pro jednotlivé sociální sítě.
+
+Systémová statistika
+Horní vodorovný sloupcový graf zobrazuje procentuální zaplnění celé databáze – poměr všech možných polí vůči počtu vyplněných.
+Spodní vodorovný sloupcový graf ukazuje totéž pro jednotlivé tabulky databáze.
+
+Po přidání úpravě nebo smazání kontaktu je uživatel o změně informován krátkým oznámením v dolní části aplikace.

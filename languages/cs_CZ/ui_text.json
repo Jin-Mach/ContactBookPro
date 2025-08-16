@@ -175,7 +175,7 @@
       "export": ["Export", ["Export do CSV", "Export do Excelu", "Export do vCard"]],
       "preview": ["Náhled", ["PDF", "QR kód"]],
       "check": ["Kontrola kontaktů", ["Kontrola narozenin", "Kontrola duplicit", "Kontrola souřadnic"]],
-      "map": ["Mapa", ["Zobrazení kontaktů"]],
+      "map": ["Mapa", ["Mapa kontaktů"]],
       "statistics": ["Statistika", ["Zobrazení statistik"]]
     }
   },
@@ -206,16 +206,16 @@
       "qrCodePreviewTextEdit": "QR kód"
     }
   },
-  "manualMapWidget": {
-    "tabTexts": {
-      "mapTextEdit": "Zobrazení kontaktů"
-    }
-  },
   "manualCheckWidget": {
     "tabTexts": {
       "checkBirthdayTextEdit": "Kontrola narozeni",
       "checkDuplicityTextEdit": "Kontrola duplicit",
       "checkMissingCoordsTextEdit": "Kontrola souřadnic"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Mapa kontaktů"
     }
   },
   "manualStatisticsWidget": {

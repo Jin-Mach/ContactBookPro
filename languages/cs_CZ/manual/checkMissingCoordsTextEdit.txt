@@ -1,0 +1,11 @@
+Aplikace umožňuje zkontrolovat kontakty bez vyplněných souřadnic.¨
+
+Kontrola projde všechny kontakty a vybere ty, u kterých chybí zeměpisné souřadnice dle zadané adresy.
+Na konci se zobrazí buď oznámení, že žádný kontakt neodpovídá kritériím, nebo dialog se seznamem nalezených kontaktů.
+V dialogu lze přejít na vybraný kontakt, čímž se nastaví filtr na tento kontakt.
+
+Kontrola probíhá na pozadí, takže aplikaci lze během ní dál používat.
+
+Uživatel je o dokončení informován dialogem s výsledkem.
+
+Poznámka: Kontrola probíhá pouze při aktivním připojení k internetu.

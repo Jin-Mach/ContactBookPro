@@ -1,0 +1,11 @@
+Aplikace umožňuje zobrazit mapu kontaktů, které mají platné zeměpisné souřadnice.
+
+Na mapě jsou jednotlivé kontakty zobrazeny jako markery.
+Po kliknutí na marker se zobrazí základní informace o kontaktu – jméno, e-mail a telefonní číslo.
+Mapu lze přibližovat, oddalovat a posouvat. Nad mapou je zobrazen počet aktuálně zobrazených kontaktů a celkový počet všech kontaktů v databázi.
+
+Po každém přidání, úpravě nebo smazání kontaktu, pokud došlo ke změně povinné adresy, je mapa automaticky aktualizována a uživatel je o tom informován krátkým oznámením.
+
+Pokud žádný kontakt nemá souřadnice, nebo není k dispozici internetové připojení, místo mapy se zobrazí oznámení s informací o této situaci.
+
+Poznámka: Mapa funguje pouze při aktivním připojení k internetu.

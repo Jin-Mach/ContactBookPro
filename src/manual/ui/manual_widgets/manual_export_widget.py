@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget, QTextEdit
 
 from src.manual.utilities.set_tab_texts import apply_tab_texts
+from src.manual.utilities.set_text_edit import set_text_edit_state
+from src.utilities.language_provider import LanguageProvider
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -18,6 +20,8 @@ class ManualExportWidget(QWidget):
         self.setLayout(self.create_gui())
         tab_widgets = [self.csv_export_text_edit, self.excel_export_text_edit, self.vcard_export_text_edit]
         apply_tab_texts(self.objectName(), self.manual_export_tab_widget, tab_widgets, self)
+        set_text_edit_state(tab_widgets, self)
+        LanguageProvider.get_manual_text(tab_widgets)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -25,16 +29,10 @@ class ManualExportWidget(QWidget):
         self.manual_export_tab_widget.currentChanged.connect(self.set_tree_item)
         self.csv_export_text_edit = QTextEdit()
         self.csv_export_text_edit.setObjectName("csvExportTextEdit")
-        self.csv_export_text_edit.setReadOnly(True)
-        self.csv_export_text_edit.setText("csv")
         self.excel_export_text_edit = QTextEdit()
         self.excel_export_text_edit.setObjectName("excelExportTextEdit")
-        self.excel_export_text_edit.setReadOnly(True)
-        self.excel_export_text_edit.setText("excel")
         self.vcard_export_text_edit = QTextEdit()
         self.vcard_export_text_edit.setObjectName("vcardExportTextEdit")
-        self.vcard_export_text_edit.setReadOnly(True)
-        self.vcard_export_text_edit.setText("vcard")
         self.manual_export_tab_widget.addTab(self.csv_export_text_edit, "")
         self.manual_export_tab_widget.addTab(self.excel_export_text_edit, "")
         self.manual_export_tab_widget.addTab(self.vcard_export_text_edit, "")
