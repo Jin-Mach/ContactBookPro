@@ -8,6 +8,7 @@ from src.utilities.logger_provider import get_logger
 class BasicSetupProvider:
     default_path = pathlib.Path(__file__).parents[2]
     default_path.mkdir(parents=True, exist_ok=True)
+    supported_languages = ["cs_CZ"]
     missing_urls = []
 
     @staticmethod
@@ -16,21 +17,23 @@ class BasicSetupProvider:
                           "language_setup.json", "menu_text.json", "preview_dialog_text.json", "search_dialog_text.json",
                           "statustips_text.json", "tooltips_text.json", "ui_text.json", "user_filters_dialog_text.json"]
         json_files_path = BasicSetupProvider.default_path.joinpath("languages")
+        json_files_path.mkdir(parents=True, exist_ok=True)
         json_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
         missing_json_urls = {}
         try:
-            if json_files_path.exists() and json_files_path.is_dir():
-                for language_dir in json_files_path.iterdir():
-                    if language_dir.is_dir():
-                        json_files = language_dir.glob("*.json")
-                        json_list = []
-                        for file in json_files:
-                            file_name = pathlib.Path(file).name
-                            json_list.append(file_name)
-                        for file in required_files:
-                            if file not in json_list:
-                                file_url = f"{json_url}/{language_dir.name}/{file}"
-                                missing_json_urls[file_url] = language_dir.joinpath(file)
+            for language in BasicSetupProvider.supported_languages:
+                language_dir = json_files_path.joinpath(language)
+                language_dir.mkdir(parents=True, exist_ok=True)
+                if language_dir.is_dir():
+                    json_files = language_dir.glob("*.json")
+                    json_list = []
+                    for file in json_files:
+                        file_name = pathlib.Path(file).name
+                        json_list.append(file_name)
+                    for file in required_files:
+                        if file not in json_list:
+                            file_url = f"{json_url}/{language_dir.name}/{file}"
+                            missing_json_urls[file_url] = language_dir.joinpath(file)
             return missing_json_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)
@@ -165,9 +168,38 @@ class BasicSetupProvider:
             return {}
 
     @staticmethod
+    def check_manual_files() -> dict:
+        required_files = [
+            "aboutApplicationTextEdit.txt", "addUpdateContactsTextEdit.txt", "checkBirthdayTextEdit.txt",
+            "checkDuplicityTextEdit.txt", "checkMissingCoordsTextEdit.txt", "contextMenuTextEdit.txt",
+            "csvExportTextEdit.txt", "deleteContactsTextEdit.txt", "excelExportTextEdit.txt",
+            "mapTextEdit.txt", "pdfPreviewTextEdit.txt", "qrCodePreviewTextEdit.txt", "searchContactsTextEdit.txt",
+            "statisticsTextEdit.txt", "usageApplicationTextEdit.txt", "vcardExportTextEdit.txt"
+        ]
+        txt_file_path = BasicSetupProvider.default_path.joinpath("languages")
+        txt_file_path.mkdir(parents=True, exist_ok=True)
+        txt_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
+        missing_txt_urls = {}
+
+        try:
+            for language in BasicSetupProvider.supported_languages:
+                manual_dir_path = txt_file_path.joinpath(language, "manual")
+                manual_dir_path.mkdir(parents=True, exist_ok=True)
+                txt_files = manual_dir_path.glob("*.txt")
+                txt_list = [file.name for file in txt_files]
+                for file in required_files:
+                    if file not in txt_list:
+                        file_url = f"{txt_url}/{language}/manual/{file}"
+                        missing_txt_urls[file_url] = manual_dir_path.joinpath(file)
+            return missing_txt_urls
+        except Exception as e:
+            BasicSetupProvider.write_log_exception(e)
+            return {}
+
+    @staticmethod
     def download_files() -> bool:
         missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files(),
-                         BasicSetupProvider.check_font_files()]
+                         BasicSetupProvider.check_font_files(), BasicSetupProvider.check_manual_files()]
         download_files = {}
         for files in missing_files:
             if files:
