@@ -137,25 +137,34 @@ class LanguageProvider:
                 if language.is_dir():
                     with open(language.joinpath("language_setup.json"), "r", encoding="utf-8") as file:
                         language_text = json.load(file)
-                    language_dict[language.name] = list(language_text.values())[0]
+                language_dict[language.name] = list(language_text.values())[0]
             return language_dict
         except Exception as e:
             LanguageProvider.write_log_exception(e)
             return None
 
     @staticmethod
-    def get_manual_text(text_edit_list: list[QTextEdit]) -> None:
+    def get_document_text(folder: str, text_edit_names: list[str]):
+        document_dict = {}
         try:
-            path = LanguageProvider.language_path.joinpath(LanguageProvider.language_code, "manual")
+            extension = {
+                "manual": ".txt",
+                "about": ".html"
+            }
+            file_type = extension.get(folder, "")
+            if not file_type:
+                return document_dict
+            path = LanguageProvider.language_path.joinpath(LanguageProvider.language_code, folder)
             if path.exists():
-                for text_edit in text_edit_list:
-                    text_path = path.joinpath(f"{text_edit.objectName()}.txt")
-                    if text_path.exists():
-                        with open(text_path, "r", encoding="utf-8") as file:
-                            text = file.read()
-                            text_edit.setPlainText(text)
+                for text_edit in text_edit_names:
+                    text_path = path.joinpath(f"{text_edit}{file_type}")
+                    with open(text_path, "r", encoding="utf-8") as file:
+                        text = file.read()
+                        document_dict[text_edit] = text
+            return document_dict
         except Exception as e:
             LanguageProvider.write_log_exception(e)
+        return document_dict
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:

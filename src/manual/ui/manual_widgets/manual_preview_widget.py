@@ -3,8 +3,7 @@ from typing import TYPE_CHECKING
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget, QTextEdit
 
 from src.manual.utilities.set_tab_texts import apply_tab_texts
-from src.manual.utilities.set_text_edit import set_text_edit_state
-from src.utilities.language_provider import LanguageProvider
+from src.manual.utilities.set_text_edits import initialize_text_edits
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -20,8 +19,7 @@ class ManualPreviewWidget(QWidget):
         self.setLayout(self.create_gui())
         tab_widgets = [self.pdf_text_edit, self.qr_code_text_edit]
         apply_tab_texts(self.objectName(), self.manual_preview_tab_widget, tab_widgets, self)
-        set_text_edit_state(tab_widgets, self)
-        LanguageProvider.get_manual_text(tab_widgets)
+        initialize_text_edits(tab_widgets, self)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()

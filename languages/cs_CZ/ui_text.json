@@ -5,6 +5,7 @@
     "mainWindowMapButton": "Mapa",
     "mainWindowStatisticsButton": "Statistika",
     "mainWindowManualButton": "Nápověda",
+    "mainWindowAboutButton": "O aplikaci",
     "messageboxTitle": "Zavřít aplikaci",
     "messageboxText": "Zavřít aplikaci?\nANO/NE",
     "close": "Zavřít",
@@ -222,5 +223,8 @@
     "tabTexts": {
       "statisticsTextEdit": "Zobrazení statistik"
     }
+  },
+  "aboutApplicationDialog": {
+    "aboutTitle": "O aplikaci"
   }
 }

@@ -16,6 +16,7 @@ def create_application() -> None:
     if not application_init(application):
         result = DialogsProvider.show_init_error_dialog("Loading error",
                                                          "Critical error: Failed to load files from the GitHub repository."
+                                                         "\nCheck your internet connection."
                                                          "\nThe application will close now.")
         if result == QDialog.DialogCode.Accepted or result == QDialog.DialogCode.Rejected:
             sys.exit(1)

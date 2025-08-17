@@ -5,6 +5,7 @@ from PyQt6.QtGui import QPixmap, QCloseEvent
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QLabel, \
     QSystemTrayIcon, QFrame
 
+from src.about.about_application_dialog import AboutApplicationDialog
 from src.application.main_window_widgets.button_widget import MainWindowButtonWidget
 from src.application.status_bar import StatusBar
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
@@ -41,6 +42,7 @@ class MainWindow(QMainWindow):
                                                        self.map_main_widget.map_controller, self.statistics_main_widget.statistics_controller)
         self.manual_main_widget = ManualMainWidget(self)
         self.setCentralWidget(self.create_gui())
+        self.buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button, self.about_button]
         self.set_icons()
         self.set_ui_text()
         self.set_tooltips_text()
@@ -73,6 +75,8 @@ class MainWindow(QMainWindow):
         self.statistics_button.setObjectName("mainWindowStatisticsButton")
         self.manual_button = MainWindowButtonWidget(lambda: self.changed_stack(3), self)
         self.manual_button.setObjectName("mainWindowManualButton")
+        self.about_button = MainWindowButtonWidget(lambda: self.changed_stack(4), self)
+        self.about_button.setObjectName("mainWindowAboutButton")
         self.stacked_widget = QStackedWidget()
         self.stacked_widget.setObjectName("mainWindowStackedWidget")
         self.stacked_widget.setContentsMargins(0, 0, 0, 0)
@@ -86,6 +90,7 @@ class MainWindow(QMainWindow):
         database_buttons_layout.addWidget(self.statistics_button)
         database_buttons_layout.addStretch()
         database_buttons_layout.addWidget(self.manual_button)
+        database_buttons_layout.addWidget(self.about_button)
         dock_layout.addWidget(MainWindow.create_image())
         dock_layout.addLayout(database_buttons_layout)
         dock_frame.setLayout(dock_layout)
@@ -96,8 +101,7 @@ class MainWindow(QMainWindow):
 
     def set_icons(self) -> None:
         try:
-            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
-            for button in buttons:
+            for button in self.buttons:
                 if button.objectName().endswith("Button"):
                     button.set_label_icon(button.objectName())
         except Exception as e:
@@ -106,11 +110,10 @@ class MainWindow(QMainWindow):
     def set_ui_text(self) -> None:
         try:
             self.ui_text = LanguageProvider.get_ui_text(self.objectName())
-            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
             if self.ui_text:
                 if "mainWindowTitle" in self.ui_text:
                     self.setWindowTitle(self.ui_text.get("mainWindowTitle", ""))
-                for button in buttons:
+                for button in self.buttons:
                     if button.objectName().endswith("Button") and button.objectName() in self.ui_text:
                         button.set_text(self.ui_text.get(button.objectName(), ""))
         except Exception as e:
@@ -119,9 +122,8 @@ class MainWindow(QMainWindow):
     def set_tooltips_text(self) -> None:
         try:
             tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-            buttons = [self.database_button, self.map_button, self.statistics_button, self.manual_button]
             if tooltips_text:
-                for button in buttons:
+                for button in self.buttons:
                     if button.objectName().endswith("Button") and button.objectName() in tooltips_text:
                         button.setToolTip(tooltips_text[button.objectName()])
                         button.setToolTipDuration(5000)
@@ -165,6 +167,9 @@ class MainWindow(QMainWindow):
             self.statistics_main_widget.statistics_tab_widget.setCurrentIndex(0)
         elif index == 3:
            self.manual_main_widget.set_manual_widget_to_default()
+        elif index == 4:
+            dialog = AboutApplicationDialog(self)
+            dialog.exec()
         self.stacked_widget.setCurrentIndex(index)
 
     @staticmethod

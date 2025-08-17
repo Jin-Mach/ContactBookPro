@@ -37,11 +37,11 @@ class BasicSetupProvider:
             return missing_json_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)
-            return {}
+            return missing_json_urls
 
     @staticmethod
     def check_icon_files() -> dict:
-        required_files = [
+        required_files = ["githubButton_icon.png",
             "clearFilterPushbutton_icon.png", "currentFilterButton_icon.png", "resetButton_icon.png",
             "addNewContactPushbutton_icon.png", "advancedSearchPushbutton_icon.png", "deleteAllContactsPushbutton_icon.png",
             "deleteContactPushbutton_icon.png", "resetFilterPushbutton_icon.png", "searchPushbutton_icon.png",
@@ -55,7 +55,7 @@ class BasicSetupProvider:
             "updateContactAction_icon.png", "dialogCalendarPushbutton_icon.png", "dialogGetPhotoPushbutton_icon.png",
             "dialogResetCalendarPushbutton_icon.png", "dialogResetPhotoButton_icon.png", "no_user_photo.png",
             "noContactImage.png", "deleteFilterButton_icon.png", "mainWindowLogo.png", "mainWindowManualButton_icon.png",
-            "mainWindowMapButton_icon.png",
+            "mainWindowMapButton_icon.png", "mainWindowAboutButton_icon.png",
             "mainWindowDatabaseButton_icon.png", "mainWindowStatisticsButton_icon.png", "pdfFitPageButton_icon.png",
             "pdfSaveAsButton_icon.png", "pdfZoomInButton_icon.png", "pdfZoomOutButton_icon.png", "female_icon.png",
             "male_icon.png", "window_icon.png", "splash_icon.png", "facebookPushbutton_icon.png", "githubPushbutton_icon.png",
@@ -63,6 +63,7 @@ class BasicSetupProvider:
             "deleteFilterPushbutton_icon.png"
         ]
         icon_folders = {
+            "githubButton_icon.png": "aboutApplicationDialog",
             "clearFilterPushbutton_icon.png": "advancedSearchDialog",
             "currentFilterButton_icon.png": "advancedSearchDialog",
             "resetButton_icon.png": "advancedSearchDialog",
@@ -105,6 +106,7 @@ class BasicSetupProvider:
             "mainWindowLogo.png": "mainWindow",
             "mainWindowManualButton_icon.png": "mainWindow",
             "mainWindowMapButton_icon.png": "mainWindow",
+            "mainWindowAboutButton_icon.png": "mainWindow",
             "mainWindowDatabaseButton_icon.png": "mainWindow",
             "mainWindowStatisticsButton_icon.png": "mainWindow",
             "pdfFitPageButton_icon.png": "pdfPreviewDialog",
@@ -143,7 +145,7 @@ class BasicSetupProvider:
             return missing_icons_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)
-            return {}
+            return missing_icons_urls
 
     @staticmethod
     def check_font_files() -> dict:
@@ -180,7 +182,6 @@ class BasicSetupProvider:
         txt_file_path.mkdir(parents=True, exist_ok=True)
         txt_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
         missing_txt_urls = {}
-
         try:
             for language in BasicSetupProvider.supported_languages:
                 manual_dir_path = txt_file_path.joinpath(language, "manual")
@@ -194,7 +195,29 @@ class BasicSetupProvider:
             return missing_txt_urls
         except Exception as e:
             BasicSetupProvider.write_log_exception(e)
-            return {}
+            return missing_txt_urls
+
+    @staticmethod
+    def check_about_files() -> dict:
+        required_files = ["aboutApplicationTextEdit.html"]
+        html_file_path = BasicSetupProvider.default_path.joinpath("languages")
+        html_file_path.mkdir(parents=True, exist_ok=True)
+        html_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
+        missing_html_urls = {}
+        try:
+            for language in BasicSetupProvider.supported_languages:
+                html_dir_path = html_file_path.joinpath(language, "about")
+                html_dir_path.mkdir(parents=True, exist_ok=True)
+                html_files = html_dir_path.glob("*.html")
+                html_list = [file.name for file in html_files]
+                for file in required_files:
+                    if file not in html_list:
+                        html_url = f"{html_url}/{language}/about/{file}"
+                        missing_html_urls[html_url] = html_dir_path.joinpath(file)
+            return missing_html_urls
+        except Exception as e:
+            BasicSetupProvider.write_log_exception(e)
+            return missing_html_urls
 
     @staticmethod
     def download_files() -> bool:

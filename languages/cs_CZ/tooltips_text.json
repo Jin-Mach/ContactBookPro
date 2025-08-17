@@ -3,7 +3,8 @@
     "mainWindowDatabaseButton": "Zobrazí databázi kontaktů",
     "mainWindowMapButton": "Zobrazí mapu kontaktů",
     "mainWindowStatisticsButton": "Zobrazí statistiky",
-    "mainWindowManualButton": "Zobrazí nápovědu"
+    "mainWindowManualButton": "Zobrazí nápovědu",
+    "mainWindowAboutButton": "Zobrazí informace o aplikaci"
   },
   "contactsToolbarWidget": {
     "addNewContactPushbutton": "Přidat kontakt do databáze",
@@ -81,5 +82,8 @@
     "pdfZoomOutButton": "Oddálit",
     "pdfFitPageButton": "Přizpůsobit stránce",
     "closeDialogButton": "Zavřít náhled"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Otevře projekt na GitHub."
   }
 }
