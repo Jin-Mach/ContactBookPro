@@ -60,7 +60,9 @@ class AboutApplicationDialog(QDialog):
             edit_names = [self.about_applicaton_text_edit.objectName()]
             text = LanguageProvider.get_document_text("about", edit_names)
             for text_edit in text_edits:
-                text_edit.setReadOnly(True)
                 text_edit.setHtml(text.get(text_edit.objectName(), ""))
+                text_edit.setStyleSheet("font: Arial; font-size: 15pt;")
+                text_edit.setReadOnly(True)
+                text_edit.setAlignment(Qt.AlignmentFlag.AlignCenter)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

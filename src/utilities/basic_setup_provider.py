@@ -9,7 +9,6 @@ class BasicSetupProvider:
     default_path = pathlib.Path(__file__).parents[2]
     default_path.mkdir(parents=True, exist_ok=True)
     supported_languages = ["cs_CZ"]
-    missing_urls = []
 
     @staticmethod
     def check_json_files() -> dict:
@@ -222,7 +221,8 @@ class BasicSetupProvider:
     @staticmethod
     def download_files() -> bool:
         missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files(),
-                         BasicSetupProvider.check_font_files(), BasicSetupProvider.check_manual_files()]
+                         BasicSetupProvider.check_font_files(), BasicSetupProvider.check_manual_files(),
+                         BasicSetupProvider.check_about_files()]
         download_files = {}
         for files in missing_files:
             if files:

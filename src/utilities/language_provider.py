@@ -3,7 +3,6 @@ import pathlib
 import sys
 
 from PyQt6.QtCore import QLocale
-from PyQt6.QtWidgets import QTextEdit
 
 from src.utilities.logger_provider import get_logger
 
@@ -137,7 +136,7 @@ class LanguageProvider:
                 if language.is_dir():
                     with open(language.joinpath("language_setup.json"), "r", encoding="utf-8") as file:
                         language_text = json.load(file)
-                language_dict[language.name] = list(language_text.values())[0]
+                    language_dict[language.name] = list(language_text.values())[0]
             return language_dict
         except Exception as e:
             LanguageProvider.write_log_exception(e)

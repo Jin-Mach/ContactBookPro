@@ -22,12 +22,14 @@ class DialogsProvider:
         text_label.setObjectName("errorTextLabel")
         text_label.setStyleSheet("font-size: 15pt; font-weight: bold;")
         text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
-        button_box.accepted.connect(dialog.accept)
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+        close_button = button_box.button(button_box.StandardButton.Close)
+        close_button.setObjectName("closeButton")
+        button_box.rejected.connect(dialog.reject)
         main_layout.addWidget(text_label)
         main_layout.addWidget(button_box)
         dialog.setLayout(main_layout)
-        DialogsProvider.get_ui_text(dialog, [text_label], error_message)
+        DialogsProvider.get_ui_text([text_label, close_button], error_message)
         return dialog.exec()
 
     @staticmethod
@@ -65,7 +67,7 @@ class DialogsProvider:
         main_layout.addWidget(text_label)
         main_layout.addWidget(button_box)
         dialog.setLayout(main_layout)
-        DialogsProvider.get_ui_text(dialog, [text_label, close_button], db_error)
+        DialogsProvider.get_ui_text([text_label, close_button], db_error)
         return dialog.exec()
 
     @staticmethod
@@ -107,12 +109,10 @@ class DialogsProvider:
             ErrorHandler.exception_handler(e, dialog)
 
     @staticmethod
-    def get_ui_text(dialog: QDialog, widgets: list[QWidget], error_message: str, parent=None) -> None:
+    def get_ui_text(widgets: list[QWidget], error_message: str, parent=None) -> None:
         try:
             ui_text = LanguageProvider.get_dialog_text(DialogsProvider.class_name)
             if ui_text:
-                if "dialogTitle" in ui_text:
-                    dialog.setWindowTitle(ui_text.get("dialogTitle", ""))
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):

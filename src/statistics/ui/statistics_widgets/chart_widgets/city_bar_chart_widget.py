@@ -65,9 +65,9 @@ class CityBarChartWidget(QWidget):
             sizes = []
             labels = []
             colors = ["#ff6f61", "#fbc02d", "#4db6ac", "#64b5f6", "#81c784"]
-            main = 4
+            main = 5
             if self.column_name == "work":
-                main = 3
+                main = 4
             top_items = sorted_data[:main]
             others_items = sorted_data[main:]
             for label, size in top_items:

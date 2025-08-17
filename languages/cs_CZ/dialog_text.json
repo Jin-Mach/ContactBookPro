@@ -1,6 +1,6 @@
 {
   "dialogsProvider": {
-    "dialogTitle": "Chyba...",
+    "closeButton": "Zavřít",
     "errorTextLabel": "Chyba:",
     "databaseErrorTextLabel": "Chyba databáze.",
     "databaseCloseButton": "Zavřít"
@@ -12,6 +12,7 @@
     "cancelContactButton": "Zrušit",
     "deleteAllContactsDialog": "Smazat všechny kontakty",
     "deleteAllContactsTextLabel": "Opravdu smazat všechny kontakty?\nPro potvrzení napiš:\nSMAZAT",
+    "deleteWordError": "Zadané slovo nesouhlasí.\nZkuste to znovu.",
     "deleteFiltersCheckboxTextLabel": "Smazat uložené filtry?",
     "deleteAllContactsButton": "Smazat vše",
     "cancelAllContactsButton": "Zrušit"

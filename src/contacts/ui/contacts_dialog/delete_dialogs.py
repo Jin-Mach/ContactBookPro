@@ -1,13 +1,14 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QLineEdit, QPushButton, QCheckBox, \
-    QHBoxLayout
+    QHBoxLayout, QWidget
 
+from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyUnresolvedReferences,PyTypeChecker
+# noinspection PyUnresolvedReferences,PyTypeChecker,PyUnreachableCode
 class DeleteDialogs:
     class_name = "deleteDialogWidgets"
 
@@ -71,7 +72,7 @@ class DeleteDialogs:
         return dialog
 
     @staticmethod
-    def set_ui_text(dialog_widget: QDialog, labels: list[QLabel], button_box: QDialogButtonBox, parent=None,
+    def set_ui_text(dialog_widget: QDialog, labels: list[QWidget], button_box: QDialogButtonBox, parent=None,
                     first_name: str = None, second_name: str = None) -> None:
         try:
             ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
@@ -83,12 +84,15 @@ class DeleteDialogs:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QDialog):
                             widget.setWindowTitle(ui_text.get(widget.objectName(), ""))
-                        elif isinstance(widget, (QLabel, QPushButton)):
-                            if isinstance(widget, QLabel) and widget.objectName() == "deleteContactTextLabel" and first_name and second_name:
-                                widget.setText(f"{ui_text.get(widget.objectName(), "")}<br><br><b>{first_name} {second_name}</b>")
+                        elif isinstance(widget, QLabel):
+                            if widget.objectName() == "deleteContactTextLabel"  and first_name and second_name:
+                                widget.setText(
+                                    f"{ui_text.get(widget.objectName(), "")}<br><br><b>{first_name} {second_name}</b>")
                                 widget.setTextFormat(Qt.TextFormat.RichText)
                             else:
                                 widget.setText(ui_text.get(widget.objectName(), ""))
+                        elif isinstance(widget, QPushButton):
+                            widget.setText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)
 
@@ -101,5 +105,8 @@ class DeleteDialogs:
                     delete_word = ui_text.get(label.objectName(), "")
                     if line_edit.text().strip().upper() == delete_word.split(":")[-1].strip().upper():
                         dialog.accept()
+                    else:
+                        DialogsProvider.show_error_dialog(ui_text.get("deleteWordError", ""), dialog)
+                        line_edit.setFocus()
         except Exception as e:
             ErrorHandler.exception_handler(e)
