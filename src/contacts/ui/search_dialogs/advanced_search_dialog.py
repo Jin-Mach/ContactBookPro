@@ -10,7 +10,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class AdvancedSearchDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)

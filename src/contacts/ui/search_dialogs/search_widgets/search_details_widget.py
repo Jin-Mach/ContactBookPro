@@ -4,7 +4,7 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QComboBox, QLineEdit, QHBoxLayout, QPushButton, \
     QTextEdit
 
-from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineEdit
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.contacts.utilities.optimalize_data import normalize_input
 from src.utilities.error_handler import ErrorHandler
@@ -31,21 +31,21 @@ class SearchDetailsWidget(QWidget):
         self.search_photo_combobox.setFixedWidth(200)
         self.search_title_text_label = QLabel()
         self.search_title_text_label.setObjectName("searchTitleTextLabel")
-        self.search_title_edit = ValidatedLineedit(self)
+        self.search_title_edit = ValidatedLineEdit(self)
         self.search_title_edit.setObjectName("searchTitleEdit")
         self.search_title_operator = QComboBox()
         self.search_title_operator.setObjectName("searchTitleOperator")
         self.search_title_operator.setFixedWidth(self.operator_width)
         self.search_birthday_text_label = QLabel()
         self.search_birthday_text_label.setObjectName("searchBirthdayTextLabel")
-        self.search_birthday_edit = ValidatedLineedit(self)
+        self.search_birthday_edit = ValidatedLineEdit(self)
         self.search_birthday_edit.setObjectName("searchBirthdayEdit")
         self.search_birthday_operator = QComboBox()
         self.search_birthday_operator.setObjectName("searchBirthdayOperator")
         self.search_birthday_operator.setFixedWidth(self.operator_width)
         self.search_notes_text_label = QLabel()
         self.search_notes_text_label.setObjectName("searchNotesTextLabel")
-        self.search_notes_edit = ValidatedLineedit(self)
+        self.search_notes_edit = ValidatedLineEdit(self)
         self.search_notes_edit.setObjectName("searchNotesEdit")
         self.search_notes_operator = QComboBox()
         self.search_notes_operator.setObjectName("searchNotesOperator")

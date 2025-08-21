@@ -10,10 +10,10 @@ control_keys = [Qt.Key.Key_Backspace, Qt.Key.Key_Delete, Qt.Key.Key_Left, Qt.Key
                 Qt.Key.Key_Home, Qt.Key.Key_End, Qt.Key.Key_Tab, Qt.Key.Key_Return, Qt.Key.Key_Enter, Qt.Key.Key_Escape]
 
 
-class ValidatedLineedit(QLineEdit):
+class ValidatedLineEdit(QLineEdit):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("validatedLineedit")
+        self.setObjectName("validatedLineEdit")
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         self.parent = parent
         self.tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())

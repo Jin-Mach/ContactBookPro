@@ -4,7 +4,7 @@ from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QMainWindow
 
 from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
-from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusBarWidget
 from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
 from src.contacts.ui.main_widgets.contacts_toolbar_widget import ContactsToolbarWidget
 from src.database.models.completer_model import CompleterModel
@@ -35,7 +35,7 @@ class ContactsMainWidget(QWidget):
         self.info_model = InfoModel(self.db_connection)
         self.completer_model = CompleterModel(self.db_connection)
         self.contacts_detail_widget = ContactsDetailWidget(self)
-        self.contacts_statusbar_widget = ContactsStatusbarWidget(self.mandatory_model.rowCount(), self)
+        self.contacts_statusbar_widget = ContactsStatusBarWidget(self.mandatory_model.rowCount(), self)
         self.contacts_tableview_widget = ContactsTableviewWidget(self.mandatory_model, self.contacts_detail_widget,
                                                                  self.contacts_statusbar_widget, self)
         self.contacts_toolbar_widget = ContactsToolbarWidget(main_window, self.db_connection, self.mandatory_model, self.work_model,

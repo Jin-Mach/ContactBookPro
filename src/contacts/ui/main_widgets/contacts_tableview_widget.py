@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QTableView, QHeaderView, QWidget, QAbstractItemView
 
 from src.contacts.controlers.contact_data_controller import ContactDataController
 from src.contacts.controlers.context_menu_controllers.check_birthday_controller import CheckBirthdayController
-from src.contacts.controlers.context_menu_controllers.check_coords_controller import CheckCoordsController
+from src.contacts.controlers.context_menu_controllers.check_coords_controller import CheckCoordinatesController
 from src.contacts.controlers.context_menu_controllers.check_duplicates_controller import CheckDuplicatesController
 from src.contacts.controlers.context_menu_controllers.csv_export_controller import CsvExportController
 from src.contacts.controlers.context_menu_controllers.excel_export_controller import ExcelExportController
@@ -57,7 +57,7 @@ class ContactsTableviewWidget(QTableView):
         pdf_export_controller = PdfExportController(connection, self)
         check_birthday_controller = CheckBirthdayController(connection, self.mandatory_model, self, self.status_bar)
         check_duplicates_controller = CheckDuplicatesController(connection, self.mandatory_model, self, self.status_bar)
-        check_coords_controller = CheckCoordsController(connection, self.mandatory_model, self, self.status_bar)
+        check_coords_controller = CheckCoordinatesController(connection, self.mandatory_model, self, self.status_bar)
         self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
                                         pdf_export_controller, check_birthday_controller, check_duplicates_controller,
                                         check_coords_controller, self)

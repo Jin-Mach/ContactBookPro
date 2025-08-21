@@ -41,7 +41,7 @@ if TYPE_CHECKING:
 class ContactsController:
     def __init__(self, main_window: QMainWindow, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel",
                  work_model: "WorkModel", social_model: "SocialModel", detail_model: "DetailModel", info_model: "InfoModel",
-                 detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_statusbar: "ContactsStatusbarWidget",
+                 detail_widget: "ContactsDetailWidget", table_view: "ContactsTableviewWidget", contacts_status_bar: "ContactsStatusbarWidget",
                  map_controller: "MapController", statistics_controller: "StatisticsController", parent=None) -> None:
         self.main_window = main_window
         self.db_connection = db_connection
@@ -52,54 +52,67 @@ class ContactsController:
         self.info_model = info_model
         self.detail_widget = detail_widget
         self.table_view = table_view
-        self.contacts_statusbar = contacts_statusbar
+        self.contacts_status_bar = contacts_status_bar
         self.map_controller = map_controller
         self.statistics_controller = statistics_controller
         self.parent = parent
         self.signal_provider = SignalProvider()
-        self.error_text = LanguageProvider.get_error_text("widgetErrors")
         self.table_view.doubleClicked.connect(self.update_contact)
         self.signal_provider.contact_coordinates.connect(self.on_location_updated)
         QTimer.singleShot(5 * 60 * 1000, self.update_locations)
 
     def on_location_updated(self, contact_id: int, coords: tuple[float, float]) -> None:
-        self.info_model.update_location_data(contact_id, coords)
-        self.map_controller.create_map()
-        self.statistics_controller.set_data()
+        try:
+            self.info_model.update_location_data(contact_id, coords)
+            self.map_controller.create_map()
+            self.statistics_controller.set_data()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
-        if not self.table_view.selectionModel().hasSelection():
-            DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""), self.parent)
-            return None
-        index = self.table_view.selectionModel().currentIndex()
-        if not index.isValid():
-            DialogsProvider.show_error_dialog(self.error_text.get("indexError", ""), self.parent)
-            return None
-        id_data = self.mandatory_model.index(index.row(), 0)
-        contact_id = self.mandatory_model.data(id_data)
-        contact_data = RowDataProvider.return_row_data(self.db_connection, contact_id)
-        return index, contact_id, contact_data
+        try:
+            error_text = LanguageProvider.get_error_text("widgetErrors")
+            if not self.table_view.selectionModel().hasSelection():
+                DialogsProvider.show_error_dialog(error_text.get("noTableviewSelection", ""), self.parent)
+                return None
+            index = self.table_view.selectionModel().currentIndex()
+            if not index.isValid():
+                DialogsProvider.show_error_dialog(error_text.get("indexError", ""), self.parent)
+                return None
+            id_data = self.mandatory_model.index(index.row(), 0)
+            contact_id = self.mandatory_model.data(id_data)
+            contact_data = RowDataProvider.return_row_data(self.db_connection, contact_id)
+            return index, contact_id, contact_data
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def refresh_ui(self) -> None:
         refresh_models([
             self.mandatory_model, self.work_model, self.social_model,
             self.detail_model, self.info_model
         ])
-        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
-        self.detail_widget.reset_data()
+        try:
+            self.contacts_status_bar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
+            self.detail_widget.reset_data()
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
 
     def check_duplicates(self, contact_id: int | None, first_name: str, last_name: str) -> bool:
-        duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
-        if duplicity:
-            dialog = ContactsListDialog(duplicity, "validation", self.parent)
-            if dialog.exec() == QDialog.DialogCode.Rejected:
-                if dialog.result_code == "rejected":
+        try:
+            duplicity = QueryProvider.create_check_duplicate_query(self.db_connection, contact_id, first_name, last_name)
+            if duplicity:
+                dialog = ContactsListDialog(duplicity, "validation", self.parent)
+                if dialog.exec() == QDialog.DialogCode.Rejected:
+                    if dialog.result_code == "rejected":
+                        return False
+                    elif dialog.result_code == "jump_to_contact" and dialog.selected_id:
+                        show_selected_contact(self.mandatory_model, self.table_view, self.contacts_status_bar,
+                                              dialog.selected_id)
                     return False
-                elif dialog.result_code == "jump_to_contact" and dialog.selected_id:
-                    show_selected_contact(self.mandatory_model, self.table_view, self.contacts_statusbar,
-                                          dialog.selected_id)
-                return False
-        return True
+            return True
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self.parent)
+            return True
 
     def add_new_contact(self) -> None:
         try:

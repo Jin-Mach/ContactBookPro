@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
                              QLineEdit, QTextEdit)
 
 from src.contacts.ui.contacts_dialog.calendar_dialog import CalendarDialog
-from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineEdit
 from src.contacts.utilities.blob_handler import BlobHandler
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.contact_validator import ContactValidator
@@ -50,12 +50,12 @@ class PersonalDetailsWidget(QWidget):
         title_date_layout = QFormLayout()
         self.dialog_title_text_label = QLabel()
         self.dialog_title_text_label.setObjectName("dialogTitleTextLabel")
-        self.dialog_title_edit = ValidatedLineedit(self)
+        self.dialog_title_edit = ValidatedLineEdit(self)
         self.dialog_title_edit.setObjectName("dialogTitleEdit")
         self.dialog_title_edit.setFixedWidth(200)
         self.dialog_birthday_text_label = QLabel()
         self.dialog_birthday_text_label.setObjectName("dialogBirthdayTextLabel")
-        self.dialog_birthday_edit = ValidatedLineedit(self)
+        self.dialog_birthday_edit = ValidatedLineEdit(self)
         self.dialog_birthday_edit.setObjectName("dialogBirthdayEdit")
         self.dialog_birthday_edit.setFixedWidth(200)
         self.dialog_birthday_edit.setReadOnly(True)

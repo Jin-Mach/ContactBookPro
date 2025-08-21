@@ -73,7 +73,7 @@
     "cancelButtonContextBirthday": "Zavře dialog",
     "cancelButtonContextDuplicity": "Zavře dialog"
   },
-  "validatedLineedit": {
+  "validatedLineEdit": {
     "invalidChar": "Nepovolený znak:"
   },
   "pdfPreviewDialog": {

@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
-from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineEdit
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.utilities.dialogs_provider import DialogsProvider
@@ -8,6 +8,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class SocialNetworkWidget(QWidget):
     def __init__(self, main_tab: QTabWidget, non_mandatory_tab: QTabWidget, parent=None) -> None:
         super().__init__(parent)
@@ -23,27 +24,27 @@ class SocialNetworkWidget(QWidget):
         main_layout = QFormLayout()
         self.dialog_facebook_url_text_label = QLabel()
         self.dialog_facebook_url_text_label.setObjectName("dialogFacebookUrlTextLabel")
-        self.dialog_facebook_url_edit = ValidatedLineedit(self)
+        self.dialog_facebook_url_edit = ValidatedLineEdit(self)
         self.dialog_facebook_url_edit.setObjectName("dialogFacebookUrlEdit")
         self.dialog_x_url_text_label = QLabel()
         self.dialog_x_url_text_label.setObjectName("dialogXUrlTextLabel")
-        self.dialog_x_url_edit = ValidatedLineedit(self)
+        self.dialog_x_url_edit = ValidatedLineEdit(self)
         self.dialog_x_url_edit.setObjectName("dialogXUrlEdit")
         self.dialog_instagram_url_text_label = QLabel()
         self.dialog_instagram_url_text_label.setObjectName("dialogInstagramUrlTextLabel")
-        self.dialog_instagram_url_edit = ValidatedLineedit(self)
+        self.dialog_instagram_url_edit = ValidatedLineEdit(self)
         self.dialog_instagram_url_edit.setObjectName("dialogInstagramUrlEdit")
         self.dialog_linkedin_url_text_label = QLabel()
         self.dialog_linkedin_url_text_label.setObjectName("dialogLinkedinUrlTextLabel")
-        self.dialog_linkedin_url_edit = ValidatedLineedit(self)
+        self.dialog_linkedin_url_edit = ValidatedLineEdit(self)
         self.dialog_linkedin_url_edit.setObjectName("dialogLinkedinUrlEdit")
         self.dialog_github_url_text_label = QLabel()
         self.dialog_github_url_text_label.setObjectName("dialogGithubUrlTextLabel")
-        self.dialog_github_url_edit = ValidatedLineedit(self)
+        self.dialog_github_url_edit = ValidatedLineEdit(self)
         self.dialog_github_url_edit.setObjectName("dialogGithubUrlEdit")
         self.dialog_website_url_text_label = QLabel()
         self.dialog_website_url_text_label.setObjectName("dialogWebsiteUrlTextLabel")
-        self.dialog_website_url_edit = ValidatedLineedit(self)
+        self.dialog_website_url_edit = ValidatedLineEdit(self)
         self.dialog_website_url_edit.setObjectName("dialogWebsiteUrlEdit")
         widgets = [
             (self.dialog_facebook_url_text_label, self.dialog_facebook_url_edit),

@@ -5,10 +5,10 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-class ContactsStatusbarWidget(QWidget):
+class ContactsStatusBarWidget(QWidget):
     def __init__(self, contacts_count: int, parent=None) -> None:
         super().__init__(parent)
-        self.setObjectName("contactsStatusbarWidget")
+        self.setObjectName("contactsStatusBarWidget")
         self.contacts_total_count = contacts_count
         self.setLayout(self.create_gui())
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())

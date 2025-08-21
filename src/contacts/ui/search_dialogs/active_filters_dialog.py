@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.search_dialogs.search_widgets.search_non_mandatory_widget import SearchNonMandatoryWidget
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class ActiveFiltersDialog(QDialog):
     def __init__(self, advanced_filter_model: "AdvancedFilterModel", remove_filter: "Callable[[int, AdvancedFilterModel], None]",
                  search_mandatory_widget: "SearchMandatoryWidget", search_non_mandatory_widget: "SearchNonMandatoryWidget", parent=None) -> None:

@@ -17,16 +17,14 @@ if TYPE_CHECKING:
 
 class ContactSearchController:
     def __init__(self, controller: "CompleterController", mandatory_model: "MandatoryModel", table_view: "ContactsTableviewWidget",
-                 contacts_statusbar: "ContactsStatusbarWidget", search_combobox: QComboBox, parent=None) -> None:
+                 contacts_status_bar: "ContactsStatusbarWidget", search_combobox: QComboBox, parent=None) -> None:
         self.class_name = "contactSearchController"
         self.controller = controller
         self.mandatory_model = mandatory_model
         self.table_view = table_view
-        self.contacts_statusbar = contacts_statusbar
+        self.contacts_status_bar = contacts_status_bar
         self.search_combobox = search_combobox
         self.parent = parent
-        self.error_text = LanguageProvider.get_error_text(self.class_name)
-        self.index_error_text = LanguageProvider.get_error_text("widgetErrors")
         self.new_filter = None
 
     def basic_search(self, search_input: QLineEdit) -> None:
@@ -43,6 +41,7 @@ class ContactSearchController:
             )
         }
         try:
+            error_text = LanguageProvider.get_error_text(self.class_name)
             search_text = normalize_input(search_input)
             if self.table_view.selectionModel().hasSelection():
                 column_index = self.table_view.currentIndex().column()
@@ -65,23 +64,23 @@ class ContactSearchController:
                         else:
                             self.new_filter = filters.get(str(column_index), "").replace("VALUE", search_text)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
+                        DialogsProvider.show_error_dialog(error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
                 if self.new_filter:
                     if column_index in (1, 2) or search_text:
                         SearchProvider.basic_search(self.mandatory_model, self.new_filter)
                         if self.mandatory_model.rowCount() < 1:
-                            DialogsProvider.show_error_dialog(self.error_text.get("noFilteredData", ""))
+                            DialogsProvider.show_error_dialog(error_text.get("noFilteredData", ""))
                             SearchProvider.reset_filter(self.mandatory_model)
                             search_input.setFocus()
-                        self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
+                        self.contacts_status_bar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
                     else:
-                        DialogsProvider.show_error_dialog(self.error_text.get("emptySearchText", ""), self.parent)
+                        DialogsProvider.show_error_dialog(error_text.get("emptySearchText", ""), self.parent)
                         if self.parent:
                             self.parent.search_line_edit.setFocus()
             else:
-                DialogsProvider.show_error_dialog(self.error_text.get("noTableviewSelection", ""), self.parent)
+                DialogsProvider.show_error_dialog(error_text.get("noTableviewSelection", ""), self.parent)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
 
@@ -92,37 +91,42 @@ class ContactSearchController:
             search_input.clear()
             search_input.setDisabled(True)
             SearchProvider.reset_filter(self.mandatory_model)
-            self.contacts_statusbar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
-            self.contacts_statusbar.contacts_total_count = self.mandatory_model.rowCount()
+            self.contacts_status_bar.set_count_text(self.mandatory_model.rowCount(), self.mandatory_model.total_rows)
+            self.contacts_status_bar.contacts_total_count = self.mandatory_model.rowCount()
             if ui_text:
                 self.parent.search_text_label.setText(ui_text.get(self.parent.search_text_label.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def return_multicolumn_filter(self, search_text: str, columns: list[str]) -> str:
-        prepared_text = search_text.split()
-        filter_operator = " OR "
-        filter_list = []
-        column_index = self.table_view.currentIndex().column()
-        if column_index > -1:
-            if not self.controller.completer_state:
-                for word in prepared_text:
-                    for column_name in columns:
-                        save_word = word.replace("'", "''")
-                        filter_list.append(f"{column_name} LIKE '%{save_word}%'")
-                return filter_operator.join(filter_list)
-            if column_index == 3:
-                return self.set_name_filter(prepared_text)
-            elif column_index == 6:
-                return self.set_address_filter(search_text)
-            return ""
-        else:
-            DialogsProvider.show_error_dialog(self.index_error_text.get("indexError", ""), self.parent)
+        try:
+            index_error_text = LanguageProvider.get_error_text("widgetErrors")
+            prepared_text = search_text.split()
+            filter_operator = " OR "
+            filter_list = []
+            column_index = self.table_view.currentIndex().column()
+            if column_index > -1:
+                if not self.controller.completer_state:
+                    for word in prepared_text:
+                        for column_name in columns:
+                            save_word = word.replace("'", "''")
+                            filter_list.append(f"{column_name} LIKE '%{save_word}%'")
+                    return filter_operator.join(filter_list)
+                if column_index == 3:
+                    return self.set_name_filter(prepared_text)
+                elif column_index == 6:
+                    return self.set_address_filter(search_text)
+                return ""
+            else:
+                DialogsProvider.show_error_dialog(index_error_text.get("indexError", ""), self.parent)
+                return ""
+        except Exception as e:
+            ErrorHandler.exception_handler(e, self)
             return ""
 
     @staticmethod
-    def set_name_filter(splitted_text: list) -> str:
-        return f"first_name_normalized = '{splitted_text[0]}' AND second_name_normalized = '{splitted_text[1]}'"
+    def set_name_filter(split_text: list) -> str:
+        return f"first_name_normalized = '{split_text[0]}' AND second_name_normalized = '{split_text[1]}'"
 
     @staticmethod
     def set_address_filter(search_text: str) -> str:

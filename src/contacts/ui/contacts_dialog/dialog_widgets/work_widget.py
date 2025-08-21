@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QLayout, QFormLayout, QLabel, QLineEdit, QTabWidget
 
-from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineedit
+from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineEdit
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
 from src.contacts.utilities.contact_validator import ContactValidator
 from src.contacts.utilities.optimalize_data import normalize_texts
@@ -9,6 +9,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class WorkWidget(QWidget):
     def __init__(self, main_tab: QTabWidget, non_mandatory_tab: QTabWidget, parent=None) -> None:
         super().__init__(parent)
@@ -30,35 +31,35 @@ class WorkWidget(QWidget):
         main_layout = QFormLayout()
         self.dialog_work_company_text_label = QLabel()
         self.dialog_work_company_text_label.setObjectName("dialogWorkCompanyTextLabel")
-        self.dialog_work_company_edit = ValidatedLineedit(self)
+        self.dialog_work_company_edit = ValidatedLineEdit(self)
         self.dialog_work_company_edit.setObjectName("dialogWorkCompanyEdit")
         self.dialog_work_email_text_label = QLabel()
         self.dialog_work_email_text_label.setObjectName("dialogWorkEmailTextLabel")
-        self.dialog_work_email_edit = ValidatedLineedit(self)
+        self.dialog_work_email_edit = ValidatedLineEdit(self)
         self.dialog_work_email_edit.setObjectName("dialogWorkEmailEdit")
         self.dialog_work_phone_number_text_label = QLabel()
         self.dialog_work_phone_number_text_label.setObjectName("dialogWorkPhoneNumberTextLabel")
-        self.dialog_work_phone_number_edit = ValidatedLineedit(self)
+        self.dialog_work_phone_number_edit = ValidatedLineEdit(self)
         self.dialog_work_phone_number_edit.setObjectName("dialogPhoneNumberEdit")
         self.dialog_work_street_text_label = QLabel()
         self.dialog_work_street_text_label.setObjectName("dialogWorkStreetTextLabel")
-        self.dialog_work_street_edit = ValidatedLineedit(self)
+        self.dialog_work_street_edit = ValidatedLineEdit(self)
         self.dialog_work_street_edit.setObjectName("dialogWorkStreetEdit")
         self.dialog_work_house_number_text_label = QLabel()
         self.dialog_work_house_number_text_label.setObjectName("dialogWorkHouseNumberTextLabel")
-        self.dialog_work_house_number_edit = ValidatedLineedit(self)
+        self.dialog_work_house_number_edit = ValidatedLineEdit(self)
         self.dialog_work_house_number_edit.setObjectName("dialogWorkHouseNumberEdit")
         self.dialog_work_city_text_label = QLabel()
         self.dialog_work_city_text_label.setObjectName("dialogWorkCityTextLabel")
-        self.dialog_work_city_edit = ValidatedLineedit(self)
+        self.dialog_work_city_edit = ValidatedLineEdit(self)
         self.dialog_work_city_edit.setObjectName("dialogWorkCityEdit")
         self.dialog_work_post_code_text_label = QLabel()
         self.dialog_work_post_code_text_label.setObjectName("dialogPostCodeTextLabel")
-        self.dialog_work_post_code_edit = ValidatedLineedit(self)
+        self.dialog_work_post_code_edit = ValidatedLineEdit(self)
         self.dialog_work_post_code_edit.setObjectName("dialogPostCodeEdit")
         self.dialog_work_country_text_label = QLabel()
         self.dialog_work_country_text_label.setObjectName("dialogWorkCountryTextLabel")
-        self.dialog_work_country_edit = ValidatedLineedit(self)
+        self.dialog_work_country_edit = ValidatedLineEdit(self)
         self.dialog_work_country_edit.setObjectName("dialogWorkCountryEdit")
         widgets = [
             (self.dialog_work_company_text_label, self.dialog_work_company_edit),

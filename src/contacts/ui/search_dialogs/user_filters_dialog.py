@@ -9,7 +9,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class UserFiltersDialog(QDialog):
     def __init__(self, delete_filter: Callable[[str], None], parent=None) -> None:
         super().__init__(parent)

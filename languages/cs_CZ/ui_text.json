@@ -28,7 +28,7 @@
     "gender_items": ["Vše", "Muž", "Žena"],
     "relationship_items": ["Vše", "Rodina", "Příbuzný", "Kolega", "Kamarád", "Známý", "Ostatní"]
   },
-  "contactsStatusbarWidget": {
+  "contactsStatusBarWidget": {
     "countDisplayLabel": "Filtr (zobrazeno/celkem):"
   },
     "personalTabInfoWidget": {

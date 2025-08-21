@@ -49,7 +49,7 @@ class StatisticsController:
             for key, handler in handlers.items():
                 if key in data:
                     handler(data[key])
-            self.statistics_main_widget.status_bar.show_statusbar_message(ui_text.get("statisticsUpdate", ""))
+            self.statistics_main_widget.status_bar.show_status_bar_message(ui_text.get("statisticsUpdate", ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self.main_window)
 

@@ -17,7 +17,7 @@ class StatusBar(QStatusBar):
         self.time_label = QLabel()
         self.addPermanentWidget(self.time_label)
 
-    def show_statusbar_message(self, message: str) -> None:
+    def show_status_bar_message(self, message: str) -> None:
         self.showMessage(message, 5000)
 
     def update_time(self) -> None:
@@ -26,8 +26,8 @@ class StatusBar(QStatusBar):
 
     def align_time_to_minute(self) -> None:
         now = QTime.currentTime()
-        msec_to_next_minute = (60 - now.second()) * 1000 - now.second()
-        QTimer.singleShot(msec_to_next_minute, self.start_minute_timer)
+        to_next_minute = (60 - now.second()) * 1000 - now.second()
+        QTimer.singleShot(to_next_minute, self.start_minute_timer)
 
     def start_minute_timer(self) -> None:
         self.update_time()

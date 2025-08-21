@@ -61,7 +61,7 @@ class TrayIcon(QSystemTrayIcon):
                 y = (self.parent.pos().y() + self.parent.height()) - (self.popup_widget.height() - 10)
                 self.popup_widget.move(x, y)
                 self.popup_widget.show()
-                self.status_bar.show_statusbar_message(ui_text.get(message, ""))
+                self.status_bar.show_status_bar_message(ui_text.get(message, ""))
                 QTimer.singleShot(5000, self.popup_widget.close)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)

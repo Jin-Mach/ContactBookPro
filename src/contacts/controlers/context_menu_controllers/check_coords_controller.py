@@ -19,10 +19,10 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 
 
-class CheckCoordsController:
+class CheckCoordinatesController:
     def __init__(self, db_connection: QSqlDatabase, mandatory_model: "MandatoryModel", table_view: "ContactsTableviewWidget",
                  status_bar: "ContactsStatusbarWidget") -> None:
-        self.class_name = "checkCoordsController"
+        self.class_name = "checkCoordinatesController"
         self.db_connection = db_connection
         self.mandatory_model = mandatory_model
         self.table_view = table_view
@@ -42,7 +42,7 @@ class CheckCoordsController:
             self.coords_object = coords_object
             self.coords_thread = BasicThread()
             self.coords_thread.run_basic_thread(worker=self.coords_object, start_slot=start_slot,
-                                                on_error=CheckCoordsController.write_log_exception,
+                                                on_error=CheckCoordinatesController.write_log_exception,
                                                 on_finished=lambda contact_list: self.show_preview(main_window, contact_list))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -58,7 +58,7 @@ class CheckCoordsController:
                         if key in contact:
                             sorted_dict[key] = contact[key]
                     sorted_contacts_list.append(sorted_dict)
-                dialog = ContactsListDialog(sorted_contacts_list, "context_coords", main_window, )
+                dialog = ContactsListDialog(sorted_contacts_list, "context_coordinates", main_window, )
                 if dialog.exec() == dialog.DialogCode.Rejected:
                     if dialog.result_code == "jump_to_contact" and dialog.selected_id:
                         show_selected_contact(self.mandatory_model, self.table_view, self.status_bar,
@@ -66,7 +66,7 @@ class CheckCoordsController:
             else:
                 error_text = LanguageProvider.get_error_text(self.class_name)
                 if error_text:
-                    error_text = error_text.get("noCoords", "")
+                    error_text = error_text.get("noCoordinates", "")
                     DialogsProvider.show_error_dialog(error_text, main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -74,4 +74,4 @@ class CheckCoordsController:
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
         logger = get_logger()
-        logger.error(f"{CheckCoordsController.__class__.__name__}: {exception}", exc_info=True)
+        logger.error(f"{CheckCoordinatesController.__class__.__name__}: {exception}", exc_info=True)

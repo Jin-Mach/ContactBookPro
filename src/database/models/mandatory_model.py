@@ -8,6 +8,7 @@ from src.database.utilities.contacts_utilities.model_header_provider import Mode
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
+from src.utilities.logger_provider import get_logger
 
 
 # noinspection PyTypeChecker
@@ -18,12 +19,7 @@ class MandatoryModel(QSqlTableModel):
         self.setTable("mandatory")
         self.setEditStrategy(QSqlTableModel.EditStrategy.OnManualSubmit)
         self.setSort(0, Qt.SortOrder.AscendingOrder)
-        ModelHeaderProvider.set_mandatory_model_headers(self)
-        self.icons_path = IconProvider.icons_path.joinpath("personalTabInfoWidget")
-        self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
-        self.female_icon = str(self.icons_path.joinpath("female_icon.png"))
-        self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
-        self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["genderHeaderText"]
+        self.load_text_and_icons()
         self.select()
         self.total_rows = self.rowCount()
 
@@ -112,3 +108,18 @@ class MandatoryModel(QSqlTableModel):
         map_list = ",".join(map(str, id_list))
         self.setFilter(f"id IN ({map_list})")
         self.select()
+
+    def load_text_and_icons(self) -> None:
+        try:
+            ModelHeaderProvider.set_mandatory_model_headers(self)
+            self.icons_path = IconProvider.icons_path.joinpath("personalTabInfoWidget")
+            self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
+            self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["genderHeaderText"]
+            if self.icons_path.exists():
+                self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
+                self.female_icon = str(self.icons_path.joinpath("female_icon.png"))
+                return
+            logger = get_logger()
+            logger.error(f"{self.objectName()}: Icon path error")
+        except Exception as e:
+            ErrorHandler.exception_handler(e)
