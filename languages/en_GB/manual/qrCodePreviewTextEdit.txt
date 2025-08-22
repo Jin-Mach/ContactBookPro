@@ -1,0 +1,5 @@
+The application allows previewing the QR code for a selected contact.
+
+The QR code contains the same information as the vCard export, including first name, last name, email, phone number, and personal address.
+
+The QR code preview opens in a separate window and is static, it cannot be zoomed in, zoomed out, or saved.

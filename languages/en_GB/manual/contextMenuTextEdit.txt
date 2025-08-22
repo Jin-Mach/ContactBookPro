@@ -1,0 +1,40 @@
+The context menu provides quick access to selected functions for the highlighted contact.
+It opens by right-clicking on a contact row in the table.
+It allows you to open or edit a contact, delete it, copy information to the clipboard, export to CSV, Excel, or vCard,
+preview the contact in PDF or its QR code, and run checks for birthdays, duplicates, or contacts without coordinates.
+
+Context menu structure
+
+Add contact
+Edit contact
+Delete contact
+Copy
+    Name
+    Email
+    Phone
+Export
+    CSV
+        Export displayed
+        Export all
+    Excel
+        Export displayed
+        Export all
+    vCard
+        Export selected contact
+Preview
+    Preview contact
+    Preview contact list
+        Preview displayed contacts
+        Preview all contacts
+    Contact QR code
+Check
+    Show birthdays
+    Show duplicates
+    Show contacts without coordinates
+
+Note: all exports open a dialog to select the target file location.
+
+The Copy functions use the system clipboard (Ctrl + C / macOS: Cmd + C).
+
+Previews and the QR code appear immediately in the application window.
+The check functions display a list in a separate dialog window.

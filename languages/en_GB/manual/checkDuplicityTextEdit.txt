@@ -1,0 +1,10 @@
+The application allows you to check contacts for duplicate information.
+
+The check goes through all contacts and selects those that have the same email addresses, phone numbers, or both.
+Duplicate values are searched only in the required contact information (personal, not work-related).
+At the end, either a notification appears stating that no contacts match the criteria, or a dialog shows a list of the found contacts.
+In the dialog, you can navigate to a selected contact, which sets the filter to that contact.
+
+The check runs in the background, so the application can still be used during the process.
+
+The user is informed of the completion via a dialog showing the results.

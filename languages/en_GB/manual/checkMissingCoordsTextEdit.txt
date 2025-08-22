@@ -1,0 +1,11 @@
+The application allows you to check contacts without filled coordinates.
+
+The check goes through all contacts and selects those that are missing geographic coordinates based on the provided address.
+At the end, either a notification appears stating that no contacts match the criteria, or a dialog shows a list of the found contacts.
+In the dialog, you can navigate to a selected contact, which sets the filter to that contact.
+
+The check runs in the background, so the application can still be used during the process.
+
+The user is informed of the completion via a dialog showing the results.
+
+Note: the check only runs with an active internet connection

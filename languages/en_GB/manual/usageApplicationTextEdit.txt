@@ -1,0 +1,9 @@
+The manual is divided into chapters, which are listed in the left panel as a table of contents.
+
+Clicking on a topic in the left list displays the corresponding section of the manual on the right.
+
+Some topics have subtopics beneath them, which can be clicked to view more detailed information.
+
+When you select a tab on the right from the left list, the topic you are currently reading is automatically highlighted in the left panel.
+
+This setup allows you to quickly find the information you need and easily navigate between different sections of the manual.

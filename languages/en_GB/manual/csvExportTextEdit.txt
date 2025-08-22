@@ -1,0 +1,12 @@
+The application allows exporting selected or all contacts to CSV format.
+
+Exporting to CSV (.csv) saves contacts as a text file, with individual fields separated by a comma or semicolon (depending on system settings).
+This format is suitable for importing into spreadsheet applications (e.g., Microsoft Excel, LibreOffice Calc) or other applications that support CSV.
+After selecting the export, a save file dialog appears, which by default saves the file to the Documents folder (same location for Windows and macOS).
+The user can choose a different folder and file name.
+
+The export runs in the background, so the application can still be used while saving.
+
+With a larger number of contacts, the export may take longer.
+
+Upon completion, a pop-up window appears, informing the user of a successful save.

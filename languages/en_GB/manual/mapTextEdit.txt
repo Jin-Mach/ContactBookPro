@@ -1,0 +1,11 @@
+The application allows displaying a map of contacts that have valid geographic coordinates.
+
+On the map, individual contacts are shown as markers.
+Clicking on a marker displays basic information about the contact – name, email, and phone number.
+The map can be zoomed in, zoomed out, and panned. Above the map, the number of currently displayed contacts and the total number of all contacts in the database is shown.
+
+After each addition, edit, or deletion of a contact, if the mandatory address has changed, the map is automatically updated, and the user is notified with a brief message at the bottom of the application.
+
+If no contact has coordinates or there is no internet connection, a message is displayed instead of the map to inform the user of this situation.
+
+Note: the map works only with an active internet connection

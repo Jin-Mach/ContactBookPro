@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "An input/output error occurred. Please check your disk connection.",
+    "ValueError": "Invalid file format. Make sure you are using a supported format.",
+    "TypeError": "Invalid argument type. Please check the input values.",
+    "TimeoutError": "The operation timed out while trying to open or save the file.",
+    "JSONDecodeError": "The file is not a valid JSON. Please check the file format.",
+    "DatabaseConnectionError": "Failed to connect to the database.",
+    "queryError": "Error executing the database query.",
+    "RuntimeError": "Failed to open the link. Ensure it is valid and you have an active internet connection.",
+    "URLError": "The link is invalid or the connection could not be established.",
+    "FileNotFoundError": "The executable file or script was not found. Please check the path.",
+    "OSError": "A system error occurred while attempting to restart the application. Please restart the application manually.",
+    "UnexpectedError": "An unexpected error occurred."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Please select a gender.",
+    "relationshipError": "Please select a relationship.",
+    "emptyTextError": "This field cannot be empty.\n",
+    "emailValidatorError": "Invalid email format.\nPlease enter an email in the format: email@domain.com",
+    "phoneNumberValidatorError": "Enter a phone number in the correct format.\nFor example: +420123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Invalid email format.\nPlease enter an email in the format: email@domain.com",
+    "phoneNumberValidatorError": "Enter a phone number in the correct format.\nFor example: +420123456789.",
+    "workAddressValidatorError": "Fill in house number, city, postal code, and country, or leave all empty."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Invalid link format or incorrect social network.\nPlease enter a valid URL for {site} in the format: https://www.{site}.com/profile.",
+    "websiteValidatorError": "Invalid format.\nEnter a valid URL in the format: www.example.com"
+  },
+  "notesUtilities": {
+    "textLengthError": "Text can have a maximum of 300 characters.",
+    "textLineCountError": "Notes can have a maximum of 10 lines."
+  },
+  "calendarDialog": {
+    "selectedDateError": "The selected date cannot be later than the current date."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "No active filter."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Cannot search without text.",
+    "noTableviewSelection": "A column must be selected for quick search.",
+    "noFilteredData": "No data matches the entered value.\nThe filter will be reset."
+  },
+  "widgetErrors": {
+    "indexError": "No valid index selected. Please retry the selection.",
+    "noTableviewSelection": "Please select a contact from the list first."
+  },
+  "filtersController": {
+    "noActiveFilter": "No active filter.",
+    "existingFilterName": "Filter name already exists.",
+    "noUserFilters": "No saved filters."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "No filter name provided."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "No active filter."
+  },
+  "userFiltersDialog": {
+    "noFilters": "No saved filters.",
+    "noSelection": "Please select a filter first."
+  },
+  "csvExportController": {
+    "emptyIdList": "No contacts to export"
+  },
+  "excelExportController": {
+    "emptyIdList": "No contacts to export"
+  },
+  "pdfExportController": {
+    "emptyIdList": "No contacts to export",
+    "indexError": "No valid index selected. Please retry the selection.",
+    "noTableviewSelection": "Please select a contact from the list first."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "No contacts have birthdays in the near period."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "No duplicate contacts."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "All contacts have valid coordinates"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Clipboard is empty, nothing to paste"
+  }
+}

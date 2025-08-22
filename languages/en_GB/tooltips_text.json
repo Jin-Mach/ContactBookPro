@@ -1,0 +1,89 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Show contacts database",
+    "mainWindowMapButton": "Show contacts map",
+    "mainWindowStatisticsButton": "Show statistics",
+    "mainWindowManualButton": "Show manual",
+    "mainWindowAboutButton": "Show application info"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Add contact to database",
+    "updateContactPushbutton": "Edit selected contact",
+    "deleteContactPushbutton": "Delete selected contact",
+    "deleteAllContactsPushbutton": "Delete entire database",
+    "searchPushbutton": "Search by selected column",
+    "advancedSearchPushbutton": "Open advanced search dialog",
+    "resetFilterPushbutton": "Clear all filters",
+    "userFiltersPushbutton": "Show saved filters"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Open Facebook link",
+    "xPushbutton": "Open X (Twitter) link",
+    "instagramPushbutton": "Open Instagram link",
+    "linkedinPushbutton": "Open LinkedIn link",
+    "githubPushbutton": "Open GitHub link",
+    "websitePushbutton": "Open website"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Add contact",
+    "dialogCancelButton": "Close dialog",
+    "dialogAddContactButtonUpdate": "Save changes"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Select contact photo",
+    "dialogResetPhotoButton": "Remove photo",
+    "dialogCalendarPushbutton": "Select birth date",
+    "dialogResetCalendarPushbutton": "Remove birth date"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Set date to today",
+    "addDateButton": "Set selected date",
+    "cancelDialogButton": "Close calendar"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Search",
+    "cancelButton": "Close dialog",
+    "resetButton": "Clear filters",
+    "currentFilterButton": "Show currently active search filter",
+    "clearFilterPushbutton": "Clear filter for this row"
+  },
+  "activeFiltersDialog": {
+    "closeButton": "Close window"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Clear filter for this row"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Run search using selected filter",
+    "cancelButton": "Close dialog"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Save configured filter",
+    "cancelButton": "Close dialog"
+  },
+  "userFiltersListWidget": {
+    "deleteFilterPushbutton": "Delete saved filter"
+  },
+  "contactsListDialog": {
+    "showContactButton": "Close dialog and select duplicate contact in table",
+    "showContactButtonContextBirthday": "Close dialog and select contact in table",
+    "showContactButtonContextDuplicity": "Close dialog and select contact in table",
+    "continueButton": "Save duplicate contact",
+    "cancelButton": "Close window without saving",
+    "cancelButtonContextBirthday": "Close dialog",
+    "cancelButtonContextDuplicity": "Close dialog"
+  },
+  "validatedLineEdit": {
+    "invalidChar": "Invalid character:"
+  },
+  "pdfPreviewDialog": {
+    "pdfSaveAsButton": "Save as...",
+    "pdfZoomInButton": "Zoom in",
+    "pdfZoomOutButton": "Zoom out",
+    "pdfFitPageButton": "Fit to page",
+    "closeDialogButton": "Close preview"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Open project on GitHub."
+  }
+}

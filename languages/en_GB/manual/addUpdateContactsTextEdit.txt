@@ -1,0 +1,68 @@
+The form is used to create a new contact or edit an existing one.
+It contains required and optional fields divided into several sections.
+Before saving, the input and data formats are validated.
+
+REQUIRED FIELDS
+Gender (dropdown) – selection from a predefined list
+Relationship (dropdown) – selection from a predefined list
+First Name (text input)
+Last Name (text input)
+Email (text input) – format validation
+Phone (text input) – format validation
+Street (text input) – optional if not available
+House Number (text input)
+City (text input)
+ZIP Code (text input)
+Country (text input)
+
+OPTIONAL INFORMATION
+
+WORK
+Company (text input)
+Email (text input) – format validation
+Phone Number (text input) – format validation
+Street (text input) – optional
+House Number (text input)
+City (text input)
+ZIP Code (text input)
+Country (text input)
+
+Note: for the work address, either all fields must be filled (except street) or none. Partially filled addresses are not allowed.
+
+SOCIAL NETWORKS
+Facebook (text input)
+X (Twitter) (text input)
+Instagram (text input)
+LinkedIn (text input)
+GitHub (text input)
+Website (text input)
+
+DETAILED
+Photo – file selection via dialog
+Title (text input)
+Date of Birth (calendar)
+Notes (multi-line input)
+
+Validation and error messages
+If required fields are missing, the work address is incomplete, or the email/phone format is incorrect, an error message will be displayed.
+The cursor automatically focuses on the first invalid input.
+If, when saving a new contact or editing an existing one, a contact with the same email or phone number already exists in the database, a dialog will appear showing the duplicates found.
+In this dialog, the new contact can be saved despite being a duplicate, saving can be canceled, or you can navigate to the selected existing contact shown in the list.
+
+After completion, a pop-up window will appear with information about the successful saving/deletion of the contact.
+
+Obtaining coordinates
+After adding a new contact, the application will attempt to automatically obtain its geographic coordinates (based on the address in the required fields).
+If the coordinates are found, the contact will be displayed on the map.
+If the coordinates cannot be determined, the contact will be saved without coordinates.
+The application also includes an automatic check that runs once, five minutes after the application starts.
+This check attempts to add coordinates based on the stored address for all contacts that do not have them.
+Each contact without coordinates is checked this way a maximum of 20 times.
+
+Note: an active internet connection is required; if no connection is available, coordinates are not verified, but the contact will still be added/edited.
+
+Keyboard shortcuts
+New contact: Ctrl + N (macOS: Cmd + N)
+Update contact: Ctrl + U (macOS: Cmd + U)
+
+Note: keyboard shortcuts work only if the application is set to the "Contacts" window

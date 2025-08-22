@@ -1,0 +1,9 @@
+The application allows you to check contacts whose birthdays are approaching.
+
+When run, the check goes through all contacts and selects those with the Birthday field filled in and whose birth date falls within ±7 days of the current date.
+At the end, either a notification appears stating that no contacts match the criteria, or a dialog shows a list of the found contacts.
+In the dialog, you can navigate to a selected contact, which sets the filter to that contact.
+
+The check runs in the background, so the application can still be used during the process.
+
+The user is informed of the completion via a dialog showing the results.

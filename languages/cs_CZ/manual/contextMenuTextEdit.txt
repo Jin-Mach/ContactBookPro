@@ -36,4 +36,5 @@ Poznámka: všechny exporty otevírají dialog pro výběr cílového umístěn�
 
 Funkce Kopírovat využívají systémovou schránku (Ctrl + C / macOS: Cmd + C).
 
-Náhledy a QR kód se zobrazí okamžitě v okně aplikace. Kontrolní funkce zobrazí seznam v samostatném okně dialogu.
+Náhledy a QR kód se zobrazí okamžitě v okně aplikace.
+Kontrolní funkce zobrazí seznam v samostatném okně dialogu.

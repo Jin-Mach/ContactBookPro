@@ -1,0 +1,11 @@
+The Contact Database application provides a clear and easy way to manage your contacts.
+
+It allows you to record both basic and additional information about contacts, search for them, filter, and export to formats such as CSV, Excel, or vCard.
+A preview of contacts in PDF format and display of QR codes for individual entries is also available.
+
+The application includes contact visualization on a map, clear statistics on stored data, and a comprehensive manual to help you use all available features effectively.
+
+The application automatically adapts to your system language (if it is not supported, a dialog will appear allowing you to choose).
+It also checks language files, icons, and fonts and updates them if necessary.
+
+Note: some features are only available with an active internet connection

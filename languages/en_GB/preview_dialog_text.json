@@ -1,0 +1,10 @@
+{
+  "qrCodePreviewDialog": {
+    "qrDialogTitle": "QR Code Preview",
+    "infoLabelText": "Scan the QR code to save the contact"
+  },
+  "pdfPreviewDialog": {
+    "pdfDialogTitle": "PDF Preview",
+    "closeDialogButton": "Close Preview"
+  }
+}

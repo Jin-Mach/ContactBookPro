@@ -1,0 +1,23 @@
+The application allows deleting individual contacts as well as removing all contacts at once.
+
+Deleting a single contact
+Select the desired contact in the table and click the delete button.
+A confirmation dialog will appear asking "Are you sure you want to delete?" with options to confirm or cancel the deletion.
+After confirming, the selected contact will be removed, and a pop-up window will inform you of the successful deletion of the contact.
+
+Deleting all contacts
+No selection is needed — simply click the button to delete the entire database.
+A confirmation dialog will open with a text field where you must type the word "delete" to confirm the action.
+In this dialog, there is also an option to remove saved filters.
+If this option is checked, all saved filters will also be deleted.
+After confirming, the application will attempt to delete all contacts from the database, remove saved filters (if selected), and delete the database file (contacts_db.sqlite).
+If the database file cannot be deleted, only its contents will be cleared, and the file will remain.
+The application will then automatically restart and create a new empty database.
+
+!!! Do not manually delete the database file, as this will cause irreversible data loss !!!
+
+Keyboard shortcuts
+Delete selected contact: Ctrl + D (macOS: Cmd + D)
+Delete entire database: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Note: keyboard shortcuts only work if the application is focused on the "Contacts" window

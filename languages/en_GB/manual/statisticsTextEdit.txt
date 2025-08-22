@@ -1,0 +1,19 @@
+The application provides an overview of contact statistics, divided into several tabs that visualize different aspects of the database using charts.
+
+Basic Statistics
+A pie chart displays the distribution of contacts by gender.
+A bar chart shows the distribution of contacts by relationship.
+A bar chart displays the most common cities of contacts.
+
+Work Statistics
+Two pie charts show the percentage completion of optional fields Email and Phone.
+A bar chart shows the number of contacts by city based on work-related data.
+
+Social Statistics
+A bar chart where each bar is divided into two parts – the number of filled and unfilled entries for each social network.
+
+System Statistics
+The top horizontal bar chart displays the percentage of the entire database filled – the ratio of all possible fields to the number of completed fields.
+The bottom horizontal bar chart shows the same for individual database tables.
+
+After adding, editing, or deleting a contact, the user is informed of changes in the statistics with a brief notification at the bottom of the application.

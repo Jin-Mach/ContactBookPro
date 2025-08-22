@@ -1,0 +1,29 @@
+The application allows you to search for contacts in two ways – simple and advanced.
+
+Simple Search
+Works only in the selected column of the table (for example, Name, Email, Phone). First, select the column in which you want to search.
+Enter the text in the search field and click Search. If no column is selected, the application will show a warning "Select a column" and the search will not start.
+If you use a suggested match, an exact match is searched; if not, records containing the entered text are searched.
+
+Advanced Search
+Clicking on Advanced Search opens a dialog where you can enter multiple conditions at once (for example, Name, City, Email, ...).
+For each field, you can choose the option All, Contains, Starts with, or Ends with.
+Individual conditions can be modified or deleted without resetting the entire filter.
+You can also preview the current filter or save it under a custom name.
+Click Search to display results, or a notification if no records match the specified parameters.
+
+Note: Repeated searches only scan contacts limited by the previous filter; to search all contacts, use the "Reset Filters" option.
+
+Saved Filters
+Saved filters can be viewed, applied, or deleted at any time.
+
+Reset Filters
+Selecting Reset Filters clears all conditions and displays all contacts.
+
+Keyboard Shortcuts
+Search: Ctrl + F (macOS: Cmd + F)
+Advanced Search: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Reset Filters: Ctrl + R (macOS: Cmd + R)
+Saved Filters: Ctrl + L (macOS: Cmd + L)
+
+Note: keyboard shortcuts only work if the application is set to the "Contacts" window

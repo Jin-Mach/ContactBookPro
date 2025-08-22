@@ -1,0 +1,12 @@
+The application allows exporting selected or all contacts to Excel format.
+
+Exporting to Excel (.xlsx) saves contacts in a file compatible with Microsoft Excel, LibreOffice Calc, and other spreadsheet applications.
+Data is organized into columns, making it easier to edit and analyze.
+After choosing the export, a save dialog will appear, which by default saves the file to the Documents folder (same location for Windows and macOS).
+The user can choose a different folder or file name.
+
+The export runs in the background, so the application can still be used while saving.
+
+With a large number of contacts, the export may take longer.
+
+Once completed, a pop-up window will inform the user of the successful save.

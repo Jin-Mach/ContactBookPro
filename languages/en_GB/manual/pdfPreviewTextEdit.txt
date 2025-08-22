@@ -1,0 +1,12 @@
+The application allows previewing a selected contact or a list of contacts in a separate window.
+
+The preview of a selected contact contains all available information except for coordinates, date added, and date of last modification.
+In the bottom-right corner, there is a small QR code with the same data that can be exported to vCard format.
+The user can zoom in, zoom out, and save the preview as a PDF.
+Clicking save opens a dialog to select the file location and name, which by default is saved to the Documents folder (the same for both Windows and macOS).
+
+It is also possible to preview a list of currently displayed contacts or all contacts in the database.
+This list includes only first name, last name, gender, relationship, email, phone, and the full address.
+The list can also be zoomed in, zoomed out, and saved as a PDF.
+
+PDF preview generation runs in the background, allowing the application to be used while the PDF is being generated.

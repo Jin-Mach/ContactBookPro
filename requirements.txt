@@ -1,4 +1,4 @@
-Folium>=0.20
+folium>=0.20
 geopy>=2.4
 matplotlib>=3.10
 email-validator>=2.0

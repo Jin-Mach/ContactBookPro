@@ -1,0 +1,18 @@
+{
+  "mandatoryModel": {
+    "id": "ID",
+    "gender": "Gender",
+    "relationship": "Relationship",
+    "first_name": "Contact First Name",
+    "personal_email": "Email (Personal)",
+    "personal_phone_number": "Phone Number (Personal)",
+    "personal_address": "Address (Personal)"
+  },
+  "advancedFilterModel": {
+    "labelText": "Criterion",
+    "operatorText": "Condition",
+    "editText": "Text",
+    "widgets": "Widgets",
+    "deleteButton": ""
+  }
+}

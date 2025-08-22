@@ -1,0 +1,230 @@
+{
+  "mainWindow": {
+    "mainWindowTitle": "Contacts Database",
+    "mainWindowDatabaseButton": "Contacts",
+    "mainWindowMapButton": "Map",
+    "mainWindowStatisticsButton": "Statistics",
+    "mainWindowManualButton": "Manual",
+    "mainWindowAboutButton": "About",
+    "messageboxTitle": "Close application",
+    "messageboxText": "Close application?\nYES/NO",
+    "close": "Close",
+    "cancel": "Cancel"
+  },
+  "contactsToolbarWidget": {
+    "searchTextLabel": "Search:",
+    "searchLineEdit": "text to search..."
+  },
+  "contactsTableviewWidget": {
+    "searchText": "search by:",
+    "searchFilter": {
+      "1": "gender",
+      "2": "relationship",
+      "3": "name",
+      "4": "email",
+      "5": "phone",
+      "6": "address"
+    },
+    "gender_items": ["All", "Male", "Female"],
+    "relationship_items": ["All", "Family", "Relative", "Colleague", "Friend", "Acquaintance", "Other"]
+  },
+  "contactsStatusBarWidget": {
+    "countDisplayLabel": "Filter (shown/total):"
+  },
+  "personalTabInfoWidget": {
+    "personalTabInfoWidget_tabText": "Contact information",
+    "contactTitleTextLabel": "Title:",
+    "contactGenderTextLabel": "Gender:",
+    "contactFirstNameTextLabel": "First name:",
+    "contactSecondNameTextLabel": "Last name:",
+    "contactRelationshipTextLabel": "Relationship:",
+    "contactBirthdayTextLabel": "Birth date:",
+    "gender_key": {
+      "1": "Male",
+      "2": "Female"
+    },
+    "relationship_key": {
+      "1": "Family",
+      "2": "Relative",
+      "3": "Colleague",
+      "4": "Friend",
+      "5": "Acquaintance",
+      "6": "Other"
+    }
+  },
+  "tabInfoWidget": {
+    "personalTabText": "Contact – Personal",
+    "workTabText": "Contact – Work",
+    "personalEmailTextLabel": "Email:",
+    "personalPhoneNumberTextLabel": "Phone:",
+    "personalAddressTextLabel": "Address:",
+    "personalCityTextLabel": "City:",
+    "personalPostCodeTextLabel": "Post code:",
+    "personalCountryTextLabel": "Country:",
+    "workCompanyNameTextLabel": "Company:",
+    "workEmailTextLabel": "Email:",
+    "workPhoneNumberTextLabel": "Phone:",
+    "workAddressTextLabel": "Address:",
+    "workCityTextLabel": "City:",
+    "workPostCodeTextLabel": "Post code:",
+    "workCountryTextLabel": "Country:"
+  },
+  "notesInfoWidget": {
+    "notesTextEdit": "Contact notes...",
+    "createDateTextLabel": "created: ",
+    "updateDateTextLabel": "updated: "
+  },
+  "trayIcon": {
+    "addContact": "Add contact",
+    "closeApplication": "Close application",
+    "trayIconMessageTitle": "Contacts Database",
+    "contactAdded": "Contact added",
+    "contactUpdated": "Contact updated",
+    "contactDeleted": "Contact deleted",
+    "databaseDeleted": "Database deleted",
+    "filterAdded": "Filter saved",
+    "filterDeleted": "Filter deleted",
+    "nameCopied": "Name copied",
+    "emailCopied": "Email copied",
+    "phoneCopied": "Phone copied",
+    "saveError": "Failed to save file",
+    "exportSaved": "File saved"
+  },
+  "mandatoryModel": {
+    "genderHeaderText": "User gender"
+  },
+  "exportContactPdfObject": {
+    "contactTitle": "Contact",
+    "personalEmail": "Email:",
+    "personalPhoneNumber": "Phone:",
+    "addressTitle": "Address",
+    "personalAddress": "Address:",
+    "personalCountry": "Country:",
+    "workTitle": "Work",
+    "workCompany": "Company:",
+    "workEmail": "Email:",
+    "workPhone": "Phone:",
+    "workAddress": "Address:",
+    "workCountry": "Country:",
+    "notesTitle": "Notes"
+  },
+  "mapMainWidget": {
+    "showCount": "Number of displayed contacts:",
+    "totalCount": "Total contacts:",
+    "noConnection": "Unable to display map – no contacts with valid address or no internet connection.",
+    "loadingMap": "Loading map...",
+    "loadingError": "Failed to load map."
+  },
+  "mapController": {
+    "mapUpdate": "Map updated"
+  },
+  "statisticsMainWidget": {
+    "totalCount": "Total contacts:",
+    "mandatoryStatisticsWidget": "Basic statistics",
+    "workStatisticsWidget": "Work statistics",
+    "socialStatisticsWidget": "Social statistics",
+    "completionStatisticsWidget": "System statistics"
+  },
+  "statisticsController": {
+    "statisticsUpdate": "Statistics updated"
+  },
+  "genderPieChartWidget": {
+    "title": "Gender",
+    "noData": "No data"
+  },
+  "relationshipBarChartWidget": {
+    "title": "Relationship",
+    "noData": "No data"
+  },
+  "cityBarCharWidget": {
+    "title": "City",
+    "noData": "No data",
+    "others": "Other",
+    "unfilled": "Unfilled"
+  },
+  "workPieChartWidget": {
+    "noData": "No data",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "filled": "Filled",
+    "empty": "Empty"
+  },
+  "socialBarChartWidget": {
+    "title": "Social networks",
+    "noData": "No data",
+    "filled": "Filled",
+    "empty": "Empty",
+    "x": "X (Twitter)",
+    "website": "Website"
+  },
+  "completionBarChartWidget": {
+    "title": "Completion statistics per table",
+    "noData": "No data",
+    "mandatory": "Mandatory",
+    "work": "Work",
+    "social": "Social",
+    "detail": "Detail",
+    "info": "Informational\n(system)",
+    "total": "Total completion"
+  },
+  "manualTreeWidget": {
+    "headers": ["Manual contents"],
+    "items": {
+      "introduction": ["Introduction", ["About the application", "How to use the manual"]],
+      "contacts": ["Contacts", ["Adding and editing contact", "Deleting contact", "Searching contacts", "Context menu"]],
+      "export": ["Export", ["Export to CSV", "Export to Excel", "Export to vCard"]],
+      "preview": ["Preview", ["PDF", "QR code"]],
+      "check": ["Contact check", ["Check birthdays", "Check duplicates", "Check coordinates"]],
+      "map": ["Map", ["Contacts map"]],
+      "statistics": ["Statistics", ["Viewing statistics"]]
+    }
+  },
+  "manualIntroductionWidget": {
+    "tabTexts": {
+      "aboutApplicationTextEdit": "About the application",
+      "usageApplicationTextEdit": "How to use the manual"
+    }
+  },
+  "manualContactsWidget": {
+    "tabTexts": {
+      "addUpdateContactsTextEdit": "Adding and editing contact",
+      "deleteContactsTextEdit": "Deleting contacts",
+      "searchContactsTextEdit": "Searching contacts",
+      "contextMenuTextEdit": "Context menu"
+    }
+  },
+  "manualExportWidget": {
+    "tabTexts": {
+      "csvExportTextEdit": "Export to CSV",
+      "excelExportTextEdit": "Export to Excel",
+      "vcardExportTextEdit": "Export vCard"
+    }
+  },
+  "manualPreviewWidget": {
+    "tabTexts": {
+      "pdfPreviewTextEdit": "PDF preview",
+      "qrCodePreviewTextEdit": "QR code"
+    }
+  },
+  "manualCheckWidget": {
+    "tabTexts": {
+      "checkBirthdayTextEdit": "Check birthdays",
+      "checkDuplicityTextEdit": "Check duplicates",
+      "checkMissingCoordsTextEdit": "Check coordinates"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Contacts map"
+    }
+  },
+  "manualStatisticsWidget": {
+    "tabTexts": {
+      "statisticsTextEdit": "Viewing statistics"
+    }
+  },
+  "aboutApplicationDialog": {
+    "aboutTitle": "About the application"
+  }
+}

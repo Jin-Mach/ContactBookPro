@@ -2,9 +2,9 @@ The application allows exporting a selected contact as a vCard.
 
 Exporting to the vCard format (.vcf) enables saving contacts in a standardized format supported by mobile phones, email clients (e.g., Microsoft Outlook, Thunderbird), and other contact management applications.
 Each exported contact includes basic information – full name, email, phone number, and personal address.
-After choosing to export to vCard, a dialog appears to specify the file location and name.
-By default, the dialog opens in the Documents folder (the same location for both Windows and macOS), but the user can select any other folder.
+After selecting the export to vCard option, a dialog appears to specify the file location and name.
+By default, the dialog opens in the Documents folder (same for Windows and macOS), but the user can choose any other folder.
 
-The export happens immediately.
+The export occurs immediately.
 
-Upon completion, a dialog appears confirming the successful save.
+Upon completion, a dialog appears informing the user of successful saving.
