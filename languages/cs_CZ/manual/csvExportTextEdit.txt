@@ -4,7 +4,9 @@ Export do formátu CSV (.csv) ukládá kontakty jako textový soubor, ve kterém
 Formát je vhodný pro import do tabulkových procesorů (např. Microsoft Excel, LibreOffice Calc) nebo jiných aplikací podporujících CSV.
 Po výběru exportu se zobrazí dialog pro uložení souboru, který se ve výchozím nastavení uloží do složky Dokumenty (stejné umístění pro Windows i macOS).
 Uživatel může vybrat jinou složku i název souboru.
+
 Export se provádí na pozadí, takže je možné aplikaci během ukládání dál používat.
+
 Při větším množství kontaktů může export trvat déle.
 
 Po dokončení se zobrazí vyskakovací okno s informací o úspěšném uložení.

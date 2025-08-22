@@ -4,7 +4,9 @@ Export do formátu Excel (.xlsx) ukládá kontakty do souboru kompatibilního s 
 Data jsou rozdělena do sloupců, což usnadňuje jejich další úpravy a analýzu.
 Po výběru exportu se zobrazí dialog pro uložení souboru, který se ve výchozím nastavení uloží do složky Dokumenty (stejné umístění pro Windows i macOS).
 Uživatel může zvolit jinou složku i název souboru.
+
 Export probíhá na pozadí, takže je možné aplikaci během ukládání dál používat.
+
 Při větším množství kontaktů může export trvat déle.
 
 Po dokončení se zobrazí vyskakovací okno s informací o úspěšném uložení.

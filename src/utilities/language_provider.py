@@ -129,7 +129,7 @@ class LanguageProvider:
         return None
 
     @staticmethod
-    def get_language_dict() -> dict | None:
+    def get_language_dict() -> dict[str, str] | None:
         language_dict = {}
         try:
             for language in LanguageProvider.language_path.iterdir():

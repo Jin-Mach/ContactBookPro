@@ -26,6 +26,7 @@ Ulice (textový vstup) – nepovinná
 Město (textový vstup)
 PSČ (textový vstup)
 Stát (textový vstup)
+
 Poznámka: u pracovní adresy musí být buď vyplněna všechna pole (mimo ulice), nebo žádné. Částečně vyplněná adresa není povolena.
 
 SOCIÁLNÍ SÍTĚ
@@ -55,11 +56,13 @@ Po přidání nového kontaktu se aplikace pokusí automaticky získat jeho zem�
 Pokud se souřadnice podaří najít, kontakt se zobrazí na mapě.
 Pokud se souřadnice nepodaří zjistit, kontakt zůstane uložen bez souřadnic.
 Aplikace také obsahuje automatickou kontrolu, která se spustí jednou po 5 minutách od spuštění aplikace.
-Tato kontrola se pokusí doplnit souřadnice dle uložené adresy u všech kontaktů, které je nemají. Každý kontakt bez souřadnic je takto zkontrolován maximálně 20×.
-Poznámka: je nutné mít aktivní připojení k internetu, pokud připojení k internetu neexistuje, souřadnice se neověřují, ale aplikace běží dál.
+Tato kontrola se pokusí doplnit souřadnice dle uložené adresy u všech kontaktů, které je nemají.
+Každý kontakt bez souřadnic je takto zkontrolován maximálně 20×.
+
+Poznámka: je nutné mít aktivní připojení k internetu, pokud připojení k internetu neexistuje, souřadnice se neověřují, ale kontakt bude přidán/upraven.
 
 Klávesové zkratky
 Nový kontakt: Ctrl + N (macOS: Cmd + N)
 Aktualizovat kontakt: Ctrl + U (macOS: Cmd + U)
 
-Poznámka: klávesové zkratky fungují pouze, pokud je aplikace nastavena na okno "Kontakty".
+Poznámka: klávesové zkratky fungují pouze, pokud je aplikace nastavena na okno "Kontakty"

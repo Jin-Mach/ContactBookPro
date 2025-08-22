@@ -37,7 +37,7 @@ class ExportDataProvider:
             return None
 
     @staticmethod
-    def map_value(column_name: str, value: any, index_map: dict | None) -> any:
+    def map_value(column_name: str, value: Any, index_map: dict | None) -> Any:
         if not index_map:
             return value
         mapping_key = f"{column_name}Map"

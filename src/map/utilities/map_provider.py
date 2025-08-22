@@ -35,7 +35,7 @@ def create_map(contacts: list[dict[str, Any]]) -> str | None:
         remove_titles = Element("""
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Počkej chvilku, než se Leaflet vykreslí
+                // Počkej chvilku, než se Mapa vykreslí
                 setTimeout(function() {
                     document.querySelectorAll('.leaflet-control-zoom a').forEach(function(el) {
                         el.removeAttribute('title');

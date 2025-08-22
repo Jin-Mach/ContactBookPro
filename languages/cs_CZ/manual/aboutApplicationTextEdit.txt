@@ -6,4 +6,4 @@ Součástí je také vizualizace kontaktů na mapě, statistiky o uložených da
 
 Aplikace automaticky přizpůsobuje jazyk podle vašeho systému a zajišťuje aktuálnost dat díky online službám.
 
-Poznámka: Některé funkce jsou dostupné pouze při aktivním připojení k internetu.
+Poznámka: některé funkce jsou dostupné pouze při aktivním připojení k internetu

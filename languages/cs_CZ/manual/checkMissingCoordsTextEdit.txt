@@ -8,4 +8,4 @@ Kontrola probíhá na pozadí, takže aplikaci lze během ní dál používat.
 
 Uživatel je o dokončení informován dialogem s výsledkem.
 
-Poznámka: Kontrola probíhá pouze při aktivním připojení k internetu.
+Poznámka: kontrola probíhá pouze při aktivním připojení k internetu

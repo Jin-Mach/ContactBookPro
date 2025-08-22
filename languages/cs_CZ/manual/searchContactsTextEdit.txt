@@ -2,11 +2,11 @@ Aplikace umožňuje vyhledávat kontakty dvěma způsoby – jednoduchým a pokr
 
 Jednoduché vyhledávání
 Funguje pouze v označeném sloupci tabulky (například Jméno, E-mail, Telefon). Nejprve v tabulce vyberte sloupec, ve kterém chcete hledat.
-Do pole pro hledání zadejte text a klikněte na Vyhledat. Pokud není vybrán žádný sloupec, aplikace zobrazí upozornění „Vyberte sloupec“ a hledání se nespustí.
+Do pole pro hledání zadejte text a klikněte na Vyhledat. Pokud není vybrán žádný sloupec, aplikace zobrazí upozornění "Vyberte sloupec" a hledání se nespustí.
 Pokud využijete našeptávaný návrh, hledá se přesná shoda; pokud ne, hledají se záznamy obsahující zadaný text.
 
 Pokročilé vyhledávání
-Kliknutím na Pokročilé vyhledávání se otevře dialog, kde lze zadat více podmínek najednou (například Jméno, Město, E-mail).
+Kliknutím na Pokročilé vyhledávání se otevře dialog, kde lze zadat více podmínek najednou (například Jméno, Město, E-mail,...).
 U každého pole můžete zvolit možnost Vše, Obsahuje, Začíná nebo Končí.
 Jednotlivé podmínky lze upravit nebo smazat bez nutnosti nastavovat celý filtr znovu.
 Můžete také zobrazit náhled aktuálního filtru nebo filtr uložit pod vlastním názvem.
@@ -24,4 +24,4 @@ Pokročilé vyhledávání: Ctrl + Shift + F (macOS: Cmd + Shift + F)
 Reset filtrů: Ctrl + R (macOS: Cmd + R)
 Uložené filtry: Ctrl + L (macOS: Cmd + L)
 
-Poznámka: Klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty".
+Poznámka: klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty"

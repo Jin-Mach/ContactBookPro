@@ -1,6 +1,7 @@
-Kontextové menu umožňuje rychlý přístup k vybraným funkcím nad označeným kontaktem. Otevírá se kliknutím pravým tlačítkem myši na řádek kontaktu v tabulce.
+Kontextové menu umožňuje rychlý přístup k vybraným funkcím nad označeným kontaktem.
+Otevírá se kliknutím pravým tlačítkem myši na řádek kontaktu v tabulce.
 Umožňuje otevřít nebo upravit kontakt, odstranit jej, zkopírovat údaje do schránky, exportovat do CSV, Excelu nebo vCard,
-zobrazit náhled kontaktu v PDF nebo jeho QR kód a spustit kontrolu data narození, duplicit či kontaktů bez souřadnic
+zobrazit náhled kontaktu v PDF nebo jeho QR kód a spustit kontrolu data narození, duplicit či kontaktů bez souřadnic.
 
 Struktura kontextového menu
 
@@ -31,5 +32,8 @@ Kontrola
     Zobrazit duplicity
     Zobrazit kontakty bez souřadnic
 
-Poznámka: Všechny exporty otevírají dialog pro výběr cílového umístění souboru. Funkce Kopírovat využívají systémovou schránku (Ctrl + C / macOS: Cmd + C).
+Poznámka: všechny exporty otevírají dialog pro výběr cílového umístění souboru
+
+Funkce Kopírovat využívají systémovou schránku (Ctrl + C / macOS: Cmd + C).
+
 Náhledy a QR kód se zobrazí okamžitě v okně aplikace. Kontrolní funkce zobrazí seznam v samostatném okně dialogu.

@@ -13,10 +13,10 @@ class SplashScreen(QSplashScreen):
         self.setObjectName("splashScreen")
         self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.SplashScreen)
         self.setFixedSize(500, 250)
-        self.load_gui()
+        self.create_gui()
         self.center_on_screen()
 
-    def load_gui(self) -> None:
+    def create_gui(self) -> None:
         logger = get_logger()
         try:
             icon_path = pathlib.Path(__file__).parents[2].joinpath("icons", "splashScreen", "splash_icon.png")

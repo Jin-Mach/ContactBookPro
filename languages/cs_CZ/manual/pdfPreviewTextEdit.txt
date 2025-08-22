@@ -6,6 +6,7 @@ Uživatel může přibližovat, oddalovat a uložit náhled do PDF.
 Po kliknutí na uložit se zobrazí dialog pro výběr umístění a názvu souboru, který se ve výchozím nastavení uloží do složky Dokumenty (stejné pro Windows i macOS).
 
 Je možné zobrazit také seznam aktuálně zobrazených kontaktů nebo všech kontaktů v databázi.
-Tento seznam obsahuje pouze jméno, příjmení, pohlaví, vztah, e-mail, telefon a celou adresu. Seznam lze rovněž přibližovat, oddalovat a uložit do PDF.
+Tento seznam obsahuje pouze jméno, příjmení, pohlaví, vztah, e-mail, telefon a celou adresu.
+Seznam lze rovněž přibližovat, oddalovat a uložit jako PDF.
 
 Generování náhledu PDF probíhá na pozadí, takže aplikaci lze během generování dále používat.

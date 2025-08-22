@@ -17,5 +17,5 @@ def application_init(application: QApplication) -> bool:
         if isinstance(e, (SystemExit, KeyboardInterrupt)):
             raise
         logger = get_logger()
-        logger.exception("Exception during application initialization")
+        logger.exception(f"{application_init.__name__} {'Exception during application initialization'}: {e}", exc_info=True)
         return False
