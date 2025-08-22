@@ -5,6 +5,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class ProgressDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
