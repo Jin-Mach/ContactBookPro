@@ -1,9 +1,11 @@
 Aplikace Databáze kontaktů slouží k přehledné a snadné správě vašich kontaktů.
-Umožňuje evidovat základní i doplňující informace o kontaktech, vyhledávat je, filtrovat a exportovat do různých formátů, jako jsou CSV, Excel nebo vCard.
-K dispozici jsou také náhledy kontaktů ve formátu PDF a zobrazení QR kódů jednotlivých kontaktů.
 
-Součástí je také vizualizace kontaktů na mapě, statistiky o uložených datech a komplexní manuál, který vám pomůže efektivně využívat všechny funkce aplikace.
+Umožňuje evidovat základní i doplňující informace o kontaktech, vyhledávat je, filtrovat a exportovat do formátů, jako jsou CSV, Excel nebo vCard.
+K dispozici je také náhled kontaktů ve formátu PDF a zobrazení QR kódů jednotlivých záznamů.
 
-Aplikace automaticky přizpůsobuje jazyk podle vašeho systému a zajišťuje aktuálnost dat díky online službám.
+Součástí aplikace je vizualizace kontaktů na mapě, přehledné statistiky o uložených datech a komplexní manuál, který vám pomůže efektivně využívat všechny dostupné funkce.
+
+Aplikace se automaticky přizpůsobuje jazyku vašeho systému (pokud není podporován, zobrazí dialog s možností volby).
+Zároveň kontroluje jazykové soubory, ikony a fonty a podle potřeby je aktualizuje.
 
 Poznámka: některé funkce jsou dostupné pouze při aktivním připojení k internetu

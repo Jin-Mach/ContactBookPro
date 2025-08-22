@@ -12,6 +12,8 @@ Jednotlivé podmínky lze upravit nebo smazat bez nutnosti nastavovat celý filt
 Můžete také zobrazit náhled aktuálního filtru nebo filtr uložit pod vlastním názvem.
 Po kliknutí na Hledat se zobrazí výsledky, nebo oznámení, že zadaným parametrům neodpovídá žádný záznam.
 
+Poznámka: Opakované vyhledávání prohledává pouze kontakty omezené předchozím filtrem, pro vyhledávání ve všech kontaktech použijte možnost „Reset filtrů“.
+
 Uložené filtry
 Uložené filtry lze kdykoli zobrazit, použít nebo smazat.
 
