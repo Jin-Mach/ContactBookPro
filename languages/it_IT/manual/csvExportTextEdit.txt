@@ -1,0 +1,12 @@
+L'applicazione consente di esportare i contatti selezionati o tutti i contatti nel formato CSV.
+
+L'esportazione in formato CSV (.csv) salva i contatti come file di testo, in cui i singoli dati sono separati da virgole o punti e virgola (a seconda delle impostazioni di sistema).
+Il formato è adatto per l'importazione in fogli di calcolo (ad es. Microsoft Excel, LibreOffice Calc) o in altre applicazioni che supportano CSV.
+Dopo aver scelto l'esportazione, viene visualizzata una finestra di dialogo per salvare il file, che per impostazione predefinita viene salvato nella cartella Documenti (stessa posizione sia su Windows che su macOS).
+L'utente può selezionare una cartella diversa o modificare il nome del file.
+
+L'esportazione viene eseguita in background, quindi è possibile continuare a utilizzare l'applicazione durante il salvataggio.
+
+Con un numero elevato di contatti, l'esportazione potrebbe richiedere più tempo.
+
+Al termine viene visualizzata una finestra pop-up con l'informazione del salvataggio riuscito.

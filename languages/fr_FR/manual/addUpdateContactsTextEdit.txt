@@ -1,0 +1,68 @@
+Formulaire servant à créer un nouveau contact ou à modifier un contact existant.
+Il contient des champs obligatoires et facultatifs répartis en plusieurs sections.
+Avant l’enregistrement, une vérification de la complétude et du format des données est effectuée.
+
+POURS LES CHAMPS OBLIGATOIRES
+Sexe (sélection dans la liste) – choix dans la liste prédéfinie
+Relation (sélection dans la liste) – choix dans la liste prédéfinie
+Prénom (entrée texte)
+Nom (entrée texte)
+E-mail (entrée texte) – vérification du format correct
+Téléphone (entrée texte) – vérification du format correct
+Rue (entrée texte) – facultatif, si non disponible
+Numéro (entrée texte)
+Ville (entrée texte)
+Code postal (entrée texte)
+Pays (entrée texte)
+
+INFORMATIONS FACULTATIVES
+
+TRAVAIL
+Entreprise (entrée texte)
+E-mail (entrée texte) – vérification du format
+Numéro de téléphone (entrée texte) – vérification du format
+Rue (entrée texte) – facultatif
+Numéro (entrée texte)
+Ville (entrée texte)
+Code postal (entrée texte)
+Pays (entrée texte)
+
+Note : Pour l’adresse professionnelle, tous les champs (sauf la rue) doivent être remplis ou laissés vides. Une adresse partiellement remplie n’est pas autorisée.
+
+RÉSEAUX SOCIAUX
+Facebook (entrée texte)
+X (Twitter) (entrée texte)
+Instagram (entrée texte)
+LinkedIn (entrée texte)
+GitHub (entrée texte)
+Site web (entrée texte)
+
+DÉTAILS
+Photo – choix du fichier via dialogue
+Titre (entrée texte)
+Date de naissance (calendrier)
+Notes (entrée multi-lignes)
+
+Validation et messages d’erreur
+Si les champs obligatoires ne sont pas remplis, si l’adresse professionnelle est incomplète ou si le format e-mail / téléphone est incorrect, un message d’erreur s’affiche.
+Le curseur se positionne automatiquement sur la première entrée incorrecte.
+Si, lors de l’enregistrement d’un nouveau contact ou de la modification d’un contact existant, un contact avec le même e-mail ou numéro de téléphone existe déjà, un dialogue affiche les doublons trouvés.
+Dans ce dialogue, il est possible d’enregistrer le nouveau contact même s’il est en double, d’annuler l’enregistrement ou de passer au contact existant sélectionné dans la liste.
+
+Après l’enregistrement, une fenêtre contextuelle informe de la réussite de l’enregistrement / suppression du contact.
+
+Obtention des coordonnées
+Après l’ajout d’un nouveau contact, l’application tente automatiquement de récupérer ses coordonnées géographiques (selon l’adresse dans les champs obligatoires).
+Si les coordonnées sont trouvées, le contact s’affiche sur la carte.
+Si les coordonnées ne peuvent pas être déterminées, le contact reste enregistré sans coordonnées.
+L’application effectue également un contrôle automatique toutes les 5 minutes après le lancement.
+Ce contrôle tente de compléter les coordonnées pour tous les contacts qui n’en ont pas.
+Chaque contact sans coordonnées est vérifié au maximum 20 fois.
+
+Note : Une connexion Internet active est nécessaire. Si la connexion Internet n’est pas disponible, les coordonnées ne sont pas vérifiées, mais le contact sera ajouté / modifié.
+
+Raccourcis clavier
+Nouveau contact : Ctrl + N (macOS : Cmd + N)
+Mettre à jour le contact : Ctrl + U (macOS : Cmd + U)
+
+Note : Les raccourcis clavier ne fonctionnent que si l’application est sur la fenêtre "Contacts".

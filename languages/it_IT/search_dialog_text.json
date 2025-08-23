@@ -1,0 +1,102 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Ricerca avanzata",
+    "mandatory": "Cerca nei campi obbligatori",
+    "nonMandatory": "Cerca nei campi opzionali",
+    "searchButton": "Cerca",
+    "cancelButton": "Annulla",
+    "currentFilterButton": "",
+    "resetButton": ""
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Genere:",
+    "searchGenderCombobox": ["Tutti", "Uomo", "Donna"],
+    "searchRelationshipTextLabel": "Relazione:",
+    "searchRelationshipCombobox": ["Tutti","Famiglia", "Parente", "Collega", "Amico", "Conoscente", "Altro"],
+    "searchFirstNameTextLabel": "Nome:",
+    "searchSecondNameTextLabel": "Cognome:",
+    "searchEmailTextLabel": "E-mail (personale):",
+    "searchPhoneNumberTextLabel": "Tel. (personale):",
+    "searchCityTextLabel": "Città (personale):",
+    "searchStreetTextLabel": "Via (personale):",
+    "searchHouseNumberTextLabel": "Numero civico (personale):",
+    "searchPostCodeTextLabel": "CAP (personale):",
+    "searchCountryTextLabel": "Stato (personale):",
+    "operators": ["Uguale", "Contiene", "Inizia con", "Finisce con"],
+    "searchFirstNameEdit": "Inserisci il nome...",
+    "searchSecondNameEdit": "Inserisci il cognome...",
+    "searchEmailEdit": "Inserisci e-mail...",
+    "searchPhoneNumberEdit": "Inserisci tel....",
+    "searchCityEdit": "Inserisci città...",
+    "searchStreetEdit": "Inserisci via...",
+    "searchHouseNumberEdit": "Inserisci numero civico...",
+    "searchPostCodeEdit": "Inserisci CAP...",
+    "searchCountryEdit": "Inserisci stato..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Lavoro",
+    "social": "Social network",
+    "detail": "Dettagli"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Azienda:",
+    "searchWorkEmailTextLabel": "E-mail (lavoro):",
+    "searchWorkPhoneNumberTextLabel": "Tel. (lavoro):",
+    "searchWorkCityTextLabel": "Città (lavoro):",
+    "searchWorkStreetTextLabel": "Via (lavoro):",
+    "searchWorkHouseNumberTextLabel": "Numero civico (lavoro):",
+    "searchWorkPostCodeTextLabel": "CAP (lavoro):",
+    "searchWorkCountryTextLabel": "Stato (lavoro):",
+    "operators": ["Tutti", "Uguale", "Contiene", "Inizia con", "Finisce con"],
+    "searchWorkCompanyEdit": "Inserisci nome azienda...",
+    "searchWorkEmailEdit": "Inserisci e-mail...",
+    "searchWorkPhoneNumberEdit": "Inserisci tel....",
+    "searchWorkCityEdit": "Inserisci città...",
+    "searchWorkStreetEdit": "Inserisci via...",
+    "searchWorkHouseNumberEdit": "Inserisci numero civico...",
+    "searchWorkPostCodeEdit": "Inserisci CAP...",
+    "searchWorkCountryEdit": "Inserisci stato..."
+  },
+  "searchSocialNetworksDialog": {
+    "searchFacebookUrlTextLabel": "Facebook:",
+    "searchXUrlTextLabel": "X (Twitter):",
+    "searchInstagramUrlTextLabel": "Instagram:",
+    "searchLinkedinUrlTextLabel": "LinkedIn:",
+    "searchGithubUrlTextLabel": "GitHub:",
+    "searchWebsiteUrlTextLabel": "Sito web:",
+    "operators": ["Tutti", "Uguale", "Contiene", "Inizia con", "Finisce con"],
+    "searchFacebookUrlEdit": "Inserisci link Facebook...",
+    "searchXUrlEdit": "Inserisci link X (Twitter)...",
+    "searchInstagramUrlEdit": "Inserisci link Instagram...",
+    "searchLinkedinUrlEdit": "Inserisci link LinkedIn...",
+    "searchGithubUrlEdit": "Inserisci link GitHub...",
+    "searchWebsiteUrlEdit": "Inserisci sito..."
+  },
+  "searchDetailsWidget": {
+    "searchPhotoTextLabel": "Foto contatto:",
+    "searchPhotoCombobox": ["Non importa","con foto", "senza foto"],
+    "searchTitleTextLabel": "Titolo:",
+    "searchBirthdayTextLabel": "Data di nascita:",
+    "searchNotesTextLabel": "Note:",
+    "operators": ["Tutti", "Uguale", "Contiene", "Inizia con", "Finisce con"],
+    "searchTitleEdit": "Inserisci titolo...",
+    "searchBirthdayEdit": "Inserisci data... es: 01.01.2000",
+    "searchNotesEdit": "Inserisci note..."
+  },
+  "activeFiltersDialog": {
+    "currentFilterTitle": "Filtro attuale",
+    "currentFilterTextLabel": "Filtri attualmente impostati",
+    "saveFilter": "Salva filtro",
+    "closeButton": "Chiudi"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Salva filtro",
+    "filterNameTextLabel": "Inserisci il nome del nuovo filtro",
+    "filterNameInput": "Solo lettere, numeri, spazi e caratteri base (-, _)",
+    "saveFilterButton": "Salva",
+    "cancelButton": "Chiudi"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Un attimo, sto cercando..."
+  }
+}

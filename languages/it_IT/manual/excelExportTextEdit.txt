@@ -1,0 +1,12 @@
+L'applicazione consente di esportare i contatti selezionati o tutti i contatti in formato Excel.
+
+L'esportazione in formato Excel (.xlsx) salva i contatti in un file compatibile con Microsoft Excel, LibreOffice Calc e altri fogli di calcolo.
+I dati sono organizzati in colonne, facilitando ulteriori modifiche e analisi.
+Dopo aver selezionato l'esportazione, verrà visualizzata una finestra di dialogo per il salvataggio del file, che per impostazione predefinita verrà salvato nella cartella Documenti (stesso percorso per Windows e macOS).
+L'utente può scegliere un'altra cartella o un nome file diverso.
+
+L'esportazione avviene in background, quindi l'applicazione può essere utilizzata durante il salvataggio.
+
+Con un grande numero di contatti, l'esportazione potrebbe richiedere più tempo.
+
+Al termine verrà visualizzata una finestra pop-up con l'informazione dell'avvenuto salvataggio.

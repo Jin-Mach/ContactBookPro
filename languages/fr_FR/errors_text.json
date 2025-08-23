@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Une erreur est survenue lors de l'entrée/sortie. Veuillez vérifier la connexion au disque.",
+    "ValueError": "Format de fichier invalide. Assurez-vous d'utiliser un format pris en charge.",
+    "TypeError": "Type d'argument invalide. Veuillez vérifier les valeurs saisies.",
+    "TimeoutError": "L'opération a expiré lors de la tentative d'ouverture ou de sauvegarde du fichier.",
+    "JSONDecodeError": "Le fichier n'est pas un JSON valide. Veuillez vérifier le format du fichier.",
+    "DatabaseConnectionError": "Impossible de se connecter à la base de données.",
+    "queryError": "Erreur lors de l'exécution de la requête de la base de données.",
+    "RuntimeError": "Impossible d'ouvrir le lien. Vérifiez qu'il est valide et que vous êtes connecté à Internet.",
+    "URLError": "Le lien est invalide ou la connexion n'a pas pu être établie.",
+    "FileNotFoundError": "Le fichier exécutable ou le script est introuvable. Veuillez vérifier le chemin.",
+    "OSError": "Une erreur système est survenue lors de la tentative de redémarrage de l'application. Redémarrez l'application manuellement.",
+    "UnexpectedError": "Une erreur inattendue est survenue."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Veuillez sélectionner le sexe.",
+    "relationshipError": "Veuillez sélectionner la relation.",
+    "emptyTextError": "Ce champ ne peut pas être vide.\n",
+    "emailValidatorError": "Format d'e-mail invalide.\nVeuillez saisir l'e-mail au format : email@domaine.fr",
+    "phoneNumberValidatorError": "Veuillez saisir le numéro de téléphone au format correct.\nPar exemple : +33123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Format d'e-mail invalide.\nVeuillez saisir l'e-mail au format : email@domaine.fr",
+    "phoneNumberValidatorError": "Veuillez saisir le numéro de téléphone au format correct.\nPar exemple : +33123456789.",
+    "workAddressValidatorError": "Veuillez remplir le numéro, la ville, le code postal et le pays, ou laissez tous les champs vides."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Format de lien invalide ou réseau social incorrect.\nVeuillez saisir une URL valide pour {site} au format : https://www.{site}.com/profil.",
+    "websiteValidatorError": "Format invalide.\nVeuillez saisir une URL valide au format : www.example.fr"
+  },
+  "notesUtilities": {
+    "textLengthError": "Le texte peut contenir au maximum 300 caractères.",
+    "textLineCountError": "Les notes peuvent contenir au maximum 10 lignes."
+  },
+  "calendarDialog": {
+    "selectedDateError": "La date sélectionnée ne peut pas être postérieure à la date actuelle."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Aucun filtre actif."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Impossible de rechercher sans texte saisi.",
+    "noTableviewSelection": "Pour une recherche rapide, veuillez sélectionner une colonne.",
+    "noFilteredData": "Aucune donnée ne correspond à l'expression saisie.\nLe filtre sera réinitialisé."
+  },
+  "widgetErrors": {
+    "indexError": "Index non valide sélectionné. Veuillez recommencer la sélection.",
+    "noTableviewSelection": "Veuillez d'abord sélectionner un contact dans la liste."
+  },
+  "filtersController": {
+    "noActiveFilter": "Aucun filtre actif.",
+    "existingFilterName": "Le nom du filtre existe déjà.",
+    "noUserFilters": "Aucun filtre enregistré."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Aucun nom de filtre saisi."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Aucun filtre actif."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Aucun filtre enregistré.",
+    "noSelection": "Veuillez d'abord sélectionner un filtre."
+  },
+  "csvExportController": {
+    "emptyIdList": "Aucun contact à exporter"
+  },
+  "excelExportController": {
+    "emptyIdList": "Aucun contact à exporter"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Aucun contact à exporter",
+    "indexError": "Index non valide sélectionné. Veuillez recommencer la sélection.",
+    "noTableviewSelection": "Veuillez d'abord sélectionner un contact dans la liste."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Aucun contact n'a d'anniversaire proche."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Aucun contact en double."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Tous les contacts ont des coordonnées valides"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Le presse-papiers est vide, rien à coller"
+  }
+}

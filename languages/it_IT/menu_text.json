@@ -1,0 +1,41 @@
+{
+  "contextMenu": {
+    "addContactAction": "Aggiungi contatto",
+    "updateContactAction": "Modifica contatto",
+    "deleteContactAction": "Elimina contatto",
+    "copyMenu": "Copia",
+    "copyNameAction": "Nome",
+    "copyEmailAction": "E-mail",
+    "copyPhoneNumberAction": "Telefono",
+    "exportMenu": "Esporta",
+    "exportCsvMenu": "CSV",
+    "exportFilteredDataCsvAction": "Esporta visualizzati",
+    "exportAllDataCsvAction": "Esporta tutto",
+    "exportExcelMenu": "Excel",
+    "exportFilteredDataExcelAction": "Esporta visualizzati",
+    "exportAllDataExcelAction": "Esporta tutto",
+    "exportVcardAction": "vCard",
+    "previewMenu": "Anteprima",
+    "previewContactAction": "Anteprima contatto",
+    "previewContactsListMenu": "Anteprima elenco contatti",
+    "previewFilteredContactsListAction": "Anteprima contatti visualizzati",
+    "previewAllContactsListAction": "Anteprima tutti i contatti",
+    "previewQrCodeAction": "QR code contatto",
+    "contactCheckMenu": "Controllo contatti",
+    "contactCheckBirthdayAction": "Mostra compleanni",
+    "contactCheckDuplicityAction": "Mostra duplicati",
+    "contactsCheckCoordsAction": "Mostra contatti senza coordinate"
+  },
+  "csvExportController": {
+    "csvFilter": "File CSV (*.csv);;Tutti i file (*)"
+  },
+  "excelExportController": {
+    "excelFilter": "File Excel (*.xlsx);;Tutti i file (*)"
+  },
+  "vcardExportController": {
+    "vcardFilter": "File vCard (*.vcf);;Tutti i file (*)"
+  },
+  "pdfExportController": {
+    "pdfFilter": "File PDF (*.pdf);;Tutti i file (*)"
+  }
+}

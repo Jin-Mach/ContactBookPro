@@ -1,0 +1,10 @@
+L'application permet de vérifier les Contacts avec des informations en double.
+
+La vérification parcourt tous les Contacts et sélectionne ceux ayant les mêmes adresses e-mail, numéro de téléphone ou les deux.
+Les doublons sont recherchés uniquement dans les informations obligatoires du "Contact" (personnelles, non professionnelles).
+À la fin, une notification s'affiche indiquant qu'aucun "Contact" ne correspond aux critères, ou bien une boîte de dialogue montre la liste des Contacts trouvés.
+Dans cette boîte de dialogue, il est possible de passer au "Contact" sélectionné, ce qui applique le filtre sur ce Contact.
+
+La vérification s'exécute en arrière-plan, de sorte que l'application peut continuer à être utilisée pendant ce temps.
+
+L'utilisateur est informé de l'achèvement par une boîte de dialogue avec le résultat.

@@ -1,0 +1,40 @@
+Le menu contextuel permet un accès rapide aux fonctions sélectionnées pour un Contact choisi.
+Il s'ouvre en cliquant avec le bouton droit de la souris sur la ligne du "Contact" dans le tableau.
+Il permet d'ouvrir ou de modifier le "Contact", de le supprimer, de copier ses informations dans le presse-papiers, d'exporter en CSV, Excel ou vCard,
+d'afficher un aperçu du "Contact" en PDF ou son QR code, et de lancer la vérification des anniversaires, des doublons ou des "Contacts" sans coordonnées.
+
+Structure du menu contextuel
+
+Ajouter un Contact
+Modifier le Contact
+Supprimer le Contact
+Copier
+    Nom
+    E-mail
+    Téléphone
+Exporter
+    CSV
+        Exporter les éléments affichés
+        Exporter tout
+    Excel
+        Exporter les éléments affichés
+        Exporter tout
+    vCard
+        Exporter le "Contact" sélectionné
+Aperçu
+    Aperçu du Contact
+    Aperçu de la liste des Contacts
+        Aperçu des éléments affichés
+        Aperçu de tous les Contacts
+    QR code du Contact
+Vérification
+    Afficher les anniversaires
+    Afficher les doublons
+    Afficher les "Contacts" sans coordonnées
+
+Remarque : Toutes les exportations ouvrent une boîte de dialogue pour choisir l'emplacement du fichier.
+
+Les fonctions Copier utilisent le presse-papiers du système (Ctrl + C / macOS : Cmd + C).
+
+Les aperçus et le QR code s'affichent immédiatement dans la fenêtre de l'application.
+Les fonctions de vérification affichent la liste dans une fenêtre de dialogue séparée.

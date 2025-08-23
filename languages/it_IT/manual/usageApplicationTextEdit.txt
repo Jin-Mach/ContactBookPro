@@ -1,0 +1,9 @@
+Il manuale è suddiviso in capitoli, elencati nel pannello di sinistra come elenco degli argomenti.
+
+Facendo clic su un argomento nell'elenco a sinistra, nella parte destra viene visualizzata la sezione corrispondente del manuale.
+
+Alcuni argomenti contengono sottosezioni, su cui è possibile cliccare per visualizzare informazioni più dettagliate.
+
+Quando selezionate una scheda a destra dall'elenco a sinistra, l'argomento che state leggendo viene automaticamente evidenziato nel pannello di sinistra.
+
+Questo metodo vi consente di trovare rapidamente le informazioni necessarie e di navigare facilmente tra le diverse sezioni del manuale.

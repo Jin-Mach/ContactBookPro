@@ -1,0 +1,11 @@
+L'application permet d'afficher la carte des contacts qui ont des coordonnées géographiques valides.
+
+Sur la carte, chaque contact est affiché sous forme de marqueur.
+En cliquant sur un marqueur, les informations de base du contact s'affichent – nom, e-mail et numéro de téléphone.
+La carte peut être zoomée, dézoomée et déplacée. Au-dessus de la carte, le nombre de contacts actuellement affichés et le nombre total de tous les contacts dans la base de données est indiqué.
+
+Après chaque ajout, modification ou suppression d'un contact, si l'adresse obligatoire a été modifiée, la carte est automatiquement mise à jour et l'utilisateur est informé par une courte notification en bas de l'application.
+
+Si aucun contact n'a de coordonnées ou si aucune connexion Internet n'est disponible, une notification indiquant cette situation s'affiche à la place de la carte.
+
+Remarque : La carte ne fonctionne que si une connexion Internet est active.

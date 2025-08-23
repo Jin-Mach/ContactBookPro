@@ -1,0 +1,8 @@
+{
+  "userFiltersDialog": {
+    "dialogTitle": "Filtres enregistrés",
+    "userFiltersTextLabel": "Liste des filtres enregistrés",
+    "filterButton": "Appliquer le filtre",
+    "cancelButton": "Annuler"
+  }
+}

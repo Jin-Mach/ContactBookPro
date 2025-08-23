@@ -1,0 +1,23 @@
+L'application permet de supprimer des contacts individuels ainsi que tous les contacts en une seule fois.
+
+Suppression d'un contact
+Sélectionnez le contact souhaité dans le tableau et cliquez sur le bouton de suppression.
+Une fenêtre de confirmation s'affiche avec la question "Supprimer vraiment ?" et la possibilité de confirmer ou d'annuler la suppression.
+Après confirmation, le contact sélectionné sera supprimé et une fenêtre pop-up apparaîtra pour informer de la réussite de la suppression du contact sélectionné.
+
+Suppression de tous les contacts
+Il n'est pas nécessaire de sélectionner quoi que ce soit – cliquez simplement sur le bouton pour supprimer toute la base de données.
+Une fenêtre de confirmation s'ouvre avec un champ texte, dans lequel il faut écrire le mot "smazat" pour confirmer l'action.
+Dans cette fenêtre, il est également possible de cocher l'option pour supprimer les filtres enregistrés.
+Si cette option est activée, tous les filtres enregistrés seront également supprimés.
+Après confirmation, l'application tentera de supprimer tous les contacts de la base de données, de supprimer les filtres enregistrés (si l'option a été activée) et de supprimer le fichier de base de données (contacts_db.sqlite).
+Si le fichier de base de données ne peut pas être supprimé, seul son contenu sera effacé et le fichier sera conservé.
+Ensuite, l'application redémarrera automatiquement et créera une nouvelle base de données vide.
+
+!!! Ne supprimez pas le fichier de base de données manuellement, cela entraînerait une perte irréversible de données !!!
+
+Raccourcis clavier
+Supprimer le contact sélectionné : Ctrl + D (macOS : Cmd + D)
+Supprimer toute la base de données : Ctrl + Shift + D (macOS : Cmd + Shift + D)
+
+Remarque : Les raccourcis clavier ne fonctionnent que si l'application est réglée sur la fenêtre "Contacts".

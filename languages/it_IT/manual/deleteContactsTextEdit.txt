@@ -1,0 +1,23 @@
+L'applicazione consente di eliminare singoli contatti o di rimuovere tutti i contatti contemporaneamente.
+
+Eliminazione di un singolo contatto
+Selezionare il contatto desiderato nella tabella e fare clic sul pulsante di eliminazione.
+Verrà visualizzata una finestra di conferma con la domanda "Eliminare davvero?" e la possibilità di confermare o annullare l'eliminazione.
+Dopo la conferma, il contatto selezionato verrà rimosso e verrà visualizzata una finestra pop-up con l'informazione dell'avvenuta eliminazione del contatto selezionato.
+
+Eliminazione di tutti i contatti
+Non è necessario selezionare nulla – basta fare clic sul pulsante per eliminare l'intero database.
+Si aprirà una finestra di conferma con un campo di testo in cui è necessario digitare la parola "elimina" per confermare l'azione.
+In questa finestra è anche possibile selezionare l'opzione per rimuovere i filtri salvati.
+Se questa opzione è attiva, verranno eliminati anche tutti i filtri salvati.
+Dopo la conferma, l'applicazione tenterà di cancellare tutti i contatti dal database, eliminare i filtri salvati (se l'opzione è attiva) e rimuovere il file del database (contacts_db.sqlite).
+Se il file del database non può essere eliminato, verrà cancellato solo il suo contenuto e il file resterà.
+Successivamente, l'applicazione si riavvierà automaticamente e creerà un nuovo database vuoto.
+
+!!! Non eliminare manualmente il file del database, si rischia la perdita irreversibile dei dati !!!
+
+Scorciatoie da tastiera
+Eliminare il contatto selezionato: Ctrl + D (macOS: Cmd + D)
+Eliminare l'intero database: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Nota: Le scorciatoie da tastiera funzionano solo se l'applicazione è impostata sulla finestra "Contatti".

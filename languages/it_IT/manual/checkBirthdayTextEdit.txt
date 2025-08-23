@@ -1,0 +1,9 @@
+L’applicazione consente di controllare i contatti i cui compleanni sono imminenti.
+
+All’avvio, il controllo esamina tutti i contatti e seleziona quelli per cui il campo Data di nascita è compilato e la data di nascita rientra in un intervallo di ±7 giorni dalla data odierna.
+Al termine viene visualizzata una notifica che indica che nessun contatto soddisfa i criteri oppure una finestra con l’elenco dei contatti trovati.
+Nella finestra è possibile passare al contatto selezionato, impostando così il filtro su quel contatto.
+
+Il controllo viene eseguito in background, quindi l’applicazione può essere utilizzata normalmente durante l’operazione.
+
+L’utente viene informato del completamento tramite una finestra di dialogo con i risultati.

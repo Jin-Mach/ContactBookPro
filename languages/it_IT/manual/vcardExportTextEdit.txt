@@ -1,0 +1,10 @@
+L'applicazione consente di esportare un contatto selezionato come vCard.
+
+L'esportazione in formato vCard (.vcf) permette di salvare i contatti in un formato standard supportato da telefoni cellulari, client di posta elettronica (ad esempio Microsoft Outlook, Thunderbird) e altre applicazioni di gestione contatti.
+Ogni contatto esportato contiene informazioni di base – nome completo, e-mail, numero di telefono e indirizzo personale.
+Dopo aver selezionato l'esportazione in vCard, verrà visualizzata una finestra di dialogo per specificare la posizione e il nome del file.
+Per impostazione predefinita, la finestra si apre nella cartella Documenti (stessa posizione per Windows e macOS), ma l'utente può selezionare qualsiasi altra cartella.
+
+L'esportazione avviene immediatamente.
+
+Al termine, viene visualizzata una finestra di dialogo con informazioni sul salvataggio avvenuto con successo.

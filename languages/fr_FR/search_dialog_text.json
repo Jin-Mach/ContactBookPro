@@ -1,0 +1,102 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Recherche avancée",
+    "mandatory": "Rechercher dans les obligatoires",
+    "nonMandatory": "Rechercher dans les optionnels",
+    "searchButton": "Rechercher",
+    "cancelButton": "Annuler",
+    "currentFilterButton": "",
+    "resetButton": ""
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Sexe :",
+    "searchGenderCombobox": ["Tous", "Homme", "Femme"],
+    "searchRelationshipTextLabel": "Relation :",
+    "searchRelationshipCombobox": ["Tous","Famille", "Parent", "Collègue", "Ami", "Connaissance", "Autre"],
+    "searchFirstNameTextLabel": "Prénom :",
+    "searchSecondNameTextLabel": "Nom :",
+    "searchEmailTextLabel": "E-mail (personnel) :",
+    "searchPhoneNumberTextLabel": "Tél. (personnel) :",
+    "searchCityTextLabel": "Ville (personnelle) :",
+    "searchStreetTextLabel": "Rue (personnelle) :",
+    "searchHouseNumberTextLabel": "Numéro (personnel) :",
+    "searchPostCodeTextLabel": "Code postal (personnel) :",
+    "searchCountryTextLabel": "Pays (personnel) :",
+    "operators": ["Correspondance", "Contient", "Commence par", "Finit par"],
+    "searchFirstNameEdit": "Entrez le prénom...",
+    "searchSecondNameEdit": "Entrez le nom...",
+    "searchEmailEdit": "Entrez l'e-mail...",
+    "searchPhoneNumberEdit": "Entrez le tél. ...",
+    "searchCityEdit": "Entrez la ville...",
+    "searchStreetEdit": "Entrez la rue...",
+    "searchHouseNumberEdit": "Entrez le numéro...",
+    "searchPostCodeEdit": "Entrez le code postal...",
+    "searchCountryEdit": "Entrez le pays..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Travail",
+    "social": "Réseaux sociaux",
+    "detail": "Détails"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Entreprise :",
+    "searchWorkEmailTextLabel": "E-mail (travail) :",
+    "searchWorkPhoneNumberTextLabel": "Tél. (travail) :",
+    "searchWorkCityTextLabel": "Ville (travail) :",
+    "searchWorkStreetTextLabel": "Rue (travail) :",
+    "searchWorkHouseNumberTextLabel": "Numéro (travail) :",
+    "searchWorkPostCodeTextLabel": "Code postal (travail) :",
+    "searchWorkCountryTextLabel": "Pays (travail) :",
+    "operators": ["Tous", "Correspondance", "Contient", "Commence par", "Finit par"],
+    "searchWorkCompanyEdit": "Entrez le nom de l'entreprise...",
+    "searchWorkEmailEdit": "Entrez l'e-mail...",
+    "searchWorkPhoneNumberEdit": "Entrez le tél. ...",
+    "searchWorkCityEdit": "Entrez la ville...",
+    "searchWorkStreetEdit": "Entrez la rue...",
+    "searchWorkHouseNumberEdit": "Entrez le numéro...",
+    "searchWorkPostCodeEdit": "Entrez le code postal...",
+    "searchWorkCountryEdit": "Entrez le pays..."
+  },
+  "searchSocialNetworksDialog": {
+    "searchFacebookUrlTextLabel": "Facebook :",
+    "searchXUrlTextLabel": "X (Twitter) :",
+    "searchInstagramUrlTextLabel": "Instagram :",
+    "searchLinkedinUrlTextLabel": "LinkedIn :",
+    "searchGithubUrlTextLabel": "GitHub :",
+    "searchWebsiteUrlTextLabel": "Site web :",
+    "operators": ["Tous", "Correspondance", "Contient", "Commence par", "Finit par"],
+    "searchFacebookUrlEdit": "Entrez le lien Facebook...",
+    "searchXUrlEdit": "Entrez le lien X (Twitter)...",
+    "searchInstagramUrlEdit": "Entrez le lien Instagram...",
+    "searchLinkedinUrlEdit": "Entrez le lien LinkedIn...",
+    "searchGithubUrlEdit": "Entrez le lien GitHub...",
+    "searchWebsiteUrlEdit": "Entrez le site web..."
+  },
+  "searchDetailsWidget": {
+    "searchPhotoTextLabel": "Photo du contact :",
+    "searchPhotoCombobox": ["Peu importe","Avec photo", "Sans photo"],
+    "searchTitleTextLabel": "Titre :",
+    "searchBirthdayTextLabel": "Date de naissance :",
+    "searchNotesTextLabel": "Notes :",
+    "operators": ["Tous", "Correspondance", "Contient", "Commence par", "Finit par"],
+    "searchTitleEdit": "Entrez le titre...",
+    "searchBirthdayEdit": "Entrez la date... ex : 01.01.2000",
+    "searchNotesEdit": "Entrez les notes..."
+  },
+  "activeFiltersDialog": {
+    "currentFilterTitle": "Filtre actuel",
+    "currentFilterTextLabel": "Filtres actuellement appliqués",
+    "saveFilter": "Enregistrer le filtre",
+    "closeButton": "Fermer"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Enregistrement du filtre",
+    "filterNameTextLabel": "Entrez le nom du nouveau filtre",
+    "filterNameInput": "Lettres, chiffres, espaces et caractères de base (-, _)",
+    "saveFilterButton": "Enregistrer",
+    "cancelButton": "Fermer"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Un instant, je cherche..."
+  }
+}

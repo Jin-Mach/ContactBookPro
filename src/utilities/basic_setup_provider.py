@@ -8,7 +8,7 @@ from src.utilities.logger_provider import get_logger
 class BasicSetupProvider:
     default_path = pathlib.Path(__file__).parents[2]
     default_path.mkdir(parents=True, exist_ok=True)
-    supported_languages = ["cs_CZ", "de_DE", "en_GB", "es_ES"]
+    supported_languages = ["cs_CZ", "de_DE", "en_GB", "es_ES", "fr_FR", "it_IT"]
 
     @staticmethod
     def check_json_files() -> dict:

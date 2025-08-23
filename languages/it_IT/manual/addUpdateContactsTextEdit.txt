@@ -1,0 +1,68 @@
+Il modulo serve per creare un nuovo contatto o modificare uno esistente.
+Contiene campi obbligatori e facoltativi suddivisi in diverse sezioni.
+Prima del salvataggio viene controllata la completezza e il formato dei dati.
+
+CAMPI OBBLIGATORI
+Sesso (scelta da un elenco) – selezione da una lista predefinita
+Relazione (scelta da un elenco) – selezione da una lista predefinita
+Nome (campo di testo)
+Cognome (campo di testo)
+E-mail (campo di testo) – controllo del formato corretto
+Telefono (campo di testo) – controllo del formato corretto
+Via (campo di testo) – facoltativo se non disponibile
+Numero civico (campo di testo)
+Città (campo di testo)
+CAP (campo di testo)
+Stato (campo di testo)
+
+DATI FACOLTATIVI
+
+LAVORO
+Azienda (campo di testo)
+E-mail (campo di testo) – controllo del formato
+Telefono (campo di testo) – controllo del formato
+Via (campo di testo) – facoltativo
+Numero civico (campo di testo)
+Città (campo di testo)
+CAP (campo di testo)
+Stato (campo di testo)
+
+Nota: Per l'indirizzo lavorativo devono essere compilati tutti i campi (eccetto la via) o nessuno. Non è consentito un indirizzo parzialmente compilato.
+
+RETI SOCIALI
+Facebook (campo di testo)
+X (Twitter) (campo di testo)
+Instagram (campo di testo)
+LinkedIn (campo di testo)
+GitHub (campo di testo)
+Sito web (campo di testo)
+
+DETTAGLI
+Foto – selezione del file tramite dialogo
+Titolo (campo di testo)
+Data di nascita (calendario)
+Note (campo di testo a più righe)
+
+Validazione e messaggi di errore
+Se i campi obbligatori non sono compilati, l’indirizzo lavorativo è incompleto o il formato di e-mail/telefono è errato, verrà visualizzato un messaggio di errore.
+Il cursore si posizionerà automaticamente sul primo campo errato.
+Se durante il salvataggio di un nuovo contatto o la modifica di uno esistente esiste già in database un contatto con la stessa e-mail o numero di telefono, viene visualizzata una finestra con l’elenco dei duplicati trovati.
+In questa finestra è possibile salvare comunque il nuovo contatto, annullare il salvataggio o passare al contatto esistente selezionato nell’elenco.
+
+Al termine verrà visualizzata una finestra popup con conferma del salvataggio/cancellazione del contatto.
+
+Rilevamento coordinate
+Dopo l’aggiunta di un nuovo contatto, l’app tenta automaticamente di ottenere le coordinate geografiche (in base all’indirizzo nei dati obbligatori).
+Se le coordinate vengono trovate, il contatto viene visualizzato sulla mappa.
+Se non è possibile rilevarle, il contatto rimane salvato senza coordinate.
+L’app include anche un controllo automatico che viene eseguito una volta ogni 5 minuti dall’avvio dell’app.
+Questo controllo tenta di completare le coordinate per tutti i contatti che ne sono privi, utilizzando l’indirizzo salvato.
+Ogni contatto senza coordinate viene controllato al massimo 20 volte.
+
+Nota: È necessario avere una connessione a Internet attiva; se non è disponibile, le coordinate non vengono verificate, ma il contatto sarà comunque aggiunto/modificato.
+
+Scorciatoie da tastiera
+Nuovo contatto: Ctrl + N (macOS: Cmd + N)
+Aggiorna contatto: Ctrl + U (macOS: Cmd + U)
+
+Nota: Le scorciatoie funzionano solo se l’app è impostata sulla finestra "Contatti".

@@ -1,0 +1,5 @@
+L'application permet d'afficher un aperçu du code QR pour le contact sélectionné.
+
+Le code QR contient les mêmes informations que l'export au format vCard – prénom, nom, e-mail, téléphone et adresse personnelle.
+
+L'aperçu du code QR s'ouvre dans une fenêtre séparée et est uniquement statique, il n'est pas possible de zoomer, dézoomer ou d'enregistrer.

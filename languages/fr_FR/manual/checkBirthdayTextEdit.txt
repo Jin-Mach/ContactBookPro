@@ -1,0 +1,9 @@
+L'application permet de vérifier les "Contacts" dont l'anniversaire approche.
+
+Au démarrage, la vérification parcourt tous les "Contacts" et sélectionne ceux pour lesquels le champ Date de naissance est rempli et dont la date de naissance se situe dans un intervalle de ±7 jours par rapport à la date actuelle.
+À la fin, une notification s'affiche indiquant qu'aucun Contact ne correspond aux critères, ou bien une boîte de dialogue montre la liste des Contacts trouvés.
+Dans cette boîte de dialogue, il est possible de passer au "Contact" sélectionné, ce qui applique le filtre sur ce "Contact".
+
+La vérification s'exécute en arrière-plan, de sorte que l'application peut continuer à être utilisée pendant ce temps.
+
+L'utilisateur est informé de l'achèvement par une boîte de dialogue avec le résultat.

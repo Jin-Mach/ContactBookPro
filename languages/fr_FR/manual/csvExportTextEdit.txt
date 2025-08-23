@@ -1,0 +1,12 @@
+L'application permet d'exporter des contacts sélectionnés ou tous les contacts au format CSV.
+
+L'export au format CSV (.csv) enregistre les contacts sous forme de fichier texte, dans lequel les différentes informations sont séparées par une virgule ou un point-virgule (selon les paramètres du système).
+Le format est adapté à l'importation dans des tableurs (par ex. Microsoft Excel, LibreOffice Calc) ou d'autres applications prenant en charge le CSV.
+Après avoir choisi l'export, une boîte de dialogue apparaît pour enregistrer le fichier, qui est par défaut enregistré dans le dossier Documents (même emplacement pour Windows et macOS).
+L'utilisateur peut sélectionner un autre dossier ou un autre nom de fichier.
+
+L'export s'effectue en arrière-plan, ce qui permet d'utiliser l'application pendant l'enregistrement.
+
+Pour un grand nombre de contacts, l'export peut prendre plus de temps.
+
+Une fois terminé, une fenêtre pop-up s'affiche pour informer de la réussite de l'enregistrement.

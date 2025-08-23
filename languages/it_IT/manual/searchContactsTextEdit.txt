@@ -1,0 +1,29 @@
+L'applicazione consente di cercare i contatti in due modi: semplice e avanzato.
+
+Ricerca semplice
+Funziona solo nella colonna selezionata della tabella (ad esempio Nome, E-mail, Telefono). Prima, selezionare la colonna in cui si desidera cercare.
+Inserire il testo nel campo di ricerca e fare clic su Cerca. Se non è selezionata alcuna colonna, l'applicazione mostrerà l'avviso "Seleziona una colonna" e la ricerca non verrà eseguita.
+Se si utilizza il suggerimento proposto, la ricerca corrisponde esattamente al testo; altrimenti, vengono cercati i record che contengono il testo inserito.
+
+Ricerca avanzata
+Facendo clic su Ricerca avanzata si apre una finestra in cui è possibile inserire più condizioni contemporaneamente (ad esempio Nome, Città, E-mail,...).
+Per ciascun campo è possibile scegliere tra Tutto, Contiene, Inizia con o Finisce con.
+Le singole condizioni possono essere modificate o eliminate senza dover impostare nuovamente l'intero filtro.
+È inoltre possibile visualizzare l'anteprima del filtro corrente o salvare il filtro con un nome personalizzato.
+Facendo clic su Cerca, verranno mostrati i risultati oppure un avviso che non corrisponde alcun record ai criteri inseriti.
+
+Nota: le ricerche ripetute cercano solo nei contatti limitati dal filtro precedente; per cercare in tutti i contatti, utilizzare l'opzione "Reimposta filtri".
+
+Filtri salvati
+I filtri salvati possono essere visualizzati, utilizzati o eliminati in qualsiasi momento.
+
+Reimposta filtri
+Selezionando Reimposta filtri, tutte le condizioni vengono rimosse e vengono mostrati tutti i contatti.
+
+Scorciatoie da tastiera
+Ricerca: Ctrl + F (macOS: Cmd + F)
+Ricerca avanzata: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Reimposta filtri: Ctrl + R (macOS: Cmd + R)
+Filtri salvati: Ctrl + L (macOS: Cmd + L)
+
+Nota: le scorciatoie funzionano solo se l'applicazione è impostata sulla finestra "Contatti".

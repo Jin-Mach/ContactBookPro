@@ -1,0 +1,89 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Mostra il database dei contatti",
+    "mainWindowMapButton": "Mostra la mappa dei contatti",
+    "mainWindowStatisticsButton": "Mostra le statistiche",
+    "mainWindowManualButton": "Mostra la guida",
+    "mainWindowAboutButton": "Mostra informazioni sull'applicazione"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Aggiungi contatto al database",
+    "updateContactPushbutton": "Modifica contatto selezionato",
+    "deleteContactPushbutton": "Elimina contatto selezionato",
+    "deleteAllContactsPushbutton": "Elimina l'intero database",
+    "searchPushbutton": "Cerca nella colonna selezionata",
+    "advancedSearchPushbutton": "Apri dialogo per ricerca avanzata",
+    "resetFilterPushbutton": "Rimuovi tutti i filtri",
+    "userFiltersPushbutton": "Mostra filtri salvati"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Apri link a Facebook",
+    "xPushbutton": "Apri link a X (Twitter)",
+    "instagramPushbutton": "Apri link a Instagram",
+    "linkedinPushbutton": "Apri link a LinkedIn",
+    "githubPushbutton": "Apri link a GitHub",
+    "websitePushbutton": "Apri sito web"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Aggiungi contatto",
+    "dialogCancelButton": "Chiudi dialogo",
+    "dialogAddContactButtonUpdate": "Salva modifiche"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Seleziona foto del contatto",
+    "dialogResetPhotoButton": "Rimuovi foto",
+    "dialogCalendarPushbutton": "Seleziona data di nascita",
+    "dialogResetCalendarPushbutton": "Rimuovi data di nascita"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Imposta la data a oggi",
+    "addDateButton": "Imposta data selezionata",
+    "cancelDialogButton": "Chiudi calendario"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Cerca",
+    "cancelButton": "Chiudi dialogo",
+    "resetButton": "Annulla filtri",
+    "currentFilterButton": "Mostra il filtro di ricerca attualmente impostato",
+    "clearFilterPushbutton": "Rimuove il filtro per questa riga"
+  },
+  "activeFiltersDialog": {
+    "closeButton": "Chiudi finestra"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Rimuove il filtro per questa riga"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Avvia ricerca secondo il filtro selezionato",
+    "cancelButton": "Chiudi dialogo"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Salva filtro impostato",
+    "cancelButton": "Chiudi dialogo"
+  },
+  "userFiltersListWidget": {
+    "deleteFilterPushbutton": "Rimuove il filtro salvato"
+  },
+  "contactsListDialog": {
+    "showContactButton": "Chiudi dialogo e seleziona contatto duplicato nella tabella",
+    "showContactButtonContextBirthday": "Chiudi dialogo e seleziona contatto nella tabella",
+    "showContactButtonContextDuplicity": "Chiudi dialogo e seleziona contatto nella tabella",
+    "continueButton": "Salva contatto duplicato",
+    "cancelButton": "Chiudi finestra senza salvare",
+    "cancelButtonContextBirthday": "Chiudi dialogo",
+    "cancelButtonContextDuplicity": "Chiudi dialogo"
+  },
+  "validatedLineEdit": {
+    "invalidChar": "Carattere non consentito:"
+  },
+  "pdfPreviewDialog": {
+    "pdfSaveAsButton": "Salva come..",
+    "pdfZoomInButton": "Ingrandisci",
+    "pdfZoomOutButton": "Riduci",
+    "pdfFitPageButton": "Adatta alla pagina",
+    "closeDialogButton": "Chiudi anteprima"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Apri progetto su GitHub."
+  }
+}

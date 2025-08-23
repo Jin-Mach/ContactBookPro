@@ -1,0 +1,19 @@
+L'applicazione offre una panoramica delle statistiche dei contatti, suddivisa in diverse schede che visualizzano vari aspetti del database tramite grafici.
+
+Statistiche di base
+Un grafico a torta mostra la distribuzione dei contatti in base al sesso.
+Un grafico a barre mostra la distribuzione dei contatti in base alla relazione.
+Un grafico a barre mostra le città più frequenti dei contatti.
+
+Statistiche lavorative
+Due grafici a torta mostrano la percentuale di compilazione dei campi opzionali E-mail e Telefono.
+Un grafico a barre mostra il numero di contatti per città basato sui dati lavorativi.
+
+Statistiche dei social
+Un grafico a barre in cui ogni barra è suddivisa in due parti – numero di record compilati e non compilati per ciascun social network.
+
+Statistiche di sistema
+Un grafico a barre orizzontale superiore mostra la percentuale di completamento dell'intero database – il rapporto tra tutti i campi possibili e i campi compilati.
+Un grafico a barre orizzontale inferiore mostra la stessa cosa per ciascuna tabella del database.
+
+Dopo l'aggiunta, la modifica o l'eliminazione di un contatto, l'utente viene informato della modifica delle statistiche tramite una breve notifica nella parte inferiore dell'applicazione.

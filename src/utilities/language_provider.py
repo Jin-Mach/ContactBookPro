@@ -23,7 +23,8 @@ class LanguageProvider:
                 language_dict = LanguageProvider.get_language_dict()
                 if language not in language_dict:
                     from src.utilities.dialogs_provider import DialogsProvider
-                    result = DialogsProvider.language_selection_dialog(list(language_dict.values()))
+                    sorted_languages = sorted(list(language_dict.values()))
+                    result = DialogsProvider.language_selection_dialog(sorted_languages)
                     if result:
                         for language_code, language_name in language_dict.items():
                             if result == language_name:

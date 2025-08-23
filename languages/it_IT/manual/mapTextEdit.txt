@@ -1,0 +1,11 @@
+L'applicazione consente di visualizzare la mappa dei contatti che hanno coordinate geografiche valide.
+
+Sulla mappa i singoli contatti sono visualizzati come segnaposto.
+Cliccando su un segnaposto vengono visualizzate le informazioni principali del contatto: nome, e-mail e numero di telefono.
+La mappa può essere ingrandita, rimpicciolita e spostata. Sopra la mappa viene mostrato il numero dei contatti attualmente visualizzati e il numero totale di tutti i contatti nel database.
+
+Dopo ogni aggiunta, modifica o eliminazione di un contatto, se è stato cambiato l'indirizzo obbligatorio, la mappa viene aggiornata automaticamente e l'utente viene informato tramite una breve notifica nella parte inferiore dell'applicazione.
+
+Se nessun contatto ha coordinate oppure non è disponibile una connessione a Internet, al posto della mappa viene mostrato un messaggio informativo.
+
+Nota: La mappa funziona solo se è attiva una connessione a Internet.

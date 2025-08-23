@@ -1,0 +1,5 @@
+L'applicazione consente di visualizzare l'anteprima del codice QR per il contatto selezionato.
+
+Il codice QR contiene le stesse informazioni esportate nel formato vCard: nome, cognome, e-mail, telefono e indirizzo personale.
+
+L'anteprima del codice QR si apre in una finestra separata ed è solo statica: non può essere ingrandita, ridotta o salvata.

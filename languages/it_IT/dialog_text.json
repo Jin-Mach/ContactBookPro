@@ -1,0 +1,121 @@
+{
+  "dialogsProvider": {
+    "closeButton": "Chiudi",
+    "errorTextLabel": "Errore:",
+    "databaseErrorTextLabel": "Errore del database.",
+    "databaseCloseButton": "Chiudi"
+  },
+  "deleteDialogWidgets": {
+    "deleteContactDialog": "Elimina contatto",
+    "deleteContactTextLabel": "Eliminare il contatto?",
+    "deleteContactButton": "Elimina",
+    "cancelContactButton": "Annulla",
+    "deleteAllContactsDialog": "Elimina tutti i contatti",
+    "deleteAllContactsTextLabel": "Eliminare davvero tutti i contatti?\nPer confermare, digita:\nELIMINA",
+    "deleteWordError": "La parola inserita non corrisponde.\nRiprova.",
+    "deleteFiltersCheckboxTextLabel": "Eliminare i filtri salvati?",
+    "deleteAllContactsButton": "Elimina tutto",
+    "cancelAllContactsButton": "Annulla"
+  },
+  "contactDialog": {
+    "dialogTitle": "Nuovo contatto",
+    "dialogTitleUpdate": "Modifica contatto",
+    "mandatory": "Dati obbligatori",
+    "nonMandatory": "Dati opzionali",
+    "dialogAddContactButton": "Aggiungi contatto",
+    "dialogAddContactButtonUpdate": "Aggiorna contatto",
+    "dialogCancelButton": "Annulla"
+  },
+  "dialogMandatoryWidget": {
+    "dialogGenderTextLabel": "Genere",
+    "dialogGenderCombobox": ["---Seleziona genere---","Uomo", "Donna"],
+    "dialogRelationshipTextLabel": "Relazione:",
+    "dialogRelationshipCombobox": ["---Seleziona relazione---","Famiglia", "Parente", "Collega", "Amico", "Conoscente", "Altro"],
+    "dialogFirstNameTextLabel": "Nome:",
+    "dialogSecondNameTextLabel": "Cognome:",
+    "dialogEmailTextLabel": "Email (personale):",
+    "dialogPhoneNumberTextLabel": "Telefono (personale):",
+    "dialogCityTextLabel": "Città (personale):",
+    "dialogStreetTextLabel": "Via (personale):",
+    "dialogHouseNumberTextLabel": "Numero civico (personale):",
+    "dialogPostCodeTextLabel": "CAP (personale):",
+    "dialogCountryTextLabel": "Stato (personale):",
+    "dialogFirstNameEdit": "Inserisci il nome...",
+    "dialogSecondNameEdit": "Inserisci il cognome...",
+    "dialogEmailEdit": "Inserisci email nel formato: email@dominio.it",
+    "dialogPhoneNumberEdit": "Inserisci numero di telefono nel formato: +390123456789",
+    "dialogCityEdit": "Inserisci città...",
+    "dialogStreetEdit": "Inserisci via... (se disponibile)",
+    "dialogHouseNumberEdit": "Inserisci numero civico...",
+    "dialogPostCodeEdit": "Inserisci CAP...",
+    "dialogCountryEdit": "Inserisci stato..."
+  },
+  "dialogNonMandatoryWidget": {
+    "work": "Lavoro",
+    "socialNetworks": "Social network",
+    "personalDetail": "Dettagli"
+  },
+  "dialogWorkWidget": {
+    "dialogWorkCompanyTextLabel": "Azienda:",
+    "dialogWorkEmailTextLabel": "Email (lavoro):",
+    "dialogWorkPhoneNumberTextLabel": "Telefono (lavoro):",
+    "dialogWorkCityTextLabel": "Città (lavoro):",
+    "dialogWorkStreetTextLabel": "Via (lavoro):",
+    "dialogWorkHouseNumberTextLabel": "Numero civico (lavoro):",
+    "dialogPostCodeTextLabel": "CAP (lavoro):",
+    "dialogWorkCountryTextLabel": "Stato (lavoro):",
+    "dialogWorkCompanyEdit": "Inserisci nome azienda...",
+    "dialogWorkEmailEdit": "Inserisci email nel formato: email@dominio.it",
+    "dialogPhoneNumberEdit": "Inserisci numero di telefono nel formato: +390123456789",
+    "dialogWorkCityEdit": "Inserisci città...",
+    "dialogWorkStreetEdit": "Inserisci via... (se disponibile)",
+    "dialogWorkHouseNumberEdit": "Inserisci numero civico...",
+    "dialogPostCodeEdit": "Inserisci CAP...",
+    "dialogWorkCountryEdit": "Inserisci stato..."
+  },
+  "dialogSocialNetworkWidget": {
+    "dialogFacebookUrlTextLabel": "Facebook:",
+    "dialogXUrlTextLabel": "X (Twitter):",
+    "dialogInstagramUrlTextLabel": "Instagram:",
+    "dialogLinkedinUrlTextLabel": "LinkedIn:",
+    "dialogGithubUrlTextLabel": "GitHub:",
+    "dialogWebsiteUrlTextLabel": "Sito web:",
+    "dialogFacebookUrlEdit": "Inserisci link Facebook...",
+    "dialogXUrlEdit": "Inserisci link X (Twitter)...",
+    "dialogInstagramUrlEdit": "Inserisci link Instagram...",
+    "dialogLinkedinUrlEdit": "Inserisci link LinkedIn...",
+    "dialogGithubUrlEdit": "Inserisci link GitHub...",
+    "dialogWebsiteUrlEdit": "Inserisci sito nel formato: https://www.example.it"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Foto",
+    "dialogResetPhotoButton": "Rimuovi",
+    "dialogTitleTextLabel": "Titolo:",
+    "dialogBirthdayTextLabel": "Data di nascita:",
+    "dialogCalendarPushbutton": "Calendario",
+    "dialogResetCalendarPushbutton": "Rimuovi",
+    "dialogTitleEdit": "Inserisci titolo...",
+    "dialogBirthdayEdit": "Seleziona data di nascita...",
+    "dialogNotesEdit": "Note sul contatto (max. 200 caratteri, max. 5 righe)..."
+  },
+  "calendarDialog": {
+    "calendarDialogTitle": "Seleziona data di nascita",
+    "setTodayButton": "Vai a oggi",
+    "addDateButton": "Imposta data",
+    "cancelDialogButton": "Annulla"
+  },
+  "photoUtilities": {
+    "basicFilesFilter": "Formato base: (*.jpg *.jpeg *.png)",
+    "advancedFilesFilter": "Formati avanzati: (*.tiff *.bmp *.gif *.heic *.webp)",
+    "allFilesFilter": "Tutti i formati: (*.*)"
+  },
+  "contactsListDialog": {
+    "duplicateTextLabel": "Numero di contatti duplicati trovati",
+    "duplicateTextLabelContextBirthday": "Numero di contatti con compleanno",
+    "duplicateTextLabelContextDuplicity": "Numero di contatti duplicati",
+    "duplicateTextLabelContextCoordinates": "Numero di contatti senza coordinate valide",
+    "showContactButton": "Vai al contatto",
+    "continueButton": "Continua",
+    "cancelButton": "Annulla"
+  }
+}

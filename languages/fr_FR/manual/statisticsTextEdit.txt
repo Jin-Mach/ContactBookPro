@@ -1,0 +1,19 @@
+L'application offre un aperçu des statistiques des contacts, réparties sur plusieurs onglets, qui visualisent différents aspects de la base de données à l'aide de graphiques.
+
+Statistiques de base
+Un graphique en secteurs affiche la répartition des contacts par sexe.
+Un graphique en barres montre la répartition des contacts par relation.
+Un graphique en barres affiche les villes les plus fréquentes des contacts.
+
+Statistiques professionnelles
+Deux graphiques en secteurs montrent le pourcentage de remplissage des champs optionnels E-mail et Téléphone.
+Un graphique en barres montre le nombre de contacts par ville basé sur les informations professionnelles.
+
+Statistiques sociales
+Graphique en barres où chaque barre est divisée en deux parties – le nombre d'enregistrements remplis et non remplis pour chaque réseau social.
+
+Statistiques système
+Le graphique en barres horizontal supérieur montre le pourcentage de remplissage de toute la base de données – rapport de tous les champs possibles par rapport au nombre de champs remplis.
+Le graphique en barres horizontal inférieur montre la même chose pour chaque table de la base de données.
+
+Après l'ajout, la modification ou la suppression d'un contact, l'utilisateur est informé du changement des statistiques par une courte notification dans la partie inférieure de l'application.

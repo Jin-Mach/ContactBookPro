@@ -1,0 +1,12 @@
+L'applicazione consente di visualizzare un'anteprima del contatto selezionato o dell'elenco dei contatti in una finestra separata.
+
+L'anteprima del contatto selezionato mostra tutte le informazioni disponibili tranne le coordinate, la data di aggiunta e la data dell'ultima modifica.
+In basso a destra è presente un piccolo codice QR con le stesse informazioni che vengono esportate nel formato vCard.
+L'utente può ingrandire, ridurre e salvare l'anteprima in PDF.
+Cliccando su Salva viene visualizzata una finestra di dialogo per scegliere la posizione e il nome del file, che per impostazione predefinita viene salvato nella cartella Documenti (stessa posizione per Windows e macOS).
+
+È possibile visualizzare anche l'elenco dei contatti attualmente mostrati o di tutti i contatti nel database.
+Questo elenco include solo nome, cognome, sesso, relazione, e-mail, telefono e indirizzo completo.
+L'elenco può essere ingrandito, ridotto e salvato come PDF.
+
+La generazione dell'anteprima PDF avviene in background, quindi l'applicazione può essere utilizzata durante la creazione del PDF.

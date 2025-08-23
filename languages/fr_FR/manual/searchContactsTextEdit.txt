@@ -1,0 +1,29 @@
+L'application permet de rechercher des contacts de deux manières – simple et avancée.
+
+Recherche simple
+Fonctionne uniquement dans la colonne sélectionnée du tableau (par exemple Prénom, E-mail, Téléphone). Sélectionnez d'abord la colonne dans laquelle vous souhaitez rechercher.
+Saisissez le texte dans le champ de recherche et cliquez sur Rechercher. Si aucune colonne n'est sélectionnée, l'application affichera un avertissement "Sélectionnez une colonne" et la recherche ne sera pas lancée.
+Si vous utilisez notre suggestion automatique, la recherche correspond exactement; sinon, les enregistrements contenant le texte saisi seront recherchés.
+
+Recherche avancée
+En cliquant sur Recherche avancée, une fenêtre de dialogue s'ouvre, permettant de saisir plusieurs conditions à la fois (par exemple Prénom, Ville, E-mail,...).
+Pour chaque champ, vous pouvez choisir l'option Tous, Contient, Commence par ou Termine par.
+Chaque condition peut être modifiée ou supprimée sans avoir à configurer à nouveau tout le filtre.
+Vous pouvez également afficher un aperçu du filtre actuel ou enregistrer le filtre sous un nom personnalisé.
+En cliquant sur Rechercher, les résultats s'affichent ou un message indique qu'aucun enregistrement ne correspond aux paramètres saisis.
+
+Remarque : Une recherche répétée ne parcourt que les contacts limités par le filtre précédent ; pour rechercher dans tous les contacts, utilisez l'option "Réinitialiser les filtres".
+
+Filtres enregistrés
+Les filtres enregistrés peuvent être affichés, utilisés ou supprimés à tout moment.
+
+Réinitialiser les filtres
+L'option Réinitialiser les filtres supprime toutes les conditions et affiche tous les contacts.
+
+Raccourcis clavier
+Recherche : Ctrl + F (macOS : Cmd + F)
+Recherche avancée : Ctrl + Maj + F (macOS : Cmd + Maj + F)
+Réinitialiser les filtres : Ctrl + R (macOS : Cmd + R)
+Filtres enregistrés : Ctrl + L (macOS : Cmd + L)
+
+Remarque : Les raccourcis clavier ne fonctionnent que si l'application est réglée sur la fenêtre "Contacts".

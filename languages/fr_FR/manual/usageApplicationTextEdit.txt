@@ -1,0 +1,9 @@
+Le manuel est divisé en chapitres, présentés dans le panneau de gauche sous forme de liste de sujets.
+
+En cliquant sur un sujet dans la liste de gauche, la partie correspondante du manuel s'affiche à droite.
+
+Certains sujets contiennent des sous-sujets sur lesquels il est possible de cliquer pour afficher des informations plus détaillées.
+
+Lorsque vous sélectionnez un onglet dans la liste de gauche, le sujet que vous lisez actuellement est automatiquement mis en évidence dans le panneau de gauche.
+
+Cette méthode vous permet de trouver rapidement les informations nécessaires et de naviguer facilement entre les différentes parties du manuel.

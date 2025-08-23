@@ -1,0 +1,40 @@
+Il menu contestuale consente un accesso rapido alle funzioni selezionate sul contatto evidenziato.
+Si apre facendo clic con il tasto destro del mouse sulla riga del contatto nella tabella.
+Permette di aprire o modificare il contatto, eliminarlo, copiare i dati negli appunti, esportare in CSV, Excel o vCard,
+visualizzare l’anteprima del contatto in PDF o il suo codice QR e avviare il controllo delle date di nascita, dei duplicati o dei contatti privi di coordinate.
+
+Struttura del menu contestuale:
+
+Aggiungi contatto
+Modifica contatto
+Elimina contatto
+Copia
+    Nome
+    E-mail
+    Telefono
+Esporta
+    CSV
+        Esporta visualizzati
+        Esporta tutti
+    Excel
+        Esporta visualizzati
+        Esporta tutti
+    vCard
+        Esporta contatto selezionato
+Anteprima
+    Anteprima contatto
+    Anteprima elenco contatti
+        Anteprima contatti visualizzati
+        Anteprima tutti i contatti
+    Codice QR del contatto
+Controllo
+    Visualizza compleanni
+    Visualizza duplicati
+    Visualizza contatti senza coordinate
+
+Nota: Tutte le esportazioni aprono una finestra di dialogo per selezionare la destinazione del file.
+
+La funzione Copia utilizza gli appunti di sistema (Ctrl + C / macOS: Cmd + C).
+
+Le anteprime e il codice QR vengono visualizzati immediatamente nella finestra dell’applicazione.
+Le funzioni di controllo mostrano l’elenco in una finestra di dialogo separata.

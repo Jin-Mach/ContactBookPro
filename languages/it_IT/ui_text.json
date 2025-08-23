@@ -1,0 +1,230 @@
+{
+  "mainWindow": {
+    "mainWindowTitle": "Database dei contatti",
+    "mainWindowDatabaseButton": "Contatti",
+    "mainWindowMapButton": "Mappa",
+    "mainWindowStatisticsButton": "Statistiche",
+    "mainWindowManualButton": "Guida",
+    "mainWindowAboutButton": "Informazioni sull'app",
+    "messageboxTitle": "Chiudere l'applicazione",
+    "messageboxText": "Chiudere l'applicazione?\nSÌ/NO",
+    "close": "Chiudi",
+    "cancel": "Annulla"
+  },
+  "contactsToolbarWidget": {
+    "searchTextLabel": "Cerca:",
+    "searchLineEdit": "testo da cercare..."
+  },
+  "contactsTableviewWidget": {
+    "searchText": "cerca per:",
+    "searchFilter": {
+      "1": "genere",
+      "2": "relazione",
+      "3": "nome",
+      "4": "e-mail",
+      "5": "tel.",
+      "6": "indirizzo"
+    },
+    "gender_items": ["Tutti", "Uomo", "Donna"],
+    "relationship_items": ["Tutti", "Famiglia", "Parente", "Collega", "Amico", "Conoscente", "Altro"]
+  },
+  "contactsStatusBarWidget": {
+    "countDisplayLabel": "Filtro (visualizzati/totale):"
+  },
+  "personalTabInfoWidget": {
+    "personalTabInfoWidget_tabText": "Informazioni sul contatto",
+    "contactTitleTextLabel": "Titolo:",
+    "contactGenderTextLabel": "Genere:",
+    "contactFirstNameTextLabel": "Nome:",
+    "contactSecondNameTextLabel": "Cognome:",
+    "contactRelationshipTextLabel": "Relazione:",
+    "contactBirthdayTextLabel": "Nascita:",
+    "gender_key": {
+      "1": "Uomo",
+      "2": "Donna"
+    },
+    "relationship_key": {
+      "1": "Famiglia",
+      "2": "Parente",
+      "3": "Collega",
+      "4": "Amico",
+      "5": "Conoscente",
+      "6": "Altro"
+    }
+  },
+  "tabInfoWidget": {
+    "personalTabText": "Contatto – Personale",
+    "workTabText": "Contatto – Lavoro",
+    "personalEmailTextLabel": "Email:",
+    "personalPhoneNumberTextLabel": "Telefono:",
+    "personalAddressTextLabel": "Indirizzo:",
+    "personalCityTextLabel": "Città:",
+    "personalPostCodeTextLabel": "CAP:",
+    "personalCountryTextLabel": "Stato:",
+    "workCompanyNameTextLabel": "Azienda:",
+    "workEmailTextLabel": "Email:",
+    "workPhoneNumberTextLabel": "Telefono:",
+    "workAddressTextLabel": "Indirizzo:",
+    "workCityTextLabel": "Città:",
+    "workPostCodeTextLabel": "CAP:",
+    "workCountryTextLabel": "Stato:"
+  },
+  "notesInfoWidget": {
+    "notesTextEdit": "Note sul contatto...",
+    "createDateTextLabel": "creato: ",
+    "updateDateTextLabel": "aggiornato: "
+  },
+  "trayIcon": {
+    "addContact": "Aggiungi contatto",
+    "closeApplication": "Chiudi applicazione",
+    "trayIconMessageTitle": "Database dei contatti",
+    "contactAdded": "Contatto aggiunto",
+    "contactUpdated": "Contatto aggiornato",
+    "contactDeleted": "Contatto eliminato",
+    "databaseDeleted": "Database eliminato",
+    "filterAdded": "Filtro salvato",
+    "filterDeleted": "Filtro eliminato",
+    "nameCopied": "Nome copiato",
+    "emailCopied": "Email copiata",
+    "phoneCopied": "Telefono copiato",
+    "saveError": "Impossibile salvare il file",
+    "exportSaved": "File salvato"
+  },
+  "mandatoryModel": {
+    "genderHeaderText": "Genere utente"
+  },
+  "exportContactPdfObject": {
+    "contactTitle": "Contatto",
+    "personalEmail": "Email:",
+    "personalPhoneNumber": "Tel.:",
+    "addressTitle": "Indirizzo",
+    "personalAddress": "Indirizzo:",
+    "personalCountry": "Stato:",
+    "workTitle": "Lavoro",
+    "workCompany": "Azienda:",
+    "workEmail": "Email:",
+    "workPhone": "Tel.:",
+    "workAddress": "Indirizzo:",
+    "workCountry": "Stato:",
+    "notesTitle": "Note"
+  },
+  "mapMainWidget": {
+    "showCount": "Numero di contatti visualizzati:",
+    "totalCount": "Totale contatti:",
+    "noConnection": "Impossibile visualizzare la mappa – nessun contatto con indirizzo valido o assenza di connessione a Internet.",
+    "loadingMap": "Caricamento mappa...",
+    "loadingError": "Impossibile caricare la mappa."
+  },
+  "mapController": {
+    "mapUpdate": "Mappa aggiornata"
+  },
+  "statisticsMainWidget": {
+    "totalCount": "Totale contatti:",
+    "mandatoryStatisticsWidget": "Statistiche di base",
+    "workStatisticsWidget": "Statistiche lavoro",
+    "socialStatisticsWidget": "Statistiche social",
+    "completionStatisticsWidget": "Statistiche di completamento"
+  },
+  "statisticsController": {
+    "statisticsUpdate": "Statistiche aggiornate"
+  },
+  "genderPieChartWidget": {
+    "title": "Genere",
+    "noData": "Nessun dato"
+  },
+  "relationshipBarChartWidget": {
+    "title": "Relazione",
+    "noData": "Nessun dato"
+  },
+  "cityBarCharWidget": {
+    "title": "Città",
+    "noData": "Nessun dato",
+    "others": "Altro",
+    "unfilled": "Non compilato"
+  },
+  "workPieChartWidget": {
+    "noData": "Nessun dato",
+    "email": "Email",
+    "phone": "Telefono",
+    "address": "Indirizzo",
+    "filled": "Compilato",
+    "empty": "Non compilato"
+  },
+  "socialBarChartWidget": {
+    "title": "Social",
+    "noData": "Nessun dato",
+    "filled": "Compilato",
+    "empty": "Non compilato",
+    "x": "X (Twitter)",
+    "website": "sito web"
+  },
+  "completionBarChartWidget": {
+    "title": "Statistica completamento tabelle",
+    "noData": "Nessun dato",
+    "mandatory": "Dati obbligatori",
+    "work": "Lavoro",
+    "social": "Social",
+    "detail": "Dettagli",
+    "info": "Informazioni\n(sistema)",
+    "total": "Completamento totale"
+  },
+  "manualTreeWidget": {
+    "headers": ["Contenuto guida"],
+    "items": {
+      "introduction": ["Introduzione", ["Informazioni sull'app", "Come usare la guida"]],
+      "contacts": ["Contatti", ["Aggiunta e modifica contatto", "Eliminazione contatto", "Ricerca contatti", "Menu contestuale"]],
+      "export": ["Esporta", ["Esporta in CSV", "Esporta in Excel", "Esporta in vCard"]],
+      "preview": ["Anteprima", ["PDF", "QR code"]],
+      "check": ["Controllo contatti", ["Controllo compleanni", "Controllo duplicati", "Controllo coordinate"]],
+      "map": ["Mappa", ["Mappa contatti"]],
+      "statistics": ["Statistiche", ["Visualizzazione statistiche"]]
+    }
+  },
+  "manualIntroductionWidget": {
+    "tabTexts": {
+      "aboutApplicationTextEdit": "Informazioni sull'app",
+      "usageApplicationTextEdit": "Come usare il manuale"
+    }
+  },
+  "manualContactsWidget": {
+    "tabTexts": {
+      "addUpdateContactsTextEdit": "Aggiunta e modifica contatto",
+      "deleteContactsTextEdit": "Eliminazione contatti",
+      "searchContactsTextEdit": "Ricerca contatti",
+      "contextMenuTextEdit": "Menu contestuale"
+    }
+  },
+  "manualExportWidget": {
+    "tabTexts": {
+      "csvExportTextEdit": "Esporta in CSV",
+      "excelExportTextEdit": "Esporta in Excel",
+      "vcardExportTextEdit": "Esporta in vCard"
+    }
+  },
+  "manualPreviewWidget": {
+    "tabTexts": {
+      "pdfPreviewTextEdit": "Anteprima PDF",
+      "qrCodePreviewTextEdit": "QR code"
+    }
+  },
+  "manualCheckWidget": {
+    "tabTexts": {
+      "checkBirthdayTextEdit": "Controllo compleanni",
+      "checkDuplicityTextEdit": "Controllo duplicati",
+      "checkMissingCoordsTextEdit": "Controllo coordinate"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Mappa contatti"
+    }
+  },
+  "manualStatisticsWidget": {
+    "tabTexts": {
+      "statisticsTextEdit": "Visualizzazione statistiche"
+    }
+  },
+  "aboutApplicationDialog": {
+    "aboutTitle": "Informazioni sull'app"
+  }
+}

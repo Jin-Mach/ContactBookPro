@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Si è verificato un errore durante l'input/output. Controlla la connessione al disco.",
+    "ValueError": "Formato del file non valido. Assicurati di utilizzare un formato supportato.",
+    "TypeError": "Tipo di argomento non valido. Controlla i valori di input.",
+    "TimeoutError": "Operazione scaduta durante il tentativo di aprire o salvare il file.",
+    "JSONDecodeError": "Il file non è un JSON valido. Controlla il formato del file.",
+    "DatabaseConnectionError": "Impossibile connettersi al database.",
+    "queryError": "Errore durante l'esecuzione della query sul database.",
+    "RuntimeError": "Impossibile aprire il collegamento. Controlla che sia valido e che tu sia connesso a Internet.",
+    "URLError": "Il collegamento non è valido o non è stato possibile stabilire la connessione.",
+    "FileNotFoundError": "Il file eseguibile o lo script non è stato trovato. Controlla il percorso.",
+    "OSError": "Si è verificato un errore di sistema durante il tentativo di riavviare l'applicazione. Riavvia l'app manualmente.",
+    "UnexpectedError": "Si è verificato un errore imprevisto."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Seleziona il sesso.",
+    "relationshipError": "Seleziona il tipo di relazione.",
+    "emptyTextError": "Questo campo non può essere vuoto.\n",
+    "emailValidatorError": "Formato email non valido.\nInserisci un indirizzo email nel formato: email@dominio.it",
+    "phoneNumberValidatorError": "Inserisci un numero di telefono valido.\nAd esempio: +391234567890."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Formato email non valido.\nInserisci un indirizzo email nel formato: email@dominio.it",
+    "phoneNumberValidatorError": "Inserisci un numero di telefono valido.\nAd esempio: +391234567890.",
+    "workAddressValidatorError": "Compila numero civico, città, CAP e stato, oppure lascia tutto vuoto."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Formato del link non valido o social network errato.\nInserisci un URL valido per {site} nel formato: https://www.{site}.com/profilo.",
+    "websiteValidatorError": "Formato non valido.\nInserisci un URL valido nel formato: www.esempio.it"
+  },
+  "notesUtilities": {
+    "textLengthError": "Il testo può contenere al massimo 300 caratteri.",
+    "textLineCountError": "Le note possono avere al massimo 10 righe."
+  },
+  "calendarDialog": {
+    "selectedDateError": "La data selezionata non può essere futura rispetto alla data odierna."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Nessun filtro attivo."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Impossibile effettuare la ricerca senza testo.",
+    "noTableviewSelection": "Per la ricerca rapida seleziona una colonna.",
+    "noFilteredData": "Nessun dato corrisponde ai criteri.\nIl filtro sarà resettato."
+  },
+  "widgetErrors": {
+    "indexError": "Indice non valido selezionato. Riprova la selezione.",
+    "noTableviewSelection": "Seleziona prima un contatto dalla lista."
+  },
+  "filtersController": {
+    "noActiveFilter": "Nessun filtro attivo.",
+    "existingFilterName": "Il nome del filtro esiste già.",
+    "noUserFilters": "Nessun filtro salvato."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Nome del filtro non specificato."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Nessun filtro attivo."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Nessun filtro salvato.",
+    "noSelection": "Seleziona prima un filtro."
+  },
+  "csvExportController": {
+    "emptyIdList": "Nessun contatto da esportare"
+  },
+  "excelExportController": {
+    "emptyIdList": "Nessun contatto da esportare"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Nessun contatto da esportare",
+    "indexError": "Indice non valido selezionato. Riprova la selezione.",
+    "noTableviewSelection": "Seleziona prima un contatto dalla lista."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Nessun contatto ha il compleanno nel periodo prossimo."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Nessun contatto duplicato."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Tutti i contatti hanno coordinate valide"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Appunti vuoti, nulla da incollare"
+  }
+}
