@@ -32,7 +32,7 @@ Kontrola
     Zobrazit duplicity
     Zobrazit kontakty bez souřadnic
 
-Poznámka: všechny exporty otevírají dialog pro výběr cílového umístění souboru
+Poznámka: Všechny exporty otevírají dialog pro výběr cílového umístění souboru.
 
 Funkce Kopírovat využívají systémovou schránku (Ctrl + C / macOS: Cmd + C).
 

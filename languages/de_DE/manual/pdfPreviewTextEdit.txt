@@ -1,0 +1,12 @@
+Die Anwendung ermöglicht die Anzeige einer Vorschau des ausgewählten Kontakts oder einer Kontaktliste in einem separaten Fenster.
+
+Die Vorschau des ausgewählten Kontakts enthält alle verfügbaren Informationen außer Koordinaten, Hinzufügungsdatum und Datum der letzten Änderung.  
+In der rechten unteren Ecke befindet sich ein kleiner QR-Code mit denselben Daten, die in das vCard-Format exportiert werden.  
+Der Benutzer kann zoomen, die Ansicht verschieben und die Vorschau als PDF speichern.  
+Beim Klicken auf „Speichern“ wird ein Dialog zur Auswahl des Speicherorts und des Dateinamens angezeigt, die standardmäßig im Ordner „Dokumente“ gespeichert werden (gleiches Verzeichnis für Windows und macOS).
+
+Es ist auch möglich, die aktuell angezeigten Kontakte oder alle Kontakte in der Datenbank als Liste anzuzeigen.  
+Diese Liste enthält nur Vorname, Nachname, Geschlecht, Beziehung, E-Mail, Telefonnummer und die vollständige Adresse.  
+Die Liste kann ebenfalls gezoomt, verschoben und als PDF gespeichert werden.
+
+Die PDF-Erstellung erfolgt im Hintergrund, sodass die Anwendung währenddessen weiterhin genutzt werden kann.

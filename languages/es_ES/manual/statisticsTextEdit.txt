@@ -1,0 +1,19 @@
+La aplicación ofrece un resumen de estadísticas de contactos, dividido en varias pestañas que visualizan diferentes aspectos de la base de datos mediante gráficos.
+
+Estadísticas básicas
+Un gráfico circular muestra la distribución de contactos por género.
+Un gráfico de barras muestra la distribución de contactos según la relación.
+Un gráfico de barras muestra las ciudades más comunes de los contactos.
+
+Estadísticas laborales
+Dos gráficos circulares muestran el porcentaje de campos opcionales completados: Correo electrónico y Teléfono.
+Un gráfico de barras muestra el número de contactos por ciudad basado en los datos laborales.
+
+Estadísticas sociales
+Un gráfico de barras donde cada barra se divide en dos partes: el número de registros completados y no completados para cada red social.
+
+Estadísticas del sistema
+Un gráfico de barras horizontal superior muestra el porcentaje de llenado de toda la base de datos: la relación entre todos los campos posibles y los completados.
+Un gráfico de barras horizontal inferior muestra lo mismo para cada tabla de la base de datos.
+
+Después de agregar, modificar o eliminar un contacto, el usuario recibe una notificación breve en la parte inferior de la aplicación sobre el cambio en las estadísticas.

@@ -8,4 +8,4 @@ Součástí aplikace je vizualizace kontaktů na mapě, přehledné statistiky o
 Aplikace se automaticky přizpůsobuje jazyku vašeho systému (pokud není podporován, zobrazí dialog s možností volby).
 Zároveň kontroluje jazykové soubory, ikony a fonty a podle potřeby je aktualizuje.
 
-Poznámka: některé funkce jsou dostupné pouze při aktivním připojení k internetu
+Poznámka: Některé funkce jsou dostupné pouze při aktivním připojení k internetu.

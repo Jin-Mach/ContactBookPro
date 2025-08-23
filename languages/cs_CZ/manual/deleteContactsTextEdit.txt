@@ -20,4 +20,4 @@ Klávesové zkratky
 Smazat vybraný kontakt: Ctrl + D (macOS: Cmd + D)
 Smazat celou databázi: Ctrl + Shift + D (macOS: Cmd + Shift + D)
 
-Poznámka: klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty"
+Poznámka: Klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty".

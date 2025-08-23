@@ -26,4 +26,4 @@ Advanced Search: Ctrl + Shift + F (macOS: Cmd + Shift + F)
 Reset Filters: Ctrl + R (macOS: Cmd + R)
 Saved Filters: Ctrl + L (macOS: Cmd + L)
 
-Note: keyboard shortcuts only work if the application is set to the "Contacts" window
+Note: Keyboard shortcuts only work if the application is set to the "Contacts" window.

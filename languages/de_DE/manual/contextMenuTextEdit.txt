@@ -1,0 +1,40 @@
+Das Kontextmenü ermöglicht schnellen Zugriff auf ausgewählte Funktionen für den markierten Kontakt.  
+Es wird durch einen Rechtsklick auf die Zeile des Kontakts in der Tabelle geöffnet.  
+Es erlaubt das Öffnen oder Bearbeiten des Kontakts, das Löschen, Kopieren der Daten in die Zwischenablage, Exportieren in CSV, Excel oder vCard,  
+die Vorschau des Kontakts als PDF oder dessen QR-Code anzuzeigen und die Überprüfung von Geburtstagen, Duplikaten oder Kontakten ohne Koordinaten zu starten.
+
+Struktur des Kontextmenüs
+
+Kontakt hinzufügen
+Kontakt bearbeiten
+Kontakt löschen
+Kopieren
+    Name
+    E-Mail
+    Telefon
+Exportieren
+    CSV
+        Angezeigte exportieren
+        Alles exportieren
+    Excel
+        Angezeigte exportieren
+        Alles exportieren
+    vCard
+        Ausgewählten Kontakt exportieren
+Vorschau
+    Kontaktvorschau
+    Vorschau der Kontaktliste
+        Vorschau der angezeigten Kontakte
+        Vorschau aller Kontakte
+    QR-Code des Kontakts
+Überprüfung
+    Geburtstage anzeigen
+    Duplikate anzeigen
+    Kontakte ohne Koordinaten anzeigen
+
+Hinweis: Alle Exporte öffnen einen Dialog zur Auswahl des Zielorts der Datei.
+
+Die Funktion Kopieren verwendet die Systemzwischenablage (Ctrl + C / macOS: Cmd + C).
+
+Vorschauen und QR-Code werden sofort im Anwendungsfenster angezeigt.  
+Überprüfungsfunktionen zeigen die Liste in einem separaten Dialogfenster an.

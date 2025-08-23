@@ -3,10 +3,10 @@ import pathlib
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPixmap, QCloseEvent
 from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, QHBoxLayout, QLabel, \
-    QSystemTrayIcon, QFrame
+    QSystemTrayIcon, QFrame, QSizePolicy
 
 from src.about.about_application_dialog import AboutApplicationDialog
-from src.application.main_window_widgets.button_widget import MainWindowButtonWidget
+from src.application.main_window_widgets.main_window_button_widget import MainWindowButtonWidget
 from src.application.status_bar import StatusBar
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
@@ -59,6 +59,7 @@ class MainWindow(QMainWindow):
         main_layout.setSpacing(0)
         dock_frame = QFrame()
         dock_frame.setObjectName("mainWindowDockFrame")
+        dock_frame.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
         dock_frame.setStyleSheet(self.set_frame_style())
         dock_layout = QVBoxLayout(dock_frame)
         dock_layout.setContentsMargins(0, 0, 0, 10)
@@ -94,7 +95,7 @@ class MainWindow(QMainWindow):
         dock_layout.addLayout(database_buttons_layout)
         dock_frame.setLayout(dock_layout)
         main_layout.addWidget(dock_frame)
-        main_layout.addWidget(self.stacked_widget)
+        main_layout.addWidget(self.stacked_widget, 1)
         central_widget.setLayout(main_layout)
         return central_widget
 

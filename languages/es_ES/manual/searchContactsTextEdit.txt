@@ -1,0 +1,29 @@
+La aplicación permite buscar contactos de dos maneras: simple y avanzada.
+
+Búsqueda simple
+Funciona solo en la columna seleccionada de la tabla (por ejemplo, Nombre, Correo electrónico, Teléfono). Primero, seleccione la columna en la que desea buscar.
+Ingrese el texto en el campo de búsqueda y haga clic en Buscar. Si no se selecciona ninguna columna, la aplicación mostrará la advertencia "Seleccione una columna" y la búsqueda no se realizará.
+Si utiliza la sugerencia automática, se busca una coincidencia exacta; si no, se buscan registros que contengan el texto ingresado.
+
+Búsqueda avanzada
+Haciendo clic en Búsqueda avanzada se abre un diálogo donde se pueden ingresar varias condiciones a la vez (por ejemplo, Nombre, Ciudad, Correo electrónico,...).
+Para cada campo puede elegir la opción Todo, Contiene, Empieza o Termina.
+Las condiciones individuales se pueden modificar o eliminar sin necesidad de configurar todo el filtro nuevamente.
+También puede mostrar una vista previa del filtro actual o guardar el filtro con un nombre propio.
+Al hacer clic en Buscar, se mostrarán los resultados o una notificación de que ningún registro coincide con los parámetros ingresados.
+
+Nota: La búsqueda repetida solo examina los contactos limitados por el filtro anterior; para buscar en todos los contactos, utilice la opción "Restablecer filtros".
+
+Filtros guardados
+Los filtros guardados se pueden mostrar, usar o eliminar en cualquier momento.
+
+Restablecer filtros
+Al seleccionar Restablecer filtros se cancelan todas las condiciones y se muestran todos los contactos.
+
+Atajos de teclado
+Búsqueda: Ctrl + F (macOS: Cmd + F)
+Búsqueda avanzada: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Restablecer filtros: Ctrl + R (macOS: Cmd + R)
+Filtros guardados: Ctrl + L (macOS: Cmd + L)
+
+Nota: Los atajos de teclado solo funcionan si la aplicación está configurada en la ventana "Contactos".

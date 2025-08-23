@@ -1,0 +1,23 @@
+Die Anwendung ermöglicht das Löschen einzelner Kontakte sowie das Entfernen aller Kontakte auf einmal.
+
+Einzelnen Kontakt löschen  
+Markieren Sie den gewünschten Kontakt in der Tabelle und klicken Sie auf die Schaltfläche zum Löschen.  
+Es erscheint ein Bestätigungsfenster mit der Frage „Wirklich löschen?“ und der Möglichkeit, das Löschen zu bestätigen oder abzubrechen.  
+Nach Bestätigung wird der ausgewählte Kontakt gelöscht und ein Pop-up-Fenster informiert über das erfolgreiche Löschen des ausgewählten Kontakts.
+
+Alle Kontakte löschen  
+Es ist keine Auswahl erforderlich – klicken Sie einfach auf die Schaltfläche zum Löschen der gesamten Datenbank.  
+Es öffnet sich ein Bestätigungsfenster mit einem Textfeld, in das das Wort „löschen“ zur Bestätigung der Aktion eingegeben werden muss.  
+In diesem Fenster kann auch die Option zum Entfernen gespeicherter Filter aktiviert werden.  
+Wenn diese Option aktiviert ist, werden auch alle gespeicherten Filter gelöscht.  
+Nach Bestätigung versucht die Anwendung, alle Kontakte aus der Datenbank zu löschen, die gespeicherten Filter zu entfernen (falls ausgewählt) und die Datenbankdatei (contacts_db.sqlite) zu löschen.  
+Wenn die Datenbankdatei nicht gelöscht werden kann, wird nur deren Inhalt gelöscht, die Datei bleibt erhalten.  
+Anschließend startet die Anwendung automatisch neu und erstellt eine neue leere Datenbank.
+
+!!! Löschen Sie die Datenbankdatei nicht manuell, da dies zu einem unwiederbringlichen Datenverlust führt !!!
+
+Tastenkürzel  
+Ausgewählten Kontakt löschen: Ctrl + D (macOS: Cmd + D)  
+Gesamte Datenbank löschen: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Hinweis: Die Tastenkürzel funktionieren nur, wenn die Anwendung auf das Fenster "Kontakte" eingestellt ist.

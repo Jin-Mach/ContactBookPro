@@ -1,0 +1,40 @@
+El menú contextual permite un acceso rápido a funciones seleccionadas sobre el contacto marcado.
+Se abre haciendo clic con el botón derecho del ratón sobre la fila del contacto en la tabla.
+Permite abrir o editar el contacto, eliminarlo, copiar los datos al portapapeles, exportar a CSV, Excel o vCard,
+ver una vista previa del contacto en PDF o su código QR y ejecutar la comprobación de fecha de nacimiento, duplicados o contactos sin coordenadas.
+
+Estructura del menú contextual
+
+Agregar contacto
+Editar contacto
+Eliminar contacto
+Copiar
+    Nombre
+    Correo electrónico
+    Teléfono
+Exportar
+    CSV
+        Exportar visibles
+        Exportar todo
+    Excel
+        Exportar visibles
+        Exportar todo
+    vCard
+        Exportar contacto seleccionado
+Vista previa
+    Vista previa del contacto
+    Vista previa de la lista de contactos
+        Vista previa de los contactos visibles
+        Vista previa de todos los contactos
+    Código QR del contacto
+Comprobación
+    Mostrar cumpleaños
+    Mostrar duplicados
+    Mostrar contactos sin coordenadas
+
+Nota: Todas las exportaciones abren un diálogo para seleccionar la ubicación del archivo de destino.
+
+Las funciones de Copiar utilizan el portapapeles del sistema (Ctrl + C / macOS: Cmd + C).
+
+Las vistas previas y el código QR se muestran inmediatamente en la ventana de la aplicación.
+Las funciones de comprobación muestran la lista en un diálogo independiente.

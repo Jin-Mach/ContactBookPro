@@ -1,0 +1,12 @@
+La aplicación permite mostrar una vista previa del contacto seleccionado o de la lista de contactos en una ventana separada.
+
+La vista previa del contacto seleccionado incluye toda la información disponible, excepto las coordenadas, la fecha de adición y la fecha de la última modificación.
+En la esquina inferior derecha hay un pequeño código QR con los mismos datos que se exportan en formato vCard.
+El usuario puede acercar, alejar y guardar la vista previa en PDF.
+Al hacer clic en guardar, se mostrará un diálogo para seleccionar la ubicación y el nombre del archivo, que por defecto se guardará en la carpeta Documentos (igual para Windows y macOS).
+
+También es posible mostrar la lista de los contactos actualmente visibles o de todos los contactos en la base de datos.
+Esta lista solo incluye nombre, apellido, sexo, relación, correo electrónico, teléfono y la dirección completa.
+La lista también se puede acercar, alejar y guardar como PDF.
+
+La generación de la vista previa en PDF se realiza en segundo plano, por lo que la aplicación se puede seguir utilizando durante la generación.

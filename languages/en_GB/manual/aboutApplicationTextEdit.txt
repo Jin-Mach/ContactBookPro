@@ -8,4 +8,4 @@ The application includes contact visualization on a map, clear statistics on sto
 The application automatically adapts to your system language (if it is not supported, a dialog will appear allowing you to choose).
 It also checks language files, icons, and fonts and updates them if necessary.
 
-Note: some features are only available with an active internet connection
+Note: Some features are only available with an active internet connection.

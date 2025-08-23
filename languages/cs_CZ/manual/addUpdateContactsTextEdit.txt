@@ -27,7 +27,7 @@ Město (textový vstup)
 PSČ (textový vstup)
 Stát (textový vstup)
 
-Poznámka: u pracovní adresy musí být buď vyplněna všechna pole (mimo ulice), nebo žádné. Částečně vyplněná adresa není povolena.
+Poznámka: U pracovní adresy musí být buď vyplněna všechna pole (mimo ulice), nebo žádné. Částečně vyplněná adresa není povolena.
 
 SOCIÁLNÍ SÍTĚ
 Facebook (textový vstup)
@@ -59,10 +59,10 @@ Aplikace také obsahuje automatickou kontrolu, která se spustí jednou po 5 min
 Tato kontrola se pokusí doplnit souřadnice dle uložené adresy u všech kontaktů, které je nemají.
 Každý kontakt bez souřadnic je takto zkontrolován maximálně 20×.
 
-Poznámka: je nutné mít aktivní připojení k internetu, pokud připojení k internetu neexistuje, souřadnice se neověřují, ale kontakt bude přidán/upraven.
+Poznámka: Je nutné mít aktivní připojení k internetu, pokud připojení k internetu neexistuje, souřadnice se neověřují, ale kontakt bude přidán/upraven.
 
 Klávesové zkratky
 Nový kontakt: Ctrl + N (macOS: Cmd + N)
 Aktualizovat kontakt: Ctrl + U (macOS: Cmd + U)
 
-Poznámka: klávesové zkratky fungují pouze, pokud je aplikace nastavena na okno "Kontakty"
+Poznámka: Klávesové zkratky fungují pouze, pokud je aplikace nastavena na okno "Kontakty".

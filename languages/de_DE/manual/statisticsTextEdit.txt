@@ -1,0 +1,19 @@
+Die Anwendung bietet eine Übersicht der Kontaktstatistiken, unterteilt in mehrere Registerkarten, die verschiedene Aspekte der Datenbank mit Hilfe von Diagrammen visualisieren.
+
+Grundlegende Statistiken
+Das Kreisdiagramm zeigt die Verteilung der Kontakte nach Geschlecht.
+Das Balkendiagramm zeigt die Verteilung der Kontakte nach Beziehung.
+Das Balkendiagramm zeigt die am häufigsten vorkommenden Städte der Kontakte.
+
+Berufliche Statistiken
+Zwei Kreisdiagramme zeigen den prozentualen Anteil der ausgefüllten optionalen Felder E-Mail und Telefon.
+Das Balkendiagramm zeigt die Anzahl der Kontakte nach Städten basierend auf den beruflichen Angaben.
+
+Soziale Statistiken
+Ein Balkendiagramm, bei dem jede Säule in zwei Teile unterteilt ist – Anzahl der ausgefüllten und nicht ausgefüllten Einträge für die einzelnen sozialen Netzwerke.
+
+Systemstatistiken
+Das obere horizontale Balkendiagramm zeigt die prozentuale Auslastung der gesamten Datenbank – Verhältnis aller möglichen Felder zur Anzahl der ausgefüllten Felder.
+Das untere horizontale Balkendiagramm zeigt dasselbe für die einzelnen Datenbanktabellen.
+
+Nach dem Hinzufügen, Bearbeiten oder Löschen eines Kontakts wird der Benutzer über die Änderung der Statistik durch eine kurze Benachrichtigung am unteren Rand der Anwendung informiert.

@@ -1,0 +1,68 @@
+Das Formular dient zur Erstellung eines neuen oder zur Bearbeitung eines bestehenden Kontakts.
+Es enthält Pflicht- und optionale Felder, die in mehrere Abschnitte unterteilt sind.
+Vor dem Speichern erfolgt eine Überprüfung der Eingaben und des Datenformats.
+
+PFLICHTFELDER
+Geschlecht (Auswahl aus Liste) – Auswahl aus vordefiniertem Angebot
+Beziehung (Auswahl aus Liste) – Auswahl aus vordefiniertem Angebot
+Vorname (Texteingabe)
+Nachname (Texteingabe)
+E-Mail (Texteingabe) – Formatprüfung
+Telefon (Texteingabe) – Formatprüfung
+Straße (Texteingabe) – optional, falls nicht vorhanden
+Hausnummer (Texteingabe)
+Stadt (Texteingabe)
+PLZ (Texteingabe)
+Land (Texteingabe)
+
+OPTIONALE ANGABEN
+
+BERUFLICH
+Firma (Texteingabe)
+E-Mail (Texteingabe) – Formatprüfung
+Telefonnummer (Texteingabe) – Formatprüfung
+Straße (Texteingabe) – optional
+Hausnummer (Texteingabe)
+Stadt (Texteingabe)
+PLZ (Texteingabe)
+Land (Texteingabe)
+
+Hinweis: Bei der Geschäftsadresse müssen entweder alle Felder (außer Straße) ausgefüllt sein oder keines. Teilweise ausgefüllte Adressen sind nicht erlaubt.
+
+SOZIALE NETZWERKE
+Facebook (Texteingabe)
+X (Twitter) (Texteingabe)
+Instagram (Texteingabe)
+LinkedIn (Texteingabe)
+GitHub (Texteingabe)
+Webseite (Texteingabe)
+
+DETAILS
+Foto – Dateiauswahl über Dialog
+Titel (Texteingabe)
+Geburtsdatum (Kalender)
+Notizen (mehrzeilige Eingabe)
+
+Validierung und Fehlermeldungen
+Wenn Pflichtfelder nicht ausgefüllt sind, die Geschäftsadresse unvollständig ist oder das E-Mail-/Telefonformat fehlerhaft ist, wird eine Fehlermeldung angezeigt.
+Der Cursor wird automatisch auf das erste fehlerhafte Feld gesetzt.
+Wenn beim Speichern eines neuen Kontakts oder Bearbeiten eines bestehenden bereits ein Kontakt mit derselben E-Mail-Adresse oder Telefonnummer existiert, wird ein Dialog mit einer Übersicht der gefundenen Duplikate angezeigt.
+In diesem Dialog kann der neue Kontakt trotzdem gespeichert, das Speichern abgebrochen oder zu einem ausgewählten bestehenden Kontakt in der Liste gewechselt werden.
+
+Nach Abschluss erscheint ein Pop-up-Fenster mit einer Information über das erfolgreiche Speichern/Löschen des Kontakts.
+
+Koordinatenabruf
+Nach dem Hinzufügen eines neuen Kontakts versucht die Anwendung automatisch, dessen geografische Koordinaten zu ermitteln (basierend auf den Pflichtangaben).
+Wenn die Koordinaten gefunden werden, wird der Kontakt auf der Karte angezeigt.
+Wenn die Koordinaten nicht ermittelt werden können, bleibt der Kontakt ohne Koordinaten gespeichert.
+Die Anwendung enthält auch eine automatische Überprüfung, die einmal 5 Minuten nach dem Start der Anwendung ausgeführt wird.
+Diese Überprüfung versucht, die Koordinaten für alle Kontakte ohne Koordinaten basierend auf der gespeicherten Adresse zu ergänzen.
+Jeder Kontakt ohne Koordinaten wird auf diese Weise maximal 20 Mal überprüft.
+
+Hinweis: Eine aktive Internetverbindung ist erforderlich. Wenn keine Verbindung besteht, werden die Koordinaten nicht überprüft, der Kontakt wird jedoch hinzugefügt oder bearbeitet.
+
+Tastenkürzel
+Neuer Kontakt: Ctrl + N (macOS: Cmd + N)
+Kontakt aktualisieren: Ctrl + U (macOS: Cmd + U)
+
+Hinweis: Tastenkürzel funktionieren nur, wenn die Anwendung auf das Fenster "Kontakte" eingestellt ist.

@@ -4,7 +4,7 @@ from typing import Callable
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLayout, QHBoxLayout, QLabel, QPushButton, QFrame
+from PyQt6.QtWidgets import QLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QSizePolicy
 
 from src.utilities.error_handler import ErrorHandler
 
@@ -14,7 +14,8 @@ class MainWindowButtonWidget(QFrame):
     def __init__(self, function: Callable[[], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("mainWindowButtonWidget")
-        self.setFixedSize(QSize(200, 50))
+        self.setMinimumSize(QSize(200, 50))
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         self.function = function
         self.setLayout(self.create_gui())
         self.setStyleSheet(self.get_stylesheet())
@@ -28,11 +29,12 @@ class MainWindowButtonWidget(QFrame):
         self.icon_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.button = QPushButton()
         self.button.setObjectName("button")
+        self.button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         self.button.setStyleSheet(self.get_stylesheet())
         self.button.setFlat(True)
         self.button.clicked.connect(self.function)
         main_layout.addWidget(self.icon_label)
-        main_layout.addWidget(self.button)
+        main_layout.addWidget(self.button, 1)
         return main_layout
 
     def set_label_icon(self, object_name: str) -> None:

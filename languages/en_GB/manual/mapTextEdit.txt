@@ -8,4 +8,4 @@ After each addition, edit, or deletion of a contact, if the mandatory address ha
 
 If no contact has coordinates or there is no internet connection, a message is displayed instead of the map to inform the user of this situation.
 
-Note: the map works only with an active internet connection
+Note: The map works only with an active internet connection.

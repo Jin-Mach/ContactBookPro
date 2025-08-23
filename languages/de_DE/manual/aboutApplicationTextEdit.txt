@@ -1,0 +1,11 @@
+Die Anwendung Kontaktdatenbank dient zur übersichtlichen und einfachen Verwaltung Ihrer Kontakte.
+
+Sie ermöglicht die Erfassung grundlegender sowie ergänzender Informationen zu Kontakten, deren Suche, Filterung und den Export in Formate wie CSV, Excel oder vCard.
+Es ist auch eine Vorschau der Kontakte im PDF-Format sowie die Anzeige von QR-Codes einzelner Einträge verfügbar.
+
+Die Anwendung enthält eine Visualisierung der Kontakte auf einer Karte, übersichtliche Statistiken über die gespeicherten Daten und ein umfassendes Handbuch, das Ihnen hilft, alle verfügbaren Funktionen effektiv zu nutzen.
+
+Die Anwendung passt sich automatisch an die Sprache Ihres Systems an (falls diese nicht unterstützt wird, erscheint ein Dialog zur Auswahl).
+Gleichzeitig überprüft sie Sprachdateien, Symbole und Schriftarten und aktualisiert diese bei Bedarf.
+
+Hinweis: Einige Funktionen sind nur bei aktiver Internetverbindung verfügbar.

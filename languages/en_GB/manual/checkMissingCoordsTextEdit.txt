@@ -8,4 +8,4 @@ The check runs in the background, so the application can still be used during th
 
 The user is informed of the completion via a dialog showing the results.
 
-Note: the check only runs with an active internet connection
+Note: The check only runs with an active internet connection.

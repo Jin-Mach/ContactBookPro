@@ -1,0 +1,68 @@
+El formulario sirve para crear un contacto nuevo o modificar uno existente.
+Contiene campos obligatorios y opcionales divididos en varias secciones.
+Antes de guardar, se verifica el llenado y el formato de los datos.
+
+CAMPOS OBLIGATORIOS
+Sexo (selección de la lista) – selección de la oferta predefinida
+Relación (selección de la lista) – selección de la oferta predefinida
+Nombre (entrada de texto)
+Apellido (entrada de texto)
+Correo electrónico (entrada de texto) – verificación de formato correcto
+Teléfono (entrada de texto) – verificación de formato correcto
+Calle (entrada de texto) – opcional si no existe
+Número (entrada de texto)
+Ciudad (entrada de texto)
+Código postal (entrada de texto)
+País (entrada de texto)
+
+DATOS OPCIONALES
+
+TRABAJO
+Empresa (entrada de texto)
+Correo electrónico (entrada de texto) – verificación de formato
+Teléfono (entrada de texto) – verificación de formato
+Calle (entrada de texto) – opcional
+Número (entrada de texto)
+Ciudad (entrada de texto)
+Código postal (entrada de texto)
+País (entrada de texto)
+
+Nota: Para la dirección de trabajo, deben completarse todos los campos (excepto la calle) o ninguno. No se permite una dirección parcialmente completada.
+
+REDES SOCIALES
+Facebook (entrada de texto)
+X (Twitter) (entrada de texto)
+Instagram (entrada de texto)
+LinkedIn (entrada de texto)
+GitHub (entrada de texto)
+Página web (entrada de texto)
+
+DETALLE
+Fotografía – selección de archivo mediante diálogo
+Título (entrada de texto)
+Fecha de nacimiento (calendario)
+Notas (entrada de varias líneas)
+
+Validación y mensajes de error
+Si no se completan los campos obligatorios, la dirección de trabajo está incompleta o el formato de correo/teléfono es incorrecto, se muestra un mensaje de error.
+El cursor se coloca automáticamente en la primera entrada incorrecta.
+Si al guardar un nuevo contacto o modificar uno existente ya existe un contacto con el mismo correo o teléfono en la base de datos, se muestra un diálogo con un resumen de los duplicados encontrados.
+En este diálogo se puede guardar el nuevo contacto aunque sea duplicado, cancelar el guardado o ir al contacto existente seleccionado en la lista.
+
+Al finalizar, se muestra una ventana emergente con la información de contacto guardado/eliminado correctamente.
+
+Obtención de coordenadas
+Al agregar un nuevo contacto, la aplicación intentará obtener automáticamente sus coordenadas geográficas (según la dirección en los campos obligatorios).
+Si se encuentran las coordenadas, el contacto se muestra en el mapa.
+Si no se encuentran, el contacto se guarda sin coordenadas.
+La aplicación también incluye un control automático que se ejecuta una vez cada 5 minutos después de iniciar la aplicación.
+Este control intenta completar las coordenadas según la dirección almacenada de todos los contactos que no las tienen.
+Cada contacto sin coordenadas se verifica así como máximo 20 veces.
+
+Nota: Es necesario tener conexión activa a internet; si no hay conexión, las coordenadas no se verifican, pero el contacto se agregará/modificará.
+
+Atajos de teclado
+Nuevo contacto: Ctrl + N (macOS: Cmd + N)
+Actualizar contacto: Ctrl + U (macOS: Cmd + U)
+
+Nota: Los atajos de teclado funcionan solo si la aplicación está en la ventana "Contactos".

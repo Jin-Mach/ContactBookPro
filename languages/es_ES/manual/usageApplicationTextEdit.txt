@@ -1,0 +1,9 @@
+El manual está dividido en capítulos, que se muestran en el panel izquierdo como una lista de temas.
+
+Al hacer clic en un tema de la lista izquierda, se muestra la parte correspondiente del manual a la derecha.
+
+Algunos temas tienen subtemas debajo, en los que se puede hacer clic para mostrar información más detallada.
+
+Cuando selecciona una pestaña a la derecha desde la lista izquierda, el tema que está leyendo se resalta automáticamente en el panel izquierdo.
+
+Este método le permite encontrar rápidamente la información necesaria y cambiar fácilmente entre las diferentes partes del manual.

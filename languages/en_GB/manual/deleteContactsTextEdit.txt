@@ -20,4 +20,4 @@ Keyboard shortcuts
 Delete selected contact: Ctrl + D (macOS: Cmd + D)
 Delete entire database: Ctrl + Shift + D (macOS: Cmd + Shift + D)
 
-Note: keyboard shortcuts only work if the application is focused on the "Contacts" window
+Note: Keyboard shortcuts only work if the application is focused on the "Contacts" window.

@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Se produjo un error durante la entrada/salida. Por favor, verifica la conexión del disco.",
+    "ValueError": "Formato de archivo no válido. Asegúrate de usar un formato compatible.",
+    "TypeError": "Tipo de argumento no válido. Por favor, verifica los valores de entrada.",
+    "TimeoutError": "La operación excedió el tiempo mientras intentaba abrir o guardar el archivo.",
+    "JSONDecodeError": "El archivo no es un JSON válido. Por favor, verifica el formato del archivo.",
+    "DatabaseConnectionError": "No se pudo conectar a la base de datos.",
+    "queryError": "Error al ejecutar la consulta a la base de datos.",
+    "RuntimeError": "No se pudo abrir el enlace. Verifica que sea válido y que tengas conexión a internet.",
+    "URLError": "El enlace no es válido o no se pudo establecer conexión.",
+    "FileNotFoundError": "El archivo ejecutable o script no fue encontrado. Por favor, verifica la ruta.",
+    "OSError": "Se produjo un error del sistema al intentar reiniciar la aplicación. Reinicia la aplicación manualmente.",
+    "UnexpectedError": "Se produjo un error inesperado."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Por favor, selecciona el género.",
+    "relationshipError": "Por favor, selecciona la relación.",
+    "emptyTextError": "Este campo no puede estar vacío.\n",
+    "emailValidatorError": "Formato de correo electrónico no válido.\nIntroduce el email en formato: email@dominio.com",
+    "phoneNumberValidatorError": "Introduce el número de teléfono en el formato correcto.\nPor ejemplo: +34123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Formato de correo electrónico no válido.\nIntroduce el email en formato: email@dominio.com",
+    "phoneNumberValidatorError": "Introduce el número de teléfono en el formato correcto.\nPor ejemplo: +34123456789.",
+    "workAddressValidatorError": "Rellena el número, ciudad, código postal y país, o deja todo vacío."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Formato de enlace no válido o red social incorrecta.\nIntroduce una URL válida para {site} en formato: https://www.{site}.com/perfil.",
+    "websiteValidatorError": "Formato no válido.\nIntroduce una URL válida en formato: www.example.com"
+  },
+  "notesUtilities": {
+    "textLengthError": "El texto puede tener como máximo 300 caracteres.",
+    "textLineCountError": "Las notas pueden tener como máximo 10 líneas."
+  },
+  "calendarDialog": {
+    "selectedDateError": "La fecha seleccionada no puede ser mayor que la fecha actual."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Ningún filtro activo."
+  },
+  "contactSearchController": {
+    "emptySearchText": "No se puede buscar sin texto ingresado.",
+    "noTableviewSelection": "Para búsqueda rápida, debes seleccionar una columna.",
+    "noFilteredData": "Ningún dato coincide con el criterio ingresado.\nEl filtro se restablecerá."
+  },
+  "widgetErrors": {
+    "indexError": "No se seleccionó un índice válido. Repite la selección.",
+    "noTableviewSelection": "Primero selecciona un contacto de la lista."
+  },
+  "filtersController": {
+    "noActiveFilter": "Ningún filtro activo.",
+    "existingFilterName": "El nombre del filtro ya existe.",
+    "noUserFilters": "No hay filtros guardados."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "No se proporcionó un nombre de filtro."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Ningún filtro activo."
+  },
+  "userFiltersDialog": {
+    "noFilters": "No hay filtros guardados.",
+    "noSelection": "Primero selecciona un filtro."
+  },
+  "csvExportController": {
+    "emptyIdList": "No hay contactos para exportar"
+  },
+  "excelExportController": {
+    "emptyIdList": "No hay contactos para exportar"
+  },
+  "pdfExportController": {
+    "emptyIdList": "No hay contactos para exportar",
+    "indexError": "No se seleccionó un índice válido. Repite la selección.",
+    "noTableviewSelection": "Primero selecciona un contacto de la lista."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Ningún contacto tiene cumpleaños próximamente."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "No hay contactos duplicados."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Todos los contactos tienen coordenadas válidas"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "El portapapeles está vacío, no hay nada que pegar"
+  }
+}

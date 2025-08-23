@@ -26,4 +26,4 @@ Pokročilé vyhledávání: Ctrl + Shift + F (macOS: Cmd + Shift + F)
 Reset filtrů: Ctrl + R (macOS: Cmd + R)
 Uložené filtry: Ctrl + L (macOS: Cmd + L)
 
-Poznámka: klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty"
+Poznámka: Klávesové zkratky fungují pouze pokud je aplikace nastavena na okno "Kontakty".

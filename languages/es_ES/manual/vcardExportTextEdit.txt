@@ -1,0 +1,10 @@
+La aplicación permite exportar el contacto seleccionado como vCard.
+
+Exporta el formato vCard (.vcf) a un formato estandarizado compatible con teléfonos móviles, clientes de correo electrónico (como Microsoft Outlook o Thunderbird) y una aplicación de contactos gratuita.
+Cada contacto exportado contiene información básica: nombre completo, correo electrónico, número de teléfono y dirección personal.
+Para exportar una vCard, se abrirá un cuadro de diálogo que garantiza su exportación.
+Consulta el cuadro de diálogo a continuación y la sección "Documentación" (solo para Windows y macOS) para abrir el archivo.
+
+La exportación está deshabilitada.
+
+Al finalizar, aparecerá un cuadro de diálogo con información sobre el guardado exitoso.

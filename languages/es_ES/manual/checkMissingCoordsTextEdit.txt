@@ -1,0 +1,11 @@
+La aplicación permite comprobar los contactos sin coordenadas completas.
+
+La comprobación recorre todos los contactos y selecciona aquellos que carecen de coordenadas geográficas según la dirección proporcionada.
+Al final se mostrará una notificación de que ningún contacto cumple con los criterios o un diálogo con la lista de contactos encontrados.
+En el diálogo se puede ir al contacto seleccionado, lo que establecerá un filtro para ese contacto.
+
+La comprobación se realiza en segundo plano, por lo que la aplicación se puede seguir utilizando durante el proceso.
+
+El usuario es informado de la finalización mediante un diálogo con el resultado.
+
+Nota: La comprobación solo se realiza con una conexión activa a Internet.

@@ -8,4 +8,4 @@ Po každém přidání, úpravě nebo smazání kontaktu, pokud došlo ke změn�
 
 Pokud žádný kontakt nemá souřadnice, nebo není k dispozici internetové připojení, místo mapy se zobrazí oznámení s informací o této situaci.
 
-Poznámka: mapa funguje pouze při aktivním připojení k internetu
+Poznámka: Mapa funguje pouze při aktivním připojení k internetu.

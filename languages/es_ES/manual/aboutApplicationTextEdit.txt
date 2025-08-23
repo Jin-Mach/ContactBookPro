@@ -1,0 +1,13 @@
+La aplicación Base de datos de contactos sirve para la gestión clara y sencilla de sus contactos.
+
+Permite registrar información básica y complementaria sobre los contactos, buscarlos, filtrarlos y exportarlos a formatos como CSV, Excel o vCard.
+
+También está disponible la vista previa de contactos en formato PDF y la visualización de códigos QR de cada registro.
+
+La aplicación incluye la visualización de contactos en un mapa, estadísticas claras sobre los datos almacenados y un manual completo que le ayudará a utilizar eficazmente todas las funciones disponibles.
+
+La aplicación se adapta automáticamente al idioma de su sistema (si no está soportado, mostrará un diálogo con la opción de selección).
+
+Al mismo tiempo, comprueba los archivos de idioma, los iconos y las fuentes, y los actualiza según sea necesario.
+
+Nota: Algunas funciones solo están disponibles con conexión activa a Internet.

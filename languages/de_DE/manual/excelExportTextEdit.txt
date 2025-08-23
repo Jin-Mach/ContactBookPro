@@ -1,0 +1,12 @@
+Die Anwendung ermöglicht den Export ausgewählter oder aller Kontakte in das Excel-Format.
+
+Der Export in das Excel-Format (.xlsx) speichert die Kontakte in einer Datei, die mit Microsoft Excel, LibreOffice Calc und anderen Tabellenkalkulationsprogrammen kompatibel ist.  
+Die Daten werden in Spalten unterteilt, was die weitere Bearbeitung und Analyse erleichtert.  
+Nach Auswahl des Exports wird ein Dialog zum Speichern der Datei angezeigt, die standardmäßig im Ordner „Dokumente“ gespeichert wird (gleiches Verzeichnis für Windows und macOS).  
+Der Benutzer kann einen anderen Ordner sowie einen anderen Dateinamen auswählen.
+
+Der Export erfolgt im Hintergrund, sodass die Anwendung während des Speichervorgangs weiterhin genutzt werden kann.
+
+Bei einer größeren Anzahl von Kontakten kann der Export länger dauern.
+
+Nach Abschluss erscheint ein Pop-up-Fenster mit einer Information über das erfolgreiche Speichern.

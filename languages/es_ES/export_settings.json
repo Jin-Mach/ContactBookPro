@@ -1,0 +1,63 @@
+{
+  "semicolon_locales": ["cs", "sk", "de", "fr", "it", "es", "pt", "nl", "pl", "hr", "hu", "ro"],
+  "exportDataProvider": {
+    "genderMap": {
+      "1": "Hombre",
+      "2": "Mujer"
+    },
+    "relationshipMap": {
+      "1": "Familia",
+      "2": "Pariente",
+      "3": "Colega",
+      "4": "Amigo",
+      "5": "Conocido",
+      "6": "Otros"
+    }
+  },
+  "exportExcelObject": {
+    "tables": {
+      "mandatory": "Datos personales",
+      "work": "Datos laborales",
+      "social": "Redes sociales",
+      "detail": "Detalles"
+    },
+    "headers": {
+      "mandatory": {
+        "gender": "Género",
+        "relationship": "Relación",
+        "first_name": "Nombre",
+        "second_name": "Apellido",
+        "personal_email": "Correo personal",
+        "personal_phone_number": "Teléfono personal",
+        "personal_street": "Calle",
+        "personal_house_number": "Número de casa",
+        "personal_city": "Ciudad",
+        "personal_post_code": "Código postal",
+        "personal_country": "País"
+      },
+      "work": {
+        "company_name": "Nombre de la empresa",
+        "work_email": "Correo laboral",
+        "work_phone_number": "Teléfono laboral",
+        "work_street": "Calle (trabajo)",
+        "work_house_number": "Número de casa (trabajo)",
+        "work_city": "Ciudad (trabajo)",
+        "work_post_code": "Código postal (trabajo)",
+        "work_country": "País (trabajo)"
+      },
+      "social": {
+        "facebook_url": "URL de Facebook",
+        "x_url": "URL de X (Twitter)",
+        "instagram_url": "URL de Instagram",
+        "linkedin_url": "URL de LinkedIn",
+        "github_url": "URL de GitHub",
+        "website_url": "Sitio web"
+      },
+      "detail": {
+        "title": "Título",
+        "birthday": "Cumpleaños",
+        "notes": "Notas"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+Die Anwendung ermöglicht die Anzeige einer Karte der Kontakte, die gültige geografische Koordinaten haben.
+
+Auf der Karte werden die einzelnen Kontakte als Marker angezeigt.  
+Beim Klicken auf einen Marker werden grundlegende Informationen zum Kontakt angezeigt – Name, E-Mail und Telefonnummer.  
+Die Karte kann gezoomt und verschoben werden. Über der Karte wird die Anzahl der aktuell angezeigten Kontakte und die Gesamtzahl aller Kontakte in der Datenbank angezeigt.
+
+Nach jedem Hinzufügen, Bearbeiten oder Löschen eines Kontakts, wenn sich die Pflichtadresse geändert hat, wird die Karte automatisch aktualisiert und der Benutzer durch eine kurze Benachrichtigung am unteren Rand der Anwendung informiert.
+
+Wenn kein Kontakt Koordinaten hat oder keine Internetverbindung verfügbar ist, wird anstelle der Karte eine Meldung über diese Situation angezeigt.
+
+Hinweis: Die Karte funktioniert nur bei aktiver Internetverbindung.

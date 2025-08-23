@@ -1,0 +1,9 @@
+Die Anleitung ist in Kapitel unterteilt, die im linken Bereich als Themenliste angezeigt werden.
+
+Durch Klicken auf ein Thema in der linken Liste wird der entsprechende Teil der Anleitung rechts angezeigt.
+
+Einige Themen enthalten Unterthemen, auf die ebenfalls geklickt werden kann, um detailliertere Informationen anzuzeigen.
+
+Wenn Sie in der linken Liste ein Register auf der rechten Seite auswählen, wird automatisch das Thema im linken Bereich hervorgehoben, das Sie gerade lesen.
+
+Diese Vorgehensweise ermöglicht es Ihnen, schnell die benötigten Informationen zu finden und einfach zwischen den einzelnen Teilen der Anleitung zu wechseln.

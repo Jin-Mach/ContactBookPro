@@ -1,10 +1,10 @@
-The application allows exporting a selected contact as a vCard.
+Aplikace umožňuje exportovat vybraný kontakt jako vCard.
 
-Exporting to the vCard format (.vcf) enables saving contacts in a standardized format supported by mobile phones, email clients (e.g., Microsoft Outlook, Thunderbird), and other contact management applications.
-Each exported contact includes basic information – full name, email, phone number, and personal address.
-After choosing to export to vCard, a dialog appears to specify the file location and name.
-By default, the dialog opens in the Documents folder (the same location for both Windows and macOS), but the user can select any other folder.
+Export do formátu vCard (.vcf) umožňuje uložit kontakty do standardizovaného formátu, který podporují mobilní telefony, e-mailoví klienti (např. Microsoft Outlook, Thunderbird) a další aplikace pro správu kontaktů.
+Každý exportovaný kontakt obsahuje základní údaje – celé jméno, e-mail, telefonní číslo a osobní adresu.
+Po výběru exportu do vCard se zobrazí dialog pro určení umístění a názvu souboru.
+Ve výchozím nastavení se dialog otevře ve složce Dokumenty (stejné umístění pro Windows i macOS), ale uživatel může vybrat libovolnou jinou složku.
 
-The export happens immediately.
+Export probíhá okamžitě.
 
-Upon completion, a dialog appears confirming the successful save.
+Po dokončení se zobrazí dialog s informací o úspěšném uložení.

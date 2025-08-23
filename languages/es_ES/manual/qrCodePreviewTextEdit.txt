@@ -1,0 +1,5 @@
+La aplicación permite mostrar una vista previa del código QR para el contacto seleccionado.
+
+El código QR contiene los mismos datos que se exportan en vCard: nombre, apellido, correo electrónico, teléfono y dirección personal.
+
+La vista previa del código QR se abre en una ventana separada y es solo estática; no se puede acercar, alejar ni guardar.

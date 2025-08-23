@@ -1,0 +1,5 @@
+Die Anwendung ermöglicht die Anzeige einer Vorschau des QR-Codes für den ausgewählten Kontakt.
+
+Der QR-Code enthält dieselben Daten wie der Export in das vCard-Format – Vorname, Nachname, E-Mail, Telefonnummer und persönliche Adresse.
+
+Die Vorschau des QR-Codes wird in einem separaten Fenster geöffnet und ist statisch; sie kann weder gezoomt, verschoben noch gespeichert werden.

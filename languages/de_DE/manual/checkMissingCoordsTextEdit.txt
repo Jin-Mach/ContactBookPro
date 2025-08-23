@@ -1,0 +1,12 @@
+Die Anwendung ermöglicht die Überprüfung von Kontakten ohne ausgefüllte Koordinaten.
+
+Die Überprüfung geht alle Kontakte durch und wählt diejenigen aus, bei denen geografische Koordinaten gemäß der angegebenen Adresse fehlen.  
+
+Am Ende wird entweder eine Benachrichtigung angezeigt, dass kein Kontakt den Kriterien entspricht, oder ein Dialog mit einer Liste der gefundenen Kontakte.  
+Im Dialog kann zu einem ausgewählten Kontakt gewechselt werden, wodurch der Filter auf diesen Kontakt gesetzt wird.  
+
+Die Überprüfung erfolgt im Hintergrund, sodass die Anwendung währenddessen weiterhin genutzt werden kann.  
+
+Der Benutzer wird über das Ergebnis mit einem Dialog informiert.  
+
+Hinweis: Die Überprüfung erfolgt nur bei aktiver Internetverbindung.

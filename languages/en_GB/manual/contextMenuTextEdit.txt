@@ -32,7 +32,7 @@ Check
     Show duplicates
     Show contacts without coordinates
 
-Note: all exports open a dialog to select the target file location.
+Note: All exports open a dialog to select the target file location.
 
 The Copy functions use the system clipboard (Ctrl + C / macOS: Cmd + C).
 

@@ -27,7 +27,7 @@ City (text input)
 ZIP Code (text input)
 Country (text input)
 
-Note: for the work address, either all fields must be filled (except street) or none. Partially filled addresses are not allowed.
+Note: For the work address, either all fields must be filled (except street) or none. Partially filled addresses are not allowed.
 
 SOCIAL NETWORKS
 Facebook (text input)
@@ -59,10 +59,10 @@ The application also includes an automatic check that runs once, five minutes af
 This check attempts to add coordinates based on the stored address for all contacts that do not have them.
 Each contact without coordinates is checked this way a maximum of 20 times.
 
-Note: an active internet connection is required; if no connection is available, coordinates are not verified, but the contact will still be added/edited.
+Note: An active internet connection is required; if no connection is available, coordinates are not verified, but the contact will still be added/edited.
 
 Keyboard shortcuts
 New contact: Ctrl + N (macOS: Cmd + N)
 Update contact: Ctrl + U (macOS: Cmd + U)
 
-Note: keyboard shortcuts work only if the application is set to the "Contacts" window
+Note: Keyboard shortcuts work only if the application is set to the "Contacts" window.
