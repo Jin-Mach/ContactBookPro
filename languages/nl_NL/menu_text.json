@@ -1,0 +1,41 @@
+{
+  "contextMenu": {
+    "addContactAction": "Contact toevoegen",
+    "updateContactAction": "Contact bijwerken",
+    "deleteContactAction": "Contact verwijderen",
+    "copyMenu": "Kopiëren",
+    "copyNameAction": "Naam",
+    "copyEmailAction": "E-mail",
+    "copyPhoneNumberAction": "Telefoon",
+    "exportMenu": "Exporteren",
+    "exportCsvMenu": "CSV",
+    "exportFilteredDataCsvAction": "Weergegeven exporteren",
+    "exportAllDataCsvAction": "Alles exporteren",
+    "exportExcelMenu": "Excel",
+    "exportFilteredDataExcelAction": "Weergegeven exporteren",
+    "exportAllDataExcelAction": "Alles exporteren",
+    "exportVcardAction": "vCard",
+    "previewMenu": "Voorbeeld",
+    "previewContactAction": "Contactvoorbeeld",
+    "previewContactsListMenu": "Voorbeeld contactlijst",
+    "previewFilteredContactsListAction": "Voorbeeld weergegeven contacten",
+    "previewAllContactsListAction": "Voorbeeld alle contacten",
+    "previewQrCodeAction": "QR-code van contact",
+    "contactCheckMenu": "Contactcontrole",
+    "contactCheckBirthdayAction": "Verjaardagen tonen",
+    "contactCheckDuplicityAction": "Duplicaten tonen",
+    "contactsCheckCoordsAction": "Contacten zonder coördinaten tonen"
+  },
+  "csvExportController": {
+    "csvFilter": "CSV-bestanden (*.csv);;Alle bestanden (*)"
+  },
+  "excelExportController": {
+    "excelFilter": "Excel-bestanden (*.xlsx);;Alle bestanden (*)"
+  },
+  "vcardExportController": {
+    "vcardFilter": "vCard-bestanden (*.vcf);;Alle bestanden (*)"
+  },
+  "pdfExportController": {
+    "pdfFilter": "PDF-bestanden (*.pdf);;Alle bestanden (*)"
+  }
+}

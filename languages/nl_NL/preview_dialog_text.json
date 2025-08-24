@@ -1,0 +1,10 @@
+{
+  "qrCodePreviewDialog": {
+    "qrDialogTitle": "QR-codevoorbeeld",
+    "infoLabelText": "Scan de QR-code om het contact op te slaan"
+  },
+  "pdfPreviewDialog": {
+    "pdfDialogTitle": "PDF-voorbeeld",
+    "closeDialogButton": "Voorbeeld sluiten"
+  }
+}

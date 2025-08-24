@@ -1,0 +1,102 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Geavanceerd zoeken",
+    "mandatory": "Zoeken in verplichte velden",
+    "nonMandatory": "Zoeken in optionele velden",
+    "searchButton": "Zoeken",
+    "cancelButton": "Annuleren",
+    "currentFilterButton": "",
+    "resetButton": ""
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Geslacht:",
+    "searchGenderCombobox": ["Alles", "Man", "Vrouw"],
+    "searchRelationshipTextLabel": "Relatie:",
+    "searchRelationshipCombobox": ["Alles","Familie", "Verwant", "Collega", "Vriend", "Bekende", "Overig"],
+    "searchFirstNameTextLabel": "Voornaam:",
+    "searchSecondNameTextLabel": "Achternaam:",
+    "searchEmailTextLabel": "E-mail (persoonlijk):",
+    "searchPhoneNumberTextLabel": "Telefoonnummer (persoonlijk):",
+    "searchCityTextLabel": "Stad (persoonlijk):",
+    "searchStreetTextLabel": "Straat (persoonlijk):",
+    "searchHouseNumberTextLabel": "Huisnummer (persoonlijk):",
+    "searchPostCodeTextLabel": "Postcode (persoonlijk):",
+    "searchCountryTextLabel": "Land (persoonlijk):",
+    "operators": ["Exact", "Bevat", "Begint met", "Eindigt met"],
+    "searchFirstNameEdit": "Voer voornaam in...",
+    "searchSecondNameEdit": "Voer achternaam in...",
+    "searchEmailEdit": "Voer e-mail in...",
+    "searchPhoneNumberEdit": "Voer telefoonnummer in...",
+    "searchCityEdit": "Voer stad in...",
+    "searchStreetEdit": "Voer straat in...",
+    "searchHouseNumberEdit": "Voer huisnummer in...",
+    "searchPostCodeEdit": "Voer postcode in...",
+    "searchCountryEdit": "Voer land in..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Werk",
+    "social": "Sociale netwerken",
+    "detail": "Details"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Bedrijf:",
+    "searchWorkEmailTextLabel": "E-mail (werk):",
+    "searchWorkPhoneNumberTextLabel": "Telefoonnummer (werk):",
+    "searchWorkCityTextLabel": "Stad (werk):",
+    "searchWorkStreetTextLabel": "Straat (werk):",
+    "searchWorkHouseNumberTextLabel": "Huisnummer (werk):",
+    "searchWorkPostCodeTextLabel": "Postcode (werk):",
+    "searchWorkCountryTextLabel": "Land (werk):",
+    "operators": ["Alles", "Exact", "Bevat", "Begint met", "Eindigt met"],
+    "searchWorkCompanyEdit": "Voer bedrijfsnaam in...",
+    "searchWorkEmailEdit": "Voer e-mail in...",
+    "searchWorkPhoneNumberEdit": "Voer telefoonnummer in...",
+    "searchWorkCityEdit": "Voer stad in...",
+    "searchWorkStreetEdit": "Voer straat in...",
+    "searchWorkHouseNumberEdit": "Voer huisnummer in...",
+    "searchWorkPostCodeEdit": "Voer postcode in...",
+    "searchWorkCountryEdit": "Voer land in..."
+  },
+  "searchSocialNetworksDialog": {
+    "searchFacebookUrlTextLabel": "Facebook:",
+    "searchXUrlTextLabel": "X (Twitter):",
+    "searchInstagramUrlTextLabel": "Instagram:",
+    "searchLinkedinUrlTextLabel": "LinkedIn:",
+    "searchGithubUrlTextLabel": "GitHub:",
+    "searchWebsiteUrlTextLabel": "Website:",
+    "operators": ["Alles", "Exact", "Bevat", "Begint met", "Eindigt met"],
+    "searchFacebookUrlEdit": "Voer link naar Facebook in...",
+    "searchXUrlEdit": "Voer link naar X (Twitter) in...",
+    "searchInstagramUrlEdit": "Voer link naar Instagram in...",
+    "searchLinkedinUrlEdit": "Voer link naar LinkedIn in...",
+    "searchGithubUrlEdit": "Voer link naar GitHub in...",
+    "searchWebsiteUrlEdit": "Voer website in..."
+  },
+  "searchDetailsWidget": {
+    "searchPhotoTextLabel": "Contactfoto:",
+    "searchPhotoCombobox": ["Maakt niet uit","Met foto", "Zonder foto"],
+    "searchTitleTextLabel": "Titel:",
+    "searchBirthdayTextLabel": "Geboortedatum:",
+    "searchNotesTextLabel": "Notities:",
+    "operators": ["Alles", "Exact", "Bevat", "Begint met", "Eindigt met"],
+    "searchTitleEdit": "Voer titel in...",
+    "searchBirthdayEdit": "Voer datum in...bijv.: 01-01-2000",
+    "searchNotesEdit": "Voer notities in..."
+  },
+  "activeFiltersDialog": {
+    "currentFilterTitle": "Huidige filter",
+    "currentFilterTextLabel": "Huidig ingestelde filters",
+    "saveFilter": "Filter opslaan",
+    "closeButton": "Sluiten"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Filter opslaan",
+    "filterNameTextLabel": "Voer de naam van het nieuwe filter in",
+    "filterNameInput": "Alleen letters, cijfers, spaties en basistekens (-, _)",
+    "saveFilterButton": "Opslaan",
+    "cancelButton": "Sluiten"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Even geduld, ik zoek iets..."
+  }
+}

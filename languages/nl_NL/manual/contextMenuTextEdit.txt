@@ -1,0 +1,40 @@
+Het contextmenu biedt snelle toegang tot geselecteerde functies voor het gemarkeerde contact.  
+Het wordt geopend door met de rechtermuisknop op de contactrij in de tabel te klikken.  
+Het maakt het mogelijk een contact te openen of te bewerken, te verwijderen, gegevens naar het klembord te kopiëren, te exporteren naar CSV, Excel of vCard,  
+een voorbeeld van het contact in PDF of de QR-code weer te geven en een controle op geboortedata, duplicaten of contacten zonder coördinaten uit te voeren.  
+
+Structuur van het contextmenu
+
+Contact toevoegen  
+Contact bewerken  
+Contact verwijderen  
+Kopiëren  
+    Naam  
+    E-mail  
+    Telefoon  
+Exporteren  
+    CSV  
+        Zichtbare exporteren  
+        Alles exporteren  
+    Excel  
+        Zichtbare exporteren  
+        Alles exporteren  
+    vCard  
+        Geselecteerd contact exporteren  
+Voorbeeld  
+    Contactvoorbeeld  
+    Contactlijstvoorbeeld  
+        Voorbeeld van zichtbare contacten  
+        Voorbeeld van alle contacten  
+    QR-code van contact  
+Controle  
+    Verjaardagen weergeven  
+    Duplicaten weergeven  
+    Contacten zonder coördinaten weergeven  
+
+Opmerking: Alle exportopties openen een dialoog om de doelbestemming van het bestand te kiezen.  
+
+De functies Kopiëren maken gebruik van het systeemklembord (Ctrl + C / macOS: Cmd + C).  
+
+Voorbeelden en QR-codes worden direct in het applicatievenster weergegeven.  
+Controlefuncties tonen de lijst in een apart dialoogvenster.

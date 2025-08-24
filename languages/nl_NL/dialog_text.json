@@ -1,0 +1,121 @@
+{
+  "dialogsProvider": {
+    "closeButton": "Sluiten",
+    "errorTextLabel": "Fout:",
+    "databaseErrorTextLabel": "Databasefout.",
+    "databaseCloseButton": "Sluiten"
+  },
+  "deleteDialogWidgets": {
+    "deleteContactDialog": "Contact verwijderen",
+    "deleteContactTextLabel": "Contact verwijderen?",
+    "deleteContactButton": "Verwijderen",
+    "cancelContactButton": "Annuleren",
+    "deleteAllContactsDialog": "Alle contacten verwijderen",
+    "deleteAllContactsTextLabel": "Weet u zeker dat u alle contacten wilt verwijderen?\nTyp ter bevestiging:\nVERWIJDEREN",
+    "deleteWordError": "Het ingevoerde woord komt niet overeen.\nProbeer het opnieuw.",
+    "deleteFiltersCheckboxTextLabel": "Opgeslagen filters verwijderen?",
+    "deleteAllContactsButton": "Alles verwijderen",
+    "cancelAllContactsButton": "Annuleren"
+  },
+  "contactDialog": {
+    "dialogTitle": "Nieuw contact",
+    "dialogTitleUpdate": "Contact bewerken",
+    "mandatory": "Verplichte gegevens",
+    "nonMandatory": "Optionele gegevens",
+    "dialogAddContactButton": "Contact toevoegen",
+    "dialogAddContactButtonUpdate": "Contact bijwerken",
+    "dialogCancelButton": "Annuleren"
+  },
+  "dialogMandatoryWidget": {
+    "dialogGenderTextLabel": "Geslacht",
+    "dialogGenderCombobox": ["---Selecteer geslacht---","Man", "Vrouw"],
+    "dialogRelationshipTextLabel": "Relatie:",
+    "dialogRelationshipCombobox": ["---Selecteer relatie---","Familie", "Verwant", "Collega", "Vriend", "Bekende", "Overig"],
+    "dialogFirstNameTextLabel": "Voornaam:",
+    "dialogSecondNameTextLabel": "Achternaam:",
+    "dialogEmailTextLabel": "E-mail (persoonlijk):",
+    "dialogPhoneNumberTextLabel": "Telefoonnummer (persoonlijk):",
+    "dialogCityTextLabel": "Stad (persoonlijk):",
+    "dialogStreetTextLabel": "Straat (persoonlijk):",
+    "dialogHouseNumberTextLabel": "Huisnummer (persoonlijk):",
+    "dialogPostCodeTextLabel": "Postcode (persoonlijk):",
+    "dialogCountryTextLabel": "Land (persoonlijk):",
+    "dialogFirstNameEdit": "Voer voornaam in...",
+    "dialogSecondNameEdit": "Voer achternaam in...",
+    "dialogEmailEdit": "Voer e-mail in formaat: email@domein.nl",
+    "dialogPhoneNumberEdit": "Voer telefoonnummer in formaat: +31612345678",
+    "dialogCityEdit": "Voer stad in...",
+    "dialogStreetEdit": "Voer straat in... (indien beschikbaar)",
+    "dialogHouseNumberEdit": "Voer huisnummer in...",
+    "dialogPostCodeEdit": "Voer postcode in...",
+    "dialogCountryEdit": "Voer land in..."
+  },
+  "dialogNonMandatoryWidget": {
+    "work": "Werk",
+    "socialNetworks": "Sociale netwerken",
+    "personalDetail": "Details"
+  },
+  "dialogWorkWidget": {
+    "dialogWorkCompanyTextLabel": "Bedrijf:",
+    "dialogWorkEmailTextLabel": "E-mail (werk):",
+    "dialogWorkPhoneNumberTextLabel": "Telefoonnummer (werk):",
+    "dialogWorkCityTextLabel": "Stad (werk):",
+    "dialogWorkStreetTextLabel": "Straat (werk):",
+    "dialogWorkHouseNumberTextLabel": "Huisnummer (werk):",
+    "dialogPostCodeTextLabel": "Postcode (werk):",
+    "dialogWorkCountryTextLabel": "Land (werk):",
+    "dialogWorkCompanyEdit": "Voer bedrijfsnaam in...",
+    "dialogWorkEmailEdit": "Voer e-mail in formaat: email@domein.nl",
+    "dialogPhoneNumberEdit": "Voer telefoonnummer in formaat: +31612345678",
+    "dialogWorkCityEdit": "Voer stad in...",
+    "dialogWorkStreetEdit": "Voer straat in... (indien beschikbaar)",
+    "dialogWorkHouseNumberEdit": "Voer huisnummer in...",
+    "dialogPostCodeEdit": "Voer postcode in...",
+    "dialogWorkCountryEdit": "Voer land in..."
+  },
+  "dialogSocialNetworkWidget": {
+    "dialogFacebookUrlTextLabel": "Facebook:",
+    "dialogXUrlTextLabel": "X (Twitter):",
+    "dialogInstagramUrlTextLabel": "Instagram:",
+    "dialogLinkedinUrlTextLabel": "LinkedIn:",
+    "dialogGithubUrlTextLabel": "GitHub:",
+    "dialogWebsiteUrlTextLabel": "Website:",
+    "dialogFacebookUrlEdit": "Voer Facebook-link in...",
+    "dialogXUrlEdit": "Voer X (Twitter)-link in...",
+    "dialogInstagramUrlEdit": "Voer Instagram-link in...",
+    "dialogLinkedinUrlEdit": "Voer LinkedIn-link in...",
+    "dialogGithubUrlEdit": "Voer GitHub-link in...",
+    "dialogWebsiteUrlEdit": "Voer website in formaat: https://www.voorbeeld.nl"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Foto",
+    "dialogResetPhotoButton": "Verwijderen",
+    "dialogTitleTextLabel": "Titel:",
+    "dialogBirthdayTextLabel": "Geboortedatum:",
+    "dialogCalendarPushbutton": "Kalender",
+    "dialogResetCalendarPushbutton": "Verwijderen",
+    "dialogTitleEdit": "Voer titel in...",
+    "dialogBirthdayEdit": "Selecteer geboortedatum...",
+    "dialogNotesEdit": "Notities bij contact (max. 200 tekens, max. 5 regels)..."
+  },
+  "calendarDialog": {
+    "calendarDialogTitle": "Selecteer geboortedatum",
+    "setTodayButton": "Ga naar vandaag",
+    "addDateButton": "Datum instellen",
+    "cancelDialogButton": "Annuleren"
+  },
+  "photoUtilities": {
+    "basicFilesFilter": "Basisformaat: (*.jpg *.jpeg *.png)",
+    "advancedFilesFilter": "Geavanceerde formaten: (*.tiff *.bmp *.gif *.heic *.webp)",
+    "allFilesFilter": "Alle formaten: (*.*)"
+  },
+  "contactsListDialog": {
+    "duplicateTextLabel": "Aantal gevonden dubbele contacten",
+    "duplicateTextLabelContextBirthday": "Aantal contacten met verjaardag",
+    "duplicateTextLabelContextDuplicity": "Aantal dubbele contacten",
+    "duplicateTextLabelContextCoordinates": "Aantal contacten zonder geldige coördinaten",
+    "showContactButton": "Ga naar contact",
+    "continueButton": "Doorgaan",
+    "cancelButton": "Annuleren"
+  }
+}

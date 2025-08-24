@@ -1,0 +1,19 @@
+O aplicativo oferece uma visão geral das estatísticas de contatos, dividida em várias abas, que visualizam diferentes aspectos do banco de dados usando gráficos.
+
+Estatísticas básicas
+O gráfico de pizza mostra a distribuição de contatos por sexo.
+O gráfico de barras mostra a distribuição de contatos por relação.
+O gráfico de barras mostra as cidades mais comuns dos contatos.
+
+Estatísticas de trabalho
+Dois gráficos de pizza mostram o preenchimento percentual dos campos opcionais E-mail e Telefone.
+O gráfico de barras mostra o número de contatos por cidade com base nas informações de trabalho.
+
+Estatísticas sociais
+Gráfico de barras, onde cada barra é dividida em duas partes – número de registros preenchidos e não preenchidos para cada rede social.
+
+Estatísticas do sistema
+O gráfico de barras horizontal superior mostra o preenchimento percentual de todo o banco de dados – a proporção de todos os campos possíveis em relação ao número de campos preenchidos.
+O gráfico de barras horizontal inferior mostra o mesmo para tabelas individuais do banco de dados.
+
+Após adicionar, editar ou excluir um contato, o usuário é informado sobre a alteração das estatísticas por meio de uma breve notificação na parte inferior do aplicativo.

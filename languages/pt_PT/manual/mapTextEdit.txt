@@ -1,0 +1,11 @@
+O aplicativo permite exibir o mapa de contatos que possuem coordenadas geográficas válidas.
+
+No mapa, os contatos individuais são exibidos como marcadores.
+Ao clicar em um marcador, são exibidas as informações básicas do contato – nome, e-mail e número de telefone.
+O mapa pode ser aproximado, afastado e movido. Acima do mapa, é exibido o número de contatos atualmente visíveis e o número total de todos os contatos no banco de dados.
+
+Após cada adição, edição ou exclusão de contato, se houver alteração no endereço obrigatório, o mapa é atualizado automaticamente e o usuário é informado com uma breve notificação na parte inferior do aplicativo.
+
+Se nenhum contato possuir coordenadas ou se não houver conexão com a internet, em vez do mapa será exibida uma notificação informando essa situação.
+
+Observação: O mapa funciona apenas com conexão ativa à internet.

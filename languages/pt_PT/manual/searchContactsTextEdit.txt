@@ -1,0 +1,29 @@
+O aplicativo permite pesquisar contatos de duas maneiras – simples e avançada.
+
+Pesquisa simples
+Funciona apenas na coluna selecionada da tabela (por exemplo, Nome, E-mail, Telefone). Primeiro, selecione na tabela a coluna na qual deseja pesquisar.
+Digite o texto no campo de pesquisa e clique em Pesquisar. Se nenhuma coluna estiver selecionada, o aplicativo exibirá o aviso "Selecione uma coluna" e a pesquisa não será iniciada.
+Se você utilizar a sugestão automática, será buscada uma correspondência exata; caso contrário, serão buscados os registros que contenham o texto inserido.
+
+Pesquisa avançada
+Ao clicar em Pesquisa avançada, será aberto um diálogo onde é possível inserir várias condições ao mesmo tempo (por exemplo, Nome, Cidade, E-mail,...).
+Para cada campo, você pode escolher a opção Todos, Contém, Começa ou Termina.
+As condições individuais podem ser editadas ou excluídas sem a necessidade de redefinir todo o filtro.
+Você também pode visualizar a prévia do filtro atual ou salvar o filtro com um nome próprio.
+Ao clicar em Pesquisar, os resultados serão exibidos ou será mostrado um aviso de que nenhum registro corresponde aos parâmetros inseridos.
+
+Observação: Pesquisas repetidas percorrem apenas os contatos limitados pelo filtro anterior; para pesquisar em todos os contatos, use a opção "Redefinir filtros".
+
+Filtros salvos
+Filtros salvos podem ser exibidos, usados ou excluídos a qualquer momento.
+
+Redefinir filtros
+Ao selecionar Redefinir filtros, todas as condições são canceladas e todos os contatos são exibidos.
+
+Atalhos de teclado
+Pesquisar: Ctrl + F (macOS: Cmd + F)
+Pesquisa avançada: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Redefinir filtros: Ctrl + R (macOS: Cmd + R)
+Filtros salvos: Ctrl + L (macOS: Cmd + L)
+
+Observação: Os atalhos de teclado funcionam apenas se o aplicativo estiver definido para a janela "Contatos".

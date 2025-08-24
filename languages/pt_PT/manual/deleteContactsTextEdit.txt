@@ -1,0 +1,23 @@
+O aplicativo permite excluir contatos individuais ou remover todos os contatos de uma vez.
+
+Exclusão de um contato
+Selecione o contato desejado na tabela e clique no botão de exclusão.
+Será exibida uma janela de confirmação com a pergunta "Deseja realmente excluir?" e a opção de confirmar ou cancelar a exclusão.
+Após a confirmação, o contato selecionado será removido e será exibida uma janela pop-up com a informação sobre a exclusão bem-sucedida do contato selecionado.
+
+Exclusão de todos os contatos
+Não é necessário selecionar nada – basta clicar no botão para excluir todo o banco de dados.
+Será aberta uma janela de confirmação com um campo de texto, no qual é necessário digitar a palavra "excluir" para confirmar a ação.
+Nesta janela, também é possível marcar a opção para remover filtros salvos.
+Se esta opção estiver ativada, todos os filtros salvos também serão excluídos.
+Após a confirmação, o aplicativo tentará apagar todos os contatos do banco de dados, excluir os filtros salvos (se a opção estiver ativada) e remover o arquivo do banco de dados (contacts_db.sqlite).
+Se o arquivo do banco de dados não puder ser removido, apenas seu conteúdo será apagado e o arquivo permanecerá.
+Em seguida, o aplicativo será reiniciado automaticamente e criará um novo banco de dados vazio.
+
+!!! Não exclua manualmente o arquivo do banco de dados, pois isso resultará na perda irreversível de dados !!!
+
+Atalhos de teclado
+Excluir contato selecionado: Ctrl + D (macOS: Cmd + D)
+Excluir todo o banco de dados: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Observação: Os atalhos de teclado funcionam apenas se o aplicativo estiver definido para a janela "Contatos".

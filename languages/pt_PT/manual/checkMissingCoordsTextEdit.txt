@@ -1,0 +1,11 @@
+O aplicativo permite verificar os contatos sem coordenadas preenchidas.
+
+A verificação percorre todos os contatos e seleciona aqueles que não possuem coordenadas geográficas de acordo com o endereço informado.
+No final, será exibida uma notificação informando que nenhum contato corresponde aos critérios ou um diálogo com a lista dos contatos encontrados.
+No diálogo é possível ir para o contato selecionado, definindo assim o filtro para esse contato.
+
+A verificação ocorre em segundo plano, permitindo que o aplicativo continue a ser usado durante o processo.
+
+O usuário é informado sobre a conclusão através de um diálogo com o resultado.
+
+Observação: A verificação ocorre apenas com conexão ativa à internet.

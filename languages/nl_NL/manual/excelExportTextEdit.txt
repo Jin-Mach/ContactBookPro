@@ -1,0 +1,12 @@
+De applicatie maakt het mogelijk om geselecteerde of alle contacten te exporteren naar het Excel-formaat.  
+
+Export naar Excel-formaat (.xlsx) slaat de contacten op in een bestand dat compatibel is met Microsoft Excel, LibreOffice Calc en andere spreadsheetprogramma's.  
+De gegevens zijn verdeeld over kolommen, wat het bewerken en analyseren vergemakkelijkt.  
+Na het selecteren van de export verschijnt een dialoogvenster om het bestand op te slaan, dat standaard wordt opgeslagen in de map Documenten (dezelfde locatie voor Windows en macOS).  
+De gebruiker kan een andere map of bestandsnaam kiezen.  
+
+De export vindt op de achtergrond plaats, zodat de applicatie tijdens het opslaan kan blijven worden gebruikt.  
+
+Bij een groot aantal contacten kan de export langer duren.  
+
+Na voltooiing verschijnt er een pop-upvenster met de melding dat het bestand succesvol is opgeslagen.

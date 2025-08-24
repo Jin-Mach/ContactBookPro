@@ -1,0 +1,12 @@
+De applicatie maakt het mogelijk om geselecteerde of alle contacten te exporteren naar het CSV-formaat.  
+
+Export naar CSV (.csv) slaat contacten op als een tekstbestand, waarbij de afzonderlijke gegevens worden gescheiden door een komma of puntkomma (afhankelijk van de systeeminstellingen).  
+Dit formaat is geschikt voor import in spreadsheetprogramma's (zoals Microsoft Excel, LibreOffice Calc) of andere toepassingen die CSV ondersteunen.  
+Na het kiezen van de export verschijnt er een dialoogvenster om het bestand op te slaan, dat standaard wordt opgeslagen in de map Documenten (dezelfde locatie voor Windows en macOS).  
+De gebruiker kan een andere map en bestandsnaam selecteren.  
+
+De export wordt op de achtergrond uitgevoerd, zodat de applicatie tijdens het opslaan verder gebruikt kan worden.  
+
+Bij een groter aantal contacten kan de export langer duren.  
+
+Na voltooiing verschijnt er een pop-upvenster met de melding dat het opslaan is gelukt.

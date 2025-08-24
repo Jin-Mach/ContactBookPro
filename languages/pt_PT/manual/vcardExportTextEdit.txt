@@ -1,0 +1,10 @@
+O aplicativo permite exportar o contato selecionado como vCard.
+
+A exportação para o formato vCard (.vcf) permite salvar contatos em um formato padronizado, compatível com telefones móveis, clientes de e-mail (por exemplo, Microsoft Outlook, Thunderbird) e outros aplicativos de gerenciamento de contatos.
+Cada contato exportado contém informações básicas – nome completo, e-mail, número de telefone e endereço pessoal.
+Após selecionar a exportação para vCard, será exibido um diálogo para definir o local e o nome do arquivo.
+Por padrão, o diálogo é aberto na pasta Documentos (mesmo local no Windows e macOS), mas o usuário pode escolher qualquer outra pasta.
+
+A exportação ocorre imediatamente.
+
+Após a conclusão, será exibido um diálogo com a informação sobre o salvamento bem-sucedido.

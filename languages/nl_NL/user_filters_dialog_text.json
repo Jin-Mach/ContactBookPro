@@ -1,0 +1,8 @@
+{
+  "userFiltersDialog": {
+    "dialogTitle": "Opgeslagen filters",
+    "userFiltersTextLabel": "Lijst van opgeslagen filters",
+    "filterButton": "Filter toepassen",
+    "cancelButton": "Annuleren"
+  }
+}

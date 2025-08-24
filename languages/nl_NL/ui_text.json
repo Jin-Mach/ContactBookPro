@@ -1,0 +1,230 @@
+{
+  "mainWindow": {
+    "mainWindowTitle": "Contactendatabase",
+    "mainWindowDatabaseButton": "Contacten",
+    "mainWindowMapButton": "Kaart",
+    "mainWindowStatisticsButton": "Statistieken",
+    "mainWindowManualButton": "Handleiding",
+    "mainWindowAboutButton": "Over de applicatie",
+    "messageboxTitle": "Applicatie sluiten",
+    "messageboxText": "Applicatie sluiten?\nJA/NEE",
+    "close": "Sluiten",
+    "cancel": "Annuleren"
+  },
+  "contactsToolbarWidget": {
+    "searchTextLabel": "Zoeken:",
+    "searchLineEdit": "tekst om te zoeken..."
+  },
+  "contactsTableviewWidget": {
+    "searchText": "zoeken op:",
+    "searchFilter": {
+      "1": "geslacht",
+      "2": "relatie",
+      "3": "naam",
+      "4": "e-mail",
+      "5": "telefoonnummer",
+      "6": "adres"
+    },
+    "gender_items": ["Alles", "Man", "Vrouw"],
+    "relationship_items": ["Alles", "Familie", "Verwant", "Collega", "Vriend", "Bekende", "Overig"]
+  },
+  "contactsStatusBarWidget": {
+    "countDisplayLabel": "Filter (weergegeven/totaal):"
+  },
+  "personalTabInfoWidget": {
+    "personalTabInfoWidget_tabText": "Contactinformatie",
+    "contactTitleTextLabel": "Titel:",
+    "contactGenderTextLabel": "Geslacht:",
+    "contactFirstNameTextLabel": "Voornaam:",
+    "contactSecondNameTextLabel": "Achternaam:",
+    "contactRelationshipTextLabel": "Relatie:",
+    "contactBirthdayTextLabel": "Geboortedatum:",
+    "gender_key": {
+      "1": "Man",
+      "2": "Vrouw"
+    },
+    "relationship_key": {
+      "1": "Familie",
+      "2": "Verwant",
+      "3": "Collega",
+      "4": "Vriend",
+      "5": "Bekende",
+      "6": "Overig"
+    }
+  },
+  "tabInfoWidget": {
+    "personalTabText": "Contact – Persoonlijk",
+    "workTabText": "Contact – Werk",
+    "personalEmailTextLabel": "E-mail:",
+    "personalPhoneNumberTextLabel": "Telefoon:",
+    "personalAddressTextLabel": "Adres:",
+    "personalCityTextLabel": "Stad:",
+    "personalPostCodeTextLabel": "Postcode:",
+    "personalCountryTextLabel": "Land:",
+    "workCompanyNameTextLabel": "Bedrijf:",
+    "workEmailTextLabel": "E-mail:",
+    "workPhoneNumberTextLabel": "Telefoon:",
+    "workAddressTextLabel": "Adres:",
+    "workCityTextLabel": "Stad:",
+    "workPostCodeTextLabel": "Postcode:",
+    "workCountryTextLabel": "Land:"
+  },
+  "notesInfoWidget": {
+    "notesTextEdit": "Notities bij contact...",
+    "createDateTextLabel": "gemaakt op: ",
+    "updateDateTextLabel": "bijgewerkt op: "
+  },
+  "trayIcon": {
+    "addContact": "Contact toevoegen",
+    "closeApplication": "Applicatie sluiten",
+    "trayIconMessageTitle": "Contactendatabase",
+    "contactAdded": "Contact toegevoegd",
+    "contactUpdated": "Contact bijgewerkt",
+    "contactDeleted": "Contact verwijderd",
+    "databaseDeleted": "Database verwijderd",
+    "filterAdded": "Filter opgeslagen",
+    "filterDeleted": "Filter verwijderd",
+    "nameCopied": "Naam gekopieerd",
+    "emailCopied": "E-mail gekopieerd",
+    "phoneCopied": "Telefoon gekopieerd",
+    "saveError": "Bestand kon niet worden opgeslagen",
+    "exportSaved": "Bestand opgeslagen"
+  },
+  "mandatoryModel": {
+    "genderHeaderText": "Geslacht gebruiker"
+  },
+  "exportContactPdfObject": {
+    "contactTitle": "Contact",
+    "personalEmail": "E-mail:",
+    "personalPhoneNumber": "Telefoon:",
+    "addressTitle": "Adres",
+    "personalAddress": "Adres:",
+    "personalCountry": "Land:",
+    "workTitle": "Werk",
+    "workCompany": "Bedrijf:",
+    "workEmail": "E-mail:",
+    "workPhone": "Telefoon:",
+    "workAddress": "Adres:",
+    "workCountry": "Land:",
+    "notesTitle": "Notities"
+  },
+  "mapMainWidget": {
+    "showCount": "Aantal weergegeven contacten:",
+    "totalCount": "Totaal aantal contacten:",
+    "noConnection": "Kan de kaart niet weergeven – geen contacten met geldig adres of geen internetverbinding.",
+    "loadingMap": "Kaart laden...",
+    "loadingError": "Kan de kaart niet laden."
+  },
+  "mapController": {
+    "mapUpdate": "Kaart bijgewerkt"
+  },
+  "statisticsMainWidget": {
+    "totalCount": "Totaal aantal contacten:",
+    "mandatoryStatisticsWidget": "Basisstatistieken",
+    "workStatisticsWidget": "Werkstatistieken",
+    "socialStatisticsWidget": "Sociale statistieken",
+    "completionStatisticsWidget": "Systeemstatistieken"
+  },
+  "statisticsController": {
+    "statisticsUpdate": "Statistieken bijgewerkt"
+  },
+  "genderPieChartWidget": {
+    "title": "Geslacht",
+    "noData": "Geen gegevens"
+  },
+  "relationshipBarChartWidget": {
+    "title": "Relatie",
+    "noData": "Geen gegevens"
+  },
+  "cityBarCharWidget": {
+    "title": "Stad",
+    "noData": "Geen gegevens",
+    "others": "Overig",
+    "unfilled": "Niet ingevuld"
+  },
+  "workPieChartWidget": {
+    "noData": "Geen gegevens",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "address": "Adres",
+    "filled": "Ingevuld",
+    "empty": "Niet ingevuld"
+  },
+  "socialBarChartWidget": {
+    "title": "Sociale netwerken",
+    "noData": "Geen gegevens",
+    "filled": "Ingevuld",
+    "empty": "Niet ingevuld",
+    "x": "X (Twitter)",
+    "website": "Website"
+  },
+  "completionBarChartWidget": {
+    "title": "Invulstatistiek per tabel",
+    "noData": "Geen gegevens",
+    "mandatory": "Verplichte gegevens",
+    "work": "Werk",
+    "social": "Sociaal",
+    "detail": "Detail",
+    "info": "Informatie\n(systeem)",
+    "total": "Totale invulling"
+  },
+  "manualTreeWidget": {
+    "headers": ["Inhoud handleiding"],
+    "items": {
+      "introduction": ["Introductie", ["Over de applicatie", "Hoe de handleiding te gebruiken"]],
+      "contacts": ["Contacten", ["Contact toevoegen en bewerken", "Contact verwijderen", "Contacten zoeken", "Contextmenu"]],
+      "export": ["Exporteren", ["Exporteren naar CSV", "Exporteren naar Excel", "Exporteren naar vCard"]],
+      "preview": ["Voorbeeld", ["PDF", "QR-code"]],
+      "check": ["Controleer contacten", ["Verjaardagen controleren", "Duplicaten controleren", "Coördinaten controleren"]],
+      "map": ["Kaart", ["Contactkaart"]],
+      "statistics": ["Statistieken", ["Statistieken bekijken"]]
+    }
+  },
+  "manualIntroductionWidget": {
+    "tabTexts": {
+      "aboutApplicationTextEdit": "Over de applicatie",
+      "usageApplicationTextEdit": "Hoe de handleiding te gebruiken"
+    }
+  },
+  "manualContactsWidget": {
+    "tabTexts": {
+      "addUpdateContactsTextEdit": "Contact toevoegen en bewerken",
+      "deleteContactsTextEdit": "Contacten verwijderen",
+      "searchContactsTextEdit": "Contacten zoeken",
+      "contextMenuTextEdit": "Contextmenu"
+    }
+  },
+  "manualExportWidget": {
+    "tabTexts": {
+      "csvExportTextEdit": "Exporteren naar CSV",
+      "excelExportTextEdit": "Exporteren naar Excel",
+      "vcardExportTextEdit": "Exporteren naar vCard"
+    }
+  },
+  "manualPreviewWidget": {
+    "tabTexts": {
+      "pdfPreviewTextEdit": "PDF voorbeeld",
+      "qrCodePreviewTextEdit": "QR-code"
+    }
+  },
+  "manualCheckWidget": {
+    "tabTexts": {
+      "checkBirthdayTextEdit": "Verjaardagen controleren",
+      "checkDuplicityTextEdit": "Duplicaten controleren",
+      "checkMissingCoordsTextEdit": "Coördinaten controleren"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Contactkaart"
+    }
+  },
+  "manualStatisticsWidget": {
+    "tabTexts": {
+      "statisticsTextEdit": "Statistieken bekijken"
+    }
+  },
+  "aboutApplicationDialog": {
+    "aboutTitle": "Over de applicatie"
+  }
+}

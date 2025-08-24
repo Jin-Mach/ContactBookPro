@@ -1,0 +1,10 @@
+De applicatie maakt het mogelijk om een geselecteerd contact als vCard te exporteren.
+
+Exporteren naar vCard-formaat (.vcf) maakt het mogelijk om contacten op te slaan in een gestandaardiseerd formaat dat wordt ondersteund door mobiele telefoons, e-mailclients (bijv. Microsoft Outlook, Thunderbird) en andere contactbeheertoepassingen.
+Elk geëxporteerd contact bevat basisgegevens – volledige naam, e-mailadres, telefoonnummer en persoonlijk adres.
+Na het selecteren van de export naar vCard verschijnt een dialoogvenster om de locatie en bestandsnaam te bepalen.
+Standaard wordt het dialoogvenster geopend in de map Documenten (zelfde locatie voor Windows en macOS), maar de gebruiker kan een andere map kiezen.
+
+De export vindt onmiddellijk plaats.
+
+Na voltooiing verschijnt een dialoogvenster met informatie over het succesvol opslaan.

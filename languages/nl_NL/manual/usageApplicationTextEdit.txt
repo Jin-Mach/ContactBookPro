@@ -1,0 +1,9 @@
+De handleiding is verdeeld in hoofdstukken die in het linkerpaneel als een lijst met onderwerpen worden weergegeven.
+
+Door op een onderwerp in de linkerlijst te klikken, wordt het bijbehorende deel van de handleiding aan de rechterkant weergegeven.
+
+Sommige onderwerpen hebben subonderwerpen, waarop kan worden geklikt om meer gedetailleerde informatie te bekijken.
+
+Wanneer u in de linkerlijst een tabblad aan de rechterkant selecteert, wordt het onderwerp dat u momenteel leest automatisch in het linkerpaneel gemarkeerd.
+
+Deze methode stelt u in staat om snel de benodigde informatie te vinden en gemakkelijk tussen de verschillende delen van de handleiding te schakelen.

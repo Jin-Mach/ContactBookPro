@@ -1,0 +1,40 @@
+O menu de contexto permite acesso rápido a funções selecionadas sobre o contato marcado.
+Ele é aberto clicando com o botão direito do mouse na linha do contato na tabela.
+Permite abrir ou editar o contato, removê-lo, copiar os dados para a área de transferência, exportar para CSV, Excel ou vCard,
+visualizar o contato em PDF ou seu código QR e executar a verificação de aniversários, duplicatas ou contatos sem coordenadas.
+
+Estrutura do menu de contexto
+
+Adicionar contato
+Editar contato
+Excluir contato
+Copiar
+    Nome
+    E-mail
+    Telefone
+Exportar
+    CSV
+        Exportar exibidos
+        Exportar todos
+    Excel
+        Exportar exibidos
+        Exportar todos
+    vCard
+        Exportar contato selecionado
+Visualizar
+    Visualizar contato
+    Visualizar lista de contatos
+        Visualizar contatos exibidos
+        Visualizar todos os contatos
+    Código QR do contato
+Verificação
+    Mostrar aniversários
+    Mostrar duplicatas
+    Mostrar contatos sem coordenadas
+
+Observação: Todas as exportações abrem um diálogo para seleção do local de destino do arquivo.
+
+As funções Copiar utilizam a área de transferência do sistema (Ctrl + C / macOS: Cmd + C).
+
+As visualizações e o código QR são exibidos imediatamente na janela do aplicativo.
+As funções de verificação exibem a lista em uma janela de diálogo separada.

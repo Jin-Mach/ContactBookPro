@@ -1,0 +1,11 @@
+De applicatie maakt het mogelijk om een kaart weer te geven van contacten met geldige geografische coördinaten.
+
+Op de kaart worden de afzonderlijke contacten weergegeven als markers.  
+Door op een marker te klikken, worden de basisgegevens van het contact weergegeven – naam, e-mail en telefoonnummer.  
+De kaart kan worden in- en uitgezoomd en verplaatst. Boven de kaart wordt het aantal momenteel weergegeven contacten en het totale aantal contacten in de database weergegeven.  
+
+Na elke toevoeging, wijziging of verwijdering van een contact, als het verplichte adres is gewijzigd, wordt de kaart automatisch bijgewerkt en wordt de gebruiker hierover geïnformeerd met een korte melding onderaan de applicatie.  
+
+Als geen enkel contact coördinaten heeft of er geen internetverbinding beschikbaar is, wordt in plaats van de kaart een melding weergegeven over deze situatie.  
+
+Opmerking: De kaart werkt alleen met een actieve internetverbinding.

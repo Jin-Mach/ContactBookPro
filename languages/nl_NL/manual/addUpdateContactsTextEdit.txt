@@ -1,0 +1,68 @@
+Het formulier wordt gebruikt om een nieuw contact aan te maken of een bestaand contact te bewerken.
+Het bevat verplichte en optionele velden, verdeeld in verschillende secties.
+Voor het opslaan vindt een controle plaats van de ingevulde waarden en het gegevensformaat.
+
+VERPLICHTE VELDEN
+Geslacht (keuzelijst) – keuze uit een vooraf gedefinieerde lijst
+Relatie (keuzelijst) – keuze uit een vooraf gedefinieerde lijst
+Voornaam (tekstveld)
+Achternaam (tekstveld)
+E-mail (tekstveld) – controle op juist formaat
+Telefoon (tekstveld) – controle op juist formaat
+Straat (tekstveld) – optioneel, indien niet aanwezig
+Huisnummer (tekstveld)
+Stad (tekstveld)
+Postcode (tekstveld)
+Land (tekstveld)
+
+OPTIONELE GEGEVENS
+
+WERK
+Bedrijf (tekstveld)
+E-mail (tekstveld) – controle op formaat
+Telefoonnummer (tekstveld) – controle op formaat
+Straat (tekstveld) – optioneel
+Huisnummer (tekstveld)
+Stad (tekstveld)
+Postcode (tekstveld)
+Land (tekstveld)
+
+Opmerking: Voor een werkadres moeten alle velden (behalve straat) worden ingevuld of geen enkel veld. Gedeeltelijk ingevulde adressen zijn niet toegestaan.
+
+SOCIALE NETWERKEN
+Facebook (tekstveld)
+X (Twitter) (tekstveld)
+Instagram (tekstveld)
+LinkedIn (tekstveld)
+GitHub (tekstveld)
+Website (tekstveld)
+
+DETAILS
+Foto – bestand kiezen via dialoog
+Titel (tekstveld)
+Geboortedatum (kalender)
+Notities (meerdere regels tekstveld)
+
+Validatie en foutmeldingen
+Als verplichte velden niet zijn ingevuld, het werkadres onvolledig is of het e-mail/telefoonformaat onjuist is, verschijnt er een foutmelding.
+De cursor wordt automatisch geplaatst op de eerste foutieve invoer.
+Als bij het opslaan van een nieuw of gewijzigd contact al een contact bestaat met hetzelfde e-mailadres of telefoonnummer, verschijnt er een dialoog met een overzicht van gevonden duplicaten.
+In dit dialoogvenster kan het nieuwe contact toch worden opgeslagen, het opslaan worden geannuleerd of kan worden doorgegaan naar het geselecteerde bestaande contact dat in de lijst wordt weergegeven.
+
+Na voltooiing verschijnt er een pop-upvenster met informatie over het succesvol opslaan/verwijderen van het contact.
+
+Verkrijgen van coördinaten
+Na het toevoegen van een nieuw contact probeert de applicatie automatisch de geografische coördinaten te verkrijgen (op basis van het adres in de verplichte velden).
+Als de coördinaten worden gevonden, wordt het contact op de kaart weergegeven.
+Als de coördinaten niet kunnen worden bepaald, wordt het contact opgeslagen zonder coördinaten.
+De applicatie bevat ook een automatische controle die eenmaal 5 minuten na het starten van de applicatie wordt uitgevoerd.
+Deze controle probeert coördinaten in te vullen op basis van het opgeslagen adres voor alle contacten die deze niet hebben.
+Elk contact zonder coördinaten wordt op deze manier maximaal 20 keer gecontroleerd.
+
+Opmerking: Een actieve internetverbinding is vereist; als er geen verbinding is, worden de coördinaten niet gecontroleerd, maar wordt het contact wel toegevoegd/bewerkt.
+
+Sneltoetsen
+Nieuw contact: Ctrl + N (macOS: Cmd + N)
+Contact bijwerken: Ctrl + U (macOS: Cmd + U)
+
+Opmerking: Sneltoetsen werken alleen als de applicatie is ingesteld op het venster "Contacten".

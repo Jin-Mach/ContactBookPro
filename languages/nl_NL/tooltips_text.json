@@ -1,0 +1,89 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Toon contactendatabase",
+    "mainWindowMapButton": "Toon contactkaart",
+    "mainWindowStatisticsButton": "Toon statistieken",
+    "mainWindowManualButton": "Toon help",
+    "mainWindowAboutButton": "Toon applicatie-informatie"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Voeg contact toe aan database",
+    "updateContactPushbutton": "Bewerk geselecteerd contact",
+    "deleteContactPushbutton": "Verwijder geselecteerd contact",
+    "deleteAllContactsPushbutton": "Verwijder volledige database",
+    "searchPushbutton": "Zoeken op geselecteerde kolom",
+    "advancedSearchPushbutton": "Open geavanceerd zoekvenster",
+    "resetFilterPushbutton": "Verwijder alle filters",
+    "userFiltersPushbutton": "Toon opgeslagen filters"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Open Facebook-link",
+    "xPushbutton": "Open X (Twitter)-link",
+    "instagramPushbutton": "Open Instagram-link",
+    "linkedinPushbutton": "Open LinkedIn-link",
+    "githubPushbutton": "Open GitHub-link",
+    "websitePushbutton": "Open website"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Voeg contact toe",
+    "dialogCancelButton": "Sluit venster",
+    "dialogAddContactButtonUpdate": "Wijzigingen opslaan"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Selecteer contactfoto",
+    "dialogResetPhotoButton": "Verwijder foto",
+    "dialogCalendarPushbutton": "Selecteer verjaardag",
+    "dialogResetCalendarPushbutton": "Verwijder verjaardag"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Datum op vandaag instellen",
+    "addDateButton": "Stel geselecteerde datum in",
+    "cancelDialogButton": "Sluit kalender"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Zoeken",
+    "cancelButton": "Sluit venster",
+    "resetButton": "Reset filters",
+    "currentFilterButton": "Toon momenteel toegepast zoekfilter",
+    "clearFilterPushbutton": "Wis filter voor deze rij"
+  },
+  "activeFiltersDialog": {
+    "closeButton": "Sluit venster"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Wis filter voor deze rij"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Voer zoekopdracht uit met geselecteerd filter",
+    "cancelButton": "Sluit venster"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Sla toegepast filter op",
+    "cancelButton": "Sluit venster"
+  },
+  "userFiltersListWidget": {
+    "deleteFilterPushbutton": "Verwijder opgeslagen filter"
+  },
+  "contactsListDialog": {
+    "showContactButton": "Sluit venster en selecteer duplicaatcontact in tabel",
+    "showContactButtonContextBirthday": "Sluit venster en selecteer contact in tabel",
+    "showContactButtonContextDuplicity": "Sluit venster en selecteer contact in tabel",
+    "continueButton": "Sla duplicaatcontact op",
+    "cancelButton": "Sluit venster zonder op te slaan",
+    "cancelButtonContextBirthday": "Sluit venster",
+    "cancelButtonContextDuplicity": "Sluit venster"
+  },
+  "validatedLineEdit": {
+    "invalidChar": "Ongeldig teken:"
+  },
+  "pdfPreviewDialog": {
+    "pdfSaveAsButton": "Opslaan als..",
+    "pdfZoomInButton": "Inzoomen",
+    "pdfZoomOutButton": "Uitzoomen",
+    "pdfFitPageButton": "Pas aan pagina aan",
+    "closeDialogButton": "Sluit voorbeeld"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Open project op GitHub."
+  }
+}

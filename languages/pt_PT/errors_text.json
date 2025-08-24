@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Ocorreu um erro de entrada/saída. Verifique a conexão do disco.",
+    "ValueError": "Formato de arquivo inválido. Certifique-se de usar um formato compatível.",
+    "TypeError": "Tipo de argumento inválido. Verifique os valores de entrada.",
+    "TimeoutError": "A operação expirou enquanto tentava abrir ou salvar o arquivo.",
+    "JSONDecodeError": "O arquivo não é um JSON válido. Verifique o formato do arquivo.",
+    "DatabaseConnectionError": "Não foi possível conectar ao banco de dados.",
+    "queryError": "Erro ao executar a consulta no banco de dados.",
+    "RuntimeError": "Não foi possível abrir o link. Verifique se é válido e se você está conectado à internet.",
+    "URLError": "O link é inválido ou a conexão falhou.",
+    "FileNotFoundError": "O arquivo executável ou script não foi encontrado. Verifique o caminho.",
+    "OSError": "Ocorreu um erro do sistema ao tentar reiniciar o aplicativo. Reinicie o aplicativo manualmente.",
+    "UnexpectedError": "Ocorreu um erro inesperado."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Por favor, selecione o sexo.",
+    "relationshipError": "Por favor, selecione a relação.",
+    "emptyTextError": "Este campo não pode estar vazio.\n",
+    "emailValidatorError": "Formato de e-mail inválido.\nDigite o e-mail no formato: email@dominio.com",
+    "phoneNumberValidatorError": "Digite o número de telefone no formato correto.\nPor exemplo: +420123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Formato de e-mail inválido.\nDigite o e-mail no formato: email@dominio.com",
+    "phoneNumberValidatorError": "Digite o número de telefone no formato correto.\nPor exemplo: +420123456789.",
+    "workAddressValidatorError": "Preencha o número, cidade, CEP e país, ou deixe todos vazios."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Formato de link inválido ou rede social incorreta.\nDigite uma URL válida para {site} no formato: https://www.{site}.com/perfil.",
+    "websiteValidatorError": "Formato inválido.\nDigite uma URL válida no formato: www.exemplo.com"
+  },
+  "notesUtilities": {
+    "textLengthError": "O texto pode ter no máximo 300 caracteres.",
+    "textLineCountError": "As notas podem ter no máximo 10 linhas."
+  },
+  "calendarDialog": {
+    "selectedDateError": "A data selecionada não pode ser maior que a data atual."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Nenhum filtro ativo."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Não é possível pesquisar sem texto inserido.",
+    "noTableviewSelection": "Para pesquisa rápida, é necessário selecionar uma coluna.",
+    "noFilteredData": "Nenhum dado corresponde à expressão inserida.\nO filtro será redefinido."
+  },
+  "widgetErrors": {
+    "indexError": "Nenhum índice válido selecionado. Tente novamente.",
+    "noTableviewSelection": "Selecione um contato da lista primeiro."
+  },
+  "filtersController": {
+    "noActiveFilter": "Nenhum filtro ativo.",
+    "existingFilterName": "O nome do filtro já existe.",
+    "noUserFilters": "Nenhum filtro salvo."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Nenhum nome de filtro fornecido."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Nenhum filtro ativo."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Nenhum filtro salvo.",
+    "noSelection": "Selecione um filtro primeiro."
+  },
+  "csvExportController": {
+    "emptyIdList": "Nenhum contato para exportar"
+  },
+  "excelExportController": {
+    "emptyIdList": "Nenhum contato para exportar"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Nenhum contato para exportar",
+    "indexError": "Nenhum índice válido selecionado. Tente novamente.",
+    "noTableviewSelection": "Selecione um contato da lista primeiro."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Nenhum contato possui aniversário próximo."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Nenhum contato duplicado."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Todos os contatos possuem coordenadas válidas"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "A área de transferência está vazia, nada para colar"
+  }
+}

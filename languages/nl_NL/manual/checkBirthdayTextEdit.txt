@@ -1,0 +1,9 @@
+De applicatie maakt het mogelijk om contacten te controleren waarvan de verjaardag nadert.
+
+Bij het starten doorloopt de controle alle contacten en selecteert die waarbij het veld Verjaardag is ingevuld en de geboortedatum binnen ±7 dagen van de huidige datum ligt.
+Aan het einde verschijnt ofwel een melding dat geen enkel contact aan de criteria voldoet, of een dialoog met een lijst van gevonden contacten.
+In de dialoog kan worden doorgegaan naar het geselecteerde contact, waardoor het filter op dit contact wordt ingesteld.
+
+De controle wordt op de achtergrond uitgevoerd, zodat de applicatie tijdens dit proces verder kan worden gebruikt.
+
+De gebruiker wordt na voltooiing geïnformeerd via een dialoog met het resultaat.

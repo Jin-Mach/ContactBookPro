@@ -1,0 +1,29 @@
+De applicatie maakt het mogelijk om contacten op twee manieren te zoeken – eenvoudig en geavanceerd.
+
+Eenvoudig zoeken
+Werkt alleen in de geselecteerde kolom van de tabel (bijvoorbeeld Voornaam, E-mail, Telefoon). Selecteer eerst de kolom waarin u wilt zoeken.
+Voer de tekst in het zoekveld in en klik op Zoeken. Als er geen kolom is geselecteerd, geeft de applicatie een waarschuwing "Selecteer een kolom" en wordt het zoeken niet uitgevoerd.
+Als u gebruikmaakt van de voorgestelde suggestie, wordt exact gezocht; anders worden records gezocht die de ingevoerde tekst bevatten.
+
+Geavanceerd zoeken
+Klik op Geavanceerd zoeken om een dialoogvenster te openen waarin u meerdere voorwaarden tegelijk kunt opgeven (bijvoorbeeld Voornaam, Stad, E-mail,...).
+Voor elk veld kunt u kiezen uit Alles, Bevat, Begint met of Eindigt met.
+Individuele voorwaarden kunnen worden bewerkt of verwijderd zonder dat het hele filter opnieuw hoeft te worden ingesteld.
+U kunt ook een voorbeeld van het huidige filter bekijken of het filter onder een eigen naam opslaan.
+Klik op Zoeken om de resultaten weer te geven of een bericht dat geen records overeenkomen met de ingevoerde parameters.
+
+Opmerking: Herhaald zoeken doorzoekt alleen de contacten die beperkt zijn door het vorige filter. Om in alle contacten te zoeken, gebruikt u de optie "Reset filters".
+
+Opgeslagen filters
+Opgeslagen filters kunnen op elk moment worden bekeken, toegepast of verwijderd.
+
+Reset filters
+Met de optie Reset filters worden alle voorwaarden verwijderd en worden alle contacten weergegeven.
+
+Sneltoetsen
+Zoeken: Ctrl + F (macOS: Cmd + F)
+Geavanceerd zoeken: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Reset filters: Ctrl + R (macOS: Cmd + R)
+Opgeslagen filters: Ctrl + L (macOS: Cmd + L)
+
+Opmerking: Sneltoetsen werken alleen als het venster "Contacten" actief is.

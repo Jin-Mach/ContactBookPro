@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Er is een fout opgetreden tijdens invoer/uitvoer. Controleer uw schijfverbinding.",
+    "ValueError": "Ongeldig bestandsformaat. Zorg ervoor dat u een ondersteund formaat gebruikt.",
+    "TypeError": "Ongeldig argumenttype. Controleer uw invoerwaarden.",
+    "TimeoutError": "De bewerking is verlopen tijdens het openen of opslaan van het bestand.",
+    "JSONDecodeError": "Het bestand is geen geldige JSON. Controleer het bestandsformaat.",
+    "DatabaseConnectionError": "Kan geen verbinding maken met de database.",
+    "queryError": "Fout bij het uitvoeren van de databasequery.",
+    "RuntimeError": "De link kon niet worden geopend. Controleer of deze geldig is en of u verbonden bent met internet.",
+    "URLError": "De link is ongeldig of kan geen verbinding maken.",
+    "FileNotFoundError": "Het uitvoerbare bestand of script is niet gevonden. Controleer het pad.",
+    "OSError": "Er is een systeemfout opgetreden bij het proberen de applicatie opnieuw te starten. Start de applicatie handmatig opnieuw.",
+    "UnexpectedError": "Er is een onverwachte fout opgetreden."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Selecteer alstublieft een geslacht.",
+    "relationshipError": "Selecteer alstublieft een relatie.",
+    "emptyTextError": "Dit veld mag niet leeg zijn.\n",
+    "emailValidatorError": "Ongeldig e-mailformaat.\nVoer een e-mail in het formaat in: email@domein.nl",
+    "phoneNumberValidatorError": "Voer het telefoonnummer in het juiste formaat in.\nBijvoorbeeld: +31612345678."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Ongeldig e-mailformaat.\nVoer een e-mail in het formaat in: email@domein.nl",
+    "phoneNumberValidatorError": "Voer het telefoonnummer in het juiste formaat in.\nBijvoorbeeld: +31612345678.",
+    "workAddressValidatorError": "Vul huisnummer, stad, postcode en land in, of laat alles leeg."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Ongeldig linkformaat of verkeerd sociaal netwerk.\nVoer een geldige URL in voor {site} in het formaat: https://www.{site}.com/profiel.",
+    "websiteValidatorError": "Ongeldig formaat.\nVoer een geldige URL in het formaat in: www.voorbeeld.nl"
+  },
+  "notesUtilities": {
+    "textLengthError": "Tekst mag maximaal 300 tekens bevatten.",
+    "textLineCountError": "Notities mogen maximaal 10 regels bevatten."
+  },
+  "calendarDialog": {
+    "selectedDateError": "De geselecteerde datum mag niet later zijn dan de huidige datum."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Geen actieve filter."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Zoeken is niet mogelijk zonder tekstinvoer.",
+    "noTableviewSelection": "Selecteer een kolom voor snelle zoekopdracht.",
+    "noFilteredData": "Geen gegevens komen overeen met de opgegeven term.\nFilter wordt gereset."
+  },
+  "widgetErrors": {
+    "indexError": "Geen geldige index geselecteerd. Probeer opnieuw.",
+    "noTableviewSelection": "Selecteer eerst een contact uit de lijst."
+  },
+  "filtersController": {
+    "noActiveFilter": "Geen actieve filter.",
+    "existingFilterName": "Filternaam bestaat al.",
+    "noUserFilters": "Geen opgeslagen filters."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Geen filternaam opgegeven."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Geen actieve filter."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Geen opgeslagen filters.",
+    "noSelection": "Selecteer eerst een filter."
+  },
+  "csvExportController": {
+    "emptyIdList": "Geen contacten om te exporteren"
+  },
+  "excelExportController": {
+    "emptyIdList": "Geen contacten om te exporteren"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Geen contacten om te exporteren",
+    "indexError": "Geen geldige index geselecteerd. Probeer opnieuw.",
+    "noTableviewSelection": "Selecteer eerst een contact uit de lijst."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Geen van de contacten heeft binnenkort een verjaardag."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Geen dubbele contacten."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Alle contacten hebben geldige coördinaten"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Het klembord is leeg, niets om te plakken"
+  }
+}

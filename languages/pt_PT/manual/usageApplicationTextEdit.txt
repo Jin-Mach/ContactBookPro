@@ -1,0 +1,9 @@
+O manual está dividido em capítulos, que são exibidos no painel esquerdo como uma lista de tópicos.
+
+Ao clicar em um tópico na lista à esquerda, a parte correspondente do manual será exibida à direita.
+
+Alguns tópicos possuem subtópicos abaixo, nos quais é possível clicar para visualizar informações mais detalhadas.
+
+Quando você seleciona uma aba à direita a partir da lista à esquerda, o tópico que está sendo lido é automaticamente destacado no painel esquerdo.
+
+Esse método permite encontrar rapidamente as informações necessárias e alternar facilmente entre as diferentes partes do manual.

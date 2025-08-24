@@ -1,0 +1,68 @@
+O formulário serve para criar um novo contato ou editar um existente.
+Contém campos obrigatórios e opcionais divididos em várias seções.
+Antes de salvar, ocorre uma verificação do preenchimento e do formato dos dados.
+
+CAMPOS OBRIGATÓRIOS
+Sexo (seleção de lista) – escolha de uma opção predefinida
+Relação (seleção de lista) – escolha de uma opção predefinida
+Primeiro nome (entrada de texto)
+Sobrenome (entrada de texto)
+E-mail (entrada de texto) – verificação do formato correto
+Telefone (entrada de texto) – verificação do formato correto
+Rua (entrada de texto) – opcional, se não existir
+Número (entrada de texto)
+Cidade (entrada de texto)
+CEP (entrada de texto)
+País (entrada de texto)
+
+DADOS OPCIONAIS
+
+TRABALHO
+Empresa (entrada de texto)
+E-mail (entrada de texto) – verificação do formato
+Número de telefone (entrada de texto) – verificação do formato
+Rua (entrada de texto) – opcional
+Número (entrada de texto)
+Cidade (entrada de texto)
+CEP (entrada de texto)
+País (entrada de texto)
+
+Observação: No endereço de trabalho devem ser preenchidos todos os campos (exceto rua) ou nenhum. Endereço parcialmente preenchido não é permitido.
+
+REDES SOCIAIS
+Facebook (entrada de texto)
+X (Twitter) (entrada de texto)
+Instagram (entrada de texto)
+LinkedIn (entrada de texto)
+GitHub (entrada de texto)
+Página web (entrada de texto)
+
+DETALHES
+Fotografia – seleção de arquivo por diálogo
+Título (entrada de texto)
+Data de nascimento (calendário)
+Notas (entrada multilinha)
+
+Validação e mensagens de erro
+Se os campos obrigatórios não forem preenchidos, o endereço de trabalho estiver incompleto ou o formato do e-mail / telefone for incorreto, será exibida uma mensagem de erro.
+O cursor será automaticamente definido no primeiro campo incorreto.
+Se ao salvar um novo contato ou editar um existente já houver um contato com o mesmo e-mail ou número de telefone na base de dados, será exibido um diálogo com a lista das duplicatas encontradas.
+Neste diálogo é possível salvar o novo contato mesmo que seja duplicado, cancelar o salvamento ou ir para o contato existente selecionado exibido na lista.
+
+Após a conclusão, será exibida uma janela pop-up com a informação sobre o salvamento/remoção bem-sucedido do contato.
+
+Obtenção de coordenadas
+Após adicionar um novo contato, o aplicativo tentará automaticamente obter suas coordenadas geográficas (conforme o endereço nos dados obrigatórios).
+Se as coordenadas forem encontradas, o contato será exibido no mapa.
+Se não for possível obter as coordenadas, o contato permanecerá salvo sem coordenadas.
+O aplicativo também contém uma verificação automática que é executada uma vez a cada 5 minutos após a inicialização.
+Essa verificação tentará adicionar as coordenadas de acordo com o endereço armazenado em todos os contatos que não as tiverem.
+Cada contato sem coordenadas é verificado no máximo 20 vezes.
+
+Observação: É necessário ter conexão ativa com a internet, se a conexão não existir, as coordenadas não serão verificadas, mas o contato será adicionado/editado.
+
+Atalhos de teclado
+Novo contato: Ctrl + N (macOS: Cmd + N)
+Atualizar contato: Ctrl + U (macOS: Cmd + U)
+
+Observação: Os atalhos de teclado funcionam apenas se o aplicativo estiver definido para a janela "Contatos".

@@ -1,0 +1,63 @@
+{
+  "semicolon_locales": ["cs", "sk", "de", "fr", "it", "es", "pt", "nl", "pl", "hr", "hu", "ro"],
+  "exportDataProvider": {
+    "genderMap": {
+      "1": "Man",
+      "2": "Vrouw"
+    },
+    "relationshipMap": {
+      "1": "Familie",
+      "2": "Verwant",
+      "3": "Collega",
+      "4": "Vriend",
+      "5": "Bekende",
+      "6": "Overig"
+    }
+  },
+  "exportExcelObject": {
+    "tables": {
+      "mandatory": "Persoonlijke gegevens",
+      "work": "Werkgegevens",
+      "social": "Sociale netwerken",
+      "detail": "Details"
+    },
+    "headers": {
+      "mandatory": {
+        "gender": "Geslacht",
+        "relationship": "Relatie",
+        "first_name": "Voornaam",
+        "second_name": "Achternaam",
+        "personal_email": "Persoonlijke e-mail",
+        "personal_phone_number": "Persoonlijk telefoonnummer",
+        "personal_street": "Straat",
+        "personal_house_number": "Huisnummer",
+        "personal_city": "Stad",
+        "personal_post_code": "Postcode",
+        "personal_country": "Land"
+      },
+      "work": {
+        "company_name": "Bedrijfsnaam",
+        "work_email": "Werk e-mail",
+        "work_phone_number": "Werk telefoon",
+        "work_street": "Straat (werk)",
+        "work_house_number": "Huisnummer (werk)",
+        "work_city": "Stad (werk)",
+        "work_post_code": "Postcode (werk)",
+        "work_country": "Land (werk)"
+      },
+      "social": {
+        "facebook_url": "Facebook URL",
+        "x_url": "X (Twitter) URL",
+        "instagram_url": "Instagram URL",
+        "linkedin_url": "LinkedIn URL",
+        "github_url": "GitHub URL",
+        "website_url": "Website"
+      },
+      "detail": {
+        "title": "Titel",
+        "birthday": "Verjaardag",
+        "notes": "Notities"
+      }
+    }
+  }
+}

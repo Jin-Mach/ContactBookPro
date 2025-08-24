@@ -1,0 +1,23 @@
+De applicatie maakt het mogelijk om individuele contacten te verwijderen of alle contacten in één keer te verwijderen.  
+
+Verwijderen van één contact  
+Selecteer het gewenste contact in de tabel en klik op de verwijderknop.  
+Er verschijnt een bevestigingsvenster met de vraag "Wilt u dit echt verwijderen?" en de mogelijkheid om de verwijdering te bevestigen of te annuleren.  
+Na bevestiging wordt het geselecteerde contact verwijderd en verschijnt er een pop-upvenster met de melding dat het geselecteerde contact succesvol is verwijderd.  
+
+Verwijderen van alle contacten  
+Het is niet nodig iets te selecteren – klik gewoon op de knop om de hele database te verwijderen.  
+Er verschijnt een bevestigingsvenster met een tekstvak waarin het woord "verwijderen" moet worden ingevoerd om de actie te bevestigen.  
+In dit venster kan ook een optie worden aangevinkt om de opgeslagen filters te verwijderen.  
+Als deze optie is geselecteerd, worden ook alle opgeslagen filters verwijderd.  
+Na bevestiging probeert de applicatie alle contacten uit de database te verwijderen, de opgeslagen filters te wissen (indien geselecteerd) en het databasebestand (contacts_db.sqlite) te verwijderen.  
+Als het databasebestand niet kan worden verwijderd, wordt alleen de inhoud verwijderd en blijft het bestand behouden.  
+Daarna wordt de applicatie automatisch opnieuw gestart en wordt een nieuwe lege database aangemaakt.  
+
+!!! Verwijder het databasebestand niet handmatig, anders gaat er onherstelbaar gegevens verloren !!!  
+
+Sneltoetsen  
+Verwijder geselecteerd contact: Ctrl + D (macOS: Cmd + D)  
+Verwijder hele database: Ctrl + Shift + D (macOS: Cmd + Shift + D)  
+
+Opmerking: de sneltoetsen werken alleen als de applicatie is ingesteld op het venster "Contacten".

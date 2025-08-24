@@ -1,0 +1,19 @@
+De applicatie biedt een overzicht van contactstatistieken, verdeeld over meerdere tabbladen die verschillende aspecten van de database visualiseren met grafieken.
+
+Basisstatistieken
+Een taartdiagram toont de verdeling van contacten op basis van geslacht.
+Een staafdiagram toont de verdeling van contacten op basis van relatie.
+Een staafdiagram toont de meest voorkomende steden van contacten.
+
+Werkstatistieken
+Twee taartdiagrammen tonen het percentage ingevulde optionele velden E-mail en Telefoon.
+Een staafdiagram toont het aantal contacten per stad, gebaseerd op werkgegevens.
+
+Sociale statistieken
+Een staafdiagram waarbij elke staaf is verdeeld in twee delen – aantal ingevulde en niet ingevulde records voor de afzonderlijke sociale netwerken.
+
+Systeemstatistiek
+Een bovenste horizontaal staafdiagram toont het procentuele invullen van de gehele database – verhouding van alle mogelijke velden ten opzichte van het aantal ingevulde velden.
+Een onderste horizontaal staafdiagram toont hetzelfde voor de afzonderlijke tabellen van de database.
+
+Na het toevoegen, bijwerken of verwijderen van een contact wordt de gebruiker geïnformeerd over de wijziging van de statistieken met een korte melding onderin de applicatie.

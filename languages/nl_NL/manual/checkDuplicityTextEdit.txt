@@ -1,0 +1,10 @@
+De applicatie maakt het mogelijk om contacten met dubbele gegevens te controleren.
+
+De controle doorloopt alle contacten en selecteert die met hetzelfde e-mailadres, telefoonnummer of beide.
+Dubbele waarden worden alleen gezocht in de verplichte contactgegevens (persoonlijk, niet zakelijk).
+Aan het einde verschijnt ofwel een melding dat geen enkel contact aan de criteria voldoet, of een dialoog met een lijst van gevonden contacten.
+In de dialoog kan worden doorgegaan naar het geselecteerde contact, waardoor het filter op dit contact wordt ingesteld.
+
+De controle wordt op de achtergrond uitgevoerd, zodat de applicatie tijdens dit proces verder kan worden gebruikt.
+
+De gebruiker wordt na voltooiing geïnformeerd via een dialoog met het resultaat.

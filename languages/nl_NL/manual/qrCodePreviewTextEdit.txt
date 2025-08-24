@@ -1,0 +1,5 @@
+De applicatie maakt het mogelijk om een voorbeeld van de QR-code voor een geselecteerd contact weer te geven.
+
+De QR-code bevat dezelfde gegevens als de export naar vCard, namelijk voornaam, achternaam, e-mail, telefoon en persoonlijk adres.
+
+Het voorbeeld van de QR-code wordt in een apart venster geopend en is alleen statisch, in- of uitzoomen of opslaan is niet mogelijk.

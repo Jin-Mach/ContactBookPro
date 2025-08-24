@@ -1,0 +1,5 @@
+O aplicativo permite exibir a visualização do código QR para o contato selecionado.
+
+O código QR contém os mesmos dados que a exportação para vCard – nome, sobrenome, e-mail, telefone e endereço pessoal.
+
+A visualização do código QR é aberta em uma janela separada e é apenas estática, não podendo ser aproximada, afastada ou salva.

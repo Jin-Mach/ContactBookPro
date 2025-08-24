@@ -1,0 +1,18 @@
+{
+  "mandatoryModel": {
+    "id": "ID",
+    "gender": "Geslacht",
+    "relationship": "Relatie",
+    "first_name": "Contactnaam",
+    "personal_email": "E-mail (persoonlijk)",
+    "personal_phone_number": "Telefoonnummer (persoonlijk)",
+    "personal_address": "Adres (persoonlijk)"
+  },
+  "advancedFilterModel": {
+    "labelText": "Criterium",
+    "operatorText": "Voorwaarde",
+    "editText": "Tekst",
+    "widgets": "Widgets",
+    "deleteButton": ""
+  }
+}
