@@ -21,7 +21,7 @@ PRACOVNÍ
 Firma (textový vstup)
 E-mail (textový vstup) – kontrola formátu
 Telefonní číslo (textový vstup) – kontrola formátu
-Ulice (textový vstup) – nepovinná
+Ulice (textový vstup) – nepovinná, pokud neexistuje
 Číslo popisné (textový vstup)
 Město (textový vstup)
 PSČ (textový vstup)

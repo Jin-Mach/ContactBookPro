@@ -1,11 +1,25 @@
-De toepassing Contactendatabase is bedoeld voor een overzichtelijk en eenvoudig beheer van uw contacten.
+De Contacten Database-applicatie is ontworpen voor een overzichtelijk en eenvoudig beheer van uw contacten.
 
-Het maakt het mogelijk om basis- en aanvullende informatie over contacten vast te leggen, ze te doorzoeken, te filteren en te exporteren naar formaten zoals CSV, Excel of vCard.
-Er is ook een voorbeeldweergave van contacten in PDF-formaat beschikbaar en de mogelijkheid om QR-codes van afzonderlijke records weer te geven.
+Het stelt u in staat om basis- en aanvullende informatie over contacten vast te leggen, ze te zoeken, te filteren en te exporteren naar formaten zoals CSV, Excel of vCard.
+Een voorbeeld van contacten in PDF-formaat en de weergave van QR-codes voor afzonderlijke vermeldingen is ook beschikbaar.
 
-De toepassing bevat visualisatie van contacten op een kaart, overzichtelijke statistieken van opgeslagen gegevens en een uitgebreide handleiding die u helpt alle beschikbare functies effectief te gebruiken.
+De applicatie bevat een visualisatie van contacten op een kaart, duidelijke statistieken over de opgeslagen gegevens en een uitgebreide handleiding die u helpt alle beschikbare functies effectief te gebruiken.
 
-De toepassing past zich automatisch aan de taal van uw systeem aan (indien niet ondersteund, wordt er een dialoogvenster weergegeven met de mogelijkheid om een taal te kiezen).
-Daarnaast controleert het de taalbestanden, pictogrammen en lettertypen en werkt deze indien nodig bij.
+De applicatie past zich automatisch aan de taal van uw systeem aan (als deze niet wordt ondersteund, wordt een dialoogvenster met een selectiemogelijkheid weergegeven).
+Het controleert ook taalbestanden, pictogrammen en lettertypen en werkt deze indien nodig bij.
+Deze controle vindt elke keer plaats bij het starten van de applicatie en kan enkele seconden duren (afhankelijk van de internetsnelheid).
+Als bestanden ontbreken en er geen internetverbinding is, meldt de applicatie een fout en wordt afgesloten.
 
-Opmerking: Sommige functies zijn alleen beschikbaar bij een actieve internetverbinding.
+Lijst van ondersteunde talen:
+- Duits
+- Engels
+- Frans
+- Italiaans
+- Nederlands
+- Pools
+- Portugees
+- Russisch
+- Spaans
+- Tsjechisch
+
+Opmerking: sommige functies zijn alleen beschikbaar met een actieve internetverbinding.

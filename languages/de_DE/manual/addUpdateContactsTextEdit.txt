@@ -21,7 +21,7 @@ BERUFLICH
 Firma (Texteingabe)
 E-Mail (Texteingabe) – Formatprüfung
 Telefonnummer (Texteingabe) – Formatprüfung
-Straße (Texteingabe) – optional
+Straße (Texteingabe) – optional, falls nicht vorhanden
 Hausnummer (Texteingabe)
 Stadt (Texteingabe)
 PLZ (Texteingabe)

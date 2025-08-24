@@ -13,7 +13,7 @@ The application allows you to manage contacts, visualize locations on a map, and
 
 ## Installation
 
-- Tested on Windows (IDE: VS Code, PyCharm).
+- Tested on Windows / macOS (IDE: VS Code, PyCharm).
 
 
 - Clone the repository:

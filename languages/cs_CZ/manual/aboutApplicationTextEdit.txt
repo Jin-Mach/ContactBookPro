@@ -7,5 +7,19 @@ Součástí aplikace je vizualizace kontaktů na mapě, přehledné statistiky o
 
 Aplikace se automaticky přizpůsobuje jazyku vašeho systému (pokud není podporován, zobrazí dialog s možností volby).
 Zároveň kontroluje jazykové soubory, ikony a fonty a podle potřeby je aktualizuje.
+Tato kontrola probíhá vždy při spuštění aplikace a může trvat několik vteřin (v závislosti na rychlosti připojení k internetu).
+Pokud existují chybějící soubory a není připojení k internetu, aplikace oznámí chybu a ukončí se.
+
+Seznam podporovaných jazyků:
+- Angličtina
+- Čeština
+- Francouzština
+- Holandština
+- Italština
+- Němčina
+- Polština
+- Portugalština
+- Ruština
+- Španělština
 
 Poznámka: Některé funkce jsou dostupné pouze při aktivním připojení k internetu.

@@ -1,11 +1,25 @@
-The Contact Database application provides a clear and easy way to manage your contacts.
+The Contact Database application is designed for clear and easy management of your contacts.
 
-It allows you to record both basic and additional information about contacts, search for them, filter, and export to formats such as CSV, Excel, or vCard.
+It allows you to record basic and additional information about contacts, search for them, filter them, and export them to formats such as CSV, Excel, or vCard.
 A preview of contacts in PDF format and display of QR codes for individual entries is also available.
 
-The application includes contact visualization on a map, clear statistics on stored data, and a comprehensive manual to help you use all available features effectively.
+The application includes visualization of contacts on a map, clear statistics on stored data, and a comprehensive manual to help you effectively use all available features.
 
-The application automatically adapts to your system language (if it is not supported, a dialog will appear allowing you to choose).
+The application automatically adapts to your system language (if not supported, a dialog with a selection option will be displayed).
 It also checks language files, icons, and fonts and updates them if necessary.
+This check occurs every time the application starts and may take a few seconds (depending on internet speed).
+If files are missing and there is no internet connection, the application will report an error and close.
+
+List of supported languages:
+- Czech
+- Dutch
+- English
+- French
+- German
+- Italian
+- Polish
+- Portuguese
+- Russian
+- Spanish
 
 Note: Some features are only available with an active internet connection.

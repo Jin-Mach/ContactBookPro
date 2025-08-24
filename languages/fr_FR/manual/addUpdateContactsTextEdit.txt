@@ -21,7 +21,7 @@ TRAVAIL
 Entreprise (entrée texte)
 E-mail (entrée texte) – vérification du format
 Numéro de téléphone (entrée texte) – vérification du format
-Rue (entrée texte) – facultatif
+Rue (entrée texte) – facultatif, si non disponible
 Numéro (entrée texte)
 Ville (entrée texte)
 Code postal (entrée texte)

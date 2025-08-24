@@ -21,7 +21,7 @@ LAVORO
 Azienda (campo di testo)
 E-mail (campo di testo) – controllo del formato
 Telefono (campo di testo) – controllo del formato
-Via (campo di testo) – facoltativo
+Via (campo di testo) – facoltativo se non disponibile
 Numero civico (campo di testo)
 Città (campo di testo)
 CAP (campo di testo)

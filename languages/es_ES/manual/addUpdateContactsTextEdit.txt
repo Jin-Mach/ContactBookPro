@@ -21,7 +21,7 @@ TRABAJO
 Empresa (entrada de texto)
 Correo electrónico (entrada de texto) – verificación de formato
 Teléfono (entrada de texto) – verificación de formato
-Calle (entrada de texto) – opcional
+Calle (entrada de texto) – opcional si no existe
 Número (entrada de texto)
 Ciudad (entrada de texto)
 Código postal (entrada de texto)

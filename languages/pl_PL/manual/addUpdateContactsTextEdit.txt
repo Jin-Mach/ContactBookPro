@@ -21,7 +21,7 @@ PRACA
 Firma (pole tekstowe)
 E-mail (pole tekstowe) – sprawdzenie formatu
 Telefon (pole tekstowe) – sprawdzenie formatu
-Ulica (pole tekstowe) – opcjonalne
+Ulica (pole tekstowe) – opcjonalne, jeśli nie istnieje
 Numer domu (pole tekstowe)
 Miasto (pole tekstowe)
 Kod pocztowy (pole tekstowe)

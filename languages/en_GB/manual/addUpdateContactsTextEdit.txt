@@ -21,7 +21,7 @@ WORK
 Company (text input)
 Email (text input) – format validation
 Phone Number (text input) – format validation
-Street (text input) – optional
+Street (text input) – optional if not available
 House Number (text input)
 City (text input)
 ZIP Code (text input)

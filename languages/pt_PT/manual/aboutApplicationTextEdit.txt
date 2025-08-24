@@ -1,11 +1,25 @@
-O aplicativo Base de contatos serve para uma gestão clara e simples dos seus contatos.
+O aplicativo Banco de Contatos é projetado para o gerenciamento claro e fácil de seus contatos.
 
-Permite registrar informações básicas e complementares sobre os contatos, pesquisá-los, filtrá-los e exportá-los para formatos como CSV, Excel ou vCard.
-Também está disponível a visualização dos contatos em formato PDF e a exibição de códigos QR de cada registro.
+Ele permite registrar informações básicas e adicionais sobre os contatos, pesquisá-los, filtrá-los e exportá-los para formatos como CSV, Excel ou vCard.
+Também está disponível uma visualização dos contatos em formato PDF e a exibição de códigos QR de cada registro.
 
-Faz parte do aplicativo a visualização dos contatos no mapa, estatísticas claras sobre os dados armazenados e um manual completo que o ajudará a utilizar de forma eficaz todas as funções disponíveis.
+O aplicativo inclui a visualização dos contatos em um mapa, estatísticas claras sobre os dados armazenados e um manual completo que ajuda a utilizar efetivamente todos os recursos disponíveis.
 
-O aplicativo adapta-se automaticamente ao idioma do seu sistema (se não for suportado, exibirá uma caixa de diálogo com a opção de escolha).
-Ao mesmo tempo, verifica os arquivos de idioma, ícones e fontes e os atualiza conforme necessário.
+O aplicativo se adapta automaticamente ao idioma do seu sistema (se não for suportado, será exibida uma caixa de diálogo com opção de seleção).
+Também verifica arquivos de idioma, ícones e fontes e os atualiza quando necessário.
+Essa verificação ocorre toda vez que o aplicativo é iniciado e pode levar alguns segundos (dependendo da velocidade da internet).
+Se houver arquivos ausentes e não houver conexão com a internet, o aplicativo exibirá um erro e será encerrado.
 
-Observação: Algumas funções estão disponíveis apenas com conexão ativa à internet.
+Lista de idiomas suportados:
+- Alemão
+- Checo
+- Inglês
+- Espanhol
+- Francês
+- Italiano
+- Holandês
+- Polonês
+- Português
+- Russo
+
+Observação: Alguns recursos estão disponíveis apenas com uma conexão ativa à internet.

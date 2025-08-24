@@ -1,11 +1,25 @@
-Aplikacja Baza kontaktów służy do przejrzystego i łatwego zarządzania Twoimi kontaktami.
+Aplikacja Baza Kontaktów jest przeznaczona do przejrzystego i łatwego zarządzania Twoimi kontaktami.
 
 Umożliwia rejestrowanie podstawowych i dodatkowych informacji o kontaktach, wyszukiwanie ich, filtrowanie oraz eksport do formatów takich jak CSV, Excel czy vCard.
-Dostępny jest także podgląd kontaktów w formacie PDF oraz wyświetlanie kodów QR poszczególnych rekordów.
+Dostępny jest również podgląd kontaktów w formacie PDF oraz wyświetlanie kodów QR dla poszczególnych rekordów.
 
-Częścią aplikacji jest wizualizacja kontaktów na mapie, przejrzyste statystyki zapisanych danych oraz kompleksowy podręcznik, który pomoże efektywnie wykorzystać wszystkie dostępne funkcje.
+Aplikacja zawiera wizualizację kontaktów na mapie, czytelne statystyki zapisanych danych oraz kompleksowy podręcznik, który pomoże Ci efektywnie korzystać ze wszystkich dostępnych funkcji.
 
-Aplikacja automatycznie dopasowuje się do języka systemu (jeśli nie jest obsługiwany, wyświetla się okno dialogowe z możliwością wyboru).
-Jednocześnie sprawdza pliki językowe, ikony i czcionki i w razie potrzeby je aktualizuje.
+Aplikacja automatycznie dostosowuje się do języka Twojego systemu (jeśli nie jest obsługiwany, zostanie wyświetlone okno dialogowe z możliwością wyboru języka).
+Dodatkowo sprawdza pliki językowe, ikony i czcionki oraz aktualizuje je w razie potrzeby.
+Ta kontrola odbywa się przy każdym uruchomieniu aplikacji i może potrwać kilka sekund (w zależności od prędkości internetu).
+Jeśli pliki są brakujące, a połączenie z internetem nie jest aktywne, aplikacja zgłosi błąd i zakończy działanie.
+
+Lista obsługiwanych języków:
+- Czeski
+- Niemiecki
+- Angielski
+- Francuski
+- Włoski
+- Niderlandzki
+- Polski
+- Portugalski
+- Rosyjski
+- Hiszpański
 
 Uwaga: Niektóre funkcje są dostępne tylko przy aktywnym połączeniu z internetem.

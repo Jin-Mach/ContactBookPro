@@ -1,11 +1,25 @@
-L'app Rubrica contatti serve per una gestione chiara e semplice dei vostri contatti.
+L'applicazione Database dei Contatti è progettata per una gestione chiara e semplice dei tuoi contatti.
 
-Permette di registrare informazioni di base e aggiuntive sui contatti, cercarli, filtrarli ed esportarli in formati come CSV, Excel o vCard.
-È disponibile anche l'anteprima dei contatti in formato PDF e la visualizzazione dei codici QR dei singoli record.
+Consente di registrare informazioni di base e aggiuntive sui contatti, di cercarli, filtrarli ed esportarli in formati come CSV, Excel o vCard.
+È inoltre disponibile un'anteprima dei contatti in formato PDF e la visualizzazione dei codici QR per ciascun record.
 
-L'app include la visualizzazione dei contatti su mappa, statistiche chiare sui dati salvati e un manuale completo che vi aiuta a utilizzare efficacemente tutte le funzionalità disponibili.
+L'applicazione include la visualizzazione dei contatti su una mappa, statistiche chiare sui dati memorizzati e un manuale completo che ti aiuta a utilizzare efficacemente tutte le funzionalità disponibili.
 
-L'app si adatta automaticamente alla lingua del vostro sistema (se non supportata, viene mostrata una finestra di dialogo per la selezione).
-Controlla inoltre i file linguistici, le icone e i font e li aggiorna se necessario.
+L'applicazione si adatta automaticamente alla lingua del tuo sistema (se non supportata, verrà visualizzata una finestra di dialogo con opzione di selezione).
+Verifica inoltre i file di lingua, le icone e i font e li aggiorna se necessario.
+Questa verifica viene eseguita ogni volta che l'applicazione viene avviata e può richiedere alcuni secondi (a seconda della velocità di connessione a Internet).
+Se i file mancano e non c'è connessione a Internet, l'applicazione segnalerà un errore e si chiuderà.
+
+Elenco delle lingue supportate:
+- Ceco
+- Deutsch
+- Inglese
+- Francese
+- Italiano
+- Neerlandese
+- Polacco
+- Portoghese
+- Russo
+- Spagnolo
 
 Nota: alcune funzionalità sono disponibili solo con una connessione a Internet attiva.

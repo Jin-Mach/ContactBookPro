@@ -1,11 +1,25 @@
-Die Anwendung Kontaktdatenbank dient zur übersichtlichen und einfachen Verwaltung Ihrer Kontakte.
+Die Anwendung Databáze kontaktů dient zur übersichtlichen und einfachen Verwaltung Ihrer Kontakte.
 
-Sie ermöglicht die Erfassung grundlegender sowie ergänzender Informationen zu Kontakten, deren Suche, Filterung und den Export in Formate wie CSV, Excel oder vCard.
-Es ist auch eine Vorschau der Kontakte im PDF-Format sowie die Anzeige von QR-Codes einzelner Einträge verfügbar.
+Sie ermöglicht die Erfassung grundlegender sowie zusätzlicher Informationen zu Kontakten, deren Suche, Filterung und den Export in Formate wie CSV, Excel oder vCard.
+Es steht auch eine Vorschau der Kontakte im PDF-Format sowie die Anzeige von QR-Codes einzelner Einträge zur Verfügung.
 
-Die Anwendung enthält eine Visualisierung der Kontakte auf einer Karte, übersichtliche Statistiken über die gespeicherten Daten und ein umfassendes Handbuch, das Ihnen hilft, alle verfügbaren Funktionen effektiv zu nutzen.
+Die Anwendung beinhaltet die Visualisierung der Kontakte auf einer Karte, übersichtliche Statistiken über die gespeicherten Daten und ein umfassendes Handbuch, das Ihnen hilft, alle verfügbaren Funktionen effektiv zu nutzen.
 
-Die Anwendung passt sich automatisch an die Sprache Ihres Systems an (falls diese nicht unterstützt wird, erscheint ein Dialog zur Auswahl).
-Gleichzeitig überprüft sie Sprachdateien, Symbole und Schriftarten und aktualisiert diese bei Bedarf.
+Die Anwendung passt sich automatisch an die Sprache Ihres Systems an (falls diese nicht unterstützt wird, wird ein Dialog zur Auswahl angezeigt).
+Zusätzlich überprüft sie Sprachdateien, Symbole und Schriftarten und aktualisiert diese bei Bedarf.
+Diese Überprüfung erfolgt stets beim Start der Anwendung und kann je nach Internetgeschwindigkeit einige Sekunden dauern.
+Wenn Dateien fehlen und keine Internetverbindung besteht, meldet die Anwendung einen Fehler und wird beendet.
+
+Liste der unterstützten Sprachen:
+- Deutsch
+- Englisch
+- Französisch
+- Italienisch
+- Niederländisch
+- Polnisch
+- Portugiesisch
+- Russisch
+- Spanisch
+- Tschechisch
 
 Hinweis: Einige Funktionen sind nur bei aktiver Internetverbindung verfügbar.

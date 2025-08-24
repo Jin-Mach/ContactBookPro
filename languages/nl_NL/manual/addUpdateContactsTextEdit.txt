@@ -21,7 +21,7 @@ WERK
 Bedrijf (tekstveld)
 E-mail (tekstveld) – controle op formaat
 Telefoonnummer (tekstveld) – controle op formaat
-Straat (tekstveld) – optioneel
+Straat (tekstveld) – optioneel, indien niet aanwezig
 Huisnummer (tekstveld)
 Stad (tekstveld)
 Postcode (tekstveld)
