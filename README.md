@@ -11,6 +11,11 @@ The application allows you to manage contacts, visualize locations on a map, and
 - Interactive user interface built with PyQt6.
 - Designed for easy scalability and additional features in the future.
 
+## Screenshot
+![Main window of ContactBookPro](images/main_window_screen.png)
+*Main window of the ContactBookPro application showing the contact list and toolbar menu.*
+
+
 ## Installation
 
 - Tested on Windows / macOS (IDE: VS Code, PyCharm).

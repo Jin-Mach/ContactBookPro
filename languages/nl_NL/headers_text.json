@@ -3,7 +3,7 @@
     "id": "ID",
     "gender": "Geslacht",
     "relationship": "Relatie",
-    "first_name": "Contactnaam",
+    "first_name": "Naam van contact",
     "personal_email": "E-mail (persoonlijk)",
     "personal_phone_number": "Telefoonnummer (persoonlijk)",
     "personal_address": "Adres (persoonlijk)"

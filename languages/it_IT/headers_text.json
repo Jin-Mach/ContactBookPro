@@ -3,7 +3,7 @@
     "id": "ID",
     "gender": "Sesso",
     "relationship": "Relazione",
-    "first_name": "Nome contatto",
+    "first_name": "Nome del contatto",
     "personal_email": "Email (personale)",
     "personal_phone_number": "Tel. (personale)",
     "personal_address": "Indirizzo (personale)"

@@ -3,7 +3,7 @@
     "id": "ID",
     "gender": "Gender",
     "relationship": "Relationship",
-    "first_name": "Contact First Name",
+    "first_name": "Contact name",
     "personal_email": "Email (Personal)",
     "personal_phone_number": "Phone Number (Personal)",
     "personal_address": "Address (Personal)"
