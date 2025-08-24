@@ -1,0 +1,10 @@
+Aplikacja umożliwia sprawdzenie kontaktów z danymi zduplikowanymi.
+
+Kontrola przeszukuje wszystkie kontakty i wybiera te, które mają taki sam adres e-mail, numer telefonu lub oba.
+Duplikaty są sprawdzane tylko w obowiązkowych danych kontaktu (osobiste, nie służbowe).
+Na końcu wyświetlane jest powiadomienie, że żaden kontakt nie spełnia kryteriów, lub dialog z listą znalezionych kontaktów.
+W dialogu można przejść do wybranego kontaktu, co ustawia filtr na ten kontakt.
+
+Kontrola działa w tle, więc aplikacja może być używana w tym czasie bez przeszkód.
+
+Użytkownik jest informowany o zakończeniu dialogiem z wynikiem.

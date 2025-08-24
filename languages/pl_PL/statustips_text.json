@@ -1,0 +1,12 @@
+{
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Dodaj kontakt (Ctrl+N)",
+    "updateContactPushbutton": "Edytuj kontakt (Ctrl+U)",
+    "deleteContactPushbutton": "Usuń kontakt (Ctrl+D)",
+    "deleteAllContactsPushbutton": "Usuń wszystkie (Ctrl+Shift+D)",
+    "searchPushbutton": "Wyszukiwanie (Ctrl+F)",
+    "advancedSearchPushbutton": "Zaawansowane wyszukiwanie (Ctrl+Shift+F)",
+    "resetFilterPushbutton": "Resetuj filtry (Ctrl+R)",
+    "userFiltersPushbutton": "Zapisane filtry (Ctrl+L)"
+  }
+}

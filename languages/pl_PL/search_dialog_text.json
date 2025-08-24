@@ -1,0 +1,102 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Zaawansowane wyszukiwanie",
+    "mandatory": "Szukaj w polach obowiązkowych",
+    "nonMandatory": "Szukaj w polach opcjonalnych",
+    "searchButton": "Szukaj",
+    "cancelButton": "Anuluj",
+    "currentFilterButton": "",
+    "resetButton": ""
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Płeć:",
+    "searchGenderCombobox": ["Wszystkie", "Mężczyzna", "Kobieta"],
+    "searchRelationshipTextLabel": "Relacja:",
+    "searchRelationshipCombobox": ["Wszystkie","Rodzina", "Krewny", "Kolega", "Przyjaciel", "Znajomy", "Inne"],
+    "searchFirstNameTextLabel": "Imię:",
+    "searchSecondNameTextLabel": "Nazwisko:",
+    "searchEmailTextLabel": "E-mail (osobisty):",
+    "searchPhoneNumberTextLabel": "Nr telefonu (osobisty):",
+    "searchCityTextLabel": "Miasto (osobiste):",
+    "searchStreetTextLabel": "Ulica (osobista):",
+    "searchHouseNumberTextLabel": "Numer domu (osobisty):",
+    "searchPostCodeTextLabel": "Kod pocztowy (osobisty):",
+    "searchCountryTextLabel": "Kraj (osobisty):",
+    "operators": ["Dopasowanie", "Zawiera", "Zaczyna się od", "Kończy się na"],
+    "searchFirstNameEdit": "Wpisz imię...",
+    "searchSecondNameEdit": "Wpisz nazwisko...",
+    "searchEmailEdit": "Wpisz e-mail...",
+    "searchPhoneNumberEdit": "Wpisz nr telefonu...",
+    "searchCityEdit": "Wpisz miasto...",
+    "searchStreetEdit": "Wpisz ulicę...",
+    "searchHouseNumberEdit": "Wpisz numer domu...",
+    "searchPostCodeEdit": "Wpisz kod pocztowy...",
+    "searchCountryEdit": "Wpisz kraj..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Praca",
+    "social": "Media społecznościowe",
+    "detail": "Szczegóły"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Firma:",
+    "searchWorkEmailTextLabel": "E-mail (praca):",
+    "searchWorkPhoneNumberTextLabel": "Nr telefonu (praca):",
+    "searchWorkCityTextLabel": "Miasto (praca):",
+    "searchWorkStreetTextLabel": "Ulica (praca):",
+    "searchWorkHouseNumberTextLabel": "Numer domu (praca):",
+    "searchWorkPostCodeTextLabel": "Kod pocztowy (praca):",
+    "searchWorkCountryTextLabel": "Kraj (praca):",
+    "operators": ["Wszystkie", "Dopasowanie", "Zawiera", "Zaczyna się od", "Kończy się na"],
+    "searchWorkCompanyEdit": "Wpisz nazwę firmy...",
+    "searchWorkEmailEdit": "Wpisz e-mail...",
+    "searchWorkPhoneNumberEdit": "Wpisz nr telefonu...",
+    "searchWorkCityEdit": "Wpisz miasto...",
+    "searchWorkStreetEdit": "Wpisz ulicę...",
+    "searchWorkHouseNumberEdit": "Wpisz numer domu...",
+    "searchWorkPostCodeEdit": "Wpisz kod pocztowy...",
+    "searchWorkCountryEdit": "Wpisz kraj..."
+  },
+  "searchSocialNetworksDialog": {
+    "searchFacebookUrlTextLabel": "Facebook:",
+    "searchXUrlTextLabel": "X (Twitter):",
+    "searchInstagramUrlTextLabel": "Instagram:",
+    "searchLinkedinUrlTextLabel": "LinkedIn:",
+    "searchGithubUrlTextLabel": "GitHub:",
+    "searchWebsiteUrlTextLabel": "Strona internetowa:",
+    "operators": ["Wszystkie", "Dopasowanie", "Zawiera", "Zaczyna się od", "Kończy się na"],
+    "searchFacebookUrlEdit": "Wpisz link do Facebook...",
+    "searchXUrlEdit": "Wpisz link do X (Twitter)...",
+    "searchInstagramUrlEdit": "Wpisz link do Instagram...",
+    "searchLinkedinUrlEdit": "Wpisz link do LinkedIn...",
+    "searchGithubUrlEdit": "Wpisz link do GitHub...",
+    "searchWebsiteUrlEdit": "Wpisz stronę..."
+  },
+  "searchDetailsWidget": {
+    "searchPhotoTextLabel": "Zdjęcie kontaktu:",
+    "searchPhotoCombobox": ["Nie ma znaczenia","ze zdjęciem", "bez zdjęcia"],
+    "searchTitleTextLabel": "Tytuł:",
+    "searchBirthdayTextLabel": "Data urodzenia:",
+    "searchNotesTextLabel": "Notatki:",
+    "operators": ["Wszystkie", "Dopasowanie", "Zawiera", "Zaczyna się od", "Kończy się na"],
+    "searchTitleEdit": "Wpisz tytuł...",
+    "searchBirthdayEdit": "Wpisz datę...np: 01.01.2000",
+    "searchNotesEdit": "Wpisz notatki..."
+  },
+  "activeFiltersDialog": {
+    "currentFilterTitle": "Aktualny filtr",
+    "currentFilterTextLabel": "Aktualnie ustawione filtry",
+    "saveFilter": "Zapisz filtr",
+    "closeButton": "Zamknij"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Zapisz filtr",
+    "filterNameTextLabel": "Wpisz nazwę nowego filtra",
+    "filterNameInput": "Tylko litery, cyfry, spacje i znaki podstawowe (-, _)",
+    "saveFilterButton": "Zapisz",
+    "cancelButton": "Zamknij"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Chwileczkę, szukam..."
+  }
+}

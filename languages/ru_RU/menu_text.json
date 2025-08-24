@@ -1,0 +1,41 @@
+{
+  "contextMenu": {
+    "addContactAction": "Добавить контакт",
+    "updateContactAction": "Редактировать контакт",
+    "deleteContactAction": "Удалить контакт",
+    "copyMenu": "Копировать",
+    "copyNameAction": "Имя",
+    "copyEmailAction": "E-mail",
+    "copyPhoneNumberAction": "Телефон",
+    "exportMenu": "Экспорт",
+    "exportCsvMenu": "CSV",
+    "exportFilteredDataCsvAction": "Экспортировать отображаемые",
+    "exportAllDataCsvAction": "Экспортировать всё",
+    "exportExcelMenu": "Excel",
+    "exportFilteredDataExcelAction": "Экспортировать отображаемые",
+    "exportAllDataExcelAction": "Экспортировать всё",
+    "exportVcardAction": "vCard",
+    "previewMenu": "Просмотр",
+    "previewContactAction": "Просмотр контакта",
+    "previewContactsListMenu": "Просмотр списка контактов",
+    "previewFilteredContactsListAction": "Просмотр отображаемых контактов",
+    "previewAllContactsListAction": "Просмотр всех контактов",
+    "previewQrCodeAction": "QR-код контакта",
+    "contactCheckMenu": "Проверка контактов",
+    "contactCheckBirthdayAction": "Показать дни рождения",
+    "contactCheckDuplicityAction": "Показать дубликаты",
+    "contactsCheckCoordsAction": "Показать контакты без координат"
+  },
+  "csvExportController": {
+    "csvFilter": "Файлы CSV (*.csv);;Все файлы (*)"
+  },
+  "excelExportController": {
+    "excelFilter": "Файлы Excel (*.xlsx);;Все файлы (*)"
+  },
+  "vcardExportController": {
+    "vcardFilter": "Файлы vCard (*.vcf);;Все файлы (*)"
+  },
+  "pdfExportController": {
+    "pdfFilter": "Файлы PDF (*.pdf);;Все файлы (*)"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "contextMenu": {
+    "addContactAction": "Dodaj kontakt",
+    "updateContactAction": "Edytuj kontakt",
+    "deleteContactAction": "Usuń kontakt",
+    "copyMenu": "Kopiuj",
+    "copyNameAction": "Imię",
+    "copyEmailAction": "E-mail",
+    "copyPhoneNumberAction": "Telefon",
+    "exportMenu": "Eksport",
+    "exportCsvMenu": "CSV",
+    "exportFilteredDataCsvAction": "Eksportuj wyświetlane",
+    "exportAllDataCsvAction": "Eksportuj wszystko",
+    "exportExcelMenu": "Excel",
+    "exportFilteredDataExcelAction": "Eksportuj wyświetlane",
+    "exportAllDataExcelAction": "Eksportuj wszystko",
+    "exportVcardAction": "vCard",
+    "previewMenu": "Podgląd",
+    "previewContactAction": "Podgląd kontaktu",
+    "previewContactsListMenu": "Podgląd listy kontaktów",
+    "previewFilteredContactsListAction": "Podgląd wyświetlonych kontaktów",
+    "previewAllContactsListAction": "Podgląd wszystkich kontaktów",
+    "previewQrCodeAction": "Kod QR kontaktu",
+    "contactCheckMenu": "Sprawdzenie kontaktów",
+    "contactCheckBirthdayAction": "Pokaż urodziny",
+    "contactCheckDuplicityAction": "Pokaż duplikaty",
+    "contactsCheckCoordsAction": "Pokaż kontakty bez współrzędnych"
+  },
+  "csvExportController": {
+    "csvFilter": "Pliki CSV (*.csv);;Wszystkie pliki (*)"
+  },
+  "excelExportController": {
+    "excelFilter": "Pliki Excel (*.xlsx);;Wszystkie pliki (*)"
+  },
+  "vcardExportController": {
+    "vcardFilter": "Pliki vCard (*.vcf);;Wszystkie pliki (*)"
+  },
+  "pdfExportController": {
+    "pdfFilter": "Pliki PDF (*.pdf);;Wszystkie pliki (*)"
+  }
+}

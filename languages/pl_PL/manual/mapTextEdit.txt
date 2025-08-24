@@ -1,0 +1,11 @@
+Aplikacja umożliwia wyświetlenie mapy kontaktów, które mają prawidłowe współrzędne geograficzne.
+
+Na mapie poszczególne kontakty są oznaczone markerami.
+Po kliknięciu na marker wyświetlane są podstawowe informacje o kontakcie – imię, e-mail oraz numer telefonu.
+Mapę można przybliżać, oddalać i przesuwać. Nad mapą wyświetlana jest liczba aktualnie widocznych kontaktów oraz łączna liczba wszystkich kontaktów w bazie danych.
+
+Po każdym dodaniu, edycji lub usunięciu kontaktu, jeśli zmienił się obowiązkowy adres, mapa jest automatycznie aktualizowana, a użytkownik otrzymuje krótkie powiadomienie w dolnej części aplikacji.
+
+Jeśli żaden kontakt nie posiada współrzędnych lub brak jest połączenia z internetem, zamiast mapy wyświetlane jest powiadomienie informujące o tej sytuacji.
+
+Uwaga: Mapa działa tylko przy aktywnym połączeniu z internetem.

@@ -1,0 +1,9 @@
+Podręcznik jest podzielony na rozdziały, które są wyświetlane w lewym panelu jako lista tematów.
+
+Kliknięcie w wybrany temat na lewej liście powoduje wyświetlenie odpowiedniej części podręcznika po prawej stronie.
+
+Niektóre tematy mają podtematy, na które można kliknąć, aby wyświetlić bardziej szczegółowe informacje.
+
+Gdy na lewej liście wybierzesz zakładkę po prawej, w lewym panelu automatycznie zostanie podświetlony temat, który aktualnie czytasz.
+
+Ten sposób umożliwia szybkie znalezienie potrzebnych informacji i łatwe przełączanie się między poszczególnymi częściami podręcznika.

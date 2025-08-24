@@ -1,0 +1,40 @@
+Menu kontekstowe umożliwia szybki dostęp do wybranych funkcji dla zaznaczonego kontaktu.
+Otwiera się po kliknięciu prawym przyciskiem myszy na wiersz kontaktu w tabeli.
+Pozwala otworzyć lub edytować kontakt, usunąć go, skopiować dane do schowka, eksportować do CSV, Excela lub vCard,
+wyświetlić podgląd kontaktu w formacie PDF lub jego kod QR oraz uruchomić kontrolę daty urodzenia, duplikatów lub kontaktów bez współrzędnych.
+
+Struktura menu kontekstowego
+
+Dodaj kontakt
+Edytuj kontakt
+Usuń kontakt
+Kopiuj
+    Imię
+    E-mail
+    Telefon
+Eksportuj
+    CSV
+        Eksportuj wyświetlone
+        Eksportuj wszystko
+    Excel
+        Eksportuj wyświetlone
+        Eksportuj wszystko
+    vCard
+        Eksportuj wybrany kontakt
+Podgląd
+    Podgląd kontaktu
+    Podgląd listy kontaktów
+        Podgląd wyświetlonych kontaktów
+        Podgląd wszystkich kontaktów
+    Kod QR kontaktu
+Kontrola
+    Wyświetl urodziny
+    Wyświetl duplikaty
+    Wyświetl kontakty bez współrzędnych
+
+Uwaga: Wszystkie eksporty otwierają okno dialogowe do wyboru docelowej lokalizacji pliku.
+
+Funkcja Kopiuj korzysta z systemowego schowka (Ctrl + C / macOS: Cmd + C).
+
+Podglądy i kod QR są wyświetlane natychmiast w oknie aplikacji.
+Funkcje kontrolne wyświetlają listę w osobnym oknie dialogowym.

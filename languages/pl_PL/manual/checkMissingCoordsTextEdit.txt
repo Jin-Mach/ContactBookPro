@@ -1,0 +1,11 @@
+Aplikacja umożliwia sprawdzenie kontaktów bez uzupełnionych współrzędnych.
+
+Kontrola przeszukuje wszystkie kontakty i wybiera te, którym brakuje współrzędnych geograficznych według podanego adresu.
+Na końcu wyświetlane jest powiadomienie, że żaden kontakt nie spełnia kryteriów, lub dialog z listą znalezionych kontaktów.
+W dialogu można przejść do wybranego kontaktu, co ustawia filtr na ten kontakt.
+
+Kontrola działa w tle, więc aplikacja może być używana w tym czasie bez przeszkód.
+
+Użytkownik jest informowany o zakończeniu dialogiem z wynikiem.
+
+Uwaga: Kontrola działa tylko przy aktywnym połączeniu z internetem.

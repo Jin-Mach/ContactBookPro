@@ -1,0 +1,11 @@
+Aplikacja Baza kontaktów służy do przejrzystego i łatwego zarządzania Twoimi kontaktami.
+
+Umożliwia rejestrowanie podstawowych i dodatkowych informacji o kontaktach, wyszukiwanie ich, filtrowanie oraz eksport do formatów takich jak CSV, Excel czy vCard.
+Dostępny jest także podgląd kontaktów w formacie PDF oraz wyświetlanie kodów QR poszczególnych rekordów.
+
+Częścią aplikacji jest wizualizacja kontaktów na mapie, przejrzyste statystyki zapisanych danych oraz kompleksowy podręcznik, który pomoże efektywnie wykorzystać wszystkie dostępne funkcje.
+
+Aplikacja automatycznie dopasowuje się do języka systemu (jeśli nie jest obsługiwany, wyświetla się okno dialogowe z możliwością wyboru).
+Jednocześnie sprawdza pliki językowe, ikony i czcionki i w razie potrzeby je aktualizuje.
+
+Uwaga: Niektóre funkcje są dostępne tylko przy aktywnym połączeniu z internetem.

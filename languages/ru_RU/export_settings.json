@@ -1,0 +1,63 @@
+{
+  "semicolon_locales": ["cs", "sk", "de", "fr", "it", "es", "pt", "nl", "pl", "hr", "hu", "ro"],
+  "exportDataProvider": {
+    "genderMap": {
+      "1": "Мужчина",
+      "2": "Женщина"
+    },
+    "relationshipMap": {
+      "1": "Семья",
+      "2": "Родственник",
+      "3": "Коллега",
+      "4": "Друг",
+      "5": "Знакомый",
+      "6": "Прочее"
+    }
+  },
+  "exportExcelObject": {
+    "tables": {
+      "mandatory": "Личные данные",
+      "work": "Рабочие данные",
+      "social": "Социальные сети",
+      "detail": "Детали"
+    },
+    "headers": {
+      "mandatory": {
+        "gender": "Пол",
+        "relationship": "Отношение",
+        "first_name": "Имя",
+        "second_name": "Фамилия",
+        "personal_email": "Личный e-mail",
+        "personal_phone_number": "Личный телефон",
+        "personal_street": "Улица",
+        "personal_house_number": "Номер дома",
+        "personal_city": "Город",
+        "personal_post_code": "Почтовый индекс",
+        "personal_country": "Страна"
+      },
+      "work": {
+        "company_name": "Название компании",
+        "work_email": "Рабочий e-mail",
+        "work_phone_number": "Рабочий телефон",
+        "work_street": "Улица (работа)",
+        "work_house_number": "Номер дома (работа)",
+        "work_city": "Город (работа)",
+        "work_post_code": "Почтовый индекс (работа)",
+        "work_country": "Страна (работа)"
+      },
+      "social": {
+        "facebook_url": "Facebook URL",
+        "x_url": "X (Twitter) URL",
+        "instagram_url": "Instagram URL",
+        "linkedin_url": "LinkedIn URL",
+        "github_url": "GitHub URL",
+        "website_url": "Веб-сайт"
+      },
+      "detail": {
+        "title": "Титул",
+        "birthday": "День рождения",
+        "notes": "Заметки"
+      }
+    }
+  }
+}

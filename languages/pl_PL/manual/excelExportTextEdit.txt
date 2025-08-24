@@ -1,0 +1,12 @@
+Aplikacja umożliwia eksport wybranych lub wszystkich kontaktów do formatu Excel.
+
+Eksport do formatu Excel (.xlsx) zapisuje kontakty do pliku kompatybilnego z Microsoft Excel, LibreOffice Calc oraz innymi arkuszami kalkulacyjnymi.
+Dane są podzielone na kolumny, co ułatwia dalszą edycję i analizę.
+Po wybraniu eksportu pojawi się okno dialogowe umożliwiające zapis pliku, który domyślnie zostanie zapisany w folderze Dokumenty (to samo miejsce w systemach Windows i macOS).
+Użytkownik może wybrać inny folder oraz nazwę pliku.
+
+Eksport odbywa się w tle, dzięki czemu można kontynuować korzystanie z aplikacji podczas zapisywania.
+
+Przy większej liczbie kontaktów eksport może zająć więcej czasu.
+
+Po zakończeniu pojawi się okno powiadomienia o pomyślnym zapisaniu.

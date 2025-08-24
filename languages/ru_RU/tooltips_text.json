@@ -1,0 +1,89 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Показать базу контактов",
+    "mainWindowMapButton": "Показать карту контактов",
+    "mainWindowStatisticsButton": "Показать статистику",
+    "mainWindowManualButton": "Показать справку",
+    "mainWindowAboutButton": "Показать информацию о приложении"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Добавить контакт в базу",
+    "updateContactPushbutton": "Редактировать выбранный контакт",
+    "deleteContactPushbutton": "Удалить выбранный контакт",
+    "deleteAllContactsPushbutton": "Удалить всю базу",
+    "searchPushbutton": "Поиск по выбранному столбцу",
+    "advancedSearchPushbutton": "Открыть диалог расширенного поиска",
+    "resetFilterPushbutton": "Удалить все фильтры",
+    "userFiltersPushbutton": "Показать сохраненные фильтры"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Открыть ссылку на Facebook",
+    "xPushbutton": "Открыть ссылку на X (Twitter)",
+    "instagramPushbutton": "Открыть ссылку на Instagram",
+    "linkedinPushbutton": "Открыть ссылку на LinkedIn",
+    "githubPushbutton": "Открыть ссылку на GitHub",
+    "websitePushbutton": "Открыть веб-сайт"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Добавить контакт",
+    "dialogCancelButton": "Закрыть диалог",
+    "dialogAddContactButtonUpdate": "Сохранить изменения"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Выбрать фото контакта",
+    "dialogResetPhotoButton": "Удалить фото",
+    "dialogCalendarPushbutton": "Выбрать дату рождения",
+    "dialogResetCalendarPushbutton": "Удалить дату рождения"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Установить дату на сегодня",
+    "addDateButton": "Установить выбранную дату",
+    "cancelDialogButton": "Закрыть календарь"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Искать",
+    "cancelButton": "Закрыть диалог",
+    "resetButton": "Сбросить фильтры",
+    "currentFilterButton": "Показать текущий установленный фильтр поиска",
+    "clearFilterPushbutton": "Сбросить фильтр для этой строки"
+  },
+  "activeFiltersDialog": {
+    "closeButton": "Закрыть окно"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Сбросить фильтр для этой строки"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Запустить поиск по выбранному фильтру",
+    "cancelButton": "Закрыть диалог"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Сохранить установленный фильтр",
+    "cancelButton": "Закрыть диалог"
+  },
+  "userFiltersListWidget": {
+    "deleteFilterPushbutton": "Удалить сохраненный фильтр"
+  },
+  "contactsListDialog": {
+    "showContactButton": "Закрыть диалог и выбрать дубликат контакта в таблице",
+    "showContactButtonContextBirthday": "Закрыть диалог и выбрать контакт в таблице",
+    "showContactButtonContextDuplicity": "Закрыть диалог и выбрать контакт в таблице",
+    "continueButton": "Сохранить дубликат контакта",
+    "cancelButton": "Закрыть окно без сохранения",
+    "cancelButtonContextBirthday": "Закрыть диалог",
+    "cancelButtonContextDuplicity": "Закрыть диалог"
+  },
+  "validatedLineEdit": {
+    "invalidChar": "Недопустимый символ:"
+  },
+  "pdfPreviewDialog": {
+    "pdfSaveAsButton": "Сохранить как...",
+    "pdfZoomInButton": "Увеличить",
+    "pdfZoomOutButton": "Уменьшить",
+    "pdfFitPageButton": "Подогнать под страницу",
+    "closeDialogButton": "Закрыть просмотр"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Открыть проект на GitHub."
+  }
+}

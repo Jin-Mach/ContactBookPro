@@ -1,0 +1,12 @@
+Aplikacja umożliwia wyświetlenie podglądu wybranego kontaktu lub listy kontaktów w osobnym oknie.
+
+Podgląd wybranego kontaktu zawiera wszystkie dostępne informacje z wyjątkiem współrzędnych, daty dodania oraz daty ostatniej edycji.
+W prawym dolnym rogu znajduje się mały kod QR z tymi samymi danymi, które są eksportowane do formatu vCard.
+Użytkownik może przybliżać, oddalać oraz zapisać podgląd do PDF.
+Po kliknięciu przycisku „zapisz” wyświetlany jest dialog umożliwiający wybór lokalizacji i nazwy pliku, który domyślnie zostanie zapisany w folderze Dokumenty (tak samo dla Windows i macOS).
+
+Możliwe jest także wyświetlenie listy aktualnie widocznych kontaktów lub wszystkich kontaktów w bazie danych.
+Lista zawiera tylko imię, nazwisko, płeć, relację, e-mail, telefon oraz pełny adres.
+Listę można również przybliżać, oddalać i zapisać jako PDF.
+
+Generowanie podglądu PDF odbywa się w tle, dzięki czemu aplikacja może być używana podczas jego tworzenia.

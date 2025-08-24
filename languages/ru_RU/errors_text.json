@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Произошла ошибка ввода/вывода. Пожалуйста, проверьте подключение диска.",
+    "ValueError": "Неверный формат файла. Убедитесь, что используете поддерживаемый формат.",
+    "TypeError": "Неверный тип аргумента. Пожалуйста, проверьте входные данные.",
+    "TimeoutError": "Операция истекла, пока пыталась открыть или сохранить файл.",
+    "JSONDecodeError": "Файл не является допустимым JSON. Пожалуйста, проверьте формат файла.",
+    "DatabaseConnectionError": "Не удалось подключиться к базе данных.",
+    "queryError": "Ошибка выполнения запроса к базе данных.",
+    "RuntimeError": "Не удалось открыть ссылку. Проверьте её корректность и подключение к интернету.",
+    "URLError": "Ссылка недействительна или не удалось установить соединение.",
+    "FileNotFoundError": "Исполняемый файл или скрипт не найден. Пожалуйста, проверьте путь.",
+    "OSError": "Произошла системная ошибка при попытке перезапуска приложения. Перезапустите приложение вручную.",
+    "UnexpectedError": "Произошла непредвиденная ошибка."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Пожалуйста, выберите пол.",
+    "relationshipError": "Пожалуйста, выберите отношение.",
+    "emptyTextError": "Это поле не может быть пустым.\n",
+    "emailValidatorError": "Неверный формат e-mail.\nПожалуйста, введите e-mail в формате: email@domain.ru",
+    "phoneNumberValidatorError": "Введите телефонный номер в правильном формате.\nНапример: +420123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Неверный формат e-mail.\nПожалуйста, введите e-mail в формате: email@domain.ru",
+    "phoneNumberValidatorError": "Введите телефонный номер в правильном формате.\nНапример: +420123456789.",
+    "workAddressValidatorError": "Заполните номер дома, город, почтовый индекс и страну, либо оставьте всё пустым."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Неверный формат ссылки или неверная социальная сеть.\nПожалуйста, введите действительный URL для {site} в формате: https://www.{site}.com/profil.",
+    "websiteValidatorError": "Неверный формат.\nВведите действительный URL в формате: www.example.ru"
+  },
+  "notesUtilities": {
+    "textLengthError": "Текст может содержать не более 300 символов.",
+    "textLineCountError": "Заметки могут содержать не более 10 строк."
+  },
+  "calendarDialog": {
+    "selectedDateError": "Выбранная дата не может быть позже текущей даты."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Нет активного фильтра."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Невозможно выполнить поиск без введённого текста.",
+    "noTableviewSelection": "Для быстрого поиска необходимо выбрать столбец.",
+    "noFilteredData": "Ни одной записи не соответствует заданному выражению.\nФильтр будет сброшен."
+  },
+  "widgetErrors": {
+    "indexError": "Не выбран допустимый индекс. Повторите выбор.",
+    "noTableviewSelection": "Сначала выберите контакт из списка."
+  },
+  "filtersController": {
+    "noActiveFilter": "Нет активного фильтра.",
+    "existingFilterName": "Имя фильтра уже существует.",
+    "noUserFilters": "Нет сохранённых фильтров."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Имя фильтра не задано."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Нет активного фильтра."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Нет сохранённых фильтров.",
+    "noSelection": "Сначала выберите фильтр."
+  },
+  "csvExportController": {
+    "emptyIdList": "Нет контактов для экспорта"
+  },
+  "excelExportController": {
+    "emptyIdList": "Нет контактов для экспорта"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Нет контактов для экспорта",
+    "indexError": "Не выбран допустимый индекс. Повторите выбор.",
+    "noTableviewSelection": "Сначала выберите контакт из списка."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Ни один контакт не имеет дня рождения в ближайший период."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Нет дублирующихся контактов."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Все контакты имеют действительные координаты"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Буфер обмена пуст, нечего вставлять"
+  }
+}

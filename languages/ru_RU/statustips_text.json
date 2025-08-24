@@ -1,0 +1,12 @@
+{
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Добавить контакт (Ctrl+N)",
+    "updateContactPushbutton": "Редактировать контакт (Ctrl+U)",
+    "deleteContactPushbutton": "Удалить контакт (Ctrl+D)",
+    "deleteAllContactsPushbutton": "Удалить все (Ctrl+Shift+D)",
+    "searchPushbutton": "Поиск (Ctrl+F)",
+    "advancedSearchPushbutton": "Расширенный поиск (Ctrl+Shift+F)",
+    "resetFilterPushbutton": "Сброс фильтров (Ctrl+R)",
+    "userFiltersPushbutton": "Сохраненные фильтры (Ctrl+L)"
+  }
+}

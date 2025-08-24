@@ -1,0 +1,102 @@
+{
+  "advancedSearchDialog": {
+    "dialogTitle": "Расширенный поиск",
+    "mandatory": "Искать в обязательных",
+    "nonMandatory": "Искать в необязательных",
+    "searchButton": "Искать",
+    "cancelButton": "Отмена",
+    "currentFilterButton": "",
+    "resetButton": ""
+  },
+  "searchMandatoryWidget": {
+    "searchGenderTextLabel": "Пол:",
+    "searchGenderCombobox": ["Все", "Мужчина", "Женщина"],
+    "searchRelationshipTextLabel": "Отношения:",
+    "searchRelationshipCombobox": ["Все","Семья", "Родственник", "Коллега", "Друг", "Знакомый", "Прочее"],
+    "searchFirstNameTextLabel": "Имя:",
+    "searchSecondNameTextLabel": "Фамилия:",
+    "searchEmailTextLabel": "E-mail (личный):",
+    "searchPhoneNumberTextLabel": "Тел. номер (личный):",
+    "searchCityTextLabel": "Город (личный):",
+    "searchStreetTextLabel": "Улица (личный):",
+    "searchHouseNumberTextLabel": "Номер дома (личный):",
+    "searchPostCodeTextLabel": "Почтовый индекс (личный):",
+    "searchCountryTextLabel": "Страна (личная):",
+    "operators": ["Совпадение", "Содержит", "Начинается с", "Заканчивается на"],
+    "searchFirstNameEdit": "Введите имя...",
+    "searchSecondNameEdit": "Введите фамилию...",
+    "searchEmailEdit": "Введите e-mail...",
+    "searchPhoneNumberEdit": "Введите тел. номер...",
+    "searchCityEdit": "Введите город...",
+    "searchStreetEdit": "Введите улицу...",
+    "searchHouseNumberEdit": "Введите номер дома...",
+    "searchPostCodeEdit": "Введите почтовый индекс...",
+    "searchCountryEdit": "Введите страну..."
+  },
+  "searchNonMandatoryWidget": {
+    "work": "Рабочие",
+    "social": "Социальные сети",
+    "detail": "Детали"
+  },
+  "searchWorkWidget": {
+    "searchWorkCompanyTextLabel": "Компания:",
+    "searchWorkEmailTextLabel": "E-mail (рабочий):",
+    "searchWorkPhoneNumberTextLabel": "Тел. номер (рабочий):",
+    "searchWorkCityTextLabel": "Город (рабочий):",
+    "searchWorkStreetTextLabel": "Улица (рабочий):",
+    "searchWorkHouseNumberTextLabel": "Номер дома (рабочий):",
+    "searchWorkPostCodeTextLabel": "Почтовый индекс (рабочий):",
+    "searchWorkCountryTextLabel": "Страна (рабочая):",
+    "operators": ["Все", "Совпадение", "Содержит", "Начинается с", "Заканчивается на"],
+    "searchWorkCompanyEdit": "Введите название компании...",
+    "searchWorkEmailEdit": "Введите e-mail...",
+    "searchWorkPhoneNumberEdit": "Введите тел. номер...",
+    "searchWorkCityEdit": "Введите город...",
+    "searchWorkStreetEdit": "Введите улицу...",
+    "searchWorkHouseNumberEdit": "Введите номер дома...",
+    "searchWorkPostCodeEdit": "Введите почтовый индекс...",
+    "searchWorkCountryEdit": "Введите страну..."
+  },
+  "searchSocialNetworksDialog": {
+    "searchFacebookUrlTextLabel": "Facebook:",
+    "searchXUrlTextLabel": "X (Twitter):",
+    "searchInstagramUrlTextLabel": "Instagram:",
+    "searchLinkedinUrlTextLabel": "LinkedIn:",
+    "searchGithubUrlTextLabel": "GitHub:",
+    "searchWebsiteUrlTextLabel": "Веб-сайт:",
+    "operators": ["Все", "Совпадение", "Содержит", "Начинается с", "Заканчивается на"],
+    "searchFacebookUrlEdit": "Введите ссылку на Facebook...",
+    "searchXUrlEdit": "Введите ссылку на X (Twitter)...",
+    "searchInstagramUrlEdit": "Введите ссылку на Instagram...",
+    "searchLinkedinUrlEdit": "Введите ссылку на LinkedIn...",
+    "searchGithubUrlEdit": "Введите ссылку на GitHub...",
+    "searchWebsiteUrlEdit": "Введите веб-сайт..."
+  },
+  "searchDetailsWidget": {
+    "searchPhotoTextLabel": "Фото контакта:",
+    "searchPhotoCombobox": ["Не важно","с фото", "без фото"],
+    "searchTitleTextLabel": "Титул:",
+    "searchBirthdayTextLabel": "Дата рождения:",
+    "searchNotesTextLabel": "Заметки:",
+    "operators": ["Все", "Совпадение", "Содержит", "Начинается с", "Заканчивается на"],
+    "searchTitleEdit": "Введите титул...",
+    "searchBirthdayEdit": "Введите дату...например: 01.01.2000",
+    "searchNotesEdit": "Введите заметки..."
+  },
+  "activeFiltersDialog": {
+    "currentFilterTitle": "Текущий фильтр",
+    "currentFilterTextLabel": "Текущие установленные фильтры",
+    "saveFilter": "Сохранить фильтр",
+    "closeButton": "Закрыть"
+  },
+  "filterNameDialog": {
+    "dialogTitle": "Сохранение фильтра",
+    "filterNameTextLabel": "Введите имя нового фильтра",
+    "filterNameInput": "Только буквы, цифры, пробелы и базовые символы (-, _)",
+    "saveFilterButton": "Сохранить",
+    "cancelButton": "Закрыть"
+  },
+  "progressDialog": {
+    "searchTextLabel": "Минуточку, ищу..."
+  }
+}

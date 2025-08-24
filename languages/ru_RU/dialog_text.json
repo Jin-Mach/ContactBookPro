@@ -1,0 +1,121 @@
+{
+  "dialogsProvider": {
+    "closeButton": "Закрыть",
+    "errorTextLabel": "Ошибка:",
+    "databaseErrorTextLabel": "Ошибка базы данных.",
+    "databaseCloseButton": "Закрыть"
+  },
+  "deleteDialogWidgets": {
+    "deleteContactDialog": "Удалить контакт",
+    "deleteContactTextLabel": "Удалить контакт?",
+    "deleteContactButton": "Удалить",
+    "cancelContactButton": "Отменить",
+    "deleteAllContactsDialog": "Удалить все контакты",
+    "deleteAllContactsTextLabel": "Действительно удалить все контакты?\nДля подтверждения напишите:\nУДАЛИТЬ",
+    "deleteWordError": "Введённое слово не совпадает.\nПопробуйте снова.",
+    "deleteFiltersCheckboxTextLabel": "Удалить сохранённые фильтры?",
+    "deleteAllContactsButton": "Удалить всё",
+    "cancelAllContactsButton": "Отменить"
+  },
+  "contactDialog": {
+    "dialogTitle": "Новый контакт",
+    "dialogTitleUpdate": "Редактировать контакт",
+    "mandatory": "Обязательные данные",
+    "nonMandatory": "Дополнительные данные",
+    "dialogAddContactButton": "Добавить контакт",
+    "dialogAddContactButtonUpdate": "Обновить контакт",
+    "dialogCancelButton": "Отменить"
+  },
+  "dialogMandatoryWidget": {
+    "dialogGenderTextLabel": "Пол",
+    "dialogGenderCombobox": ["---Выберите пол---","Мужчина", "Женщина"],
+    "dialogRelationshipTextLabel": "Отношение:",
+    "dialogRelationshipCombobox": ["---Выберите отношение---","Семья", "Родственник", "Коллега", "Друг", "Знакомый", "Прочее"],
+    "dialogFirstNameTextLabel": "Имя:",
+    "dialogSecondNameTextLabel": "Фамилия:",
+    "dialogEmailTextLabel": "Email (личный):",
+    "dialogPhoneNumberTextLabel": "Телефонный номер (личный):",
+    "dialogCityTextLabel": "Город (личный):",
+    "dialogStreetTextLabel": "Улица (личная):",
+    "dialogHouseNumberTextLabel": "Номер дома (личный):",
+    "dialogPostCodeTextLabel": "Почтовый индекс (личный):",
+    "dialogCountryTextLabel": "Страна (личная):",
+    "dialogFirstNameEdit": "Введите имя...",
+    "dialogSecondNameEdit": "Введите фамилию...",
+    "dialogEmailEdit": "Введите email в формате: email@domain.ru",
+    "dialogPhoneNumberEdit": "Введите тел. номер в формате: +420123456789",
+    "dialogCityEdit": "Введите город...",
+    "dialogStreetEdit": "Введите улицу... (если доступно)",
+    "dialogHouseNumberEdit": "Введите номер дома...",
+    "dialogPostCodeEdit": "Введите почтовый индекс...",
+    "dialogCountryEdit": "Введите страну..."
+  },
+  "dialogNonMandatoryWidget": {
+    "work": "Рабочие",
+    "socialNetworks": "Социальные сети",
+    "personalDetail": "Детали"
+  },
+  "dialogWorkWidget": {
+    "dialogWorkCompanyTextLabel": "Компания:",
+    "dialogWorkEmailTextLabel": "Email (рабочий):",
+    "dialogWorkPhoneNumberTextLabel": "Телефонный номер (рабочий):",
+    "dialogWorkCityTextLabel": "Город (рабочий):",
+    "dialogWorkStreetTextLabel": "Улица (рабочая):",
+    "dialogWorkHouseNumberTextLabel": "Номер дома (рабочий):",
+    "dialogPostCodeTextLabel": "Почтовый индекс (рабочий):",
+    "dialogWorkCountryTextLabel": "Страна (рабочая):",
+    "dialogWorkCompanyEdit": "Введите название компании...",
+    "dialogWorkEmailEdit": "Введите email в формате: email@domain.ru",
+    "dialogPhoneNumberEdit": "Введите тел. номер в формате: +420123456789",
+    "dialogWorkCityEdit": "Введите город...",
+    "dialogWorkStreetEdit": "Введите улицу... (если доступно)",
+    "dialogWorkHouseNumberEdit": "Введите номер дома...",
+    "dialogPostCodeEdit": "Введите почтовый индекс...",
+    "dialogWorkCountryEdit": "Введите страну..."
+  },
+  "dialogSocialNetworkWidget": {
+    "dialogFacebookUrlTextLabel": "Facebook:",
+    "dialogXUrlTextLabel": "X (Twitter):",
+    "dialogInstagramUrlTextLabel": "Instagram:",
+    "dialogLinkedinUrlTextLabel": "LinkedIn:",
+    "dialogGithubUrlTextLabel": "GitHub:",
+    "dialogWebsiteUrlTextLabel": "Веб-сайт:",
+    "dialogFacebookUrlEdit": "Введите ссылку на Facebook...",
+    "dialogXUrlEdit": "Введите ссылку на X (Twitter)...",
+    "dialogInstagramUrlEdit": "Введите ссылку на Instagram...",
+    "dialogLinkedinUrlEdit": "Введите ссылку на LinkedIn...",
+    "dialogGithubUrlEdit": "Введите ссылку на GitHub...",
+    "dialogWebsiteUrlEdit": "Введите веб-сайт в формате: https://www.example.ru"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Фото",
+    "dialogResetPhotoButton": "Удалить",
+    "dialogTitleTextLabel": "Титул:",
+    "dialogBirthdayTextLabel": "Дата рождения:",
+    "dialogCalendarPushbutton": "Календарь",
+    "dialogResetCalendarPushbutton": "Удалить",
+    "dialogTitleEdit": "Введите титул...",
+    "dialogBirthdayEdit": "Выберите дату рождения...",
+    "dialogNotesEdit": "Заметки о контакте (макс. 200 символов, макс. 5 строк)..."
+  },
+  "calendarDialog": {
+    "calendarDialogTitle": "Выбрать дату рождения",
+    "setTodayButton": "Перейти на сегодня",
+    "addDateButton": "Установить дату",
+    "cancelDialogButton": "Отменить"
+  },
+  "photoUtilities": {
+    "basicFilesFilter": "Основной формат: (*.jpg *.jpeg *.png)",
+    "advancedFilesFilter": "Расширенные форматы: (*.tiff *.bmp *.gif *.heic *.webp)",
+    "allFilesFilter": "Все форматы: (*.*)"
+  },
+  "contactsListDialog": {
+    "duplicateTextLabel": "Количество найденных дублирующихся контактов",
+    "duplicateTextLabelContextBirthday": "Количество контактов с днями рождения",
+    "duplicateTextLabelContextDuplicity": "Количество контактов с дубликатами",
+    "duplicateTextLabelContextCoordinates": "Количество контактов без действительных координат",
+    "showContactButton": "Перейти к контакту",
+    "continueButton": "Продолжить",
+    "cancelButton": "Отменить"
+  }
+}

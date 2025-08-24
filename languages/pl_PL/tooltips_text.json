@@ -1,0 +1,89 @@
+{
+  "mainWindow": {
+    "mainWindowDatabaseButton": "Wyświetli bazę kontaktów",
+    "mainWindowMapButton": "Wyświetli mapę kontaktów",
+    "mainWindowStatisticsButton": "Wyświetli statystyki",
+    "mainWindowManualButton": "Wyświetli pomoc",
+    "mainWindowAboutButton": "Wyświetli informacje o aplikacji"
+  },
+  "contactsToolbarWidget": {
+    "addNewContactPushbutton": "Dodaj kontakt do bazy",
+    "updateContactPushbutton": "Edytuj wybrany kontakt",
+    "deleteContactPushbutton": "Usuń wybrany kontakt",
+    "deleteAllContactsPushbutton": "Usuń całą bazę",
+    "searchPushbutton": "Wyszukaj według wybranej kolumny",
+    "advancedSearchPushbutton": "Otwórz dialog zaawansowanego wyszukiwania",
+    "resetFilterPushbutton": "Usuń wszystkie filtry",
+    "userFiltersPushbutton": "Wyświetl zapisane filtry"
+  },
+  "tabInfoWidget": {
+    "facebookPushbutton": "Otworzy link do Facebooka",
+    "xPushbutton": "Otworzy link do X (Twitter)",
+    "instagramPushbutton": "Otworzy link do Instagrama",
+    "linkedinPushbutton": "Otworzy link do LinkedIn",
+    "githubPushbutton": "Otworzy link do GitHub",
+    "websitePushbutton": "Otworzy stronę internetową"
+  },
+  "contactDialog": {
+    "dialogAddContactButton": "Dodaj kontakt",
+    "dialogCancelButton": "Zamknij dialog",
+    "dialogAddContactButtonUpdate": "Zapisz zmiany"
+  },
+  "dialogPersonalDetailWidget": {
+    "dialogGetPhotoPushbutton": "Wybierz zdjęcie kontaktu",
+    "dialogResetPhotoButton": "Usuń zdjęcie",
+    "dialogCalendarPushbutton": "Wybierz datę urodzenia",
+    "dialogResetCalendarPushbutton": "Usuń datę urodzenia"
+  },
+  "calendarDialog": {
+    "setTodayButton": "Ustaw datę na dziś",
+    "addDateButton": "Ustaw wybraną datę",
+    "cancelDialogButton": "Zamknij kalendarz"
+  },
+  "advancedSearchDialog": {
+    "searchButton": "Szukaj",
+    "cancelButton": "Zamknij dialog",
+    "resetButton": "Anuluj filtry",
+    "currentFilterButton": "Wyświetli aktualnie ustawiony filtr wyszukiwania",
+    "clearFilterPushbutton": "Usunie filtr dla danego wiersza"
+  },
+  "activeFiltersDialog": {
+    "closeButton": "Zamknij okno"
+  },
+  "filtersTableviewWidget": {
+    "deleteFilterButton": "Usunie filtr dla danego wiersza"
+  },
+  "userFiltersDialog": {
+    "filterButton": "Uruchomi wyszukiwanie według wybranego filtru",
+    "cancelButton": "Zamknie dialog"
+  },
+  "filterNameDialog": {
+    "saveFilterButton": "Zapisze ustawiony filtr",
+    "cancelButton": "Zamknie dialog"
+  },
+  "userFiltersListWidget": {
+    "deleteFilterPushbutton": "Usunie zapisany filtr"
+  },
+  "contactsListDialog": {
+    "showContactButton": "Zamknie dialog i wybierze zduplikowany kontakt w tabeli",
+    "showContactButtonContextBirthday": "Zamknie dialog i wybierze kontakt w tabeli",
+    "showContactButtonContextDuplicity": "Zamknie dialog i wybierze kontakt w tabeli",
+    "continueButton": "Zapisze zduplikowany kontakt",
+    "cancelButton": "Zamknie okno bez zapisu",
+    "cancelButtonContextBirthday": "Zamknie dialog",
+    "cancelButtonContextDuplicity": "Zamknie dialog"
+  },
+  "validatedLineEdit": {
+    "invalidChar": "Nieprawidłowy znak:"
+  },
+  "pdfPreviewDialog": {
+    "pdfSaveAsButton": "Zapisz jako...",
+    "pdfZoomInButton": "Powiększ",
+    "pdfZoomOutButton": "Pomniejsz",
+    "pdfFitPageButton": "Dopasuj do strony",
+    "closeDialogButton": "Zamknij podgląd"
+  },
+  "aboutApplicationDialog": {
+    "githubButton": "Otworzy projekt na GitHub."
+  }
+}

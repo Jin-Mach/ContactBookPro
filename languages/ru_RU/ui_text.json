@@ -1,0 +1,230 @@
+{
+  "mainWindow": {
+    "mainWindowTitle": "База контактов",
+    "mainWindowDatabaseButton": "Контакты",
+    "mainWindowMapButton": "Карта",
+    "mainWindowStatisticsButton": "Статистика",
+    "mainWindowManualButton": "Справка",
+    "mainWindowAboutButton": "О приложении",
+    "messageboxTitle": "Закрыть приложение",
+    "messageboxText": "Закрыть приложение?\nДА/НЕТ",
+    "close": "Закрыть",
+    "cancel": "Отменить"
+  },
+  "contactsToolbarWidget": {
+    "searchTextLabel": "Поиск:",
+    "searchLineEdit": "текст для поиска..."
+  },
+  "contactsTableviewWidget": {
+    "searchText": "искать по:",
+    "searchFilter": {
+      "1": "пол",
+      "2": "отношения",
+      "3": "имя",
+      "4": "e-mail",
+      "5": "телефон",
+      "6": "адрес"
+    },
+    "gender_items": ["Все", "Мужчина", "Женщина"],
+    "relationship_items": ["Все", "Семья", "Родственник", "Коллега", "Друг", "Знакомый", "Прочее"]
+  },
+  "contactsStatusBarWidget": {
+    "countDisplayLabel": "Фильтр (отображено/всего):"
+  },
+  "personalTabInfoWidget": {
+    "personalTabInfoWidget_tabText": "Информация о контакте",
+    "contactTitleTextLabel": "Титул:",
+    "contactGenderTextLabel": "Пол:",
+    "contactFirstNameTextLabel": "Имя:",
+    "contactSecondNameTextLabel": "Фамилия:",
+    "contactRelationshipTextLabel": "Отношение:",
+    "contactBirthdayTextLabel": "Дата рождения:",
+    "gender_key": {
+      "1": "Мужчина",
+      "2": "Женщина"
+    },
+    "relationship_key": {
+      "1": "Семья",
+      "2": "Родственник",
+      "3": "Коллега",
+      "4": "Друг",
+      "5": "Знакомый",
+      "6": "Прочее"
+    }
+  },
+  "tabInfoWidget": {
+    "personalTabText": "Контакт – Личный",
+    "workTabText": "Контакт – Работа",
+    "personalEmailTextLabel": "Email:",
+    "personalPhoneNumberTextLabel": "Телефон:",
+    "personalAddressTextLabel": "Адрес:",
+    "personalCityTextLabel": "Город:",
+    "personalPostCodeTextLabel": "Почтовый индекс:",
+    "personalCountryTextLabel": "Страна:",
+    "workCompanyNameTextLabel": "Компания:",
+    "workEmailTextLabel": "Email:",
+    "workPhoneNumberTextLabel": "Телефон:",
+    "workAddressTextLabel": "Адрес:",
+    "workCityTextLabel": "Город:",
+    "workPostCodeTextLabel": "Почтовый индекс:",
+    "workCountryTextLabel": "Страна:"
+  },
+  "notesInfoWidget": {
+    "notesTextEdit": "Заметки о контакте...",
+    "createDateTextLabel": "создано: ",
+    "updateDateTextLabel": "обновлено: "
+  },
+  "trayIcon": {
+    "addContact": "Добавить контакт",
+    "closeApplication": "Закрыть приложение",
+    "trayIconMessageTitle": "База контактов",
+    "contactAdded": "Контакт добавлен",
+    "contactUpdated": "Контакт обновлен",
+    "contactDeleted": "Контакт удален",
+    "databaseDeleted": "База данных удалена",
+    "filterAdded": "Фильтр сохранен",
+    "filterDeleted": "Фильтр удален",
+    "nameCopied": "Имя скопировано",
+    "emailCopied": "Email скопирован",
+    "phoneCopied": "Телефон скопирован",
+    "saveError": "Не удалось сохранить файл",
+    "exportSaved": "Файл сохранен"
+  },
+  "mandatoryModel": {
+    "genderHeaderText": "Пол пользователя"
+  },
+  "exportContactPdfObject": {
+    "contactTitle": "Контакт",
+    "personalEmail": "Email:",
+    "personalPhoneNumber": "Телефон:",
+    "addressTitle": "Адрес",
+    "personalAddress": "Адрес:",
+    "personalCountry": "Страна:",
+    "workTitle": "Рабочий",
+    "workCompany": "Компания:",
+    "workEmail": "Email:",
+    "workPhone": "Телефон:",
+    "workAddress": "Адрес:",
+    "workCountry": "Страна:",
+    "notesTitle": "Заметки"
+  },
+  "mapMainWidget": {
+    "showCount": "Количество отображаемых контактов:",
+    "totalCount": "Всего контактов:",
+    "noConnection": "Не удалось отобразить карту – нет контактов с действительным адресом или отсутствует интернет-соединение.",
+    "loadingMap": "Загрузка карты...",
+    "loadingError": "Не удалось загрузить карту."
+  },
+  "mapController": {
+    "mapUpdate": "Карта обновлена"
+  },
+  "statisticsMainWidget": {
+    "totalCount": "Общее количество контактов:",
+    "mandatoryStatisticsWidget": "Основная статистика",
+    "workStatisticsWidget": "Рабочая статистика",
+    "socialStatisticsWidget": "Статистика соцсетей",
+    "completionStatisticsWidget": "Системная статистика"
+  },
+  "statisticsController": {
+    "statisticsUpdate": "Статистика обновлена"
+  },
+  "genderPieChartWidget": {
+    "title": "Пол",
+    "noData": "Нет данных"
+  },
+  "relationshipBarChartWidget": {
+    "title": "Отношение",
+    "noData": "Нет данных"
+  },
+  "cityBarCharWidget": {
+    "title": "Город",
+    "noData": "Нет данных",
+    "others": "Прочее",
+    "unfilled": "Не заполнено"
+  },
+  "workPieChartWidget": {
+    "noData": "Нет данных",
+    "email": "Email",
+    "phone": "Телефон",
+    "address": "Адрес",
+    "filled": "Заполнено",
+    "empty": "Не заполнено"
+  },
+  "socialBarChartWidget": {
+    "title": "Социальные сети",
+    "noData": "Нет данных",
+    "filled": "Заполнено",
+    "empty": "Не заполнено",
+    "x": "X (Twitter)",
+    "website": "Веб-сайт"
+  },
+  "completionBarChartWidget": {
+    "title": "Статистика заполнения таблиц",
+    "noData": "Нет данных",
+    "mandatory": "Обязательные данные",
+    "work": "Рабочие",
+    "social": "Социальные",
+    "detail": "Детальные",
+    "info": "Информационные\n(системные)",
+    "total": "Общее заполнение"
+  },
+  "manualTreeWidget": {
+    "headers": ["Содержание справки"],
+    "items": {
+      "introduction": ["Введение", ["О приложении", "Как использовать справку"]],
+      "contacts": ["Контакты", ["Добавление и редактирование контакта", "Удаление контакта", "Поиск контактов", "Контекстное меню"]],
+      "export": ["Экспорт", ["Экспорт в CSV", "Экспорт в Excel", "Экспорт в vCard"]],
+      "preview": ["Предпросмотр", ["PDF", "QR код"]],
+      "check": ["Проверка контактов", ["Проверка дней рождения", "Проверка дубликатов", "Проверка координат"]],
+      "map": ["Карта", ["Карта контактов"]],
+      "statistics": ["Статистика", ["Отображение статистики"]]
+    }
+  },
+  "manualIntroductionWidget": {
+    "tabTexts": {
+      "aboutApplicationTextEdit": "О приложении",
+      "usageApplicationTextEdit": "Как использовать справку"
+    }
+  },
+  "manualContactsWidget": {
+    "tabTexts": {
+      "addUpdateContactsTextEdit": "Добавление и редактирование контакта",
+      "deleteContactsTextEdit": "Удаление контактов",
+      "searchContactsTextEdit": "Поиск контактов",
+      "contextMenuTextEdit": "Контекстное меню"
+    }
+  },
+  "manualExportWidget": {
+    "tabTexts": {
+      "csvExportTextEdit": "Экспорт в CSV",
+      "excelExportTextEdit": "Экспорт в Excel",
+      "vcardExportTextEdit": "Экспорт vCard"
+    }
+  },
+  "manualPreviewWidget": {
+    "tabTexts": {
+      "pdfPreviewTextEdit": "Предпросмотр PDF",
+      "qrCodePreviewTextEdit": "QR код"
+    }
+  },
+  "manualCheckWidget": {
+    "tabTexts": {
+      "checkBirthdayTextEdit": "Проверка дней рождения",
+      "checkDuplicityTextEdit": "Проверка дубликатов",
+      "checkMissingCoordsTextEdit": "Проверка координат"
+    }
+  },
+  "manualMapWidget": {
+    "tabTexts": {
+      "mapTextEdit": "Карта контактов"
+    }
+  },
+  "manualStatisticsWidget": {
+    "tabTexts": {
+      "statisticsTextEdit": "Отображение статистики"
+    }
+  },
+  "aboutApplicationDialog": {
+    "aboutTitle": "О приложении"
+  }
+}

@@ -1,0 +1,23 @@
+Aplikacja umożliwia usuwanie pojedynczych kontaktów oraz usunięcie wszystkich kontaktów jednocześnie.
+
+Usuwanie pojedynczego kontaktu
+Zaznacz żądany kontakt w tabeli i kliknij przycisk usuwania.
+Pojawi się okno potwierdzenia z pytaniem „Czy na pewno usunąć?” z możliwością potwierdzenia lub anulowania usunięcia.
+Po potwierdzeniu wybrany kontakt zostanie usunięty, a wyświetli się okno powiadomienia o pomyślnym usunięciu wybranego kontaktu.
+
+Usuwanie wszystkich kontaktów
+Nie trzeba nic zaznaczać – wystarczy kliknąć przycisk usunięcia całej bazy danych.
+Otworzy się okno potwierdzenia z polem tekstowym, w którym należy wpisać słowo „usuń” w celu potwierdzenia akcji.
+W tym oknie można również zaznaczyć opcję usunięcia zapisanych filtrów.
+Jeśli opcja jest włączona, wszystkie zapisane filtry zostaną usunięte.
+Po potwierdzeniu aplikacja spróbuje usunąć wszystkie kontakty z bazy danych, usunąć zapisane filtry (jeśli opcja była włączona) i usunąć plik bazy danych (contacts_db.sqlite).
+Jeśli plik bazy danych nie może zostać usunięty, zostanie usunięta tylko jego zawartość, a plik pozostanie.
+Następnie aplikacja automatycznie się zrestartuje i utworzy nową, pustą bazę danych.
+
+!!! Nie usuwaj pliku bazy danych ręcznie, grozi to nieodwracalną utratą danych !!!
+
+Skróty klawiszowe
+Usuń zaznaczony kontakt: Ctrl + D (macOS: Cmd + D)
+Usuń całą bazę danych: Ctrl + Shift + D (macOS: Cmd + Shift + D)
+
+Uwaga: Skróty klawiszowe działają tylko wtedy, gdy aplikacja jest ustawiona na okno „Kontakty”.

@@ -1,0 +1,9 @@
+Aplikacja umożliwia sprawdzenie kontaktów, których urodziny zbliżają się w najbliższym czasie.
+
+Po uruchomieniu kontrola przeszukuje wszystkie kontakty i wybiera te, dla których pole „Urodziny” jest wypełnione, a data urodzin mieści się w przedziale ±7 dni od aktualnej daty.
+Na końcu wyświetlane jest powiadomienie, że żaden kontakt nie spełnia kryteriów, lub dialog z listą znalezionych kontaktów.
+W dialogu można przejść do wybranego kontaktu, co ustawia filtr na ten kontakt.
+
+Kontrola działa w tle, więc aplikacja może być używana w tym czasie bez przeszkód.
+
+Użytkownik jest informowany o zakończeniu dialogiem z wynikiem.

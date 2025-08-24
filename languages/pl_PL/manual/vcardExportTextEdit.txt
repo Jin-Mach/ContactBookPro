@@ -1,0 +1,10 @@
+Aplikacja umożliwia eksport wybranego kontaktu jako vCard.
+
+Eksport do formatu vCard (.vcf) pozwala zapisać kontakty w ustandaryzowanym formacie, obsługiwanym przez telefony komórkowe, klienty poczty e-mail (np. Microsoft Outlook, Thunderbird) oraz inne aplikacje do zarządzania kontaktami.
+Każdy eksportowany kontakt zawiera podstawowe informacje – pełne imię i nazwisko, e-mail, numer telefonu oraz adres osobisty.
+Po wybraniu eksportu do vCard pojawi się okno dialogowe umożliwiające określenie lokalizacji i nazwy pliku.
+Domyślnie okno dialogowe otwiera się w folderze Dokumenty (to samo miejsce dla Windows i macOS), ale użytkownik może wybrać dowolny inny folder.
+
+Eksport odbywa się natychmiastowo.
+
+Po zakończeniu pojawia się okno dialogowe z informacją o pomyślnym zapisaniu.

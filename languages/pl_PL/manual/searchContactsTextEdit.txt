@@ -1,0 +1,29 @@
+Aplikacja umożliwia wyszukiwanie kontaktów na dwa sposoby – proste i zaawansowane.
+
+Proste wyszukiwanie
+Działa tylko w wybranej kolumnie tabeli (np. Imię, E-mail, Telefon). Najpierw wybierz kolumnę, w której chcesz szukać.
+Wprowadź tekst w polu wyszukiwania i kliknij Szukaj. Jeśli żadna kolumna nie jest wybrana, aplikacja wyświetli ostrzeżenie „Wybierz kolumnę” i wyszukiwanie nie zostanie uruchomione.
+Jeśli skorzystasz z sugerowanej propozycji, wyszukiwana jest dokładna zgodność; w przeciwnym razie wyszukiwane są rekordy zawierające wprowadzony tekst.
+
+Zaawansowane wyszukiwanie
+Klikając Zaawansowane wyszukiwanie, otworzy się okno dialogowe, w którym można wprowadzić kilka warunków jednocześnie (np. Imię, Miasto, E-mail,...).
+Dla każdego pola możesz wybrać opcję Wszystko, Zawiera, Zaczyna się lub Kończy się.
+Poszczególne warunki można edytować lub usuwać bez konieczności ponownego ustawiania całego filtra.
+Możesz także wyświetlić podgląd aktualnego filtra lub zapisać filtr pod własną nazwą.
+Po kliknięciu Szukaj wyświetlone zostaną wyniki lub komunikat, że żaden rekord nie odpowiada podanym parametrom.
+
+Uwaga: Powtórne wyszukiwanie przeszukuje tylko kontakty ograniczone poprzednim filtrem; aby przeszukać wszystkie kontakty, użyj opcji „Reset filtrów”.
+
+Zapisane filtry
+Zapisane filtry można w każdej chwili wyświetlić, zastosować lub usunąć.
+
+Reset filtrów
+Wybierając Reset filtrów, usuniesz wszystkie warunki i wyświetlisz wszystkie kontakty.
+
+Skróty klawiaturowe
+Wyszukiwanie: Ctrl + F (macOS: Cmd + F)
+Zaawansowane wyszukiwanie: Ctrl + Shift + F (macOS: Cmd + Shift + F)
+Reset filtrów: Ctrl + R (macOS: Cmd + R)
+Zapisane filtry: Ctrl + L (macOS: Cmd + L)
+
+Uwaga: Skróty klawiaturowe działają tylko, gdy aplikacja jest ustawiona na okno „Kontakty”.

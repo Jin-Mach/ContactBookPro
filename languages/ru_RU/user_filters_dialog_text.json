@@ -1,0 +1,8 @@
+{
+  "userFiltersDialog": {
+    "dialogTitle": "Сохранённые фильтры",
+    "userFiltersTextLabel": "Список сохранённых фильтров",
+    "filterButton": "Применить фильтр",
+    "cancelButton": "Отменить"
+  }
+}

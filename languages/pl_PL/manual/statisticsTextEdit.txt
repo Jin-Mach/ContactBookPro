@@ -1,0 +1,19 @@
+Aplikacja oferuje przegląd statystyk kontaktów, podzielony na kilka zakładek, które wizualizują różne aspekty bazy danych za pomocą wykresów.
+
+Podstawowe statystyki
+Wykres kołowy pokazuje rozkład kontaktów według płci.
+Wykres słupkowy pokazuje rozkład kontaktów według relacji.
+Wykres słupkowy pokazuje najczęściej występujące miasta kontaktów.
+
+Statystyki zawodowe
+Dwa wykresy kołowe pokazują procentowe wypełnienie nieobowiązkowych pól E-mail i Telefon.
+Wykres słupkowy pokazuje liczbę kontaktów według miast na podstawie danych zawodowych.
+
+Statystyki społecznościowe
+Wykres słupkowy, w którym każdy słupek jest podzielony na dwie części – liczba wypełnionych i niewypełnionych wpisów dla poszczególnych sieci społecznościowych.
+
+Statystyki systemowe
+Górny poziomy wykres słupkowy pokazuje procentowe wypełnienie całej bazy danych – stosunek wszystkich możliwych pól do liczby wypełnionych.
+Dolny poziomy wykres słupkowy pokazuje to samo dla poszczególnych tabel bazy danych.
+
+Po dodaniu, edycji lub usunięciu kontaktu użytkownik jest informowany o zmianie statystyk krótkim powiadomieniem w dolnej części aplikacji.

@@ -1,0 +1,10 @@
+{
+  "qrCodePreviewDialog": {
+    "qrDialogTitle": "Просмотр QR-кода",
+    "infoLabelText": "Сканируйте QR-код для сохранения контакта"
+  },
+  "pdfPreviewDialog": {
+    "pdfDialogTitle": "Просмотр PDF",
+    "closeDialogButton": "Закрыть просмотр"
+  }
+}

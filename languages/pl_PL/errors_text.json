@@ -1,0 +1,89 @@
+{
+  "errorHandler": {
+    "IOError": "Wystąpił błąd wejścia/wyjścia. Sprawdź proszę połączenie z dyskiem.",
+    "ValueError": "Nieprawidłowy format pliku. Upewnij się, że używasz obsługiwanego formatu.",
+    "TypeError": "Nieprawidłowy typ argumentu. Sprawdź proszę wartości wejściowe.",
+    "TimeoutError": "Operacja przekroczyła czas oczekiwania podczas próby otwarcia lub zapisania pliku.",
+    "JSONDecodeError": "Plik nie jest prawidłowym JSON-em. Sprawdź proszę format pliku.",
+    "DatabaseConnectionError": "Nie udało się połączyć z bazą danych.",
+    "queryError": "Błąd podczas wykonywania zapytania do bazy danych.",
+    "RuntimeError": "Nie udało się otworzyć linku. Sprawdź, czy jest prawidłowy i czy masz połączenie z internetem.",
+    "URLError": "Link jest nieprawidłowy lub nie udało się nawiązać połączenia.",
+    "FileNotFoundError": "Plik wykonywalny lub skrypt nie został znaleziony. Sprawdź proszę ścieżkę.",
+    "OSError": "Wystąpił błąd systemowy podczas próby restartu aplikacji. Uruchom aplikację ręcznie.",
+    "UnexpectedError": "Wystąpił nieoczekiwany błąd."
+  },
+  "dialogMandatoryWidget": {
+    "genderError": "Proszę wybierz płeć.",
+    "relationshipError": "Proszę wybierz relację.",
+    "emptyTextError": "To pole nie może być puste.\n",
+    "emailValidatorError": "Nieprawidłowy format e-mail.\nWprowadź proszę e-mail w formacie: email@domena.pl",
+    "phoneNumberValidatorError": "Wprowadź numer telefonu w prawidłowym formacie.\nNa przykład: +48123456789."
+  },
+  "dialogWorkWidget": {
+    "emailValidatorError": "Nieprawidłowy format e-mail.\nWprowadź proszę e-mail w formacie: email@domena.pl",
+    "phoneNumberValidatorError": "Wprowadź numer telefonu w prawidłowym formacie.\nNa przykład: +48123456789.",
+    "workAddressValidatorError": "Wypełnij numer domu, miasto, kod pocztowy i kraj, lub pozostaw wszystko puste."
+  },
+  "dialogSocialNetworkWidget": {
+    "urlValidatorError": "Nieprawidłowy format linku lub niepoprawna sieć społecznościowa.\nWprowadź proszę poprawny adres URL dla {site} w formacie: https://www.{site}.com/profil.",
+    "websiteValidatorError": "Nieprawidłowy format.\nWprowadź poprawny adres URL w formacie: www.example.pl"
+  },
+  "notesUtilities": {
+    "textLengthError": "Tekst może mieć maksymalnie 300 znaków.",
+    "textLineCountError": "Notatki mogą mieć maksymalnie 10 linii."
+  },
+  "calendarDialog": {
+    "selectedDateError": "Wybrana data nie może być późniejsza niż aktualna data."
+  },
+  "advancedSearchDialog": {
+    "noSelectedFilter": "Brak aktywnego filtra."
+  },
+  "contactSearchController": {
+    "emptySearchText": "Nie można wyszukać bez wprowadzonego tekstu.",
+    "noTableviewSelection": "Do szybkiego wyszukiwania należy zaznaczyć kolumnę.",
+    "noFilteredData": "Żadne dane nie odpowiadają wprowadzonemu wyrażeniu.\nFiltr zostanie zresetowany."
+  },
+  "widgetErrors": {
+    "indexError": "Nie wybrano prawidłowego indeksu. Wybierz ponownie.",
+    "noTableviewSelection": "Najpierw wybierz kontakt z listy."
+  },
+  "filtersController": {
+    "noActiveFilter": "Brak aktywnego filtra.",
+    "existingFilterName": "Nazwa filtra już istnieje.",
+    "noUserFilters": "Brak zapisanych filtrów."
+  },
+  "filterNameDialog": {
+    "emptyFilterName": "Nie podano nazwy filtra."
+  },
+  "activeFiltersDialog": {
+    "noActiveFilter": "Brak aktywnego filtra."
+  },
+  "userFiltersDialog": {
+    "noFilters": "Brak zapisanych filtrów.",
+    "noSelection": "Najpierw wybierz filtr."
+  },
+  "csvExportController": {
+    "emptyIdList": "Brak kontaktów do eksportu"
+  },
+  "excelExportController": {
+    "emptyIdList": "Brak kontaktów do eksportu"
+  },
+  "pdfExportController": {
+    "emptyIdList": "Brak kontaktów do eksportu",
+    "indexError": "Nie wybrano prawidłowego indeksu. Wybierz ponownie.",
+    "noTableviewSelection": "Najpierw wybierz kontakt z listy."
+  },
+  "checkBirthdayController": {
+    "noBirthday": "Żaden kontakt nie ma urodzin w najbliższym okresie."
+  },
+  "checkDuplicatesController": {
+    "noDuplicates": "Brak duplikatów kontaktów."
+  },
+  "checkCoordinatesController": {
+    "noCoordinates": "Wszystkie kontakty mają prawidłowe współrzędne"
+  },
+  "validatedLineedit": {
+    "emptyClipboard": "Schowek jest pusty, brak czego wklejać"
+  }
+}

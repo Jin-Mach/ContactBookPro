@@ -1,0 +1,5 @@
+Aplikacja umożliwia wyświetlenie podglądu kodu QR dla wybranego kontaktu.
+
+Kod QR zawiera te same dane, co eksport do vCard – imię, nazwisko, e-mail, telefon oraz adres osobisty.
+
+Podgląd kodu QR otwiera się w osobnym oknie i jest statyczny – nie można go przybliżać, oddalać ani zapisywać.

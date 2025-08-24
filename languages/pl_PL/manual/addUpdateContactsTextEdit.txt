@@ -1,0 +1,68 @@
+Formularz służy do tworzenia nowego lub edytowania istniejącego kontaktu.
+Zawiera pola obowiązkowe i opcjonalne podzielone na kilka sekcji.
+Przed zapisaniem następuje weryfikacja wypełnienia i formatu danych.
+
+POLE OBOWIĄZKOWE
+Płeć (wybór z listy) – wybór z predefiniowanej listy
+Relacja (wybór z listy) – wybór z predefiniowanej listy
+Imię (pole tekstowe)
+Nazwisko (pole tekstowe)
+E-mail (pole tekstowe) – sprawdzenie poprawności formatu
+Telefon (pole tekstowe) – sprawdzenie poprawności formatu
+Ulica (pole tekstowe) – opcjonalne, jeśli nie istnieje
+Numer domu (pole tekstowe)
+Miasto (pole tekstowe)
+Kod pocztowy (pole tekstowe)
+Kraj (pole tekstowe)
+
+DANE OPCJONALNE
+
+PRACA
+Firma (pole tekstowe)
+E-mail (pole tekstowe) – sprawdzenie formatu
+Telefon (pole tekstowe) – sprawdzenie formatu
+Ulica (pole tekstowe) – opcjonalne
+Numer domu (pole tekstowe)
+Miasto (pole tekstowe)
+Kod pocztowy (pole tekstowe)
+Kraj (pole tekstowe)
+
+Uwaga: W przypadku adresu służbowego wszystkie pola (poza ulicą) muszą być wypełnione albo żadne. Częściowo wypełniony adres nie jest dozwolony.
+
+MEDIA SPOŁECZNOŚCIOWE
+Facebook (pole tekstowe)
+X (Twitter) (pole tekstowe)
+Instagram (pole tekstowe)
+LinkedIn (pole tekstowe)
+GitHub (pole tekstowe)
+Strona internetowa (pole tekstowe)
+
+SZCZEGÓŁY
+Zdjęcie – wybór pliku przez dialog
+Tytuł (pole tekstowe)
+Data urodzenia (kalendarz)
+Notatki (pole wielowierszowe)
+
+Walidacja i komunikaty o błędach
+Jeśli pola obowiązkowe nie są wypełnione, adres służbowy jest niekompletny lub format e-maila/telefonu jest błędny, wyświetlany jest komunikat o błędzie.
+Kursor automatycznie ustawia się na pierwszym błędnym polu.
+Jeśli przy zapisie nowego kontaktu lub edycji istniejącego w bazie już istnieje kontakt z tym samym e-mailem lub numerem telefonu, wyświetlany jest dialog z listą znalezionych duplikatów.
+W tym dialogu można zapisać nowy kontakt mimo duplikatu, anulować zapis lub przejść do wybranego istniejącego kontaktu wyświetlonego na liście.
+
+Po zakończeniu pojawia się okno wyskakujące z informacją o pomyślnym zapisaniu/usunięciu kontaktu.
+
+Pobieranie współrzędnych
+Po dodaniu nowego kontaktu aplikacja automatycznie próbuje uzyskać jego współrzędne geograficzne (na podstawie adresu w polach obowiązkowych).
+Jeśli współrzędne zostaną znalezione, kontakt jest wyświetlany na mapie.
+Jeśli współrzędne nie zostaną znalezione, kontakt pozostaje zapisany bez współrzędnych.
+Aplikacja zawiera również automatyczną kontrolę, która uruchamia się raz, po 5 minutach od uruchomienia aplikacji.
+Ta kontrola próbuje uzupełnić współrzędne według zapisanych adresów dla wszystkich kontaktów, które ich nie mają.
+Każdy kontakt bez współrzędnych jest w ten sposób sprawdzany maksymalnie 20 razy.
+
+Uwaga: Aktywne połączenie z Internetem jest wymagane; jeśli połączenie nie istnieje, współrzędne nie są weryfikowane, ale kontakt zostanie dodany/edytowany.
+
+Skróty klawiszowe
+Nowy kontakt: Ctrl + N (macOS: Cmd + N)
+Aktualizuj kontakt: Ctrl + U (macOS: Cmd + U)
+
+Uwaga: Skróty klawiszowe działają tylko wtedy, gdy aplikacja jest ustawiona na okno "Kontakty".
