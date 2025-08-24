@@ -18,8 +18,7 @@ The application allows you to manage contacts, visualize locations on a map, and
 
 ## Installation
 
-- Tested on Windows / macOS (IDE: VS Code, PyCharm).
-
+(Tested on Windows / macOS, IDE: VS Code, PyCharm)
 
 - Clone the repository:
 ```bash
@@ -32,9 +31,14 @@ The application allows you to manage contacts, visualize locations on a map, and
 ```
 
 - Create a virtual environment:
-```bash
+  - On Windows
+  ```bash
   python -m venv .venv
-```
+  ```
+  - On macOS/Linux
+  ```bash
+  python3 -m venv .venv
+  ```
 
 - Activate the virtual environment:
   - On Windows (Command Prompt): 
@@ -43,7 +47,7 @@ The application allows you to manage contacts, visualize locations on a map, and
   ```
   - On Windows (PowerShell):
   ```bash
-  venv\Scripts\activate.ps1
+  .venv\Scripts\activate.ps1
   ```
   - On macOS/Linux:
   ```bash
@@ -56,11 +60,17 @@ The application allows you to manage contacts, visualize locations on a map, and
 ```
 
 ## Usage
+After installing the dependencies, you can start the application with the following command:
 
 - Run the application:
-```bash
+  - On Windows
+  ```bash
   python contact_book.py
-```
+  ```
+  - On macOS/Linux
+  ```bash
+  python3 contact_book.py
+  ```
 
 ## License
 

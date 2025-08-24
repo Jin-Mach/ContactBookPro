@@ -1,12 +1,12 @@
 Die Anwendung ermöglicht die Suche nach Kontakten auf zwei Arten – einfach und erweitert.
 
 Einfache Suche  
-Funktioniert nur in der markierten Spalte der Tabelle (z. B. Jméno, E-mail, Telefon). Wählen Sie zuerst die Spalte in der Tabelle aus, in der Sie suchen möchten.
+Funktioniert nur in der markierten Spalte der Tabelle (z.. Jméno, E-mail, Telefon). Wählen Sie zuerst die Spalte in der Tabelle aus, in der Sie suchen möchten.
 Geben Sie den Text in das Suchfeld ein und klicken Sie auf Vyhledat. Wenn keine Spalte ausgewählt ist, zeigt die Anwendung die Meldung "Vyberte sloupec" an und die Suche wird nicht gestartet.
 Wenn Sie unseren Vorschlag aus der Autovervollständigung verwenden, wird nach einer exakten Übereinstimmung gesucht; andernfalls werden alle Einträge angezeigt, die den eingegebenen Text enthalten.
 
 Erweiterte Suche
-Durch Klicken auf Pokročilé vyhledávání wird ein Dialog geöffnet, in dem mehrere Bedingungen gleichzeitig eingegeben werden können (z. B. Jméno, Město, E-mail, …).
+Durch Klicken auf Pokročilé vyhledávání wird ein Dialog geöffnet, in dem mehrere Bedingungen gleichzeitig eingegeben werden können (z.. Jméno, Město, E-mail, …).
 Für jedes Feld können Sie die Option Vše, Obsahuje, Začíná oder Končí wählen.
 Einzelne Bedingungen können bearbeitet oder gelöscht werden, ohne den gesamten Filter neu einstellen zu müssen.
 Sie können auch eine Vorschau des aktuellen Filters anzeigen oder den Filter unter einem eigenen Namen speichern.

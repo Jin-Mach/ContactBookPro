@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
 
 
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyUnresolvedReferences
 class ContactsTableviewWidget(QTableView):
     def __init__(self, mandatory_model: "MandatoryModel", detail_widget: "ContactsDetailWidget",
                  status_bar: "ContactsStatusbarWidget", parent=None) -> None:
@@ -57,12 +57,13 @@ class ContactsTableviewWidget(QTableView):
         pdf_export_controller = PdfExportController(connection, self)
         check_birthday_controller = CheckBirthdayController(connection, self.mandatory_model, self, self.status_bar)
         check_duplicates_controller = CheckDuplicatesController(connection, self.mandatory_model, self, self.status_bar)
-        check_coords_controller = CheckCoordinatesController(connection, self.mandatory_model, self, self.status_bar)
+        check_coordinates_controller = CheckCoordinatesController(connection, self.mandatory_model, self, self.status_bar)
         self.context_menu = ContextMenu(None, csv_export_controller, excel_export_controller,
                                         pdf_export_controller, check_birthday_controller, check_duplicates_controller,
-                                        check_coords_controller, self)
+                                        check_coordinates_controller, self)
 
     def set_headers(self) -> None:
+        header = self.horizontalHeader()
         self.setColumnWidth(1, 30)
         self.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
         self.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
@@ -70,6 +71,10 @@ class ContactsTableviewWidget(QTableView):
         self.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
         self.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents)
         self.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.Stretch)
+        for column in [2, 3, 4, 5]:
+            header.setSectionResizeMode(column, QHeaderView.ResizeMode.Interactive)
+            self.resizeColumnToContents(column)
+            header.resizeSection(column, self.columnWidth(column) + 30)
         column_count = self.model().columnCount()
         columns = [1, 2, 3, 4, 5, 6]
         for index in range(column_count):

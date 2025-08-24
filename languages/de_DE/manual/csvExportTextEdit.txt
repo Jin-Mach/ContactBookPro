@@ -1,7 +1,7 @@
 Die Anwendung ermöglicht den Export ausgewählter oder aller Kontakte in das CSV-Format.
 
 Der Export in das CSV-Format (.csv) speichert die Kontakte als Textdatei, in der die einzelnen Daten durch ein Komma oder Semikolon (je nach Systemeinstellung) getrennt sind.  
-Das Format eignet sich für den Import in Tabellenkalkulationsprogramme (z. B. Microsoft Excel, LibreOffice Calc) oder andere Anwendungen, die CSV unterstützen.  
+Das Format eignet sich für den Import in Tabellenkalkulationsprogramme (z.. Microsoft Excel, LibreOffice Calc) oder andere Anwendungen, die CSV unterstützen.
 Nach Auswahl des Exports wird ein Dialog zum Speichern der Datei angezeigt, die standardmäßig im Ordner „Dokumente“ gespeichert wird (gleiches Verzeichnis für Windows und macOS).  
 Der Benutzer kann einen anderen Ordner sowie einen anderen Dateinamen auswählen.
 
