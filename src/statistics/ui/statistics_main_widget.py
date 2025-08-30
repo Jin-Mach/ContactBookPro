@@ -57,15 +57,17 @@ class StatisticsMainWidget(QWidget):
     def set_ui_text(self) -> None:
         try:
             self.ui_text = LanguageProvider.get_ui_text(self.objectName())
-            self.statistics_tab_widget.setTabText(0, self.ui_text.get("mandatoryStatisticsWidget", ""))
-            self.statistics_tab_widget.setTabText(1, self.ui_text.get("workStatisticsWidget", ""))
-            self.statistics_tab_widget.setTabText(2, self.ui_text.get("socialStatisticsWidget", ""))
-            self.statistics_tab_widget.setTabText(3, self.ui_text.get("completionStatisticsWidget"))
+            if self.ui_text:
+                self.statistics_tab_widget.setTabText(0, self.ui_text.get("mandatoryStatisticsWidget", ""))
+                self.statistics_tab_widget.setTabText(1, self.ui_text.get("workStatisticsWidget", ""))
+                self.statistics_tab_widget.setTabText(2, self.ui_text.get("socialStatisticsWidget", ""))
+                self.statistics_tab_widget.setTabText(3, self.ui_text.get("completionStatisticsWidget"))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)
 
     def set_count_label_text(self) -> None:
         try:
-            self.count_label.setText(f"{self.ui_text.get("totalCount", "")} {self.mandatory_model.total_rows}")
+            if self.ui_text:
+                self.count_label.setText(f"{self.ui_text.get("totalCount", "")} {self.mandatory_model.total_rows}")
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

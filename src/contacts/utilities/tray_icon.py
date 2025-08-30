@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from src.application.status_bar import StatusBar
 
 
+# noinspection PyUnresolvedReferences
 class TrayIcon(QSystemTrayIcon):
     icon_path = pathlib.Path(__file__).parents[3].joinpath("icons", "mainWindow", "mainWindowLogo.png")
 
@@ -57,8 +58,9 @@ class TrayIcon(QSystemTrayIcon):
             if ui_text:
                 self.popup_widget.popup_set_text(title, ui_text.get(message, ""))
                 self.popup_widget.adjustSize()
-                x = (self.parent.pos().x() + self.parent.width()) - (self.popup_widget.width() + 10)
-                y = (self.parent.pos().y() + self.parent.height()) - (self.popup_widget.height() - 10)
+                geometry = self.parent.geometry()
+                x = geometry.x() + geometry.width() - self.popup_widget.width() - 10
+                y = geometry.y() + geometry.height() - self.popup_widget.height() - 10
                 self.popup_widget.move(x, y)
                 self.popup_widget.show()
                 self.status_bar.show_status_bar_message(ui_text.get(message, ""))

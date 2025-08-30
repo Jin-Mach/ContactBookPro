@@ -120,7 +120,7 @@ class PersonalTabInfoWidget(QTabWidget):
     def set_photo_pixmap(self, blob: QByteArray, gender: int) -> None:
         try:
             pixmap = BlobHandler.blob_to_pixmap(blob, self)
-            if not pixmap:
+            if not pixmap or pixmap.isNull():
                 male_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
                                                                             "male_icon.png")
                 female_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
@@ -130,8 +130,8 @@ class PersonalTabInfoWidget(QTabWidget):
                     self.contact_photo_label.setPixmap(pixmap)
                 elif gender == 2 and female_icon_path.exists():
                     pixmap = QPixmap(str(female_icon_path))
-                    self.contact_photo_label.setPixmap(pixmap)
             else:
-                self.contact_photo_label.setPixmap(pixmap)
+                pixmap = pixmap.scaled(self.contact_photo_label.size(), Qt.AspectRatioMode.KeepAspectRatio)
+            self.contact_photo_label.setPixmap(pixmap)
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

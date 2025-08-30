@@ -2,8 +2,7 @@ from typing import TYPE_CHECKING
 
 from PyQt6.QtWidgets import QWidget, QLayout, QVBoxLayout, QTabWidget, QTextEdit
 
-from src.manual.utilities.set_tab_texts import apply_tab_texts
-from src.manual.utilities.set_text_edits import initialize_text_edits
+from src.manual.utilities.manual_init_provider import ManualInitProvider
 
 if TYPE_CHECKING:
     from src.manual.ui.manual_widgets.manual_treewidget import ManualTreeWidget
@@ -18,8 +17,8 @@ class ManualStatisticsWidget(QWidget):
         self.top_item_index = top_item_index
         self.setLayout(self.create_gui())
         tab_widgets = [self.statistics_text_edit]
-        apply_tab_texts(self.objectName(), self.manual_statistics_tab_widget, tab_widgets, self)
-        initialize_text_edits(tab_widgets, self)
+        ManualInitProvider.apply_tab_texts(self.objectName(), self.manual_statistics_tab_widget, tab_widgets, self)
+        ManualInitProvider.initialize_text_edits(tab_widgets, self)
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
