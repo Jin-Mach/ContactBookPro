@@ -16,9 +16,19 @@ class MainWindowButtonWidget(QFrame):
         self.setObjectName("mainWindowButtonWidget")
         self.setMinimumSize(QSize(200, 50))
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        self.setStyleSheet("""
+            QFrame#mainWindowButtonWidget {
+                border: 1px solid #448aff;
+                border-radius: 6px;
+                background-color: transparent;
+            }
+            QPushButton#button {
+                border: none;
+                font-size: 15pt;
+            }
+        """)
         self.function = function
         self.setLayout(self.create_gui())
-        self.setStyleSheet(self.get_stylesheet())
 
     def create_gui(self) -> QLayout:
         main_layout = QHBoxLayout()
@@ -30,7 +40,6 @@ class MainWindowButtonWidget(QFrame):
         self.button = QPushButton()
         self.button.setObjectName("button")
         self.button.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
-        self.button.setStyleSheet(self.get_stylesheet())
         self.button.setFlat(True)
         self.button.clicked.connect(self.function)
         main_layout.addWidget(self.icon_label)
@@ -49,16 +58,3 @@ class MainWindowButtonWidget(QFrame):
 
     def set_text(self, text: str) -> None:
         self.button.setText(text)
-
-    @staticmethod
-    def get_stylesheet() -> str:
-        return """QFrame#mainWindowButtonWidget {
-        border: 1px solid #448aff;
-        border-radius: 6px;
-        background-color: transparent;
-    }
-    QPushButton#button {
-        border: none;
-        font-size: 15pt;
-    }
-    """

@@ -2,7 +2,7 @@ import pathlib
 
 from PyQt6.QtCore import Qt, QByteArray
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFormLayout, QTabWidget
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFormLayout, QTabWidget, QSizePolicy
 
 from src.contacts.utilities.blob_handler import BlobHandler
 from src.contacts.utilities.date_handler import format_date
@@ -17,6 +17,7 @@ class PersonalTabInfoWidget(QTabWidget):
         self.setObjectName("personalTabInfoWidget")
         self.setFixedWidth(400)
         self.addTab(self.create_gui(), "")
+        self.set_labels()
         self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.set_ui_text()
 
@@ -44,12 +45,10 @@ class PersonalTabInfoWidget(QTabWidget):
         self.contact_first_name_text_label.setObjectName("contactFirstNameTextLabel")
         self.contact_first_name_label = QLabel()
         self.contact_first_name_label.setObjectName("contactFirstNameLabel")
-        self.contact_first_name_label.setWordWrap(True)
         self.contact_second_name_text_label = QLabel()
         self.contact_second_name_text_label.setObjectName("contactSecondNameTextLabel")
         self.contact_second_name_label = QLabel()
         self.contact_second_name_label.setObjectName("contactSecondNameLabel")
-        self.contact_second_name_label.setWordWrap(True)
         self.contact_relationship_text_label = QLabel()
         self.contact_relationship_text_label.setObjectName("contactRelationshipTextLabel")
         self.contact_relationship_label = QLabel()
@@ -71,6 +70,13 @@ class PersonalTabInfoWidget(QTabWidget):
         main_layout.addStretch()
         main_widget.setLayout(main_layout)
         return main_widget
+
+    def set_labels(self) -> None:
+        labels = [self.contact_first_name_label, self.contact_second_name_label]
+        for label in labels:
+            label.setWordWrap(True)
+            label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+            label.setMinimumWidth(100)
 
     def set_ui_text(self) -> None:
         try:

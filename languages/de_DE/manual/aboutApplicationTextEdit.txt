@@ -1,4 +1,4 @@
-Die Anwendung Databáze kontaktů dient zur übersichtlichen und einfachen Verwaltung Ihrer Kontakte.
+Die Anwendung Kontakt-Datenbank dient zur übersichtlichen und einfachen Verwaltung Ihrer Kontakte
 
 Sie ermöglicht die Erfassung grundlegender sowie zusätzlicher Informationen zu Kontakten, deren Suche, Filterung und den Export in Formate wie CSV, Excel oder vCard.
 Es steht auch eine Vorschau der Kontakte im PDF-Format sowie die Anzeige von QR-Codes einzelner Einträge zur Verfügung.

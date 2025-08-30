@@ -21,6 +21,8 @@ class BasicStatisticsWidget(QWidget):
 
     def create_gui(self) -> QLayout:
         main_layout = QGridLayout()
+        main_layout.setSpacing(0)
+        main_layout.setContentsMargins(0, 0, 0, 0)
         self.count_label = QLabel()
         self.count_label.setStyleSheet("font-size: 20pt")
         self.count_label.setAlignment(Qt.AlignmentFlag.AlignCenter)

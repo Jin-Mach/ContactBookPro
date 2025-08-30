@@ -9,6 +9,7 @@ class NotesInfoWidget(QWidget):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("notesInfoWidget")
+        self.setMinimumWidth(300)
         self.setLayout(self.create_gui())
         self.set_ui_text()
 

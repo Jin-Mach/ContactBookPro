@@ -60,7 +60,12 @@ class MainWindow(QMainWindow):
         dock_frame = QFrame()
         dock_frame.setObjectName("mainWindowDockFrame")
         dock_frame.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
-        dock_frame.setStyleSheet(self.set_frame_style())
+        dock_frame.setStyleSheet("""
+            QFrame#mainWindowDockFrame {
+                border-right: 1px solid #448aff;
+                background-color: #1e1e2f;
+            }
+        """)
         dock_layout = QVBoxLayout(dock_frame)
         dock_layout.setContentsMargins(0, 0, 0, 10)
         dock_layout.setSpacing(0)
@@ -171,12 +176,3 @@ class MainWindow(QMainWindow):
             dialog = AboutApplicationDialog(self)
             dialog.exec()
         self.stacked_widget.setCurrentIndex(index)
-
-    @staticmethod
-    def set_frame_style() -> str:
-        return """
-            QFrame#mainWindowDockFrame {
-                border-right: 1px solid #448aff;
-                background-color: #1e1e2f;
-            }
-        """

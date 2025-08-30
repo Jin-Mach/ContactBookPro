@@ -64,17 +64,15 @@ class ContactsTableviewWidget(QTableView):
 
     def set_headers(self) -> None:
         header = self.horizontalHeader()
+        header.setSectionsMovable(False)
         self.setColumnWidth(1, 30)
         self.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
-        self.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
-        self.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
-        self.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.ResizeToContents)
-        self.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeMode.ResizeToContents)
-        self.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeMode.Stretch)
         for column in [2, 3, 4, 5]:
-            header.setSectionResizeMode(column, QHeaderView.ResizeMode.Interactive)
             self.resizeColumnToContents(column)
             header.resizeSection(column, self.columnWidth(column) + 30)
+            header.setSectionResizeMode(column, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(6, 400)
+        header.setStretchLastSection(True)
         column_count = self.model().columnCount()
         columns = [1, 2, 3, 4, 5, 6]
         for index in range(column_count):

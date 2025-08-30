@@ -22,16 +22,13 @@ class SplashScreen(QSplashScreen):
             icon_path = pathlib.Path(__file__).parents[2].joinpath("icons", "splashScreen", "splash_icon.png")
             if not icon_path.exists():
                 logger.error(f"{self.__class__.__name__}: Icon not found at {icon_path}")
-                self.setStyleSheet("font-family: Tahoma; font-size: 20pt;")
-                self.showMessage("Contact Book Pro...", Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft,
-                                 Qt.GlobalColor.black)
             else:
                 pixmap = QPixmap(str(icon_path))
                 pixmap = pixmap.scaled(self.size(), Qt.AspectRatioMode.IgnoreAspectRatio,
                                         Qt.TransformationMode.SmoothTransformation)
                 self.setPixmap(pixmap)
-                self.setStyleSheet("font-family: Tahoma; font-size: 20pt;")
-                self.showMessage("Contact Book Pro...", Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft,
+            self.setStyleSheet("font-family: Tahoma; font-size: 20pt;")
+            self.showMessage("Contact Book Pro...", Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft,
                                  Qt.GlobalColor.black)
         except Exception as e:
             logger.error(f"{self.__class__.__name__}: {e}", exc_info=True)

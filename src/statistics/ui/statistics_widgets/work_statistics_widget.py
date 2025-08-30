@@ -12,6 +12,8 @@ class WorkStatisticsWidget(QWidget):
 
     def create_gui(self) -> QLayout:
         main_layout = QGridLayout()
+        main_layout.setSpacing(0)
+        main_layout.setContentsMargins(0, 0, 0, 0)
         self.email_pie = WorkPieChartWidget("email", self)
         self.phone_pie = WorkPieChartWidget("phone", self)
         self.city_bar = CityBarChartWidget("work", self)
