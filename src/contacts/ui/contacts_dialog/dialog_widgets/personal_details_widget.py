@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (QWidget, QLayout, QGridLayout, QVBoxLayout, QLabel,
                              QLineEdit, QTextEdit)
 
 from src.contacts.ui.contacts_dialog.calendar_dialog import CalendarDialog
+from src.contacts.ui.contacts_dialog.dialog_widgets.notes_text_edit import NotesTextEdit
 from src.contacts.ui.shared_widgets.validated_lineedit import ValidatedLineEdit
 from src.contacts.utilities.blob_handler import BlobHandler
 from src.contacts.utilities.check_update_data import CheckUpdateProvider
@@ -70,12 +71,10 @@ class PersonalDetailsWidget(QWidget):
         self.dialog_reset_calendar_pushbutton.setObjectName("dialogResetCalendarPushbutton")
         self.dialog_reset_calendar_pushbutton.clicked.connect(self.dialog_birthday_edit.clear)
         notes_layout = QVBoxLayout()
-        self.dialog_notes_edit = QTextEdit()
-        self.dialog_notes_edit.setObjectName("dialogNotesEdit")
-        self.dialog_notes_edit.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
-        self.dialog_notes_edit.textChanged.connect(lambda: check_notes_length(self.dialog_notes_edit, self.dialog_letters_count_label, self))
+        self.dialog_notes_edit = NotesTextEdit(lambda: check_notes_length(self.dialog_notes_edit,
+                                                                          self.dialog_letters_count_label, self))
         letters_count_layout = QHBoxLayout()
-        self.dialog_letters_count_label = QLabel("0/200")
+        self.dialog_letters_count_label = QLabel("0/300")
         self.dialog_letters_count_label.setObjectName("dialogLettersCountLabel")
         photo_buttons_layout.addWidget(self.dialog_get_photo_pushbutton)
         photo_buttons_layout.addWidget(self.dialog_reset_photo_button)
@@ -102,13 +101,13 @@ class PersonalDetailsWidget(QWidget):
     def set_ui_text(self) -> None:
         try:
             ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
-            widgets = self.findChildren((QLabel, QLineEdit, QTextEdit))
+            widgets = self.findChildren((QLabel, QLineEdit))
             if ui_text:
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):
                             widget.setText(ui_text.get(widget.objectName(), ""))
-                        elif isinstance(widget, (QLineEdit, QTextEdit)):
+                        elif isinstance(widget, QLineEdit):
                             widget.setPlaceholderText(ui_text.get(widget.objectName(), ""))
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

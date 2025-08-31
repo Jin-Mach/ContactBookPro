@@ -211,7 +211,7 @@
     "tabTexts": {
       "checkBirthdayTextEdit": "Verjaardagen controleren",
       "checkDuplicityTextEdit": "Duplicaten controleren",
-      "checkMissingCoordsTextEdit": "Coördinaten controleren"
+      "checkMissingCoordinatesTextEdit": "Coördinaten controleren"
     }
   },
   "manualMapWidget": {

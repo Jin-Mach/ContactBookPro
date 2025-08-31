@@ -211,7 +211,7 @@
     "tabTexts": {
       "checkBirthdayTextEdit": "Проверка дней рождения",
       "checkDuplicityTextEdit": "Проверка дубликатов",
-      "checkMissingCoordsTextEdit": "Проверка координат"
+      "checkMissingCoordinatesTextEdit": "Проверка координат"
     }
   },
   "manualMapWidget": {

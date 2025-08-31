@@ -109,6 +109,9 @@
     "advancedFilesFilter": "Zaawansowane formaty: (*.tiff *.bmp *.gif *.heic *.webp)",
     "allFilesFilter": "Wszystkie formaty: (*.*)"
   },
+  "notesTextEdit": {
+    "notesPlaceholderText": "Notatki do kontaktu (max. 300 znaków, max. 5 linii)..."
+  },
   "contactsListDialog": {
     "duplicateTextLabel": "Liczba znalezionych zduplikowanych kontaktów",
     "duplicateTextLabelContextBirthday": "Liczba kontaktów z urodzinami",

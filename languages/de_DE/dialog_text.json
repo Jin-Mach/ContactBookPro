@@ -95,8 +95,7 @@
     "dialogCalendarPushbutton": "Kalender",
     "dialogResetCalendarPushbutton": "Entfernen",
     "dialogTitleEdit": "Titel eingeben...",
-    "dialogBirthdayEdit": "Geburtsdatum auswählen...",
-    "dialogNotesEdit": "Notizen zum Kontakt (max. 300 Zeichen, max. 5 Zeilen)..."
+    "dialogBirthdayEdit": "Geburtsdatum auswählen..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Geburtsdatum auswählen",
@@ -108,6 +107,9 @@
     "basicFilesFilter": "Grundformat: (*.jpg *.jpeg *.png)",
     "advancedFilesFilter": "Erweiterte Formate: (*.tiff *.bmp *.gif *.heic *.webp)",
     "allFilesFilter": "Alle Formate: (*.*)"
+  },
+  "notesTextEdit": {
+    "notesPlaceholderText": "Notizen zum Kontakt (max. 300 Zeichen, max. 5 Zeilen)..."
   },
   "contactsListDialog": {
     "duplicateTextLabel": "Anzahl gefundener doppelter Kontakte",

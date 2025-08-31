@@ -169,7 +169,7 @@ class BasicSetupProvider:
     def check_manual_files() -> dict:
         required_files = [
             "aboutApplicationTextEdit.txt", "addUpdateContactsTextEdit.txt", "checkBirthdayTextEdit.txt",
-            "checkDuplicityTextEdit.txt", "checkMissingCoordsTextEdit.txt", "contextMenuTextEdit.txt",
+            "checkDuplicityTextEdit.txt", "checkMissingCoordinatesTextEdit.txt", "contextMenuTextEdit.txt",
             "csvExportTextEdit.txt", "deleteContactsTextEdit.txt", "excelExportTextEdit.txt",
             "mapTextEdit.txt", "pdfPreviewTextEdit.txt", "qrCodePreviewTextEdit.txt", "searchContactsTextEdit.txt",
             "statisticsTextEdit.txt", "usageApplicationTextEdit.txt", "vcardExportTextEdit.txt"

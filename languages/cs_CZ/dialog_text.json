@@ -95,8 +95,7 @@
     "dialogCalendarPushbutton": "Kalendář",
     "dialogResetCalendarPushbutton": "Odstranit",
     "dialogTitleEdit": "Zadej titul...",
-    "dialogBirthdayEdit": "Vyber datum narození...",
-    "dialogNotesEdit": "Poznámky ke kontaktu (max. 300 znaků, max. 5 řádků)..."
+    "dialogBirthdayEdit": "Vyber datum narození..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Vybrat datum narození",
@@ -108,6 +107,9 @@
     "basicFilesFilter": "Základní formát: (*.jpg *.jpeg *.png)",
     "advancedFilesFilter": "Pokročilé formáty: (*.tiff *.bmp *.gif *.heic *.webp)",
     "allFilesFilter": "Všechny formáty: (*.*)"
+  },
+  "notesTextEdit": {
+    "notesPlaceholderText": "Poznámky ke kontaktu (max. 300 znaků, max. 5 řádků)..."
   },
   "contactsListDialog": {
     "duplicateTextLabel": "Počet nalezených duplicitních kontaktů",

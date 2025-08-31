@@ -209,9 +209,9 @@
   },
   "manualCheckWidget": {
     "tabTexts": {
-      "checkBirthdayTextEdit": "Kontrola narozeni",
+      "checkBirthdayTextEdit": "Kontrola narozenin",
       "checkDuplicityTextEdit": "Kontrola duplicit",
-      "checkMissingCoordsTextEdit": "Kontrola souřadnic"
+      "checkMissingCoordinatesTextEdit": "Kontrola souřadnic"
     }
   },
   "manualMapWidget": {

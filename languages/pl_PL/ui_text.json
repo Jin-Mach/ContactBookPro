@@ -211,7 +211,7 @@
     "tabTexts": {
       "checkBirthdayTextEdit": "Kontrola urodzin",
       "checkDuplicityTextEdit": "Kontrola duplikatów",
-      "checkMissingCoordsTextEdit": "Kontrola współrzędnych"
+      "checkMissingCoordinatesTextEdit": "Kontrola współrzędnych"
     }
   },
   "manualMapWidget": {

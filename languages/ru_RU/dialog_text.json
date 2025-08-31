@@ -109,6 +109,9 @@
     "advancedFilesFilter": "Расширенные форматы: (*.tiff *.bmp *.gif *.heic *.webp)",
     "allFilesFilter": "Все форматы: (*.*)"
   },
+  "notesTextEdit": {
+    "notesPlaceholderText": "Заметки о контакте (макс. 300 символов, макс. 5 строк)..."
+  },
   "contactsListDialog": {
     "duplicateTextLabel": "Количество найденных дублирующихся контактов",
     "duplicateTextLabelContextBirthday": "Количество контактов с днями рождения",
