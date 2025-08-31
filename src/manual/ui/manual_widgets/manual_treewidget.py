@@ -17,7 +17,7 @@ class ManualTreeWidget(QTreeWidget):
 
     def set_headers(self) -> None:
         try:
-            self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             headers_text = self.ui_text.get("headers", "")
             if headers_text:
                 self.setHeaderLabels(headers_text)

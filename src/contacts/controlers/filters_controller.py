@@ -36,7 +36,7 @@ class FiltersController:
     def show_active_filters(self) -> None:
         try:
             if not self.get_all_active_filters():
-                error_text = LanguageProvider.get_error_text(self.class_name)
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                 DialogsProvider.show_error_dialog(error_text.get("noActiveFilter", ""), self.parent)
                 return
             advanced_filter_model = AdvancedFilterModel(self.get_all_active_filters(), self.parent)
@@ -56,7 +56,7 @@ class FiltersController:
                 if advanced_dialog and advanced_dialog.objectName() == "advancedSearchDialog":
                     status, result = FiltersProvider.add_new_filter(filter_name, advanced_dialog.get_final_filter())
                     if not status and result == "exists":
-                        error_text = LanguageProvider.get_error_text(self.class_name)
+                        error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                         DialogsProvider.show_error_dialog(error_text.get("existingFilterName", ""), self.parent)
                         return
                     main_window = InstanceProvider.get_main_window_instance()
@@ -79,7 +79,7 @@ class FiltersController:
         try:
             filters = FiltersProvider.get_filters_data()
             if not filters:
-                error_text = LanguageProvider.get_error_text(self.class_name)
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                 DialogsProvider.show_error_dialog(error_text.get("noUserFilters", ""), self.parent)
                 return
             from src.contacts.controlers.advanced_search_controller import AdvancedSearchController

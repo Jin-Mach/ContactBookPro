@@ -64,7 +64,7 @@ class CheckBirthdayController:
                         show_selected_contact(self.mandatory_model, self.table_view, self.status_bar,
                                                 dialog.selected_id)
             else:
-                error_text = LanguageProvider.get_error_text(self.class_name)
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                 if error_text:
                     error_text = error_text.get("noBirthday", "")
                     DialogsProvider.show_error_dialog(error_text, main_window)

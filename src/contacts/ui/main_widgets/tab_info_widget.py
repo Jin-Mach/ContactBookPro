@@ -158,7 +158,7 @@ class TabInfoWidget(QTabWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             tab_text = ["personalTabText", "workTabText"]
             if ui_text:
                 for index, text in enumerate(tab_text):
@@ -173,7 +173,7 @@ class TabInfoWidget(QTabWidget):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             buttons = self.findChildren(QPushButton)
             if tooltips_text:
                 for button in buttons:

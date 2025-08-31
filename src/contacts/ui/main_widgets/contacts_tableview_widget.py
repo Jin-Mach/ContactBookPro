@@ -43,7 +43,7 @@ class ContactsTableviewWidget(QTableView):
         self.selectionModel().currentRowChanged.connect(lambda: self.set_detail_data(None))
         self.selectionModel().currentChanged.connect(self.set_search_text_label)
         self.setItemDelegate(delegate)
-        self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+        self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
         if self.ui_text:
             self.gender_items = self.ui_text["gender_items"]
             self.relationship_items = self.ui_text["relationship_items"]

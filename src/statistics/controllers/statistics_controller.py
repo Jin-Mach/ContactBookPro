@@ -39,7 +39,7 @@ class StatisticsController:
 
     def set_statistics_data(self, data: dict[str, dict[str, Any]]) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text("statisticsController")
+            ui_text = LanguageProvider.get_json_text("ui_text.json", "statisticsController")
             handlers = {
                 "basic": self.set_basic,
                 "work": self.set_work,

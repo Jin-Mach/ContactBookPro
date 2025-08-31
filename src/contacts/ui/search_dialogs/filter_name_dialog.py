@@ -45,7 +45,7 @@ class FilterNameDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             if ui_text:
                 if "dialogTitle" in ui_text:
                     self.setWindowTitle(ui_text.get("dialogTitle", ""))
@@ -64,7 +64,7 @@ class FilterNameDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltip_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltip_text:
                 for button in self.buttons:
                     if button.objectName() in tooltip_text:
@@ -75,7 +75,7 @@ class FilterNameDialog(QDialog):
 
     def get_filter_name(self) -> str | None:
         try:
-            error_text = LanguageProvider.get_error_text(self.objectName())
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
             input_text = self.filter_name_input.text().strip()
             if not input_text:
                 if error_text:

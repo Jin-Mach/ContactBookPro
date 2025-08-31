@@ -34,7 +34,7 @@ class TrayIcon(QSystemTrayIcon):
 
     def create_context_menu(self) -> QMenu | None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             menu = QMenu()
             if ui_text:
                 self.new_contact = menu.addAction(ui_text.get("addContact", ""))
@@ -54,7 +54,7 @@ class TrayIcon(QSystemTrayIcon):
 
     def show_notification(self, title: str, message: str) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text("trayIcon")
+            ui_text = LanguageProvider.get_json_text("ui_text.json", "trayIcon")
             if ui_text:
                 self.popup_widget.popup_set_text(title, ui_text.get(message, ""))
                 self.popup_widget.show()

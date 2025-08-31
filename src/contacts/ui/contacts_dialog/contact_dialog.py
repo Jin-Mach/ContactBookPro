@@ -47,7 +47,7 @@ class ContactDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             tab_text = ["mandatory", "nonMandatory"]
             if ui_text:
                 if "dialogTitle" in ui_text and "dialogTitleUpdate" in ui_text:
@@ -69,7 +69,7 @@ class ContactDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltips_text:
                 for button in self.buttons:
                     if button.objectName() in tooltips_text:

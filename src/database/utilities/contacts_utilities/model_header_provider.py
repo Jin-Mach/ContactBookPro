@@ -9,7 +9,7 @@ class ModelHeaderProvider:
     @staticmethod
     def set_mandatory_model_headers(model: QSqlTableModel, parent=None) -> None:
         try:
-            headers = LanguageProvider.get_headers_text(model.objectName())
+            headers = LanguageProvider.get_json_text("headers_text.json", model.objectName())
             if headers:
                 for index, key in enumerate(headers.keys()):
                     model.setHeaderData(index, Qt.Orientation.Horizontal, headers.get(key, ""))
@@ -19,7 +19,7 @@ class ModelHeaderProvider:
     @staticmethod
     def set_advanced_filter_model_headers(model: QAbstractTableModel, parent=None) -> None:
         try:
-            headers = LanguageProvider.get_headers_text(model.objectName())
+            headers = LanguageProvider.get_json_text("headers_text.json", model.objectName())
             if headers:
                 for index, key in enumerate(headers.keys()):
                     model.setHeaderData(index, Qt.Orientation.Horizontal, headers.get(key, ""))

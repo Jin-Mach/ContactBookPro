@@ -24,7 +24,7 @@ class CityBarChartWidget(QWidget):
 
     def draw_bar(self, data: dict) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if self.column_name != "work":
                 data = [data, [0]]
             sorted_data = sorted(data[0], key=lambda x: x[1], reverse=True)

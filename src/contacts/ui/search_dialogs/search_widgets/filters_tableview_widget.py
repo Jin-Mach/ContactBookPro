@@ -41,7 +41,7 @@ class FiltersTableviewWidget(QTableView):
             button.setObjectName("deleteFilterButton")
             button.setProperty("row", row)
             IconProvider.set_buttons_icon(self.objectName(), [button], QSize(20, 20), self)
-            tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltip_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if tooltip_text:
                 button.setToolTip(tooltip_text.get(button.objectName(), ""))
                 button.setToolTipDuration(5000)

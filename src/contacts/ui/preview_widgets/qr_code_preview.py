@@ -11,6 +11,7 @@ from src.utilities.icon_provider import IconProvider
 from src.utilities.language_provider import LanguageProvider
 
 
+# noinspection PyUnresolvedReferences
 class QrCodePreviewDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
@@ -39,7 +40,7 @@ class QrCodePreviewDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_preview_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("preview_dialog_text.json", self.objectName())
             widgets = self.findChildren(QLabel)
             if ui_text:
                 if "qrDialogTitle" in ui_text:

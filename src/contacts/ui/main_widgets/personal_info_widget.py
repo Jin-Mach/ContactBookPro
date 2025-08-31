@@ -18,7 +18,6 @@ class PersonalTabInfoWidget(QTabWidget):
         self.setFixedWidth(400)
         self.addTab(self.create_gui(), "")
         self.set_labels()
-        self.ui_text = LanguageProvider.get_ui_text(self.objectName())
         self.set_ui_text()
 
     def create_gui(self) -> QWidget:
@@ -84,6 +83,7 @@ class PersonalTabInfoWidget(QTabWidget):
                        self.contact_first_name_text_label,
                        self.contact_second_name_text_label, self.contact_relationship_text_label,
                        self.contact_birthday_text_label]
+            self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if self.ui_text:
                 for widget in widgets:
                     if widget.objectName() in self.ui_text or f"{widget.objectName()}_tabText" in self.ui_text:

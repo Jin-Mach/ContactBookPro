@@ -56,7 +56,7 @@ class SearchDetailsWidget(QWidget):
             (self.search_birthday_text_label, self.search_birthday_edit, self.search_birthday_operator),
             (self.search_notes_text_label, self.search_notes_edit, self.search_notes_operator)
         ]
-        tooltip_text = LanguageProvider.get_tooltips_text("advancedSearchDialog")
+        tooltip_text = LanguageProvider.get_json_text("tooltips_text.json", "advancedSearchDialog")
         for label, edit, operator in fields:
             layout = QHBoxLayout()
             clear_filter_pushbutton = QPushButton()
@@ -77,7 +77,7 @@ class SearchDetailsWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
             if ui_text:
                 for widget in widgets:

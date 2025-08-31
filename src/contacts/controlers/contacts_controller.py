@@ -71,7 +71,7 @@ class ContactsController:
 
     def get_selected_contact_data(self) -> tuple[QModelIndex, int, dict[str, Any]] | None:
         try:
-            error_text = LanguageProvider.get_error_text("widgetErrors")
+            error_text = LanguageProvider.get_json_text("errors_text.json", "widgetErrors")
             if not self.table_view.selectionModel().hasSelection():
                 DialogsProvider.show_error_dialog(error_text.get("noTableviewSelection", ""), self.parent)
                 return None

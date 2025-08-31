@@ -31,7 +31,7 @@ class NonMandatoryWidget(QTabWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             tab_text = ["work", "socialNetworks", "personalDetail"]
             if ui_text:
                 for index, text in enumerate(tab_text):

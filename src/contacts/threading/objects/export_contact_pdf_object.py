@@ -61,7 +61,7 @@ class ExportContactPdfObject(QObject):
                 return
             font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
             pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             document = SimpleDocTemplate(str(self.pdf_path), leftMargin=10, rightMargin=10, topMargin=10, bottomMargin=10,
                                          pageSize=A4)
             story, error = ExportContactPdfObject.create_pdf(self.contact_data, ui_text)

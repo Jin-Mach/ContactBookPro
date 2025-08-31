@@ -30,7 +30,7 @@ class ProgressDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             widgets = self.findChildren(QLabel)
             for widget in widgets:
                 if widget.objectName() in ui_text:

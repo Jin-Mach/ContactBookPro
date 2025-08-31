@@ -53,7 +53,7 @@ class AdvancedSearchDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             tab_text = ["mandatory", "nonMandatory"]
             if ui_text:
                 if "dialogTitle" in ui_text:
@@ -68,7 +68,7 @@ class AdvancedSearchDialog(QDialog):
             ErrorHandler.exception_handler(e, self)
 
     def set_tooltips_text(self) -> None:
-        tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+        tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
         if tooltips_text:
             for button in self.buttons:
                 if button.objectName() in tooltips_text:
@@ -110,7 +110,7 @@ class AdvancedSearchDialog(QDialog):
         try:
             filters = self.get_final_filter()
             if not filters:
-                error_text = LanguageProvider.get_error_text(self.objectName())
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
                 DialogsProvider.show_error_dialog(error_text.get("noSelectedFilter", ""), self)
                 return
             super().accept()

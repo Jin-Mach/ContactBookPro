@@ -93,7 +93,7 @@ class MandatoryWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
             if ui_text:
                 for widget in widgets:
@@ -109,7 +109,7 @@ class MandatoryWidget(QWidget):
 
     def return_mandatory_data(self) -> list | None:
         try:
-            error_text = LanguageProvider.get_error_text("dialogMandatoryWidget")
+            error_text = LanguageProvider.get_json_text("errors_text.json", "dialogMandatoryWidget")
             inputs = self.findChildren((QLineEdit, QComboBox))
             labels = self.findChildren(QLabel)
             gender_relationship_data = []

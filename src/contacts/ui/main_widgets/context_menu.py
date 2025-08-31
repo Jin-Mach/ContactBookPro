@@ -117,7 +117,7 @@ class ContextMenu(QMenu):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_context_menu_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("menu_text.json", self.objectName())
             if ui_text:
                 for widget in self.widgets:
                     if widget.objectName() in ui_text:

@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Entfernen",
     "dialogTitleEdit": "Titel eingeben...",
     "dialogBirthdayEdit": "Geburtsdatum auswählen...",
-    "dialogNotesEdit": "Notizen zum Kontakt (max. 200 Zeichen, max. 5 Zeilen)..."
+    "dialogNotesEdit": "Notizen zum Kontakt (max. 300 Zeichen, max. 5 Zeilen)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Geburtsdatum auswählen",

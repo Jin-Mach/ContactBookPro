@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Удалить",
     "dialogTitleEdit": "Введите титул...",
     "dialogBirthdayEdit": "Выберите дату рождения...",
-    "dialogNotesEdit": "Заметки о контакте (макс. 200 символов, макс. 5 строк)..."
+    "dialogNotesEdit": "Заметки о контакте (макс. 300 символов, макс. 5 строк)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Выбрать дату рождения",

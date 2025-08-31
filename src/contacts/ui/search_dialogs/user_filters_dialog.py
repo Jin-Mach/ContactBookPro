@@ -44,7 +44,7 @@ class UserFiltersDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_user_filters_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("user_filters_dialog_text.json", self.objectName())
             widgets = self.findChildren(QLabel)
             if ui_text:
                 if "dialogTitle" in ui_text:
@@ -61,7 +61,7 @@ class UserFiltersDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltip_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltip_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltip_text:
                 for button in self.buttons:
                     if button.objectName() in tooltip_text:
@@ -72,7 +72,7 @@ class UserFiltersDialog(QDialog):
 
     def check_selected_filter(self) -> str | None:
         try:
-            error_text = LanguageProvider.get_error_text(self.objectName())
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
             if self.user_filters_listwidget.model().rowCount() < 1:
                 if error_text:
                     DialogsProvider.show_error_dialog(error_text.get("noFilters", ""), self)

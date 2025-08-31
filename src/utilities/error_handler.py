@@ -17,7 +17,7 @@ class ErrorHandler:
     @staticmethod
     def get_error_text(exception: Exception) -> str:
         try:
-            errors_data = LanguageProvider.get_error_text(ErrorHandler.class_name)
+            errors_data = LanguageProvider.get_json_text("errors_text.json", ErrorHandler.class_name)
             if not errors_data:
                 return ""
             return errors_data.get(exception.__class__.__name__, errors_data.get("UnexpectedError", ""))
@@ -29,7 +29,7 @@ class ErrorHandler:
     def database_error(error_message: str, close_app: bool, custom_message: str | None = None) -> None:
         try:
             ErrorHandler.logger.error(f"{ErrorHandler.__class__.__name__}: {error_message}", exc_info=True)
-            errors_data = LanguageProvider.get_error_text(ErrorHandler.class_name) or {}
+            errors_data = LanguageProvider.get_json_text("errors_text.json", ErrorHandler.class_name) or {}
             if custom_message is not None and custom_message in errors_data:
                 message = custom_message
             else:

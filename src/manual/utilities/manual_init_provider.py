@@ -10,7 +10,7 @@ class ManualInitProvider:
     def apply_tab_texts(widget_object_name: str, tab_widget: QTabWidget, tab_widgets: list[QTextEdit],
                         parent: QWidget) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(widget_object_name)
+            ui_text = LanguageProvider.get_json_text("ui_text.json", widget_object_name)
             tab_texts = ui_text.get("tabTexts", {})
             for index, widget in enumerate(tab_widgets):
                 if widget.objectName() in tab_texts:

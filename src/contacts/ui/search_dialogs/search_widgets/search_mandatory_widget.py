@@ -114,7 +114,7 @@ class SearchMandatoryWidget(QWidget):
             (self.search_post_code_text_label, self.search_post_code_edit, self.search_post_code_operator),
             (self.search_country_text_label, self.search_country_edit, self.search_country_operator)
         ]
-        tooltip_text = LanguageProvider.get_tooltips_text("advancedSearchDialog")
+        tooltip_text = LanguageProvider.get_json_text("tooltips_text.json", "advancedSearchDialog")
         for label, edit, operator in fields:
             layout = QHBoxLayout()
             clear_filter_pushbutton = QPushButton()
@@ -135,7 +135,7 @@ class SearchMandatoryWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
             if ui_text:
                 for widget in widgets:

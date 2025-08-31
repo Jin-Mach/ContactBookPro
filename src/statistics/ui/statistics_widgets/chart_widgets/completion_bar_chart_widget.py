@@ -24,7 +24,7 @@ class CompletionBarChartWidget(QWidget):
 
     def draw_bar(self, data: dict[str, tuple[int, int]]) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             self.figure.clear()
             self.figure.set_facecolor("#31363b")
             place = self.figure.add_subplot(111)

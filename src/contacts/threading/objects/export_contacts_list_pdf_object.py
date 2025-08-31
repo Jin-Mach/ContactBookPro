@@ -146,7 +146,7 @@ class ExportContactsListPdfObject(QObject):
             pos_x = document.pagesize[0] / 2 - page_width
             canvas.drawString(pos_x, y_pos, page)
             right_x = document.pagesize[0] - document.rightMargin - 10
-            application_name = LanguageProvider.get_ui_text("mainWindow").get("mainWindowTitle", "")
+            application_name = LanguageProvider.get_json_text("ui_text.json", "mainWindow").get("mainWindowTitle", "")
             text_width = canvas.stringWidth(application_name, font, font_size)
             start_x = right_x - text_width
             canvas.drawString(start_x, y_pos, application_name)

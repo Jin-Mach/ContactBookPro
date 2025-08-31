@@ -70,7 +70,7 @@ class SearchSocialNetworksWidget(QWidget):
                   (self.search_linkedin_url_text_label, self.search_linkedin_url_edit, self.search_linkedin_url_operator),
                   (self.search_github_url_text_label, self.search_github_url_edit, self.search_github_url_operator),
                   (self.search_website_url_text_label, self.search_website_url_edit, self.search_website_url_operator)]
-        tooltip_text = LanguageProvider.get_tooltips_text("advancedSearchDialog")
+        tooltip_text = LanguageProvider.get_json_text("tooltips_text.json", "advancedSearchDialog")
         for label, edit, operator in fields:
             layout = QHBoxLayout()
             clear_filter_pushbutton = QPushButton()
@@ -88,7 +88,7 @@ class SearchSocialNetworksWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QComboBox, QLineEdit))
             if ui_text:
                 for widget in widgets:

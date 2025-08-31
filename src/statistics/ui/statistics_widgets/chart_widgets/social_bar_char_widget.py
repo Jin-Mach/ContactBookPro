@@ -23,7 +23,7 @@ class SocialBarCharWidget(QWidget):
 
     def draw_bar(self, data: dict):
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             self.figure.clear()
             width = 0.35
             self.figure.set_facecolor("#31363b")

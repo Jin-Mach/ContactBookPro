@@ -43,7 +43,7 @@ class NotesInfoWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             widgets = [self.notes_text_edit, self.create_date_text_label, self.update_date_text_label]
             if ui_text:
                 for widget in widgets:

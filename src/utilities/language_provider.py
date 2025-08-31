@@ -52,74 +52,15 @@ class LanguageProvider:
             return None
 
     @staticmethod
-    def get_ui_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("ui_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_tooltips_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("tooltips_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-    
-    @staticmethod
-    def get_statustips_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("statustips_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_dialog_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("dialog_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_search_dialog_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("search_dialog_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_user_filters_dialog_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("user_filters_dialog_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_context_menu_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("menu_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_preview_dialog_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("preview_dialog_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_error_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("errors_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
-
-    @staticmethod
-    def get_headers_text(widget_name: str) -> dict[str, str] | None:
-        data = LanguageProvider.load_json("headers_text.json")
-        if data:
-            return data.get(widget_name)
-        return None
+    def get_json_text(file_name: str, widget_name: str) -> dict[str, str] | None:
+        try:
+            data = LanguageProvider.load_json(file_name)
+            if data:
+                return data.get(widget_name)
+            return None
+        except Exception as e:
+            LanguageProvider.write_log_exception(e)
+            return None
 
     @staticmethod
     def get_export_settings(widget_name: str) -> tuple[bool, dict[str, dict[str, str]]] | None:

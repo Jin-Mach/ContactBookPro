@@ -39,7 +39,7 @@ class CalendarDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             if ui_text:
                 if "calendarDialogTitle" in ui_text:
                     self.setWindowTitle(ui_text.get("calendarDialogTitle", ""))
@@ -52,7 +52,7 @@ class CalendarDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             for button in self.buttons:
                 if button.objectName() in tooltips_text:
                     button.setToolTip(tooltips_text.get(button.objectName(), ""))
@@ -62,7 +62,7 @@ class CalendarDialog(QDialog):
 
     def return_date(self, birthday_input: QLineEdit) -> str | None:
         try:
-            error_text = LanguageProvider.get_error_text(self.objectName())
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
             selected_date = self.calendar_widget.return_selected_date()
             if selected_date:
                 birthday_input.setText(selected_date)

@@ -39,7 +39,7 @@ def reset_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=Non
 
 def set_dialog_filters(parent=None) -> list:
     try:
-        ui_text = LanguageProvider.get_dialog_text("photoUtilities")
+        ui_text = LanguageProvider.get_json_text("dialog_text.json", "photoUtilities")
         filters = ["basicFilesFilter", "advancedFilesFilter", "allFilesFilter"]
         final_filter = []
         if ui_text:

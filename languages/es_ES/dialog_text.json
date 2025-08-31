@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Eliminar",
     "dialogTitleEdit": "Introduce el título...",
     "dialogBirthdayEdit": "Selecciona la fecha de nacimiento...",
-    "dialogNotesEdit": "Notas sobre el contacto (máx. 200 caracteres, máx. 5 líneas)..."
+    "dialogNotesEdit": "Notas sobre el contacto (máx. 300 caracteres, máx. 5 líneas)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Seleccionar fecha de nacimiento",

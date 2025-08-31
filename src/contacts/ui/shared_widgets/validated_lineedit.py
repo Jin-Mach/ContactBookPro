@@ -16,8 +16,8 @@ class ValidatedLineEdit(QLineEdit):
         self.setObjectName("validatedLineEdit")
         self.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         self.parent = parent
-        self.tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-        self.error_text = LanguageProvider.get_error_text(self.objectName())
+        self.tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
+        self.error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
         try:

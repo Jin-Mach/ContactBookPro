@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Usuń",
     "dialogTitleEdit": "Wpisz tytuł...",
     "dialogBirthdayEdit": "Wybierz datę urodzenia...",
-    "dialogNotesEdit": "Notatki do kontaktu (max. 200 znaków, max. 5 linii)..."
+    "dialogNotesEdit": "Notatki do kontaktu (max. 300 znaków, max. 5 linii)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Wybierz datę urodzenia",

@@ -114,7 +114,7 @@ class MainWindow(QMainWindow):
 
     def set_ui_text(self) -> None:
         try:
-            self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if self.ui_text:
                 if "mainWindowTitle" in self.ui_text:
                     self.setWindowTitle(self.ui_text.get("mainWindowTitle", ""))
@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltips_text:
                 for button in self.buttons:
                     if button.objectName().endswith("Button") and button.objectName() in tooltips_text:

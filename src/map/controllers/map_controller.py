@@ -38,7 +38,7 @@ class MapController:
 
     def set_map(self, html: str, count: int, connection: bool) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.class_name)
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.class_name)
             self.map_main_widget.load_map(html, count, connection)
             self.map_main_widget.status_bar.show_status_bar_message(ui_text.get("mapUpdate", ""))
         except Exception as e:

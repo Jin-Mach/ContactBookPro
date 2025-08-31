@@ -12,7 +12,7 @@ def check_notes_length(notes_edit: QTextEdit, count_label: QLabel, parent=None) 
         max_lines = 10
         text = notes_edit.toPlainText()
         lines = text.splitlines()
-        error_text = LanguageProvider.get_error_text("notesUtilities")
+        error_text = LanguageProvider.get_json_text("errors_text.json", "notesUtilities")
         if len(lines) > max_lines:
             trimmed_text = "\n".join(lines[:max_lines])
             notes_edit.setPlainText(trimmed_text)

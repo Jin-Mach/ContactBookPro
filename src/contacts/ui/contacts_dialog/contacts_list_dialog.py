@@ -50,7 +50,7 @@ class ContactsListDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             widgets = self.findChildren(QLabel)
             if ui_text:
                 for widget in widgets:
@@ -80,7 +80,7 @@ class ContactsListDialog(QDialog):
 
     def set_tooltips(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             for button in self.buttons:
                 if isinstance(button, QPushButton):
                     if self.mode == "context_birthday" or self.mode == "context_duplicity":

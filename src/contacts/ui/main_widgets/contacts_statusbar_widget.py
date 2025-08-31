@@ -11,7 +11,7 @@ class ContactsStatusBarWidget(QWidget):
         self.setObjectName("contactsStatusBarWidget")
         self.contacts_total_count = contacts_count
         self.setLayout(self.create_gui())
-        self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+        self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
         self.set_ui_text()
 
     def create_gui(self) -> QLayout:

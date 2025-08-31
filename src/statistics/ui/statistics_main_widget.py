@@ -56,7 +56,7 @@ class StatisticsMainWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            self.ui_text = LanguageProvider.get_ui_text(self.objectName())
+            self.ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if self.ui_text:
                 self.statistics_tab_widget.setTabText(0, self.ui_text.get("mandatoryStatisticsWidget", ""))
                 self.statistics_tab_widget.setTabText(1, self.ui_text.get("workStatisticsWidget", ""))

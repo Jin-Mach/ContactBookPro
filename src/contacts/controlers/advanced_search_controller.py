@@ -26,7 +26,7 @@ class AdvancedSearchController:
         self.db_connection= db_connection
         self.mandatory_model = mandatory_model
         self.contacts_statusbar = contacts_statusbar
-        self.error_text = LanguageProvider.get_error_text("contactSearchController")
+        self.error_text = LanguageProvider.get_json_text("errors_text.json", "contactSearchController")
         self.parent = parent
         self.dialog = AdvancedSearchDialog(self.parent)
         self.query_provider = QueryProvider()

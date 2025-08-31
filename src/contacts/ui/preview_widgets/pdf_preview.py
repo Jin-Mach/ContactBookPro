@@ -57,7 +57,7 @@ class PdfPreviewDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_preview_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("preview_dialog_text.json", self.objectName())
             if "pdfDialogTitle" in ui_text:
                 self.setWindowTitle(ui_text.get("pdfDialogTitle", ""))
             for button in self.buttons:
@@ -68,7 +68,7 @@ class PdfPreviewDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             for button in self.buttons:
                 if button.objectName() in tooltips_text:
                     button.setToolTip(tooltips_text.get(button.objectName(), ""))

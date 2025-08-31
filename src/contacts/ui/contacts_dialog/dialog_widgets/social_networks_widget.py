@@ -60,7 +60,7 @@ class SocialNetworkWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QLineEdit))
             if ui_text:
                 for widget in widgets:
@@ -75,7 +75,7 @@ class SocialNetworkWidget(QWidget):
 
     def return_social_network_data(self) -> list | None:
         try:
-            error_text = LanguageProvider.get_error_text(self.objectName())
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
             inputs = self.findChildren(QLineEdit)
             social_network_data = []
             if error_text:

@@ -30,7 +30,7 @@ class SearchNonMandatoryWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             tab_text = ["work", "social", "detail"]
             if ui_text:
                 for index, text in enumerate(tab_text):

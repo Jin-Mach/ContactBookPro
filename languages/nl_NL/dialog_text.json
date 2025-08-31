@@ -96,7 +96,7 @@
     "dialogResetCalendarPushbutton": "Verwijderen",
     "dialogTitleEdit": "Voer titel in...",
     "dialogBirthdayEdit": "Selecteer geboortedatum...",
-    "dialogNotesEdit": "Notities bij contact (max. 200 tekens, max. 5 regels)..."
+    "dialogNotesEdit": "Notities bij contact (max. 300 tekens, max. 5 regels)..."
   },
   "calendarDialog": {
     "calendarDialogTitle": "Selecteer geboortedatum",

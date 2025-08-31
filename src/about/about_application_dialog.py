@@ -36,7 +36,7 @@ class AboutApplicationDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             if ui_text:
                 self.setWindowTitle(ui_text.get("aboutTitle", ""))
         except Exception as e:
@@ -44,7 +44,7 @@ class AboutApplicationDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             buttons = [self.github_button]
             if tooltips_text:
                 for button in buttons:

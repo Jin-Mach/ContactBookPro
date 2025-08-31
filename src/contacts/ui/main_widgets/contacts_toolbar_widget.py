@@ -124,7 +124,7 @@ class ContactsToolbarWidget(QWidget):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             widgets = self.findChildren((QLabel, QLineEdit))
             if ui_text:
                 for widget in widgets:
@@ -138,8 +138,8 @@ class ContactsToolbarWidget(QWidget):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
-            statustips_text = LanguageProvider.get_statustips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
+            statustips_text = LanguageProvider.get_json_text("statustips_text.json", self.objectName())
             if tooltips_text and statustips_text:
                 if sys.platform == "darwin":
                     for key, value in statustips_text.items():

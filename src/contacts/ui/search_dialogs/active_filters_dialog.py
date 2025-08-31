@@ -54,7 +54,7 @@ class ActiveFiltersDialog(QDialog):
 
     def set_ui_text(self) -> None:
         try:
-            ui_text = LanguageProvider.get_search_dialog_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("search_dialog_text.json", self.objectName())
             if ui_text:
                 if "currentFilterTitle" in ui_text:
                     self.setWindowTitle(ui_text.get("currentFilterTitle", ""))
@@ -70,7 +70,7 @@ class ActiveFiltersDialog(QDialog):
 
     def set_tooltips_text(self) -> None:
         try:
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltips_text:
                 for button in self.buttons:
                     if button.objectName() in tooltips_text:
@@ -82,7 +82,7 @@ class ActiveFiltersDialog(QDialog):
     def save_current_filter(self) -> None:
         try:
             if not self.filters_tableview_widget.advanced_filter_model.rowCount() > 0:
-                error_text = LanguageProvider.get_error_text(self.objectName())
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.objectName())
                 if error_text:
                     DialogsProvider.show_error_dialog(error_text.get("noActiveFilter", ""), self)
                 return

@@ -75,7 +75,7 @@ class DeleteDialogs:
     def set_ui_text(dialog_widget: QDialog, labels: list[QWidget], button_box: QDialogButtonBox, parent=None,
                     first_name: str = None, second_name: str = None) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", DeleteDialogs.class_name)
             widgets = [dialog_widget]
             widgets.extend(labels)
             widgets.extend(button_box.buttons())
@@ -99,7 +99,7 @@ class DeleteDialogs:
     @staticmethod
     def delete_accepted(dialog: QDialog, label: QLabel, line_edit: QLineEdit):
         try:
-            ui_text = LanguageProvider.get_dialog_text(DeleteDialogs.class_name)
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", DeleteDialogs.class_name)
             if ui_text:
                 if label.objectName() in ui_text:
                     delete_word = ui_text.get(label.objectName(), "")

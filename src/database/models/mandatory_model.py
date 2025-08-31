@@ -113,8 +113,8 @@ class MandatoryModel(QSqlTableModel):
         try:
             ModelHeaderProvider.set_mandatory_model_headers(self)
             self.icons_path = IconProvider.icons_path.joinpath("personalTabInfoWidget")
-            self.relationship = LanguageProvider.get_ui_text("personalTabInfoWidget")
-            self.gender_header_text = LanguageProvider.get_ui_text(self.objectName())["genderHeaderText"]
+            self.relationship = LanguageProvider.get_json_text("ui_text.json", "personalTabInfoWidget")
+            self.gender_header_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())["genderHeaderText"]
             if self.icons_path.exists():
                 self.male_icon = str(self.icons_path.joinpath("male_icon.png"))
                 self.female_icon = str(self.icons_path.joinpath("female_icon.png"))

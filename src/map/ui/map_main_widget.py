@@ -49,7 +49,7 @@ class MapMainWidget(QWidget):
 
     def load_map(self, html_map: str, count: int, connection: bool) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
             self.has_connection = connection
             if not self.has_connection or html_map.strip() == "":
                 self.loading_map_label.setText(ui_text.get("noConnection", ""))
@@ -75,7 +75,7 @@ class MapMainWidget(QWidget):
                 self.web_view.show()
             else:
                 if self.has_connection:
-                    ui_text = LanguageProvider.get_ui_text(self.objectName())
+                    ui_text = LanguageProvider.get_json_text("ui_text.json", self.objectName())
                     self.contacts_count_label.hide()
                     self.web_view.hide()
                     self.loading_map_label.setText(f"{ui_text.get("loadingError", "")}")

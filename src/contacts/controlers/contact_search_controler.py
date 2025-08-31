@@ -41,7 +41,7 @@ class ContactSearchController:
             )
         }
         try:
-            error_text = LanguageProvider.get_error_text(self.class_name)
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
             search_text = normalize_input(search_input)
             if self.table_view.selectionModel().hasSelection():
                 column_index = self.table_view.currentIndex().column()
@@ -86,7 +86,7 @@ class ContactSearchController:
 
     def reset_filter(self, search_input: QLineEdit) -> None:
         try:
-            ui_text = LanguageProvider.get_ui_text(self.parent.objectName())
+            ui_text = LanguageProvider.get_json_text("ui_text.json", self.parent.objectName())
             self.search_combobox.setDisabled(True)
             search_input.clear()
             search_input.setDisabled(True)
@@ -100,7 +100,7 @@ class ContactSearchController:
 
     def return_multicolumn_filter(self, search_text: str, columns: list[str]) -> str:
         try:
-            index_error_text = LanguageProvider.get_error_text("widgetErrors")
+            index_error_text = LanguageProvider.get_json_text("errors_text.json", "widgetErrors")
             prepared_text = search_text.split()
             filter_operator = " OR "
             filter_list = []

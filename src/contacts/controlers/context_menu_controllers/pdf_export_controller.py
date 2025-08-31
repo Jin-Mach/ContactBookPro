@@ -29,7 +29,7 @@ class PdfExportController:
         self.db_connection = db_connection
         self.table_view = table_view
         self.export_data_provider = ExportDataProvider()
-        self.error_text = LanguageProvider.get_error_text(self.class_name)
+        self.error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
         self.pdf_output_path = pathlib.Path(__file__).parents[4].joinpath("output", "pdf_output.pdf")
         self.pdf_output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -95,7 +95,7 @@ class PdfExportController:
     def save_pdf_document(self, default_file_path: str, main_window:QMainWindow) -> None:
         try:
             default_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DocumentsLocation)
-            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+            menu_text = LanguageProvider.get_json_text("menu_text.json", self.class_name)
             file, _ = QFileDialog.getSaveFileName(parent=main_window, directory=default_path, filter=menu_text.get("pdfFilter", ""))
             if not file:
                 return

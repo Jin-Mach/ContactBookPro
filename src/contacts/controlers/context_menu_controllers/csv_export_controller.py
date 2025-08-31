@@ -29,11 +29,11 @@ class CsvExportController:
         try:
             id_list = self.table_view.get_displayed_contacts_id()
             if not id_list:
-                error_text = LanguageProvider.get_error_text(self.class_name)
+                error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                 if error_text:
                     DialogsProvider.show_error_dialog(error_text.get("emptyIdList", ""), main_window)
                 return
-            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+            menu_text = LanguageProvider.get_json_text("menu_text.json", self.class_name)
             file_name,_ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path, filter=menu_text.get("csvFilter", ""))
             if file_name:
                 export_object = ExportCsvObject(self.db_connection.databaseName(), file_name, id_list, self.export_data_provider, main_window)
@@ -43,7 +43,7 @@ class CsvExportController:
 
     def export_all_to_csv(self, main_window: QMainWindow) -> None:
         try:
-            menu_text = LanguageProvider.get_context_menu_text(self.class_name)
+            menu_text = LanguageProvider.get_json_text("menu_text.json", self.class_name)
             file_name, _ = QFileDialog.getSaveFileName(parent=main_window, directory=self.export_path,
                                                        filter=menu_text.get("csvFilter", ""))
             if file_name:

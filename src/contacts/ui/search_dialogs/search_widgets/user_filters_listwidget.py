@@ -46,7 +46,7 @@ class UserFiltersListWidget(QListWidget):
             delete_filter_button.setFixedSize(30, 30)
             delete_filter_button.setObjectName("deleteFilterPushbutton")
             IconProvider.set_buttons_icon(self.objectName(), [delete_filter_button], QSize(30, 30), self)
-            tooltips_text = LanguageProvider.get_tooltips_text(self.objectName())
+            tooltips_text = LanguageProvider.get_json_text("tooltips_text.json", self.objectName())
             if tooltips_text and delete_filter_button.objectName() in tooltips_text:
                 delete_filter_button.setToolTip(tooltips_text.get(delete_filter_button.objectName(), ""))
                 delete_filter_button.setToolTipDuration(5000)

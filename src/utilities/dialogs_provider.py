@@ -111,7 +111,7 @@ class DialogsProvider:
     @staticmethod
     def get_ui_text(widgets: list[QWidget], error_message: str, parent=None) -> None:
         try:
-            ui_text = LanguageProvider.get_dialog_text(DialogsProvider.class_name)
+            ui_text = LanguageProvider.get_json_text("dialog_text.json", DialogsProvider.class_name)
             if ui_text:
                 for widget in widgets:
                     if widget.objectName() in ui_text:
