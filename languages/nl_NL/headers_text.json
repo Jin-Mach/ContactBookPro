@@ -4,9 +4,9 @@
     "gender": "Geslacht",
     "relationship": "Relatie",
     "first_name": "Naam van contact",
-    "personal_email": "E-mail (persoonlijk)",
-    "personal_phone_number": "Telefoonnummer (persoonlijk)",
-    "personal_address": "Adres (persoonlijk)"
+    "personal_email": "E-mail",
+    "personal_phone_number": "Telefoonnummer",
+    "personal_address": "Adres"
   },
   "advancedFilterModel": {
     "labelText": "Criterium",

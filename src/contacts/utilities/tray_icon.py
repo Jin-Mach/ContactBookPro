@@ -57,13 +57,19 @@ class TrayIcon(QSystemTrayIcon):
             ui_text = LanguageProvider.get_ui_text("trayIcon")
             if ui_text:
                 self.popup_widget.popup_set_text(title, ui_text.get(message, ""))
-                self.popup_widget.adjustSize()
-                geometry = self.parent.geometry()
-                x = geometry.x() + geometry.width() - self.popup_widget.width() - 10
-                y = geometry.y() + geometry.height() - self.popup_widget.height() - 10
-                self.popup_widget.move(x, y)
                 self.popup_widget.show()
+                self.finalize_popup(self.popup_widget)
                 self.status_bar.show_status_bar_message(ui_text.get(message, ""))
-                QTimer.singleShot(5000, self.popup_widget.close)
+                QTimer.singleShot(3000, self.popup_widget.close)
         except Exception as e:
             ErrorHandler.exception_handler(e, self.parent)
+
+    @staticmethod
+    def finalize_popup(popup_widget: TrayIconPopupWidget) -> None:
+        popup_widget.adjustSize()
+        parent = popup_widget.parent()
+        if parent is not None:
+            geometry = parent.geometry()
+            x = geometry.x() + geometry.width() - popup_widget.width() - 10
+            y = geometry.y() + geometry.height() - popup_widget.height() - 10
+            popup_widget.move(x, y)

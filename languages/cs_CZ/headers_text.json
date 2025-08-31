@@ -4,9 +4,9 @@
     "gender": "Pohlaví",
     "relationship": "Vztah",
     "first_name": "Jméno kontaktu",
-    "personal_email": "E-mail (osobní)",
-    "personal_phone_number": "Tel. číslo (osobní)",
-    "personal_address": "Adresa (osobní)"
+    "personal_email": "E-mail",
+    "personal_phone_number": "Tel. číslo",
+    "personal_address": "Adresa"
   },
   "advancedFilterModel": {
     "labelText": "Kritérium",

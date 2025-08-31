@@ -5,11 +5,14 @@ from PyQt6.QtWidgets import QApplication, QDialog
 
 from src.application.main_window import MainWindow
 from src.utilities.app_init import application_init
+from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.splash_screen import SplashScreen
 
 
 def create_application() -> None:
+    debug = True
+    ApplicationSupportProvider.hide_mac_traceback(debug)
     application = QApplication(sys.argv)
     splash_screen = SplashScreen()
     splash_screen.show()

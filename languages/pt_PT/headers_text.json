@@ -4,9 +4,9 @@
     "gender": "Sexo",
     "relationship": "Relação",
     "first_name": "Nome do contato",
-    "personal_email": "Email (pessoal)",
-    "personal_phone_number": "Tel. número (pessoal)",
-    "personal_address": "Endereço (pessoal)"
+    "personal_email": "Email",
+    "personal_phone_number": "Tel. número",
+    "personal_address": "Endereço"
   },
   "advancedFilterModel": {
     "labelText": "Critério",

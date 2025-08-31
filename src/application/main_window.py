@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
         dock_layout.setSpacing(0)
         database_buttons_layout = QVBoxLayout()
         database_buttons_layout.setContentsMargins(0, 0, 0, 0)
-        database_buttons_layout.setSpacing(10)
+        database_buttons_layout.setSpacing(5)
         self.database_button = MainWindowButtonWidget(lambda: self.changed_stack(0), self)
         self.database_button.setObjectName("mainWindowDatabaseButton")
         self.map_button = MainWindowButtonWidget(lambda: self.changed_stack(1), self)

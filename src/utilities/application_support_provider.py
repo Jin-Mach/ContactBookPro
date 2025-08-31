@@ -49,3 +49,8 @@ class ApplicationSupportProvider:
         except Exception as e:
             ErrorHandler.exception_handler(e)
             return None
+
+    @staticmethod
+    def hide_mac_traceback(debug: bool) -> None:
+        if not debug and sys.platform == "darwin":
+            sys.stderr = open(os.devnull, "w")

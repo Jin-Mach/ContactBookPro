@@ -21,7 +21,7 @@ from src.utilities.logger_provider import get_logger
 if TYPE_CHECKING:
     from src.database.models.mandatory_model import MandatoryModel
     from src.contacts.ui.main_widgets.contacts_detail_widget import ContactsDetailWidget
-    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusbarWidget
+    from src.contacts.ui.main_widgets.contacts_statusbar_widget import ContactsStatusBarWidget
 
 
 # noinspection PyTypeChecker,PyUnresolvedReferences
@@ -65,21 +65,15 @@ class ContactsTableviewWidget(QTableView):
     def set_headers(self) -> None:
         header = self.horizontalHeader()
         header.setSectionsMovable(False)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
         self.setColumnWidth(1, 30)
-        self.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
         for column in [2, 3, 4, 5]:
-            self.resizeColumnToContents(column)
-            header.resizeSection(column, self.columnWidth(column) + 30)
-            header.setSectionResizeMode(column, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(6, 400)
+            header.setSectionResizeMode(column, QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(6, QHeaderView.ResizeMode.ResizeToContents)
         header.setStretchLastSection(True)
-        column_count = self.model().columnCount()
-        columns = [1, 2, 3, 4, 5, 6]
-        for index in range(column_count):
-            if index in columns:
-                self.setColumnHidden(index, False)
-            else:
-                self.setColumnHidden(index, True)
+        visible_columns = [1, 2, 3, 4, 5, 6]
+        for index in range(self.model().columnCount()):
+            self.setColumnHidden(index, index not in visible_columns)
 
     def set_detail_data(self, last_index: QModelIndex | None) -> None:
         try:

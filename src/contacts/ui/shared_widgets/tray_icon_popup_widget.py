@@ -58,4 +58,4 @@ class TrayIconPopupWidget(QWidget):
     def popup_set_text(self, title: str, message: str) -> None:
         self.title_label.setText(title)
         self.message_label.setText(message)
-        self.resize(self.sizeHint())
+        self.setMinimumSize(0, 0)

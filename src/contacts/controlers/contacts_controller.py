@@ -180,11 +180,13 @@ class ContactsController:
             if selected_contact is None:
                 return
             index, contact_id, contact_data = selected_contact
-            dialog = DeleteDialogs.show_delete_contact_dialog(contact_data.get("first_name", ""), contact_data.get("second_name", ""))
+            first_name = contact_data.get("first_name", "")
+            second_name = contact_data.get("second_name", "")
+            dialog = DeleteDialogs.show_delete_contact_dialog(first_name, second_name)
             if dialog.exec() == QDialog.DialogCode.Accepted:
                 self.mandatory_model.delete_contact(index.row())
                 self.refresh_ui()
-                self.main_window.tray_icon.show_notification("", "contactDeleted")
+                self.main_window.tray_icon.show_notification(f"{first_name} {second_name}", "contactDeleted")
                 self.map_controller.create_map()
                 self.statistics_controller.set_data()
         except Exception as e:

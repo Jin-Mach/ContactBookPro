@@ -4,9 +4,9 @@
     "gender": "Пол",
     "relationship": "Отношение",
     "first_name": "Имя контакта",
-    "personal_email": "E-mail (личный)",
-    "personal_phone_number": "Тел. номер (личный)",
-    "personal_address": "Адрес (личный)"
+    "personal_email": "E-mail",
+    "personal_phone_number": "Тел. номер",
+    "personal_address": "Адрес"
   },
   "advancedFilterModel": {
     "labelText": "Критерий",
