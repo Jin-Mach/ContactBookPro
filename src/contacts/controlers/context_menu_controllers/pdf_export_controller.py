@@ -15,7 +15,6 @@ from src.database.utilities.contacts_utilities.export_data_provider import Expor
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
@@ -77,7 +76,7 @@ class PdfExportController:
             self.pdf_object = export_object
             self.pdf_thread = BasicThread()
             self.pdf_thread.run_basic_thread(worker=self.pdf_object, start_slot=start_slot,
-                                             on_error=PdfExportController.write_log_exception,
+                                             on_error=lambda exception: ErrorHandler.write_log_exception(self.class_name, exception),
                                              on_finished=lambda success: self.show_preview(main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -106,8 +105,3 @@ class PdfExportController:
                 main_window.tray_icon.show_notification("Export PDF", "saveError")
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{PdfExportController.__class__.__name__}: {exception}", exc_info=True)

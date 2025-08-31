@@ -75,12 +75,15 @@
     "noTableviewSelection": "Seleziona prima un contatto dalla lista."
   },
   "checkBirthdayController": {
+    "birthdayError": "Errore durante il controllo dei compleanni.",
     "noBirthday": "Nessun contatto ha il compleanno nel periodo prossimo."
   },
   "checkDuplicatesController": {
+    "duplicatesError": "Errore durante il controllo dei duplicati.",
     "noDuplicates": "Nessun contatto duplicato."
   },
   "checkCoordinatesController": {
+    "coordinatesError": "Errore durante il controllo delle coordinate.",
     "noCoordinates": "Tutti i contatti hanno coordinate valide"
   },
   "validatedLineedit": {

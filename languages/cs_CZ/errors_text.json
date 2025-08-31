@@ -75,12 +75,15 @@
     "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
   },
   "checkBirthdayController": {
+    "birthdayError": "Chyba při kontrole narozenin.",
     "noBirthday": "Nikdo z kontaktů nemá narozeniny v blízkém období."
   },
   "checkDuplicatesController": {
+    "duplicatesError": "Chyba při kontrole duplicit.",
     "noDuplicates": "Žádné duplicitní kontakty."
   },
   "checkCoordinatesController": {
+    "coordinatesError": "Chyba při kontrole souřadnic.",
     "noCoordinates": "Všechny kontakty mají platné souřadnice"
   },
   "validatedLineedit": {

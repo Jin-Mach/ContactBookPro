@@ -40,3 +40,7 @@ class ErrorHandler:
             ErrorHandler.logger.error(f"Error showing database error dialog: {e}", exc_info=True)
         if close_app:
             sys.exit(1)
+
+    @staticmethod
+    def write_log_exception(class_name: str, exception: Exception) -> None:
+        ErrorHandler.logger.error(f"{class_name}: {exception}", exc_info=True)

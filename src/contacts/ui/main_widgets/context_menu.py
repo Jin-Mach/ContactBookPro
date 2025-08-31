@@ -149,7 +149,7 @@ class ContextMenu(QMenu):
                        (self.preview_qr_code_action, lambda: qr_code_preview(self.csv_export_controller.db_connection, self.index, self.main_window)),
                        (self.contact_check_birthday_action, lambda: self.check_birthday_controller.check_birthday(self.main_window)),
                        (self.contact_check_duplicity_action, lambda: self.check_duplicates_controller.check_duplicates(self.main_window)),
-                       (self.contact_check_coords_action, lambda: self.check_coords_controller.check_coords(self.main_window))
+                       (self.contact_check_coords_action, lambda: self.check_coords_controller.check_coordinates(self.main_window))
                        ]
         try:
             for action, method in connections:

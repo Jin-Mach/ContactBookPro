@@ -3,8 +3,8 @@ import pathlib
 
 from typing import Any
 
+from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 
 
 class MapKeys:
@@ -22,10 +22,5 @@ class MapKeys:
                 value = map.get(value, "")
             return str(value)
         except Exception as e:
-            MapKeys.write_log_exception(e)
+            ErrorHandler.write_log_exception(MapKeys.__class__.__name__, e)
             return ""
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{MapKeys.__class__.__name__}: {exception}", exc_info=True)

@@ -10,7 +10,6 @@ from src.database.utilities.contacts_utilities.export_data_provider import Expor
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
@@ -57,7 +56,7 @@ class CsvExportController:
             self.csv_object = export_object
             self.csv_thread = BasicThread()
             self.csv_thread.run_basic_thread(worker=self.csv_object, start_slot=self.csv_object.run_csv_export,
-                                             on_error=CsvExportController.write_log_exception,
+                                             on_error=lambda exception: ErrorHandler.write_log_exception(self.class_name, exception),
                                              on_finished=lambda success: CsvExportController.notification_handler(main_window, success))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
@@ -68,8 +67,3 @@ class CsvExportController:
             main_window.tray_icon.show_notification("Export CSV", "exportSaved")
         else:
             main_window.tray_icon.show_notification("Export CSV", "saveError")
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(exception, exc_info=True)

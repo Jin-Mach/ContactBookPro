@@ -10,7 +10,6 @@ from src.database.utilities.contacts_utilities.export_data_provider import Expor
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.contacts.ui.main_widgets.contacts_tableview_widget import ContactsTableviewWidget
@@ -56,7 +55,7 @@ class ExcelExportController:
             self.excel_object = export_object
             self.excel_thread = BasicThread()
             self.excel_thread.run_basic_thread(worker=self.excel_object, start_slot=self.excel_object.run_excel_export,
-                                               on_error=ExcelExportController.write_log_exception,
+                                               on_error=lambda exception: ErrorHandler.write_log_exception(self.class_name, exception),
                                                on_finished=lambda success: ExcelExportController.notification_handler(
                                                  main_window, success))
         except Exception as e:
@@ -68,8 +67,3 @@ class ExcelExportController:
             main_window.tray_icon.show_notification("Export Excel", "exportSaved")
         else:
             main_window.tray_icon.show_notification("Export Excel", "saveError")
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{ExcelExportController.__class__.__name__}: {exception}", exc_info=True)

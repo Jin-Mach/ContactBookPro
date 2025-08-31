@@ -75,12 +75,15 @@
     "noTableviewSelection": "Veuillez d'abord sélectionner un contact dans la liste."
   },
   "checkBirthdayController": {
+    "birthdayError": "Erreur lors de la vérification des anniversaires.",
     "noBirthday": "Aucun contact n'a d'anniversaire proche."
   },
   "checkDuplicatesController": {
+    "duplicatesError": "Erreur lors de la vérification des doublons.",
     "noDuplicates": "Aucun contact en double."
   },
   "checkCoordinatesController": {
+    "coordinatesError": "Erreur lors de la vérification des coordonnées.",
     "noCoordinates": "Tous les contacts ont des coordonnées valides"
   },
   "validatedLineedit": {

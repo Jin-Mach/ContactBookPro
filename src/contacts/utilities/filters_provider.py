@@ -2,7 +2,8 @@ import json
 import pathlib
 
 from typing import Any
-from src.utilities.logger_provider import get_logger
+
+from src.utilities.error_handler import ErrorHandler
 
 
 class FiltersProvider:
@@ -20,7 +21,7 @@ class FiltersProvider:
                 return True, "success"
             return False, "exists"
         except Exception as e:
-            FiltersProvider.write_log_exception(e)
+            ErrorHandler.write_log_exception(FiltersProvider.__class__.__name__, e)
             return False, "error"
 
     @staticmethod
@@ -32,7 +33,7 @@ class FiltersProvider:
                 with open(FiltersProvider.filters_path, "w", encoding="utf-8") as file:
                     json.dump(saved_filters, file, indent=2)
         except Exception as e:
-            FiltersProvider.write_log_exception(e)
+            ErrorHandler.write_log_exception(FiltersProvider.__class__.__name__, e)
 
     @staticmethod
     def get_filters_data() -> dict[str, dict]:
@@ -59,9 +60,4 @@ class FiltersProvider:
             if FiltersProvider.filters_path.exists() and FiltersProvider.filters_path.is_file():
                 FiltersProvider.filters_path.unlink()
         except Exception as e:
-            FiltersProvider.write_log_exception(e)
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{FiltersProvider.__class__.__name__}: {exception}", exc_info=True)
+            ErrorHandler.write_log_exception(FiltersProvider.__class__.__name__, e)

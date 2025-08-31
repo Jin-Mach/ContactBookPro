@@ -8,7 +8,8 @@ from src.utilities.application_support_provider import ApplicationSupportProvide
 
 def application_init(application: QApplication) -> bool:
     try:
-        BasicSetupProvider.download_files()
+        if not BasicSetupProvider.download_files():
+            return False
         application.setStyle("Fusion")
         ApplicationSupportProvider.set_application_style(application)
         LanguageProvider.initialize_language()

@@ -4,8 +4,6 @@ import sys
 
 from PyQt6.QtCore import QLocale
 
-from src.utilities.logger_provider import get_logger
-
 
 class LanguageProvider:
     language_path = pathlib.Path(__file__).parents[2].joinpath("languages")
@@ -109,5 +107,5 @@ class LanguageProvider:
 
     @staticmethod
     def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{LanguageProvider.__class__.__name__} :{exception}", exc_info=True)
+        from src.utilities.error_handler import ErrorHandler
+        ErrorHandler.write_log_exception(LanguageProvider.__class__.__name__, exception)

@@ -9,18 +9,18 @@ if TYPE_CHECKING:
 
 
 # noinspection PyUnresolvedReferences
-class CheckCoordsObject(QObject):
+class CheckCoordinatesObject(QObject):
     error_message = pyqtSignal(Exception)
-    finished = pyqtSignal(list)
+    finished = pyqtSignal(object)
     def __init__(self, db_path: str, query_provider: "QueryProvider", main_window: QMainWindow) -> None:
         super().__init__()
-        self.setObjectName("checkCoordsObject")
+        self.setObjectName("checkCoordinatesObject")
         self.db_path = db_path
         self.query_provider = query_provider
         self.main_window = main_window
-        self.connection_name = f"checkCoordsThread{id(self)}"
+        self.connection_name = f"checkCoordinatesThread{id(self)}"
 
-    def run_check_coords(self) -> None:
+    def run_check_coordinates(self) -> None:
         db_connection = None
         self.selected_contacts = []
         try:
@@ -36,7 +36,7 @@ class CheckCoordsObject(QObject):
             self.finished.emit(self.selected_contacts)
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit([])
+            self.finished.emit(None)
         finally:
             if db_connection:
                 db_connection.close()

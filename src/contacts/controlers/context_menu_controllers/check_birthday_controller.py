@@ -11,7 +11,6 @@ from src.database.utilities.contacts_utilities.query_provider import QueryProvid
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
-from src.utilities.logger_provider import get_logger
 
 if TYPE_CHECKING:
     from src.database.models.mandatory_model import MandatoryModel
@@ -42,13 +41,18 @@ class CheckBirthdayController:
             self.birthday_object = birthday_object
             self.birthday_thread = BasicThread()
             self.birthday_thread.run_basic_thread(worker=self.birthday_object, start_slot=start_slot,
-                                                  on_error=CheckBirthdayController.write_log_exception,
+                                                  on_error=lambda exception: ErrorHandler.write_log_exception(self.class_name, exception),
                                                   on_finished=lambda contacts_list: self.show_preview(main_window, contacts_list))
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
     def show_preview(self, main_window: QMainWindow, contacts_list: list[dict[str, str]]) -> None:
         try:
+            error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
+            if contacts_list is None:
+                if error_text:
+                    DialogsProvider.show_error_dialog(error_text.get("birthdayError", ""), main_window)
+                return
             if contacts_list:
                 order = ["id", "first_name", "second_name"]
                 sorted_contacts_list = []
@@ -64,14 +68,7 @@ class CheckBirthdayController:
                         show_selected_contact(self.mandatory_model, self.table_view, self.status_bar,
                                                 dialog.selected_id)
             else:
-                error_text = LanguageProvider.get_json_text("errors_text.json", self.class_name)
                 if error_text:
-                    error_text = error_text.get("noBirthday", "")
-                    DialogsProvider.show_error_dialog(error_text, main_window)
+                    DialogsProvider.show_error_dialog(error_text.get("noBirthday", ""), main_window)
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
-
-    @staticmethod
-    def write_log_exception(exception: Exception) -> None:
-        logger = get_logger()
-        logger.error(f"{CheckBirthdayController.__class__.__name__}: {exception}", exc_info=True)

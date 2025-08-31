@@ -75,12 +75,15 @@
     "noTableviewSelection": "Сначала выберите контакт из списка."
   },
   "checkBirthdayController": {
+    "birthdayError": "Ошибка при проверке дней рождения.",
     "noBirthday": "Ни один контакт не имеет дня рождения в ближайший период."
   },
   "checkDuplicatesController": {
+    "duplicatesError": "Ошибка при проверке дубликатов контактов.",
     "noDuplicates": "Нет дублирующихся контактов."
   },
   "checkCoordinatesController": {
+    "coordinatesError": "Ошибка при проверке координат.",
     "noCoordinates": "Все контакты имеют действительные координаты"
   },
   "validatedLineedit": {

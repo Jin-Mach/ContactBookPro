@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 # noinspection PyUnresolvedReferences
 class CheckDuplicatesObject(QObject):
     error_message = pyqtSignal(Exception)
-    finished = pyqtSignal(list)
+    finished = pyqtSignal(object)
     def __init__(self, db_path: str, query_provider: "QueryProvider", main_window: QMainWindow) -> None:
         super().__init__()
         self.setObjectName("checkDuplicatesObject")
@@ -36,7 +36,7 @@ class CheckDuplicatesObject(QObject):
             self.finished.emit(self.selected_contacts)
         except Exception as e:
             self.error_message.emit(e)
-            self.finished.emit([])
+            self.finished.emit(None)
         finally:
             if db_connection:
                 db_connection.close()

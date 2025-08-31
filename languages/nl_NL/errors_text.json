@@ -75,12 +75,15 @@
     "noTableviewSelection": "Selecteer eerst een contact uit de lijst."
   },
   "checkBirthdayController": {
+    "birthdayError": "Fout bij het controleren van verjaardagen.",
     "noBirthday": "Geen van de contacten heeft binnenkort een verjaardag."
   },
   "checkDuplicatesController": {
+    "duplicatesError": "Fout bij het controleren van dubbele contacten.",
     "noDuplicates": "Geen dubbele contacten."
   },
   "checkCoordinatesController": {
+    "coordinatesError": "Fout bij het controleren van coördinaten.",
     "noCoordinates": "Alle contacten hebben geldige coördinaten"
   },
   "validatedLineedit": {
