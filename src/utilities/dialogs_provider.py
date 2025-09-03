@@ -1,10 +1,16 @@
+from typing import TYPE_CHECKING
+
 import pathlib
 
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QThread, QTimer
 from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton, QComboBox, QHBoxLayout
+from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QDialogButtonBox, QWidget, QPushButton, QComboBox, \
+    QHBoxLayout, QLayout, QProgressBar
 
 from src.utilities.language_provider import LanguageProvider
+
+if TYPE_CHECKING:
+    from src.threading.download_files_object import DownloadFilesObject
 
 
 # noinspection PyUnresolvedReferences,PyTypeChecker
@@ -16,7 +22,7 @@ class DialogsProvider:
         dialog = QDialog(parent)
         dialog.setObjectName("errorDialog")
         DialogsProvider.set_dialog_icon(dialog)
-        dialog.setMinimumSize(250, 100)
+        dialog.setMinimumSize(300, 200)
         main_layout = QVBoxLayout()
         text_label = QLabel()
         text_label.setObjectName("errorTextLabel")
@@ -122,3 +128,52 @@ class DialogsProvider:
         except Exception as e:
             from src.utilities.error_handler import ErrorHandler
             ErrorHandler.exception_handler(e, parent)
+
+
+class DownloadFilesDialog(QDialog):
+
+    def __init__(self, download_files_object: "DownloadFilesObject") -> None:
+        super().__init__()
+        self.setObjectName("downloadFilesDialog")
+        self.setWindowFlag(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog)
+        self.setWindowModality(Qt.WindowModality.NonModal)
+        self.download_files_object = download_files_object
+        self.setLayout(self.create_gui())
+        self.start_download()
+
+    def create_gui(self) -> QLayout:
+        main_layout = QVBoxLayout()
+        self.download_text_label = QLabel("Downloading files...")
+        self.download_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.download_text_label.setStyleSheet("font-weight: bold;")
+        progress_layout = QHBoxLayout()
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setFixedHeight(15)
+        self.progress_text_label = QLabel()
+        progress_layout.addWidget(self.progress_bar)
+        progress_layout.addWidget(self.progress_text_label)
+        main_layout.addWidget(self.download_text_label)
+        main_layout.addLayout(progress_layout)
+        return main_layout
+
+    def start_download(self) -> None:
+        self.thread = QThread()
+        self.download_files_object.moveToThread(self.thread)
+        self.thread.started.connect(self.download_files_object.download_files)
+        self.download_files_object.download_progress.connect(self.download_progress)
+        self.download_files_object.download_finished.connect(self.download_finished)
+        self.thread.start()
+
+    def download_progress(self, downloaded: int, total: int) -> None:
+        self.progress_bar.setValue(int(downloaded / total * 100))
+        self.progress_text_label.setText(f"{downloaded}/{total}")
+
+    def download_finished(self, success: bool) -> None:
+        self.thread.quit()
+        self.thread.wait()
+        if not success:
+            self.download_text_label.setText("Download failed")
+            QTimer.singleShot(1000, self.accept)
+        else:
+            self.download_text_label.setText("Download completed")
+            QTimer.singleShot(1000, self.accept)

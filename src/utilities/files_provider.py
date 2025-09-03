@@ -1,11 +1,9 @@
 import pathlib
-import requests
 
-from src.utilities.application_support_provider import ApplicationSupportProvider
 from src.utilities.error_handler import ErrorHandler
 
 
-class BasicSetupProvider:
+class FilesProvider:
     default_path = pathlib.Path(__file__).parents[2]
     default_path.mkdir(parents=True, exist_ok=True)
     supported_languages = ["cs_CZ", "de_DE", "en_GB", "es_ES", "fr_FR", "it_IT", "nl_NL", "pl_PL", "pt_PT", "ru_RU"]
@@ -15,12 +13,12 @@ class BasicSetupProvider:
         required_files = ["dialog_text.json", "errors_text.json", "export_settings.json", "headers_text.json",
                           "language_setup.json", "menu_text.json", "preview_dialog_text.json", "search_dialog_text.json",
                           "statustips_text.json", "tooltips_text.json", "ui_text.json", "user_filters_dialog_text.json"]
-        json_files_path = BasicSetupProvider.default_path.joinpath("languages")
+        json_files_path = FilesProvider.default_path.joinpath("languages")
         json_files_path.mkdir(parents=True, exist_ok=True)
         json_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
         missing_json_urls = {}
         try:
-            for language in BasicSetupProvider.supported_languages:
+            for language in FilesProvider.supported_languages:
                 language_dir = json_files_path.joinpath(language)
                 language_dir.mkdir(parents=True, exist_ok=True)
                 if language_dir.is_dir():
@@ -34,7 +32,7 @@ class BasicSetupProvider:
                             file_url = f"{json_url}/{language_dir.name}/{file}"
                             missing_json_urls[file_url] = language_dir.joinpath(file)
         except Exception as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
+            ErrorHandler.write_log_exception(FilesProvider.__class__.__name__, e)
             return None
         return missing_json_urls
 
@@ -124,7 +122,7 @@ class BasicSetupProvider:
             "xPushbutton_icon.png": "tabInfoWidget",
             "deleteFilterPushbutton_icon.png": "userFiltersListwidget"
         }
-        icon_files_path = BasicSetupProvider.default_path.joinpath("icons")
+        icon_files_path = FilesProvider.default_path.joinpath("icons")
         icons_url_base = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/icons"
         missing_icons_urls = {}
         found_icons = set()
@@ -142,14 +140,14 @@ class BasicSetupProvider:
                         local_path = icon_files_path.joinpath(folder, icon)
                         missing_icons_urls[url] = local_path
         except Exception as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
+            ErrorHandler.write_log_exception(FilesProvider.__class__.__name__, e)
             return None
         return missing_icons_urls
 
     @staticmethod
     def check_font_files() -> dict | None:
         required_fonts = ["TimesNewRoman.ttf"]
-        fonts_directory = BasicSetupProvider.default_path.joinpath("fonts")
+        fonts_directory = FilesProvider.default_path.joinpath("fonts")
         fonts_base_url = "https://github.com/Jin-Mach/ContactBookPro/raw/main/fonts"
         missing_fonts_urls = {}
         found_fonts = set()
@@ -164,7 +162,7 @@ class BasicSetupProvider:
                     font_target_path = fonts_directory.joinpath(font_name)
                     missing_fonts_urls[font_url] = font_target_path
         except Exception as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
+            ErrorHandler.write_log_exception(FilesProvider.__class__.__name__, e)
             return None
         return missing_fonts_urls
 
@@ -177,12 +175,12 @@ class BasicSetupProvider:
             "mapTextEdit.txt", "pdfPreviewTextEdit.txt", "qrCodePreviewTextEdit.txt", "searchContactsTextEdit.txt",
             "statisticsTextEdit.txt", "usageApplicationTextEdit.txt", "vcardExportTextEdit.txt"
         ]
-        txt_file_path = BasicSetupProvider.default_path.joinpath("languages")
+        txt_file_path = FilesProvider.default_path.joinpath("languages")
         txt_file_path.mkdir(parents=True, exist_ok=True)
         txt_url = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
         missing_txt_urls = {}
         try:
-            for language in BasicSetupProvider.supported_languages:
+            for language in FilesProvider.supported_languages:
                 manual_dir_path = txt_file_path.joinpath(language, "manual")
                 manual_dir_path.mkdir(parents=True, exist_ok=True)
                 txt_files = manual_dir_path.glob("*.txt")
@@ -192,19 +190,19 @@ class BasicSetupProvider:
                         file_url = f"{txt_url}/{language}/manual/{file}"
                         missing_txt_urls[file_url] = manual_dir_path.joinpath(file)
         except Exception as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
+            ErrorHandler.write_log_exception(FilesProvider.__class__.__name__, e)
             return None
         return missing_txt_urls
 
     @staticmethod
     def check_about_files() -> dict | None:
         required_files = ["aboutApplicationTextEdit.html"]
-        html_base_path = BasicSetupProvider.default_path.joinpath("languages")
+        html_base_path = FilesProvider.default_path.joinpath("languages")
         html_base_path.mkdir(parents=True, exist_ok=True)
         html_url_base = "https://raw.githubusercontent.com/Jin-Mach/ContactBookPro/main/languages"
         missing_html_urls = {}
         try:
-            for language in BasicSetupProvider.supported_languages:
+            for language in FilesProvider.supported_languages:
                 html_dir_path = html_base_path.joinpath(language, "about")
                 html_dir_path.mkdir(parents=True, exist_ok=True)
                 html_files = html_dir_path.glob("*.html")
@@ -216,37 +214,6 @@ class BasicSetupProvider:
                         file_url = f"{html_url_base}/{language}/about/{file}"
                         missing_html_urls[file_url] = html_dir_path.joinpath(file)
         except Exception as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
+            ErrorHandler.write_log_exception(FilesProvider.__class__.__name__, e)
             return None
         return missing_html_urls
-
-    @staticmethod
-    def download_files() -> bool:
-        missing_files = [BasicSetupProvider.check_json_files(), BasicSetupProvider.check_icon_files(),
-                         BasicSetupProvider.check_font_files(), BasicSetupProvider.check_manual_files(),
-                         BasicSetupProvider.check_about_files()]
-        download_files = {}
-        for files in missing_files:
-            if files is None:
-                return False
-            download_files.update(files)
-        if not download_files:
-            return True
-        try:
-            if not ApplicationSupportProvider.connection_result():
-                return False
-            for key, value in download_files.items():
-                directory = value.parent
-                directory.mkdir(parents=True, exist_ok=True)
-                response = requests.get(key)
-                if 200 <= response.status_code < 300 and response.content:
-                    if value.exists():
-                        value.unlink()
-                    with open(str(value), "wb") as file:
-                        file.write(response.content)
-                else:
-                    return False
-        except requests.exceptions.RequestException as e:
-            ErrorHandler.write_log_exception(BasicSetupProvider.__class__.__name__, e)
-            return False
-        return True
