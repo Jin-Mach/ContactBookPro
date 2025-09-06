@@ -11,11 +11,13 @@ from src.utilities.language_provider import LanguageProvider
 
 # noinspection PyUnresolvedReferences
 class PdfPreviewDialog(QDialog):
-    def __init__(self, pdf_path: str, save_pdf_function: Callable[[], None], parent=None) -> None:
+    def __init__(self, pdf_path: str, print_pdf_function: Callable[[], None], save_pdf_function: Callable[[], None],
+                 parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("pdfPreviewDialog")
         self.setMinimumSize(600, 800)
         self.pdf_path = pdf_path
+        self.print_pdf_function = print_pdf_function
         self.save_pdf_function = save_pdf_function
         self.parent = parent
         self.pdf_view = PdfView(self.pdf_path, self)
@@ -31,6 +33,8 @@ class PdfPreviewDialog(QDialog):
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         toolbar_layout = QHBoxLayout()
+        self.open_application_button = QPushButton()
+        self.open_application_button.setObjectName("openApplicationButton")
         self.save_as_button = QPushButton()
         self.save_as_button.setObjectName("pdfSaveAsButton")
         self.fit_page_button = QPushButton()
@@ -44,6 +48,7 @@ class PdfPreviewDialog(QDialog):
         self.close_dialog_button = QPushButton()
         self.close_dialog_button.setObjectName("closeDialogButton")
         toolbar_layout.addWidget(self.save_as_button)
+        toolbar_layout.addWidget(self.open_application_button)
         toolbar_layout.addStretch()
         toolbar_layout.addWidget(self.fit_page_button)
         toolbar_layout.addWidget(self.zoom_in_button)
@@ -78,6 +83,7 @@ class PdfPreviewDialog(QDialog):
 
     def create_connection(self) -> None:
         connections = [
+            (self.open_application_button, self.print_pdf_function),
             (self.save_as_button, self.save_pdf_function),
             (self.zoom_in_button, self.pdf_view_widget.zoom_in),
             (self.zoom_out_button, self.pdf_view_widget.zoom_out),

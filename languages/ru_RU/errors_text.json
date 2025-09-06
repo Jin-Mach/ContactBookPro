@@ -72,7 +72,8 @@
   "pdfExportController": {
     "emptyIdList": "Нет контактов для экспорта",
     "indexError": "Не выбран допустимый индекс. Повторите выбор.",
-    "noTableviewSelection": "Сначала выберите контакт из списка."
+    "noTableviewSelection": "Сначала выберите контакт из списка.",
+    "noSupportedApplication": "Не удалось открыть файл в приложении.\nПроверьте, установлен ли у вас PDF-просмотрщик."
   },
   "checkBirthdayController": {
     "birthdayError": "Ошибка при проверке дней рождения.",

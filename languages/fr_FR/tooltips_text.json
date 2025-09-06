@@ -77,6 +77,7 @@
     "invalidChar": "Caractère non autorisé :"
   },
   "pdfPreviewDialog": {
+    "openApplicationButton": "Ouvrir dans l'application",
     "pdfSaveAsButton": "Enregistrer sous...",
     "pdfZoomInButton": "Agrandir",
     "pdfZoomOutButton": "Rétrécir",

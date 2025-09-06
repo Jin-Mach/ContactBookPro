@@ -72,7 +72,8 @@
   "pdfExportController": {
     "emptyIdList": "No contacts to export",
     "indexError": "No valid index selected. Please retry the selection.",
-    "noTableviewSelection": "Please select a contact from the list first."
+    "noTableviewSelection": "Please select a contact from the list first.",
+    "noSupportedApplication": "The file could not be opened in the application.\nPlease make sure you have a PDF viewer installed."
   },
   "checkBirthdayController": {
     "birthdayError": "Error checking birthdays.",

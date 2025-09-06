@@ -72,7 +72,8 @@
   "pdfExportController": {
     "emptyIdList": "No hay contactos para exportar",
     "indexError": "No se seleccionó un índice válido. Repite la selección.",
-    "noTableviewSelection": "Primero selecciona un contacto de la lista."
+    "noTableviewSelection": "Primero selecciona un contacto de la lista.",
+    "noSupportedApplication": "No se pudo abrir el archivo en la aplicación.\nCompruebe que tiene un visor de PDF instalado."
   },
   "checkBirthdayController": {
     "birthdayError": "Error al comprobar los cumpleaños.",

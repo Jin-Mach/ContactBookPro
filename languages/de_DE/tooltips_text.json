@@ -77,6 +77,7 @@
     "invalidChar": "Ungültiges Zeichen:"
   },
   "pdfPreviewDialog": {
+    "openApplicationButton": "In Anwendung öffnen",
     "pdfSaveAsButton": "Speichern unter..",
     "pdfZoomInButton": "Vergrößern",
     "pdfZoomOutButton": "Verkleinern",

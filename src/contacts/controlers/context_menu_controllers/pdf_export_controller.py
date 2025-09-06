@@ -3,7 +3,8 @@ import shutil
 
 from typing import TYPE_CHECKING, Callable
 
-from PyQt6.QtCore import QStandardPaths
+from PyQt6.QtCore import QStandardPaths, QUrl
+from PyQt6.QtGui import QDesktopServices
 from PyQt6.QtSql import QSqlDatabase
 from PyQt6.QtWidgets import QMainWindow, QFileDialog
 
@@ -84,14 +85,22 @@ class PdfExportController:
     def show_preview(self, main_window: QMainWindow, success: bool) -> None:
         try:
             if success:
-                pdf_dialog = PdfPreviewDialog(str(self.pdf_output_path), lambda: self.save_pdf_document(str(self.pdf_output_path), main_window), main_window)
+                pdf_dialog = PdfPreviewDialog(str(self.pdf_output_path), lambda: self.open_pdf_in_application(str(self.pdf_output_path), main_window),
+                                              lambda: self.save_pdf_document(str(self.pdf_output_path), main_window), main_window)
                 pdf_dialog.exec()
             else:
                 main_window.tray_icon.show_notification("Export PDF", "saveError")
         except Exception as e:
             ErrorHandler.exception_handler(e, main_window)
 
-    def save_pdf_document(self, default_file_path: str, main_window:QMainWindow) -> None:
+    def open_pdf_in_application(self, default_file_path: str, main_window: QMainWindow) -> None:
+        try:
+            if not QDesktopServices.openUrl(QUrl.fromLocalFile(default_file_path)):
+                DialogsProvider.show_error_dialog(self.error_text.get("noSupportedApplication", ""), main_window)
+        except Exception as e:
+            ErrorHandler.exception_handler(e, main_window)
+
+    def save_pdf_document(self, default_file_path: str, main_window: QMainWindow) -> None:
         try:
             default_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DocumentsLocation)
             menu_text = LanguageProvider.get_json_text("menu_text.json", self.class_name)

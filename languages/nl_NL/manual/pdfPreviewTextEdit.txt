@@ -2,11 +2,12 @@ De applicatie maakt het mogelijk om een voorbeeld weer te geven van een geselect
 
 Het voorbeeld van een geselecteerd contact bevat alle beschikbare informatie, behalve coördinaten, datum van toevoeging en datum van de laatste wijziging.  
 In de rechterbenedenhoek staat een kleine QR-code met dezelfde gegevens die worden geëxporteerd naar het vCard-formaat.  
-De gebruiker kan in- en uitzoomen en het voorbeeld opslaan als PDF.  
-Bij het klikken op opslaan wordt een dialoog weergegeven om de locatie en bestandsnaam te selecteren, die standaard wordt opgeslagen in de map Documenten (hetzelfde voor Windows en macOS).  
+De gebruiker kan in- en uitzoomen, **openen in een applicatie**, en het voorbeeld opslaan als PDF.
+Bij het klikken op "Openen in applicatie" wordt het PDF-bestand geopend in de standaard PDF-applicatie van het systeem.
+Bij het klikken op opslaan wordt een dialoog weergegeven om de locatie en bestandsnaam te selecteren, die standaard wordt opgeslagen in de map Documenten (hetzelfde voor Windows en macOS).
 
-Het is ook mogelijk om de lijst van momenteel weergegeven contacten of alle contacten in de database weer te geven.  
-Deze lijst bevat alleen naam, achternaam, geslacht, relatie, e-mail, telefoon en volledig adres.  
-De lijst kan ook worden in- en uitgezoomd en opgeslagen als PDF.  
+Het is ook mogelijk om de lijst van momenteel weergegeven contacten of alle contacten in de database weer te geven.
+Deze lijst bevat alleen naam, achternaam, geslacht, relatie, e-mail, telefoon en volledig adres.
+De lijst kan ook worden in- en uitgezoomd en opgeslagen als PDF.
 
 Het genereren van een PDF-voorbeeld vindt op de achtergrond plaats, zodat de applicatie tijdens het genereren verder kan worden gebruikt.

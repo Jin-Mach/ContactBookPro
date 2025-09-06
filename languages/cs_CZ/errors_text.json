@@ -72,7 +72,8 @@
   "pdfExportController": {
     "emptyIdList": "Žádné kontakty pro export",
     "indexError": "Není zvolen platný index. Opakuj výběr znovu.",
-    "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu."
+    "noTableviewSelection": "Nejprve vyberte kontakt ze seznamu.",
+    "noSupportedApplication": "Soubor se nepodařilo otevřít v aplikaci.\nZkontrolujte, zda máte nainstalovaný prohlížeč PDF."
   },
   "checkBirthdayController": {
     "birthdayError": "Chyba při kontrole narozenin.",

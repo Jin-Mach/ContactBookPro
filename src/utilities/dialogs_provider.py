@@ -22,7 +22,7 @@ class DialogsProvider:
         dialog = QDialog(parent)
         dialog.setObjectName("errorDialog")
         DialogsProvider.set_dialog_icon(dialog)
-        dialog.setMinimumSize(300, 200)
+        dialog.setMinimumSize(300, 100)
         main_layout = QVBoxLayout()
         text_label = QLabel()
         text_label.setObjectName("errorTextLabel")

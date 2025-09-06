@@ -77,6 +77,7 @@
     "invalidChar": "Invalid character:"
   },
   "pdfPreviewDialog": {
+    "openApplicationButton": "Open in application",
     "pdfSaveAsButton": "Save as...",
     "pdfZoomInButton": "Zoom in",
     "pdfZoomOutButton": "Zoom out",

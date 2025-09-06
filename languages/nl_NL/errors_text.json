@@ -72,7 +72,8 @@
   "pdfExportController": {
     "emptyIdList": "Geen contacten om te exporteren",
     "indexError": "Geen geldige index geselecteerd. Probeer opnieuw.",
-    "noTableviewSelection": "Selecteer eerst een contact uit de lijst."
+    "noTableviewSelection": "Selecteer eerst een contact uit de lijst.",
+    "noSupportedApplication": "Het bestand kon niet in de toepassing worden geopend.\nControleer of u een PDF-lezer hebt geïnstalleerd."
   },
   "checkBirthdayController": {
     "birthdayError": "Fout bij het controleren van verjaardagen.",

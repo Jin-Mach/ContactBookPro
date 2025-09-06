@@ -2,7 +2,8 @@ Aplikace umožňuje zobrazit náhled vybraného kontaktu nebo seznamu kontaktů 
 
 Náhled vybraného kontaktu obsahuje všechny dostupné informace kromě souřadnic, data přidání a data poslední úpravy.
 V pravém dolním rohu je malý QR kód se stejnými údaji, které se exportují do formátu vCard.
-Uživatel může přibližovat, oddalovat a uložit náhled do PDF.
+Uživatel může přibližovat, oddalovat, otevřít v aplikaci a uložit náhled do PDF.
+Po kliknutí na Otevřít v aplikaci se PDF soubor otevře ve výchozí aplikaci pro PDF nainstalované v systému.
 Po kliknutí na uložit se zobrazí dialog pro výběr umístění a názvu souboru, který se ve výchozím nastavení uloží do složky Dokumenty (stejné pro Windows i macOS).
 
 Je možné zobrazit také seznam aktuálně zobrazených kontaktů nebo všech kontaktů v databázi.
