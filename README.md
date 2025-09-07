@@ -55,9 +55,14 @@ The application allows you to manage contacts, visualize locations on a map, and
   ```
 
 - Install the required packages:
-```bash
-  pip install -r requirements.txt
-```
+  - On Windows
+  ```bash
+  python -m pip install -r requirements.txt
+  ```
+  - On macOS/Linux
+  ```bash
+  python3 -m pip install -r requirements.txt
+  ```
 
 ## Usage
 After installing the dependencies, you can start the application with the following command:
