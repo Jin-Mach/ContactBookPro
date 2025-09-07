@@ -8,6 +8,6 @@ Po kliknutí na uložit se zobrazí dialog pro výběr umístění a názvu soub
 
 Je možné zobrazit také seznam aktuálně zobrazených kontaktů nebo všech kontaktů v databázi.
 Tento seznam obsahuje pouze jméno, příjmení, pohlaví, vztah, e-mail, telefon a celou adresu.
-Seznam lze rovněž přibližovat, oddalovat a uložit jako PDF.
+Seznam lze rovněž přibližovat, oddalovat, otevřít v aplikaci a uložit jako PDF.
 
 Generování náhledu PDF probíhá na pozadí, takže aplikaci lze během generování dále používat.

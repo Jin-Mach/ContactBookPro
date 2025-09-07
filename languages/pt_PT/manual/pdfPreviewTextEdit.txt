@@ -2,12 +2,12 @@ O aplicativo permite exibir uma visualização do contato selecionado ou da list
 
 A visualização do contato selecionado contém todas as informações disponíveis, exceto coordenadas, data de adição e data da última modificação.
 No canto inferior direito, há um pequeno código QR com os mesmos dados que são exportados para o formato vCard.
-O usuário pode aproximar, afastar, **abrir em uma aplicação**, e salvar a visualização em PDF.
-Ao clicar em "Abrir na aplicação", o arquivo PDF será aberto na aplicação PDF padrão do sistema.
+O usuário pode aproximar, afastar, abrir em uma aplicação, e salvar a visualização em PDF.
+Ao clicar em Abrir na aplicação, o arquivo PDF será aberto na aplicação PDF padrão do sistema.
 Ao clicar em salvar, será exibido um diálogo para escolher o local e o nome do arquivo, que por padrão será salvo na pasta Documentos (mesmo local no Windows e macOS).
 
 Também é possível exibir a lista de contatos atualmente visíveis ou todos os contatos no banco de dados.
 Essa lista contém apenas nome, sobrenome, sexo, relação, e-mail, telefone e o endereço completo.
-A lista também pode ser aproximada, afastada e salva como PDF.
+A lista também pode ser aproximada, afastada, abrir na aplicação e salva como PDF.
 
 A geração da visualização em PDF ocorre em segundo plano, permitindo que o aplicativo continue a ser usado durante o processo.

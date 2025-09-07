@@ -2,12 +2,12 @@ L'application permet d'afficher un aperçu du contact sélectionné ou de la lis
 
 L'aperçu du contact sélectionné contient toutes les informations disponibles, à l'exception des coordonnées, de la date d'ajout et de la date de dernière modification.
 En bas à droite se trouve un petit code QR avec les mêmes informations qui sont exportées au format vCard.
-L'utilisateur peut zoomer, dézoomer, **ouvrir dans une application**, et enregistrer l'aperçu au format PDF.
-En cliquant sur "Ouvrir dans l'application", le fichier PDF s'ouvre dans l'application PDF par défaut du système.
-Lors du clic sur "enregistrer", une boîte de dialogue permet de choisir l'emplacement et le nom du fichier, qui sera enregistré par défaut dans le dossier Documents (même emplacement pour Windows et macOS).
+L'utilisateur peut zoomer, dézoomer, ouvrir dans une application, et enregistrer l'aperçu au format PDF.
+En cliquant sur Ouvrir dans l'application, le fichier PDF s'ouvre dans l'application PDF par défaut du système.
+Lors du clic sur enregistrer, une boîte de dialogue permet de choisir l'emplacement et le nom du fichier, qui sera enregistré par défaut dans le dossier Documents (même emplacement pour Windows et macOS).
 
 Il est également possible d'afficher la liste des contacts actuellement affichés ou de tous les contacts de la base de données.
 Cette liste contient uniquement le prénom, le nom, le sexe, le lien, l'e-mail, le téléphone et l'adresse complète.
-La liste peut également être zoomée, dézoomée et enregistrée au format PDF.
+La liste peut également être zoomée, dézoomée, ouverte dans l'application et enregistrée au format PDF.
 
 La génération de l'aperçu PDF s'effectue en arrière-plan, ce qui permet de continuer à utiliser l'application pendant sa création.
