@@ -112,6 +112,7 @@
     "notesPlaceholderText": "Poznámky ke kontaktu (max. 300 znaků, max. 5 řádků)..."
   },
   "contactsListDialog": {
+    "contactsListDialogTitle": "Databáze kontaktů",
     "duplicateTextLabel": "Počet nalezených duplicitních kontaktů",
     "duplicateTextLabelContextBirthday": "Počet kontaktů s narozeninami",
     "duplicateTextLabelContextDuplicity": "Počet kontaktů s duplicitou",

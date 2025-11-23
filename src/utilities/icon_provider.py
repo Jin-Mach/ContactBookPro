@@ -13,7 +13,7 @@ class IconProvider:
     @staticmethod
     def set_window_icon(widget: QWidget, folder_name: str) -> None:
         try:
-            icon_icon_file = IconProvider.icons_path.joinpath(f"{folder_name}", "window_icon.png")
+            icon_icon_file = IconProvider.icons_path.joinpath(f"{folder_name}", "mainWindowLogo.png")
             if icon_icon_file.exists():
                 widget.setWindowIcon(QIcon(str(icon_icon_file)))
         except Exception as e:

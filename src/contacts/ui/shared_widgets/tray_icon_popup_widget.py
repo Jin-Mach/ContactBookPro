@@ -52,7 +52,7 @@ class TrayIconPopupWidget(QWidget):
                                     border-bottom: 2px solid #2196F3;
                                     """)
         self.icon_label.setStyleSheet("border: none;")
-        self.title_label.setStyleSheet("font-size: 15pt; border: none;")
+        self.title_label.setStyleSheet("font-size: 12pt; border: none;")
         self.message_label.setStyleSheet("font-size: 12pt; border: none;")
 
     def popup_set_text(self, title: str, message: str) -> None:

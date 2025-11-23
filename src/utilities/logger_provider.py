@@ -5,7 +5,7 @@ from logging.handlers import RotatingFileHandler
 
 
 def get_logger() -> logging.Logger:
-    log_path = pathlib.Path(__file__).parent.parent.joinpath("logs")
+    log_path = pathlib.Path(__file__).parents[2].joinpath("logs")
     log_path.mkdir(parents=True, exist_ok=True)
     logger = logging.getLogger("ContactBookLogger")
     logger.setLevel(logging.WARNING)

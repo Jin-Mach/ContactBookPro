@@ -112,6 +112,7 @@
     "notesPlaceholderText": "Notizen zum Kontakt (max. 300 Zeichen, max. 5 Zeilen)..."
   },
   "contactsListDialog": {
+    "contactsListDialogTitle": "Kontaktdatenbank",
     "duplicateTextLabel": "Anzahl gefundener doppelter Kontakte",
     "duplicateTextLabelContextBirthday": "Anzahl Kontakte mit Geburtstag",
     "duplicateTextLabelContextDuplicity": "Anzahl Kontakte mit Duplikaten",

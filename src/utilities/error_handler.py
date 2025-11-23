@@ -1,4 +1,5 @@
 import sys
+import traceback
 
 from src.utilities.dialogs_provider import DialogsProvider
 from src.utilities.language_provider import LanguageProvider
@@ -28,7 +29,12 @@ class ErrorHandler:
     @staticmethod
     def database_error(error_message: str, close_app: bool, custom_message: str | None = None) -> None:
         try:
-            ErrorHandler.logger.error(f"{ErrorHandler.__class__.__name__}: {error_message}", exc_info=True)
+            call_stack = ''.join(traceback.format_stack(limit=8))
+            ErrorHandler.logger.error(
+                f"[{ErrorHandler.class_name}] Database error!\n"
+                f"Message: {error_message}\n"
+                f"Call stack (most recent call last):\n{call_stack}"
+            )
             errors_data = LanguageProvider.get_json_text("errors_text.json", ErrorHandler.class_name) or {}
             if custom_message is not None and custom_message in errors_data:
                 message = custom_message

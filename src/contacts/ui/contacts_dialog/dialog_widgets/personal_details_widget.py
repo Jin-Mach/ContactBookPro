@@ -73,6 +73,7 @@ class PersonalDetailsWidget(QWidget):
         notes_layout = QVBoxLayout()
         self.dialog_notes_edit = NotesTextEdit(lambda: check_notes_length(self.dialog_notes_edit,
                                                                           self.dialog_letters_count_label, self))
+        self.dialog_notes_edit.setObjectName("dialogNotesEdit")
         letters_count_layout = QHBoxLayout()
         self.dialog_letters_count_label = QLabel("0/300")
         self.dialog_letters_count_label.setObjectName("dialogLettersCountLabel")

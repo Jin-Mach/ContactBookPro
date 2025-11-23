@@ -14,6 +14,7 @@ class UserFiltersDialog(QDialog):
     def __init__(self, delete_filter: Callable[[str], None], parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("userFiltersDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.delete_filter = delete_filter
         self.setFixedSize(400, 300)
         self.setLayout(self.create_gui())
@@ -28,7 +29,7 @@ class UserFiltersDialog(QDialog):
         self.user_filters_text_label = QLabel()
         self.user_filters_text_label.setObjectName("userFiltersTextLabel")
         self.user_filters_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.user_filters_text_label.setStyleSheet("font-size: 20pt;")
+        self.user_filters_text_label.setStyleSheet("font-size: 12pt;")
         self.user_filters_listwidget = UserFiltersListWidget(self.delete_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         button_box.accepted.connect(self.check_selected_filter)

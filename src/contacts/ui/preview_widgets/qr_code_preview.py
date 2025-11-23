@@ -16,7 +16,7 @@ class QrCodePreviewDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("qrCodePreviewDialog")
-        self.setFixedSize(450, 550)
+        self.setFixedSize(300, 400)
         self.setLayout(self.create_gui())
         self.set_ui_text()
         IconProvider.set_window_icon(self, self.objectName())
@@ -24,7 +24,7 @@ class QrCodePreviewDialog(QDialog):
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
         self.contact_name_label = QLabel()
-        self.contact_name_label.setStyleSheet("font-size: 20pt;")
+        self.contact_name_label.setStyleSheet("font-size: 12pt;")
         self.contact_name_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.qr_code_label = QLabel()
         self.qr_code_label.setAlignment(Qt.AlignmentFlag.AlignCenter)

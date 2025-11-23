@@ -1,7 +1,7 @@
 import sys
 
-from PyQt6.QtCore import QTimer
-from PyQt6.QtWidgets import QApplication, QDialog
+from PyQt6.QtCore import QTimer, Qt
+from PyQt6.QtWidgets import QApplication, QDialog, QSplashScreen
 
 from src.application.main_window import MainWindow
 from src.utilities.app_init import application_init, files_init
@@ -32,7 +32,16 @@ def create_application() -> None:
         if result == QDialog.DialogCode.Accepted or result == QDialog.DialogCode.Rejected:
             sys.exit(1)
     window = MainWindow()
+    window.hide()
     application.main_window = window
-    window.show()
-    QTimer.singleShot(1, lambda: splash_screen.finish(window))
+    QTimer.singleShot(200, lambda: finish_and_show(splash_screen, window))
     sys.exit(application.exec())
+
+def finish_and_show(splash_screen: QSplashScreen, main_window: MainWindow) -> None:
+    splash_screen.finish(main_window)
+    main_window.setWindowFlags(Qt.WindowType.Window | Qt.WindowType.WindowStaysOnTopHint)
+    main_window.show()
+    main_window.raise_()
+    main_window.activateWindow()
+    QTimer.singleShot(300, lambda: (main_window.setWindowFlags(Qt.WindowType.Window),main_window.show()))
+    QTimer.singleShot(100, lambda: main_window.raise_())

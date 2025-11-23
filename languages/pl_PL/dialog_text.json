@@ -113,6 +113,7 @@
     "notesPlaceholderText": "Notatki do kontaktu (max. 300 znaków, max. 5 linii)..."
   },
   "contactsListDialog": {
+    "contactsListDialogTitle": "Baza kontaktów",
     "duplicateTextLabel": "Liczba znalezionych zduplikowanych kontaktów",
     "duplicateTextLabelContextBirthday": "Liczba kontaktów z urodzinami",
     "duplicateTextLabelContextDuplicity": "Liczba kontaktów z duplikatami",

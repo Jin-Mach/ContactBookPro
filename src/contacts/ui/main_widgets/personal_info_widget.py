@@ -99,7 +99,7 @@ class PersonalTabInfoWidget(QTabWidget):
             if self.ui_text:
                 gender_dict = self.ui_text.get("gender_key", {})
                 relationship_dict = self.ui_text.get("relationship_key", {})
-                self.set_photo_pixmap(data.get("photo"), int(data.get("gender", 0)))
+                self.set_photo_pixmap(data.get("photo", ""), int(data.get("gender", 0)))
                 self.contact_title_label.setText(data.get("title", ""))
                 self.contact_gender_label.setText(gender_dict.get(str(data.get("gender", "")), ""))
                 self.contact_first_name_label.setText(data.get("first_name", ""))
@@ -119,17 +119,27 @@ class PersonalTabInfoWidget(QTabWidget):
 
     def set_photo_pixmap(self, blob: QByteArray, gender: int) -> None:
         try:
-            pixmap = BlobHandler.blob_to_pixmap(blob, self)
-            if not pixmap or pixmap.isNull():
-                male_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
-                                                                            "male_icon.png")
-                female_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
-                                                                              "female_icon.png")
+            male_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
+                                                                        "male_icon.png")
+            female_icon_path = pathlib.Path(__file__).parents[4].joinpath("icons", "personalTabInfoWidget",
+                                                                          "female_icon.png")
+            if not isinstance(blob, QByteArray):
                 if gender == 1 and male_icon_path.exists():
                     pixmap = QPixmap(str(male_icon_path))
                     self.contact_photo_label.setPixmap(pixmap)
                 elif gender == 2 and female_icon_path.exists():
                     pixmap = QPixmap(str(female_icon_path))
+                    self.contact_photo_label.setPixmap(pixmap)
+                return
+            pixmap = BlobHandler.blob_to_pixmap(blob, self)
+            if not pixmap or pixmap.isNull():
+                if gender == 1 and male_icon_path.exists():
+                    pixmap = QPixmap(str(male_icon_path))
+                    self.contact_photo_label.setPixmap(pixmap)
+                elif gender == 2 and female_icon_path.exists():
+                    pixmap = QPixmap(str(female_icon_path))
+                    self.contact_photo_label.setPixmap(pixmap)
+                return
             else:
                 pixmap = pixmap.scaled(self.contact_photo_label.size(), Qt.AspectRatioMode.KeepAspectRatio)
             self.contact_photo_label.setPixmap(pixmap)

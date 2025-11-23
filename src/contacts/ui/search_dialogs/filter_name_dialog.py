@@ -13,6 +13,7 @@ class FilterNameDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("filterNameDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.setFixedSize(400, 200)
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)
@@ -27,7 +28,7 @@ class FilterNameDialog(QDialog):
         filter_name_text_label = QLabel()
         filter_name_text_label.setObjectName("filterNameTextLabel")
         filter_name_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        filter_name_text_label.setStyleSheet("font-size: 20pt;")
+        filter_name_text_label.setStyleSheet("font-size: 12pt;")
         self.filter_name_input = ValidatedLineEdit(self)
         self.filter_name_input.setObjectName("filterNameInput")
         self.filter_name_input.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)

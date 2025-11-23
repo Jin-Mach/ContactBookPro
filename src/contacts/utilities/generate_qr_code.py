@@ -13,8 +13,8 @@ def create_qr_code(vcard_data: str, main_window: QMainWindow | None = None) -> I
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=7,
-            border=3
+            box_size=4,
+            border=2
         )
         qr.add_data(vcard_data)
         qr.make(fit=True)

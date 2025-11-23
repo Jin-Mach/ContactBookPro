@@ -27,7 +27,7 @@ class SplashScreen(QSplashScreen):
                 pixmap = pixmap.scaled(self.size(), Qt.AspectRatioMode.IgnoreAspectRatio,
                                         Qt.TransformationMode.SmoothTransformation)
                 self.setPixmap(pixmap)
-            self.setStyleSheet("font-family: Tahoma; font-size: 20pt;")
+            self.setStyleSheet("font-family: Tahoma; font-size: 15pt;")
             self.showMessage("Contact Book Pro...", Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft,
                                  Qt.GlobalColor.black)
         except Exception as e:

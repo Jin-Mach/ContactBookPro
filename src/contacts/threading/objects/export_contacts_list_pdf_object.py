@@ -39,7 +39,7 @@ class ExportContactsListPdfObject(QObject):
         self.export_data_provider = export_data_provider
         self.main_window = main_window
         self.connection_name = f"exportListPdfThread{id(self)}"
-        self.src_path = Path(__file__).parents[3]
+        self.project_path = Path(__file__).parents[4]
 
     def run_pdf_list_export(self) -> None:
         db_connection = None
@@ -53,7 +53,7 @@ class ExportContactsListPdfObject(QObject):
             if not pdf_data:
                 self.finished.emit(False)
                 return
-            font_path = self.src_path.parent.joinpath("fonts", "TimesNewRoman.ttf")
+            font_path = self.project_path.joinpath("fonts", "TimesNewRoman.ttf")
             pdfmetrics.registerFont(TTFont("TimesNewRoman", str(font_path)))
             document = SimpleDocTemplate(str(self.pdf_path), leftMargin=50, rightMargin=50, topMargin=70, bottomMargin=50,
                                          pagesize=A4)
@@ -80,7 +80,7 @@ class ExportContactsListPdfObject(QObject):
             styles.add(ParagraphStyle(name="MyHeading2", parent=styles["Heading2"], fontName="TimesNewRoman"))
             styles.add(ParagraphStyle(name="MyNormal", parent=styles["Normal"], fontName="TimesNewRoman"))
             styles.add(ParagraphStyle(name="HeaderStyle", parent=styles["MyHeading2"], textColor=colors.red))
-            line_width = str(document.pagesize[0] - document.leftMargin - document.rightMargin)
+            line_width = document.pagesize[0] - document.leftMargin - document.rightMargin
             story = []
             for contact in contact_data:
                 header_paragraph = Paragraph(f"{contact.get('first_name', '')} {contact.get('second_name', '')} ",
@@ -101,11 +101,18 @@ class ExportContactsListPdfObject(QObject):
                     styles["MyNormal"]
                 )
                 contact_block = [
-                    header_paragraph, gender_relationship_paragraph, email_paragraph, phone_paragraph, address_paragraph
+                    header_paragraph,
+                    gender_relationship_paragraph,
+                    email_paragraph,
+                    phone_paragraph,
+                    address_paragraph
                 ]
                 story.append(KeepTogether(contact_block))
-                story.append(Spacer(1, 12))
-                story.append(HRFlowable(width=line_width, thickness=1, lineCap="round", color=colors.black))
+                story.append(Spacer(1, 5))
+                story.append(
+                    HRFlowable(width=line_width, thickness=1, lineCap="round", color=colors.black, hAlign="CENTER",
+                               spaceBefore=0, spaceAfter=0))
+                story.append(Spacer(1, 5))
             return story, None
         except Exception as e:
             return None, e
@@ -116,14 +123,18 @@ class ExportContactsListPdfObject(QObject):
 
     def draw_header(self, canvas: Canvas, document: SimpleDocTemplate) -> None:
         try:
-            icon_path = self.src_path.joinpath("icons", "mainWindow", "mainWindowLogo.png")
+            icon_path = self.project_path.joinpath("icons", "mainWindow", "mainWindowLogo.png")
             image = ImageReader(str(icon_path))
             image_width = 50
             image_height = 50
-            x_pos = (document.pagesize[0] - image_width) / 2
-            y_pos = document.pagesize[1] - image_height - 10
-            canvas.drawImage(image, x=x_pos, y=y_pos, width=image_width, height=image_height,
-                             preserveAspectRatio=True, mask="auto", anchor="c")
+            x_pos = document.leftMargin
+            y_pos = document.pagesize[1] - image_height - 20
+            canvas.drawImage(image, x=x_pos, y=y_pos, width=image_width, height=image_height, preserveAspectRatio=True,
+                             mask="auto")
+            canvas.setStrokeColor(colors.black)
+            canvas.setLineWidth(1)
+            line_y = y_pos - 5
+            canvas.line(document.leftMargin, line_y, document.pagesize[0] - document.rightMargin, line_y)
         except Exception as e:
             self.error_message.emit(e)
 

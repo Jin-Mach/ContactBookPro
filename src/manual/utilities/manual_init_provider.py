@@ -27,7 +27,7 @@ class ManualInitProvider:
             text = LanguageProvider.get_document_text("manual", edit_names)
             for text_edit in text_edit_list:
                 text_edit.setPlainText(text.get(text_edit.objectName(), ""))
-                text_edit.setStyleSheet("font: Arial; font-size: 15pt;")
+                text_edit.setStyleSheet("font: Arial; font-size: 12pt;")
                 text_edit.setReadOnly(True)
         except Exception as e:
             ErrorHandler.exception_handler(e, parent)

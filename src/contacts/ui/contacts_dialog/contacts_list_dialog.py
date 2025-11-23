@@ -12,9 +12,11 @@ class ContactsListDialog(QDialog):
     def __init__(self, duplicate_contacts: list, mode: str, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("contactsListDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Dialog)
         IconProvider.set_window_icon(self, "mainWindow")
         self.contacts_list = duplicate_contacts
         self.mode = mode
+        self.parent = parent
         self.setFixedSize(500, 400)
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)
@@ -29,7 +31,7 @@ class ContactsListDialog(QDialog):
         main_layout = QVBoxLayout()
         duplicate_text_label = QLabel()
         duplicate_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        duplicate_text_label.setStyleSheet("font-size: 20pt;")
+        duplicate_text_label.setStyleSheet("font-size: 12pt;")
         duplicate_text_label.setObjectName("duplicateTextLabel")
         self.duplicate_listwidget = DuplicateListWidget(self.contacts_list)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.RestoreDefaults | QDialogButtonBox.StandardButton.Ok
@@ -53,6 +55,7 @@ class ContactsListDialog(QDialog):
             ui_text = LanguageProvider.get_json_text("dialog_text.json", self.objectName())
             widgets = self.findChildren(QLabel)
             if ui_text:
+                self.setWindowTitle(ui_text.get(f"{self.objectName()}Title", "Contacts Database"))
                 for widget in widgets:
                     if widget.objectName() in ui_text:
                         if isinstance(widget, QLabel):

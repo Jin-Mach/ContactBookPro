@@ -1,3 +1,4 @@
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton, QLineEdit
 
 from src.contacts.ui.contacts_dialog.dialog_widgets.calendar_widget import CalendarWidget
@@ -12,6 +13,7 @@ class CalendarDialog(QDialog):
     def __init__(self, birthday_input: QLineEdit, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("calendarDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.setMinimumSize(450, 350)
         IconProvider.set_window_icon(self, "mainWindow")
         self.birthday_input = birthday_input

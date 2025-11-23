@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QDialog, QTabWidget, QLayout, QVBoxLayout, QDialogButtonBox, QPushButton
 
 from src.contacts.ui.contacts_dialog.dialog_widgets.mandatory_widget import MandatoryWidget
@@ -15,6 +16,7 @@ class ContactDialog(QDialog):
         super().__init__(parent)
         self.setObjectName("contactDialog")
         self.setFixedSize(600, 600)
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         IconProvider.set_window_icon(self, "mainWindow")
         self.update_contact = update_contact
         self.setLayout(self.create_gui())

@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QSize
+from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QDialog, QLayout, QVBoxLayout, QTabWidget, QDialogButtonBox, QPushButton
 
 from src.contacts.controlers.filters_controller import FiltersController
@@ -15,6 +15,7 @@ class AdvancedSearchDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("advancedSearchDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.setFixedSize(600, 600)
         self.setLayout(self.create_gui())
         button_box = self.findChild(QDialogButtonBox)

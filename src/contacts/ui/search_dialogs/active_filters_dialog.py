@@ -20,6 +20,7 @@ class ActiveFiltersDialog(QDialog):
                  search_mandatory_widget: "SearchMandatoryWidget", search_non_mandatory_widget: "SearchNonMandatoryWidget", parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("activeFiltersDialog")
+        self.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint)
         self.setMinimumSize(700, 400)
         self.advanced_filter_model = advanced_filter_model
         self.remove_filter = remove_filter
@@ -38,7 +39,7 @@ class ActiveFiltersDialog(QDialog):
         self.current_filter_text_label = QLabel()
         self.current_filter_text_label.setObjectName("currentFilterTextLabel")
         self.current_filter_text_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.current_filter_text_label.setStyleSheet("font-size: 20pt;")
+        self.current_filter_text_label.setStyleSheet("font-size: 12pt;")
         self.filters_tableview_widget = FiltersTableviewWidget(self.advanced_filter_model, self.remove_filter, self)
         button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Reset | QDialogButtonBox.StandardButton.Close)
         save_filter = button_box.button(QDialogButtonBox.StandardButton.Reset)

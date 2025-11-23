@@ -157,7 +157,7 @@ class ContactsToolbarWidget(QWidget):
 
     def set_style(self) -> None:
         self.search_text_label.setStyleSheet("font-size: 12pt;")
-        self.search_line_edit.setStyleSheet("font-size: 15pt;")
+        self.search_line_edit.setStyleSheet("font-size: 12pt;")
 
     def create_connection(self) -> None:
         self.add_new_contact_pushbutton.clicked.connect(self.add_new_contact)

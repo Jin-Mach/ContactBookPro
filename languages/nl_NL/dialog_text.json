@@ -112,6 +112,7 @@
     "notesPlaceholderText": "Notities bij contact (max. 300 tekens, max. 5 regels)..."
   },
   "contactsListDialog": {
+    "contactsListDialogTitle": "Contactendatabase",
     "duplicateTextLabel": "Aantal gevonden dubbele contacten",
     "duplicateTextLabelContextBirthday": "Aantal contacten met verjaardag",
     "duplicateTextLabelContextDuplicity": "Aantal dubbele contacten",

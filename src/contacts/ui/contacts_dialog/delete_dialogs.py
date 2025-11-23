@@ -16,6 +16,7 @@ class DeleteDialogs:
     def show_delete_contact_dialog(first_name: str, second_name: str, parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("deleteContactDialog")
+        dialog.setWindowFlag(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Dialog)
         IconProvider.set_window_icon(dialog, "mainWindow")
         dialog.setFixedSize(300, 150)
         main_layout = QVBoxLayout()
@@ -39,6 +40,7 @@ class DeleteDialogs:
     def show_delete_all_contacts_dialog(parent=None) -> QDialog:
         dialog = QDialog(parent)
         dialog.setObjectName("deleteAllContactsDialog")
+        dialog.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint | Qt.WindowType.Dialog)
         IconProvider.set_window_icon(dialog, "mainWindow")
         dialog.setFixedSize(300, 200)
         main_layout = QVBoxLayout()

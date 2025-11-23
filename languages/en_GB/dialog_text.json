@@ -112,6 +112,7 @@
     "notesPlaceholderText": "Contact notes (max. 300 characters, max. 5 lines)..."
   },
   "contactsListDialog": {
+    "contactsListDialogTitle": "Contacts Database",
     "duplicateTextLabel": "Number of duplicate contacts found",
     "duplicateTextLabelContextBirthday": "Number of contacts with birthdays",
     "duplicateTextLabelContextDuplicity": "Number of contacts with duplicates",
