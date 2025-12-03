@@ -188,6 +188,7 @@ class PersonalDetailsWidget(QWidget):
                 label.setPixmap(pixmap)
                 self.photo_state = 1
             else:
+                label.clear()
                 self.photo_state = 0
         except Exception as e:
             ErrorHandler.exception_handler(e, self)

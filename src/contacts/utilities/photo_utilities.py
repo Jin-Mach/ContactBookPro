@@ -15,6 +15,8 @@ def set_contact_photo(photo_label: QLabel, photo_label_size: QSize, parent=None)
         photo_path, _ = QFileDialog.getOpenFileName(parent=parent, directory=default_path, filter=file_filter)
         if photo_path:
             pixmap = QPixmap(photo_path)
+            if pixmap.isNull():
+                return
             pixmap = pixmap.scaled(photo_label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             photo_label.setPixmap(pixmap)
     except Exception as e:

@@ -1,3 +1,8 @@
+import os
+
+os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--disable-logging --log-level=3"
+os.environ["QT_LOGGING_RULES"] = "qt.webengine*.debug=false;qt.webengine*.info=false"
+
 import sys
 
 from PyQt6.QtCore import QTimer, Qt
@@ -34,7 +39,7 @@ def create_application() -> None:
     window = MainWindow()
     window.hide()
     application.main_window = window
-    QTimer.singleShot(200, lambda: finish_and_show(splash_screen, window))
+    QTimer.singleShot(100, lambda: finish_and_show(splash_screen, window))
     sys.exit(application.exec())
 
 def finish_and_show(splash_screen: QSplashScreen, main_window: MainWindow) -> None:
@@ -43,5 +48,3 @@ def finish_and_show(splash_screen: QSplashScreen, main_window: MainWindow) -> No
     main_window.show()
     main_window.raise_()
     main_window.activateWindow()
-    QTimer.singleShot(300, lambda: (main_window.setWindowFlags(Qt.WindowType.Window),main_window.show()))
-    QTimer.singleShot(100, lambda: main_window.raise_())
