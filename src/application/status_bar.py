@@ -1,6 +1,8 @@
 from PyQt6.QtCore import QTime, QTimer
 from PyQt6.QtWidgets import QStatusBar, QLabel, QPushButton, QWidget
 
+from src.utilities.application_support_provider import ApplicationSupportProvider
+
 
 # noinspection PyUnresolvedReferences
 class StatusBar(QStatusBar):
@@ -12,6 +14,7 @@ class StatusBar(QStatusBar):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
         self.align_time_to_minute()
+        self.set_holidays()
 
     def create_gui(self) -> None:
         spacer = QWidget()
@@ -46,3 +49,9 @@ class StatusBar(QStatusBar):
     def start_minute_timer(self) -> None:
         self.update_time()
         self.timer.start(60 * 1000)
+
+    def set_holidays(self) -> None:
+        holidays_data = ApplicationSupportProvider.get_holidays_data()
+        if holidays_data:
+            self.holidays_button.setEnabled(True)
+        self.holidays_button.setVisible(False)
