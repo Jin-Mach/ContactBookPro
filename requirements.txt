@@ -3,6 +3,7 @@ folium>=0.20
 geopy>=2.4
 matplotlib>=3.10
 email-validator>=2.0
+holidays>=0.86
 phonenumbers>=9.0
 Pillow>=11.3
 python-dateutil>=2.9
