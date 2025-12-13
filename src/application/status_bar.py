@@ -16,7 +16,7 @@ class StatusBar(QStatusBar):
     def create_gui(self) -> None:
         spacer = QWidget()
         spacer.setFixedWidth(10)
-        self.holidays_button = QPushButton("nějáký svátek")
+        self.holidays_button = QPushButton("xxx")
         self.holidays_button.setFixedHeight(20)
         self.holidays_button.setStyleSheet(
             "background-color: #FF6666; "
