@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QTime, QTimer
-from PyQt6.QtWidgets import QStatusBar, QLabel
+from PyQt6.QtWidgets import QStatusBar, QLabel, QPushButton, QWidget
 
 
 # noinspection PyUnresolvedReferences
@@ -14,8 +14,22 @@ class StatusBar(QStatusBar):
         self.align_time_to_minute()
 
     def create_gui(self) -> None:
+        spacer = QWidget()
+        spacer.setFixedWidth(10)
+        self.holidays_button = QPushButton("nějáký svátek")
+        self.holidays_button.setFixedHeight(20)
+        self.holidays_button.setStyleSheet(
+            "background-color: #FF6666; "
+            "color: white; "
+            "border: 2px solid white; "
+            "border-radius: 7px; "
+            "padding: 2px;"
+        )
         self.time_label = QLabel()
+        self.addPermanentWidget(self.holidays_button)
+        self.addPermanentWidget(spacer)
         self.addPermanentWidget(self.time_label)
+        self.addPermanentWidget(spacer)
 
     def show_status_bar_message(self, message: str) -> None:
         self.showMessage(message, 5000)
