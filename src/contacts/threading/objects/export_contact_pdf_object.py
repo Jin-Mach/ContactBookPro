@@ -180,7 +180,7 @@ class ExportContactPdfObject(QObject):
             styles.add(ParagraphStyle(name="WorkHeading", parent=styles["Heading2"], fontName="TimesNewRoman", fontSize=15,
                                       spaceAfter=10))
             styles.add(ParagraphStyle(name="WorkNormal", parent=styles["Normal"], fontName="TimesNewRoman", fontSize=12,
-                                      spaceAfter=6))
+                                      spaceAfter=10))
             company = contact_data.get('company_name', '')
             email = contact_data.get('work_email', '')
             phone = contact_data.get('work_phone_number', '')

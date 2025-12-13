@@ -5,7 +5,7 @@ os.environ["QT_LOGGING_RULES"] = "qt.webengine*.debug=false;qt.webengine*.info=f
 
 import sys
 
-from PyQt6.QtCore import QTimer, Qt
+from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QDialog, QSplashScreen
 
 from src.application.main_window import MainWindow
@@ -44,7 +44,6 @@ def create_application() -> None:
 
 def finish_and_show(splash_screen: QSplashScreen, main_window: MainWindow) -> None:
     splash_screen.finish(main_window)
-    main_window.setWindowFlags(Qt.WindowType.Window | Qt.WindowType.WindowStaysOnTopHint)
-    main_window.show()
     main_window.raise_()
     main_window.activateWindow()
+    main_window.show()
