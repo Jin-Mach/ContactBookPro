@@ -11,7 +11,7 @@ class HolidaysDialog(QDialog):
     def __init__(self, holidays_data: list[datetime.date | str | list[str]] | None, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("holidaysDialog")
-        self.setMinimumSize(400, 350)
+        self.setMinimumSize(300, 200)
         self.holidays_data = holidays_data
         self.setLayout(self.create_gui())
         self.set_ui_text()
@@ -54,5 +54,8 @@ class HolidaysDialog(QDialog):
             holiday_text = "\n".join(self.holidays_data[1])
             self.holiday_date_label.setText(holiday_date)
             self.holiday_text_label.setText(holiday_text)
+            holidays_text = LanguageProvider.load_json("holidays_text.json").get(self.holidays_data[0].strftime("%m-%d"), "")
+            if holidays_text:
+                self.holiday_info_label.setText(holidays_text)
         except Exception as e:
             ErrorHandler.exception_handler(e)

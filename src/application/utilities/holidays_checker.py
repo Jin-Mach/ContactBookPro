@@ -20,7 +20,7 @@ def get_local_holidays() -> list[datetime.date | str] | None:
             return None
         current_date = datetime.date.today()
         local_holidays = holidays.country_holidays(country=language.split("_")[1], years=[current_date.year])
-        current_holidays = local_holidays.get(datetime.date(2025, 1, 1))
+        current_holidays = local_holidays.get(current_date)
         if not current_holidays:
             return None
         return [current_date, current_holidays]

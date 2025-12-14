@@ -30,7 +30,7 @@ class StatusBar(QStatusBar):
         self.holidays_button.setStyleSheet(
             "background-color: #FF6666; "
             "color: white; "
-            "border: 2px solid white; "
+            "border: 1px solid white; "
             "border-radius: 7px; "
             "padding: 2px;"
         )
