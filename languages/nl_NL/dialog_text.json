@@ -120,5 +120,9 @@
     "showContactButton": "Ga naar contact",
     "continueButton": "Doorgaan",
     "cancelButton": "Annuleren"
+  },
+  "holidaysDialog": {
+    "holidaysDialogTitle": "Nationale feestdag",
+    "closeButton": "Sluiten"
   }
 }

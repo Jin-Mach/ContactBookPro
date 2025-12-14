@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QMainWindow, QStackedWidget, QWidget, QVBoxLayout, Q
 from src.about.about_application_dialog import AboutApplicationDialog
 from src.application.main_window_widgets.main_window_button_widget import MainWindowButtonWidget
 from src.application.status_bar import StatusBar
+from src.application.utilities.holidays_checker import get_local_holidays
 from src.contacts.ui.contacts_main_widget import ContactsMainWidget
 from src.contacts.utilities.tray_icon import TrayIcon
 from src.database.db_connection import create_db_connection
@@ -50,6 +51,7 @@ class MainWindow(QMainWindow):
             self.tray_icon = TrayIcon(self.status_bar, self)
             self.tray_icon.show()
         SettingsProvider.load_settings(self, QSize(1280, 720))
+        self.set_holidays_button()
 
     def create_gui(self) -> QWidget:
         central_widget = QWidget()
@@ -176,3 +178,10 @@ class MainWindow(QMainWindow):
             dialog = AboutApplicationDialog(self)
             dialog.exec()
         self.stacked_widget.setCurrentIndex(index)
+
+    def set_holidays_button(self) -> None:
+        self.holiday_data = get_local_holidays()
+        if self.holiday_data:
+            self.status_bar.holidays_button.setEnabled(True)
+        else:
+            self.status_bar.holidays_button.setEnabled(False)

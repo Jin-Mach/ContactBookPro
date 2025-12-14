@@ -120,5 +120,9 @@
     "showContactButton": "Aller au contact",
     "continueButton": "Continuer",
     "cancelButton": "Annuler"
+  },
+  "holidaysDialog": {
+    "holidaysDialogTitle": "Fête nationale",
+    "closeButton": "Fermer"
   }
 }

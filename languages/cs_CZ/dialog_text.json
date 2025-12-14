@@ -120,5 +120,9 @@
     "showContactButton": "Přejít na kontakt",
     "continueButton": "Pokračovat",
     "cancelButton": "Zrušit"
+  },
+  "holidaysDialog": {
+    "holidaysDialogTitle": "Státní svátek",
+    "closeButton": "Zavřít"
   }
 }

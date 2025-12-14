@@ -1,20 +1,26 @@
+from typing import TYPE_CHECKING
+
 from PyQt6.QtCore import QTime, QTimer
 from PyQt6.QtWidgets import QStatusBar, QLabel, QPushButton, QWidget
 
-from src.utilities.application_support_provider import ApplicationSupportProvider
+from src.application.main_window_widgets.holidays_dialog import HolidaysDialog
+
+
+if TYPE_CHECKING:
+    from src.application.main_window import MainWindow
 
 
 # noinspection PyUnresolvedReferences
 class StatusBar(QStatusBar):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, parent: "MainWindow") -> None:
         super().__init__(parent)
         self.setObjectName("statusBar")
+        self.parent = parent
         self.create_gui()
         self.update_time()
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_time)
         self.align_time_to_minute()
-        self.set_holidays()
 
     def create_gui(self) -> None:
         spacer = QWidget()
@@ -28,6 +34,7 @@ class StatusBar(QStatusBar):
             "border-radius: 7px; "
             "padding: 2px;"
         )
+        self.holidays_button.clicked.connect(self.show_holidays_dialog)
         self.time_label = QLabel()
         self.addPermanentWidget(self.holidays_button)
         self.addPermanentWidget(spacer)
@@ -50,8 +57,6 @@ class StatusBar(QStatusBar):
         self.update_time()
         self.timer.start(60 * 1000)
 
-    def set_holidays(self) -> None:
-        holidays_data = ApplicationSupportProvider.get_holidays_data()
-        if holidays_data:
-            self.holidays_button.setEnabled(True)
-        self.holidays_button.setVisible(False)
+    def show_holidays_dialog(self) -> None:
+        dialog = HolidaysDialog(self.parent.holiday_data, self)
+        dialog.show()
