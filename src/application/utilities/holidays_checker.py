@@ -6,7 +6,7 @@ from src.utilities.error_handler import ErrorHandler
 from src.utilities.language_provider import LanguageProvider
 
 
-def get_local_holidays() -> tuple[datetime.date, str] | None:
+def get_local_holidays() -> list[datetime.date | str] | None:
     try:
         languages_path = pathlib.Path(__file__).parents[3].joinpath("languages")
         languages_folder = []
@@ -23,7 +23,7 @@ def get_local_holidays() -> tuple[datetime.date, str] | None:
         current_holidays = local_holidays.get(datetime.date(2025, 1, 1))
         if not current_holidays:
             return None
-        return current_date, current_holidays
+        return [current_date, current_holidays]
     except Exception as e:
         ErrorHandler.exception_handler(e)
         return None

@@ -8,14 +8,14 @@ from src.utilities.language_provider import LanguageProvider
 
 
 class HolidaysDialog(QDialog):
-    def __init__(self, holidays_data: tuple[datetime.date, str] | None, parent=None) -> None:
+    def __init__(self, holidays_data: list[datetime.date | str | list[str]] | None, parent=None) -> None:
         super().__init__(parent)
         self.setObjectName("holidaysDialog")
         self.setMinimumSize(400, 350)
         self.holidays_data = holidays_data
-        print(self.holidays_data)
         self.setLayout(self.create_gui())
         self.set_ui_text()
+        self.set_holidays_text()
 
     def create_gui(self) -> QLayout:
         main_layout = QVBoxLayout()
@@ -43,5 +43,16 @@ class HolidaysDialog(QDialog):
                 if "holidaysDialogTitle" in ui_text:
                     self.setWindowTitle(ui_text.get("holidaysDialogTitle", ""))
                 self.close_button.setText(ui_text.get("closeButton", ""))
+        except Exception as e:
+            ErrorHandler.exception_handler(e)
+
+    def set_holidays_text(self) -> None:
+        try:
+            holiday_date = self.holidays_data[0].strftime("%d.%m.%Y")
+            if ";" in self.holidays_data[1]:
+                self.holidays_data[1] = self.holidays_data[1].split(";")
+            holiday_text = "\n".join(self.holidays_data[1])
+            self.holiday_date_label.setText(holiday_date)
+            self.holiday_text_label.setText(holiday_text)
         except Exception as e:
             ErrorHandler.exception_handler(e)
