@@ -86,5 +86,8 @@
   },
   "aboutApplicationDialog": {
     "githubButton": "Öffnet das Projekt auf GitHub."
+  },
+  "statusBar": {
+    "holidaysButton": "Mehr über den Feiertag"
   }
 }

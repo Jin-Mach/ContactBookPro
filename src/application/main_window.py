@@ -182,7 +182,15 @@ class MainWindow(QMainWindow):
     def set_holidays_button(self) -> None:
         self.holiday_data = get_local_holidays()
         if self.holiday_data:
-            self.status_bar.holidays_button.setText(self.holidays_data[0].strftime("%d.%m.%Y"))
+            self.status_bar.holidays_label.setVisible(False)
+            self.status_bar.holidays_button.setStyleSheet(
+            "border: 2px solid #FF9999;"
+            "border-radius: 5px;"
+            "padding: 2px;"
+            )
+            self.status_bar.set_tooltips_text()
             self.status_bar.holidays_button.setVisible(True)
         else:
+            self.status_bar.holidays_label.setVisible(True)
+            self.status_bar.holidays_button.setStyleSheet("")
             self.status_bar.holidays_button.setVisible(False)
