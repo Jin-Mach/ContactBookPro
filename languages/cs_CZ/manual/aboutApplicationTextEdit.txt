@@ -5,6 +5,8 @@ K dispozici je také náhled kontaktů ve formátu PDF a zobrazení QR kódů je
 
 Součástí aplikace je vizualizace kontaktů na mapě, přehledné statistiky o uložených datech a komplexní manuál, který vám pomůže efektivně využívat všechny dostupné funkce.
 
+Aplikace sleduje státní svátky pro zvolený jazyk. Pokud je v daný den svátek, zobrazí se malé upozornění ve stavovém řádku, umožnující zobrazit dialog s detailními informacemi.
+
 Aplikace se automaticky přizpůsobuje jazyku vašeho systému (pokud není podporován, zobrazí dialog s možností volby).
 Zároveň kontroluje jazykové soubory, ikony a fonty a podle potřeby je aktualizuje.
 Tato kontrola probíhá vždy při spuštění aplikace a může trvat několik vteřin (v závislosti na rychlosti připojení k internetu).

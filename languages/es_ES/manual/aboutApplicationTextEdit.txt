@@ -5,6 +5,8 @@ También está disponible una vista previa de los contactos en formato PDF y la 
 
 La aplicación incluye la visualización de los contactos en un mapa, estadísticas claras sobre los datos almacenados y un manual completo que le ayuda a utilizar eficazmente todas las funciones disponibles.
 
+La aplicación sigue los días festivos oficiales para el idioma seleccionado. Si hay un festivo en un día determinado, aparece una pequeña notificación en la barra de estado, que permite abrir un diálogo con información detallada.
+
 La aplicación se adapta automáticamente al idioma de su sistema (si no es compatible, se mostrará un diálogo con opción de selección).
 También verifica los archivos de idioma, iconos y fuentes y los actualiza si es necesario.
 Esta verificación se realiza cada vez que se inicia la aplicación y puede tardar unos segundos (dependiendo de la velocidad de Internet).

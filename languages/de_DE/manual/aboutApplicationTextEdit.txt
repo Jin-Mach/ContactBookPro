@@ -5,6 +5,8 @@ Es steht auch eine Vorschau der Kontakte im PDF-Format sowie die Anzeige von QR-
 
 Die Anwendung beinhaltet die Visualisierung der Kontakte auf einer Karte, übersichtliche Statistiken über die gespeicherten Daten und ein umfassendes Handbuch, das Ihnen hilft, alle verfügbaren Funktionen effektiv zu nutzen.
 
+Die Anwendung verfolgt die gesetzlichen Feiertage für die gewählte Sprache. Wenn an diesem Tag ein Feiertag ist, wird eine kleine Benachrichtigung in der Statusleiste angezeigt, über die ein Dialog mit detaillierten Informationen geöffnet werden kann.
+
 Die Anwendung passt sich automatisch an die Sprache Ihres Systems an (falls diese nicht unterstützt wird, wird ein Dialog zur Auswahl angezeigt).
 Zusätzlich überprüft sie Sprachdateien, Symbole und Schriftarten und aktualisiert diese bei Bedarf.
 Diese Überprüfung erfolgt stets beim Start der Anwendung und kann je nach Internetgeschwindigkeit einige Sekunden dauern.

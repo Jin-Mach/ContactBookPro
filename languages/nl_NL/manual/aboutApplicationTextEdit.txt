@@ -5,6 +5,8 @@ Een voorbeeld van contacten in PDF-formaat en de weergave van QR-codes voor afzo
 
 De applicatie bevat een visualisatie van contacten op een kaart, duidelijke statistieken over de opgeslagen gegevens en een uitgebreide handleiding die u helpt alle beschikbare functies effectief te gebruiken.
 
+De applicatie houdt de nationale feestdagen bij voor de geselecteerde taal. Als er op een bepaalde dag een feestdag is, wordt een kleine melding in de statusbalk weergegeven, waarmee een dialoogvenster met gedetailleerde informatie kan worden geopend.
+
 De applicatie past zich automatisch aan de taal van uw systeem aan (als deze niet wordt ondersteund, wordt een dialoogvenster met een selectiemogelijkheid weergegeven).
 Het controleert ook taalbestanden, pictogrammen en lettertypen en werkt deze indien nodig bij.
 Deze controle vindt elke keer plaats bij het starten van de applicatie en kan enkele seconden duren (afhankelijk van de internetsnelheid).

@@ -5,6 +5,8 @@ Dostępny jest również podgląd kontaktów w formacie PDF oraz wyświetlanie k
 
 Aplikacja zawiera wizualizację kontaktów na mapie, czytelne statystyki zapisanych danych oraz kompleksowy podręcznik, który pomoże Ci efektywnie korzystać ze wszystkich dostępnych funkcji.
 
+Aplikacja śledzi państwowe święta dla wybranego języka. Jeśli w danym dniu przypada święto, w pasku stanu pojawia się małe powiadomienie umożliwiające otwarcie okna dialogowego z szczegółowymi informacjami.
+
 Aplikacja automatycznie dostosowuje się do języka Twojego systemu (jeśli nie jest obsługiwany, zostanie wyświetlone okno dialogowe z możliwością wyboru języka).
 Dodatkowo sprawdza pliki językowe, ikony i czcionki oraz aktualizuje je w razie potrzeby.
 Ta kontrola odbywa się przy każdym uruchomieniu aplikacji i może potrwać kilka sekund (w zależności od prędkości internetu).

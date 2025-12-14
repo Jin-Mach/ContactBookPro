@@ -5,6 +5,8 @@ Também está disponível uma visualização dos contatos em formato PDF e a exi
 
 O aplicativo inclui a visualização dos contatos em um mapa, estatísticas claras sobre os dados armazenados e um manual completo que ajuda a utilizar efetivamente todos os recursos disponíveis.
 
+A aplicação acompanha os feriados nacionais para o idioma selecionado. Se houver um feriado no dia, é exibida uma pequena notificação na barra de status, permitindo abrir um diálogo com informações detalhadas.
+
 O aplicativo se adapta automaticamente ao idioma do seu sistema (se não for suportado, será exibida uma caixa de diálogo com opção de seleção).
 Também verifica arquivos de idioma, ícones e fontes e os atualiza quando necessário.
 Essa verificação ocorre toda vez que o aplicativo é iniciado e pode levar alguns segundos (dependendo da velocidade da internet).

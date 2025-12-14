@@ -5,6 +5,8 @@ Consente di registrare informazioni di base e aggiuntive sui contatti, di cercar
 
 L'applicazione include la visualizzazione dei contatti su una mappa, statistiche chiare sui dati memorizzati e un manuale completo che ti aiuta a utilizzare efficacemente tutte le funzionalità disponibili.
 
+L’applicazione monitora le festività nazionali per la lingua selezionata. Se una festività cade in un determinato giorno, viene mostrata una piccola notifica nella barra di stato, che consente di aprire una finestra di dialogo con informazioni dettagliate.
+
 L'applicazione si adatta automaticamente alla lingua del tuo sistema (se non supportata, verrà visualizzata una finestra di dialogo con opzione di selezione).
 Verifica inoltre i file di lingua, le icone e i font e li aggiorna se necessario.
 Questa verifica viene eseguita ogni volta che l'applicazione viene avviata e può richiedere alcuni secondi (a seconda della velocità di connessione a Internet).

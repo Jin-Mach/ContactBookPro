@@ -5,6 +5,8 @@ A preview of contacts in PDF format and display of QR codes for individual entri
 
 The application includes visualization of contacts on a map, clear statistics on stored data, and a comprehensive manual to help you effectively use all available features.
 
+The application tracks public holidays for the selected language. If there is a holiday on a given day, a small notification appears in the status bar, allowing you to open a dialog with detailed information.
+
 The application automatically adapts to your system language (if not supported, a dialog with a selection option will be displayed).
 It also checks language files, icons, and fonts and updates them if necessary.
 This check occurs every time the application starts and may take a few seconds (depending on internet speed).

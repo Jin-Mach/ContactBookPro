@@ -5,6 +5,8 @@ Un aperçu des contacts au format PDF et l'affichage des codes QR pour chaque en
 
 L'application comprend la visualisation des contacts sur une carte, des statistiques claires sur les données enregistrées et un manuel complet pour vous aider à utiliser efficacement toutes les fonctionnalités disponibles.
 
+L’application suit les jours fériés officiels pour la langue sélectionnée. Si un jour férié tombe à une date donnée, une petite notification apparaît dans la barre d’état, permettant d’afficher une boîte de dialogue avec des informations détaillées.
+
 L'application s'adapte automatiquement à la langue de votre système (si elle n'est pas prise en charge, une boîte de dialogue avec option de sélection s'affichera).
 Elle vérifie également les fichiers de langue, les icônes et les polices et les met à jour si nécessaire.
 Cette vérification a lieu à chaque démarrage de l'application et peut prendre quelques secondes (en fonction de la vitesse de connexion Internet).
