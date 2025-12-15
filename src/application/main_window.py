@@ -50,7 +50,7 @@ class MainWindow(QMainWindow):
         if QSystemTrayIcon.isSystemTrayAvailable():
             self.tray_icon = TrayIcon(self.status_bar, self)
             self.tray_icon.show()
-        SettingsProvider.load_settings(self, QSize(1280, 720))
+        SettingsProvider.load_settings(self)
         self.set_holidays_button()
 
     def create_gui(self) -> QWidget:
